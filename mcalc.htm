@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>手机</title>
+<script language="JavaScript" src="cookie.js" type="text/JavaScript"></script>
+<script language="JavaScript" src="const.js" type="text/JavaScript"></script>
+<script language="JavaScript" src="math.js" type="text/JavaScript"></script>
+<script language="JavaScript" src="m.js" type="text/JavaScript"></script>
+<script language="JavaScript" src="mdb.js" type="text/JavaScript"></script>
+</head>
+
+<body onLoad="compareall()">
+<h1>正在计算，请稍候... </h1>
+<script language="JavaScript" type="text/JavaScript">
+function compareall() {
+signal=(getCookie('signal')=='1');
+hidename=(getCookie('knowname')=='0');
+needwap=(getCookie('nettype')=='w');
+needgprs=(getCookie('nettype')=='g');
+needcdma1x=(getCookie('nettype')=='c');
+
+cMinP=Number.MAX_VALUE;
+cMinT=0;
+calcall(signal,hidename,needwap,needgprs,needcdma1x);
+for (i=1;i<=mobiles;i++) {
+if (P[i]<cMinP) {
+cMinT=i;
+cMinP=P[i];
+}
+}
+if (cMinT==0) {
+location.href='mnone.htm';
+} else {
+setCookie('result',mname[cMinT]);
+setCookie('cheapest',''+Math.round(cMinP));
+location.href='mshow.htm';
+}
+}//end function compareall
+</script>
+</body>
+</html>

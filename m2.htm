@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>手机</title>
+<script language="JavaScript" src="cookie.js" type="text/JavaScript"></script>
+</head>
+
+<body onLoad="tfill()">
+<p>
+<script language="JavaScript" type="text/JavaScript">
+if (getCookie('havephone')=='n') {
+setCookie('havecard','n');
+location.href='m3.htm';
+}
+function click1(cardtype) {
+chglossinp=Number(q.chgloss.value);
+if (chglossinp<0) {
+alert('更换损失无效');
+} else {
+setCookie('chgloss',''+chglossinp);
+setCookie('havecard',cardtype);
+location.href='m3.htm';
+}
+}
+function tfill() {//根据模版填充
+templete=getCookie('templete');
+switch (templete) {
+case 'xj':
+q.chgloss.value='5';
+break;
+case 'xm':
+q.chgloss.value='50';
+break;
+case 'sw':
+q.chgloss.value='100000';
+break;
+case 'zy':
+q.chgloss.value='300';
+break;
+case 'zf':
+q.chgloss.value='50';
+break;
+case 'lr':
+q.chgloss.value='20';
+break;
+}
+}
+</script>
+</p>
+<p>二、你已经拥有手机号码了吗？</p>
+<form action="" method="post" name="q" id="q">
+如果更换电话号码，将对你带来损失<input name="chgloss" type="text" id="chgloss">元。
+<br>这样的损失包括：联系不便、重印名片、通知别人等。如果你认为号码万万不可更换，可以填入一个大数，比如100000。
+<p>请点击你已拥有的SIM/UIM类别：
+<ol type="A">
+<li><a href="#" onClick="click1('n')">没有</a></li>
+<li><a href="#" onClick="click1('n')">有，但不准备继续使用</a></li>
+<script language="JavaScript" type="text/JavaScript">
+if (getCookie('havephone').indexOf('g')!=-1) {
+document.write('<li><a href=\"#\" onclick=\"click1(\'gotone\')\">全球通、88套餐、易通卡<\/a>');
+document.write('<li><a href=\"#\" onclick=\"click1(\'szx\')\">神州行<\/a>');
+document.write('<li><a href=\"#\" onclick=\"click1(\'szxdz\')\">神州行大众卡<\/a>');
+document.write('<li><a href=\"#\" onclick=\"click1(\'szxjj\')\">神州行加加卡<\/a>');
+document.write('<li><a href=\"#\" onclick=\"click1(\'mzone\')\">动感地带M-ZONE<\/a>');
+document.write('<li><a href=\"#\" onclick=\"click1(\'ryt\')\">如意通、如意通大众卡<\/a>');
+document.write('<li><a href=\"#\" onclick=\"click1(\'sjt\')\">世纪通<\/a>');
+document.write('<li><a href=\"#\" onclick=\"click1(\'xsjt\')\">新世纪通<\/a>');
+document.write('<li><a href=\"#\" onclick=\"click1(\'cu100200\')\">100/200卡<\/a>');
+document.write('<li><a href=\"#\" onclick=\"click1(\'cu58\')\">58系列<\/a>');
+}
+if (getCookie('havephone').indexOf('c')!=-1) {
+document.write('<li><a href=\"#\" onclick=\"click1(\'ry133\')\">如意133<\/a>');
+document.write('<li><a href=\"#\" onclick=\"click1(\'xsj133\')\">新世纪133<\/a>');
+document.write('<li><a href=\"#\" onclick=\"click1(\'xyt\')\">心意通<\/a>');
+}
+if (getCookie('havephone').indexOf('p')!=-1) {
+document.write('<li><a href=\"#\" onclick=\"click1(\'xlt\')\">小灵通<\/a>');
+}
+</script>
+
+</ol>
+</form>
+
+
+
+</body>
+</html>

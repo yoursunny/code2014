@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>手机</title>
+<script language="JavaScript" src="cookie.js" type="text/JavaScript"></script>
+</head>
+
+<body>
+<p>九、你需要用手机上网吗？</p>
+<ol type="A">
+  <li><a href="ma.htm" onClick="setCookie('nettype','n')">不需要</a> 
+  </li>
+  <li>需要 
+    <script language="JavaScript" type="text/JavaScript">
+function clickok() {
+if (q.nettype(0).checked) {nettypeinp=q.nettype(0).value}
+if (q.nettype(1).checked) {nettypeinp=q.nettype(1).value}
+if (q.nettype(2).checked) {nettypeinp=q.nettype(2).value}
+nettimeinp=Number(q.nettime.value);
+nettimenightinp=Number(q.nettimenight.value);
+netkbsinp=Number(q.netkbs.value);
+if (nettimeinp<=0 || nettimenightinp<0 || netkbsinp<=0) {
+alert('上网参数无效');
+} else {
+setCookie('nettype',nettypeinp);
+setCookie('nettimeday',''+(nettimeinp-nettimenightinp));
+setCookie('nettimenight',''+nettimenightinp);
+setCookie('netkbs',''+netkbsinp);
+location.href='ma.htm';
+}
+}
+</script>
+    <form action="" method="post" name="q" id="q">
+      我的手机支持 
+      <label> 
+      <input name="nettype" type="radio" value="w" checked>
+      WAP</label>
+      <label> 
+      <input type="radio" name="nettype" value="g">
+      GPRS</label>
+      <label> 
+      <input type="radio" name="nettype" value="c">
+      CDMA1X</label>
+      方式上网 (如果手机支持多种，选你常使用的) <br>
+      我每月用手机上网 
+      <input name="nettime" type="text" id="nettime" size="5">
+      分钟（其中21点~7点 
+      <input name="nettimenight" type="text" id="nettimenight" size="5">
+      分钟），数据流量 
+      <input name="netkbs" type="text" id="netkbs" size="5">
+      K。 
+      <input name="ok" type="button" id="ok" onclick="clickok()" value="继续">
+    </form>
+  </li>
+</ol>
+<p>注：到目前为止，小灵通不支持上网。
+</body>
+</html>

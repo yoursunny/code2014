@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>手机</title>
+<script language="JavaScript" src="cookie.js" type="text/JavaScript"></script>
+</head>
+
+<body onLoad="tfill()">
+<p>三、你通常每个月用手机打多少分钟电话？
+  <script language="JavaScript" type="text/JavaScript">
+function clickok() {
+totalteltimeinp=Number(q.totalteltime.value);
+if (totalteltimeinp<=0) {
+alert('电话时间无效');
+} else {
+setCookie('totalteltime',''+totalteltimeinp);
+location.href='m4.htm';
+}
+}
+function tfill() {//根据模版填充
+templete=getCookie('templete');
+switch (templete) {
+case 'xj':
+q.totalteltime.value='40';
+break;
+case 'xm':
+q.totalteltime.value='20';
+break;
+case 'sw':
+q.totalteltime.value='1000';
+break;
+case 'zy':
+q.totalteltime.value='250';
+break;
+case 'zf':
+q.totalteltime.value='100';
+break;
+case 'lr':
+q.totalteltime.value='40';
+break;
+}
+}
+</script>
+<br>如果你不知道，可以看看你的手机账单（如果有），或者在月初时将手机的计时器归0，月末时显示时间乘以1.2就是粗略的月总计通话时间。
+</p>
+<form action="" method="post" name="q" id="q">
+  <input name="totalteltime" type="text" id="totalteltime">
+  分钟 
+  <input name="ok" type="button" id="ok" onClick="clickok()" value="继续">
+</form>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>手机</title>
+<script language="JavaScript" src="cookie.js" type="text/JavaScript"></script>
+</head>
+
+<body>
+<p>四、你打的电话中有多少是打出，多少是接听？</p>
+<ol type="A">
+  <li><a href="m5.htm" onClick="setCookie('totalrecv',0.5*getCookie('totalteltime'));setCookie('totaldial',0.5*getCookie('totalteltime'))">大致相等</a></li>
+  <li><a href="m5.htm" onClick="setCookie('totalrecv',0.3*getCookie('totalteltime'));setCookie('totaldial',0.7*getCookie('totalteltime'))">大部分是打出</a></li>
+  <li><a href="m5.htm" onClick="setCookie('totalrecv',0.7*getCookie('totalteltime'));setCookie('totaldial',0.3*getCookie('totalteltime'))">大部分是接听</a></li>
+  <li><a href="m5.htm" onClick="setCookie('totalrecv',0.9*getCookie('totalteltime'));setCookie('totaldial',0.1*getCookie('totalteltime'))">几乎不打出电话，只是接听</a></li>
+</ol>
+<p>如果你不清楚，建议选择“大致相等”。
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>手机</title>
+<script language="JavaScript" src="cookie.js" type="text/JavaScript"></script>
+</head>
+
+<body onLoad="tfill()">
+<script language="JavaScript" type="text/JavaScript">
+function clickok() {
+min1inp=Number(q.min1.value);
+min2inp=Number(q.min2.value);
+min3inp=Number(q.min3.value);
+callsinp=Number(q.calls.value);
+if (min1inp<0 || min1inp>100 || 
+min2inp<0 || min2inp>100 || 
+min3inp<0 || min3inp>100 || 
+callsinp<=0 || 
+min1inp+min2inp+min3inp>100) {
+alert('组成百分比无效');
+} else {
+min1=callsinp;
+min2=(1-min1inp/100)*callsinp;
+min3=(1-min1inp/100-min2inp/100)*callsinp;
+totalteltime=Number(getCookie('totalteltime'));
+min4=totalteltime-min1-min2-min3;
+setCookie('minute',''+min1/totalteltime+','+min2/totalteltime+','+min3/totalteltime+','+min4/totalteltime);
+location.href='m8.htm';
+}
+}
+
+function tfill() {//根据模版填充
+templete=getCookie('templete');
+totalteltime=Number(getCookie('totalteltime'));
+switch (templete) {
+case 'xj':
+q.min1.value='50';
+q.min2.value='20';
+q.min3.value='20';
+q.calls.value=''+Math.round(totalteltime/(0.5*1+0.2*2+0.2*3+0.1*4));
+break;
+case 'xm':
+q.min1.value='70';
+q.min2.value='20';
+q.min3.value='10';
+q.calls.value=Math.round(totalteltime/(0.7*1+0.2*2+0.1*3+0*4));
+break;
+case 'sw':
+q.min1.value='80';
+q.min2.value='15';
+q.min3.value='3';
+q.calls.value=Math.round(totalteltime/(0.8*1+0.15*2+0.03*3+0.02*4));
+break;
+case 'zy':
+q.min1.value='70';
+q.min2.value='20';
+q.min3.value='10';
+q.calls.value=Math.round(totalteltime/(0.7*1+0.2*2+0.1*3+0*4));
+break;
+case 'zf':
+q.min1.value='70';
+q.min2.value='20';
+q.min3.value='10';
+q.calls.value=Math.round(totalteltime/(0.7*1+0.2*2+0.1*3+0*4));
+break;
+case 'lr':
+q.min1.value='70';
+q.min2.value='20';
+q.min3.value='10';
+q.calls.value=Math.round(totalteltime/(0.7*1+0.2*2+0.1*3+0*4));
+break;
+}
+}
+</script><p>七、你打每个电话时间长吗？
+
+</p>
+<form action="" method="post" name="q" id="q">
+  <p>1分钟以内的通话次数占总通话次数的 
+    <input name="min1" type="text" id="min1" size="3">
+    %，<br>
+    1~2分钟的通话次数占总通话次数的 
+    <input name="min2" type="text" id="min2" size="3">
+    %，<br>
+    2~3分钟的通话次数占总通话次数的 
+    <input name="min3" type="text" id="min3" size="3">
+    %。<br>
+    你每个月打多少次电话？ 
+    <input name="calls" type="text" id="calls" size="3">
+    次。 <br>
+
+    <input name="ok" type="button" id="ok" onClick="clickok()" value="继续">
+  </p>
+  </form>
+</body>
+</html>

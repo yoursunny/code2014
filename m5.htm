@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>手机</title>
+<script language="JavaScript" src="cookie.js" type="text/JavaScript"></script>
+</head>
+
+<body>
+<p>五、你经常联系的人是那个通讯公司的用户？ 
+  <script language="JavaScript" type="text/JavaScript">
+function clicksave() {
+contactmzoneinp=Number(q.contactmzone.value);
+if (contactmzoneinp<=0 || contactmzoneinp>=100) {
+alert('动感地带百分比未填入或无效。');
+} else {
+setCookie('contactmzone',''+contactmzoneinp);
+imgmap.style.display="inline";
+}
+}
+</script>
+</p>
+<table width="98%" border="0">
+  <tr> 
+    <td rowspan="2" width=220><div id="imgmap" style="display:none"><a href="m5map.htm"><img src="m5.GIF" name="im" width="200" height="200" border="0" ismap></a></div></td>    <td> 
+      <form action="" method="post" name="q" id="q">
+        <p>动感地带占移动手机的 
+          <input name="contactmzone" type="text" id="contactmzone" value="20">
+          %。
+		<input name="save" type="button" id="save" onClick="clicksave()" value="保存"></p>
+        <p>如果你不知道有多少移动手机属于动感地带，建议填入20%。 </p>
+      </form>
+    </td>
+  </tr>
+  <tr> 
+    <td><p>然后请点击左边的三角形，你和某个通讯公司的客户联系越多，就点击得离该公司所在边越近。</p>
+      <p>一般来说，135、136、137、138、139开头的电话号码是移动手机，130、131、132、133开头的电话号码是联通手机，2开头的八位号码是小灵通，其他号码是固定电话。</p></td>
+  </tr>
+</table>
+</body>
+</html>

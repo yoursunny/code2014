@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>手机</title>
+<script language="JavaScript" src="cookie.js" type="text/JavaScript"></script>
+</head>
+
+<body>
+<p>十、你需要来电显示业务吗？</p>
+<script language="JavaScript" type="text/JavaScript">
+templete=getCookie('templete');
+if (templete=='sw' || templete=='zy') {
+setCookie('callerid','1');
+location.href='mb.htm';
+}
+</script>
+<ol type="A">
+  <li><a href="mb.htm" onClick="setCookie('callerid','1')">需要</a></li>
+  <li><a href="mb.htm" onClick="setCookie('callerid','0')">不需要</a></li>
+</ol>
+</body>
+</html>

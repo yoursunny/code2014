@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>手机</title>
+<script language="JavaScript" src="cookie.js" type="text/JavaScript"></script>
+</head>
+
+<body onLoad="tfill()">
+<p>八、你每个月发多少条短信？
+  <script language="JavaScript" type="text/JavaScript">
+function clickok() {
+smscmccinp=Number(q.smscmcc.value);
+smsunicominp=Number(q.smsunicom.value);
+smswebinp=Number(q.smsweb.value);
+if (smscmccinp<0 || smsunicominp<0 || smswebinp<0) {
+alert('短信量无效');
+} else {
+setCookie('sms',''+smscmccinp+','+smsunicominp+','+smswebinp+',');
+location.href='m9.htm';
+}
+}
+function tfill() {//根据模版填充
+templete=getCookie('templete');
+switch (templete) {
+case 'xj':
+q.smscmcc.value='10';
+q.smsunicom.value='10';
+q.smsweb.value='0';
+break;
+case 'xm':
+q.smscmcc.value='200';
+q.smsunicom.value='200';
+q.smsweb.value='100';
+break;
+case 'sw':
+q.smscmcc.value='20';
+q.smsunicom.value='20';
+q.smsweb.value='0';
+break;
+case 'zy':
+q.smscmcc.value='20';
+q.smsunicom.value='20';
+q.smsweb.value='0';
+break;
+case 'zf':
+q.smscmcc.value='20';
+q.smsunicom.value='20';
+q.smsweb.value='40';
+break;
+case 'lr':
+q.smscmcc.value='0';
+q.smsunicom.value='0';
+q.smsweb.value='0';
+break;
+}
+}
+</script>
+</p>
+<form action="" method="post" name="q" id="q">
+  <ol>
+    <li>发给移动手机 
+      <input name="smscmcc" type="text" id="smscmcc">
+    </li>
+    <li>发给联通手机 
+      <input name="smsunicom" type="text" id="smsunicom">
+    </li>
+    <li>发给网站（只算通讯费，信息费另计）
+      <input name="smsweb" type="text" id="smsweb">
+    </li>
+  </ol>
+  <p>
+    <input name="ok" type="button" id="ok" onClick="clickok()" value="继续">
+  </p>
+</form>
+<p>一般来说，135、136、137、138、139开头的电话号码是移动手机，130、131、132、133开头的电话号码是联通手机，其他号码通常属于网站。
+<br>注：如果你在此填入了非0的数，将不再考虑小灵通，因为小灵通短信范围只有小灵通和家家e固网，而不能与其他手机互通；移动、联通手机也不能发送短信给小灵通用户。
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>手机</title>
+<script language="JavaScript" src="cookie.js" type="text/JavaScript"></script>
+</head>
+
+<body onLoad="tfill()">
+<p>六、最经常联系的人 
+  <script language="JavaScript" type="text/JavaScript">
+function clickok() {
+relative1inp=Number(q.relative1.value);
+relative5inp=Number(q.relative5.value);
+if (relative1inp<0 || relative1inp>100 || 
+relative5inp<0 || relative5inp>100 || 
+relative5inp<relative1inp) {
+alert('百分比无效');
+} else {
+setCookie('relative1',''+relative1inp);
+setCookie('relative5',''+relative5inp);
+location.href='m7.htm';
+}
+}
+function tfill() {//根据模版填充
+templete=getCookie('templete');
+switch (templete) {
+case 'xj':
+q.relative1.value='20';
+q.relative5.value='50';
+break;
+case 'xm':
+q.relative1.value='5';
+q.relative5.value='10';
+break;
+case 'sw':
+q.relative1.value='1';
+q.relative5.value='1';
+break;
+case 'zy':
+q.relative1.value='5';
+q.relative5.value='15';
+break;
+case 'zf':
+q.relative1.value='10';
+q.relative5.value='20';
+break;
+case 'lr':
+q.relative1.value='10';
+q.relative5.value='30';
+break;
+}
+}
+
+</script>
+</p>
+<form name="q" method="post" action="">
+  和你打电话最多的1个人，电话时间占总电话时间的 
+  <input name="relative1" type="text" id="relative1" size="3">
+  %；<br>
+  和你打电话最多的5个人，电话时间占总电话时间的 
+  <input name="relative5" type="text" id="relative5" size="3">
+  %。 <br>
+  <input name="ok" type="button" id="ok" onClick="clickok()" value="继续">
+</form>
+<p>如果你和所有人打电话都比较均匀，或者不知道自己的情况，建议填入较小的数，比如1。
+</body>
+</html>

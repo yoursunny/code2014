@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>手机</title>
+<script language="JavaScript" src="cookie.js" type="text/JavaScript"></script>
+</head>
+
+<body>
+<script language="JavaScript" type="text/JavaScript">
+sqrt3=Math.sqrt(3);
+xystr = location.search;
+if (xystr == "") {location.href='m8.htm';};
+commaloc = xystr.indexOf(","); // the location of the comma 
+x0=Number(xystr.substring(1, commaloc))/200;
+y0=(173-Number(xystr.substring(commaloc+1, xystr.length)))/200;
+
+if ( (x0<0.5 && y0>x0*sqrt3) ||
+(x0>0.5 && y0>sqrt3*(1-x0)) ||
+(y0<0)   ) {
+alert('未点击在三角形上');
+location.href='m5.htm';
+} else {
+
+ccmcc=-x0-sqrt3/3*y0+1;
+cunicom=x0-sqrt3/3*y0;
+cfixed=2*sqrt3/3*y0;
+
+setCookie('contacts',''+ccmcc*100+','+cunicom*100+','+cfixed*100+',');
+location.href='m6.htm';
+}
+</script>
+</body>
+</html>

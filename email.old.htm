@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=gb2312">
+<TITLE>与阳光男孩联系</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF">
+<FORM action="http://pub23.bravenet.com/emailfwd/senddata.php" method="post" name="" target="_blank" id="">
+<TABLE width="630" border="4" bordercolor="#6600FF">
+<TR> 
+<TD colspan="2"><H1 align="center"><FONT color="#663300">与阳光男孩联系</FONT></H1>
+<P> <FONT color="#669966">　　当你孤单你会想起谁，你想不想找个人来陪？sunny boy愿随时倾听你的想法，每周7天、每天24小时。请填入你要告诉我的事情，然后提交。你填入的内容会通过电子邮件发送到我的信箱，我会及时处理。 
+</FONT></P></TD>
+</TR>
+<TR> 
+<TH>分类</TH>
+<TD> <INPUT name="subj" type="radio" value="gen" checked>
+普通 一般的聊天<BR> <INPUT name="subj" type="radio" value="biz">
+商务 关于网站、产品的咨询，意见建议<BR> <INPUT name="subj" type="radio" value="edu">
+学习 学习资料、询问答疑<BR> <INPUT name="subj" type="radio" value="lov">
+情感 实在想发过来就发吧，不过我信奉半糖主义 :-)<BR> <INPUT name="subj" type="radio" value="hlp">
+求助 sunny boy是乐于助人的，如果有事，一定帮忙<BR> <INPUT name="subj" type="radio" value="etc">
+其他 其他一切主题</TD>
+</TR>
+<TR> 
+<TH>来源</TH>
+<TD>请告诉我，你是谁？请填入你的姓名或昵称 
+<INPUT name="pname" type="text" id="pname" size="20" maxlength="20"> <BR>
+我该如何找到你？<BR>
+如果你有电子信箱，请填入 
+<INPUT name="email1" type="text" id="email1" size="15">
+@ 
+<INPUT name="email2" type="text" id="email2" value="hotmail.com" size="30"> <BR>
+如果你愿意，请填入你的手机号码(联通、移动都可以)　13 
+<INPUT name="mobile" type="text" id="mobile" size="9" maxlength="9"></TD>
+</TR>
+<TR> 
+<TH>摘要</TH>
+<TD><INPUT name="title" type="text" id="title" size="80"></TD>
+</TR>
+<TR> 
+<TH>内容</TH>
+<TD><TEXTAREA name="content" cols="80" rows="20" id="content"></TEXTAREA></TD>
+</TR>
+<TR> 
+<TD colspan="2"> 　　如果你没有在这台电脑配置好电子邮件客户端软件(如Foxmail、OutlookExpress)，你可以选择 
+<INPUT name="submit" type="submit" value="通过网站服务器提交">
+，请在随后出现的页面上确认发送提交的信息，否则无法发送。 
+<INPUT name="usernum" type="hidden" id="usernum2" value="1929473134"> <INPUT name="cpv" type="hidden" id="cpv2" value="2"> 
+<BR>
+　　如果你已经配置好客户端，建议选择 
+<INPUT name="Input" type="button" onClick="SendByClient(this.form)" value="通过电子邮件客户端发送">
+，该方法有助于保证安全到达。弹出的发送窗口中已经自动填好收件人、主题等，点击发送按钮即可。 
+<SCRIPT language="VBScript" type="text/VBScript">
+sub SendByClient(w)
+for i=0 to 5
+if w.subj(i).checked then asubj=i
+next
+subject="formmail "&w.subj(asubj).value&" "&w.title.value&" "&w.pname.value
+body=w.content.value&vbcrlf&vbcrlf&vbcrlf&"EMAIL:"&w.email1.value&"@"&w.email2.value&vbcrlf&"MOBILE:13"&w.mobile.value
+href="mai"&"lto:sunn"&"y204"&"8@yea"&"h.ne"&"t?sub"&"ject="&replace(replace(subject,"%","%25"),"&","%26")&"&bod"&"y="&replace(replace(replace(body,"%","%25"),vbcrlf,"%0D%0A"),"&","%26")
+emailframe.location.href=href
+setTimeout "emailframe.location.href='about:blank'",500
+end sub
+</SCRIPT> <IFRAME src="about:blank" name="emailframe" width="1" height="1" scrolling="no" frameborder="0"></IFRAME></TD>
+</TR>
+</TABLE>
+</FORM>
+</BODY>
+</HTML>

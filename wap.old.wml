@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN"
+"http://www.wapforum.org/DTD/wml_1.1.xml">
+
+<wml>
+<card id="m" title="电子名片">
+
+<p>
+<big>sunny boy 阳光男孩<br/>
+It's Me!</big></p>
+
+<p>
+手机 <big>13651996435</big><br/>
+彩信 sunnyboy@people.com.cn<br/>
+<br/>
+邮件 gsm@2118.cn<br/>
+网站 http://sunnyPower.588.net/</p>
+
+<p>
+更多信息请通过电脑访问http://sunny2048.1m.cn/<br/>
+返回 <anchor>移动梦网<go href="http://wap.monternet.com/"/></anchor> <anchor>联通掌中网<go href="http://211.95.65.6/"/></anchor>
+</p>
+
+</card>
+</wml>

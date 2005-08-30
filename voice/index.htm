@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=gb2312">
+<TITLE>It's Me!</TITLE>
+<SCRIPT src="../clocksnake.js"></SCRIPT>
+</HEAD>
+
+<BODY onload="makesnake()">
+<TABLE width="772" height="98%" border="0">
+  <TR> 
+    <TD width="150" height="31"> <DIV align="center"><IMG src="../image/logo.gif" width="88" height="31"></DIV></TD>
+    <TD rowspan="2" valign="top">
+<H1><FONT color="#009900">想听听我的声音吗？</FONT></H1>
+      <TABLE width="98%" border="0">
+        <TR> 
+          <TD width="50" rowspan="3" align="center">歌曲</TD>
+          <TD align="left">Happy farewell 分手快乐英文版</TD>
+          <TD width="50" align="center" valign="middle">
+<INPUT name="listen1" type="button" id="listen1" onClick="listen('1')" value="收听"> 
+          </TD>
+          <TD width="100" align="center">2005-06-15</TD>
+        </TR>
+        <TR> 
+          <TD align="left">lydia </TD>
+          <TD align="center" valign="middle">
+<INPUT name="listen2" type="button" id="listen2" onClick="listen('2')" value="收听"> 
+          </TD>
+          <TD align="center">2005-06-15</TD>
+        </TR>
+        <TR> 
+          <TD align="left">蒙娜丽莎</TD>
+          <TD align="center" valign="middle">
+<INPUT name="listen3" type="button" id="listen3" onClick="listen('3')" value="收听"> 
+          </TD>
+          <TD align="center">2005-06-15</TD>
+        </TR>
+        <TR> 
+          <TD colspan="2" align="center">自我介绍</TD>
+          <TD align="center" valign="middle">
+<INPUT name="listen0" type="button" id="listen0" onClick="listen('0')" value="收听"> 
+          </TD>
+          <TD align="center">2005-06-15</TD>
+        </TR>
+      </TABLE>
+      <P>&nbsp;
+      <DIV id="play"></DIV>
+      </P>
+      <P>
+        <SCRIPT language="JavaScript" type="text/JavaScript">
+function listen(file) {
+document.all.play.innerHTML='<EMBED SRC=\''+file+'.rm\' AUTOSTART=TRUE WIDTH=98% HEIGHT=50><\/EMBED>';
+return false;
+}
+</SCRIPT>
+      </P>
+      <P>以上声音均为RM格式，你需要安装RealPlayer8才能收听。<A href="http://www.realnetworks.com/">下载</A></P></TD>
+  </TR>
+  <TR> 
+    <TD valign="top" bgcolor="#FFFF66"> <P align="center"><IMG src="../image/buttonl.gif" width="10" height="15" align="center"><A href="../index.htm"><FONT color="#FF3333" size="-1"><B>首　　页</B></FONT></A><IMG src="../image/buttonr.gif" width="10" height="15"> 
+        <IMG src="../image/buttonl.gif" width="10" height="15"><A href="../contact.htm"><FONT color="#FF3333" size="-1"><B>我的名片</B></FONT></A><IMG src="../image/buttonr.gif" width="10" height="15"><BR>
+        <IMG src="../image/buttonl.gif" width="10" height="15"><A href="../blog.htm"><FONT color="#FF3333" size="-1"><B>心情故事</B></FONT></A><IMG src="../image/buttonr.gif" width="10" height="15"> 
+        <IMG src="../image/buttonl.gif" width="10" height="15"><A href="../bbs.htm"><FONT color="#FF3333" size="-1"><B>进入论坛</B></FONT></A><IMG src="../image/buttonr.gif" width="10" height="15"><BR>
+        <IMG src="../image/buttonl.gif" width="20" height="31"><FONT color="#FF3333" size="+2"><B>更多信息</B></FONT><IMG src="../image/buttonr.gif" width="20" height="31"></P>
+      <P align="left"><FONT color="#6600FF" size="+3">◆</FONT><A href="index.htm"><FONT color="#6600FF" size="+2">听我唱歌</FONT></A><BR>
+<FONT color="#6600FF" size="+3">◆</FONT><A href="../sites.htm"><FONT color="#6600FF" size="+2">其他站点</FONT></A></P>
+
+      <P align="center"><FONT color="#CC66FF" size="+2">sunny boy</FONT></P></TD>
+  </TR>
+</TABLE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=gb2312">
+<TITLE>为您选择手机资费套餐</TITLE>
+</HEAD>
+
+<BODY>
+<H1>一、你现在的使用情况？ 
+  <SCRIPT language="JavaScript" type="text/JavaScript">
+//以下程序码摘自《INSTANT JAVASCRIPT》一书，有改动
+function replace(string,text,by) {
+  var strLength = string.length;
+  var txtLength = text.length;
+
+  if ((strLength == 0) || (txtLength == 0))
+    return string;
+
+  var i = string.indexOf(text);
+
+  if (i == -1)
+    return string;
+
+  var newstr = string.substring(0,i) + by;
+
+  newstr +=
+    replace(string.substring(i+txtLength,strLength),text,by);
+
+  return newstr;
+}
+
+function addOption(fRef, sName, sText, sValue) {
+  var def = true;
+  var sel = true;
+  var optionName = new Option(sText, sValue, def, sel);
+  var length = fRef[sName].length;
+  fRef[sName].options[length] = optionName;
+  fRef[sName].options[length].selected = false;
+}
+
+function deleteOptions(fRef, sName, force) {
+  var length = fRef[sName].options.length;
+  for (var i=0; i<fRef[sName].options.length; i++) {
+    if (fRef[sName].options[i].selected || force) {
+      fRef[sName].options[i] = null;
+      length--;
+      i--;
+    }
+  }
+}
+
+function getAnOptionValue(what) {
+  return what.options[what.options.selectedIndex].value;
+}
+
+function updateColors(fRef, sName1, sName2) {
+  deleteOptions(fRef,sName2,true);
+
+  var color = getAnOptionValue(fRef[sName1]);
+  var colorObject = eval(color);
+
+  for (var i=0; i<colorObject.length;i+=2) {
+    addOption(fRef, sName2, colorObject[i], colorObject[i+1]);
+  }
+
+  fRef[sName2].options.selectedIndex = 0;
+}
+//摘录部分结束
+</SCRIPT>
+</H1>
+<FORM action="" method="post" name="F" id="F">
+  <TABLE width="98%" border="0" align="center">
+    <TR>
+      <TD>公司
+        <SCRIPT language="JavaScript" type="text/JavaScript">
+var cmcc=new Array(
+'移动预付费','ydyff');
+var cu=new Array(
+'如意通','ryt',
+'新世纪通','xsjt',
+'UP新势力','upxsl'
+);
+</SCRIPT></TD>
+      <TD>卡类
+        <SCRIPT language="JavaScript" type="text/JavaScript">
+var ydyff=new Array(
+'神州行易通卡','0',
+'神州行易通卡6元省钱计划','1',
+'神州行大众卡','2',
+'神州行加加卡29元','3',
+'神州行加加卡39元','4',
+'动感地带10元聊天','5',
+'动感地带20元聊天','6',
+'动感地带20元短信','7',
+'动感地带30元短信','8',
+'动感地带40元短信','9',
+'60套餐60元','19',
+'60套餐120元','20',
+'60套餐180元','21',
+'60套餐240元','22'
+);
+var ryt=new Array(
+'如意通','10',
+'如意通大众卡','11'
+);
+var xsjt=new Array(
+'新世纪通无月租','12',
+'新世纪通50元','13',
+'新世纪通100元','14',
+'新世纪通200元','15',
+'新世纪通300元','16',
+'新世纪通29元','24',
+'新世纪通39元','25',
+'新世纪通60元','26',
+'新世纪通120元','27',
+'新世纪通180元','28',
+'新世纪通240元','29'
+);
+var upxsl=new Array(
+'UP新势力15元','17',
+'UP新势力25元','18'
+);
+</SCRIPT></TD>
+      <TD>套餐 </TD>
+    </TR>
+    <TR>
+      <TD><Select name="curcompany" size="10" id="curcompany" onChange="go.disabled=false;updateColors(this.form, 'curcompany', 'curcard');updateColors(this.form, 'curcard', 'curO')">
+<option value="cmcc">移动</option>
+          <option value="cu">联通</option>
+        </Select></TD>
+      <TD><Select name="curcard" size="10" id="curcard" onChange="go.disabled=false;updateColors(this.form, 'curcard', 'curO')">
+</Select></TD>
+      <TD><Select name="curO" size="10" id="curO" onChange="go.disabled=false">
+</Select>
+      </TD>
+    </TR>
+  </TABLE>
+  
+<DIV align="right"> 
+<INPUT name="go" type="button" id="go" onClick="parent.frames.H.S.curO.value=getAnOptionValue(forms(0).curO);location.href='s02.htm';" value="下一步" disabled>
+</DIV>
+</FORM>
+</BODY>
+</HTML>

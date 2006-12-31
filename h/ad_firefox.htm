@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>AdSense</title>
+</head>
+
+<body bgcolor="#FFFF66" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<table id="t" width="910" height="40" style="background-color:#ff6;"><tr><td>
+您正在使用<span id="browserName"></span>浏览器，强烈推荐您使用全面支持W3C标准的Firefox浏览器，您会看到更精彩的网络世界<br />
+现在下载：<script type="text/javascript"><!--
+if (navigator.userAgent.indexOf('Firefox')<0) {
+document.getElementById('browserName').innerHTML=(navigator.userAgent.indexOf('IE')>=0)?'IE':navigator.appName;
+google_ad_client = "pub-7124114282586774";
+google_ad_output = "textlink";
+google_ad_format = "ref_text";
+google_cpa_choice = "CAAQqcu1_wEaCF2H5Hv651t_KOm84YcB";
+google_ad_channel = "";
+document.write('<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></'+'script>');
+setTimeout('showMe()',2000);
+}
+function showMe()
+{
+	//if (!window.parent.document.getElementById) return;
+	var f=window.parent.document.getElementById("ad_firefox");
+	//if (!f) return;
+	f.width=910;
+	f.height=40;
+	setTimeout('flashMe()',10);
+}
+var flash_count=0;
+function flashMe()
+{
+	++flash_count;
+	if (flash_count>11)
+	{
+		if (!window.parent.document.getElementById) return;
+		var f=window.parent.document.getElementById("ad_firefox");
+		if (!f) return;
+		f.width=f.height=0;
+	}
+	document.getElementById('t').style.backgroundColor=(flash_count%2==0)?'#9cf':'#ff6';
+	setTimeout('flashMe()',2000);
+}
+//--></script>
+</td></tr></table>
+</body>
+</html>

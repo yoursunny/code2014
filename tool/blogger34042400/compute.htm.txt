@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+<title><$BlogPageTitle$></title>
+ <$BlogMetaData$>
+<style type="text/css">
+@import url('http://yoursunny.com/tool/blogger34042400/compute.css');
+</style>
+<script type="text/javascript" src="http://yoursunny.com/tool/blogger34042400/player.js"></script>
+</head>
+
+<body class="layout-two-column-right">
+
+	<div id="container">
+		<div id="container-inner" class="pkg">
+
+			
+<!-- banner -->
+
+<div id="banner">
+	<div id="banner-inner" class="pkg">
+		
+		<h1 id="banner-header"><a href="<$BlogURL$>" accesskey="1"><$BlogTitle$></a></h1>
+		<h2 id="banner-description"><$BlogDescription$></h2>
+	</div>
+</div>
+
+			<div id="pagebody">
+				<div id="pagebody-inner" class="pkg">
+
+					<div id="alpha">
+						<div id="alpha-inner" class="pkg">
+						
+<!-- entry -->
+
+<ItemPage>
+
+<!-- content nav -->
+
+<p class="content-nav">
+	&laquo; <a href="<$BlogURL$>">Home</a><span><BloggerPreviousItems> | <a href="<$BlogItemPermalinkURL$>"><$BlogPreviousItemTitle$></a> &raquo;</span><span style="display:none"></BloggerPreviousItems> </span>
+</p>
+
+</ItemPage>
+
+   <Blogger>
+   
+<MainOrArchivePage>
+	<h2 class="date-header"><BlogDateHeader><$BlogDateHeaderDate$></BlogDateHeader> </h2>
+</MainOrArchivePage>
+
+<div class="entry" id="post-<$BlogItemNumber$>">
+			<h3 class="entry-header"><$BlogItemTitle$></h3>
+	
+	<div class="entry-content">
+		<div class="entry-body">
+		
+			<p><$BlogItemBody$></p>
+
+	<p class="entry-footer">
+		<span class="post-footers">Posted by <$BlogItemAuthorNickname$> <ItemPage>on <BlogDateHeader><$BlogDateHeaderDate$></BlogDateHeader></ItemPage> at <$BlogItemDateTime$> </span> <span class="separator">|</span> <a class="permalink" href="<$BlogItemPermalinkUrl$>">Permalink</a><MainOrArchivePage><BlogItemCommentsEnabled> | <a href="<$BlogItemPermalinkURL$>#comments">Comments <script type="text/javascript">var a = <$BlogItemCommentCount$>;document.write('('+a+')');</script></a></BlogItemCommentsEnabled><BlogItemBacklinksEnabled> | <a href="<$BlogItemPermalinkUrl$>#links">links to this post</a></BlogItemBacklinksEnabled></MainOrArchivePage> <$BlogItemControl$>
+	</p>
+	
+		</div>
+	</div>
+</div>
+
+<ItemPage>
+  
+<BlogItemCommentsEnabled>
+	<a name="comments"></a>
+	<div class="comments">
+		<h3 class="comments-header"><script type="text/javascript">var a = <$BlogItemCommentCount$>; if(a == 0) {document.write('Comments');} else if(a == 1) {document.write('1 comment');}else{document.write(a+' comments');}</script></h3>
+		<div class="comments-content">
+
+<!-- comment list -->
+			
+   <BlogItemComments>
+
+	<a id="<$BlogCommentNumber$>"></a>
+	<div class="comment" id="comment-<$BlogCommentNumber$>">
+		<div class="comment-content">
+			<p><$BlogCommentBody$></p>
+		</div>
+		<p class="comment-footer">
+			Posted by <$BlogCommentAuthor$> |
+			<a href="<$BlogCommentPermalinkURL$>"><$BlogCommentDateTime$></a>  <$BlogCommentDeleteIcon$>
+		</p>
+	</div>
+   
+   </BlogItemComments>
+    
+   <p class="comment-timestamp"><$BlogItemCreate$></p>
+		</div>
+	</div>
+
+   </BlogItemCommentsEnabled>		
+    
+    <BlogItemBacklinksEnabled>
+    <a name="links"></a>
+    <div class="comments">
+    <h3 class="comments-header">Links to this post</h3>
+    <dl id="comments-block">
+    <BlogItemBacklinks>
+        <dt class="comment-title">
+        <$BlogBacklinkControl$>
+        <a href="<$BlogBacklinkURL$>" rel="nofollow"><$BlogBacklinkTitle$></a> <$BlogBacklinkDeleteIcon$>
+        </dt>
+        <dd class="comment-body"><$BlogBacklinkSnippet$>
+        <br />
+        <span class="comment-poster">
+        <em>posted by <$BlogBacklinkAuthor$> @ <$BlogBacklinkDateTime$></em>
+        </span>
+        <br />
+        </dd>
+    </BlogItemBacklinks>
+    </dl>
+    <p class="comment-timestamp"><$BlogItemBacklinkCreate$></p>
+    </div>
+    </BlogItemBacklinksEnabled>
+    
+    
+    
+    
+   </ItemPage>
+    	
+   </Blogger>
+   
+   
+			
+            </div>
+        </div>
+   
+				            <div id="beta">
+	            	<div id="beta-inner" class="pkg">
+<!-- sidebar -->
+
+
+
+<!-- Search -->
+                     <div class="module-search module">
+
+                        <h2 class="module-header">Search</h2>
+                        <div class="module-content">
+                             <form action="http://blogsearch.google.com/blogsearch" method="get">
+                             <input type=hidden name="bl_url" value="<$BlogURL$>">
+                             <label for="search" accesskey="4">Search this blog:</label><br />
+                             <input id="search" name="as_q" size="15" type="text" size="20">
+                             <input value="Search" name="submit" type="submit">
+                             </form>
+                        </div>
+                     </div>
+
+
+	<div class="module-archives module">
+
+   <MainOrArchivePage>
+		<h2 class="module-header">Last posts</h2>
+		<div class="module-content">
+			<ul class="module-list">
+									<BloggerPreviousItems><li class="module-list-item"><a href="<$BlogItemPermalinkURL$>"><$BlogPreviousItemTitle$></a></li></BloggerPreviousItems>
+			</ul>
+		</div>
+
+<div class="module-syndicate module">
+	<div class="module-content">
+		<OBJECT id=phx width=100% classid=clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6>
+		<PARAM NAME="URL" VALUE="http://yoursunny.com/tool/spacesong.mp3">
+		<EMBED src="http://yoursunny.com/tool/spacesong.mp3" width="100%" height="100%" type="application/x-mplayer2" autostart=1 loop=1 quality="high"> </EMBED>
+		  <PARAM NAME="rate" VALUE="1">
+		  <PARAM NAME="balance" VALUE="0">
+		  <PARAM NAME="currentPosition" VALUE="0">
+		  <PARAM NAME="defaultFrame" VALUE="">
+		  <PARAM NAME="PlayCount" VALUE="100">
+		  <PARAM NAME="DisplayMode" VALUE="0">
+		  <PARAM NAME="PreviewMode" VALUE="0">
+		  <PARAM NAME="DisplayForeColor" VALUE="16777215">
+		  <PARAM NAME="ShowCaptioning" VALUE="0">
+		  <PARAM NAME="ShowControls" VALUE="1">
+		  <PARAM NAME="ShowAudioControls" VALUE="1">
+		  <PARAM NAME="ShowDisplay" VALUE="0">
+		  <PARAM NAME="ShowGotoBar" VALUE="0">
+		  <PARAM NAME="ShowPositionControls" VALUE="1">
+		  <PARAM NAME="ShowStatusBar" VALUE="0">
+		  <PARAM NAME="ShowTracker" VALUE="1">
+		  <PARAM NAME="autoStart" VALUE="1">
+		  <PARAM NAME="AutoRewind" VALUE="1">
+		  <PARAM NAME="currentMarker" VALUE="0">
+		  <PARAM NAME="invokeURLs" VALUE="-1">
+		  <PARAM NAME="baseURL" VALUE="">
+		  <PARAM NAME="volume" VALUE="100">
+		  <PARAM NAME="mute" VALUE="0">
+		  <PARAM NAME="uiMode" VALUE="full">
+		  <PARAM NAME="stretchToFit" VALUE="0">
+		  <PARAM NAME="windowlessVideo" VALUE="1">
+		  <PARAM NAME="enabled" VALUE="1">
+		  <PARAM NAME="EnableFullScreenControls" VALUE="0">
+		  <PARAM NAME="EnableTracker" VALUE="1">
+		  <PARAM NAME="EnablePositionControls" VALUE="1">
+		  <PARAM NAME="enableContextMenu" VALUE="0">
+		  <PARAM NAME="SelectionStart"  VALUE="0">
+		  <PARAM NAME="SelectionEnd" VALUE="0">
+		  <PARAM NAME="fullScreen" VALUE="0"><PARAM NAME="SAMIStyle" VALUE="">
+		  <PARAM NAME="SAMILang" VALUE="">
+		  <PARAM NAME="SAMIFilename" VALUE="">
+		  <PARAM NAME="captioningID" VALUE="">
+		  <PARAM NAME="Visualizations" VALUE="1">
+
+	</OBJECT>
+	</div>
+</div>
+   </MainOrArchivePage>
+
+   <ItemPage>
+		<h2 class="module-header">Previous posts</h2>
+		<div class="module-content">
+			<ul class="module-list">
+									<BloggerPreviousItems><li class="module-list-item"><a href="<$BlogItemPermalinkURL$>"><$BlogPreviousItemTitle$></a></li></BloggerPreviousItems>
+			</ul>
+		</div>
+   </ItemPage>	
+	</div>
+	
+	<div class="module-archives module">
+		<h2 class="module-header">Archives</h2>
+		<div class="module-content">
+			<ul class="module-list">
+              <BloggerArchives>
+                <li class="module-list-item"><a href='<$BlogArchiveURL$>'><$BlogArchiveName$></a></li>
+              </BloggerArchives>
+			</ul>
+		</div>
+	</div>
+	
+	
+
+<div class="module-about module">
+	<h2 class="module-header">Links</h2>
+		<div class="module-content">
+			<ul class="module-list">
+			
+			
+			
+<!--#################################   PUT YOUR LINKS HERE  ############################################-->
+
+
+   <li class="module-list-item"><a href="http://yoursunny.com">你的阳光网站</a></li>
+   <li class="module-list-item"><a href="http://m.yoursunny.com">我的网上名片</a></li>
+   <li class="module-list-item"><a href="http://threads.yoursunny.com">好贴集中营</a></li>
+
+
+<!--#####################################################################################################-->
+
+
+			</ul>
+		</div>
+</div>
+
+<div class="module-syndicate module">
+	<div class="module-content">
+		<a href="<$BlogURL$>/atom.xml">Subscribe to this blog's feed</a><br />
+		[<a href="http://help.blogger.com/bin/answer.py?answer=697">What is this?</a>]
+	</div>
+
+</div>
+
+
+<div class="module-powered module">
+	<div class="module-content">Powered by <a href="http://www.blogger.com">Blogger</a>                                                 <br />& <a href="http://blogger-templates.blogspot.com">Blogger Templates</a>
+              <br />& <a href="http://www.10mb.cn">10MB.CN</a>
+<script src='http://s77.cnzz.com/stat.php?id=287887&web_id=287887&show=pic' language='JavaScript' charset='gb2312'></script>
+	</div>
+</div>
+
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+<img src="http://yoursunny.com/tool/spacecount.gif" width="0" height="0"/>
+</body>
+</html>
+

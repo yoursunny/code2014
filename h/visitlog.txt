@@ -1,0 +1,819 @@
+﻿05-20 19:33,66.194.6.71,美国Time Warner Telecom,IE 6.0,,,0
+05-20 20:16,38.98.19.114,美国 CZ88.NET,Firefox 1.5.0.9,,,0
+05-20 22:00,61.135.162.119,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-20 22:27,66.249.66.211,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+05-20 23:10,221.239.194.24,上海市嘉定区电信ADSL,IE 6.0,http://www.ca2u.net/redirect.php?tid=102757&goto=lastpost,,0
+05-20 23:19,38.98.19.114,美国 CZ88.NET,Firefox 1.5.0.9,,,0
+05-21 02:21,74.6.65.226,美国 CZ88.NET,Mozilla 5.0,,,0
+05-21 04:44,202.160.179.126,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-21 08:41,222.186.46.122,江苏省镇江市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-21 08:44,131.107.0.95,Microsoft公司,IE 6.0,http://search.live.com/result.aspx?q=butalbital&mrt=en-us&FORM=LVSP,,0
+05-21 09:58,218.20.149.15,广东省广州市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/10624629.html,,0
+05-21 11:04,65.94.11.155,加拿大 CZ88.NET,IE 6.0,,,0
+05-21 11:31,218.12.194.26,河北省沧州市网通,Mozilla 5.0,,,0
+05-21 11:47,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-21 12:09,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-21 12:10,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-21 12:12,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-21 12:24,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-21 12:38,61.135.163.144,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-21 12:51,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-21 12:56,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-21 13:13,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-21 13:25,61.188.253.104,四川省西昌市/凉山,IE 6.0,http://zhidao.baidu.com/question/18517703.html?si=2,,0
+05-21 15:05,59.65.11.36,北京市北京外国语大学,IE 6.0,,,0
+05-21 15:26,74.6.71.74,美国 CZ88.NET,Mozilla 5.0,,,0
+05-21 15:38,221.5.250.209,重庆市网通ADSL,IE 5.00,http://yoursunny.com/,,0
+05-21 15:49,74.6.70.73,美国 CZ88.NET,Mozilla 5.0,,,0
+05-21 16:08,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-21 18:25,220.181.47.3,北京市电信,IE 6.0,http://zhidao.baidu.com/question/21168161.html?si=4,,0
+05-21 18:29,202.160.179.19,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-21 18:30,58.18.231.186,内蒙古 ,IE 6.0,http://search.cn.yahoo.com/search?lp=%E5%A5%A5%E6%9E%97%E5%8C%B9%E5%85%8B%E8%BF%90%E5%8A%A8%E5%8F%A3%E5%8F%B7&p=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9&ei=UTF-8&pid=58061_1006,,0
+05-21 18:30,58.18.231.186,内蒙古 ,IE 6.0,http://search.cn.yahoo.com/search?lp=%E5%A5%A5%E6%9E%97%E5%8C%B9%E5%85%8B%E8%BF%90%E5%8A%A8%E5%8F%A3%E5%8F%B7&p=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9&ei=UTF-8&pid=58061_1006,,0
+05-21 18:30,58.18.231.186,内蒙古 ,IE 6.0,http://search.cn.yahoo.com/search?lp=%E5%A5%A5%E6%9E%97%E5%8C%B9%E5%85%8B%E8%BF%90%E5%8A%A8%E5%8F%A3%E5%8F%B7&p=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9&ei=UTF-8&pid=58061_1006,,0
+05-21 22:46,61.135.162.119,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-21 22:46,66.194.6.70,美国Time Warner Telecom,Mozilla 5.0,,,0
+05-22 00:35,220.178.4.199,安徽省合肥市电信,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-22 00:35,220.178.4.199,安徽省合肥市电信,IE 6.0,,http://soft.yoursunny.com/,31
+05-22 00:43,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-22 00:43,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-22 00:43,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-22 00:44,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-22 00:44,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-22 02:05,64.246.165.180,美国密西西比大学,SurveyBot/2.3 (Whois Source),http://www.whois.sc/yoursunny.com,,0
+05-22 02:27,61.135.163.144,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-22 03:27,202.160.180.170,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-22 04:06,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-22 09:18,220.195.39.126,内蒙古呼伦贝尔市联通,IE 6.0,http://search.cn.yahoo.com/search?lp=%E7%94%B3%E8%AF%B7%E7%9A%84%E5%86%99%E6%B3%95&p=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9&ei=UTF-8&pid=400740_1006,,0
+05-22 09:25,220.195.39.126,内蒙古呼伦贝尔市联通,IE 6.0,http://search.cn.yahoo.com/search?lp=%E7%94%B3%E8%AF%B7%E7%9A%84%E5%86%99%E6%B3%95&p=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9&ei=UTF-8&pid=400740_1006,,0
+05-22 09:27,220.195.39.126,内蒙古呼伦贝尔市联通,IE 6.0,http://yoursunny.com/,,0
+05-22 09:28,124.133.46.28,山东省网通,IE 6.0,http://zhidao.baidu.com/question/10625209.html?si=4,,0
+05-22 09:55,66.249.72.114,美国加利福尼亚Google公司,Mozilla 5.0,,,0
+05-22 10:10,61.135.163.144,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-22 10:21,64.208.172.173,美国加洲,ia_archiver,,,0
+05-22 11:40,74.6.71.74,美国 CZ88.NET,Mozilla 5.0,,,0
+05-22 12:17,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-22 12:47,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-22 12:51,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-22 12:52,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-22 12:55,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-22 12:56,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-22 13:03,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-22 13:15,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-22 13:15,116.19.253.227,欧洲 ,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-22 13:39,61.135.163.144,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-22 15:24,218.104.72.254,安徽省合肥市 ,IE 6.0,http://zhidao.baidu.com/question/16760731.html,,0
+05-22 16:09,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-22 16:46,219.134.131.248,广东省深圳市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-22 17:08,221.232.233.101,湖北省武汉市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/9350627.html,,0
+05-22 18:52,125.120.216.196,浙江省电信,IE 6.0,http://zhidao.baidu.com/question/21168495.html?fr=qrl3,,0
+05-22 19:15,221.235.70.208,湖北省武汉市电信,IE 6.0,http://zhidao.baidu.com/question/8830662.html,,0
+05-22 20:33,202.160.188.146,雅虎中国 CZ88.NET,IE 6.0,,,0
+05-22 21:14,59.78.20.64,上海交通大学闵行校区D17楼,IE 7.0,,,0
+05-22 21:15,59.78.20.64,上海交通大学闵行校区D17楼,IE 7.0,,http://mail.iloveu4ever.cn/,10
+05-22 21:15,59.78.20.64,上海交通大学闵行校区D17楼,IE 7.0,,http://yoursunny.com/h/70520new.jpg,35
+05-22 22:46,222.57.247.197,铁通 CZ88.NET,IE 6.0,http://zhidao.baidu.com/question/4894040.html?si=1,,0
+05-22 22:46,222.57.247.197,铁通 CZ88.NET,IE 6.0,,http://yoursunny.com/h/70520new.jpg,20
+05-22 22:48,125.34.62.220,北京市网通,IE 6.0,http://search.cn.yahoo.com/search?p=%D1%F4%B9%E2%C4%D0%BA%A2&source=toolbar_yassist_autoword&f=D1_1,,0
+05-23 01:56,66.194.6.95,美国Time Warner Telecom,IE 6.0,,,0
+05-23 02:18,124.224.68.225,宁夏电信,IE 6.0,http://www.soso.com/q?w=%D1%F4%B9%E2%C4%D0%BA%A2%D5%D5%C6%AC%D5%BE&sc=int&ch=w.soso,,0
+05-23 04:32,202.160.180.197,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-23 04:36,131.107.0.95,Microsoft公司,IE 6.0,http://search.live.com/result.aspx?q=clonazepam&mrt=en-us&FORM=LVSP,,0
+05-23 04:36,66.249.65.236,美国GoogleBot 搜寻引擎机器人,Mediapartners-Google/2.1,,,0
+05-23 08:02,202.120.33.65,上海交通大学 ,IE 7.0,http://bbs.sjtu.edu.cn/bbstcon,board,WebDevelop,reid,1179060025.html,,0
+05-23 08:48,202.120.33.65,上海交通大学 ,IE 7.0,,http://ipac.lib.sjtu.edu.cn/ipac20/ipac.jsp?profile=xul&uri=link=3100006@!1412565@!3100001@!3100002&aspect=basic_search&menu=search&ri=6&source=192.168.100.51@!cnhorizon&term=Web%E8%AE%BE%E8%AE%A1%E5%A4%A7%E5%85%A8&index=,2745
+05-23 08:51,202.120.33.65,上海交通大学 ,IE 7.0,,http://yoursunny.blogspot.com/2007/03/blog-post.html,2933
+05-23 09:35,202.160.179.215,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-23 11:04,221.11.219.56,海南省海口市网通,IE 6.0,http://zhidao.baidu.com/question/20548687.html?fr=qrl3,,0
+05-23 11:33,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-23 11:54,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-23 12:02,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-23 12:08,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-23 12:19,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-23 12:26,61.135.163.144,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-23 12:37,202.120.183.243,上海市同济大学,IE 6.0,http://zhidao.baidu.com/question/18517703.html?si=3,,0
+05-23 12:53,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-23 12:54,61.152.193.242,上海市电信ADSL,IE 6.0,,,0
+05-23 12:55,61.152.193.242,上海市电信ADSL,IE 6.0,,http://yoursunny.com/h/70520new.jpg,61
+05-23 12:56,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-23 13:06,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-23 13:15,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-23 14:03,125.34.58.111,北京市网通,IE 6.0,http://search.cn.yahoo.com/search?p=%D1%F4%B9%E2%C4%D0%BA%A2&source=toolbar_yassist_autoword&f=D1_1,,0
+05-23 14:13,74.6.86.101,美国 CZ88.NET,Mozilla 5.0,,,0
+05-23 14:22,61.135.166.206,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-23 15:45,222.90.136.138,陕西省西安市小蚂蚁网络连锁俱乐部(明德门店),IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-23 16:10,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-23 16:43,121.19.203.229,河北省网通,IE 6.0,http://zhidao.baidu.com/question/20549974.html?fr=qrl3,,0
+05-23 17:17,66.249.65.242,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+05-23 19:14,222.25.80.21,陕西省延安市延安大学,IE 6.0,http://cache.baidu.com/c?word=%C8%E7%BA%CE%3B%CA%D6%B6%AF%3B%D0%DE%B8%B4%3B%C2%A9%B6%B4&url=http%3A//zhidao%2Ebaidu%2Ecom/question/8830662%2Ehtml&p=9d7bc54ad4991be90be2977b5056&user=baidu,,0
+05-23 19:45,60.191.80.225,浙江省杭州市电信,Mozilla 5.0,,,0
+05-23 19:47,218.75.87.113,浙江省宁波市(奉化),IE 6.0,http://search.114.vnet.cn/search_web.html?id=411&fm=index&kw=%C4%D0%BA%A2%C3%FB%D7%D6%B4%F3%C8%AB&start=10,,0
+05-23 20:34,202.120.59.2,上海交通大学闵行校区计算中心,IE 6.0,http://bbs.sjtu.edu.cn/bbscon?board=WebDevelop&file=M.1171443915.A,,0
+05-23 20:34,202.120.59.2,上海交通大学闵行校区计算中心,IE 6.0,,http://m.yoursunny.com/,16
+05-23 20:34,202.120.59.2,上海交通大学闵行校区计算中心,IE 6.0,,http://blog.yoursunny.com/,22
+05-23 20:34,202.120.59.2,上海交通大学闵行校区计算中心,IE 6.0,,http://m.yoursunny.com/,30
+05-23 21:02,58.215.0.59,江苏省无锡市电信,IE 6.0,http://search.cn.yahoo.com/search?p=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9&meta=all&ei=UTF-8&source=0F,,0
+05-23 21:11,66.249.65.243,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+05-23 21:46,60.31.117.185,内蒙古通辽市 ,IE 6.0,http://zhidao.baidu.com/question/21168495.html?si=2,,0
+05-23 21:46,60.31.117.185,内蒙古通辽市 ,IE 6.0,http://zhidao.baidu.com/question/21168495.html?si=2,,0
+05-23 21:47,60.191.80.226,浙江省杭州市电信,Mozilla 5.0,,,0
+05-23 21:54,218.64.136.25,江西省景德镇市电信,IE 7.0,http://zhidao.baidu.com/question/4894040.html?si=2,,0
+05-23 22:00,59.78.20.11,上海交通大学闵行校区D17楼,IE 6.0,,,0
+05-23 23:51,60.191.80.227,浙江省杭州市电信,Mozilla 5.0,,,0
+05-24 00:46,202.160.188.146,雅虎中国 CZ88.NET,IE 6.0,,,0
+05-24 01:06,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-24 01:49,222.70.187.52,上海市徐汇区电信ADSL,IE 6.0,http://yoursunny.com/storage/608yexiao.htm,,0
+05-24 01:54,60.191.80.221,浙江省杭州市电信,Mozilla 5.0,,,0
+05-24 03:58,60.191.80.232,浙江省杭州市电信,Mozilla 5.0,,,0
+05-24 04:49,202.160.179.126,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-24 04:52,62.141.58.48,德国 CZ88.NET,Snoopy v1.2,,,0
+05-24 05:35,66.194.6.94,美国Time Warner Telecom,IE 6.0,,,0
+05-24 08:48,222.136.209.4,河南省平顶山市 ,IE 6.0,http://zhidao.baidu.com/question/17541572.html?si=2,,0
+05-24 10:31,59.40.154.16,广东省深圳市宝安区电信ADSL,Firefox 2.0,http://www.soso.com/q?w=%D1%F4%B9%E2boy%C4%D0%BA%A2&sc=web&ch=w.h&pid=s.w.res.input&gid=&cin=&lr=,,0
+05-24 10:31,59.40.154.16,广东省深圳市宝安区电信ADSL,Firefox 2.0,,http://yoursunny.blogspot.com/2007/05/blog-post_20.html,20
+05-24 11:23,58.82.11.2,广西铁通(全省自动分配),IE 6.0,http://zhidao.baidu.com/question/9350627.html,,0
+05-24 11:48,218.88.87.215,四川省成都市电信,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-24 12:31,38.98.19.113,美国 CZ88.NET,Snapbot/1.0 (+http://www.snap.com),,,0
+05-24 12:54,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-24 12:56,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-24 12:59,202.96.126.114,浙江省杭州市电信,IE 6.0,http://www.google.cn/search?complete=1&hl=zh-CN&q=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9&meta=,,0
+05-24 13:15,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-24 13:21,219.225.42.162,中国地质大学学16楼,IE 6.0,http://zhidao.baidu.com/question/6836999.html,,0
+05-24 13:24,219.225.42.162,中国地质大学学16楼,IE 6.0,http://zhidao.baidu.com/question/6836999.html,,0
+05-24 15:10,221.7.154.9,广西梧州市网通,IE 6.0,http://search.cn.yahoo.com/search?p=%E9%98%B3%E5%85%89%E7%BD%91%E7%AB%99&meta=all&ei=UTF-8&cns=-1&p4p=0&b=11,,0
+05-24 15:11,221.7.154.9,广西梧州市网通,IE 6.0,,http://bt.yoursunny.com/,19
+05-24 16:10,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-24 16:55,74.6.71.74,美国 CZ88.NET,Mozilla 5.0,,,0
+05-24 17:59,66.249.65.226,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+05-24 18:07,59.78.5.153,上海交通大学闵行校区D5楼,IE 6.0,http://yoursunny.com/storage/608yexiao.htm,,0
+05-24 18:40,61.181.226.116,天津市网通ADSL,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-24 18:43,74.6.85.145,美国 CZ88.NET,Mozilla 5.0,,,0
+05-24 21:37,202.160.179.137,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-24 21:45,38.98.19.88,美国 CZ88.NET,Firefox 1.5.0.9,,,0
+05-24 22:26,218.193.191.36,上海交通大学闵行校区D33,IE 6.0,http://yoursunny.com/storage/608yexiao.htm,,0
+05-25 00:06,38.98.19.113,美国 CZ88.NET,Firefox 1.5.0.9,,,0
+05-25 03:05,219.142.53.21,北京市电信,msnbot/1.0 (+http://search.msn.com/msnbot.htm),,,0
+05-25 05:07,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-25 06:53,207.46.98.68,美国Microsoft公司,msnbot/1.0 (+http://search.msn.com/msnbot.htm),,,0
+05-25 07:25,202.160.179.14,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-25 09:04,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-25 09:28,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-25 09:31,66.194.6.92,美国Time Warner Telecom,IE 6.0,,,0
+05-25 09:32,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-25 09:36,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-25 09:47,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-25 10:45,61.135.163.144,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-25 11:16,61.135.163.144,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-25 11:55,121.228.53.155,江苏省 ,IE 6.0,http://www.soso.com/q?w=%d1%f4%b9%e2%c4%d0%ba%a2%b5%c4%d3%a2%ce%c4&sc=adr&ch=th.u&gid=Pa7sOYNXyQeVHzhEjQR!mNp40M410000,,0
+05-25 12:54,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-25 12:57,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-25 13:08,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-25 13:16,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-25 14:07,74.6.71.74,美国 CZ88.NET,Mozilla 5.0,,,0
+05-25 15:39,221.239.157.161,上海市松江区 ,IE 6.0,http://tutor3.bloggerspaces.com/,,0
+05-25 16:11,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-25 17:29,61.135.163.144,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-25 18:18,221.239.9.122,天津市电信,,,,0
+05-25 18:26,59.78.28.13,上海交通大学闵行校区 CZ88.NET,IE 6.0,http://yoursunny.com/storage/608yexiao.htm,,0
+05-25 18:27,66.249.65.226,美国GoogleBot 搜寻引擎机器人,Mediapartners-Google/2.1,,,0
+05-25 18:50,61.135.145.221,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-25 18:52,61.135.145.221,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-25 20:05,222.66.7.206,上海市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/16760731.html,,0
+05-25 20:34,222.71.171.199,上海市闵行区 ,Firefox 2.0.0.3,http://www.mcgeek.cn/mc-geeks-seo-page/,,0
+05-25 20:47,58.41.93.178,上海市电信,IE 6.0,,,0
+05-25 21:27,202.160.179.71,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-25 21:33,222.26.129.98,辽宁省大连市大连海事大学,IE 7.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-25 22:33,211.80.80.20,上海交通大学闵行校区D1,IE 6.0,,,0
+05-25 23:00,59.41.219.200,广东省广州市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-26 03:06,202.160.188.139,雅虎中国 CZ88.NET,IE 6.0,,,0
+05-26 03:43,208.223.208.181,美国/加拿大 ,Python-urllib/1.16,,,0
+05-26 08:20,222.21.47.189,河南省信阳市师范学院,IE 6.0,,,0
+05-26 08:22,74.6.70.51,美国 CZ88.NET,Mozilla 5.0,,,0
+05-26 08:39,222.21.47.189,河南省信阳市师范学院,IE 6.0,,,0
+05-26 08:40,222.21.47.189,河南省信阳市师范学院,IE 6.0,,http://yoursunny.com/h/70520new.jpg,58
+05-26 08:42,222.21.47.189,河南省信阳市师范学院,IE 6.0,,,0
+05-26 09:30,60.161.79.222,云南省曲靖市 ,IE 6.0,http://www.hubd.cn/sunny/sites.htm,,0
+05-26 10:38,218.12.194.26,河北省沧州市网通,Mozilla 5.0,,,0
+05-26 11:58,66.249.65.231,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+05-26 12:06,61.135.163.144,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-26 12:14,125.120.35.136,浙江省电信,IE 6.0,http://www.google.cn/search?complete=1&hl=zh-CN&newwindow=1&q=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9%E7%85%A7%E7%89%87%E7%AB%99&suggest=4&sa=X&oi=cjkrefinements&ct=result&cd=5,,0
+05-26 12:18,202.160.180.197,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-26 12:56,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-26 12:58,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-26 13:09,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-26 13:17,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-26 13:35,202.160.179.126,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-26 14:07,220.181.34.170,北京市电信,IE 6.0,,,0
+05-26 14:46,211.87.199.55,山东大学东区9#,IE 6.0,,,0
+05-26 14:50,211.87.199.55,山东大学东区9#,IE 6.0,,http://ourhome.sjtu.edu.cn/z/election/,172
+05-26 15:01,218.75.251.41,湖南省湘潭市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/9350627.html,,0
+05-26 15:07,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-26 16:12,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-26 17:16,125.106.88.53,浙江省电信,IE 6.0,http://yoursunny.com/,,0
+05-26 19:27,220.181.34.170,北京市电信,IE 6.0,,,0
+05-26 21:06,222.66.27.182,上海市闵行区 ,IE 6.0,http://www.65536.cn/m/,,0
+05-26 21:07,222.66.27.182,上海市闵行区 ,IE 6.0,,http://bt.yoursunny.com/,78
+05-26 21:08,222.66.27.182,上海市闵行区 ,IE 6.0,,http://www.xinqing.sjtu.edu.cn/,121
+05-26 21:14,61.153.212.181,浙江省舟山市电信,IE 6.0,,,0
+05-26 21:20,222.66.27.182,上海市闵行区 ,IE 6.0,http://bbs.sjtu.edu.cn/bbstcon,board,CNM,reid,1178691711,file,M.1178705912.A.html,,0
+05-26 21:20,222.66.27.182,上海市闵行区 ,IE 6.0,,http://m.yoursunny.com/,29
+05-26 23:19,38.98.19.75,美国 CZ88.NET,Firefox 1.5.0.9,,,0
+05-27 01:51,66.194.6.97,美国Time Warner Telecom,IE 6.0,,,0
+05-27 04:20,60.191.80.227,浙江省杭州市电信,Mozilla 5.0,,,0
+05-27 05:30,202.160.178.45,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-27 05:38,221.210.84.173,黑龙江省牡丹江市网通ADSL,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-27 09:26,203.214.88.152,澳大利亚 ,IE 6.0,http://www.baidu.com/s?ie=gb2312&bs=grows%D3%A2%CE%C4%D7%F7%CE%C4&sr=&z=&cl=3&f=8&wd=%B9%D8%D3%DAgrows%B5%C4%D3%A2%CE%C4%D7%F7%CE%C4&ct=0,,0
+05-27 09:54,61.135.163.144,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-27 10:37,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-27 12:23,202.160.178.78,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-27 12:56,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-27 12:59,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-27 13:05,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-27 13:18,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-27 13:23,60.191.80.229,浙江省杭州市电信,Mozilla 5.0,,,0
+05-27 14:09,74.6.71.74,美国 CZ88.NET,Mozilla 5.0,,,0
+05-27 16:04,60.164.146.26,甘肃省金昌市电信,IE 6.0,,,0
+05-27 16:06,59.78.51.104,上海交通大学闵行校区南15栋,IE 6.0,,,0
+05-27 16:10,58.217.147.41,江苏省南京市电信ADSL,IE 6.0,http://www.google.cn/search?q=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9&complete=1&hl=zh-CN&newwindow=1&rls=GGLD,GGLD:2007-18,GGLD:zh-CN&start=10&sa=N,,0
+05-27 16:11,58.217.147.41,江苏省南京市电信ADSL,IE 6.0,,http://bt.yoursunny.com/,80
+05-27 16:13,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-27 17:48,58.38.141.22,上海市电信ADSL,IE 6.0,http://search.114.vnet.cn/search_web.html?id=1&fm=kw&kw=%C4%D0%BA%A2%C3%FB%D7%D6%B4%F3%C8%AB&start=10,,0
+05-27 18:00,66.249.65.231,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+05-27 18:18,60.191.80.221,浙江省杭州市电信,Mozilla 5.0,,,0
+05-27 19:29,59.78.20.53,上海交通大学闵行校区D17楼,IE 6.0,,,0
+05-27 19:30,59.78.20.53,上海交通大学闵行校区D17楼,IE 6.0,,http://ipac.lib.sjtu.edu.cn/ipac20/ipac.jsp?profile=xul&uri=link=3100006@!1412565@!3100001@!3100002&aspect=basic_search&menu=search&ri=6&source=192.168.100.51@!cnhorizon&term=Web%E8%AE%BE%E8%AE%A1%E5%A4%A7%E5%85%A8&index=,66
+05-27 19:30,59.78.20.53,上海交通大学闵行校区D17楼,IE 6.0,,http://ipac.lib.sjtu.edu.cn/ipac20/ipac.jsp?profile=xul&uri=link=3100006@!1381362@!3100001@!3100002&aspect=basic_search&menu=search&ri=5&source=192.168.100.51@!cnhorizon&term=Web%E7%AB%99%E7%82%B9%E5%8D%87%E7%BA%A7%E4%B8%8E%E7%BB%B4%E6%8A%A4%E5%A4%A7%E5%85%A8+%3D+The+complete+website+upgrade+%26+maintenance+guide&index=,70
+05-27 19:31,59.78.20.53,上海交通大学闵行校区D17楼,IE 6.0,,http://bbs.sjtu.edu.cn/bbscon,board,WebDevelop,file,M.1171443915.A.html,107
+05-27 19:37,66.249.65.243,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+05-27 20:31,122.51.77.239,广东省佛山市 CZ88.NET,Netscape 4.0,,,0
+05-27 20:31,122.51.77.239,广东省佛山市 CZ88.NET,Netscape 4.0,,,0
+05-27 21:39,222.171.52.149,黑龙江省哈尔滨市电信ADSL,IE 6.0,http://www.google.cn/search?q=I+Feel+It+In+My+Fingers&complete=1&hl=zh-CN&lr=lang_zh-CN%7Clang_zh-TW&newwindow=1&start=20&sa=N,,0
+05-27 23:04,60.191.80.229,浙江省杭州市电信,Mozilla 5.0,,,0
+05-28 00:49,202.160.178.240,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-28 03:44,60.191.80.232,浙江省杭州市电信,Mozilla 5.0,,,0
+05-28 04:00,131.107.0.96,Microsoft公司,IE 6.0,http://search.live.com/result.aspx?q=dating&mrt=en-us&FORM=LVSP,,0
+05-28 07:42,74.6.71.121,美国 CZ88.NET,Mozilla 5.0,,,0
+05-28 09:03,202.120.33.187,上海交通大学 ,IE 6.0,,,0
+05-28 09:06,60.191.80.227,浙江省杭州市电信,Mozilla 5.0,,,0
+05-28 10:27,218.24.205.5,辽宁省盘锦市辽河油田测井公司/辽河油田裕隆事业有限公司,IE 6.0,http://www.google.cn/search?complete=1&hl=zh-CN&q=%E8%8B%B1%E6%96%87%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9&btnG=Google+%E6%90%9C%E7%B4%A2&meta=,,0
+05-28 10:51,210.31.129.65,天津市天津科技大学图书馆3楼,IE 6.0,http://tutor1.bloggerspaces.com/2006/10/blog-post_116169171271800327.html,,0
+05-28 10:53,210.31.129.65,天津市天津科技大学图书馆3楼,IE 6.0,,http://ourhome.sjtu.edu.cn/z/election/,71
+05-28 11:06,74.6.68.40,美国 CZ88.NET,Mozilla 5.0,,,0
+05-28 12:57,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-28 13:00,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-28 13:19,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-28 14:48,60.191.80.231,浙江省杭州市电信,Mozilla 5.0,,,0
+05-28 15:05,66.194.6.76,美国Time Warner Telecom,IE 6.0,,,0
+05-28 15:32,124.130.128.146,山东省网通,IE 6.0,http://www.baidu.com/s?wd=love+actually+%D6%F7%CC%E2%C7%FA&cl=3,,0
+05-28 16:14,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-28 16:30,38.98.19.75,美国 CZ88.NET,Snapbot/1.0 (Snap Shots, +http://www.snap.com),,,0
+05-28 17:20,202.158.164.146,上海市闵行区广电网,IE 6.0,http://mail.smmail.cn/ent_2/read.jsp?sid=Q76az6OngJm09D4XVimLN5AhfS5NKQ7W8puz&folderid=1&msgid=1180340759.7910.ws04&page=1&sort_mark=N,,0
+05-28 17:39,162.105.146.13,北京大学计算机系网络实验室,P.Arthur 1.1,,,0
+05-28 18:48,220.249.91.4,湖北省武汉市 ,IE 6.0,http://zhidao.baidu.com/question/7401529.html,,0
+05-28 21:48,59.40.86.222,广东省深圳市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-28 21:48,59.40.86.222,广东省深圳市电信ADSL,IE 6.0,,http://soft.yoursunny.com/,6
+05-28 22:06,66.249.65.231,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+05-28 23:06,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-29 00:21,131.107.0.96,Microsoft公司,IE 6.0,http://search.live.com/result.aspx?q=ultram&mrt=en-us&FORM=LVSP,,0
+05-29 01:08,64.246.165.160,美国密西西比大学,SurveyBot/2.3 (Whois Source),http://www.whois.sc/yoursunny.com,,0
+05-29 01:48,60.191.80.227,浙江省杭州市电信,Mozilla 5.0,,,0
+05-29 04:05,221.5.250.209,重庆市网通ADSL,IE 5.00,http://yoursunny.com/,,0
+05-29 09:00,221.194.116.206,河北省唐山市河北理工大学,IE 7.0,http://zhidao.baidu.com/question/7401529.html?si=2,,0
+05-29 09:39,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-29 09:40,202.160.180.66,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-29 10:00,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-29 10:05,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-29 10:08,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-29 10:14,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-29 11:35,202.120.59.65,上海交通大学闵行校区计算中心,IE 6.0,,,0
+05-29 11:59,220.168.21.11,湖南省长沙市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-29 11:59,220.168.21.11,湖南省长沙市电信ADSL,IE 6.0,,http://soft.yoursunny.com/,13
+05-29 12:20,58.217.145.48,江苏省南京市电信ADSL,IE 6.0,http://sunnypower.blogspot.com/2005/11/sunny-boy-spirit,,0
+05-29 12:20,58.217.145.48,江苏省南京市电信ADSL,IE 6.0,,http://blog.yoursunny.com/,22
+05-29 12:58,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-29 13:00,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-29 13:05,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-29 13:20,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-29 14:54,74.6.71.74,美国 CZ88.NET,Mozilla 5.0,,,0
+05-29 16:14,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-29 16:58,210.77.86.4,北京市国家科学基金会,IE 7.0,,,0
+05-29 17:17,202.194.63.9,山东省烟台师范学院,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-29 19:20,66.194.6.96,美国Time Warner Telecom,IE 6.0,,,0
+05-29 20:40,59.32.2.227,广东省河源市/汕头市ADSL,IE 6.0,http://zhidao.baidu.com/question/9350627.html,,0
+05-29 20:41,59.32.2.227,广东省河源市/汕头市ADSL,IE 6.0,,http://m.yoursunny.com/,43
+05-29 20:52,202.160.180.197,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-29 21:13,202.203.11.150,贵州省贵州大学,IE 7.0,http://zhidao.baidu.com/question/9350627.html,,0
+05-29 21:31,218.14.146.166,广东省开平市忠源中学,IE 6.0,http://zhidao.baidu.com/question/10625220.html,,0
+05-29 22:08,59.78.10.47,上海交通大学闵行校区D10楼,IE 6.0,http://yoursunny.com/storage/608yexiao.htm,,0
+05-29 22:08,66.249.65.231,美国GoogleBot 搜寻引擎机器人,Mediapartners-Google/2.1,,,0
+05-29 22:14,66.249.65.231,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+05-30 00:02,59.155.98.245,APNIC ,IE 7.0,http://zhidao.baidu.com/question/9350627.html,,0
+05-30 00:03,61.55.206.209,河北省石家庄市网通ADSL,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-30 00:55,38.99.203.110,美国 CZ88.NET,panscient.com,,,0
+05-30 02:06,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-30 06:17,221.11.152.68,海南省海口市网通,IE 6.0,http://yoursunny.com/,,0
+05-30 10:21,218.12.194.13,河北省沧州市网通,Mozilla 5.0,,,0
+05-30 11:11,222.223.52.54,河北省沧州市电信,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-30 11:18,121.32.80.101,广东省广州市 ,IE 7.0,http://zhidao.baidu.com/question/9350627.html,,0
+05-30 11:18,121.32.80.101,广东省广州市 ,IE 7.0,,http://yoursunny.com/h/70520new.jpg,16
+05-30 11:19,121.32.80.101,广东省广州市 ,IE 7.0,,http://yoursunny.com/h/70520new.jpg,19
+05-30 11:51,59.78.15.37,上海交通大学闵行校区D13楼,IE 6.0,http://yoursunny.com/storage/608yexiao.htm,,0
+05-30 11:59,202.160.179.126,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-30 12:59,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-30 13:01,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-30 13:07,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+05-30 13:20,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-30 14:49,74.6.86.101,美国 CZ88.NET,Mozilla 5.0,,,0
+05-30 15:16,202.192.143.5,广东省湛江市湛江师范学院,IE 6.0,http://zhidao.baidu.com/question/9350627.html,,0
+05-30 16:02,60.31.66.107,内蒙古包头市 ,IE 6.0,http://business.cn.yahoo.com/bso?keyword=%D1%F4%B9%E2%C4%D0%BA%A2&pid=16148_1006&source=toolbar_yassist_button,,0
+05-30 16:22,219.238.37.162,北京市电信通,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-30 17:06,218.91.202.186,江苏省南通市电信,IE 6.0,http://www.jswiki.com/jswiki.asp?t=SandBox,,0
+05-30 17:28,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-30 19:14,60.20.150.183,辽宁省大连市网通,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-30 21:18,74.6.68.45,美国 CZ88.NET,Mozilla 5.0,,,0
+05-30 22:42,66.249.65.231,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+05-30 22:50,74.6.85.145,美国 CZ88.NET,Mozilla 5.0,,,0
+05-31 00:57,66.194.6.75,美国Time Warner Telecom,IE 6.0,,,0
+05-31 08:08,74.6.18.25,美国 CZ88.NET,Mozilla 5.0,,,0
+05-31 09:14,218.28.126.249,河南省焦作市 ,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-31 09:58,125.93.160.193,广东省东莞市电信,IE 6.0,http://www.baidu.com/s?ie=gb2312&bs=%B7%B1%CC%E5&sr=&z=&cl=3&f=8&wd=aspx%CD%F8%D5%BE&ct=0,,0
+05-31 09:58,125.93.160.193,广东省东莞市电信,IE 6.0,,http://ourhome.sjtu.edu.cn/z/election/,16
+05-31 09:58,125.93.160.193,广东省东莞市电信,IE 6.0,,http://m.yoursunny.com/,24
+05-31 10:51,202.160.181.125,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-31 13:00,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-31 13:01,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-31 13:21,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-31 13:36,58.217.226.83,江苏省南京市电信,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+05-31 13:48,60.177.86.188,浙江省杭州市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/18517703.html,,0
+05-31 14:29,124.147.134.103,湖南省长沙市铁通,IE 6.0,http://zhidao.baidu.com/question/9350627.html,,0
+05-31 14:31,202.160.181.124,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+05-31 15:11,131.107.0.95,Microsoft公司,IE 6.0,http://search.live.com/result.aspx?q=effexor&mrt=en-us&FORM=LVSP,,0
+05-31 16:20,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+05-31 18:51,74.6.71.74,美国 CZ88.NET,Mozilla 5.0,,,0
+05-31 19:58,221.5.250.209,重庆市网通ADSL,IE 5.00,http://yoursunny.com/,,0
+05-31 21:30,211.80.60.45,上海交通大学闵行校区北区D31,IE 6.0,,,0
+05-31 22:30,58.51.47.119,湖北省襄樊市电信,IE 6.0,http://zhidao.baidu.com/question/18517703.html?si=5,,0
+05-31 22:51,66.249.65.229,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+05-31 23:05,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-01 00:06,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-01 07:16,69.147.79.131,美国 CZ88.NET,Nokia 0.0,,,0
+06-01 07:34,69.147.79.131,美国 CZ88.NET,Nokia 0.0,,,0
+06-01 07:45,69.147.79.131,美国 CZ88.NET,Nokia 0.0,,,0
+06-01 07:56,69.147.79.131,美国 CZ88.NET,Nokia 0.0,,,0
+06-01 08:50,219.128.68.204,广东省佛山市顺德区 ,IE 6.0,http://www.google.com/search?hl=zh-CN&lr=&newwindow=1&q=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9%E7%85%A7%E7%89%87%E7%AB%99&suggest=2&sa=X&oi=cjkrefinements&ct=result&cd=3,,0
+06-01 08:50,66.249.65.243,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+06-01 08:52,221.237.163.240,四川省成都市温江区成都农业科技职业学院,IE 6.0,http://www.baidu.com/s?ie=gb2312&bs=%D1%F4%B9%E2%C7%E0%C4%EA&sr=&z=&cl=3&f=8&wd=%D1%F4%B9%E2%B5%C4%C4%E3&ct=0,,0
+06-01 11:31,202.120.59.137,上海交通大学闵行校区计算中心,IE 6.0,,,0
+06-01 12:05,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-01 12:43,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 13:00,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-01 13:01,211.80.57.128,上海交通大学闵行校区第4宿舍,IE 6.0,,,0
+06-01 13:02,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-01 13:02,211.80.57.128,上海交通大学闵行校区第4宿舍,IE 6.0,http://www.65536.cn/l/,,0
+06-01 13:02,211.80.57.128,上海交通大学闵行校区第4宿舍,IE 6.0,http://www.65536.cn/,,0
+06-01 13:07,65.55.209.98,美国Microsoft公司,msnbot/1.0 (+http://search.msn.com/msnbot.htm),,,0
+06-01 13:15,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 13:21,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-01 13:25,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 13:35,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 13:42,59.173.103.76,湖北省电信,IE 6.0,http://zhidao.baidu.com/question/8830678.html,,0
+06-01 13:56,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 14:06,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 14:16,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 14:20,222.67.120.123,上海市黄浦区/杨浦区电信ADSL,IE 6.0,http://www.65536.cn/,,0
+06-01 14:24,221.5.250.209,重庆市网通ADSL,IE 5.00,http://yoursunny.com/,,0
+06-01 14:36,125.41.9.138,河南省郑州市网通,IE 6.0,http://business.cn.yahoo.com/bso?p=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9&pid=418931_1006&ei=UTF-8,,0
+06-01 14:36,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 14:47,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 14:57,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 15:07,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 15:44,65.55.209.98,美国Microsoft公司,msnbot/1.0 (+http://search.msn.com/msnbot.htm),,,0
+06-01 16:07,59.78.20.35,上海交通大学闵行校区D17楼,IE 7.0,,,0
+06-01 16:08,59.78.20.35,上海交通大学闵行校区D17楼,IE 7.0,http://puerltea.cn/,,0
+06-01 16:17,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-01 16:28,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 16:39,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 17:00,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 17:30,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 17:33,218.24.150.9,辽宁省大连市电信ADSL,IE 6.0,http://group.xiaonei.com/GetThread.do?id=200338175&parentpage=2&curpage=0&label=&tribeId=200011119,,0
+06-01 17:41,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 17:43,60.164.167.117,甘肃省酒泉市电信ADSL,IE 6.0,http://www.soso.com/q?w=%D1%F4%B9%E2%C4%D0%BA%A2%D5%D5%C6%AC%D5%BE&sc=web&ch=w.h&pid=&gid=1HOMMaRmuAOW1SX06YaXZNp40M410080&cin=&lr=,,0
+06-01 17:52,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 18:13,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 18:24,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 18:30,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 18:34,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 19:05,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 19:15,219.228.119.27,上海交通大学 ,IE 6.0,http://yoursunny.com/storage/608yexiao.htm,,0
+06-01 19:37,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 19:47,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 19:57,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 20:39,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 20:53,58.41.95.108,上海市电信,IE 6.0,,,0
+06-01 21:15,124.78.89.239,上海市电信,IE 6.0,http://www.onlinegf.com/users/your/sjtuinfo.aspx?u=%2f%E6%96%B0%E9%97%BB%E8%81%9A%E7%84%A6%2f%E7%9B%B4%E5%87%BB%E6%A0%A1%E5%9B%AD%2f2006122022472265.xml,,0
+06-01 21:30,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 22:00,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 22:11,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 22:31,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 22:41,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 22:45,58.61.113.185,广东省深圳市 ,IE 6.0,,,0
+06-01 22:52,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 23:12,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 23:30,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-01 23:43,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 00:21,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 00:41,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 00:50,202.160.179.215,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+06-02 00:52,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 01:04,222.183.171.17,重庆市大渡口区电信ADSL,IE 6.0,http://search.cn.yahoo.com/search?p=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9&ei=utf-8&coagent=dh&source=3721_right_related,,0
+06-02 01:04,60.191.80.222,浙江省杭州市电信,Mozilla 5.0,,,0
+06-02 01:32,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 01:52,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 02:03,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 02:13,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 02:44,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 04:14,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 04:34,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 05:19,222.216.110.44,广西南宁市/柳州市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/17539469.html,,0
+06-02 05:30,61.135.145.221,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-02 05:33,61.135.145.221,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-02 05:34,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 05:54,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 06:04,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 06:09,74.6.65.226,美国 CZ88.NET,Mozilla 5.0,,,0
+06-02 06:14,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 08:07,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 08:17,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 08:28,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 08:58,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 09:26,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-02 09:38,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-02 09:44,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-02 09:49,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-02 10:04,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-02 10:21,202.160.180.170,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+06-02 10:25,66.194.6.70,美国Time Warner Telecom,Mozilla 5.0,,,0
+06-02 10:38,59.41.167.209,广东省广州市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/7401529.html,,0
+06-02 10:39,220.231.57.222,北京市北京科技大学管理学院,IE 7.0,http://zhidao.baidu.com/question/4894040.html,,0
+06-02 10:42,220.231.57.222,北京市北京科技大学管理学院,IE 7.0,,http://www.xinqing.sjtu.edu.cn/,139
+06-02 11:07,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-02 11:18,60.30.213.88,天津市网通ADSL,IE 6.0,http://zhidao.baidu.com/question/7401529.html,,0
+06-02 11:37,59.50.225.40,海南省三亚市 ,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+06-02 12:31,124.114.97.30,陕西省西安市长安南路美阁网城,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+06-02 12:32,124.114.97.30,陕西省西安市长安南路美阁网城,IE 6.0,,http://blog.yoursunny.com/,4
+06-02 12:55,60.209.217.75,山东省青岛市网通ADSL,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+06-02 13:01,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-02 13:02,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-02 13:05,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-02 13:22,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-02 13:28,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 13:37,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 13:48,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 13:55,60.191.80.230,浙江省杭州市电信,Mozilla 5.0,,,0
+06-02 14:18,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 14:33,123.4.167.39,欧洲 ,IE 6.0,http://www.soso.com/q?w=%D1%F4%B9%E2%C4%D0%BA%A2%CD%BC%C6%AC&lr=&sc=web&ch=w.p&pid=&gid=tmelV1XLOAGZ3Iz3NjTMiMV40M410000&cin=&total=613000&pg=2,,0
+06-02 14:58,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 15:18,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 15:22,60.216.244.50,山东省济南市网通,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+06-02 15:28,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 15:32,59.42.26.233,广东省广州市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/9350627.html,,0
+06-02 15:59,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 16:12,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-02 16:17,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-02 16:21,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-02 16:25,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-02 16:29,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-02 16:30,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 16:33,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-02 16:41,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 17:01,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 17:07,66.249.65.231,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+06-02 17:21,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 17:30,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 17:53,121.35.226.99,广东省深圳市 ,IE 6.0,,,0
+06-02 18:01,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 18:11,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 18:21,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 18:38,221.12.146.58,浙江省丽水市网通,IE 6.0,http://www.65536.cn/m/,,0
+06-02 18:38,221.12.146.58,浙江省丽水市网通,IE 6.0,,http://yoursunny.com/h/70520new.jpg,31
+06-02 18:41,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 19:01,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 20:08,202.160.179.14,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+06-02 20:46,218.58.59.73,山东省青岛市网通,IE 6.0,http://yoursunny.com/,,0
+06-02 21:11,59.78.27.120,上海交通大学闵行校区 CZ88.NET,IE 6.0,http://yoursunny.com/storage/608yexiao.htm,,0
+06-02 21:51,222.200.152.245,华南师范大学 CZ88.NET,IE 6.0,http://zhidao.baidu.com/question/9350627.html,,0
+06-02 22:03,222.200.152.245,华南师范大学 CZ88.NET,IE 6.0,,,0
+06-02 22:09,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 22:37,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-02 22:47,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 00:05,222.183.120.86,重庆市渝中区电信ADSL,IE 6.0,http://seek.3721.com/index.htm?s_res=1&argse=new3721&p=%D1%F4%B9%E2%CD%F8%D5%BE%2C&page=4&sum_all=37700000&sum_bid=0&t_bid=0&b=1&lang=zh-cn,zh-tw&f=&d=&u=&source=&pid=1000033&coagent=dh,,0
+06-03 00:31,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 00:41,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 01:00,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 01:48,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 01:57,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 02:06,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 02:16,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 02:25,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 02:34,74.6.74.181,美国 CZ88.NET,Mozilla 5.0,,,0
+06-03 02:34,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 02:44,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 03:13,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 04:09,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 04:38,83.250.111.168,瑞典 ,Firefox 2.0.0.3,,,0
+06-03 04:48,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 04:57,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 05:25,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 05:26,219.142.53.38,北京市电信,lanshanbot/1.0,,,0
+06-03 05:35,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 06:55,202.108.22.141,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-03 07:21,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 07:31,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 07:40,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 07:50,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 07:59,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 08:28,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 08:37,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 08:46,121.35.226.99,广东省深圳市 ,IE 6.0,,,0
+06-03 08:47,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 08:57,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 09:07,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 09:16,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 09:26,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 10:13,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 10:14,121.43.116.161,河北省 ,IE 6.0,,,0
+06-03 10:22,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 10:26,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-03 10:38,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-03 10:38,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-03 10:41,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 10:45,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-03 10:50,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 10:57,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-03 11:54,221.11.152.68,海南省海口市网通,IE 6.0,http://yoursunny.com/,,0
+06-03 12:09,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-03 12:52,61.240.207.232,中国联通,Firefox 2.0.0.3,,,0
+06-03 13:01,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-03 13:04,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-03 13:11,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 13:22,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-03 13:30,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 13:49,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 13:59,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 14:18,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 14:27,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 14:45,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 14:55,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 15:04,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 15:13,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 15:44,59.78.20.64,上海交通大学闵行校区D17楼,IE 7.0,,,0
+06-03 15:45,59.78.20.64,上海交通大学闵行校区D17楼,IE 7.0,,http://threads.yoursunny.com/2007/05/50.html,69
+06-03 15:46,59.78.20.64,上海交通大学闵行校区D17楼,IE 7.0,,http://yoursunny.com/h/70520new.jpg,91
+06-03 15:52,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 16:11,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 16:17,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-03 16:37,66.194.6.78,美国Time Warner Telecom,IE 6.0,,,0
+06-03 17:02,202.160.179.137,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+06-03 18:51,60.191.72.29,浙江省杭州市电信,IE 6.0,http://yoursunny.com.paidiji.cn/,,0
+06-03 19:13,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 19:23,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 19:33,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 19:38,65.55.212.216,美国Microsoft公司,msnbot-media/1.0 (+http://search.msn.com/msnbot.htm),,,0
+06-03 19:40,74.6.71.74,美国 CZ88.NET,Mozilla 5.0,,,0
+06-03 20:12,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 20:21,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 20:29,59.69.31.169,中国教育科研网华中节点,IE 6.0,http://zhidao.baidu.com/question/7401529.html,,0
+06-03 20:31,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 20:41,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 20:51,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 21:20,38.98.19.91,美国 CZ88.NET,Firefox 1.5.0.9,,,0
+06-03 21:20,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 21:30,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 22:07,66.249.65.228,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+06-03 22:19,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-03 22:28,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 01:25,202.160.179.126,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+06-04 02:38,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 02:48,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 02:57,222.223.118.58,河北省邢台市电信,IE 6.0,http://www.google.cn/custom?complete=1&hl=zh-CN&inlang=zh-CN&ie=GB2312&oe=GB2312&newwindow=1&client=pub-7908916078457618&channel=9899118914&cof=FORID%3A1%3BGL%3A1%3BS%3Ahttp%3A%2F%2Fwww.google.cn%3BL%3Ahttp%3A%2F%2Fwww.google.cn%2Fintl%2Fzh-CN%2Fimages%2Flogo_cn.gif%3BLH%3A38%3BLW%3A100%3BLBGC%3A336699%3BLP%3A1%3BLC%3A%230000ff%3BVLC%3A%23663399%3BGFNT%3A%230000ff%3BGIMP%3A%230000ff%3BDIV%3A%23336699%3B&q=www.%D1%F4%B9%E2%C4%D0%BA%A2.com&meta=,,0
+06-04 02:57,220.181.19.199,北京市电信,Sogou Push Spider/3.0(+http://www.sogou.com/docs/help/webmasters.htm#07),,,0
+06-04 02:57,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 03:16,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 03:26,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 03:35,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 03:45,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 03:55,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 04:32,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 04:59,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 05:09,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 06:00,211.143.236.95,江苏省苏州市(太仓)移动,IE 7.0,http://zhidao.baidu.com/question/4894040.html,,0
+06-04 06:27,218.193.190.24,上海交通大学闵行校区D32,IE 6.0,http://bbs.sjtu.edu.cn/bbscon,board,psychology,file,M.1180273231.A.html,,0
+06-04 08:05,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 08:08,221.5.250.209,重庆市网通ADSL,IE 5.00,http://yoursunny.com/,,0
+06-04 08:15,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 08:26,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 08:35,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 09:05,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 09:05,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-04 09:15,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-04 09:21,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-04 09:25,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-04 09:33,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-04 10:23,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 10:33,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 11:01,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 11:56,202.203.45.10,云南大学东学楼机房,IE 6.0,,,0
+06-04 12:59,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 13:02,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-04 13:03,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-04 13:19,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 13:22,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-04 13:39,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 13:49,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 14:06,218.68.36.145,天津市网通,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+06-04 14:18,221.196.212.169,天津市宝坻区 ,IE 6.0,http://business.cn.yahoo.com/bso?p=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9%E5%8D%9A%E5%AE%A2&pid=418928_1006&ei=UTF-8,,0
+06-04 14:19,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 14:29,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 14:40,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 14:50,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 15:10,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 15:20,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 15:30,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 15:31,222.160.116.230,吉林省通化市(梅河口市)网通,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+06-04 15:32,222.160.116.230,吉林省通化市(梅河口市)网通,IE 6.0,,http://soft.yoursunny.com/,49
+06-04 15:39,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 15:51,74.6.85.145,美国 CZ88.NET,Mozilla 5.0,,,0
+06-04 16:18,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-04 16:37,59.78.20.64,上海交通大学闵行校区D17楼,IE 7.0,,,0
+06-04 17:07,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 17:14,219.147.237.252,黑龙江省黑河市电信,IE 6.0,http://business.cn.yahoo.com/bso?p=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9&pid=99691_1006&ei=UTF-8,,0
+06-04 17:17,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 17:27,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 17:37,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 18:10,221.5.250.209,重庆市网通ADSL,IE 5.00,http://yoursunny.com/,,0
+06-04 19:55,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 20:05,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 20:33,202.160.178.45,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+06-04 20:46,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 21:04,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 21:13,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 21:18,218.193.189.81,上海交通大学闵行校区D31,Firefox 1.5.0.7,,,0
+06-04 22:11,66.249.65.231,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+06-04 22:51,124.115.33.21,陕西省电信,IE 6.0,http://zhidao.baidu.com/question/7401529.html,,0
+06-04 22:59,66.194.6.95,美国Time Warner Telecom,Mozilla 5.0,,,0
+06-04 23:09,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-04 23:12,218.17.120.253,广东省深圳市宝安区电信ADSL,IE 6.0,http://zhidao.baidu.com/question/17539469.html,,0
+06-04 23:13,218.17.120.253,广东省深圳市宝安区电信ADSL,IE 6.0,,http://soft.yoursunny.com/,72
+06-04 23:15,218.17.120.253,广东省深圳市宝安区电信ADSL,IE 6.0,http://zhidao.baidu.com/question/17539469.html,,0
+06-04 23:15,218.17.120.253,广东省深圳市宝安区电信ADSL,IE 6.0,,http://soft.yoursunny.com/,2
+06-04 23:20,202.160.180.197,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+06-04 23:48,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-04 23:53,125.112.180.21,浙江省金华市电信,IE 7.0,http://puerltea.cn/,,0
+06-04 23:58,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 00:27,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 02:22,64.246.161.42,美国密西西比大学,SurveyBot/2.3 (Whois Source),http://www.whois.sc/yoursunny.com,,0
+06-05 02:25,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 02:52,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 09:22,222.40.199.29,河南省南阳市/平顶山市铁通,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+06-05 10:01,218.64.102.175,江西省九江市电信,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+06-05 10:19,218.27.149.248,吉林省吉林市网通ADSL,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+06-05 10:51,124.42.80.10,北京市光环新网,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+06-05 12:41,221.224.236.74,江苏省苏州市电信ADSL,IE 6.0,http://www.google.cn/search?complete=1&hl=zh-CN&q=%E5%AF%9D%E5%AE%A4%E8%AF%84%E6%AF%94&meta=,,0
+06-05 12:43,66.249.65.77,美国GoogleBot 搜寻引擎机器人,Mediapartners-Google/2.1,,,0
+06-05 13:03,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-05 13:04,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-05 13:23,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-05 13:40,59.78.53.193,上海交通大学闵行校区南23栋,IE 6.0,http://bbs.sjtu.edu.cn/bbscon,board,Graduate,file,M.1162449864.A.html,,0
+06-05 13:42,59.78.53.193,上海交通大学闵行校区南23栋,IE 6.0,,http://e.yoursunny.com/,104
+06-05 13:47,219.136.85.110,广东省广州市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+06-05 13:48,219.136.85.110,广东省广州市电信ADSL,IE 6.0,,http://yoursunny.com/h/70520new.jpg,10
+06-05 13:52,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 14:46,61.135.162.205,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-05 14:51,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 15:03,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 15:52,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 16:14,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 16:18,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-05 16:37,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 16:41,74.6.21.115,美国 CZ88.NET,Mozilla 5.0,,,0
+06-05 17:30,125.74.120.78,甘肃省嘉峪关市 ,IE 6.0,http://www.baidu.com/s?cl=3&wd=%C4%E3%CA%C7%D1%F4%B9%E2&t=12,,0
+06-05 17:30,125.74.120.78,甘肃省嘉峪关市 ,IE 6.0,http://www.baidu.com/s?cl=3&wd=%C4%E3%CA%C7%D1%F4%B9%E2&t=12,,0
+06-05 17:49,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 18:14,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 19:39,219.230.135.97,江苏省常州市轻工职业技术学院,IE 7.0,http://zhidao.baidu.com/question/16760731.html,,0
+06-05 19:57,222.212.66.77,四川省成都市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+06-05 19:59,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 20:40,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 20:51,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 21:21,38.98.19.114,美国 CZ88.NET,Firefox 1.5.0.9,,,0
+06-05 21:23,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 22:37,202.160.179.71,雅虎中国 CZ88.NET,Mozilla 5.0,,,0
+06-05 23:09,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-05 23:15,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 23:26,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-05 23:32,66.249.65.77,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+06-05 23:55,121.51.216.195,湖南省株洲市(醴陵)铁通,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+06-06 00:57,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-06 01:22,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-06 01:34,60.191.80.234,浙江省杭州市电信,Mozilla 5.0,,,0
+06-06 01:55,74.6.71.74,美国 CZ88.NET,Mozilla 5.0,,,0
+06-06 02:22,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-06 02:23,87.122.203.98,德国 CZ88.NET,findlinks/1.1.3-beta9 (+http://wortschatz.uni-leipzig.de/findlinks/),,,0
+06-06 02:44,60.191.80.229,浙江省杭州市电信,Mozilla 5.0,,,0
+06-06 03:22,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-06 03:27,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-06 03:31,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-06 03:33,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-06 04:36,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-06 04:36,64.208.172.173,美国加洲,ia_archiver,,,0
+06-06 05:00,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-06 06:07,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-06 06:09,66.194.6.95,美国Time Warner Telecom,IE 6.0,,,0
+06-06 06:09,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-06 06:10,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-06 08:53,59.40.218.65,广东省深圳市电信ADSL,IE 6.0,http://blog.yoursunny.com/,,0
+06-06 09:32,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-06 09:43,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-06 09:49,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-06 09:54,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-06 09:57,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-06 10:03,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-06 10:05,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-06 10:07,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-06 10:32,166.111.12.239,清华大学校机关(工字厅/古月堂),IE 6.0,http://www.google.com/search?q=finger%20toe%20love%20around&hl=zh-CN&lr=&nxpt=20.0806155425558149397104,,0
+06-06 11:58,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-06 12:21,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-06 12:31,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-06 12:41,58.61.164.138,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-06 13:04,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-06 13:05,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-06 13:23,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-06 13:26,59.78.20.64,上海交通大学闵行校区D17楼,IE 7.0,,,0
+06-06 13:27,59.78.20.64,上海交通大学闵行校区D17楼,IE 7.0,,http://soft.yoursunny.com/,39
+06-06 13:33,59.78.20.64,上海交通大学闵行校区D17楼,IE 7.0,,,0
+06-06 15:05,210.34.129.215,集美大学诚毅学院新校区,IE 6.0,http://zhidao.baidu.com/question/7401529.html,,0
+06-06 15:39,123.112.2.123,欧洲 ,IE 7.0,http://zhidao.baidu.com/question/11567739.html?si=7,,0
+06-06 15:44,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-06 15:48,59.78.53.56,上海交通大学闵行校区南16栋,IE 6.0,http://bbs.sjtu.edu.cn/bbstcon,board,WebDevelop,reid,1180965328.html,,0
+06-06 16:19,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-06 16:35,74.6.18.25,美国 CZ88.NET,Mozilla 5.0,,,0
+06-06 17:02,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-06 17:05,60.26.56.96,天津市网通ADSL,Firefox 2.0.0.4,http://www.google.cn/search?complete=1&hl=zh-CN&newwindow=1&rlz=1B2GGFB_enCN215CN216&q=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9&btnG=Google+%E6%90%9C%E7%B4%A2&meta=,,0
+06-06 17:32,74.6.65.231,美国 CZ88.NET,Mozilla 5.0,,,0
+06-06 19:18,222.217.116.213,广西桂林市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/9350627.html?si=3,,0
+06-06 19:30,218.192.48.245,广东省广州市外国语师范专科学校,IE 6.0,http://search.cn.yahoo.com/search?p=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9&lp=gay%E7%9A%84%E5%B0%8F%E8%AF%B4&ei=UTF-8&pid=ysearch,,0
+06-06 19:34,74.6.71.74,美国 CZ88.NET,Mozilla 5.0,,,0
+06-06 20:31,66.249.65.83,美国GoogleBot 搜寻引擎机器人,Mozilla 5.0,,,0
+06-06 21:13,74.6.86.101,美国 CZ88.NET,Mozilla 5.0,,,0
+06-06 21:27,58.30.68.147,北京市歌华有线,IE 7.0,http://www.soso.com/q?w=%D1%F4%B9%E2%C4%D0%BA%A2%D5%D5%C6%AC%D5%BE&sc=web&ch=w.h&pid=w.q.in.sb.web&gid=&cin=&lr=,,0
+06-06 21:34,218.74.255.176,浙江省宁波市电信ADSL,Netscape 4.0,,,0
+06-06 22:29,38.98.19.112,美国 CZ88.NET,Firefox 1.5.0.9,,,0
+06-06 22:45,222.71.212.110,上海市黄浦区/杨浦区电信ADSL,IE 5.0,,,0
+06-07 00:13,38.98.19.111,美国 CZ88.NET,Firefox 1.5.0.9,,,0
+06-07 01:11,220.181.38.132,北京市电信,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-07 03:13,58.61.164.139,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-07 03:37,58.61.164.142,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-07 05:01,58.61.164.141,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-07 05:11,203.70.109.198,台湾省The China Chrintion College Creciation,IE 6.0,,,0
+06-07 09:31,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-07 09:39,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-07 09:44,61.135.162.200,北京市网通,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-07 09:57,202.99.241.243,内蒙古呼和浩特市/鄂尔多斯市,IE 6.0,http://zhidao.baidu.com/question/4894040.html,,0
+06-07 10:15,222.136.71.142,河南省濮阳市 ,Netscape 4.0,,,0
+06-07 10:15,222.136.71.142,河南省濮阳市 ,Netscape 4.0,,,0
+06-07 10:32,221.5.250.209,重庆市网通ADSL,IE 5.00,http://yoursunny.com/,,0
+06-07 11:05,202.108.11.106,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-07 11:21,210.36.6.30,广西南宁市广西教育和科研计算机网,IE 6.0,http://www.soso.com/q?w=%d7%f7%ce%c4%22%c4%d0%ba%a2%22&sc=adr&ch=th.u&gid=jmBVhZiPy4KTtJfoEMi1FgV50w410000,,0
+06-07 12:06,72.14.193.162,美国加利福尼亚州Mountain,IE 6.0,,,0
+06-07 13:05,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-07 13:06,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-07 13:07,72.14.194.29,美国加利福尼亚州Mountain,IE 6.0,,,0
+06-07 13:07,72.14.193.162,美国加利福尼亚州Mountain,IE 6.0,,,0
+06-07 13:24,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-07 13:32,66.194.6.74,美国Time Warner Telecom,IE 6.0,,,0
+06-07 14:57,59.42.176.151,广东省广州市天河区电信ADSL,SouFZ-Spider[SouFZ.COM],,,0
+06-07 16:01,121.24.51.42,河北省邯郸市网通,IE 6.0,http://zhidao.baidu.com/question/9350627.html,,0
+06-07 16:20,60.28.164.79,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-07 20:36,219.219.34.18,江苏省中国矿业科技大学,IE 6.0,http://zhidao.baidu.com/question/17541572.html?si=2,,0
+06-07 20:36,58.61.164.140,广东省深圳市 ,IE 6.0,http://yoursunny.com/,,0
+06-07 21:33,74.6.21.115,美国 CZ88.NET,Mozilla 5.0,,,0
+06-07 22:14,125.123.83.248,浙江省电信,IE 6.0,http://www.google.cn/search?sourceid=navclient&aq=t&hl=zh-CN&ie=UTF-8&rlz=1T4RNWN_zh-CN___CN225&q=%E9%98%B3%E5%85%89%E7%94%B7%E5%AD%A9,,0
+06-08 08:02,202.120.60.10,上海交通大学闵行校区外语楼,IE 6.0,,,0
+06-08 09:45,207.46.98.65,美国Microsoft公司,msnbot/1.0 (+http://search.msn.com/msnbot.htm),,,0
+06-08 10:11,219.142.146.179,北京市电信,IE 6.0,http://zhidao.baidu.com/question/8830678.html?si=4,,0
+06-08 10:16,218.80.229.30,上海市浦东新区博兴路DD瑞得在线网吧,IE 6.0,http://www.baidu.com/s?lm=0&si=&rn=10&ie=gb2312&ct=0&wd=aspx&pn=30&cl=3,,0
+06-08 10:17,218.80.229.30,上海市浦东新区博兴路DD瑞得在线网吧,IE 6.0,,http://yoursunny.com/h/70520new.jpg,58
+06-08 11:08,74.6.26.225,美国 CZ88.NET,Mozilla 5.0,,,0
+06-08 12:37,59.52.192.155,江西省南昌市电信ADSL,IE 6.0,http://zhidao.baidu.com/question/9350627.html,,0
+06-08 12:41,125.114.62.193,浙江省宁波市电信,IE 6.0,http://cha.so.163.com/so.php?q=%D1%F4%B9%E2%C4%D0%BA%A2,,0
+06-08 13:05,60.28.164.22,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-08 13:06,60.28.164.35,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-08 13:25,60.28.164.90,天津市网通ADSL,iaskspider/2.0(+http://iask.com/help/help_index.html),,,0
+06-08 13:45,74.53.107.34,美国 CZ88.NET,,,,0
+06-08 13:47,59.78.20.24,上海交通大学闵行校区D17楼,Firefox 2.0.0.4,,,0
+06-08 13:54,217.152.237.133,欧洲 ,,,,0
+06-08 14:19,59.78.20.24,上海交通大学闵行校区D17楼,Firefox 2.0.0.4,,,0
+06-08 14:27,202.120.2.30,上海交通大学网络中心,IE 6.0,,,0
+06-08 14:56,61.135.145.221,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-08 14:59,61.135.145.221,北京市百度公司,Baiduspider+(+http://www.baidu.com/search/spider.htm),,,0
+06-08 16:09,59.78.20.64,上海交通大学闵行校区D17楼,IE 7.0,,,0

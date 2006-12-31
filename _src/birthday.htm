@@ -1,0 +1,48 @@
+<table width="290" height="290" border="0" align="right" cellpadding="0" cellspacing="0" class="block" style="margin:7px;">
+<tr>
+<th height="30" id="birthday_n">birthday</th>
+</tr>
+<tr>
+<td height="260" align="center" valign="middle" bgcolor="#FFDE9B"><table width="280" height="250" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="150" valign="top"><form action="h/birthday.ashx" method="post" target="statistics" onsubmit="return chk_birthday(this);">
+我的20岁生日！<br />
+公历：<font color="#006633">2月12日</font><br />
+农历：<font color="#006633">正月十五</font><br />
+<br />
+在两个日期之间<br />
+看到的请留个名，<br />
+祝福我一下吧<br />
+网名
+<input name="n" type="text" id="n" size="10" />
+<br />
+祝福内容<br />
+<input name="m" type="text" id="m" size="16" />
+<br />
+<input type="submit" value="  送 出 祝 福  " />
+<script type="text/javascript">
+function chk_birthday(f)
+{
+	if (f.n.value.length<1)
+	{
+		f.n.focus();
+		alert('你的名字叫什么？');
+		return false;
+	}
+	if (f.m.value.length<1)
+	{
+		f.m.focus();
+		alert('你想对我说什么？');
+		return false;
+	}
+	return true;
+}
+</script>
+</form></td>
+<td width="130" valign="top" id="birthday_p"><dl>
+<dt>&nbsp;</dt>
+</dl></td>
+</tr>
+</table></td>
+</tr>
+</table>

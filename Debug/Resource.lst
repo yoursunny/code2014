@@ -1,0 +1,58 @@
+Sunplus u'nSP Assembler - Ver. 1.14.3.1
+              Listing File Has Been Relocated
+                            	
+                            	// Resource Table
+                            	// Created by IDE, Do not modify this table
+                            	
+00008028                    	.TEXT
+                            	.public _RES_Table;
+                            	.external __RES_SUCCEED_72K_sa
+                            	.public _RES_SUCCEED_72K_SA;
+                            	.external __RES_SUCCEED_72K_ea;
+                            	.public _RES_SUCCEED_72K_EA;
+                            	.external __RES_ACCEPT_72K_sa
+                            	.public _RES_ACCEPT_72K_SA;
+                            	.external __RES_ACCEPT_72K_ea;
+                            	.public _RES_ACCEPT_72K_EA;
+                            	.external __RES_FAIL_72K_sa
+                            	.public _RES_FAIL_72K_SA;
+                            	.external __RES_FAIL_72K_ea;
+                            	.public _RES_FAIL_72K_EA;
+                            	.external __RES_REC_72K_sa
+                            	.public _RES_REC_72K_SA;
+                            	.external __RES_REC_72K_ea;
+                            	.public _RES_REC_72K_EA;
+                            	
+                            	
+                            	_RES_Table:
+                            	
+                            	_RES_SUCCEED_72K_SA:
+00008028 63 AC 00 00        		.DW offset __RES_SUCCEED_72K_sa,seg __RES_SUCCEED_72K_sa;
+                            	_RES_SUCCEED_72K_EA:
+0000802A CA AE 00 00        		.DW offset __RES_SUCCEED_72K_ea,seg __RES_SUCCEED_72K_ea;
+                            	
+                            	_RES_ACCEPT_72K_SA:
+0000802C F1 B1 00 00        		.DW offset __RES_ACCEPT_72K_sa,seg __RES_ACCEPT_72K_sa;
+                            	_RES_ACCEPT_72K_EA:
+0000802E 0B B3 00 00        		.DW offset __RES_ACCEPT_72K_ea,seg __RES_ACCEPT_72K_ea;
+                            	
+                            	_RES_FAIL_72K_SA:
+00008030 74 B0 00 00        		.DW offset __RES_FAIL_72K_sa,seg __RES_FAIL_72K_sa;
+                            	_RES_FAIL_72K_EA:
+00008032 F1 B1 00 00        		.DW offset __RES_FAIL_72K_ea,seg __RES_FAIL_72K_ea;
+                            	
+                            	_RES_REC_72K_SA:
+00008034 CA AE 00 00        		.DW offset __RES_REC_72K_sa,seg __RES_REC_72K_sa;
+                            	_RES_REC_72K_EA:
+00008036 74 B0 00 00        		.DW offset __RES_REC_72K_ea,seg __RES_REC_72K_ea;
+                            	
+                            	
+                            	// End Table
+                            	.PUBLIC T_SACM_S480_SpeechTable
+                            	T_SACM_S480_SpeechTable:
+00008038 28 80              		.DW _RES_SUCCEED_72K_SA
+00008039 30 80              		.DW _RES_FAIL_72K_SA
+0000803A 2C 80              		.DW _RES_ACCEPT_72K_SA
+0000803B 34 80              		.DW _RES_REC_72K_SA
+0 error(s), 0 warning(s).
+

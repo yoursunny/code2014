@@ -1,0 +1,46 @@
+Version: 3.0
+Options: m37
+Obj: "D:\study\Sunplus\unSP IDE 2.0.0\startupD.obj"
+Obj: "D:\study\Sunplus\MMS\mms\Debug\Resource.obj"
+Obj: "D:\study\Sunplus\MMS\mms\Debug\sram.obj"
+Obj: "D:\study\Sunplus\MMS\mms\Debug\Flash.obj"
+Obj: "D:\study\Sunplus\MMS\mms\Debug\hardware.obj"
+Obj: "D:\study\Sunplus\MMS\mms\Debug\isr.obj"
+Obj: "D:\study\Sunplus\MMS\mms\Debug\main.obj"
+Obj: "D:\study\Sunplus\MMS\mms\Debug\succeed_72k.res"
+Obj: "D:\study\Sunplus\MMS\mms\Debug\accept_72k.res"
+Obj: "D:\study\Sunplus\MMS\mms\Debug\fail_72k.res"
+Obj: "D:\study\Sunplus\MMS\mms\Debug\rec_72k.res"
+Lib: "D:\study\Sunplus\MMS\mms\.\sacmv26e.lib"
+Output: "D:\study\Sunplus\MMS\mms\Debug\mms.S37"
+;Locate: TEXT in "isr.obj" at 8009 
+;Align: TEXT in "isr.obj" with 0 
+;Locate: IRAM in "hardware.obj" at ABCD  linkat 610 
+;Align: IRAM in "hardware.obj" with 0 
+;Locate: RAM in "sram.obj" at 60F 
+;Align: RAM in "sram.obj" with 0 
+;Locate: OVERLAP_RAM_BLOCK in "DVR" of "sacmv26e.lib"  at 1 
+;Align: OVERLAP_RAM_BLOCK in "DVR" of "sacmv26e.lib"  with 0 
+;Locate: OVERLAP_SRAM_BLOCK in "DVR" of "sacmv26e.lib"  at 5D2 
+;Align: OVERLAP_SRAM_BLOCK in "DVR" of "sacmv26e.lib"  with 0 
+;Locate: __sn_section_RES_ACCEPT_72K in "accept_72k.res" at B1F1 
+;Align: __sn_section_RES_ACCEPT_72K in "accept_72k.res" with 0 
+;Locate: __sn_section_RES_FAIL_72K in "fail_72k.res" at B074 
+;Align: __sn_section_RES_FAIL_72K in "fail_72k.res" with 0 
+;Locate: __sn_section_RES_REC_72K in "rec_72k.res" at AECA 
+;Align: __sn_section_RES_REC_72K in "rec_72k.res" with 0 
+;Locate: __sn_section_RES_SUCCEED_72K in "succeed_72k.res" at AC63 
+;Align: __sn_section_RES_SUCCEED_72K in "succeed_72k.res" with 0 
+;Locate: CODE in "DVR" of "sacmv26e.lib"  at 8059 
+;Align: CODE in "DVR" of "sacmv26e.lib"  with 0 
+;Locate: CODE in "S480" of "sacmv26e.lib"  at 98D8 
+;Align: CODE in "S480" of "sacmv26e.lib"  with 0 
+;Locate: CODE in "main.obj" at A2D2 
+;Align: CODE in "main.obj" with 0 
+;Locate: CODE in "hardware.obj" at A979 
+;Align: CODE in "hardware.obj" with 0 
+;Locate: CODE in "Flash.obj" at AB56 
+;Align: CODE in "Flash.obj" with 0 
+;Locate: CODE in "sram.obj" at ABBB 
+;Align: CODE in "sram.obj" with 0 
+;Locate: __sn_init_table at 8000 

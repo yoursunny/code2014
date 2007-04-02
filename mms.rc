@@ -1,0 +1,32 @@
+# Begin Project
+# Begin SubItem "mms  Resources"
+# Begin Source File
+SOURCE=succeed.72k
+USEPARAM=FALSE
+PARAM=
+ID=RES_SUCCEED_72K
+EXPORT=3
+# End Source File
+# Begin Source File
+SOURCE=accept.72k
+USEPARAM=FALSE
+PARAM=
+ID=RES_ACCEPT_72K
+EXPORT=3
+# End Source File
+# Begin Source File
+SOURCE=fail.72k
+USEPARAM=FALSE
+PARAM=
+ID=RES_FAIL_72K
+EXPORT=3
+# End Source File
+# Begin Source File
+SOURCE=rec.72k
+USEPARAM=FALSE
+PARAM=
+ID=RES_REC_72K
+EXPORT=3
+# End Source File
+# End SubItem
+# End Project

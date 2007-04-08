@@ -1,0 +1,143 @@
+--playing <Song Of Joy>
+-- 3  3  4  5  |  5  4  3  2  |  1  1  2  3  |  3  2  2  -  |
+-- 3  3  4  5  |  5  4  3  2  |  1  1  2  3  |  2  1  1  -  |
+-- 2  2  3  1  |  2  34 3  1  |  2  34 3  2  |  1  2  5  -  |
+--                   --             --                ^      
+-- 3  3  4  5  |  5  4  3  2  |  1  1  2  3  |  2  1  1  -  |
+
+include "lpm_counter";
+subdesign music
+(
+--4MHz freq from OSC
+	clk:input;
+--enable, no output when 0;
+	ena:input;
+--clear, return to beginning on 1
+	clr:input;
+--speaker
+	spk:output;
+)
+variable
+--freq necessary, 391.995Hz,523.25Hz,587.25Hz,659.25Hz,698.46Hz,783.99Hz
+	L5,M1,M2,M3,M4,M5:node;
+--counters for freq generate
+	--cL5 is unnecessary because L5 is half of M5
+	cM1:lpm_counter with(lpm_width=13,lpm_direction="UP",lpm_modulus=7645);
+	cM2:lpm_counter with(lpm_width=13,lpm_direction="UP",lpm_modulus=6810);
+	cM3:lpm_counter with(lpm_width=13,lpm_direction="UP",lpm_modulus=6068);
+	cM4:lpm_counter with(lpm_width=13,lpm_direction="UP",lpm_modulus=5727);
+	cM5:lpm_counter with(lpm_width=13,lpm_direction="UP",lpm_modulus=5102);
+--tff for freq generate
+	tL5,tM1,tM2,tM3,tM4,tM5:tff;
+--main counter for music sequence
+-- [8..7]=line
+-- [6..5]=group
+-- [4..3]=full note
+-- [2..0]=1/8 note
+	c:lpm_counter with(lpm_width=9,lpm_direction="UP");
+--16Hz helper for music sequence
+	divider:lpm_counter with(lpm_width=18,lpm_direction="UP");
+	divd:dff;
+--speaker, don't care enable input, don't care silent on c.q[2..0]==7 on non 'X-' note
+	s:node;
+begin
+	defaults
+		s=gnd;
+	end defaults;
+--freq generate
+	cM1.clock=clk;
+	cM2.clock=clk;
+	cM3.clock=clk;
+	cM4.clock=clk;
+	cM5.clock=clk;
+	tL5.t=vcc;
+	tM1.t=cM1.cout;
+	tM2.t=cM2.cout;
+	tM3.t=cM3.cout;
+	tM4.t=cM4.cout;
+	tM5.t=cM5.cout;
+	tL5.clk=tM5.q;
+	tM1.clk=clk;
+	tM2.clk=clk;
+	tM3.clk=clk;
+	tM4.clk=clk;
+	tM5.clk=clk;
+	L5=tL5.q;
+	M1=tM1.q;
+	M2=tM2.q;
+	M3=tM3.q;
+	M4=tM4.q;
+	M5=tM5.q;
+--music sequence
+	divider.clock=clk;
+	divd.clk=clk;
+	divd.d=divider.cout;
+	c.clock=divd.q;
+-- line1,group1~3;line2;line4
+-- 3  3  4  5  |  5  4  3  2  |  1  1  2  3  |  2  1  1  -  |
+	if c.q[7]==1 # (c.q[8]==0 & (c.q[6]==0 # c.q[5]==0)) then
+		case c.q[6..3] is
+			when  0=> s=M3;
+			when  1=> s=M3;
+			when  2=> s=M4;
+			when  3=> s=M5;
+			when  4=> s=M5;
+			when  5=> s=M4;
+			when  6=> s=M3;
+			when  7=> s=M2;
+			when  8=> s=M1;
+			when  9=> s=M1;
+			when 10=> s=M2;
+			when 11=> s=M3;
+			when 12=> s=M2;
+			when 13=> s=M1;
+			when 14=> s=M1;
+			when 15=> s=M1;
+		end case;
+	end if;
+-- line1,group4
+-- 3  2  2  -  |
+	if c.q[8..7]==0 & c.q[6..5]==3 then
+		case c.q[4..3] is
+			when  0=> s=M3;
+			when  1=> s=M2;
+			when  2=> s=M2;
+			when  3=> s=M2;
+		end case;
+	end if;
+-- line3
+-- 2  2  3  1  |  2  34 3  1  |  2  34 3  2  |  1  2  5  -  |
+--                   --             --                ^      
+	if c.q[8..7]==2 then
+		case c.q[6..3] is
+			when  0=> s=M2;
+			when  1=> s=M2;
+			when  2=> s=M3;
+			when  3=> s=M1;
+			when  4=> s=M2;
+			when  5=>
+				if c.q[2] then s=M4; end if;
+				if !c.q[2] & !(c.q[1..0]==3) then s=M3; end if;
+			when  6=> s=M3;
+			when  7=> s=M1;
+			when  8=> s=M2;
+			when  9=>
+				if c.q[2] then s=M4; end if;
+				if !c.q[2] & !(c.q[1..0]==3) then s=M3; end if;
+			when 10=> s=M3;
+			when 11=> s=M2;
+			when 12=> s=M1;
+			when 13=> s=M2;
+			when 14=> s=L5;
+			when 15=> s=L5;
+		end case;
+	end if;
+--speaker pause and enable
+	if ena then
+		if !(c.q[2..0]==7) # c.q[6..3]==14 then
+			spk=s;
+		end if;
+	end if;
+--clear
+	c.sclr=clr;
+end;

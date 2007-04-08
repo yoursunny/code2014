@@ -1,0 +1,1957 @@
+Project Information                                               e:\music.rpt
+
+MAX+plus II Compiler Report File
+Version 10.2 07/10/2002
+Compiled: 04/06/2007 13:32:28
+
+Copyright (C) 1988-2002 Altera Corporation
+Any megafunction design, and related net list (encrypted or decrypted),
+support information, device programming or simulation file, and any other
+associated documentation or information provided by Altera or a partner
+under Altera's Megafunction Partnership Program may be used only to
+program PLD devices (but not masked PLD devices) from Altera.  Any other
+use of such megafunction design, net list, support information, device
+programming or simulation file, or any other related documentation or
+information is prohibited for any other purpose, including, but not
+limited to modification, reverse engineering, de-compiling, or use with
+any other silicon devices, unless such use is explicitly licensed under
+a separate agreement with Altera or a megafunction partner.  Title to
+the intellectual property, including patents, copyrights, trademarks,
+trade secrets, or maskworks, embodied in any such megafunction design,
+net list, support information, device programming or simulation file, or
+any other related documentation or information provided by Altera or a
+megafunction partner, remains with Altera, the megafunction partner, or
+their respective licensors.  No other licenses, including any licenses
+needed under any third party's intellectual property, are provided herein.
+
+
+
+***** Project compilation was successful
+
+
+Untitled
+
+
+** DEVICE SUMMARY **
+
+Chip/                     Input Output Bidir  Memory  Memory  			 LCs
+POF       Device          Pins  Pins   Pins   Bits % Utilized  LCs  % Utilized
+
+music     EP1K10TC100-1    3      1      0    0         0  %    194      33 %
+
+User Pins:                 3      1      0  
+
+
+
+Project Information                                               e:\music.rpt
+
+** FILE HIERARCHY **
+
+
+
+|lpm_counter:cM1|
+|lpm_counter:cM1|lpm_add_sub:add_sub|
+|lpm_counter:cM1|lpm_add_sub:add_sub|addcore:adder|
+|lpm_counter:cM1|lpm_add_sub:add_sub|altshift:result_ext_latency_ffs|
+|lpm_counter:cM1|lpm_add_sub:add_sub|altshift:carry_ext_latency_ffs|
+|lpm_counter:cM1|lpm_add_sub:add_sub|altshift:oflow_ext_latency_ffs|
+|lpm_counter:cM1|lpm_constant:scdw|
+|lpm_counter:cM1|cmpconst:149|
+|lpm_counter:cM2|
+|lpm_counter:cM2|lpm_add_sub:add_sub|
+|lpm_counter:cM2|lpm_add_sub:add_sub|addcore:adder|
+|lpm_counter:cM2|lpm_add_sub:add_sub|altshift:result_ext_latency_ffs|
+|lpm_counter:cM2|lpm_add_sub:add_sub|altshift:carry_ext_latency_ffs|
+|lpm_counter:cM2|lpm_add_sub:add_sub|altshift:oflow_ext_latency_ffs|
+|lpm_counter:cM2|lpm_constant:scdw|
+|lpm_counter:cM2|cmpconst:149|
+|lpm_counter:cM3|
+|lpm_counter:cM3|lpm_add_sub:add_sub|
+|lpm_counter:cM3|lpm_add_sub:add_sub|addcore:adder|
+|lpm_counter:cM3|lpm_add_sub:add_sub|altshift:result_ext_latency_ffs|
+|lpm_counter:cM3|lpm_add_sub:add_sub|altshift:carry_ext_latency_ffs|
+|lpm_counter:cM3|lpm_add_sub:add_sub|altshift:oflow_ext_latency_ffs|
+|lpm_counter:cM3|lpm_constant:scdw|
+|lpm_counter:cM3|cmpconst:149|
+|lpm_counter:cM4|
+|lpm_counter:cM4|lpm_add_sub:add_sub|
+|lpm_counter:cM4|lpm_add_sub:add_sub|addcore:adder|
+|lpm_counter:cM4|lpm_add_sub:add_sub|altshift:result_ext_latency_ffs|
+|lpm_counter:cM4|lpm_add_sub:add_sub|altshift:carry_ext_latency_ffs|
+|lpm_counter:cM4|lpm_add_sub:add_sub|altshift:oflow_ext_latency_ffs|
+|lpm_counter:cM4|lpm_constant:scdw|
+|lpm_counter:cM4|cmpconst:149|
+|lpm_counter:cM5|
+|lpm_counter:cM5|lpm_add_sub:add_sub|
+|lpm_counter:cM5|lpm_add_sub:add_sub|addcore:adder|
+|lpm_counter:cM5|lpm_add_sub:add_sub|altshift:result_ext_latency_ffs|
+|lpm_counter:cM5|lpm_add_sub:add_sub|altshift:carry_ext_latency_ffs|
+|lpm_counter:cM5|lpm_add_sub:add_sub|altshift:oflow_ext_latency_ffs|
+|lpm_counter:cM5|lpm_constant:scdw|
+|lpm_counter:cM5|cmpconst:149|
+|lpm_counter:c|
+|lpm_counter:c|lpm_add_sub:add_sub|
+|lpm_counter:c|lpm_add_sub:add_sub|addcore:adder|
+|lpm_counter:c|lpm_add_sub:add_sub|altshift:result_ext_latency_ffs|
+|lpm_counter:c|lpm_add_sub:add_sub|altshift:carry_ext_latency_ffs|
+|lpm_counter:c|lpm_add_sub:add_sub|altshift:oflow_ext_latency_ffs|
+|lpm_counter:c|lpm_constant:scdw|
+|lpm_counter:divider|
+|lpm_counter:divider|lpm_add_sub:add_sub|
+|lpm_counter:divider|lpm_add_sub:add_sub|addcore:adder|
+|lpm_counter:divider|lpm_add_sub:add_sub|altshift:result_ext_latency_ffs|
+|lpm_counter:divider|lpm_add_sub:add_sub|altshift:carry_ext_latency_ffs|
+|lpm_counter:divider|lpm_add_sub:add_sub|altshift:oflow_ext_latency_ffs|
+|lpm_counter:divider|lpm_constant:scdw|
+
+
+Device-Specific Information:                                      e:\music.rpt
+music
+
+***** Logic for device 'music' compiled without errors.
+
+
+
+
+Device: EP1K10TC100-1
+
+ACEX 1K Configuration Scheme: Passive Serial
+
+Device Options:
+    User-Supplied Start-Up Clock               = OFF
+    Auto-Restart Configuration on Frame Error  = OFF
+    Release Clears Before Tri-States           = OFF
+    Enable Chip_Wide Reset                     = OFF
+    Enable Chip-Wide Output Enable             = OFF
+    Enable INIT_DONE Output                    = OFF
+    JTAG User Code                             = 7f
+    MultiVolt I/O                              = OFF
+    Enable Lock Output                         = OFF
+
+                                                                   
+                                                                   
+                  R R R R   R R           R R R R   R R R R R R    
+                  E E E E   E E           E E E E   E E E E E E    
+                  S S S S   S S V         S S S S   S S S S S S ^  
+                  E E E E   E E C         E E E E V E E E E E E D  
+                # R R R R   R R C         R R R R C R R R R R R A  
+                T V V V V G V V I G G G G V V V V C V V V V V V T  
+                C E E E E N E E N N N N N E E E E I E E E E E E A  
+                K D D D D D D D T D D D D D D D D O D D D D D D 0  
+              ----------------------------------------------------_ 
+             / 100  98  96  94  92  90  88  86  84  82  80  78  76   |_ 
+            /     99  97  95  93  91  89  87  85  83  81  79  77    | 
+^CONF_DONE |  1                                                    75 | ^DCLK 
+     ^nCEO |  2                                                    74 | ^nCE 
+      #TDO |  3                                                    73 | #TDI 
+     VCCIO |  4                                                    72 | VCCINT 
+  RESERVED |  5                                                    71 | RESERVED 
+  RESERVED |  6                                                    70 | RESERVED 
+  RESERVED |  7                                                    69 | RESERVED 
+  RESERVED |  8                                                    68 | RESERVED 
+  RESERVED |  9                                                    67 | VCCIO 
+  RESERVED | 10                                                    66 | GND 
+       GND | 11                                                    65 | RESERVED 
+    VCCINT | 12                                                    64 | RESERVED 
+  RESERVED | 13                   EP1K10TC100-1                    63 | RESERVED 
+  RESERVED | 14                                                    62 | RESERVED 
+  RESERVED | 15                                                    61 | RESERVED 
+  RESERVED | 16                                                    60 | VCCINT 
+     VCCIO | 17                                                    59 | GND 
+       GND | 18                                                    58 | RESERVED 
+  RESERVED | 19                                                    57 | RESERVED 
+  RESERVED | 20                                                    56 | spk 
+  RESERVED | 21                                                    55 | RESERVED 
+  RESERVED | 22                                                    54 | ^MSEL0 
+  RESERVED | 23                                                    53 | ^MSEL1 
+      #TMS | 24                                                    52 | VCCINT 
+  ^nSTATUS | 25                                                    51 | ^nCONFIG 
+           |      27  29  31  33  35  37  39  41  43  45  47  49  _| 
+            \   26  28  30  32  34  36  38  40  42  44  46  48  50   | 
+             \----------------------------------------------------- 
+                R R R R R R R R R V G V c c e G G R V R R R R R R  
+                E E E E E E E E E C N C l l n N N E C E E E E E E  
+                S S S S S S S S S C D C r k a D D S C S S S S S S  
+                E E E E E E E E E I   _       _   E I E E E E E E  
+                R R R R R R R R R N   C       C   R O R R R R R R  
+                V V V V V V V V V T   K       K   V   V V V V V V  
+                E E E E E E E E E     L       L   E   E E E E E E  
+                D D D D D D D D D     K       K   D   D D D D D D  
+                                                                   
+                                                                   
+
+
+N.C. = No Connect. This pin has no internal connection to the device.
+VCCINT = Dedicated power pin, which MUST be connected to VCC (2.5 volts).
+VCCIO = Dedicated power pin, which MUST be connected to VCC (2.5 volts).
+GND = Dedicated ground pin or unused dedicated input, which MUST be connected to GND.
+RESERVED = Unused I/O pin, which MUST be left unconnected.
+
+^ = Dedicated configuration pin.
++ = Reserved configuration pin, which is tri-stated during user mode.
+* = Reserved configuration pin, which drives out in user mode.
+PDn = Power Down pin. 
+@ = Special-purpose pin. 
+# = JTAG Boundary-Scan Testing/In-System Programming or Configuration Pin. The JTAG inputs TMS and TDI should be tied to VCC and TCK should be tied to GND when not in use.
+& = JTAG pin used for I/O. When used as user I/O, JTAG pins must be kept stable before and during configuration.  JTAG pin stability prevents accidental loading of JTAG instructions.
+$ = Pin has PCI I/O option enabled. Pin is neither '5.0 V'- nor '3.3 V'-tolerant. 
+
+
+Device-Specific Information:                                      e:\music.rpt
+music
+
+** RESOURCE USAGE **
+
+Logic                Column       Row                                   
+Array                Interconnect Interconnect         Clears/     External  
+Block   Logic Cells  Driven       Driven       Clocks  Presets   Interconnect
+A13      8/ 8(100%)   0/ 8(  0%)   2/ 8( 25%)    1/2    0/2       3/22( 13%)   
+A14      8/ 8(100%)   1/ 8( 12%)   3/ 8( 37%)    1/2    0/2       3/22( 13%)   
+A16      8/ 8(100%)   0/ 8(  0%)   2/ 8( 25%)    1/2    0/2       3/22( 13%)   
+A18      8/ 8(100%)   0/ 8(  0%)   3/ 8( 37%)    1/2    0/2       3/22( 13%)   
+A19      8/ 8(100%)   0/ 8(  0%)   4/ 8( 50%)    1/2    0/2       4/22( 18%)   
+A23      8/ 8(100%)   1/ 8( 12%)   4/ 8( 50%)    1/2    0/2       4/22( 18%)   
+B1       8/ 8(100%)   0/ 8(  0%)   4/ 8( 50%)    1/2    0/2       4/22( 18%)   
+B4       6/ 8( 75%)   1/ 8( 12%)   2/ 8( 25%)    1/2    0/2       4/22( 18%)   
+B8       1/ 8( 12%)   0/ 8(  0%)   1/ 8( 12%)    1/2    0/2       2/22(  9%)   
+B9       8/ 8(100%)   0/ 8(  0%)   2/ 8( 25%)    1/2    0/2       3/22( 13%)   
+B15      8/ 8(100%)   0/ 8(  0%)   4/ 8( 50%)    1/2    0/2       4/22( 18%)   
+B23      8/ 8(100%)   1/ 8( 12%)   3/ 8( 37%)    1/2    0/2       5/22( 22%)   
+B24      8/ 8(100%)   0/ 8(  0%)   2/ 8( 25%)    1/2    0/2       3/22( 13%)   
+C2       8/ 8(100%)   0/ 8(  0%)   2/ 8( 25%)    0/2    0/2      11/22( 50%)   
+C3       7/ 8( 87%)   0/ 8(  0%)   2/ 8( 25%)    1/2    0/2       8/22( 36%)   
+C5       4/ 8( 50%)   0/ 8(  0%)   2/ 8( 25%)    0/2    0/2       6/22( 27%)   
+C6       8/ 8(100%)   0/ 8(  0%)   3/ 8( 37%)    2/2    0/2      10/22( 45%)   
+C7       8/ 8(100%)   0/ 8(  0%)   4/ 8( 50%)    0/2    0/2       9/22( 40%)   
+C8       8/ 8(100%)   0/ 8(  0%)   1/ 8( 12%)    1/2    0/2       0/22(  0%)   
+C9       8/ 8(100%)   0/ 8(  0%)   6/ 8( 75%)    1/2    0/2       3/22( 13%)   
+C10      8/ 8(100%)   0/ 8(  0%)   1/ 8( 12%)    0/2    0/2      15/22( 68%)   
+C11      8/ 8(100%)   0/ 8(  0%)   1/ 8( 12%)    1/2    0/2       1/22(  4%)   
+C12      8/ 8(100%)   0/ 8(  0%)   1/ 8( 12%)    1/2    0/2       1/22(  4%)   
+C15      8/ 8(100%)   0/ 8(  0%)   4/ 8( 50%)    1/2    0/2       4/22( 18%)   
+C20      8/ 8(100%)   0/ 8(  0%)   2/ 8( 25%)    1/2    0/2       3/22( 13%)   
+C22      8/ 8(100%)   0/ 8(  0%)   4/ 8( 50%)    1/2    0/2       5/22( 22%)   
+
+
+Embedded             Column       Row                                   
+Array     Embedded   Interconnect Interconnect         Read/      External  
+Block     Cells      Driven       Driven       Clocks  Write    Interconnect
+
+
+Total dedicated input pins used:                 3/6      ( 50%)
+Total I/O pins used:                             1/60     (  1%)
+Total logic cells used:                        194/576    ( 33%)
+Total embedded cells used:                       0/48     (  0%)
+Total EABs used:                                 0/3      (  0%)
+Average fan-in:                                 3.31/4    ( 82%)
+Total fan-in:                                 644/2304    ( 27%)
+
+Total input pins required:                       3
+Total input I/O cell registers required:         0
+Total output pins required:                      1
+Total output I/O cell registers required:        0
+Total buried I/O cell registers required:        0
+Total bidirectional pins required:               0
+Total reserved pins required                     0
+Total logic cells required:                    194
+Total flipflops required:                       99
+Total packed registers required:                 0
+Total logic cells in carry chains:               0
+Total number of carry chains:                    0
+Total logic cells in cascade chains:             0
+Total number of cascade chains:                  0
+Total single-pin Clock Enables required:         0
+Total single-pin Output Enables required:        0
+
+Synthesized logic cells:                        46/ 576   (  7%)
+
+Logic Cell and Embedded Cell Counts
+
+Column:  01  02  03  04  05  06  07  08  09  10  11  12  EA  13  14  15  16  17  18  19  20  21  22  23  24  Total(LC/EC)
+ A:      0   0   0   0   0   0   0   0   0   0   0   0   0   8   8   0   8   0   8   8   0   0   0   8   0     48/0  
+ B:      8   0   0   6   0   0   0   1   8   0   0   0   0   0   0   8   0   0   0   0   0   0   0   8   8     47/0  
+ C:      0   8   7   0   4   8   8   8   8   8   8   8   0   0   0   8   0   0   0   0   8   0   8   0   0     99/0  
+
+Total:   8   8   7   6   4   8   8   9  16   8   8   8   0   8   8  16   8   0   8   8   8   0   8  16   8    194/0  
+
+
+
+Device-Specific Information:                                      e:\music.rpt
+music
+
+** INPUTS **
+
+                                                    Fan-In    Fan-Out
+ Pin     LC     EC   Row  Col  Primitive    Code      INP  FBK  OUT  FBK  Name
+  39      -     -    -    --      INPUT  G          ^    0    0    0    0  clk
+  38      -     -    -    --      INPUT             ^    0    0    0    9  clr
+  40      -     -    -    --      INPUT             ^    0    0    0    1  ena
+
+
+Code:
+
+s = Synthesized pin or logic cell
++ = Synchronous flipflop
+/ = Slow slew-rate output
+! = NOT gate push-back
+r = Fitter-inserted logic cell
+^ = Increased input delay
+* = PCI I/O is enabled
+@ = Uses single-pin Clock Enable
+& = Uses single-pin Output Enable
+G = Global Source. Fan-out destinations counted here do not include destinations
+that are driven using global routing resources. Refer to the Auto Global Signals,
+Clock Signals, Clear Signals, Synchronous Load Signals, and Synchronous Clear Signals
+Sections of this Report File for information on which signals' fan-outs are used as
+Clock, Clear, Preset, Output Enable, and synchronous Load signals.
+
+
+Device-Specific Information:                                      e:\music.rpt
+music
+
+** OUTPUTS **
+
+       Fed By Fed By                                Fan-In    Fan-Out
+ Pin     LC     EC   Row  Col  Primitive    Code      INP  FBK  OUT  FBK  Name
+  56      -     -    C    --     OUTPUT                 0    1    0    0  spk
+
+
+Code:
+
+s = Synthesized pin or logic cell
++ = Synchronous flipflop
+/ = Slow slew-rate output
+! = NOT gate push-back
+r = Fitter-inserted logic cell
+^ = Increased input delay
+* = PCI I/O is enabled
+@ = Uses single-pin Clock Enable
+& = Uses single-pin Output Enable
+
+
+Device-Specific Information:                                      e:\music.rpt
+music
+
+** BURIED LOGIC **
+
+                                                    Fan-In    Fan-Out
+ IOC     LC     EC   Row  Col  Primitive    Code      INP  FBK  OUT  FBK  Name
+   -      1     -    C    11       DFFE   +            0    4    0    9  divd
+   -      4     -    C    03       DFFE                1    1    0    4  |lpm_counter:c|dffs0
+   -      3     -    C    03       DFFE                1    2    0    3  |lpm_counter:c|dffs1
+   -      5     -    C    03       DFFE                1    3    0    3  |lpm_counter:c|dffs2
+   -      2     -    C    09       DFFE                1    2    0   12  |lpm_counter:c|dffs3
+   -      1     -    C    09       DFFE                1    3    0   13  |lpm_counter:c|dffs4
+   -      4     -    C    09       DFFE                1    2    0   17  |lpm_counter:c|dffs5
+   -      3     -    C    09       DFFE                1    3    0   17  |lpm_counter:c|dffs6
+   -      5     -    C    09       DFFE                1    2    0    9  |lpm_counter:c|dffs7
+   -      6     -    C    09       DFFE                1    3    0    6  |lpm_counter:c|dffs8
+   -      1     -    C    03       AND2                0    3    0    4  |lpm_counter:c|lpm_add_sub:add_sub|addcore:adder|:79
+   -      7     -    C    09       AND2                0    3    0    3  |lpm_counter:c|lpm_add_sub:add_sub|addcore:adder|:87
+   -      8     -    C    09       AND2                0    3    0    2  |lpm_counter:c|lpm_add_sub:add_sub|addcore:adder|:95
+   -      5     -    C    22        OR2    s           0    4    0    1  |lpm_counter:cM1|cmpconst:149|and_cascade12~1
+   -      8     -    C    15        OR2    s           0    4    0    1  |lpm_counter:cM1|cmpconst:149|and_cascade12~2
+   -      8     -    C    20        OR2    s           0    4    0    1  |lpm_counter:cM1|cmpconst:149|and_cascade12~3
+   -      3     -    C    22        OR2        !       0    4    0   14  |lpm_counter:cM1|cmpconst:149|and_cascade12
+   -      8     -    C    22       DFFE   +            0    1    0    4  |lpm_counter:cM1|dffs0
+   -      7     -    C    22       DFFE   +            0    2    0    3  |lpm_counter:cM1|dffs1
+   -      6     -    C    22       DFFE   +            0    3    0    2  |lpm_counter:cM1|dffs2
+   -      6     -    C    15       DFFE   +            0    2    0    4  |lpm_counter:cM1|dffs3
+   -      3     -    C    15       DFFE   +            0    3    0    3  |lpm_counter:cM1|dffs4
+   -      5     -    C    15       DFFE   +            0    3    0    2  |lpm_counter:cM1|dffs5
+   -      2     -    C    15       DFFE   +            0    2    0    2  |lpm_counter:cM1|dffs6
+   -      1     -    C    22       DFFE   +            0    2    0    3  |lpm_counter:cM1|dffs7
+   -      1     -    C    20       DFFE   +            0    3    0    2  |lpm_counter:cM1|dffs8
+   -      7     -    C    20       DFFE   +            0    2    0    3  |lpm_counter:cM1|dffs9
+   -      6     -    C    20       DFFE   +            0    3    0    2  |lpm_counter:cM1|dffs10
+   -      5     -    C    20       DFFE   +            0    2    0    2  |lpm_counter:cM1|dffs11
+   -      4     -    C    20       DFFE   +            0    3    0    1  |lpm_counter:cM1|dffs12
+   -      2     -    C    22       AND2                0    3    0    4  |lpm_counter:cM1|lpm_add_sub:add_sub|addcore:adder|:95
+   -      4     -    C    15       AND2                0    2    0    1  |lpm_counter:cM1|lpm_add_sub:add_sub|addcore:adder|:99
+   -      1     -    C    15       AND2                0    4    0    2  |lpm_counter:cM1|lpm_add_sub:add_sub|addcore:adder|:107
+   -      7     -    C    15       AND2                0    2    0    3  |lpm_counter:cM1|lpm_add_sub:add_sub|addcore:adder|:111
+   -      2     -    C    20       AND2                0    3    0    3  |lpm_counter:cM1|lpm_add_sub:add_sub|addcore:adder|:119
+   -      3     -    C    20       AND2                0    3    0    2  |lpm_counter:cM1|lpm_add_sub:add_sub|addcore:adder|:127
+   -      1     -    A    14        OR2    s           0    4    0    1  |lpm_counter:cM2|cmpconst:149|and_cascade12~1
+   -      1     -    A    19        OR2    s           0    4    0    1  |lpm_counter:cM2|cmpconst:149|and_cascade12~2
+   -      8     -    A    16        OR2    s           0    4    0    1  |lpm_counter:cM2|cmpconst:149|and_cascade12~3
+   -      4     -    A    14        OR2        !       0    4    0   13  |lpm_counter:cM2|cmpconst:149|and_cascade12
+   -      7     -    A    14       DFFE   +            0    0    0    4  |lpm_counter:cM2|dffs0
+   -      6     -    A    14       DFFE   +            0    2    0    3  |lpm_counter:cM2|dffs1
+   -      5     -    A    14       DFFE   +            0    3    0    2  |lpm_counter:cM2|dffs2
+   -      8     -    A    14       DFFE   +            0    2    0    4  |lpm_counter:cM2|dffs3
+   -      3     -    A    19       DFFE   +            0    3    0    3  |lpm_counter:cM2|dffs4
+   -      8     -    A    19       DFFE   +            0    3    0    2  |lpm_counter:cM2|dffs5
+   -      5     -    A    19       DFFE   +            0    2    0    2  |lpm_counter:cM2|dffs6
+   -      2     -    A    16       DFFE   +            0    2    0    3  |lpm_counter:cM2|dffs7
+   -      6     -    A    19       DFFE   +            0    3    0    2  |lpm_counter:cM2|dffs8
+   -      7     -    A    16       DFFE   +            0    2    0    3  |lpm_counter:cM2|dffs9
+   -      6     -    A    16       DFFE   +            0    3    0    2  |lpm_counter:cM2|dffs10
+   -      5     -    A    16       DFFE   +            0    2    0    2  |lpm_counter:cM2|dffs11
+   -      4     -    A    16       DFFE   +            0    3    0    1  |lpm_counter:cM2|dffs12
+   -      2     -    A    14       AND2                0    3    0    4  |lpm_counter:cM2|lpm_add_sub:add_sub|addcore:adder|:95
+   -      7     -    A    19       AND2                0    2    0    1  |lpm_counter:cM2|lpm_add_sub:add_sub|addcore:adder|:99
+   -      4     -    A    19       AND2                0    4    0    2  |lpm_counter:cM2|lpm_add_sub:add_sub|addcore:adder|:107
+   -      2     -    A    19       AND2                0    2    0    3  |lpm_counter:cM2|lpm_add_sub:add_sub|addcore:adder|:111
+   -      1     -    A    16       AND2                0    3    0    3  |lpm_counter:cM2|lpm_add_sub:add_sub|addcore:adder|:119
+   -      3     -    A    16       AND2                0    3    0    2  |lpm_counter:cM2|lpm_add_sub:add_sub|addcore:adder|:127
+   -      1     -    A    23        OR2    s           0    4    0    1  |lpm_counter:cM3|cmpconst:149|and_cascade12~1
+   -      1     -    A    18        OR2    s           0    4    0    1  |lpm_counter:cM3|cmpconst:149|and_cascade12~2
+   -      3     -    A    13        OR2    s           0    4    0    1  |lpm_counter:cM3|cmpconst:149|and_cascade12~3
+   -      2     -    A    13        OR2        !       0    4    0   13  |lpm_counter:cM3|cmpconst:149|and_cascade12
+   -      8     -    A    13       DFFE   +            0    0    0    5  |lpm_counter:cM3|dffs0
+   -      7     -    A    13       DFFE   +            0    2    0    4  |lpm_counter:cM3|dffs1
+   -      6     -    A    13       DFFE   +            0    3    0    3  |lpm_counter:cM3|dffs2
+   -      5     -    A    13       DFFE   +            0    2    0    2  |lpm_counter:cM3|dffs3
+   -      3     -    A    23       DFFE   +            0    2    0    3  |lpm_counter:cM3|dffs4
+   -      6     -    A    23       DFFE   +            0    3    0    2  |lpm_counter:cM3|dffs5
+   -      8     -    A    23       DFFE   +            0    2    0    3  |lpm_counter:cM3|dffs6
+   -      7     -    A    23       DFFE   +            0    3    0    2  |lpm_counter:cM3|dffs7
+   -      5     -    A    18       DFFE   +            0    2    0    4  |lpm_counter:cM3|dffs8
+   -      2     -    A    18       DFFE   +            0    3    0    3  |lpm_counter:cM3|dffs9
+   -      8     -    A    18       DFFE   +            0    2    0    2  |lpm_counter:cM3|dffs10
+   -      6     -    A    18       DFFE   +            0    2    0    2  |lpm_counter:cM3|dffs11
+   -      4     -    A    18       DFFE   +            0    3    0    1  |lpm_counter:cM3|dffs12
+   -      4     -    A    13       AND2                0    3    0    1  |lpm_counter:cM3|lpm_add_sub:add_sub|addcore:adder|:95
+   -      1     -    A    13       AND2                0    4    0    3  |lpm_counter:cM3|lpm_add_sub:add_sub|addcore:adder|:99
+   -      4     -    A    23       AND2                0    3    0    3  |lpm_counter:cM3|lpm_add_sub:add_sub|addcore:adder|:107
+   -      5     -    A    23       AND2                0    3    0    4  |lpm_counter:cM3|lpm_add_sub:add_sub|addcore:adder|:115
+   -      7     -    A    18       AND2                0    3    0    1  |lpm_counter:cM3|lpm_add_sub:add_sub|addcore:adder|:123
+   -      3     -    A    18       AND2                0    4    0    2  |lpm_counter:cM3|lpm_add_sub:add_sub|addcore:adder|:127
+   -      3     -    B    23        OR2    s           0    4    0    1  |lpm_counter:cM4|cmpconst:149|and_cascade12~1
+   -      5     -    B    15        OR2    s           0    4    0    1  |lpm_counter:cM4|cmpconst:149|and_cascade12~2
+   -      2     -    B    24        OR2    s           0    4    0    1  |lpm_counter:cM4|cmpconst:149|and_cascade12~3
+   -      2     -    B    23        OR2        !       0    4    0   14  |lpm_counter:cM4|cmpconst:149|and_cascade12
+   -      6     -    B    23       DFFE   +            0    1    0    4  |lpm_counter:cM4|dffs0
+   -      5     -    B    23       DFFE   +            0    2    0    3  |lpm_counter:cM4|dffs1
+   -      4     -    B    23       DFFE   +            0    3    0    2  |lpm_counter:cM4|dffs2
+   -      6     -    B    15       DFFE   +            0    2    0    4  |lpm_counter:cM4|dffs3
+   -      1     -    B    15       DFFE   +            0    3    0    3  |lpm_counter:cM4|dffs4
+   -      8     -    B    15       DFFE   +            0    3    0    2  |lpm_counter:cM4|dffs5
+   -      4     -    B    15       DFFE   +            0    2    0    2  |lpm_counter:cM4|dffs6
+   -      8     -    B    23       DFFE   +            0    2    0    3  |lpm_counter:cM4|dffs7
+   -      8     -    B    24       DFFE   +            0    3    0    2  |lpm_counter:cM4|dffs8
+   -      7     -    B    24       DFFE   +            0    2    0    3  |lpm_counter:cM4|dffs9
+   -      6     -    B    24       DFFE   +            0    3    0    2  |lpm_counter:cM4|dffs10
+   -      5     -    B    24       DFFE   +            0    2    0    2  |lpm_counter:cM4|dffs11
+   -      4     -    B    24       DFFE   +            0    3    0    1  |lpm_counter:cM4|dffs12
+   -      1     -    B    23       AND2                0    3    0    4  |lpm_counter:cM4|lpm_add_sub:add_sub|addcore:adder|:95
+   -      7     -    B    15       AND2                0    2    0    1  |lpm_counter:cM4|lpm_add_sub:add_sub|addcore:adder|:99
+   -      3     -    B    15       AND2                0    4    0    2  |lpm_counter:cM4|lpm_add_sub:add_sub|addcore:adder|:107
+   -      2     -    B    15       AND2                0    2    0    3  |lpm_counter:cM4|lpm_add_sub:add_sub|addcore:adder|:111
+   -      1     -    B    24       AND2                0    3    0    3  |lpm_counter:cM4|lpm_add_sub:add_sub|addcore:adder|:119
+   -      3     -    B    24       AND2                0    3    0    2  |lpm_counter:cM4|lpm_add_sub:add_sub|addcore:adder|:127
+   -      1     -    B    04        OR2    s           0    4    0    1  |lpm_counter:cM5|cmpconst:149|and_cascade12~1
+   -      1     -    B    01        OR2    s           0    4    0    1  |lpm_counter:cM5|cmpconst:149|and_cascade12~2
+   -      8     -    B    09        OR2    s           0    4    0    1  |lpm_counter:cM5|cmpconst:149|and_cascade12~3
+   -      4     -    B    04        OR2        !       0    4    0   13  |lpm_counter:cM5|cmpconst:149|and_cascade12
+   -      6     -    B    04       DFFE   +            0    0    0    4  |lpm_counter:cM5|dffs0
+   -      5     -    B    04       DFFE   +            0    2    0    3  |lpm_counter:cM5|dffs1
+   -      3     -    B    04       DFFE   +            0    3    0    2  |lpm_counter:cM5|dffs2
+   -      6     -    B    01       DFFE   +            0    2    0    4  |lpm_counter:cM5|dffs3
+   -      8     -    B    01       DFFE   +            0    3    0    3  |lpm_counter:cM5|dffs4
+   -      7     -    B    01       DFFE   +            0    3    0    2  |lpm_counter:cM5|dffs5
+   -      4     -    B    01       DFFE   +            0    2    0    2  |lpm_counter:cM5|dffs6
+   -      2     -    B    08       DFFE   +            0    2    0    3  |lpm_counter:cM5|dffs7
+   -      2     -    B    09       DFFE   +            0    3    0    2  |lpm_counter:cM5|dffs8
+   -      7     -    B    09       DFFE   +            0    2    0    3  |lpm_counter:cM5|dffs9
+   -      6     -    B    09       DFFE   +            0    3    0    2  |lpm_counter:cM5|dffs10
+   -      5     -    B    09       DFFE   +            0    2    0    2  |lpm_counter:cM5|dffs11
+   -      4     -    B    09       DFFE   +            0    3    0    1  |lpm_counter:cM5|dffs12
+   -      2     -    B    04       AND2                0    3    0    4  |lpm_counter:cM5|lpm_add_sub:add_sub|addcore:adder|:95
+   -      5     -    B    01       AND2                0    2    0    1  |lpm_counter:cM5|lpm_add_sub:add_sub|addcore:adder|:99
+   -      3     -    B    01       AND2                0    4    0    2  |lpm_counter:cM5|lpm_add_sub:add_sub|addcore:adder|:107
+   -      2     -    B    01       AND2                0    2    0    3  |lpm_counter:cM5|lpm_add_sub:add_sub|addcore:adder|:111
+   -      1     -    B    09       AND2                0    3    0    3  |lpm_counter:cM5|lpm_add_sub:add_sub|addcore:adder|:119
+   -      3     -    B    09       AND2                0    3    0    2  |lpm_counter:cM5|lpm_add_sub:add_sub|addcore:adder|:127
+   -      3     -    C    08       DFFE   +            0    0    0    3  |lpm_counter:divider|dffs0
+   -      1     -    C    08       DFFE   +            0    1    0    2  |lpm_counter:divider|dffs1
+   -      4     -    C    08       DFFE   +            0    2    0    1  |lpm_counter:divider|dffs2
+   -      6     -    C    08       DFFE   +            0    1    0    3  |lpm_counter:divider|dffs3
+   -      7     -    C    08       DFFE   +            0    2    0    2  |lpm_counter:divider|dffs4
+   -      8     -    C    08       DFFE   +            0    3    0    1  |lpm_counter:divider|dffs5
+   -      2     -    C    12       DFFE   +            0    1    0    3  |lpm_counter:divider|dffs6
+   -      3     -    C    12       DFFE   +            0    2    0    2  |lpm_counter:divider|dffs7
+   -      4     -    C    12       DFFE   +            0    3    0    1  |lpm_counter:divider|dffs8
+   -      6     -    C    12       DFFE   +            0    1    0    3  |lpm_counter:divider|dffs9
+   -      7     -    C    12       DFFE   +            0    2    0    2  |lpm_counter:divider|dffs10
+   -      8     -    C    12       DFFE   +            0    3    0    1  |lpm_counter:divider|dffs11
+   -      2     -    C    11       DFFE   +            0    1    0    3  |lpm_counter:divider|dffs12
+   -      3     -    C    11       DFFE   +            0    2    0    2  |lpm_counter:divider|dffs13
+   -      4     -    C    11       DFFE   +            0    3    0    1  |lpm_counter:divider|dffs14
+   -      6     -    C    11       DFFE   +            0    1    0    3  |lpm_counter:divider|dffs15
+   -      7     -    C    11       DFFE   +            0    2    0    2  |lpm_counter:divider|dffs16
+   -      8     -    C    11       DFFE   +            0    3    0    1  |lpm_counter:divider|dffs17
+   -      5     -    C    08       AND2                0    3    0    4  |lpm_counter:divider|lpm_add_sub:add_sub|addcore:adder|:115
+   -      2     -    C    08       AND2                0    4    0    4  |lpm_counter:divider|lpm_add_sub:add_sub|addcore:adder|:127
+   -      5     -    C    12       AND2                0    4    0    4  |lpm_counter:divider|lpm_add_sub:add_sub|addcore:adder|:139
+   -      1     -    C    12       AND2                0    4    0    4  |lpm_counter:divider|lpm_add_sub:add_sub|addcore:adder|:151
+   -      5     -    C    11       AND2                0    4    0    4  |lpm_counter:divider|lpm_add_sub:add_sub|addcore:adder|:163
+   -      7     -    C    10        OR2                0    4    0    1  s
+   -      5     -    C    07        OR2    s           0    2    0    1  s~1
+   -      6     -    C    07        OR2    s           0    4    0    1  s~2
+   -      7     -    C    07       AND2    s           0    4    0    1  s~3
+   -      8     -    C    07        OR2    s           0    4    0    1  s~4
+   -      4     -    C    07        OR2    s           0    4    0    1  s~5
+   -      3     -    C    07       AND2    s           0    4    0    1  s~6
+   -      3     -    C    02        OR2    s           0    4    0    1  s~7
+   -      4     -    C    02        OR2    s           0    4    0    1  s~8
+   -      5     -    C    02       AND2    s           0    2    0    1  s~9
+   -      2     -    C    02        OR2    s           0    4    0    1  s~10
+   -      5     -    C    06       AND2    s           0    4    0    1  s~11
+   -      6     -    C    06        OR2    s           0    4    0    1  s~12
+   -      7     -    C    06       AND2    s           0    4    0    1  s~13
+   -      8     -    C    06        OR2    s           0    4    0    1  s~14
+   -      3     -    C    06        OR2    s           0    4    0    1  s~15
+   -      6     -    C    03        OR2    s           0    4    0    1  s~16
+   -      4     -    C    05        OR2    s           0    4    0    1  s~17
+   -      7     -    C    03        OR2    s           0    4    0    1  s~18
+   -      2     -    C    03        OR2    s           0    4    0    1  s~19
+   -      2     -    C    10       AND2    s           0    4    0    1  s~20
+   -      3     -    C    10        OR2    s           0    4    0    1  s~21
+   -      4     -    C    10        OR2    s           0    3    0    1  s~22
+   -      1     -    C    05        OR2    s           0    4    0    1  s~23
+   -      5     -    C    10        OR2    s           0    4    0    1  s~24
+   -      6     -    C    02        OR2    s           0    4    0    1  s~25
+   -      7     -    C    02        OR2    s           0    3    0    1  s~26
+   -      8     -    C    02       AND2    s           0    2    0    1  s~27
+   -      1     -    C    02        OR2    s           0    4    0    1  s~28
+   -      6     -    C    10        OR2    s           0    4    0    1  s~29
+   -      4     -    C    06       DFFE                0    1    0    1  tL5
+   -      4     -    C    22       DFFE   +            0    1    0    3  tM1
+   -      3     -    A    14       DFFE   +            0    1    0    5  tM2
+   -      2     -    A    23       DFFE   +            0    1    0    5  tM3
+   -      7     -    B    23       DFFE   +            0    1    0    2  tM4
+   -      2     -    C    06       DFFE   +            0    1    0    2  tM5
+   -      1     -    C    07        OR2                0    4    0    6  :470
+   -      2     -    C    07       AND2                0    4    0    2  :620
+   -      1     -    C    06       AND2        !       0    2    0    4  :646
+   -      3     -    C    05       AND2    s           0    3    0    2  ~699~1
+   -      2     -    C    05       AND2    s           0    3    0    1  ~752~1
+   -      1     -    C    10       AND2        !       0    4    0    1  :843
+   -      8     -    C    10        OR2                1    3    1    0  :847
+
+
+Code:
+
+s = Synthesized pin or logic cell
++ = Synchronous flipflop
+/ = Slow slew-rate output
+! = NOT gate push-back
+r = Fitter-inserted logic cell
+^ = Increased input delay
+* = PCI I/O is enabled
+p = Packed register
+
+
+Device-Specific Information:                                      e:\music.rpt
+music
+
+** FASTTRACK INTERCONNECT UTILIZATION **
+
+Row FastTrack Interconnect:
+
+          Global         Left Half-      Right Half-
+         FastTrack       FastTrack       FastTrack 
+Row     Interconnect    Interconnect    Interconnect    Input Pins     Output Pins     Bidir Pins
+A:      18/ 96( 18%)     0/ 48(  0%)     0/ 48(  0%)    0/16(  0%)      0/16(  0%)     0/16(  0%)
+B:      18/ 96( 18%)     0/ 48(  0%)     0/ 48(  0%)    0/16(  0%)      0/16(  0%)     0/16(  0%)
+C:      20/ 96( 20%)    18/ 48( 37%)     0/ 48(  0%)    0/16(  0%)      1/16(  6%)     0/16(  0%)
+
+
+Column FastTrack Interconnect:
+
+         FastTrack                                 
+Column  Interconnect    Input Pins     Output Pins     Bidir Pins
+01:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+02:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+03:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+04:      1/24(  4%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+05:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+06:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+07:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+08:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+09:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+10:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+11:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+12:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+13:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+14:      1/24(  4%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+15:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+16:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+17:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+18:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+19:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+20:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+21:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+22:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+23:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+24:      2/24(  8%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+EA:      0/24(  0%)     0/4(  0%)      0/4(  0%)       0/4(  0%)
+
+
+Device-Specific Information:                                      e:\music.rpt
+music
+
+** CLOCK SIGNALS **
+
+Type     Fan-out       Name
+INPUT       89         clk
+DFF          9         divd
+DFF          3         tM5
+
+
+Device-Specific Information:                                      e:\music.rpt
+music
+
+** EQUATIONS **
+
+clk      : INPUT;
+clr      : INPUT;
+ena      : INPUT;
+
+-- Node name is 'divd' from file "music.tdf" line 40, column 2
+-- Equation name is 'divd', location is LC1_C11, type is buried.
+divd     = DFFE( _EQ001, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ001 =  _LC5_C11 &  _LC6_C11 &  _LC7_C11 &  _LC8_C11;
+
+-- Node name is 's' from file "music.tdf" line 132, column 15
+-- Equation name is 's', location is LC7_C10, type is buried.
+s        = LCELL( _EQ002);
+  _EQ002 =  _LC2_C3
+         #  _LC5_C10
+         # !_LC1_C9 &  _LC6_C10;
+
+-- Node name is 'spk' from file "music.tdf" line 138, column 4
+-- Equation name is 'spk', type is output 
+spk      =  _LC8_C10;
+
+-- Node name is 's~1' from file "music.tdf" line 132, column 15
+-- Equation name is 's~1', location is LC5_C7, type is buried.
+-- synthesized logic cell 
+_LC5_C7  = LCELL( _EQ003);
+  _EQ003 =  _LC1_C9
+         #  _LC2_C9;
+
+-- Node name is 's~2' from file "music.tdf" line 132, column 15
+-- Equation name is 's~2', location is LC6_C7, type is buried.
+-- synthesized logic cell 
+_LC6_C7  = LCELL( _EQ004);
+  _EQ004 = !_LC3_C9 &  _LC4_C9 & !_LC6_C9
+         # !_LC3_C9 &  _LC4_C9 &  _LC5_C9
+         # !_LC3_C9 & !_LC5_C9 &  _LC6_C9
+         # !_LC4_C9 & !_LC5_C9 &  _LC6_C9;
+
+-- Node name is 's~3' from file "music.tdf" line 132, column 15
+-- Equation name is 's~3', location is LC7_C7, type is buried.
+-- synthesized logic cell 
+_LC7_C7  = LCELL( _EQ005);
+  _EQ005 =  _LC3_C9 &  _LC4_C9 &  _LC5_C9 &  tM1;
+
+-- Node name is 's~4' from file "music.tdf" line 132, column 15
+-- Equation name is 's~4', location is LC8_C7, type is buried.
+-- synthesized logic cell 
+_LC8_C7  = LCELL( _EQ006);
+  _EQ006 = !_LC2_C9 &  _LC6_C7 &  tM3
+         #  _LC7_C7;
+
+-- Node name is 's~5' from file "music.tdf" line 132, column 15
+-- Equation name is 's~5', location is LC4_C7, type is buried.
+-- synthesized logic cell 
+_LC4_C7  = LCELL( _EQ007);
+  _EQ007 =  _LC2_C7 &  _LC5_C7 &  tM2
+         #  _LC5_C7 &  _LC8_C7;
+
+-- Node name is 's~6' from file "music.tdf" line 132, column 15
+-- Equation name is 's~6', location is LC3_C7, type is buried.
+-- synthesized logic cell 
+_LC3_C7  = LCELL( _EQ008);
+  _EQ008 =  _LC1_C9 & !_LC5_C9 &  _LC6_C9 &  tM2;
+
+-- Node name is 's~7' from file "music.tdf" line 132, column 15
+-- Equation name is 's~7', location is LC3_C2, type is buried.
+-- synthesized logic cell 
+_LC3_C2  = LCELL( _EQ009);
+  _EQ009 =  _LC3_C7 &  _LC3_C9
+         #  _LC1_C7 &  _LC3_C9 &  tM3;
+
+-- Node name is 's~8' from file "music.tdf" line 132, column 15
+-- Equation name is 's~8', location is LC4_C2, type is buried.
+-- synthesized logic cell 
+_LC4_C2  = LCELL( _EQ010);
+  _EQ010 =  _LC1_C9 &  _LC2_C9 & !_LC4_C9
+         # !_LC1_C9 & !_LC2_C9 & !_LC3_C9 &  _LC4_C9;
+
+-- Node name is 's~9' from file "music.tdf" line 132, column 15
+-- Equation name is 's~9', location is LC5_C2, type is buried.
+-- synthesized logic cell 
+_LC5_C2  = LCELL( _EQ011);
+  _EQ011 =  _LC1_C7 & !_LC3_C9;
+
+-- Node name is 's~10' from file "music.tdf" line 132, column 15
+-- Equation name is 's~10', location is LC2_C2, type is buried.
+-- synthesized logic cell 
+_LC2_C2  = LCELL( _EQ012);
+  _EQ012 =  _LC3_C2 &  _LC4_C2
+         #  _LC4_C2 &  _LC5_C2 &  tM5;
+
+-- Node name is 's~11' from file "music.tdf" line 132, column 15
+-- Equation name is 's~11', location is LC5_C6, type is buried.
+-- synthesized logic cell 
+_LC5_C6  = LCELL( _EQ013);
+  _EQ013 =  _LC1_C9 &  _LC3_C9 &  _LC4_C9 &  tL5;
+
+-- Node name is 's~12' from file "music.tdf" line 132, column 15
+-- Equation name is 's~12', location is LC6_C6, type is buried.
+-- synthesized logic cell 
+_LC6_C6  = LCELL( _EQ014);
+  _EQ014 =  _LC1_C9 &  _LC2_C9 & !_LC3_C9
+         # !_LC1_C9 & !_LC2_C9 &  _LC3_C9 &  _LC4_C9;
+
+-- Node name is 's~13' from file "music.tdf" line 132, column 15
+-- Equation name is 's~13', location is LC7_C6, type is buried.
+-- synthesized logic cell 
+_LC7_C6  = LCELL( _EQ015);
+  _EQ015 =  _LC1_C7 &  _LC1_C9 &  _LC4_C9 &  tM2;
+
+-- Node name is 's~14' from file "music.tdf" line 132, column 15
+-- Equation name is 's~14', location is LC8_C6, type is buried.
+-- synthesized logic cell 
+_LC8_C6  = LCELL( _EQ016);
+  _EQ016 = !_LC1_C6 &  _LC6_C6 &  tM1
+         #  _LC6_C6 &  _LC7_C6;
+
+-- Node name is 's~15' from file "music.tdf" line 132, column 15
+-- Equation name is 's~15', location is LC3_C6, type is buried.
+-- synthesized logic cell 
+_LC3_C6  = LCELL( _EQ017);
+  _EQ017 =  _LC5_C6 & !_LC5_C9 &  _LC6_C9
+         #  _LC8_C6;
+
+-- Node name is 's~16' from file "music.tdf" line 132, column 15
+-- Equation name is 's~16', location is LC6_C3, type is buried.
+-- synthesized logic cell 
+_LC6_C3  = LCELL( _EQ018);
+  _EQ018 = !_LC4_C3 & !_LC5_C3 &  tM3
+         # !_LC3_C3 & !_LC5_C3 &  tM3;
+
+-- Node name is 's~17' from file "music.tdf" line 132, column 15
+-- Equation name is 's~17', location is LC4_C5, type is buried.
+-- synthesized logic cell 
+_LC4_C5  = LCELL( _EQ019);
+  _EQ019 = !_LC1_C6 &  _LC2_C5 &  _LC3_C9
+         # !_LC1_C6 &  _LC3_C5 & !_LC3_C9;
+
+-- Node name is 's~18' from file "music.tdf" line 132, column 15
+-- Equation name is 's~18', location is LC7_C3, type is buried.
+-- synthesized logic cell 
+_LC7_C3  = LCELL( _EQ020);
+  _EQ020 =  _LC4_C5 &  _LC6_C3
+         #  _LC4_C5 &  _LC5_C3 &  tM4;
+
+-- Node name is 's~19' from file "music.tdf" line 132, column 15
+-- Equation name is 's~19', location is LC2_C3, type is buried.
+-- synthesized logic cell 
+_LC2_C3  = LCELL( _EQ021);
+  _EQ021 =  _LC4_C7
+         #  _LC2_C2
+         #  _LC3_C6
+         #  _LC7_C3;
+
+-- Node name is 's~20' from file "music.tdf" line 132, column 15
+-- Equation name is 's~20', location is LC2_C10, type is buried.
+-- synthesized logic cell 
+_LC2_C10 = LCELL( _EQ022);
+  _EQ022 = !_LC1_C9 &  _LC3_C9 &  _LC4_C9 &  _LC5_C9;
+
+-- Node name is 's~21' from file "music.tdf" line 132, column 15
+-- Equation name is 's~21', location is LC3_C10, type is buried.
+-- synthesized logic cell 
+_LC3_C10 = LCELL( _EQ023);
+  _EQ023 =  _LC2_C10
+         #  _LC1_C7 &  _LC1_C9 & !_LC4_C9;
+
+-- Node name is 's~22' from file "music.tdf" line 132, column 15
+-- Equation name is 's~22', location is LC4_C10, type is buried.
+-- synthesized logic cell 
+_LC4_C10 = LCELL( _EQ024);
+  _EQ024 =  _LC3_C9 &  tM2
+         # !_LC3_C9 &  tM4;
+
+-- Node name is 's~23' from file "music.tdf" line 132, column 15
+-- Equation name is 's~23', location is LC1_C5, type is buried.
+-- synthesized logic cell 
+_LC1_C5  = LCELL( _EQ025);
+  _EQ025 =  _LC1_C7 &  _LC3_C5 & !_LC3_C9
+         # !_LC1_C6 &  _LC3_C5 &  _LC3_C9;
+
+-- Node name is 's~24' from file "music.tdf" line 132, column 15
+-- Equation name is 's~24', location is LC5_C10, type is buried.
+-- synthesized logic cell 
+_LC5_C10 = LCELL( _EQ026);
+  _EQ026 = !_LC2_C9 &  _LC3_C10 &  _LC4_C10
+         #  _LC1_C5 &  _LC4_C10;
+
+-- Node name is 's~25' from file "music.tdf" line 132, column 15
+-- Equation name is 's~25', location is LC6_C2, type is buried.
+-- synthesized logic cell 
+_LC6_C2  = LCELL( _EQ027);
+  _EQ027 = !_LC2_C9 & !_LC3_C9 &  tM2
+         # !_LC3_C9 & !_LC4_C9 &  tM2
+         # !_LC2_C9 & !_LC4_C9 &  tM2;
+
+-- Node name is 's~26' from file "music.tdf" line 132, column 15
+-- Equation name is 's~26', location is LC7_C2, type is buried.
+-- synthesized logic cell 
+_LC7_C2  = LCELL( _EQ028);
+  _EQ028 =  _LC3_C9 &  tM1
+         # !_LC3_C9 &  tM3;
+
+-- Node name is 's~27' from file "music.tdf" line 132, column 15
+-- Equation name is 's~27', location is LC8_C2, type is buried.
+-- synthesized logic cell 
+_LC8_C2  = LCELL( _EQ029);
+  _EQ029 =  _LC1_C7 & !_LC4_C9;
+
+-- Node name is 's~28' from file "music.tdf" line 132, column 15
+-- Equation name is 's~28', location is LC1_C2, type is buried.
+-- synthesized logic cell 
+_LC1_C2  = LCELL( _EQ030);
+  _EQ030 = !_LC1_C6 &  _LC6_C2
+         #  _LC7_C2 &  _LC8_C2;
+
+-- Node name is 's~29' from file "music.tdf" line 132, column 15
+-- Equation name is 's~29', location is LC6_C10, type is buried.
+-- synthesized logic cell 
+_LC6_C10 = LCELL( _EQ031);
+  _EQ031 =  _LC2_C7 & !_LC2_C9 &  tM3
+         #  _LC1_C2;
+
+-- Node name is 'tL5' from file "music.tdf" line 31, column 2
+-- Equation name is 'tL5', location is LC4_C6, type is buried.
+tL5      = DFFE(!tL5,  tM5,  VCC,  VCC,  VCC);
+
+-- Node name is 'tM1' from file "music.tdf" line 31, column 6
+-- Equation name is 'tM1', location is LC4_C22, type is buried.
+tM1      = DFFE( _EQ032, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ032 = !_LC3_C22 &  tM1
+         #  _LC3_C22 & !tM1;
+
+-- Node name is 'tM2' from file "music.tdf" line 31, column 10
+-- Equation name is 'tM2', location is LC3_A14, type is buried.
+tM2      = DFFE( _EQ033, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ033 = !_LC4_A14 &  tM2
+         #  _LC4_A14 & !tM2;
+
+-- Node name is 'tM3' from file "music.tdf" line 31, column 14
+-- Equation name is 'tM3', location is LC2_A23, type is buried.
+tM3      = DFFE( _EQ034, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ034 = !_LC2_A13 &  tM3
+         #  _LC2_A13 & !tM3;
+
+-- Node name is 'tM4' from file "music.tdf" line 31, column 18
+-- Equation name is 'tM4', location is LC7_B23, type is buried.
+tM4      = DFFE( _EQ035, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ035 = !_LC2_B23 &  tM4
+         #  _LC2_B23 & !tM4;
+
+-- Node name is 'tM5' from file "music.tdf" line 31, column 22
+-- Equation name is 'tM5', location is LC2_C6, type is buried.
+tM5      = DFFE( _EQ036, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ036 = !_LC4_B4 &  tM5
+         #  _LC4_B4 & !tM5;
+
+-- Node name is '|lpm_counter:c|dffs0' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC4_C3', type is buried 
+_LC4_C3  = DFFE( _EQ037,  divd,  VCC,  VCC,  VCC);
+  _EQ037 = !clr & !_LC4_C3;
+
+-- Node name is '|lpm_counter:c|dffs1' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC3_C3', type is buried 
+_LC3_C3  = DFFE( _EQ038,  divd,  VCC,  VCC,  VCC);
+  _EQ038 = !clr & !_LC3_C3 &  _LC4_C3
+         # !clr &  _LC3_C3 & !_LC4_C3;
+
+-- Node name is '|lpm_counter:c|dffs2' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC5_C3', type is buried 
+_LC5_C3  = DFFE( _EQ039,  divd,  VCC,  VCC,  VCC);
+  _EQ039 = !clr & !_LC4_C3 &  _LC5_C3
+         # !clr & !_LC3_C3 &  _LC5_C3
+         # !clr &  _LC3_C3 &  _LC4_C3 & !_LC5_C3;
+
+-- Node name is '|lpm_counter:c|dffs3' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC2_C9', type is buried 
+_LC2_C9  = DFFE( _EQ040,  divd,  VCC,  VCC,  VCC);
+  _EQ040 = !clr & !_LC1_C3 &  _LC2_C9
+         # !clr &  _LC1_C3 & !_LC2_C9;
+
+-- Node name is '|lpm_counter:c|dffs4' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC1_C9', type is buried 
+_LC1_C9  = DFFE( _EQ041,  divd,  VCC,  VCC,  VCC);
+  _EQ041 = !clr &  _LC1_C9 & !_LC2_C9
+         # !clr & !_LC1_C3 &  _LC1_C9
+         # !clr &  _LC1_C3 & !_LC1_C9 &  _LC2_C9;
+
+-- Node name is '|lpm_counter:c|dffs5' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC4_C9', type is buried 
+_LC4_C9  = DFFE( _EQ042,  divd,  VCC,  VCC,  VCC);
+  _EQ042 = !clr &  _LC4_C9 & !_LC7_C9
+         # !clr & !_LC4_C9 &  _LC7_C9;
+
+-- Node name is '|lpm_counter:c|dffs6' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC3_C9', type is buried 
+_LC3_C9  = DFFE( _EQ043,  divd,  VCC,  VCC,  VCC);
+  _EQ043 = !clr &  _LC3_C9 & !_LC4_C9
+         # !clr &  _LC3_C9 & !_LC7_C9
+         # !clr & !_LC3_C9 &  _LC4_C9 &  _LC7_C9;
+
+-- Node name is '|lpm_counter:c|dffs7' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC5_C9', type is buried 
+_LC5_C9  = DFFE( _EQ044,  divd,  VCC,  VCC,  VCC);
+  _EQ044 = !clr &  _LC5_C9 & !_LC8_C9
+         # !clr & !_LC5_C9 &  _LC8_C9;
+
+-- Node name is '|lpm_counter:c|dffs8' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_C9', type is buried 
+_LC6_C9  = DFFE( _EQ045,  divd,  VCC,  VCC,  VCC);
+  _EQ045 = !clr & !_LC5_C9 &  _LC6_C9
+         # !clr &  _LC6_C9 & !_LC8_C9
+         # !clr &  _LC5_C9 & !_LC6_C9 &  _LC8_C9;
+
+-- Node name is '|lpm_counter:c|lpm_add_sub:add_sub|addcore:adder|:79' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC1_C3', type is buried 
+_LC1_C3  = LCELL( _EQ046);
+  _EQ046 =  _LC3_C3 &  _LC4_C3 &  _LC5_C3;
+
+-- Node name is '|lpm_counter:c|lpm_add_sub:add_sub|addcore:adder|:87' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC7_C9', type is buried 
+_LC7_C9  = LCELL( _EQ047);
+  _EQ047 =  _LC1_C3 &  _LC1_C9 &  _LC2_C9;
+
+-- Node name is '|lpm_counter:c|lpm_add_sub:add_sub|addcore:adder|:95' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC8_C9', type is buried 
+_LC8_C9  = LCELL( _EQ048);
+  _EQ048 =  _LC3_C9 &  _LC4_C9 &  _LC7_C9;
+
+-- Node name is '|lpm_counter:cM1|cmpconst:149|and_cascade12~1' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC5_C22', type is buried 
+-- synthesized logic cell 
+_LC5_C22 = LCELL( _EQ049);
+  _EQ049 = !_LC3_C15
+         # !_LC6_C15
+         # !_LC6_C22
+         #  _LC7_C22;
+
+-- Node name is '|lpm_counter:cM1|cmpconst:149|and_cascade12~2' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC8_C15', type is buried 
+-- synthesized logic cell 
+_LC8_C15 = LCELL( _EQ050);
+  _EQ050 = !_LC1_C20
+         # !_LC1_C22
+         # !_LC2_C15
+         #  _LC5_C15;
+
+-- Node name is '|lpm_counter:cM1|cmpconst:149|and_cascade12~3' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC8_C20', type is buried 
+-- synthesized logic cell 
+_LC8_C20 = LCELL( _EQ051);
+  _EQ051 = !_LC4_C20
+         # !_LC5_C20
+         # !_LC6_C20
+         #  _LC7_C20;
+
+-- Node name is '|lpm_counter:cM1|cmpconst:149|and_cascade12' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC3_C22', type is buried 
+!_LC3_C22 = _LC3_C22~NOT;
+_LC3_C22~NOT = LCELL( _EQ052);
+  _EQ052 =  _LC5_C22
+         #  _LC8_C15
+         #  _LC8_C22
+         #  _LC8_C20;
+
+-- Node name is '|lpm_counter:cM1|dffs0' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC8_C22', type is buried 
+_LC8_C22 = DFFE( _EQ053, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ053 = !_LC3_C22 & !_LC8_C22;
+
+-- Node name is '|lpm_counter:cM1|dffs1' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC7_C22', type is buried 
+_LC7_C22 = DFFE( _EQ054, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ054 = !_LC3_C22 & !_LC7_C22 &  _LC8_C22
+         # !_LC3_C22 &  _LC7_C22 & !_LC8_C22;
+
+-- Node name is '|lpm_counter:cM1|dffs2' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_C22', type is buried 
+_LC6_C22 = DFFE( _EQ055, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ055 = !_LC3_C22 &  _LC6_C22 & !_LC8_C22
+         # !_LC3_C22 &  _LC6_C22 & !_LC7_C22
+         # !_LC3_C22 & !_LC6_C22 &  _LC7_C22 &  _LC8_C22;
+
+-- Node name is '|lpm_counter:cM1|dffs3' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_C15', type is buried 
+_LC6_C15 = DFFE( _EQ056, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ056 = !_LC2_C22 & !_LC3_C22 &  _LC6_C15
+         #  _LC2_C22 & !_LC3_C22 & !_LC6_C15;
+
+-- Node name is '|lpm_counter:cM1|dffs4' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC3_C15', type is buried 
+_LC3_C15 = DFFE( _EQ057, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ057 =  _LC3_C15 & !_LC3_C22 & !_LC6_C15
+         # !_LC2_C22 &  _LC3_C15 & !_LC3_C22
+         #  _LC2_C22 & !_LC3_C15 & !_LC3_C22 &  _LC6_C15;
+
+-- Node name is '|lpm_counter:cM1|dffs5' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC5_C15', type is buried 
+_LC5_C15 = DFFE( _EQ058, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ058 = !_LC3_C15 & !_LC3_C22 &  _LC5_C15
+         # !_LC3_C22 & !_LC4_C15 &  _LC5_C15
+         #  _LC3_C15 & !_LC3_C22 &  _LC4_C15 & !_LC5_C15;
+
+-- Node name is '|lpm_counter:cM1|dffs6' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC2_C15', type is buried 
+_LC2_C15 = DFFE( _EQ059, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ059 = !_LC1_C15 &  _LC2_C15 & !_LC3_C22
+         #  _LC1_C15 & !_LC2_C15 & !_LC3_C22;
+
+-- Node name is '|lpm_counter:cM1|dffs7' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC1_C22', type is buried 
+_LC1_C22 = DFFE( _EQ060, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ060 =  _LC1_C22 & !_LC3_C22 & !_LC7_C15
+         # !_LC1_C22 & !_LC3_C22 &  _LC7_C15;
+
+-- Node name is '|lpm_counter:cM1|dffs8' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC1_C20', type is buried 
+_LC1_C20 = DFFE( _EQ061, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ061 =  _LC1_C20 & !_LC1_C22 & !_LC3_C22
+         #  _LC1_C20 & !_LC3_C22 & !_LC7_C15
+         # !_LC1_C20 &  _LC1_C22 & !_LC3_C22 &  _LC7_C15;
+
+-- Node name is '|lpm_counter:cM1|dffs9' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC7_C20', type is buried 
+_LC7_C20 = DFFE( _EQ062, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ062 = !_LC2_C20 & !_LC3_C22 &  _LC7_C20
+         #  _LC2_C20 & !_LC3_C22 & !_LC7_C20;
+
+-- Node name is '|lpm_counter:cM1|dffs10' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_C20', type is buried 
+_LC6_C20 = DFFE( _EQ063, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ063 = !_LC3_C22 &  _LC6_C20 & !_LC7_C20
+         # !_LC2_C20 & !_LC3_C22 &  _LC6_C20
+         #  _LC2_C20 & !_LC3_C22 & !_LC6_C20 &  _LC7_C20;
+
+-- Node name is '|lpm_counter:cM1|dffs11' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC5_C20', type is buried 
+_LC5_C20 = DFFE( _EQ064, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ064 = !_LC3_C20 & !_LC3_C22 &  _LC5_C20
+         #  _LC3_C20 & !_LC3_C22 & !_LC5_C20;
+
+-- Node name is '|lpm_counter:cM1|dffs12' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC4_C20', type is buried 
+_LC4_C20 = DFFE( _EQ065, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ065 = !_LC3_C22 &  _LC4_C20 & !_LC5_C20
+         # !_LC3_C20 & !_LC3_C22 &  _LC4_C20
+         #  _LC3_C20 & !_LC3_C22 & !_LC4_C20 &  _LC5_C20;
+
+-- Node name is '|lpm_counter:cM1|lpm_add_sub:add_sub|addcore:adder|:95' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC2_C22', type is buried 
+_LC2_C22 = LCELL( _EQ066);
+  _EQ066 =  _LC6_C22 &  _LC7_C22 &  _LC8_C22;
+
+-- Node name is '|lpm_counter:cM1|lpm_add_sub:add_sub|addcore:adder|:99' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC4_C15', type is buried 
+_LC4_C15 = LCELL( _EQ067);
+  _EQ067 =  _LC2_C22 &  _LC6_C15;
+
+-- Node name is '|lpm_counter:cM1|lpm_add_sub:add_sub|addcore:adder|:107' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC1_C15', type is buried 
+_LC1_C15 = LCELL( _EQ068);
+  _EQ068 =  _LC2_C22 &  _LC3_C15 &  _LC5_C15 &  _LC6_C15;
+
+-- Node name is '|lpm_counter:cM1|lpm_add_sub:add_sub|addcore:adder|:111' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC7_C15', type is buried 
+_LC7_C15 = LCELL( _EQ069);
+  _EQ069 =  _LC1_C15 &  _LC2_C15;
+
+-- Node name is '|lpm_counter:cM1|lpm_add_sub:add_sub|addcore:adder|:119' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC2_C20', type is buried 
+_LC2_C20 = LCELL( _EQ070);
+  _EQ070 =  _LC1_C20 &  _LC1_C22 &  _LC7_C15;
+
+-- Node name is '|lpm_counter:cM1|lpm_add_sub:add_sub|addcore:adder|:127' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC3_C20', type is buried 
+_LC3_C20 = LCELL( _EQ071);
+  _EQ071 =  _LC2_C20 &  _LC6_C20 &  _LC7_C20;
+
+-- Node name is '|lpm_counter:cM2|cmpconst:149|and_cascade12~1' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC1_A14', type is buried 
+-- synthesized logic cell 
+_LC1_A14 = LCELL( _EQ072);
+  _EQ072 = !_LC3_A19
+         # !_LC8_A14
+         #  _LC5_A14
+         #  _LC6_A14;
+
+-- Node name is '|lpm_counter:cM2|cmpconst:149|and_cascade12~2' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC1_A19', type is buried 
+-- synthesized logic cell 
+_LC1_A19 = LCELL( _EQ073);
+  _EQ073 =  _LC6_A19
+         # !_LC2_A16
+         #  _LC5_A19
+         #  _LC8_A19;
+
+-- Node name is '|lpm_counter:cM2|cmpconst:149|and_cascade12~3' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC8_A16', type is buried 
+-- synthesized logic cell 
+_LC8_A16 = LCELL( _EQ074);
+  _EQ074 = !_LC4_A16
+         # !_LC5_A16
+         #  _LC6_A16
+         # !_LC7_A16;
+
+-- Node name is '|lpm_counter:cM2|cmpconst:149|and_cascade12' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC4_A14', type is buried 
+!_LC4_A14 = _LC4_A14~NOT;
+_LC4_A14~NOT = LCELL( _EQ075);
+  _EQ075 =  _LC1_A14
+         #  _LC1_A19
+         # !_LC7_A14
+         #  _LC8_A16;
+
+-- Node name is '|lpm_counter:cM2|dffs0' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC7_A14', type is buried 
+_LC7_A14 = DFFE(!_LC7_A14, GLOBAL( clk),  VCC,  VCC,  VCC);
+
+-- Node name is '|lpm_counter:cM2|dffs1' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_A14', type is buried 
+_LC6_A14 = DFFE( _EQ076, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ076 = !_LC4_A14 & !_LC6_A14 &  _LC7_A14
+         # !_LC4_A14 &  _LC6_A14 & !_LC7_A14;
+
+-- Node name is '|lpm_counter:cM2|dffs2' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC5_A14', type is buried 
+_LC5_A14 = DFFE( _EQ077, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ077 = !_LC4_A14 &  _LC5_A14 & !_LC7_A14
+         # !_LC4_A14 &  _LC5_A14 & !_LC6_A14
+         # !_LC4_A14 & !_LC5_A14 &  _LC6_A14 &  _LC7_A14;
+
+-- Node name is '|lpm_counter:cM2|dffs3' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC8_A14', type is buried 
+_LC8_A14 = DFFE( _EQ078, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ078 = !_LC2_A14 & !_LC4_A14 &  _LC8_A14
+         #  _LC2_A14 & !_LC4_A14 & !_LC8_A14;
+
+-- Node name is '|lpm_counter:cM2|dffs4' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC3_A19', type is buried 
+_LC3_A19 = DFFE( _EQ079, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ079 =  _LC3_A19 & !_LC4_A14 & !_LC8_A14
+         # !_LC2_A14 &  _LC3_A19 & !_LC4_A14
+         #  _LC2_A14 & !_LC3_A19 & !_LC4_A14 &  _LC8_A14;
+
+-- Node name is '|lpm_counter:cM2|dffs5' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC8_A19', type is buried 
+_LC8_A19 = DFFE( _EQ080, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ080 = !_LC3_A19 & !_LC4_A14 &  _LC8_A19
+         # !_LC4_A14 & !_LC7_A19 &  _LC8_A19
+         #  _LC3_A19 & !_LC4_A14 &  _LC7_A19 & !_LC8_A19;
+
+-- Node name is '|lpm_counter:cM2|dffs6' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC5_A19', type is buried 
+_LC5_A19 = DFFE( _EQ081, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ081 = !_LC4_A14 & !_LC4_A19 &  _LC5_A19
+         # !_LC4_A14 &  _LC4_A19 & !_LC5_A19;
+
+-- Node name is '|lpm_counter:cM2|dffs7' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC2_A16', type is buried 
+_LC2_A16 = DFFE( _EQ082, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ082 =  _LC2_A16 & !_LC2_A19 & !_LC4_A14
+         # !_LC2_A16 &  _LC2_A19 & !_LC4_A14;
+
+-- Node name is '|lpm_counter:cM2|dffs8' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_A19', type is buried 
+_LC6_A19 = DFFE( _EQ083, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ083 = !_LC2_A16 & !_LC4_A14 &  _LC6_A19
+         # !_LC2_A19 & !_LC4_A14 &  _LC6_A19
+         #  _LC2_A16 &  _LC2_A19 & !_LC4_A14 & !_LC6_A19;
+
+-- Node name is '|lpm_counter:cM2|dffs9' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC7_A16', type is buried 
+_LC7_A16 = DFFE( _EQ084, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ084 = !_LC1_A16 & !_LC4_A14 &  _LC7_A16
+         #  _LC1_A16 & !_LC4_A14 & !_LC7_A16;
+
+-- Node name is '|lpm_counter:cM2|dffs10' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_A16', type is buried 
+_LC6_A16 = DFFE( _EQ085, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ085 = !_LC4_A14 &  _LC6_A16 & !_LC7_A16
+         # !_LC1_A16 & !_LC4_A14 &  _LC6_A16
+         #  _LC1_A16 & !_LC4_A14 & !_LC6_A16 &  _LC7_A16;
+
+-- Node name is '|lpm_counter:cM2|dffs11' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC5_A16', type is buried 
+_LC5_A16 = DFFE( _EQ086, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ086 = !_LC3_A16 & !_LC4_A14 &  _LC5_A16
+         #  _LC3_A16 & !_LC4_A14 & !_LC5_A16;
+
+-- Node name is '|lpm_counter:cM2|dffs12' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC4_A16', type is buried 
+_LC4_A16 = DFFE( _EQ087, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ087 = !_LC4_A14 &  _LC4_A16 & !_LC5_A16
+         # !_LC3_A16 & !_LC4_A14 &  _LC4_A16
+         #  _LC3_A16 & !_LC4_A14 & !_LC4_A16 &  _LC5_A16;
+
+-- Node name is '|lpm_counter:cM2|lpm_add_sub:add_sub|addcore:adder|:95' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC2_A14', type is buried 
+_LC2_A14 = LCELL( _EQ088);
+  _EQ088 =  _LC5_A14 &  _LC6_A14 &  _LC7_A14;
+
+-- Node name is '|lpm_counter:cM2|lpm_add_sub:add_sub|addcore:adder|:99' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC7_A19', type is buried 
+_LC7_A19 = LCELL( _EQ089);
+  _EQ089 =  _LC2_A14 &  _LC8_A14;
+
+-- Node name is '|lpm_counter:cM2|lpm_add_sub:add_sub|addcore:adder|:107' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC4_A19', type is buried 
+_LC4_A19 = LCELL( _EQ090);
+  _EQ090 =  _LC2_A14 &  _LC3_A19 &  _LC8_A14 &  _LC8_A19;
+
+-- Node name is '|lpm_counter:cM2|lpm_add_sub:add_sub|addcore:adder|:111' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC2_A19', type is buried 
+_LC2_A19 = LCELL( _EQ091);
+  _EQ091 =  _LC4_A19 &  _LC5_A19;
+
+-- Node name is '|lpm_counter:cM2|lpm_add_sub:add_sub|addcore:adder|:119' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC1_A16', type is buried 
+_LC1_A16 = LCELL( _EQ092);
+  _EQ092 =  _LC2_A16 &  _LC2_A19 &  _LC6_A19;
+
+-- Node name is '|lpm_counter:cM2|lpm_add_sub:add_sub|addcore:adder|:127' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC3_A16', type is buried 
+_LC3_A16 = LCELL( _EQ093);
+  _EQ093 =  _LC1_A16 &  _LC6_A16 &  _LC7_A16;
+
+-- Node name is '|lpm_counter:cM3|cmpconst:149|and_cascade12~1' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC1_A23', type is buried 
+-- synthesized logic cell 
+_LC1_A23 = LCELL( _EQ094);
+  _EQ094 = !_LC2_A18
+         # !_LC5_A18
+         # !_LC7_A23
+         #  _LC8_A23;
+
+-- Node name is '|lpm_counter:cM3|cmpconst:149|and_cascade12~2' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC1_A18', type is buried 
+-- synthesized logic cell 
+_LC1_A18 = LCELL( _EQ095);
+  _EQ095 =  _LC1_A23
+         # !_LC4_A18
+         #  _LC6_A18
+         # !_LC8_A18;
+
+-- Node name is '|lpm_counter:cM3|cmpconst:149|and_cascade12~3' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC3_A13', type is buried 
+-- synthesized logic cell 
+_LC3_A13 = LCELL( _EQ096);
+  _EQ096 = !_LC6_A23
+         # !_LC3_A23
+         #  _LC5_A13
+         #  _LC6_A13;
+
+-- Node name is '|lpm_counter:cM3|cmpconst:149|and_cascade12' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC2_A13', type is buried 
+!_LC2_A13 = _LC2_A13~NOT;
+_LC2_A13~NOT = LCELL( _EQ097);
+  _EQ097 =  _LC1_A18
+         # !_LC7_A13
+         # !_LC8_A13
+         #  _LC3_A13;
+
+-- Node name is '|lpm_counter:cM3|dffs0' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC8_A13', type is buried 
+_LC8_A13 = DFFE(!_LC8_A13, GLOBAL( clk),  VCC,  VCC,  VCC);
+
+-- Node name is '|lpm_counter:cM3|dffs1' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC7_A13', type is buried 
+_LC7_A13 = DFFE( _EQ098, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ098 = !_LC2_A13 &  _LC7_A13 & !_LC8_A13
+         # !_LC2_A13 & !_LC7_A13 &  _LC8_A13;
+
+-- Node name is '|lpm_counter:cM3|dffs2' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_A13', type is buried 
+_LC6_A13 = DFFE( _EQ099, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ099 = !_LC2_A13 &  _LC6_A13 & !_LC7_A13
+         # !_LC2_A13 &  _LC6_A13 & !_LC8_A13
+         # !_LC2_A13 & !_LC6_A13 &  _LC7_A13 &  _LC8_A13;
+
+-- Node name is '|lpm_counter:cM3|dffs3' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC5_A13', type is buried 
+_LC5_A13 = DFFE( _EQ100, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ100 = !_LC2_A13 & !_LC4_A13 &  _LC5_A13
+         # !_LC2_A13 &  _LC4_A13 & !_LC5_A13;
+
+-- Node name is '|lpm_counter:cM3|dffs4' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC3_A23', type is buried 
+_LC3_A23 = DFFE( _EQ101, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ101 = !_LC1_A13 & !_LC2_A13 &  _LC3_A23
+         #  _LC1_A13 & !_LC2_A13 & !_LC3_A23;
+
+-- Node name is '|lpm_counter:cM3|dffs5' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_A23', type is buried 
+_LC6_A23 = DFFE( _EQ102, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ102 = !_LC2_A13 & !_LC3_A23 &  _LC6_A23
+         # !_LC1_A13 & !_LC2_A13 &  _LC6_A23
+         #  _LC1_A13 & !_LC2_A13 &  _LC3_A23 & !_LC6_A23;
+
+-- Node name is '|lpm_counter:cM3|dffs6' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC8_A23', type is buried 
+_LC8_A23 = DFFE( _EQ103, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ103 = !_LC2_A13 & !_LC4_A23 &  _LC8_A23
+         # !_LC2_A13 &  _LC4_A23 & !_LC8_A23;
+
+-- Node name is '|lpm_counter:cM3|dffs7' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC7_A23', type is buried 
+_LC7_A23 = DFFE( _EQ104, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ104 = !_LC2_A13 &  _LC7_A23 & !_LC8_A23
+         # !_LC2_A13 & !_LC4_A23 &  _LC7_A23
+         # !_LC2_A13 &  _LC4_A23 & !_LC7_A23 &  _LC8_A23;
+
+-- Node name is '|lpm_counter:cM3|dffs8' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC5_A18', type is buried 
+_LC5_A18 = DFFE( _EQ105, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ105 = !_LC2_A13 &  _LC5_A18 & !_LC5_A23
+         # !_LC2_A13 & !_LC5_A18 &  _LC5_A23;
+
+-- Node name is '|lpm_counter:cM3|dffs9' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC2_A18', type is buried 
+_LC2_A18 = DFFE( _EQ106, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ106 = !_LC2_A13 &  _LC2_A18 & !_LC5_A18
+         # !_LC2_A13 &  _LC2_A18 & !_LC5_A23
+         # !_LC2_A13 & !_LC2_A18 &  _LC5_A18 &  _LC5_A23;
+
+-- Node name is '|lpm_counter:cM3|dffs10' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC8_A18', type is buried 
+_LC8_A18 = DFFE( _EQ107, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ107 = !_LC2_A13 & !_LC7_A18 &  _LC8_A18
+         # !_LC2_A13 &  _LC7_A18 & !_LC8_A18;
+
+-- Node name is '|lpm_counter:cM3|dffs11' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_A18', type is buried 
+_LC6_A18 = DFFE( _EQ108, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ108 = !_LC2_A13 & !_LC3_A18 &  _LC6_A18
+         # !_LC2_A13 &  _LC3_A18 & !_LC6_A18;
+
+-- Node name is '|lpm_counter:cM3|dffs12' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC4_A18', type is buried 
+_LC4_A18 = DFFE( _EQ109, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ109 = !_LC2_A13 &  _LC4_A18 & !_LC6_A18
+         # !_LC2_A13 & !_LC3_A18 &  _LC4_A18
+         # !_LC2_A13 &  _LC3_A18 & !_LC4_A18 &  _LC6_A18;
+
+-- Node name is '|lpm_counter:cM3|lpm_add_sub:add_sub|addcore:adder|:95' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC4_A13', type is buried 
+_LC4_A13 = LCELL( _EQ110);
+  _EQ110 =  _LC6_A13 &  _LC7_A13 &  _LC8_A13;
+
+-- Node name is '|lpm_counter:cM3|lpm_add_sub:add_sub|addcore:adder|:99' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC1_A13', type is buried 
+_LC1_A13 = LCELL( _EQ111);
+  _EQ111 =  _LC5_A13 &  _LC6_A13 &  _LC7_A13 &  _LC8_A13;
+
+-- Node name is '|lpm_counter:cM3|lpm_add_sub:add_sub|addcore:adder|:107' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC4_A23', type is buried 
+_LC4_A23 = LCELL( _EQ112);
+  _EQ112 =  _LC1_A13 &  _LC3_A23 &  _LC6_A23;
+
+-- Node name is '|lpm_counter:cM3|lpm_add_sub:add_sub|addcore:adder|:115' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC5_A23', type is buried 
+_LC5_A23 = LCELL( _EQ113);
+  _EQ113 =  _LC4_A23 &  _LC7_A23 &  _LC8_A23;
+
+-- Node name is '|lpm_counter:cM3|lpm_add_sub:add_sub|addcore:adder|:123' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC7_A18', type is buried 
+_LC7_A18 = LCELL( _EQ114);
+  _EQ114 =  _LC2_A18 &  _LC5_A18 &  _LC5_A23;
+
+-- Node name is '|lpm_counter:cM3|lpm_add_sub:add_sub|addcore:adder|:127' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC3_A18', type is buried 
+_LC3_A18 = LCELL( _EQ115);
+  _EQ115 =  _LC2_A18 &  _LC5_A18 &  _LC5_A23 &  _LC8_A18;
+
+-- Node name is '|lpm_counter:cM4|cmpconst:149|and_cascade12~1' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC3_B23', type is buried 
+-- synthesized logic cell 
+_LC3_B23 = LCELL( _EQ116);
+  _EQ116 = !_LC1_B15
+         # !_LC6_B15
+         # !_LC4_B23
+         # !_LC5_B23;
+
+-- Node name is '|lpm_counter:cM4|cmpconst:149|and_cascade12~2' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC5_B15', type is buried 
+-- synthesized logic cell 
+_LC5_B15 = LCELL( _EQ117);
+  _EQ117 =  _LC8_B24
+         #  _LC8_B23
+         # !_LC4_B15
+         #  _LC8_B15;
+
+-- Node name is '|lpm_counter:cM4|cmpconst:149|and_cascade12~3' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC2_B24', type is buried 
+-- synthesized logic cell 
+_LC2_B24 = LCELL( _EQ118);
+  _EQ118 = !_LC4_B24
+         #  _LC5_B24
+         # !_LC6_B24
+         # !_LC7_B24;
+
+-- Node name is '|lpm_counter:cM4|cmpconst:149|and_cascade12' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC2_B23', type is buried 
+!_LC2_B23 = _LC2_B23~NOT;
+_LC2_B23~NOT = LCELL( _EQ119);
+  _EQ119 =  _LC3_B23
+         #  _LC5_B15
+         #  _LC6_B23
+         #  _LC2_B24;
+
+-- Node name is '|lpm_counter:cM4|dffs0' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_B23', type is buried 
+_LC6_B23 = DFFE( _EQ120, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ120 = !_LC2_B23 & !_LC6_B23;
+
+-- Node name is '|lpm_counter:cM4|dffs1' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC5_B23', type is buried 
+_LC5_B23 = DFFE( _EQ121, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ121 = !_LC2_B23 & !_LC5_B23 &  _LC6_B23
+         # !_LC2_B23 &  _LC5_B23 & !_LC6_B23;
+
+-- Node name is '|lpm_counter:cM4|dffs2' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC4_B23', type is buried 
+_LC4_B23 = DFFE( _EQ122, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ122 = !_LC2_B23 &  _LC4_B23 & !_LC6_B23
+         # !_LC2_B23 &  _LC4_B23 & !_LC5_B23
+         # !_LC2_B23 & !_LC4_B23 &  _LC5_B23 &  _LC6_B23;
+
+-- Node name is '|lpm_counter:cM4|dffs3' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_B15', type is buried 
+_LC6_B15 = DFFE( _EQ123, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ123 = !_LC1_B23 & !_LC2_B23 &  _LC6_B15
+         #  _LC1_B23 & !_LC2_B23 & !_LC6_B15;
+
+-- Node name is '|lpm_counter:cM4|dffs4' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC1_B15', type is buried 
+_LC1_B15 = DFFE( _EQ124, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ124 =  _LC1_B15 & !_LC2_B23 & !_LC6_B15
+         #  _LC1_B15 & !_LC1_B23 & !_LC2_B23
+         # !_LC1_B15 &  _LC1_B23 & !_LC2_B23 &  _LC6_B15;
+
+-- Node name is '|lpm_counter:cM4|dffs5' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC8_B15', type is buried 
+_LC8_B15 = DFFE( _EQ125, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ125 = !_LC1_B15 & !_LC2_B23 &  _LC8_B15
+         # !_LC2_B23 & !_LC7_B15 &  _LC8_B15
+         #  _LC1_B15 & !_LC2_B23 &  _LC7_B15 & !_LC8_B15;
+
+-- Node name is '|lpm_counter:cM4|dffs6' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC4_B15', type is buried 
+_LC4_B15 = DFFE( _EQ126, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ126 = !_LC2_B23 & !_LC3_B15 &  _LC4_B15
+         # !_LC2_B23 &  _LC3_B15 & !_LC4_B15;
+
+-- Node name is '|lpm_counter:cM4|dffs7' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC8_B23', type is buried 
+_LC8_B23 = DFFE( _EQ127, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ127 = !_LC2_B15 & !_LC2_B23 &  _LC8_B23
+         #  _LC2_B15 & !_LC2_B23 & !_LC8_B23;
+
+-- Node name is '|lpm_counter:cM4|dffs8' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC8_B24', type is buried 
+_LC8_B24 = DFFE( _EQ128, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ128 = !_LC2_B23 & !_LC8_B23 &  _LC8_B24
+         # !_LC2_B15 & !_LC2_B23 &  _LC8_B24
+         #  _LC2_B15 & !_LC2_B23 &  _LC8_B23 & !_LC8_B24;
+
+-- Node name is '|lpm_counter:cM4|dffs9' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC7_B24', type is buried 
+_LC7_B24 = DFFE( _EQ129, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ129 = !_LC1_B24 & !_LC2_B23 &  _LC7_B24
+         #  _LC1_B24 & !_LC2_B23 & !_LC7_B24;
+
+-- Node name is '|lpm_counter:cM4|dffs10' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_B24', type is buried 
+_LC6_B24 = DFFE( _EQ130, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ130 = !_LC2_B23 &  _LC6_B24 & !_LC7_B24
+         # !_LC1_B24 & !_LC2_B23 &  _LC6_B24
+         #  _LC1_B24 & !_LC2_B23 & !_LC6_B24 &  _LC7_B24;
+
+-- Node name is '|lpm_counter:cM4|dffs11' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC5_B24', type is buried 
+_LC5_B24 = DFFE( _EQ131, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ131 = !_LC2_B23 & !_LC3_B24 &  _LC5_B24
+         # !_LC2_B23 &  _LC3_B24 & !_LC5_B24;
+
+-- Node name is '|lpm_counter:cM4|dffs12' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC4_B24', type is buried 
+_LC4_B24 = DFFE( _EQ132, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ132 = !_LC2_B23 &  _LC4_B24 & !_LC5_B24
+         # !_LC2_B23 & !_LC3_B24 &  _LC4_B24
+         # !_LC2_B23 &  _LC3_B24 & !_LC4_B24 &  _LC5_B24;
+
+-- Node name is '|lpm_counter:cM4|lpm_add_sub:add_sub|addcore:adder|:95' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC1_B23', type is buried 
+_LC1_B23 = LCELL( _EQ133);
+  _EQ133 =  _LC4_B23 &  _LC5_B23 &  _LC6_B23;
+
+-- Node name is '|lpm_counter:cM4|lpm_add_sub:add_sub|addcore:adder|:99' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC7_B15', type is buried 
+_LC7_B15 = LCELL( _EQ134);
+  _EQ134 =  _LC1_B23 &  _LC6_B15;
+
+-- Node name is '|lpm_counter:cM4|lpm_add_sub:add_sub|addcore:adder|:107' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC3_B15', type is buried 
+_LC3_B15 = LCELL( _EQ135);
+  _EQ135 =  _LC1_B15 &  _LC1_B23 &  _LC6_B15 &  _LC8_B15;
+
+-- Node name is '|lpm_counter:cM4|lpm_add_sub:add_sub|addcore:adder|:111' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC2_B15', type is buried 
+_LC2_B15 = LCELL( _EQ136);
+  _EQ136 =  _LC3_B15 &  _LC4_B15;
+
+-- Node name is '|lpm_counter:cM4|lpm_add_sub:add_sub|addcore:adder|:119' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC1_B24', type is buried 
+_LC1_B24 = LCELL( _EQ137);
+  _EQ137 =  _LC2_B15 &  _LC8_B23 &  _LC8_B24;
+
+-- Node name is '|lpm_counter:cM4|lpm_add_sub:add_sub|addcore:adder|:127' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC3_B24', type is buried 
+_LC3_B24 = LCELL( _EQ138);
+  _EQ138 =  _LC1_B24 &  _LC6_B24 &  _LC7_B24;
+
+-- Node name is '|lpm_counter:cM5|cmpconst:149|and_cascade12~1' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC1_B4', type is buried 
+-- synthesized logic cell 
+_LC1_B4  = LCELL( _EQ139);
+  _EQ139 =  _LC8_B1
+         # !_LC6_B1
+         # !_LC3_B4
+         #  _LC5_B4;
+
+-- Node name is '|lpm_counter:cM5|cmpconst:149|and_cascade12~2' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC1_B1', type is buried 
+-- synthesized logic cell 
+_LC1_B1  = LCELL( _EQ140);
+  _EQ140 = !_LC2_B9
+         # !_LC2_B8
+         # !_LC4_B1
+         # !_LC7_B1;
+
+-- Node name is '|lpm_counter:cM5|cmpconst:149|and_cascade12~3' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC8_B9', type is buried 
+-- synthesized logic cell 
+_LC8_B9  = LCELL( _EQ141);
+  _EQ141 = !_LC4_B9
+         #  _LC5_B9
+         #  _LC6_B9
+         # !_LC7_B9;
+
+-- Node name is '|lpm_counter:cM5|cmpconst:149|and_cascade12' from file "cmpconst.tdf" line 64, column 36
+-- Equation name is '_LC4_B4', type is buried 
+!_LC4_B4 = _LC4_B4~NOT;
+_LC4_B4~NOT = LCELL( _EQ142);
+  _EQ142 =  _LC1_B4
+         #  _LC1_B1
+         # !_LC6_B4
+         #  _LC8_B9;
+
+-- Node name is '|lpm_counter:cM5|dffs0' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_B4', type is buried 
+_LC6_B4  = DFFE(!_LC6_B4, GLOBAL( clk),  VCC,  VCC,  VCC);
+
+-- Node name is '|lpm_counter:cM5|dffs1' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC5_B4', type is buried 
+_LC5_B4  = DFFE( _EQ143, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ143 = !_LC4_B4 & !_LC5_B4 &  _LC6_B4
+         # !_LC4_B4 &  _LC5_B4 & !_LC6_B4;
+
+-- Node name is '|lpm_counter:cM5|dffs2' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC3_B4', type is buried 
+_LC3_B4  = DFFE( _EQ144, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ144 =  _LC3_B4 & !_LC4_B4 & !_LC6_B4
+         #  _LC3_B4 & !_LC4_B4 & !_LC5_B4
+         # !_LC3_B4 & !_LC4_B4 &  _LC5_B4 &  _LC6_B4;
+
+-- Node name is '|lpm_counter:cM5|dffs3' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_B1', type is buried 
+_LC6_B1  = DFFE( _EQ145, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ145 = !_LC2_B4 & !_LC4_B4 &  _LC6_B1
+         #  _LC2_B4 & !_LC4_B4 & !_LC6_B1;
+
+-- Node name is '|lpm_counter:cM5|dffs4' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC8_B1', type is buried 
+_LC8_B1  = DFFE( _EQ146, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ146 = !_LC4_B4 & !_LC6_B1 &  _LC8_B1
+         # !_LC2_B4 & !_LC4_B4 &  _LC8_B1
+         #  _LC2_B4 & !_LC4_B4 &  _LC6_B1 & !_LC8_B1;
+
+-- Node name is '|lpm_counter:cM5|dffs5' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC7_B1', type is buried 
+_LC7_B1  = DFFE( _EQ147, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ147 = !_LC4_B4 &  _LC7_B1 & !_LC8_B1
+         # !_LC4_B4 & !_LC5_B1 &  _LC7_B1
+         # !_LC4_B4 &  _LC5_B1 & !_LC7_B1 &  _LC8_B1;
+
+-- Node name is '|lpm_counter:cM5|dffs6' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC4_B1', type is buried 
+_LC4_B1  = DFFE( _EQ148, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ148 = !_LC3_B1 &  _LC4_B1 & !_LC4_B4
+         #  _LC3_B1 & !_LC4_B1 & !_LC4_B4;
+
+-- Node name is '|lpm_counter:cM5|dffs7' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC2_B8', type is buried 
+_LC2_B8  = DFFE( _EQ149, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ149 = !_LC2_B1 &  _LC2_B8 & !_LC4_B4
+         #  _LC2_B1 & !_LC2_B8 & !_LC4_B4;
+
+-- Node name is '|lpm_counter:cM5|dffs8' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC2_B9', type is buried 
+_LC2_B9  = DFFE( _EQ150, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ150 = !_LC2_B8 &  _LC2_B9 & !_LC4_B4
+         # !_LC2_B1 &  _LC2_B9 & !_LC4_B4
+         #  _LC2_B1 &  _LC2_B8 & !_LC2_B9 & !_LC4_B4;
+
+-- Node name is '|lpm_counter:cM5|dffs9' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC7_B9', type is buried 
+_LC7_B9  = DFFE( _EQ151, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ151 = !_LC1_B9 & !_LC4_B4 &  _LC7_B9
+         #  _LC1_B9 & !_LC4_B4 & !_LC7_B9;
+
+-- Node name is '|lpm_counter:cM5|dffs10' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_B9', type is buried 
+_LC6_B9  = DFFE( _EQ152, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ152 = !_LC4_B4 &  _LC6_B9 & !_LC7_B9
+         # !_LC1_B9 & !_LC4_B4 &  _LC6_B9
+         #  _LC1_B9 & !_LC4_B4 & !_LC6_B9 &  _LC7_B9;
+
+-- Node name is '|lpm_counter:cM5|dffs11' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC5_B9', type is buried 
+_LC5_B9  = DFFE( _EQ153, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ153 = !_LC3_B9 & !_LC4_B4 &  _LC5_B9
+         #  _LC3_B9 & !_LC4_B4 & !_LC5_B9;
+
+-- Node name is '|lpm_counter:cM5|dffs12' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC4_B9', type is buried 
+_LC4_B9  = DFFE( _EQ154, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ154 = !_LC4_B4 &  _LC4_B9 & !_LC5_B9
+         # !_LC3_B9 & !_LC4_B4 &  _LC4_B9
+         #  _LC3_B9 & !_LC4_B4 & !_LC4_B9 &  _LC5_B9;
+
+-- Node name is '|lpm_counter:cM5|lpm_add_sub:add_sub|addcore:adder|:95' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC2_B4', type is buried 
+_LC2_B4  = LCELL( _EQ155);
+  _EQ155 =  _LC3_B4 &  _LC5_B4 &  _LC6_B4;
+
+-- Node name is '|lpm_counter:cM5|lpm_add_sub:add_sub|addcore:adder|:99' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC5_B1', type is buried 
+_LC5_B1  = LCELL( _EQ156);
+  _EQ156 =  _LC2_B4 &  _LC6_B1;
+
+-- Node name is '|lpm_counter:cM5|lpm_add_sub:add_sub|addcore:adder|:107' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC3_B1', type is buried 
+_LC3_B1  = LCELL( _EQ157);
+  _EQ157 =  _LC2_B4 &  _LC6_B1 &  _LC7_B1 &  _LC8_B1;
+
+-- Node name is '|lpm_counter:cM5|lpm_add_sub:add_sub|addcore:adder|:111' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC2_B1', type is buried 
+_LC2_B1  = LCELL( _EQ158);
+  _EQ158 =  _LC3_B1 &  _LC4_B1;
+
+-- Node name is '|lpm_counter:cM5|lpm_add_sub:add_sub|addcore:adder|:119' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC1_B9', type is buried 
+_LC1_B9  = LCELL( _EQ159);
+  _EQ159 =  _LC2_B1 &  _LC2_B8 &  _LC2_B9;
+
+-- Node name is '|lpm_counter:cM5|lpm_add_sub:add_sub|addcore:adder|:127' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC3_B9', type is buried 
+_LC3_B9  = LCELL( _EQ160);
+  _EQ160 =  _LC1_B9 &  _LC6_B9 &  _LC7_B9;
+
+-- Node name is '|lpm_counter:divider|dffs0' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC3_C8', type is buried 
+_LC3_C8  = DFFE(!_LC3_C8, GLOBAL( clk),  VCC,  VCC,  VCC);
+
+-- Node name is '|lpm_counter:divider|dffs1' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC1_C8', type is buried 
+_LC1_C8  = DFFE( _EQ161, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ161 = !_LC1_C8 &  _LC3_C8
+         #  _LC1_C8 & !_LC3_C8;
+
+-- Node name is '|lpm_counter:divider|dffs2' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC4_C8', type is buried 
+_LC4_C8  = DFFE( _EQ162, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ162 = !_LC3_C8 &  _LC4_C8
+         # !_LC1_C8 &  _LC4_C8
+         #  _LC1_C8 &  _LC3_C8 & !_LC4_C8;
+
+-- Node name is '|lpm_counter:divider|dffs3' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_C8', type is buried 
+_LC6_C8  = DFFE( _EQ163, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ163 = !_LC5_C8 &  _LC6_C8
+         #  _LC5_C8 & !_LC6_C8;
+
+-- Node name is '|lpm_counter:divider|dffs4' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC7_C8', type is buried 
+_LC7_C8  = DFFE( _EQ164, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ164 = !_LC6_C8 &  _LC7_C8
+         # !_LC5_C8 &  _LC7_C8
+         #  _LC5_C8 &  _LC6_C8 & !_LC7_C8;
+
+-- Node name is '|lpm_counter:divider|dffs5' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC8_C8', type is buried 
+_LC8_C8  = DFFE( _EQ165, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ165 = !_LC6_C8 &  _LC8_C8
+         # !_LC5_C8 &  _LC8_C8
+         # !_LC7_C8 &  _LC8_C8
+         #  _LC5_C8 &  _LC6_C8 &  _LC7_C8 & !_LC8_C8;
+
+-- Node name is '|lpm_counter:divider|dffs6' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC2_C12', type is buried 
+_LC2_C12 = DFFE( _EQ166, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ166 = !_LC2_C8 &  _LC2_C12
+         #  _LC2_C8 & !_LC2_C12;
+
+-- Node name is '|lpm_counter:divider|dffs7' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC3_C12', type is buried 
+_LC3_C12 = DFFE( _EQ167, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ167 = !_LC2_C12 &  _LC3_C12
+         # !_LC2_C8 &  _LC3_C12
+         #  _LC2_C8 &  _LC2_C12 & !_LC3_C12;
+
+-- Node name is '|lpm_counter:divider|dffs8' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC4_C12', type is buried 
+_LC4_C12 = DFFE( _EQ168, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ168 = !_LC2_C12 &  _LC4_C12
+         # !_LC2_C8 &  _LC4_C12
+         # !_LC3_C12 &  _LC4_C12
+         #  _LC2_C8 &  _LC2_C12 &  _LC3_C12 & !_LC4_C12;
+
+-- Node name is '|lpm_counter:divider|dffs9' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_C12', type is buried 
+_LC6_C12 = DFFE( _EQ169, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ169 = !_LC5_C12 &  _LC6_C12
+         #  _LC5_C12 & !_LC6_C12;
+
+-- Node name is '|lpm_counter:divider|dffs10' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC7_C12', type is buried 
+_LC7_C12 = DFFE( _EQ170, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ170 = !_LC6_C12 &  _LC7_C12
+         # !_LC5_C12 &  _LC7_C12
+         #  _LC5_C12 &  _LC6_C12 & !_LC7_C12;
+
+-- Node name is '|lpm_counter:divider|dffs11' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC8_C12', type is buried 
+_LC8_C12 = DFFE( _EQ171, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ171 = !_LC6_C12 &  _LC8_C12
+         # !_LC5_C12 &  _LC8_C12
+         # !_LC7_C12 &  _LC8_C12
+         #  _LC5_C12 &  _LC6_C12 &  _LC7_C12 & !_LC8_C12;
+
+-- Node name is '|lpm_counter:divider|dffs12' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC2_C11', type is buried 
+_LC2_C11 = DFFE( _EQ172, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ172 = !_LC1_C12 &  _LC2_C11
+         #  _LC1_C12 & !_LC2_C11;
+
+-- Node name is '|lpm_counter:divider|dffs13' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC3_C11', type is buried 
+_LC3_C11 = DFFE( _EQ173, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ173 = !_LC2_C11 &  _LC3_C11
+         # !_LC1_C12 &  _LC3_C11
+         #  _LC1_C12 &  _LC2_C11 & !_LC3_C11;
+
+-- Node name is '|lpm_counter:divider|dffs14' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC4_C11', type is buried 
+_LC4_C11 = DFFE( _EQ174, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ174 = !_LC2_C11 &  _LC4_C11
+         # !_LC1_C12 &  _LC4_C11
+         # !_LC3_C11 &  _LC4_C11
+         #  _LC1_C12 &  _LC2_C11 &  _LC3_C11 & !_LC4_C11;
+
+-- Node name is '|lpm_counter:divider|dffs15' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC6_C11', type is buried 
+_LC6_C11 = DFFE( _EQ175, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ175 = !_LC5_C11 &  _LC6_C11
+         #  _LC5_C11 & !_LC6_C11;
+
+-- Node name is '|lpm_counter:divider|dffs16' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC7_C11', type is buried 
+_LC7_C11 = DFFE( _EQ176, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ176 = !_LC6_C11 &  _LC7_C11
+         # !_LC5_C11 &  _LC7_C11
+         #  _LC5_C11 &  _LC6_C11 & !_LC7_C11;
+
+-- Node name is '|lpm_counter:divider|dffs17' from file "lpm_counter.tdf" line 234, column 10
+-- Equation name is '_LC8_C11', type is buried 
+_LC8_C11 = DFFE( _EQ177, GLOBAL( clk),  VCC,  VCC,  VCC);
+  _EQ177 = !_LC6_C11 &  _LC8_C11
+         # !_LC5_C11 &  _LC8_C11
+         # !_LC7_C11 &  _LC8_C11
+         #  _LC5_C11 &  _LC6_C11 &  _LC7_C11 & !_LC8_C11;
+
+-- Node name is '|lpm_counter:divider|lpm_add_sub:add_sub|addcore:adder|:115' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC5_C8', type is buried 
+_LC5_C8  = LCELL( _EQ178);
+  _EQ178 =  _LC1_C8 &  _LC3_C8 &  _LC4_C8;
+
+-- Node name is '|lpm_counter:divider|lpm_add_sub:add_sub|addcore:adder|:127' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC2_C8', type is buried 
+_LC2_C8  = LCELL( _EQ179);
+  _EQ179 =  _LC5_C8 &  _LC6_C8 &  _LC7_C8 &  _LC8_C8;
+
+-- Node name is '|lpm_counter:divider|lpm_add_sub:add_sub|addcore:adder|:139' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC5_C12', type is buried 
+_LC5_C12 = LCELL( _EQ180);
+  _EQ180 =  _LC2_C8 &  _LC2_C12 &  _LC3_C12 &  _LC4_C12;
+
+-- Node name is '|lpm_counter:divider|lpm_add_sub:add_sub|addcore:adder|:151' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC1_C12', type is buried 
+_LC1_C12 = LCELL( _EQ181);
+  _EQ181 =  _LC5_C12 &  _LC6_C12 &  _LC7_C12 &  _LC8_C12;
+
+-- Node name is '|lpm_counter:divider|lpm_add_sub:add_sub|addcore:adder|:163' from file "addcore.tdf" line 312, column 64
+-- Equation name is '_LC5_C11', type is buried 
+_LC5_C11 = LCELL( _EQ182);
+  _EQ182 =  _LC1_C12 &  _LC2_C11 &  _LC3_C11 &  _LC4_C11;
+
+-- Node name is ':470' from file "music.tdf" line 78, column 15
+-- Equation name is '_LC1_C7', type is buried 
+_LC1_C7  = LCELL( _EQ183);
+  _EQ183 = !_LC3_C9 & !_LC6_C9
+         # !_LC4_C9 & !_LC6_C9
+         #  _LC5_C9;
+
+-- Node name is ':620' from file "music.tdf" line 100, column 18
+-- Equation name is '_LC2_C7', type is buried 
+_LC2_C7  = LCELL( _EQ184);
+  _EQ184 =  _LC3_C9 &  _LC4_C9 & !_LC5_C9 & !_LC6_C9;
+
+-- Node name is ':646' from file "music.tdf" line 111, column 14
+-- Equation name is '_LC1_C6', type is buried 
+!_LC1_C6 = _LC1_C6~NOT;
+_LC1_C6~NOT = LCELL( _EQ185);
+  _EQ185 = !_LC5_C9 &  _LC6_C9;
+
+-- Node name is '~699~1' from file "music.tdf" line 118, column 4
+-- Equation name is '~699~1', location is LC3_C5, type is buried.
+-- synthesized logic cell 
+_LC3_C5  = LCELL( _EQ186);
+  _EQ186 = !_LC1_C9 &  _LC2_C9 &  _LC4_C9;
+
+-- Node name is '~752~1' from file "music.tdf" line 124, column 4
+-- Equation name is '~752~1', location is LC2_C5, type is buried.
+-- synthesized logic cell 
+_LC2_C5  = LCELL( _EQ187);
+  _EQ187 = !_LC1_C9 &  _LC2_C9 & !_LC4_C9;
+
+-- Node name is ':843' from file "music.tdf" line 137, column 33
+-- Equation name is '_LC1_C10', type is buried 
+!_LC1_C10 = _LC1_C10~NOT;
+_LC1_C10~NOT = LCELL( _EQ188);
+  _EQ188 =  _LC1_C9 & !_LC2_C9 &  _LC3_C9 &  _LC4_C9;
+
+-- Node name is ':847' from file "music.tdf" line 138, column 7
+-- Equation name is '_LC8_C10', type is buried 
+_LC8_C10 = LCELL( _EQ189);
+  _EQ189 =  ena & !_LC1_C10 &  s
+         #  ena & !_LC1_C3 &  s;
+
+
+
+Project Information                                               e:\music.rpt
+
+** COMPILATION SETTINGS & TIMES **
+
+Processing Menu Commands
+------------------------
+
+Design Doctor                             = off
+
+Logic Synthesis:
+
+   Synthesis Type Used                    = Multi-Level
+
+   Default Synthesis Style                = NORMAL
+
+      Logic option settings in 'NORMAL' style for 'ACEX1K' family
+
+      CARRY_CHAIN                         = ignore
+      CARRY_CHAIN_LENGTH                  = 32
+      CASCADE_CHAIN                       = ignore
+      CASCADE_CHAIN_LENGTH                = 2
+      DECOMPOSE_GATES                     = on
+      DUPLICATE_LOGIC_EXTRACTION          = on
+      MINIMIZATION                        = full
+      MULTI_LEVEL_FACTORING               = on
+      NOT_GATE_PUSH_BACK                  = on
+      REDUCE_LOGIC                        = on
+      REFACTORIZATION                     = on
+      REGISTER_OPTIMIZATION               = on
+      RESYNTHESIZE_NETWORK                = on
+      SLOW_SLEW_RATE                      = off
+      SUBFACTOR_EXTRACTION                = on
+      IGNORE_SOFT_BUFFERS                 = on
+      USE_LPM_FOR_AHDL_OPERATORS          = off
+
+   Other logic synthesis settings:
+
+      Automatic Global Clock              = on
+      Automatic Global Clear              = on
+      Automatic Global Preset             = on
+      Automatic Global Output Enable      = on
+      Automatic Fast I/O                  = off
+      Automatic Register Packing          = off
+      Automatic Open-Drain Pins           = on
+      Automatic Implement in EAB          = off
+      Optimize                            = 5
+
+Default Timing Specifications: None
+
+Cut All Bidir Feedback Timing Paths       = on
+Cut All Clear & Preset Timing Paths       = on
+
+Ignore Timing Assignments                 = off
+
+Functional SNF Extractor                  = off
+
+Linked SNF Extractor                      = off
+Timing SNF Extractor                      = on
+Optimize Timing SNF                       = off
+Generate AHDL TDO File                    = off
+Fitter Settings                           = NORMAL
+Use Quartus Fitter                        = on
+Smart Recompile                           = off
+Total Recompile                           = off
+
+Interfaces Menu Commands
+------------------------
+
+EDIF Netlist Writer                       = off
+Verilog Netlist Writer                    = off
+VHDL Netlist Writer                       = off
+
+Compilation Times
+-----------------
+
+   Compiler Netlist Extractor             00:00:00
+   Database Builder                       00:00:01
+   Logic Synthesizer                      00:00:00
+   Partitioner                            00:00:00
+   Fitter                                 00:00:01
+   Timing SNF Extractor                   00:00:00
+   Assembler                              00:00:00
+   --------------------------             --------
+   Total Time                             00:00:02
+
+
+Memory Allocated
+-----------------
+
+Peak memory allocated during compilation  = 23,012K

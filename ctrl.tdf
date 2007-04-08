@@ -1,0 +1,208 @@
+title "elevator control module";
+include "lpm_counter";
+subdesign ctrl
+(
+--clock for switching states, a new running or stopped state each 8 signals
+	clk:input;--1Hz
+--clock for button detection
+	bclk:input;
+--button on each floor for service requests
+	b1up,b2dn,b2up,b3dn,b3up,b4dn:input;
+--indicator lights behind floor buttons
+	i1up,i2dn,i2up,i3dn,i3up,i4dn:output;
+--button inside lifter to input target floor
+	b1to,b2to,b3to,b4to:input;
+--indicator lights behind lifter buttons
+	i1to,i2to,i3to,i4to:output;
+--current floor display (BCD)
+	disp[3..0]:output;
+--current floor display flashing?
+	dispflash:output;
+--current running direction: 0=up,1=dn
+	dispdir:output;
+--up motor control
+	motorup:output;
+--down motor control
+	motordn:output;
+--door open motor control
+	motordooropen:output;
+--door shut motor control
+	motordoorshut:output;
+)
+variable
+--current stopped location or running state
+	s:machine with states(stop1,stop2,stop3,stop4,1to2,2to3,3to4,4to3,3to2,2to1);
+--current counter
+-- when stopped
+--  0~1=opening door
+--  2~5=door opened
+--  6~7=shutting door
+	c:lpm_counter with(lpm_width=3,lpm_direction="UP");
+--current running direction
+	dir:machine with states(up,dn);
+--need the lifter goto and stop at those floors?
+	needgo[4..1]:node;
+--is there a request, either from lifter buttons or from floor buttons, that request the lifter to go up or go down?
+	needup,needdn:node;
+--no request? remain stopped and have a break (1=stop)
+	stophere:node;
+--button pressed and not processed?
+	b1t,b1u,b2d,b2t,b2u,b3d,b3t,b3u,b4d,b4t:jkff;
+begin
+	defaults
+--needup,needdn logic
+		needup=gnd;
+		needdn=gnd;
+--motors control output
+		motorup=gnd;
+		motordn=gnd;
+		motordooropen=gnd;
+		motordoorshut=gnd;
+b1t.clrn=vcc;
+b1u.clrn=vcc;
+b2d.clrn=vcc;
+b2t.clrn=vcc;
+b2u.clrn=vcc;
+b3d.clrn=vcc;
+b3t.clrn=vcc;
+b3u.clrn=vcc;
+b4d.clrn=vcc;
+b4t.clrn=vcc;
+c.cnt_en=vcc;
+	end defaults;
+
+	c.clock=clk;
+	s.clk=c.cout;
+	dir.clk=c.cout;
+
+--buttons and indicator lights
+--turn off indicator lights on next state by setting .ena to vcc
+--turn off indicator lights immediately by setting .clrn to gnd
+	b1t.j=b1to;b1t.k=gnd;b1t.clk=bclk;i1to=b1t.q;
+	b1u.j=b1up;b1u.k=gnd;b1u.clk=bclk;i1up=b1u.q;
+	b2d.j=b2dn;b2d.k=gnd;b2d.clk=bclk;i2dn=b2d.q;
+	b2t.j=b2to;b2t.k=gnd;b2t.clk=bclk;i2to=b2t.q;
+	b2u.j=b2up;b2u.k=gnd;b2u.clk=bclk;i2up=b2u.q;
+	b3d.j=b3dn;b3d.k=gnd;b3d.clk=bclk;i3dn=b3d.q;
+	b3t.j=b3to;b3t.k=gnd;b3t.clk=bclk;i3to=b3t.q;
+	b3u.j=b3up;b3u.k=gnd;b3u.clk=bclk;i3up=b3u.q;
+	b4d.j=b4dn;b4d.k=gnd;b4d.clk=bclk;i4dn=b4d.q;
+	b4t.j=b4to;b4t.k=gnd;b4t.clk=bclk;i4to=b4t.q;
+
+--determine where to go if the lifter is running
+	table
+		s    ,needgo1,needgo2,needgo3,needgo4=>s    ,dir;
+		1to2 ,    x  ,    1  ,    x  ,    x  =>stop2, up;
+		1to2 ,    x  ,    0  ,    x  ,    x  =>2to3 , up;
+		2to3 ,    x  ,    x  ,    1  ,    x  =>stop3, up;
+		2to3 ,    x  ,    x  ,    0  ,    x  =>3to4 , up;
+		3to4 ,    x  ,    x  ,    x  ,    x  =>stop4, dn;
+		4to3 ,    x  ,    x  ,    1  ,    x  =>stop3, dn;
+		4to3 ,    x  ,    x  ,    0  ,    x  =>3to2 , dn;
+		3to2 ,    x  ,    1  ,    x  ,    x  =>stop2, dn;
+		3to2 ,    x  ,    0  ,    x  ,    x  =>2to1 , dn;
+		2to1 ,    x  ,    x  ,    x  ,    x  =>stop1, up;
+	end table;
+--turn off inside button indicator lights when arrive
+	case s is
+		when stop1=>
+			b1t.clrn=gnd;
+		when stop2=>
+			b2t.clrn=gnd;
+		when stop3=>
+			b3t.clrn=gnd;
+		when stop4=>
+			b4t.clrn=gnd;
+	end case;
+
+--can have a rest? stop counter to avoid opening and shutting door again and again
+	stophere=!(needup # needdn);
+	if stophere then
+		if c.q[]==4 then
+			c.cnt_en=gnd;
+		end if;
+--determine where to go when the lifter is stopped
+--turn off outside button indicator light when arrive and same direction
+	else
+--going up, and a request is upstairs
+--or going down, but no request is downstairs, however there is a request (must be upstairs), should go up
+		if (dir==up & needup) # (dir==dn & !needdn) then
+			dir=up;
+			case s is
+				when stop1=>
+					s=1to2;
+					b1u.clrn=gnd;
+				when stop2=>
+					s=2to3;
+					b2u.clrn=gnd;
+				when stop3=>
+					s=3to4;
+					b3u.clrn=gnd;
+			end case;
+		end if;
+--going down, and a request is downstairs
+--or going up, but no request is upstairs, however there is a request (must be downstairs), should go down
+		if (dir==dn & needdn) # (dir==up & !needup) then
+			dir=dn;
+			case s is
+				when stop4=>
+					s=4to3;
+					b4d.clrn=gnd;
+				when stop3=>
+					s=3to2;
+					b3d.clrn=gnd;
+				when stop2=>
+					s=2to1;
+					b2d.clrn=gnd;
+			end case;
+		end if;
+	end if;
+
+--display output
+	table
+		s    =>disp[];
+		stop1=>1;
+		stop2=>2;
+		stop3=>3;
+		stop4=>4;
+		1to2 =>1;
+		2to3 =>2;
+		3to4 =>3;
+		4to3 =>4;
+		3to2 =>3;
+		2to1 =>2;
+	end table;
+	if (s==stop1 # s==stop2 # s==stop3 # s==stop4) & (c.q[]==0 # c.q[]==1) then
+		dispflash=vcc;
+	else
+		dispflash=gnd;
+	end if;
+	table
+		dir=>dispdir;
+		up =>   0;
+		dn =>   1;
+	end table;
+
+--needgo logic
+	needgo[1]=b1u.q # b1t.q;
+	needgo[2]=b2d.q # b2t.q # b2u.q;
+	needgo[3]=b3d.q # b3t.q # b3u.q;
+	needgo[4]=b4d.q # b4t.q;
+--needup,needdn logic
+--(also some in defaults statement)
+	if (s==stop1 # s==1to2 # s==2to1) & (needgo[2] # needgo[3] # needgo[4]) then needup=vcc; end if;
+	if (s==stop2 # s==2to3 # s==3to2) & (needgo[3] # needgo[4]) then needup=vcc; end if;
+	if (s==stop3 # s==3to4 # s==4to3) & (needgo[4]) then needup=vcc; end if;
+	if (s==stop4 # s==4to3 # s==3to4) & (needgo[1] # needgo[2] # needgo[3]) then needdn=vcc; end if;
+	if (s==stop3 # s==3to2 # s==2to3) & (needgo[1] # needgo[2]) then needdn=vcc; end if;
+	if (s==stop2 # s==2to1 # s==1to2) & (needgo[1]) then needdn=vcc; end if;
+
+--motors control output
+--(also some in defaults statement)
+	if (s==1to2 # s==2to3 # s==3to4) then motorup=vcc; end if;
+	if (s==4to3 # s==3to2 # s==2to1) then motordn=vcc; end if;
+	if (s==stop1 # s==stop2 # s==stop3 # s==stop4) then
+		if (c.q[]==0 # c.q[]==1) then motordooropen=vcc; end if;
+		if (c.q[]==6 # c.q[]==7) then motordoorshut=vcc; end if;
+	end if;
+end;

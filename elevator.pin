@@ -1,0 +1,176 @@
+-- Copyright (C) 1988-2002 Altera Corporation
+-- Any megafunction design, and related net list (encrypted or decrypted),
+-- support information, device programming or simulation file, and any other
+-- associated documentation or information provided by Altera or a partner
+-- under Altera's Megafunction Partnership Program may be used only to
+-- program PLD devices (but not masked PLD devices) from Altera.  Any other
+-- use of such megafunction design, net list, support information, device
+-- programming or simulation file, or any other related documentation or
+-- information is prohibited for any other purpose, including, but not
+-- limited to modification, reverse engineering, de-compiling, or use with
+-- any other silicon devices, unless such use is explicitly licensed under
+-- a separate agreement with Altera or a megafunction partner.  Title to
+-- the intellectual property, including patents, copyrights, trademarks,
+-- trade secrets, or maskworks, embodied in any such megafunction design,
+-- net list, support information, device programming or simulation file, or
+-- any other related documentation or information provided by Altera or a
+-- megafunction partner, remains with Altera, the megafunction partner, or
+-- their respective licensors.  No other licenses, including any licenses
+-- needed under any third party's intellectual property, are provided herein.
+
+
+
+N.C. = No Connect. This pin has no internal connection to the device.
+VCCINT = Dedicated power pin, which MUST be connected to VCC (5.0 volts).
+VCCIO = Dedicated power pin, which MUST be connected to VCC (5.0 volts).
+GNDINT = Dedicated ground pin or unused dedicated input, which MUST be connected to GND.
+GNDIO = Dedicated ground pin, which MUST be connected to GND.
+RESERVED = Unused I/O pin, which MUST be left unconnected.
+
+----------------------------------------------------------------------------
+
+CHIP "elevator" ASSIGNED TO AN EPF10K20TC144-4
+TCK                              : 1
+CONF_DONE                        : 2
+nCEO                             : 3
+TDO                              : 4
+VCCIO                            : 5
+VCCINT                           : 6
+RESERVED                         : 7
+RESERVED                         : 8
+RESERVED                         : 9
+RESERVED                         : 10
+RESERVED                         : 11
+RESERVED                         : 12
+RESERVED                         : 13
+RESERVED                         : 14
+GNDIO                            : 15
+GNDINT                           : 16
+RESERVED                         : 17
+RESERVED                         : 18
+RESERVED                         : 19
+RESERVED                         : 20
+RESERVED                         : 21
+RESERVED                         : 22
+RESERVED                         : 23
+VCCIO                            : 24
+VCCINT                           : 25
+RESERVED                         : 26
+2r2                              : 27
+2r5                              : 28
+2g3                              : 29
+2g5                              : 30
+2g4                              : 31
+2r1                              : 32
+2g2                              : 33
+TMS                              : 34
+nSTATUS                          : 35
+2g1                              : 36
+m_ena                            : 37
+r8                               : 38
+b1up                             : 39
+GNDIO                            : 40
+r7                               : 41
+b2dn                             : 42
+r6                               : 43
+b2up                             : 44
+VCCIO                            : 45
+r5                               : 46
+spk                              : 47
+r4                               : 48
+RESERVED                         : 49
+GNDIO                            : 50
+r1                               : 51
+VCCINT                           : 52
+VCCINT                           : 53
+b4dn                             : 54
+clk2                             : 55
+b3up                             : 56
+GNDINT                           : 57
+GNDINT                           : 58
+r2                               : 59
+r3                               : 60
+VCCIO                            : 61
+b3dn                             : 62
+2g6                              : 63
+b1to                             : 64
+2r3                              : 65
+GNDIO                            : 66
+m_clr                            : 67
+2g7                              : 68
+b3to                             : 69
+2r6                              : 70
+VCCIO                            : 71
+b2to                             : 72
+2g8                              : 73
+nCONFIG                          : 74
+VCCINT                           : 75
+MSEL1                            : 76
+MSEL0                            : 77
+2r8                              : 78
+2r7                              : 79
+1r1                              : 80
+2r4                              : 81
+RESERVED                         : 82
+1r5                              : 83
+GNDINT                           : 84
+GNDIO                            : 85
+RESERVED                         : 86
+1g5                              : 87
+1g1                              : 88
+1g6                              : 89
+1g4                              : 90
+1r6                              : 91
+RESERVED                         : 92
+VCCINT                           : 93
+VCCIO                            : 94
+1g7                              : 95
+1r4                              : 96
+1r7                              : 97
+1g3                              : 98
+1g8                              : 99
+1r2                              : 100
+1r8                              : 101
+1r3                              : 102
+GNDINT                           : 103
+GNDIO                            : 104
+TDI                              : 105
+nCE                              : 106
+DCLK                             : 107
+DATA0                            : 108
+RESERVED                         : 109
+g                                : 110
+led1                             : 111
+e                                : 112
+RESERVED                         : 113
+1g2                              : 114
+VCCIO                            : 115
+led2                             : 116
+b                                : 117
+RESERVED                         : 118
+d                                : 119
+led3                             : 120
+a                                : 121
+RESERVED                         : 122
+VCCINT                           : 123
+b4to                             : 124
+clk4                             : 125
+GNDINT                           : 126
+GNDINT                           : 127
+dp                               : 128
+GNDIO                            : 129
+led4                             : 130
+f                                : 131
+c                                : 132
+t1                               : 133
+VCCIO                            : 134
+t3                               : 135
+t4                               : 136
+t6                               : 137
+t8                               : 138
+GNDIO                            : 139
+t2                               : 140
+t7                               : 141
+t5                               : 142
+RESERVED                         : 143
+RESERVED                         : 144

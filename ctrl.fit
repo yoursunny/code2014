@@ -1,0 +1,91 @@
+-- MAX+plus II Compiler Fit File      
+-- Version 10.2 07/10/2002            
+-- Compiled: 04/06/2007 12:14:26      
+
+-- Copyright (C) 1988-2002 Altera Corporation
+-- Any megafunction design, and related net list (encrypted or decrypted),
+-- support information, device programming or simulation file, and any other
+-- associated documentation or information provided by Altera or a partner
+-- under Altera's Megafunction Partnership Program may be used only to
+-- program PLD devices (but not masked PLD devices) from Altera.  Any other
+-- use of such megafunction design, net list, support information, device
+-- programming or simulation file, or any other related documentation or
+-- information is prohibited for any other purpose, including, but not
+-- limited to modification, reverse engineering, de-compiling, or use with
+-- any other silicon devices, unless such use is explicitly licensed under
+-- a separate agreement with Altera or a megafunction partner.  Title to
+-- the intellectual property, including patents, copyrights, trademarks,
+-- trade secrets, or maskworks, embodied in any such megafunction design,
+-- net list, support information, device programming or simulation file, or
+-- any other related documentation or information provided by Altera or a
+-- megafunction partner, remains with Altera, the megafunction partner, or
+-- their respective licensors.  No other licenses, including any licenses
+-- needed under any third party's intellectual property, are provided herein.
+
+CHIP "ctrl"
+BEGIN
+
+    DEVICE = "EPM7032LC44-6";
+
+    "clk"                          : INPUT_PIN  = 43     ;
+    "dispdir"                      : OUTPUT_PIN = 41     ; -- LC17
+    "dispflash"                    : OUTPUT_PIN = 24     ; -- LC32
+    "disp0"                        : OUTPUT_PIN = 26     ; -- LC30
+    "disp1"                        : OUTPUT_PIN = 34     ; -- LC23
+    "disp2"                        : OUTPUT_PIN = 28     ; -- LC28
+    "disp3"                        : OUTPUT_PIN = 36     ; -- LC22
+    "i1to"                         : OUTPUT_PIN = 33     ; -- LC24
+    "i1up"                         : OUTPUT_PIN = 25     ; -- LC31
+    "i2dn"                         : OUTPUT_PIN = 5      ; -- LC2
+    "i2to"                         : OUTPUT_PIN = 4      ; -- LC1
+    "i2up"                         : OUTPUT_PIN = 16     ; -- LC11
+    "i3dn"                         : OUTPUT_PIN = 6      ; -- LC3
+    "i3to"                         : OUTPUT_PIN = 7      ; -- LC4
+    "i3up"                         : OUTPUT_PIN = 8      ; -- LC5
+    "i4dn"                         : OUTPUT_PIN = 9      ; -- LC6
+    "i4to"                         : OUTPUT_PIN = 11     ; -- LC7
+    "motordn"                      : OUTPUT_PIN = 40     ; -- LC18
+    "motordooropen"                : OUTPUT_PIN = 39     ; -- LC19
+    "motordoorshut"                : OUTPUT_PIN = 38     ; -- LC20
+    "motorup"                      : OUTPUT_PIN = 37     ; -- LC21
+    "|lpm_counter:c|dffs0"         : LOCATION   = LC8    ; -- PIN 12
+    "|lpm_counter:c|dffs1"         : LOCATION   = LC9    ; -- PIN 13
+    "|lpm_counter:c|dffs2"         : LOCATION   = LC10   ; -- PIN 14
+    "s~1"                          : LOCATION   = LC25   ; -- PIN 32
+    "s~2"                          : LOCATION   = LC26   ; -- PIN 31
+    "s~3"                          : LOCATION   = LC27   ; -- PIN 29
+    "s~4"                          : LOCATION   = LC29   ; -- PIN 27
+
+END;
+
+INTERNAL_INFO "ctrl"
+BEGIN
+	DEVICE = EPM7032LC44-6;
+	LC31    : LORAX = "G57R0";
+	LC2     : LORAX = "G10R0";
+	LC11    : LORAX = "G36R0";
+	LC3     : LORAX = "G11R0";
+	LC5     : LORAX = "G26R0";
+	LC6     : LORAX = "G27R0";
+	LC24    : LORAX = "G33R0";
+	LC1     : LORAX = "G9R0";
+	LC4     : LORAX = "G12R0";
+	LC7     : LORAX = "G28R0";
+	LC22    : LORAX = "G31R0";
+	LC28    : LORAX = "G41R0";
+	LC23    : LORAX = "G32R0";
+	LC30    : LORAX = "G56R0";
+	LC32    : LORAX = "G58R0";
+	LC17    : LORAX = "G13R0,PA7R0C1";
+	LC21    : LORAX = "G30R0";
+	LC18    : LORAX = "G14R0";
+	LC19    : LORAX = "G15R0";
+	LC20    : LORAX = "G16R0";
+	LC25    : LORAX = "G38R0,PA18R0C1";
+	LC26    : LORAX = "G39R0,PA25R0C1";
+	LC29    : LORAX = "G55R0,PA27R0C1";
+	LC27    : LORAX = "G40R0,PA24R0C1";
+	LC10    : LORAX = "G35R0,PA21R0C1";
+	LC9     : LORAX = "G34R0,PA19R0C1";
+	LC8     : LORAX = "G29R0,PA9R0C1";
+END;

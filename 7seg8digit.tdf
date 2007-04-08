@@ -1,0 +1,43 @@
+include "lpm_counter";
+include "7seg";
+subdesign 7seg8digit
+(
+	d7[3..0],d6[3..0],d5[3..0],d4[3..0],d3[3..0],d2[3..0],d1[3..0],d0[3..0]:input;
+	clk:input;
+	a,b,c,d,e,f,g,t1,t2,t3,t4,t5,t6,t7,t8:output;
+)
+variable
+	cnt:lpm_counter with(lpm_width=6,lpm_direction="UP");
+	7s:7seg;
+begin
+	defaults
+		t1=gnd;
+		t2=gnd;
+		t3=gnd;
+		t4=gnd;
+		t5=gnd;
+		t6=gnd;
+		t7=gnd;
+		t8=gnd;
+	end defaults;
+	cnt.clock=clk;
+	a=7s.a;
+	b=7s.b;
+	c=7s.c;
+	d=7s.d;
+	e=7s.e;
+	f=7s.f;
+	g=7s.g;
+	if !(cnt.q[2..0]==7) then
+		case cnt.q[5..3] is
+			when 0=> 7s.hex[]=d0[]; t8=vcc;
+			when 1=> 7s.hex[]=d1[]; t7=vcc;
+			when 2=> 7s.hex[]=d2[]; t6=vcc;
+			when 3=> 7s.hex[]=d3[]; t5=vcc;
+			when 4=> 7s.hex[]=d4[]; t4=vcc;
+			when 5=> 7s.hex[]=d5[]; t3=vcc;
+			when 6=> 7s.hex[]=d6[]; t2=vcc;
+			when 7=> 7s.hex[]=d7[]; t1=vcc;
+end case;
+	end if;
+end;

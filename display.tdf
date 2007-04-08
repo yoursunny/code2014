@@ -1,0 +1,197 @@
+title "elevator display module";
+include "lpm_counter";
+subdesign display
+(
+--indicator lights behind floor buttons
+	i1up,i2dn,i2up,i3dn,i3up,i4dn:input;
+--indicator lights behind lifter buttons
+	i1to,i2to,i3to,i4to:input;
+--current floor display (BCD)
+	disp[3..0]:input;
+--current floor display flashing?
+	dispflash:input;
+--current running direction: 0=up,1=dn
+	dispdir:input;
+--up motor control
+	motorup:input;
+--down motor control
+	motordn:input;
+--door open motor control
+	motordooropen:input;
+--door shut motor control
+	motordoorshut:input;
+
+--outputs
+	led1,led2,led3,led4:output;
+	digit1[3..0],digit2[3..0],digit3[3..0],digit4[3..0],digit5[3..0],digit6[3..0],digit7[3..0],digit8[3..0]:output;
+	1red1[7..0],1red2[7..0],1red3[7..0],1red4[7..0],1red5[7..0],1red6[7..0],1red7[7..0],1red8[7..0],2red1[7..0],2red2[7..0],2red3[7..0],2red4[7..0],2red5[7..0],2red6[7..0],2red7[7..0],2red8[7..0],1green1[7..0],1green2[7..0],1green3[7..0],1green4[7..0],1green5[7..0],1green6[7..0],1green7[7..0],1green8[7..0],2green1[7..0],2green2[7..0],2green3[7..0],2green4[7..0],2green5[7..0],2green6[7..0],2green7[7..0],2green8[7..0]:output;
+
+--2k clock
+	clk:input
+)
+variable
+--flashing freq=2Hz
+	c_flash:lpm_counter with(lpm_width=10,lpm_direction="UP");
+	flash:tff;
+--door open/close animation
+	c_ani:lpm_counter with(lpm_width=9,lpm_direction="UP");--4Hz
+	ani:lpm_counter with(lpm_width=3,lpm_svalue=7);
+	doorstatus:machine with states(shut,opening,open,shutting);
+	ani_l[7..0],ani_r[7..0]:node;
+begin
+	defaults
+		1red1[]=gnd;
+		1red2[]=gnd;
+		1red3[]=gnd;
+		1red4[]=gnd;
+		1red5[]=gnd;
+		1red6[]=gnd;
+		1red7[]=gnd;
+		1red8[]=gnd;
+		2red1[]=gnd;
+		2red2[]=gnd;
+		2red3[]=gnd;
+		2red4[]=gnd;
+		2red5[]=gnd;
+		2red6[]=gnd;
+		2red7[]=gnd;
+		2red8[]=gnd;
+		1green1[]=vcc;
+		1green2[]=vcc;
+		1green3[]=vcc;
+		1green4[]=vcc;
+		1green5[]=vcc;
+		1green6[]=vcc;
+		1green7[]=vcc;
+		1green8[]=vcc;
+		2green1[]=vcc;
+		2green2[]=vcc;
+		2green3[]=vcc;
+		2green4[]=vcc;
+		2green5[]=vcc;
+		2green6[]=vcc;
+		2green7[]=vcc;
+		2green8[]=vcc;
+	end defaults;
+
+--motors => LEDs
+	led1=!motorup;
+	led2=!motordn;
+	led3=!motordooropen;
+	led4=!motordoorshut;
+
+--lifter indicators => 1~4 digits
+	digit1[]=i1to & 1;
+	digit2[]=i2to & 2;
+	digit3[]=i3to & 3;
+	digit4[]=i4to & 4;
+
+--floor indicators => 5~8 digits
+	digit53=vcc;digit52=vcc;digit51=i1up;digit50=gnd;
+	digit63=vcc;digit62=vcc;digit61=i2up;digit60=i2dn;
+	digit73=vcc;digit72=vcc;digit71=i3up;digit70=i3dn;
+	digit83=vcc;digit82=vcc;digit81=gnd;digit80=i4dn;
+
+--current floor => dot1 red
+	c_flash.clock=clk;
+	flash.clk=clk;
+	flash.t=c_flash.cout;
+	if !dispflash # flash.q then
+		case disp[] is
+			when 1=>
+				1red1[]=B"00000000";
+				1red2[]=B"00001000";
+				1red3[]=B"00011000";
+				1red4[]=B"00001000";
+				1red5[]=B"00001000";
+				1red6[]=B"00001000";
+				1red7[]=B"00011100";
+				1red8[]=B"00000000";
+			when 2=>
+				1red1[]=B"00000000";
+				1red2[]=B"00011100";
+				1red3[]=B"00100010";
+				1red4[]=B"00000100";
+				1red5[]=B"00001000";
+				1red6[]=B"00010000";
+				1red7[]=B"00111110";
+				1red8[]=B"00000000";
+			when 3=>
+				1red1[]=B"00000000";
+				1red2[]=B"00111100";
+				1red3[]=B"00000010";
+				1red4[]=B"00000100";
+				1red5[]=B"00000100";
+				1red6[]=B"00000010";
+				1red7[]=B"00111100";
+				1red8[]=B"00000000";
+			when 4=>
+				1red1[]=B"00000100";
+				1red2[]=B"00001100";
+				1red3[]=B"00010100";
+				1red4[]=B"00100100";
+				1red5[]=B"01000100";
+				1red6[]=B"01111110";
+				1red7[]=B"00000100";
+				1red8[]=B"00001110";
+		end case;
+	end if;
+
+--direction => dot2 red
+	if dispdir then--dn
+		2red2[]=B"00010000";
+		2red3[]=B"00010000";
+		2red4[]=B"00010000";
+		2red5[]=B"01010100";
+		2red6[]=B"01010100";
+		2red7[]=B"00111000";
+	else--up
+		2red2[]=B"00111000";
+		2red3[]=B"01010100";
+		2red4[]=B"01010100";
+		2red5[]=B"00010000";
+		2red6[]=B"00010000";
+		2red7[]=B"00010000";
+	end if;
+
+--door open/close animation => dot1&2 green
+	c_ani.clock=clk;
+	ani.clock=clk;
+	ani.clk_en=c_ani.cout;
+	doorstatus.clk=clk;
+	doorstatus.ena=c_ani.cout;
+	table
+		doorstatus,motordooropen,motordoorshut=>doorstatus,ani.updown,ani.cnt_en,ani.sclr,ani.sset;
+		 shut     ,     1       ,     x       => opening  ,   1      ,   1      ,   1    ,   0    ;
+		 opening  ,     0       ,     x       => open     ,   1      ,   0      ,   0    ,   0    ;
+		 open     ,     x       ,     1       => shutting ,   0      ,   1      ,   0    ,   1    ;
+		 shutting ,     x       ,     0       => shut     ,   0      ,   0      ,   0    ,   0    ;
+	end table;
+	if doorstatus==open # doorstatus==shut then
+		table
+			ani.q[] => ani_l[];
+			   7    => B"11111111";
+			   6    => B"11111110";
+			   5    => B"11111100";
+			   4    => B"11111000";
+			   3    => B"11110000";
+			   2    => B"11100000";
+			   1    => B"11000000";
+			   0    => B"10000000";
+		end table;
+		ani_r7=ani_l0;
+		ani_r6=ani_l1;
+		ani_r5=ani_l2;
+		ani_r4=ani_l3;
+		ani_r3=ani_l4;
+		ani_r2=ani_l5;
+		ani_r1=ani_l6;
+		ani_r0=ani_l7;
+		1green2[]=ani_l[];2green2[]=ani_r[];
+		1green3[]=ani_l[];2green3[]=ani_r[];
+		1green4[]=ani_l[];2green4[]=ani_r[];
+		1green5[]=ani_l[];2green5[]=ani_r[];
+		1green6[]=ani_l[];2green6[]=ani_r[];
+		1green7[]=ani_l[];2green7[]=ani_r[];
+	end if;
+end;

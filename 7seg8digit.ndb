@@ -1,0 +1,390 @@
+NDB006
+The number of symbol table entries is: 4
+The length of the symbol table is: 52
+
+Index Hierarchy Path
+----- --------------
+!	&null_hpath&
+.	|4count:counter|
+?	|8digit:8d|
+K	|7seg:7s|
+
+The number of name info structs is : 375
+
+InsOrder BitField SymTableIndex NextSyn SynParent Loc ChainType NextChain ChainParent FanOut DirExp ParExp ShareExp NodeName
+-------- -------- ------------- ------- --------- --- --------- --------- ----------- ------ ------ ------ -------- --------
+"	IdL3	!	38	22	:143	#%
+#	IdL3	!	38	22	:144	#&
+$	IdL3	!	38	22	:145	#'
+%	IdL3	!	38	11	:146	#(
+&	IdL3	!	38	11	:147	#)
+'	IdL3	!	39	22	:148	#*
+(	IdL3	!	39	22	:149	#+
+)	IdL3	!	39	11	:150	#,
+*	IdL3	!	39	11	:151	#-
++	IdL3	!	40	22	:152	#.
+,	IdL3	!	40	22	:153	#/
+-	IdL3	!	40	11	:154	#0
+.	IdL3	!	40	11	:155	#1
+/	IdL3	!	41	22	:156	#2
+0	IdL3	!	41	11	:157	#3
+1	IdL3	!	41	11	:158	#4
+2	IdL3	!	42	22	:159	#5
+3	IdL3	!	42	22	:160	#6
+4	IdL3	!	42	22	:161	#7
+5	IdL3	!	42	11	:162	#8
+6	IdL3	!	43	22	:163	#9
+7	IdL3	!	43	22	:164	#:
+8	IdL3	!	43	11	:165	#;
+9	IdL3	!	44	22	:166	#<
+:	IdL3	!	44	22	:167	#=
+;	IdL3	!	44	11	:168	#>
+<	IdL3	!	45	22	:169	#?
+=	IdL3	!	45	11	:170	#@
+>	IdLM	!	29	1	a	"0
+?	IdLM	!	30	1	b	"1
+@	IdLM	!	31	1	c	"2
+A	IdLL	!	7	1	clk	"/
+B	IdLM	!	32	1	d	"3
+C	IdLL	!	6	66	d00	".
+D	IdLL	!	6	66	d01	"-
+E	IdLL	!	6	66	d02	",
+F	IdLL	!	6	66	d03	"+
+G	IdLL	!	6	57	d10	"*
+H	IdLL	!	6	57	d11	")
+I	IdLL	!	6	57	d12	"(
+J	IdLL	!	6	57	d13	"'
+K	IdLL	!	6	48	d20	"&
+L	IdLL	!	6	48	d21	"%
+M	IdLL	!	6	48	d22	"$
+N	IdLL	!	6	48	d23	"#
+O	IdLL	!	6	39	d30	""
+P	IdLL	!	6	39	d31	"!
+Q	IdLL	!	6	39	d32	~
+R	IdLL	!	6	39	d33	}
+S	IdLL	!	6	30	d40	|
+T	IdLL	!	6	30	d41	{
+U	IdLL	!	6	30	d42	z
+V	IdLL	!	6	30	d43	y
+W	IdLL	!	6	21	d50	x
+X	IdLL	!	6	21	d51	w
+Y	IdLL	!	6	21	d52	v
+Z	IdLL	!	6	21	d53	u
+[	IdLL	!	6	12	d60	t
+\	IdLL	!	6	12	d61	s
+]	IdLL	!	6	12	d62	r
+^	IdLL	!	6	12	d63	q
+_	IdLL	!	6	3	d70	p
+`	IdLL	!	6	3	d71	o
+a	IdLL	!	6	3	d72	n
+b	IdLL	!	6	3	d73	m
+c	IdLM	!	33	1	e	"4
+d	IdLM	!	34	1	f	"5
+e	IdLM	!	35	1	g	"6
+f	IdLM	!	37	35	t1	"7
+g	IdLM	!	37	38	t2	"8
+h	IdLM	!	37	41	t3	"9
+i	IdLM	!	37	44	t4	":
+j	IdLM	!	37	47	t5	";
+k	IdLM	!	37	50	t6	"<
+l	IdLM	!	37	53	t7	"=
+m	IdLM	!	37	56	t8	">
+n	IFkI	.	:1	#n
+o	IFkI	.	:100	#g
+p	IFkI	.	:101	#h
+q	IFkI	.	:102	#]
+r	IFkI	.	:103	#^
+s	IFkI	.	:104	#_
+t	IFkI	.	:105	#a
+u	IFkI	.	:106	#b
+v	IFkI	.	:107	#c
+w	IFkI	.	:109	$1
+x	IFkI	.	:13	$-
+y	IFkI	.	:14	$.
+z	IFkI	.	:15	$/
+{	IFkI	.	:16	$0
+|	IFkI	.	:19	#p
+}	IFkI	.	:2	#o
+~	IFkI	.	:20	#q
+"!	IFkI	.	:21	#r
+""	IFkI	.	:22	#s
+"#	IFkI	.	:23	#t
+"$	IFkI	.	:24	#u
+"%	IFkI	.	:25	#v
+"&	IFkI	.	:26	#w
+"'	IFkI	.	:27	#x
+"(	IFkI	.	:28	#y
+")	IFkI	.	:29	#z
+"*	IFkI	.	:30	#{
+"+	IFkI	.	:31	#|
+",	IFkI	.	:32	#}
+"-	IFkI	.	:33	#~
+".	IUVC	.	"C	:37	$!
+"/	IFkI	.	:38	$"
+"0	IFkI	.	:39	$#
+"1	IFkI	.	:40	$$
+"2	IFkI	.	:41	$%
+"3	IFkI	.	:42	$&
+"4	IUV3	.	"G	:43	$'
+"5	IUV3	.	"F	:44	$(
+"6	IUV3	.	"E	:45	$)
+"7	IUV3	.	"D	:46	$*
+"8	IFkI	.	:52	#i
+"9	IFkI	.	:53	#j
+":	IFkI	.	:54	#k
+";	IFkI	.	:55	#l
+"<	IFkI	.	:56	#m
+"=	IFkI	.	:85	$,
+">	IFkI	.	:92	$+
+"?	IFkI	.	:96	#`
+"@	IFkI	.	:97	#d
+"A	IFkI	.	:98	#e
+"B	IFkI	.	:99	#f
+"C	IM|o	.	".	COUT	$!
+"D	IM|_	.	"7	QA	$*
+"E	IM|_	.	"6	QB	$)
+"F	IM|_	.	"5	QC	$(
+"G	IM|_	.	"4	QD	$'
+"H	IdL3	K	16	18	:100	&r
+"I	IdL3	K	16	18	:101	&s
+"J	IdL3	K	16	20	:102	&t
+"K	IdL3	K	16	20	:103	&u
+"L	IdL3	K	16	22	:104	&v
+"M	IdL3	K	16	22	:105	&w
+"N	IdL3	K	16	24	:106	&x
+"O	IdL3	K	16	24	:107	&y
+"P	IdL3	K	17	8	:108	&z
+"Q	IdL3	K	17	8	:109	&{
+"R	IdL3	K	17	8	:110	&|
+"S	IdL3	K	17	8	:111	&}
+"T	IdL3	K	17	8	:112	&~
+"U	IdL3	K	17	8	:113	'!
+"V	IdL3	K	17	12	:114	'"
+"W	IdL3	K	17	12	:115	'#
+"X	IdL3	K	17	14	:116	'$
+"Y	IdL3	K	17	14	:117	'%
+"Z	IdL3	K	17	16	:118	'&
+"[	IdL3	K	17	16	:119	''
+"\	IdL3	K	17	20	:120	'(
+"]	IdL3	K	17	20	:121	')
+"^	IdL3	K	17	22	:122	'*
+"_	IdL3	K	17	22	:123	'+
+"`	IdL3	K	17	24	:124	',
+"a	IdL3	K	17	24	:125	'-
+"b	IdL3	K	18	8	:126	'.
+"c	IdL3	K	18	8	:127	'/
+"d	IdL3	K	18	8	:128	'0
+"e	IdL3	K	18	8	:129	'1
+"f	IdL3	K	18	8	:130	'2
+"g	IdL3	K	18	8	:131	'3
+"h	IdL3	K	18	14	:132	'4
+"i	IdL3	K	18	14	:133	'5
+"j	IdL3	K	18	16	:134	'6
+"k	IdL3	K	18	16	:135	'7
+"l	IdL3	K	18	18	:136	'8
+"m	IdL3	K	18	18	:137	'9
+"n	IdL3	K	18	20	:138	':
+"o	IdL3	K	18	20	:139	';
+"p	IdL3	K	18	22	:140	'<
+"q	IdL3	K	18	22	:141	'=
+"r	IdL3	K	18	24	:142	'>
+"s	IdL3	K	18	24	:143	'?
+"t	IdL3	K	19	8	:144	'@
+"u	IdL3	K	19	8	:145	'A
+"v	IdL3	K	19	8	:146	'B
+"w	IdL3	K	19	8	:147	'C
+"x	IdL3	K	19	8	:148	'D
+"y	IdL3	K	19	8	:149	'E
+"z	IdL3	K	19	8	:150	'F
+"{	IdL3	K	19	14	:151	'G
+"|	IdL3	K	19	14	:152	'H
+"}	IdL3	K	19	16	:153	'I
+"~	IdL3	K	19	16	:154	'J
+#!	IdL3	K	19	20	:155	'K
+#"	IdL3	K	19	20	:156	'L
+##	IdL3	K	19	22	:157	'M
+#$	IdL3	K	19	22	:158	'N
+#%	IdL3	K	19	24	:159	'O
+#&	IdL3	K	19	24	:160	'P
+#'	IdL3	K	11	9	:38	&4
+#(	IdL3	K	11	9	:39	&5
+#)	IdL3	K	11	9	:40	&6
+#*	IdL3	K	11	12	:41	&7
+#+	IdL3	K	11	14	:42	&8
+#,	IdL3	K	11	16	:43	&9
+#-	IdL3	K	11	18	:44	&:
+#.	IdL3	K	11	20	:45	&;
+#/	IdL3	K	11	22	:46	&<
+#0	IdL3	K	11	24	:47	&=
+#1	IdL3	K	12	9	:48	&>
+#2	IdL3	K	12	9	:49	&?
+#3	IdL3	K	12	9	:50	&@
+#4	IdL3	K	12	9	:51	&A
+#5	IdL3	K	12	12	:52	&B
+#6	IdL3	K	12	12	:53	&C
+#7	IdL3	K	12	18	:54	&D
+#8	IdL3	K	12	18	:55	&E
+#9	IdL3	K	12	20	:56	&F
+#:	IdL3	K	12	20	:57	&G
+#;	IdL3	K	12	22	:58	&H
+#<	IdL3	K	12	22	:59	&I
+#=	IdL3	K	12	24	:60	&J
+#>	IdL3	K	12	24	:61	&K
+#?	IdL3	K	13	9	:62	&L
+#@	IdL3	K	13	9	:63	&M
+#A	IdL3	K	13	9	:64	&N
+#B	IdL3	K	13	9	:65	&O
+#C	IdL3	K	13	16	:66	&P
+#D	IdL3	K	13	16	:67	&Q
+#E	IdL3	K	13	22	:68	&R
+#F	IdL3	K	13	22	:69	&S
+#G	IdL3	K	14	9	:70	&T
+#H	IdL3	K	14	9	:71	&U
+#I	IdL3	K	14	9	:72	&V
+#J	IdL3	K	14	9	:73	&W
+#K	IdL3	K	14	9	:74	&X
+#L	IdL3	K	14	20	:75	&Y
+#M	IdL3	K	14	20	:76	&Z
+#N	IdL3	K	14	22	:77	&[
+#O	IdL3	K	14	22	:78	&\
+#P	IdL3	K	15	9	:79	&]
+#Q	IdL3	K	15	9	:80	&^
+#R	IdL3	K	15	9	:81	&_
+#S	IdL3	K	15	9	:82	&`
+#T	IdL3	K	15	12	:83	&a
+#U	IdL3	K	15	12	:84	&b
+#V	IdL3	K	15	18	:85	&c
+#W	IdL3	K	15	18	:86	&d
+#X	IdL3	K	15	20	:87	&e
+#Y	IdL3	K	15	20	:88	&f
+#Z	IdL3	K	16	8	:89	&g
+#[	IdL3	K	16	8	:90	&h
+#\	IdL3	K	16	8	:91	&i
+#]	IdL3	K	16	8	:92	&j
+#^	IdL3	K	16	8	:93	&k
+#_	IdL3	K	16	12	:94	&l
+#`	IdL3	K	16	12	:95	&m
+#a	IdL3	K	16	14	:96	&n
+#b	IdL3	K	16	14	:97	&o
+#c	IdL3	K	16	16	:98	&p
+#d	IdL3	K	16	16	:99	&q
+#e	IdL3	?	11	13	:100	%"
+#f	IdL3	?	11	13	:101	%#
+#g	IdL3	?	11	13	:102	%$
+#h	IdL3	?	11	13	:103	%%
+#i	IdL3	?	11	13	:104	%&
+#j	IdL3	?	11	13	:105	%'
+#k	IdL3	?	12	1	:106	%(
+#l	IdL3	?	12	1	:107	%)
+#m	IdL3	?	12	1	:108	%*
+#n	IdL3	?	12	1	:109	%+
+#o	IdL3	?	12	13	:110	%,
+#p	IdL3	?	12	13	:111	%-
+#q	IdL3	?	12	13	:112	%.
+#r	IdL3	?	12	13	:113	%/
+#s	IdL3	?	12	13	:114	%0
+#t	IdL3	?	12	13	:115	%1
+#u	IdL3	?	12	13	:116	%2
+#v	IdL3	?	12	13	:117	%3
+#w	IdL3	?	12	13	:118	%4
+#x	IdL3	?	12	13	:119	%5
+#y	IdL3	?	12	13	:120	%6
+#z	IdL3	?	12	13	:121	%7
+#{	IdL3	?	13	1	:122	%8
+#|	IdL3	?	13	1	:123	%9
+#}	IdL3	?	13	1	:124	%:
+#~	IdL3	?	13	13	:125	%;
+$!	IdL3	?	13	13	:126	%<
+$"	IdL3	?	13	13	:127	%=
+$#	IdL3	?	13	13	:128	%>
+$$	IdL3	?	13	13	:129	%?
+$%	IdL3	?	13	13	:130	%@
+$&	IdL3	?	13	13	:131	%A
+$'	IdL3	?	13	13	:132	%B
+$(	IdL3	?	13	13	:133	%C
+$)	IdL3	?	13	13	:134	%D
+$*	IdL3	?	13	13	:135	%E
+$+	IdL3	?	13	13	:136	%F
+$,	IdL3	?	14	1	:137	%G
+$-	IdL3	?	14	1	:138	%H
+$.	IdL3	?	14	1	:139	%I
+$/	IdL3	?	14	1	:140	%J
+$0	IdL3	?	14	13	:141	%K
+$1	IdL3	?	14	13	:142	%L
+$2	IdL3	?	14	13	:143	%M
+$3	IdL3	?	14	13	:144	%N
+$4	IdL3	?	14	13	:145	%O
+$5	IdL3	?	14	13	:146	%P
+$6	IdL3	?	14	13	:147	%Q
+$7	IdL3	?	14	13	:148	%R
+$8	IdL3	?	14	13	:149	%S
+$9	IdL3	?	14	13	:150	%T
+$:	IdL3	?	14	13	:151	%U
+$;	IdL3	?	14	13	:152	%V
+$<	IdL3	?	15	1	:153	%W
+$=	IdL3	?	15	1	:154	%X
+$>	IdL3	?	15	1	:155	%Y
+$?	IdL3	?	15	1	:156	%Z
+$@	IdL3	?	15	13	:157	%[
+$A	IdL3	?	15	13	:158	%\
+$B	IdL3	?	15	13	:159	%]
+$C	IdL3	?	15	13	:160	%^
+$D	IdL3	?	15	13	:161	%_
+$E	IdL3	?	15	13	:162	%`
+$F	IdL3	?	15	13	:163	%a
+$G	IdL3	?	15	13	:164	%b
+$H	IdL3	?	15	13	:165	%c
+$I	IdL3	?	15	13	:166	%d
+$J	IdL3	?	15	13	:167	%e
+$K	IdL3	?	15	13	:168	%f
+$L	IdL3	?	16	1	:169	%g
+$M	IdL3	?	16	1	:170	%h
+$N	IdL3	?	16	1	:171	%i
+$O	IdL3	?	16	1	:172	%j
+$P	IdL3	?	16	1	:173	%k
+$Q	IdL3	?	16	13	:174	%l
+$R	IdL3	?	16	13	:175	%m
+$S	IdL3	?	16	13	:176	%n
+$T	IdL3	?	16	13	:177	%o
+$U	IdL3	?	16	13	:178	%p
+$V	IdL3	?	16	13	:179	%q
+$W	IdL3	?	16	13	:180	%r
+$X	IdL3	?	16	13	:181	%s
+$Y	IdL3	?	16	13	:182	%t
+$Z	IdL3	?	16	13	:183	%u
+$[	IdL3	?	16	13	:184	%v
+$\	IdL3	?	16	13	:185	%w
+$]	IdL3	?	9	1	:66	$^
+$^	IdL3	?	9	1	:67	$_
+$_	IdL3	?	9	13	:68	$`
+$`	IdL3	?	9	13	:69	$a
+$a	IdL3	?	9	13	:70	$b
+$b	IdL3	?	9	13	:71	$c
+$c	IdL3	?	9	13	:72	$d
+$d	IdL3	?	9	13	:73	$e
+$e	IdL3	?	9	13	:74	$f
+$f	IdL3	?	9	13	:75	$g
+$g	IdL3	?	10	1	:76	$h
+$h	IdL3	?	10	1	:77	$i
+$i	IdL3	?	10	1	:78	$j
+$j	IdL3	?	10	13	:79	$k
+$k	IdL3	?	10	13	:80	$l
+$l	IdL3	?	10	13	:81	$m
+$m	IdL3	?	10	13	:82	$n
+$n	IdL3	?	10	13	:83	$o
+$o	IdL3	?	10	13	:84	$p
+$p	IdL3	?	10	13	:85	$q
+$q	IdL3	?	10	13	:86	$r
+$r	IdL3	?	10	13	:87	$s
+$s	IdL3	?	10	13	:88	$t
+$t	IdL3	?	10	13	:89	$u
+$u	IdL3	?	10	13	:90	$v
+$v	IdL3	?	11	1	:91	$w
+$w	IdL3	?	11	1	:92	$x
+$x	IdL3	?	11	1	:93	$y
+$y	IdL3	?	11	13	:94	$z
+$z	IdL3	?	11	13	:95	${
+${	IdL3	?	11	13	:96	$|
+$|	IdL3	?	11	13	:97	$}
+$}	IdL3	?	11	13	:98	$~
+$~	IdL3	?	11	13	:99	%!

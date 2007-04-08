@@ -1,0 +1,658 @@
+Project Information                                                e:\ctrl.rpt
+
+MAX+plus II Compiler Report File
+Version 10.2 07/10/2002
+Compiled: 04/06/2007 12:14:26
+
+Copyright (C) 1988-2002 Altera Corporation
+Any megafunction design, and related net list (encrypted or decrypted),
+support information, device programming or simulation file, and any other
+associated documentation or information provided by Altera or a partner
+under Altera's Megafunction Partnership Program may be used only to
+program PLD devices (but not masked PLD devices) from Altera.  Any other
+use of such megafunction design, net list, support information, device
+programming or simulation file, or any other related documentation or
+information is prohibited for any other purpose, including, but not
+limited to modification, reverse engineering, de-compiling, or use with
+any other silicon devices, unless such use is explicitly licensed under
+a separate agreement with Altera or a megafunction partner.  Title to
+the intellectual property, including patents, copyrights, trademarks,
+trade secrets, or maskworks, embodied in any such megafunction design,
+net list, support information, device programming or simulation file, or
+any other related documentation or information provided by Altera or a
+megafunction partner, remains with Altera, the megafunction partner, or
+their respective licensors.  No other licenses, including any licenses
+needed under any third party's intellectual property, are provided herein.
+
+
+
+***** Project compilation was successful
+
+
+Untitled
+
+
+** DEVICE SUMMARY **
+
+Chip/                     Input   Output   Bidir         Shareable
+POF       Device          Pins    Pins     Pins     LCs  Expanders  % Utilized
+
+ctrl      EPM7032LC44-6    1        20       0      27      14          84 %
+
+User Pins:                 1        20       0  
+
+
+
+Project Information                                                e:\ctrl.rpt
+
+** PROJECT COMPILATION MESSAGES **
+
+Warning: Flipflop 'b1u' stuck at GND
+Warning: Flipflop 'b1t' stuck at GND
+Warning: Flipflop 'b2d' stuck at GND
+Warning: Flipflop 'b2t' stuck at GND
+Warning: Flipflop 'b2u' stuck at GND
+Warning: Flipflop 'b3d' stuck at GND
+Warning: Flipflop 'b3t' stuck at GND
+Warning: Flipflop 'b3u' stuck at GND
+Warning: Flipflop 'b4d' stuck at GND
+Warning: Flipflop 'b4t' stuck at GND
+Warning: Primitive 'i1up' is stuck at GND
+Warning: Primitive 'i2dn' is stuck at GND
+Warning: Primitive 'i2up' is stuck at GND
+Warning: Primitive 'i3dn' is stuck at GND
+Warning: Primitive 'i3up' is stuck at GND
+Warning: Primitive 'i4dn' is stuck at GND
+Warning: Primitive 'i1to' is stuck at GND
+Warning: Primitive 'i2to' is stuck at GND
+Warning: Primitive 'i3to' is stuck at GND
+Warning: Primitive 'i4to' is stuck at GND
+Warning: Primitive 'disp3' is stuck at GND
+Warning: Ignored unnecessary INPUT pin 'b1up'
+Warning: Ignored unnecessary INPUT pin 'b2dn'
+Warning: Ignored unnecessary INPUT pin 'b2up'
+Warning: Ignored unnecessary INPUT pin 'b3dn'
+Warning: Ignored unnecessary INPUT pin 'b3up'
+Warning: Ignored unnecessary INPUT pin 'b4dn'
+Warning: Ignored unnecessary INPUT pin 'b1to'
+Warning: Ignored unnecessary INPUT pin 'b2to'
+Warning: Ignored unnecessary INPUT pin 'b3to'
+Warning: Ignored unnecessary INPUT pin 'b4to'
+
+
+Project Information                                                e:\ctrl.rpt
+
+** AUTO GLOBAL SIGNALS **
+
+
+
+INFO: Signal 'clk' chosen for auto global Clock
+
+
+Project Information                                                e:\ctrl.rpt
+
+** STATE MACHINE ASSIGNMENTS **
+
+
+s: MACHINE
+        OF BITS (
+           s~4,
+           s~3,
+           s~2,
+           s~1
+        )
+        WITH STATES (
+                           stop1 = B"0000", 
+                           stop2 = B"0010", 
+                           stop3 = B"0110", 
+                           stop4 = B"1110", 
+                            1to2 = B"0111", 
+                            2to3 = B"1000", 
+                            3to4 = B"0101", 
+                            4to3 = B"1010", 
+                            3to2 = B"0011", 
+                            2to1 = B"0001"
+);
+
+
+dir: MACHINE
+        OF BITS (
+           dir~1
+        )
+        WITH STATES (
+                              up = B"0", 
+                              dn = B"1"
+);
+
+
+
+Project Information                                                e:\ctrl.rpt
+
+** FILE HIERARCHY **
+
+
+
+|lpm_counter:c|
+
+
+Device-Specific Information:                                       e:\ctrl.rpt
+ctrl
+
+***** Logic for device 'ctrl' compiled without errors.
+
+
+
+
+Device: EPM7032LC44-6
+
+Device Options:
+    Turbo Bit                                    = ON
+    Security Bit                                 = OFF
+
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                              d  m  
+                                              i  o  
+                                              s  t  
+                   i  i  i                    p  o  
+                   3  2  2  V  G  G  G  c  G  d  r  
+                   d  d  t  C  N  N  N  l  N  i  d  
+                   n  n  o  C  D  D  D  k  D  r  n  
+                 -----------------------------------_ 
+               /   6  5  4  3  2  1 44 43 42 41 40   | 
+         i3to |  7                                39 | motordooropen 
+         i3up |  8                                38 | motordoorshut 
+         i4dn |  9                                37 | motorup 
+          GND | 10                                36 | disp3 
+         i4to | 11                                35 | VCC 
+     RESERVED | 12         EPM7032LC44-6          34 | disp1 
+     RESERVED | 13                                33 | i1to 
+     RESERVED | 14                                32 | RESERVED 
+          VCC | 15                                31 | RESERVED 
+         i2up | 16                                30 | GND 
+     RESERVED | 17                                29 | RESERVED 
+              |_  18 19 20 21 22 23 24 25 26 27 28  _| 
+                ------------------------------------ 
+                   R  R  R  R  G  V  d  i  d  R  d  
+                   E  E  E  E  N  C  i  1  i  E  i  
+                   S  S  S  S  D  C  s  u  s  S  s  
+                   E  E  E  E        p  p  p  E  p  
+                   R  R  R  R        f     0  R  2  
+                   V  V  V  V        l        V     
+                   E  E  E  E        a        E     
+                   D  D  D  D        s        D     
+                                     h              
+                                                    
+                                                    
+                                                    
+                                                    
+
+
+N.C. = No Connect. This pin has no internal connection to the device.
+VCC = Dedicated power pin, which MUST be connected to VCC.
+GND = Dedicated ground pin or unused dedicated input, which MUST be connected to GND.
+RESERVED = Unused I/O pin, which MUST be left unconnected.
+
+
+
+Device-Specific Information:                                       e:\ctrl.rpt
+ctrl
+
+** RESOURCE USAGE **
+
+                                                Shareable     External
+Logic Array Block     Logic Cells   I/O Pins    Expanders   Interconnect
+
+A:     LC1 - LC16    11/16( 68%)   8/16( 50%)   0/16(  0%)   0/36(  0%) 
+B:    LC17 - LC32    16/16(100%)  12/16( 75%)  14/16( 87%)   8/36( 22%) 
+
+
+Total dedicated input pins used:                 1/4      ( 25%)
+Total I/O pins used:                            20/32     ( 62%)
+Total logic cells used:                         27/32     ( 84%)
+Total shareable expanders used:                 14/32     ( 43%)
+Total Turbo logic cells used:                   27/32     ( 84%)
+Total shareable expanders not available (n/a):   0/32     (  0%)
+Average fan-in:                                  3.00
+Total fan-in:                                    81
+
+Total input pins required:                       1
+Total output pins required:                     20
+Total bidirectional pins required:               0
+Total logic cells required:                     27
+Total flipflops required:                        8
+Total product terms required:                   59
+Total logic cells lending parallel expanders:    0
+Total shareable expanders in database:          14
+
+Synthesized logic cells:                         0/  32   (  0%)
+
+
+
+Device-Specific Information:                                       e:\ctrl.rpt
+ctrl
+
+** INPUTS **
+
+                                         Shareable
+                                         Expanders     Fan-In    Fan-Out
+ Pin     LC  LAB  Primitive    Code   Total Shared n/a INP  FBK  OUT  FBK  Name
+  43      -   -       INPUT  G            0      0   0    0    0    0    0  clk
+
+
+Code:
+
+s = Synthesized pin or logic cell
+t = Turbo logic cell
++ = Synchronous flipflop
+! = NOT gate push-back
+r = Fitter-inserted logic cell
+G = Global Source. Fan-out destinations counted here do not include destinations
+that are driven using global routing resources. Refer to the Auto Global Signals,
+Clock Signals, Clear Signals, Synchronous Load Signals, and Synchronous Clear Signals
+Sections of this Report File for information on which signals' fan-outs are used as
+Clock, Clear, Preset, Output Enable, and synchronous Load signals.
+
+
+Device-Specific Information:                                       e:\ctrl.rpt
+ctrl
+
+** OUTPUTS **
+
+                                         Shareable
+                                         Expanders     Fan-In    Fan-Out
+ Pin     LC  LAB  Primitive    Code   Total Shared n/a INP  FBK  OUT  FBK  Name
+  41     17    B         FF      t        0      0   0    0    3    0    4  dispdir
+  24     32    B     OUTPUT      t        0      0   0    0    6    0    0  dispflash
+  26     30    B     OUTPUT      t        0      0   0    0    4    0    0  disp0
+  34     23    B     OUTPUT      t        0      0   0    0    4    0    0  disp1
+  28     28    B     OUTPUT      t        0      0   0    0    3    0    0  disp2
+  36     22    B     OUTPUT      t        0      0   0    0    0    0    0  disp3
+  33     24    B     OUTPUT      t        0      0   0    0    0    0    0  i1to
+  25     31    B     OUTPUT      t        0      0   0    0    0    0    0  i1up
+   5      2    A     OUTPUT      t        0      0   0    0    0    0    0  i2dn
+   4      1    A     OUTPUT      t        0      0   0    0    0    0    0  i2to
+  16     11    A     OUTPUT      t        0      0   0    0    0    0    0  i2up
+   6      3    A     OUTPUT      t        0      0   0    0    0    0    0  i3dn
+   7      4    A     OUTPUT      t        0      0   0    0    0    0    0  i3to
+   8      5    A     OUTPUT      t        0      0   0    0    0    0    0  i3up
+   9      6    A     OUTPUT      t        0      0   0    0    0    0    0  i4dn
+  11      7    A     OUTPUT      t        0      0   0    0    0    0    0  i4to
+  40     18    B     OUTPUT      t        0      0   0    0    4    0    0  motordn
+  39     19    B     OUTPUT      t        0      0   0    0    7    0    0  motordooropen
+  38     20    B     OUTPUT      t        0      0   0    0    7    0    0  motordoorshut
+  37     21    B     OUTPUT      t        0      0   0    0    4    0    0  motorup
+
+
+Code:
+
+s = Synthesized pin or logic cell
+t = Turbo logic cell
++ = Synchronous flipflop
+! = NOT gate push-back
+r = Fitter-inserted logic cell
+
+
+Device-Specific Information:                                       e:\ctrl.rpt
+ctrl
+
+** BURIED LOGIC **
+
+                                         Shareable
+                                         Expanders     Fan-In    Fan-Out
+ Pin     LC  LAB  Primitive    Code   Total Shared n/a INP  FBK  OUT  FBK  Name
+ (12)     8    A       TFFE   +  t        0      0   0    0    0    4    4  |lpm_counter:c|dffs0
+ (13)     9    A       TFFE   +  t        0      0   0    0    0    4    4  |lpm_counter:c|dffs1
+ (14)    10    A       TFFE   +  t        0      0   0    0    0    4    4  |lpm_counter:c|dffs2
+ (32)    25    B       DFFE      t        5      1   0    0    8    8    4  s~1
+ (31)    26    B       TFFE      t        5      0   0    0    8    7    4  s~2
+ (29)    27    B       TFFE      t        5      1   0    0    8    7    4  s~3
+ (27)    29    B       TFFE      t        0      0   0    0    8    8    4  s~4
+
+
+Code:
+
+s = Synthesized pin or logic cell
+t = Turbo logic cell
++ = Synchronous flipflop
+! = NOT gate push-back
+r = Fitter-inserted logic cell
+
+
+Device-Specific Information:                                       e:\ctrl.rpt
+ctrl
+
+** LOGIC CELL INTERCONNECTIONS **
+
+Logic Array Block 'A':
+
+                               Logic cells placed in LAB 'A'
+        +--------------------- LC2 i2dn
+        | +------------------- LC1 i2to
+        | | +----------------- LC11 i2up
+        | | | +--------------- LC3 i3dn
+        | | | | +------------- LC4 i3to
+        | | | | | +----------- LC5 i3up
+        | | | | | | +--------- LC6 i4dn
+        | | | | | | | +------- LC7 i4to
+        | | | | | | | | +----- LC8 |lpm_counter:c|dffs0
+        | | | | | | | | | +--- LC9 |lpm_counter:c|dffs1
+        | | | | | | | | | | +- LC10 |lpm_counter:c|dffs2
+        | | | | | | | | | | | 
+        | | | | | | | | | | |   Other LABs fed by signals
+        | | | | | | | | | | |   that feed LAB 'A'
+LC      | | | | | | | | | | | | A B |     Logic cells that feed LAB 'A':
+
+Pin
+43   -> - - - - - - - - - - - | - - | <-- clk
+
+
+* = The logic cell or pin is an input to the logic cell (or LAB) through the PIA.
+- = The logic cell or pin is not an input to the logic cell (or LAB).
+
+
+Device-Specific Information:                                       e:\ctrl.rpt
+ctrl
+
+** LOGIC CELL INTERCONNECTIONS **
+
+Logic Array Block 'B':
+
+                                         Logic cells placed in LAB 'B'
+        +------------------------------- LC17 dispdir
+        | +----------------------------- LC32 dispflash
+        | | +--------------------------- LC30 disp0
+        | | | +------------------------- LC23 disp1
+        | | | | +----------------------- LC28 disp2
+        | | | | | +--------------------- LC22 disp3
+        | | | | | | +------------------- LC24 i1to
+        | | | | | | | +----------------- LC31 i1up
+        | | | | | | | | +--------------- LC18 motordn
+        | | | | | | | | | +------------- LC19 motordooropen
+        | | | | | | | | | | +----------- LC20 motordoorshut
+        | | | | | | | | | | | +--------- LC21 motorup
+        | | | | | | | | | | | | +------- LC25 s~1
+        | | | | | | | | | | | | | +----- LC26 s~2
+        | | | | | | | | | | | | | | +--- LC27 s~3
+        | | | | | | | | | | | | | | | +- LC29 s~4
+        | | | | | | | | | | | | | | | | 
+        | | | | | | | | | | | | | | | |   Other LABs fed by signals
+        | | | | | | | | | | | | | | | |   that feed LAB 'B'
+LC      | | | | | | | | | | | | | | | | | A B |     Logic cells that feed LAB 'B':
+LC17 -> * - - - - - - - - - - - * * * * | - * | <-- dispdir
+LC25 -> - * * * * - - - * * * * * * * * | - * | <-- s~1
+LC26 -> - - * * * - - - * * * * * * * * | - * | <-- s~2
+LC27 -> - * * * - - - - * * * * * * * * | - * | <-- s~3
+LC29 -> - * * * * - - - * * * * * * * * | - * | <-- s~4
+
+Pin
+43   -> - - - - - - - - - - - - - - - - | - - | <-- clk
+LC8  -> * * - - - - - - - * * - * * * * | - * | <-- |lpm_counter:c|dffs0
+LC9  -> * * - - - - - - - * * - * * * * | - * | <-- |lpm_counter:c|dffs1
+LC10 -> * * - - - - - - - * * - * * * * | - * | <-- |lpm_counter:c|dffs2
+
+
+* = The logic cell or pin is an input to the logic cell (or LAB) through the PIA.
+- = The logic cell or pin is not an input to the logic cell (or LAB).
+
+
+Device-Specific Information:                                       e:\ctrl.rpt
+ctrl
+
+** EQUATIONS **
+
+clk      : INPUT;
+
+-- Node name is 'dispdir' = 'dir~1' from file "ctrl.tdf" line 41, column 2
+-- Equation name is 'dispdir', location is LC017, type is output.
+ dispdir = TFFE( VCC,  _EQ001,  VCC,  VCC,  VCC);
+  _EQ001 =  _LC008 &  _LC009 &  _LC010;
+
+-- Node name is 'dispflash' 
+-- Equation name is 'dispflash', location is LC032, type is output.
+ dispflash = LCELL( _EQ002 $  GND);
+  _EQ002 =  _LC008 &  _LC009 &  _LC010 & !s~1 & !s~3 &  s~4
+         #  _LC008 &  _LC009 &  _LC010 &  s~1 & !s~4;
+
+-- Node name is 'disp0' 
+-- Equation name is 'disp0', location is LC030, type is output.
+ disp0   = LCELL( _EQ003 $ !s~4);
+  _EQ003 =  s~1 & !s~2 & !s~3 & !s~4
+         # !s~1 &  s~2 & !s~3 & !s~4
+         # !s~1 & !s~2 &  s~3 & !s~4;
+
+-- Node name is 'disp1' 
+-- Equation name is 'disp1', location is LC023, type is output.
+ disp1   = LCELL( _EQ004 $ !s~4);
+  _EQ004 =  s~1 &  s~2 &  s~3 & !s~4
+         # !s~1 & !s~2 & !s~3 &  s~4
+         # !s~1 & !s~2 & !s~4;
+
+-- Node name is 'disp2' 
+-- Equation name is 'disp2', location is LC028, type is output.
+ disp2   = LCELL( _EQ005 $  GND);
+  _EQ005 = !s~1 &  s~2 &  s~4;
+
+-- Node name is 'disp3' 
+-- Equation name is 'disp3', location is LC022, type is output.
+ disp3   = LCELL( GND $  GND);
+
+-- Node name is 'i1to' 
+-- Equation name is 'i1to', location is LC024, type is output.
+ i1to    = LCELL( GND $  GND);
+
+-- Node name is 'i1up' 
+-- Equation name is 'i1up', location is LC031, type is output.
+ i1up    = LCELL( GND $  GND);
+
+-- Node name is 'i2dn' 
+-- Equation name is 'i2dn', location is LC002, type is output.
+ i2dn    = LCELL( GND $  GND);
+
+-- Node name is 'i2to' 
+-- Equation name is 'i2to', location is LC001, type is output.
+ i2to    = LCELL( GND $  GND);
+
+-- Node name is 'i2up' 
+-- Equation name is 'i2up', location is LC011, type is output.
+ i2up    = LCELL( GND $  GND);
+
+-- Node name is 'i3dn' 
+-- Equation name is 'i3dn', location is LC003, type is output.
+ i3dn    = LCELL( GND $  GND);
+
+-- Node name is 'i3to' 
+-- Equation name is 'i3to', location is LC004, type is output.
+ i3to    = LCELL( GND $  GND);
+
+-- Node name is 'i3up' 
+-- Equation name is 'i3up', location is LC005, type is output.
+ i3up    = LCELL( GND $  GND);
+
+-- Node name is 'i4dn' 
+-- Equation name is 'i4dn', location is LC006, type is output.
+ i4dn    = LCELL( GND $  GND);
+
+-- Node name is 'i4to' 
+-- Equation name is 'i4to', location is LC007, type is output.
+ i4to    = LCELL( GND $  GND);
+
+-- Node name is 'motordn' 
+-- Equation name is 'motordn', location is LC018, type is output.
+ motordn = LCELL( _EQ006 $  GND);
+  _EQ006 = !s~1 &  s~2 & !s~3 &  s~4
+         #  s~1 & !s~3 & !s~4;
+
+-- Node name is 'motordooropen' 
+-- Equation name is 'motordooropen', location is LC019, type is output.
+ motordooropen = LCELL( _EQ007 $  GND);
+  _EQ007 =  _LC008 & !_LC009 & !_LC010 & !s~1 &  s~2 &  s~3
+         #  _LC008 & !_LC009 & !_LC010 & !s~1 & !s~3 & !s~4;
+
+-- Node name is 'motordoorshut' 
+-- Equation name is 'motordoorshut', location is LC020, type is output.
+ motordoorshut = LCELL( _EQ008 $  GND);
+  _EQ008 = !_LC008 &  _LC009 &  _LC010 & !s~1 &  s~2 &  s~3
+         # !_LC008 &  _LC009 &  _LC010 & !s~1 & !s~3 & !s~4;
+
+-- Node name is 'motorup' 
+-- Equation name is 'motorup', location is LC021, type is output.
+ motorup = LCELL( _EQ009 $  GND);
+  _EQ009 = !s~1 & !s~2 & !s~3 &  s~4
+         #  s~1 &  s~3 & !s~4;
+
+-- Node name is 's~1' from file "ctrl.tdf" line 31, column 2
+-- Equation name is 's~1', location is LC025, type is buried.
+s~1      = DFFE( _EQ010 $  VCC,  _EQ011,  VCC,  VCC,  VCC);
+  _EQ010 =  _X001 &  _X002 &  _X003 &  _X004 &  _X005;
+  _X001  = EXP(!s~1 & !s~3 &  s~4);
+  _X002  = EXP( s~1 &  s~2 & !s~3 & !s~4);
+  _X003  = EXP( dispdir & !s~1 & !s~2 & !s~3);
+  _X004  = EXP(!s~1 &  s~2 &  s~3 & !s~4);
+  _X005  = EXP(!dispdir & !s~1 &  s~2 & !s~3);
+  _EQ011 =  _LC008 &  _LC009 &  _LC010;
+
+-- Node name is 's~2' from file "ctrl.tdf" line 31, column 2
+-- Equation name is 's~2', location is LC026, type is buried.
+s~2      = TFFE(!_EQ012,  _EQ013,  VCC,  VCC,  VCC);
+  _EQ012 =  _X006 &  _X007 &  _X008 &  _X009 &  _X010;
+  _X006  = EXP( s~1 & !s~2 &  s~3 & !s~4);
+  _X007  = EXP( s~1 &  s~2 & !s~4);
+  _X008  = EXP(!s~1 &  s~2 & !s~3 & !s~4);
+  _X009  = EXP( dispdir & !s~1 & !s~2 & !s~3 & !s~4);
+  _X010  = EXP( dispdir &  s~2 &  s~3 & !s~4);
+  _EQ013 =  _LC008 &  _LC009 &  _LC010;
+
+-- Node name is 's~3' from file "ctrl.tdf" line 31, column 2
+-- Equation name is 's~3', location is LC027, type is buried.
+s~3      = TFFE(!_EQ014,  _EQ015,  VCC,  VCC,  VCC);
+  _EQ014 =  _X003 &  _X011 &  _X012 &  _X013 &  _X014;
+  _X003  = EXP( dispdir & !s~1 & !s~2 & !s~3);
+  _X011  = EXP( s~1 &  s~2 &  s~3 & !s~4);
+  _X012  = EXP(!s~1 & !s~2 & !s~3 &  s~4);
+  _X013  = EXP(!dispdir & !s~1 &  s~2 &  s~3 &  s~4);
+  _X014  = EXP(!dispdir &  s~2 &  s~3 & !s~4);
+  _EQ015 =  _LC008 &  _LC009 &  _LC010;
+
+-- Node name is 's~4' from file "ctrl.tdf" line 31, column 2
+-- Equation name is 's~4', location is LC029, type is buried.
+s~4      = TFFE( _EQ016,  _EQ017,  VCC,  VCC,  VCC);
+  _EQ016 =  dispdir & !s~1 &  s~2 & !s~3
+         #  s~1 &  s~3 & !s~4
+         # !s~1 & !s~3 &  s~4;
+  _EQ017 =  _LC008 &  _LC009 &  _LC010;
+
+-- Node name is '|lpm_counter:c|dffs0' from file "lpm_counter.tdf" line 220, column 8
+-- Equation name is '_LC008', type is buried 
+_LC008   = TFFE( GND, GLOBAL( clk),  VCC,  VCC,  VCC);
+
+-- Node name is '|lpm_counter:c|dffs1' from file "lpm_counter.tdf" line 220, column 8
+-- Equation name is '_LC009', type is buried 
+_LC009   = TFFE( GND, GLOBAL( clk),  VCC,  VCC,  VCC);
+
+-- Node name is '|lpm_counter:c|dffs2' from file "lpm_counter.tdf" line 220, column 8
+-- Equation name is '_LC010', type is buried 
+_LC010   = TFFE( GND, GLOBAL( clk),  VCC,  VCC,  VCC);
+
+
+
+--     Shareable expanders that are duplicated in multiple LABs:
+--     (none)
+
+
+
+
+Project Information                                                e:\ctrl.rpt
+
+** COMPILATION SETTINGS & TIMES **
+
+Processing Menu Commands
+------------------------
+
+Design Doctor                             = off
+
+Logic Synthesis:
+
+   Synthesis Type Used                    = Standard
+
+   Default Synthesis Style                = NORMAL
+
+      Logic option settings in 'NORMAL' style for 'MAX7000' family
+
+      DECOMPOSE_GATES                     = on
+      DUPLICATE_LOGIC_EXTRACTION          = on
+      MINIMIZATION                        = full
+      MULTI_LEVEL_FACTORING               = on
+      NOT_GATE_PUSH_BACK                  = on
+      PARALLEL_EXPANDERS                  = off
+      REDUCE_LOGIC                        = on
+      REFACTORIZATION                     = on
+      REGISTER_OPTIMIZATION               = on
+      RESYNTHESIZE_NETWORK                = on
+      SLOW_SLEW_RATE                      = off
+      SOFT_BUFFER_INSERTION               = on
+      SUBFACTOR_EXTRACTION                = on
+      TURBO_BIT                           = on
+      XOR_SYNTHESIS                       = on
+      IGNORE_SOFT_BUFFERS                 = off
+      USE_LPM_FOR_AHDL_OPERATORS          = off
+
+   Other logic synthesis settings:
+
+      Automatic Global Clock              = on
+      Automatic Global Clear              = on
+      Automatic Global Preset             = on
+      Automatic Global Output Enable      = on
+      Automatic Fast I/O                  = off
+      Automatic Register Packing          = off
+      Automatic Open-Drain Pins           = on
+      Automatic Implement in EAB          = off
+      One-Hot State Machine Encoding      = off
+      Optimize                            = 5
+
+Default Timing Specifications: None
+
+Cut All Bidir Feedback Timing Paths       = on
+Cut All Clear & Preset Timing Paths       = on
+
+Ignore Timing Assignments                 = off
+
+Functional SNF Extractor                  = off
+
+Linked SNF Extractor                      = off
+Timing SNF Extractor                      = on
+Optimize Timing SNF                       = off
+Generate AHDL TDO File                    = off
+Fitter Settings                           = NORMAL
+Smart Recompile                           = off
+Total Recompile                           = off
+
+Interfaces Menu Commands
+------------------------
+
+EDIF Netlist Writer                       = off
+Verilog Netlist Writer                    = off
+VHDL Netlist Writer                       = off
+
+Compilation Times
+-----------------
+
+   Compiler Netlist Extractor             00:00:01
+   Database Builder                       00:00:00
+   Logic Synthesizer                      00:00:00
+   Partitioner                            00:00:00
+   Fitter                                 00:00:00
+   Timing SNF Extractor                   00:00:00
+   Assembler                              00:00:00
+   --------------------------             --------
+   Total Time                             00:00:01
+
+
+Memory Allocated
+-----------------
+
+Peak memory allocated during compilation  = 3,379K

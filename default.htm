@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数码产品进销存管理 演示程序</title>
+<script type="text/javascript" src="lib.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<link rel="stylesheet" type="text/css" href="home.css" />
+</head>
+<body>
+<div id="usermenus">
+功能导航：
+<a href="javascript:usermenu(this,1);">促销员</a>
+<a href="javascript:usermenu(this,2);">收银员</a>
+<a href="javascript:usermenu(this,3);">服务台</a>
+<a href="javascript:usermenu(this,4);">采购主管</a>
+<a href="javascript:usermenu(this,5);">仓储物流主管</a>
+<a href="javascript:usermenu(this,6);">广告部</a>
+<div id="usermenu1" style="display:none;">
+促销员操作：
+<a href="javascript:run('query');">查询商品</a>
+<a href="javascript:run('bill');">开具购物单</a>
+<a href="javascript:run('dispatch');">发货</a>
+</div>
+<div id="usermenu2" style="display:none;">
+收银员操作：
+<a href="javascript:run('cashier');">收款台</a>
+</div>
+<div id="usermenu3" style="display:none;">
+服务台操作：
+<a href="javascript:not_impl();">办理会员卡</a>
+<a href="javascript:not_impl();">开发票</a>
+</div>
+<div id="usermenu4" style="display:none;">
+采购主管操作：
+<a href="javascript:run('stock');">进货</a>
+<a href="javascript:run('product');">商品及价格管理</a>
+</div>
+<div id="usermenu5" style="display:none;">
+采购主管操作：
+<a href="javascript:not_impl();">调拨</a>
+<a href="javascript:run('recv');">收货</a>
+</div>
+<div id="usermenu6" style="display:none;">
+广告部操作：
+<a href="javascript:not_impl();">寄送广告</a>
+</div>
+<hr />
+</div>
+
+<div id="query" class="action">
+<b>查询商品</b> 当前门店：<select id="query_shop"></select><br />
+按分类查询商品：<select id="query_cat"></select><input type="button" onclick="query('by_cat')" value="查询" /><br />
+模糊查询：商品名称关键字<input id="query_pName" type="text" /><input type="button" onclick="query('by_name')" value="查询" /><br />
+<div id="query_r"></div>
+</div>
+
+<div id="bill" class="action">
+<b>开具购物单</b> 当前门店：<select id="bill_shop"></select><br />
+商品编号：<input type="button" onclick="bill('query')" value="查询" /><input id="bill_pID" type="text" maxlength="13" /><div id="bill_pID_autocompleter"></div><br />
+<input id="bill_submit" type="button" onclick="bill('submit')" value="开具购物单" />
+<span id="bill_available"></span>
+</div>
+
+<div id="dispatch" class="action">
+<b>发货</b> 当前门店：<select id="dispatch_shop" onchange="dispatch('list')"></select><input type="button" value="待发货" onclick="dispatch('list')" /><br />
+<div id="dispatch_r"></div>
+</div>
+
+<div id="cashier" class="action">
+<b>收款台</b> 当前门店：<select id="cashier_shop" onchange="cashier('list')"></select><input type="button" value="购物单" onclick="cashier('list')" /><br />
+<div id="cashier_r"></div>
+</div>
+
+<div id="stock" class="action">
+<b>进货</b><br />
+供应商：<input id="stock_supplier" type="text" /><div id="stock_supplier_autocompleter"></div><br />
+商品编号：<input id="stock_pID" type="text" maxlength="13" /><div id="stock_pID_autocompleter"></div><br />
+进货数量：<input id="stock_quantity" type="text" value="1" /><br />
+仓库：<select id="stock_warehouse"></select><br />
+进价：<input id="stock_price" type="text" /><br />
+<input id="stock_submit" type="button" value="进货" onclick="stock('submit')" />
+</div>
+
+<div id="product" class="action">
+<b>商品及价格管理</b><br />
+<div id="product_r"></div>
+</div>
+
+<div id="recv" class="action">
+<b>收货</b> 当前仓库：<select id="recv_warehouse" onchange="recv('list')"></select><input type="button" value="待收货物" onclick="recv('list')" /><br />
+<div id="recv_r"></div>
+</div>
+
+</body>
+</html>

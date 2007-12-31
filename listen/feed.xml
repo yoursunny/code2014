@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>你的阳光-聆听</title>
+	<subtitle>美文、音乐：让我们聆听网络</subtitle>
+	<link href="http://listen.yoursunny.com"/>
+	<updated>2007-09-08T00:00:00Z</updated>
+	<author>
+		<name>阳光男孩</name>
+		<uri>http://m.yoursunny.com</uri>
+	</author>
+	<id>http://listen.yoursunny.com/program_list</id>
+	<rights>CreativeCommons BY-NC 3.0</rights>
+	<entry>
+		<id>http://listen.yoursunny.com/program/4</id>
+		<title>天使的羽毛</title>
+		<updated>2006-01-01T00:00:00Z</updated>
+		<summary>人不能太贪婪；货币的价值是相对的</summary>
+		<link rel="alternate" href="http://listen.yoursunny.com/program/4" type="text/html"/>
+		<link rel="enclosure" href="http://listen.yoursunny.com/file/600/tsdym.mp3" type="audio/mpeg" length="1200483" />
+		<category term="爱心"/>
+	</entry>
+	<entry>
+		<id>http://listen.yoursunny.com/program/3</id>
+		<title>主管椅</title>
+		<updated>2006-01-01T00:00:00Z</updated>
+		<summary>激励的作用</summary>
+		<link rel="alternate" href="http://listen.yoursunny.com/program/3" type="text/html"/>
+		<link rel="enclosure" href="http://listen.yoursunny.com/file/600/zgy.mp3" type="audio/mpeg" length="154854" />
+		<category term="工作"/>
+	</entry>
+	<entry>
+		<id>http://listen.yoursunny.com/program/2</id>
+		<title>一家小作坊的勇气</title>
+		<updated>2006-01-01T00:00:00Z</updated>
+		<summary>狭路相逢勇者胜</summary>
+		<link rel="alternate" href="http://listen.yoursunny.com/program/2" type="text/html"/>
+		<link rel="enclosure" href="http://listen.yoursunny.com/file/600/yjxzfdyq.mp3" type="audio/mpeg" length="252761" />
+		<category term="经济"/>
+		<category term="投资"/>
+	</entry>
+	<entry>
+		<id>http://listen.yoursunny.com/program/1</id>
+		<title>X星球</title>
+		<updated>2006-01-01T00:00:00Z</updated>
+		<summary>人不能太贪婪；货币的价值是相对的</summary>
+		<link rel="alternate" href="http://listen.yoursunny.com/program/1" type="text/html"/>
+		<link rel="enclosure" href="http://listen.yoursunny.com/file/600/xxq.mp3" type="audio/mpeg" length="424542" />
+		<category term="哲理"/>
+	</entry>
+</feed>

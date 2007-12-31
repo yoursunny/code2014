@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /h/
+Disallow: /study/601yushijujin/

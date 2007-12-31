@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<object type="application/x-shockwave-flash" data="player.swf" width="1" height="1" id="player">
+<param name="movie" value="player.swf" />
+<param name="allowScriptAcess" value="always" />
+<param name="quality" value="best" />
+</object>
+<script type="text/javascript">
+var p=document.getElementById('player');
+function load_()
+{
+	p.SetVariable('url','../h/song/70609rhythm.mp3');
+	p.SetVariable('cmd','load');
+}
+function play()
+{
+	p.SetVariable('cmd','play');
+}
+function pause()
+{
+	p.SetVariable('cmd','pause');
+}
+function stop_()
+{
+	p.SetVariable('cmd','stop');
+}
+function seek()
+{
+	p.SetVariable('t','180');
+	p.SetVariable('cmd','seek');
+}
+function t()
+{
+	document.getElementById('a').innerHTML=p.GetVariable('t')+' '+p.GetVariable('total');
+}
+function song_complete()
+{
+	alert('complete');
+}
+setInterval('t()',10);
+</script>
+<input type="button" value="load" onclick="load_()" />
+<input type="button" value="play" onclick="play()" />
+<input type="button" value="pause" onclick="pause()" />
+<input type="button" value="stop" onclick="stop_()" />
+<input type="button" value="seek" onclick="seek()" />
+<div id="a"></div>
+</body>
+</html>

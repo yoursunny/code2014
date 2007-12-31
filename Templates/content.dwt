@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>你的阳光 yoursunny.com</title>
+<!-- TemplateEndEditable -->
+<link rel="stylesheet" type="text/css" href="../images/common.css" />
+<!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+</head>
+<body>
+<div id="bannerouter"><div id="banner">
+<a id="bannerlogo" href="http://yoursunny.com"><span>你的阳光 yoursunny.com</span></a>
+<div id="bannerinner">
+<div id="bannerslogan">乐观 温暖 活力</div>
+<div id="nav">
+<a href="http://m.yoursunny.com">个人</a>
+<a href="http://www.65536.cn">技术</a>
+<a href="http://study.yoursunny.com">学习</a>
+<a href="http://ent.yoursunny.com">娱乐</a>
+<a href="http://listen.yoursunny.com">聆听</a>
+</div></div></div></div>
+<div id="location">当前位置：<a href="http://yoursunny.com">你的阳光 yoursunny.com</a> &gt; <!-- TemplateBeginEditable name="location" -->首页<!-- TemplateEndEditable --></div>
+<div id="mouter">
+<div id="m"><!-- TemplateBeginEditable name="m" -->
+<div class="mhh">标题一</div>
+<div class="mc"> 内容一 </div>
+<div class="mh">标题二</div>
+<div class="mc">
+<dl>
+<dt><a href="../1">小标题1</a></dt>
+<dd>描述1</dd>
+<dt>小标题2</dt>
+<dd>描述2</dd>
+</dl>
+<div align="center"><iframe src="../images/ad.htm" width="728" height="90" frameborder="0" scrolling="no"></iframe></div>
+</div>
+<div class="mf"></div>
+<!-- TemplateEndEditable --></div></div>
+<div id="copyright"></div>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+<script type="text/javascript" src="../images/common.js"></script>
+<!-- TemplateBeginEditable name="script" --><!-- TemplateEndEditable -->
+</body></html>

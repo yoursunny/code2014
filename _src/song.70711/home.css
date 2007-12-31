@@ -1,0 +1,50 @@
+@import url(common.css);
+
+#sidebar { float:left; width:220px; }
+
+.paper { width:200px; margin:5px auto; font-size:10pt; }
+.papera { width:188px; padding:5px; background-color:#f6f6d6; border:solid #c9c95f 1px; border-bottom:none; color:#333; }
+.paperb { width:180px; height:36px; padding:0 10px; background:url(paper.gif) no-repeat; line-height:20px; }
+
+.toggle { cursor:pointer; }
+
+#schedule a:link,#schedule a:visited { text-decoration:underline; }
+#schedule a:hover { text-decoration:none; }
+#schedule { width:188px; height:190px; overflow:hidden; }
+
+#blog dl,#blog dt { width:188px; }
+#blog dd { width:178px; font-size:9pt; }
+#blogmore a:link,#blogmore a:visited { text-decoration:none; }
+#blogmore a:hover { text-decoration:underline; }
+#blog .more { display:block; width:188px; text-align:right; }
+
+#songuri { display:none; }
+#songdown { cursor:pointer; color:#00f; }
+a#songdown:link,a#songdown:visited { text-decoration:underline; }
+a#songdown:hover { text-decoration:none; }
+#songname { line-height:25pt; text-align:center; color:#360; }
+#songtitle { font-size:12pt; font-weight:bold; }
+#songartist { }
+#songlrc { text-align:center; }
+#songvote { width:190px; padding:0 5px; }
+#songvote span { font-size:16pt; cursor:pointer; }
+#songvotetip { font-size:10pt; }
+#songctrltip { font-size:12pt; font-style:normal; }
+
+#m { float:left; width:650px; margin-left:15px; }
+.m { clear:both; width:650px; }
+.sec { float:left; width:300px; margin:10px; }
+.secheader { height:25px; border-bottom:solid 2px #e77921; }
+a.secbutton:link,a.secbutton:visited { display:block; float:left; width:100px; height:25px; background:url(secbutton.gif) no-repeat; font-size:11pt; line-height:25px; text-align:center; font-weight:bold; color:#000; text-decoration:none; }
+.secfeed { display:block; float:right; width:14px; height:14px; margin-top:8px; background:url(feed.gif) no-repeat; }
+.secc { font-size:11pt; line-height:15pt; }
+.secc dl { width:300px; height:250px; }
+.secc dt { width:300px; }
+.secc dd { width:290px; font-size:10pt; }
+.secc .more { display:block; width:300px; text-align:right; }
+.secc a.more:link,.secc a.more:visited { text-decoration:underline; }
+.secc a.more:hover { text-decoration:none; }
+
+#copyrightouter { clear:both; width:800px; margin:0 auto; font-size:10pt; }
+#copyrightlogo { float:left; width:180px; }
+#copyright { float:left; clear:none; width:620px; }

@@ -1,0 +1,3 @@
+728x90广告单元，适合于内容页中部
+
+<div align="center"><iframe src="../images/ad.htm" width="728" height="90" frameborder="0" scrolling="no"></iframe></div>

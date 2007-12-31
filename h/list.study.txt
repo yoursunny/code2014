@@ -1,0 +1,5 @@
+﻿
+网络信息安全基础	20071120	复习提纲，课件下载(本站首发)	-	http://yoursunny.com/study/IS215/
+编译原理	20071120	复习提纲，课件下载	-	http://yoursunny.com/study/IS203/
+数字信号处理	20080110	我的实验报告	-	http://yoursunny.com/study/IS210/
+计算机通信网络	20080109	课件下载	-	http://yoursunny.com/study/IS204/

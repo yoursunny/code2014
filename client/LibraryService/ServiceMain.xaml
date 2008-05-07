@@ -1,0 +1,10 @@
+﻿<Window x:Class="yoursunny.P2008.Library.ServiceDesk.ServiceMain"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:winforms="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+    Title="图书管理信息系统" Height="500" Width="700" WindowStyle="None">
+    <Grid>
+        <winforms:WindowsFormsHost Name="RibbonBarHost" Height="143" VerticalAlignment="Top" />
+        <Frame Name="PageFrame" Margin="0,144,0,0" NavigationUIVisibility="Hidden"></Frame>
+    </Grid>
+</Window>

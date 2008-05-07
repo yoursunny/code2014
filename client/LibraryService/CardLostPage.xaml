@@ -1,0 +1,8 @@
+﻿<Page x:Class="yoursunny.P2008.Library.ServiceDesk.CardLostPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="CardLostPage">
+    <Grid>
+        
+    </Grid>
+</Page>

@@ -1,0 +1,17 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="yoursunny.P2008.Library.Login.LoginForm"
+	x:Name="Window"
+	Title="图书管理信息系统 登录"
+	Width="400" Height="300" xmlns:d="http://schemas.microsoft.com/expression/blend/2006" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+
+	<Grid x:Name="LayoutRoot">
+		<Label VerticalAlignment="Top" Height="69" Content="图书管理信息系统" FontFamily="STXingkai" FontSize="40" Foreground="#FFCB2B2B" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+		<Label HorizontalAlignment="Left" Margin="74,91,0,0" VerticalAlignment="Top" Width="50" Height="32.813" Content="工号" FontSize="20"/>
+        <TextBox Margin="158,91,81,0" VerticalAlignment="Top" Height="33" FontSize="20" Text="" TextWrapping="Wrap" Name="textUid" TabIndex="0" />
+        <Label Width="50" Height="32.813" Content="密码" FontSize="20" d:LayoutOverrides="Height" HorizontalAlignment="Left" Margin="74,140,0,0" VerticalAlignment="Top"/>
+		<PasswordBox Margin="158,140,81,0" VerticalAlignment="Top" Height="32.813" FontSize="20" Name="textPassword" TabIndex="1" />
+		<Button Margin="158,0,141,27" x:Name="LoginButton" VerticalAlignment="Bottom" Height="38" Content="登录" FontSize="20" IsDefault="True" Click="LoginButton_Click" TabIndex="2" />
+	</Grid>
+</Window>

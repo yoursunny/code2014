@@ -1,0 +1,55 @@
+﻿<Window x:Class="yoursunny.P2008.Library.Login.WelcomeForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="图书管理信息系统 欢迎" Height="400" Width="400" Loaded="Window_Loaded">
+    <Grid>
+        <FlowDocumentScrollViewer VerticalScrollBarVisibility="Auto">
+            <FlowDocument>
+                <Paragraph>
+                    <Image Width="250" Height="35">
+                        <Image.Source>
+                            <BitmapImage UriSource="Resources/yoursunny_logo.png"/>
+                        </Image.Source>
+                    </Image>
+                </Paragraph>
+                <Paragraph>
+                    欢迎
+                    <Span Name="docUserName"/>
+                    使用图书管理信息系统
+                </Paragraph>
+                <List MarkerStyle="Disc">
+                    <ListItem>
+                        <Paragraph>
+                            <Hyperlink Click="ChangePassword_Click">修改密码</Hyperlink>
+                            |
+                            <Hyperlink Click="Logout_Click">退出登录</Hyperlink>
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            进入
+                            <Hyperlink Click="GoToEditorDesk_Click">采编工作台</Hyperlink>
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            进入
+                            <Hyperlink Click="GoToServiceDesk_Click">借还书、读者服务工作台</Hyperlink>
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            运行
+                            <Hyperlink Click="RunAdmin_Click">系统管理</Hyperlink>
+                        </Paragraph>
+                    </ListItem>
+                </List>
+                <Paragraph FontSize="13">
+                    &#169;2008,<Hyperlink Click="yoursunny_Click">yoursunny.com</Hyperlink>, CreativeCommons BY-NC 3.0
+                    <LineBreak/>
+                    本程序使用了<Hyperlink Click="SilkIcons_Click">silk icons</Hyperlink>。
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+    </Grid>
+</Window>

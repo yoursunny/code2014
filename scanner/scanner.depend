@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1212910419 source:/home/sunny/study/IS217/smaconv/sma.c
+	<stdlib.h>
+	<memory.h>
+	"sma.h"
+
+1212901603 /home/sunny/study/IS217/smaconv/sma.h
+	<stdio.h>
+
+1212911855 source:/home/sunny/study/IS217/scanner/main.c
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	"sma.h"
+	"scan.h"
+
+1213105833 /home/sunny/study/IS217/smaconv//sma.h
+	<stdio.h>
+
+1212909444 /home/sunny/study/IS217/scanner/scan.h
+	"sma.h"
+
+1212911093 source:/home/sunny/study/IS217/scanner/scan.c
+	<stdio.h>
+	<stdlib.h>
+	<sys/mman.h>
+	"scan.h"
+

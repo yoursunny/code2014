@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1212655679 source:e:\home\study\is217\smaconv\main.c
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	"sma.h"
+
+1212648694 
+
+1212648694 e:\home\study\is217\smaconv\sma.h
+	<stdio.h>
+
+1212655506 source:e:\home\study\is217\smaconv\sma.c
+	<stdlib.h>
+	<memory.h>
+	"sma.h"
+
+1212902063 source:/home/sunny/study/IS217/smaconv/sma.c
+	<stdlib.h>
+	<memory.h>
+	"sma.h"
+
+1212901603 /home/sunny/study/IS217/smaconv/sma.h
+	<stdio.h>
+
+1212906331 source:/home/sunny/study/IS217/smaconv/main.c
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	"sma.h"
+

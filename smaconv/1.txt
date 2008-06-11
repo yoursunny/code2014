@@ -1,0 +1,19 @@
+# generator: yoursunny.P2008.VirusScanner VirusLibrary SMA Convertor
+# id,value,Parent,Fail,Lchar,Lchild,Rchar,Rchild
+# HEX numbers, 0 for none
+0,0,0,0,68,1,0,0,
+1,0,0,0,65,2,6f,a,
+2,1,1,0,72,3,69,5,
+3,0,2,0,73,4,0,0,
+4,2,3,d,0,0,0,0,
+5,0,1,0,73,6,6f,7,
+6,3,5,d,0,0,0,0,
+7,0,1,a,75,8,0,0,
+8,0,7,b,72,9,0,0,
+9,4,8,c,0,0,0,0,
+a,0,0,0,75,b,73,d,
+b,0,a,0,72,c,0,0,
+c,6,b,0,0,0,0,0,
+d,0,0,0,68,e,0,0,
+e,0,d,1,65,f,0,0,
+f,5,e,2,0,0,0,0,

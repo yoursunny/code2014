@@ -1,0 +1,3 @@
+# avoid download data directly
+Order Allow,Deny
+Deny from all

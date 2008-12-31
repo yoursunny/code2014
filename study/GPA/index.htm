@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>上海交通大学本科生GPA计算器 - 你的阳光学习频道 study.yoursunny.com</title>
+<link rel="stylesheet" type="text/css" href="../../images/yoursunny.css" />
+<script type="text/javascript" src="../../lib/lib.js.php"></script>
+<script type="text/javascript">//<![CDATA[
+WebSite.cbase='/study/GPA/';var compatModeCookie=Cookie.get('GPA_compatMode');var compatMode=(compatModeCookie==null)?((!Prototype.Browser.IE&&!Prototype.Browser.Gecko&&!Prototype.Browser.WebKit)):(compatModeCookie=='yes');if(compatMode)Event.bindReady(function(){$$('.tip_compat').each(function(d){d.show();})});else WebSite.TinyMCE.load();Cookie.set('GPA_compatMode',compatMode?'yes':'no');
+//]]></script>
+<meta name="keywords" content="上海交通大学,SJTU,本科生,GPA,积点,绩点,计算,计算器,成绩大表,出国成绩单" />
+<meta name="description" content="最方便的GPA计算工具——无需手动录入成绩，粘贴修业情况查询结果，立即算出GPA；支持勾选部分课程进行计算；支持交大、美国、北大、加拿大多种算法选择" />
+<style type="text/css">
+.mceExternalToolbar { display:none !important; }
+#update_history { margin:0; padding:0; list-style:none; }
+</style>
+</head>
+<body><div id="container">
+
+<div id="header">
+<h2><a href="http://yoursunny.com"><span>你的阳光 yoursunny.com</span></a></h2>
+<ul id="nav-header">
+<li><a href="http://yoursunny.com">首页</a></li>
+<li><a href="http://m.yoursunny.com">个人</a></li>
+<li><a href="http://www.65536.cn">技术</a></li>
+<li><a href="http://study.yoursunny.com">学习</a></li>
+</ul></div>
+<div id="sub-nav"><ul>
+<li><a href="http://study.yoursunny.com">你的阳光学习频道</a></li>
+<li class="mark">&raquo;</li>
+<li><a href="./">上海交通大学本科生GPA计算器</a></li>
+</ul></div>
+
+<div class="b">
+<h2 class="bh">上海交通大学本科生GPA计算器</h2>
+<table class="p">
+<tr>
+<td class="pcont">
+<h1 class="ptitle">上海交通大学本科生GPA计算器</h1>
+<div class="pmsg">
+<input id="use_compatMode" type="checkbox" />使用兼容模式（兼容模式支持所有浏览器，标准模式只支持Firefox、IE、Safari、Chrome）<br />
+<hr />
+<p>最方便快捷的GPA计算工具：无需手工录入每门课程的成绩，只需使用教务处“本科修业情况查询”功能查出报表，全选页面、粘贴在下面，即可完成计算！</p>
+<iframe src="alimama.htm" width="728" height="90" frameborder="0" scrolling="no"></iframe>
+<p><b>第一步</b>：访问<a href="http://202.120.33.84/xsbyshj/" onclick="c('jwc.query')" target="_blank">本科修业情况查询</a>，用你的jAccount登录(用户名密码与交大邮箱、portal个人存储FTP相同)。出现结果后，<span class="tip_compat" style="display:none;">点击菜单：查看-源文件(View-Source)，</span>按下CTRL+A键全选，按下CTRL+C键复制，然后点击下面的文本框、按下CTRL+V键粘贴。</p>
+<textarea id="xsbyshj_h" rows="3" cols="70" style="width:700px;height:100px;"></textarea>
+<script type="text/javascript">//<![CDATA[
+if(!compatMode){WebSite.TinyMCE.init({theme_advanced_toolbar_location:'external'});WebSite.TinyMCE.create('xsbyshj_h',700,100);}
+//]]></script>
+<p><b>第二步</b>：选择算法<br />
+<input type="radio" name="algorithm" checked="checked" value="sjtu" onclick="algorithm=this.value;" />上海交通大学(<a href="http://jwc.sjtu.edu.cn/2007.pdf" target="_blank" onclick="c('algorithm.sjtu')">学生手册第28页</a>) 4.3,4.0,...,1.0<br />
+<input type="radio" name="algorithm" value="us1" onclick="algorithm=this.value;" />美国1(<a href="http://www.taisha.org/bbs/viewthread.php?tid=31209" target="_blank" onclick="c('algorithm.us1')">此帖1</a>) 4.0,3.0,2.0,1.0<br />
+<input type="radio" name="algorithm" value="us2" onclick="algorithm=this.value;" />美国2(<a href="http://www.taisha.org/bbs/viewthread.php?tid=31209" target="_blank" onclick="c('algorithm.us2')">此帖2</a>) 4.0,3.5,...,1.0<br />
+<input type="radio" name="algorithm" value="us3" onclick="algorithm=this.value;" />美国3(<a href="http://www.taisha.org/bbs/viewthread.php?tid=31209" target="_blank" onclick="c('algorithm.us3')">此帖3</a>) 4.0,3.7,...,1.0<br />
+<input type="radio" name="algorithm" value="pku" onclick="algorithm=this.value;" />北京大学(<a href="http://forum.liuxuehome.com/showtopic-18288.aspx" target="_blank" onclick="c('algorithm.pku')">此帖</a>) 4.0,3.7,...,1.0<br />
+<input type="radio" name="algorithm" value="canada" onclick="algorithm=this.value;" />加拿大(<a href="http://www.wrsacc.net/CountryOfAbroad/ArticleShow.asp?ArticleID=664" target="_blank" onclick="c('algorithm.canada')">此文</a>) 4.3,4.0,...,2.3<br />
+</p>
+<p><b>第三步</b>：点击<input type="button" value="计算" onclick="calc()" />，查看结果<br/>
+<input type="checkbox" id="lookup_english" />显示<b>课程英文</b>名称（需要将课程名称提交给服务器；数据版本2008-09-01）<br/>
+提示：免修考及格记录不计入GPA，请自行去除打勾，<a href="http://bbs.sjtu.edu.cn/bbscon?board=SJTUJWC&amp;file=M.1188354527.A" target="_blank" onclick="c('note.mxk')">参看此帖</a></p>
+<div id="result"><br /><br /><br /><br /><br /><br /><br /><br /></div>
+<div id="xsbyshj_d" style="display:none;"></div>
+<hr />
+<h2>上海交通大学本科生GPA计算器 更新历史</h2>
+<ul id="update_history">
+<li>2008-09-01 更新TinyMCE编辑器到最新版本，可支持IE8、Firefox3；更新课程英文名称数据</li>
+<li>2008-06-03 LouisEX网友<!--QQ188632766-->发现所有课程均未打勾，经查为教务处页面结构有微小调整，现已解决</li>
+<li>2008-04-07 增加“显示课程英文名称”功能</li>
+<li>2008-03-07 增加“兼容模式”以支持IE8、Opera等浏览器，而原来的标准模式只支持Firefox2、IE6、IE7</li>
+<li>2008-02-27 <a href="http://hi.baidu.com/yoursunny/blog/item/df5487cb970f14f953664f03.html" target="_blank" onclick="c('note.blog80227')">写了篇文章介绍这个工具的发展历程</a></li>
+<li>2008-02-25 引入TinyMCE编辑器，可直接粘贴内容，免去“查看-源代码”；增加GZip压缩，提高打开速度；修正IE去除对勾无效的bug</li>
+<li>2008-02-18 增加了美国、北京大学、加拿大算法，可作参考；默认只选中必修课、限选课；修正了crys网友提出的2.5、3.5学分计算成2.0、3.0学分的bug</li>
+<li>2008-02-17 增加选择性统计功能，可以通过去除对勾跳过不需要统计的课程</li>
+<li>2008-02-14 校内网博客链接了本页面，导致访问量上升数十倍；以为遭到攻击，吓我一跳</li>
+<li>2008-02-14 本程序被饮水思源BBS站goabroad板收录</li>
+<li>2008-02-06 梦幻天子网友<!--QQ199167-->提醒，本页面存在XSS漏洞；此漏洞无法利用，也难以根治，现在作了简单的stripScript</li>
+<li>2008-02-03 <a href="http://m.yoursunny.com" target="_blank">阳光男孩</a>创意制作</li>
+</ul>
+</div>
+</td>
+<td class="pside">
+<p>本工具用于计算你的GPA。本站注重您的隐私：所有计算均在浏览器完成，不提交到服务器；本站不记录名字、成绩、GPA。</p>
+<p>计算公式参照《上海交通大学学生手册(本科生)》2007年版本，计算结果仅供参考。事实上，当你申请出国或应聘，对方会自行计算，而不看你自己计算的GPA。</p>
+<p>程序代码无版权，可自由复制修改。</p>
+<h3>类似程序</h3>
+<ul>
+<li><a href="http://www.trueif.com/sjtu/GPA/" onclick="c('similar.trueif')">trueif的ASP版本</a></li>
+</ul>
+<script type="text/javascript">WebSite.writeAd('160x600');</script>
+<p style="color:#999999;">上海交通大学GPA 上海交大GPA GPA计算 GPA计算器 交大GPA 如何计算GPA GPA算法 GPA程序 本科GPA 本科生GPA 学积点 积点 学绩点 绩点 出国成绩单 成绩大表 GPA计算方法 上交大4.3算法 上交大GPA 课程英文名 课程英文名称 英文课程名 英文课程名称 上海交通大学教务处 上海交大教务处</p>
+</td>
+</tr>
+</table>
+</div>
+
+</div>
+<div id="footer"><div id="footercontent"></div></div>
+<script type="text/javascript">//<![CDATA[
+$('use_compatMode').checked=compatMode;Event.observe('use_compatMode','click',function(){Cookie.set('GPA_compatMode',$('use_compatMode').checked?'yes':'no');location=location;});var data;var algorithm='sjtu';function calc()
+{c('calc-'+algorithm);fetch();if(!english_lookup())count();}
+function fetch()
+{data=new Object();$('xsbyshj_d').update(compatMode?$('xsbyshj_h').value:WebSite.TinyMCE.getHTML('xsbyshj_h'));var dom=$('xsbyshj_d');var TABLEs=dom.select('table');var id=0;TABLEs.each(function(TABLE,i){var TRs=TABLE.select('tr');TRs.each(function(TR){var TDs=TR.select('td');if(TDs.length<8)return;var code=TDs[1].firstChild.nodeValue.strip();if(code=='课程代码')return;var name=TDs[2].firstChild.nodeValue.strip();var credit=parseFloat(TDs[5].firstChild.nodeValue,10);var percent=parseInt(TDs[6].firstChild.nodeValue,10);data[id]={id:id,include:[1,5].include(i),code:code,name:name,credit:credit,percent:percent,english:' '};++id;});});}
+function count()
+{var b='<table border="1" cellspacing="0" cellpadding="1">\n<tr><th>&nbsp;</th><th>代码</th><th>中文名称</th><th>英文名称</th><th>学分</th><th>成绩</th><th>积点</th></tr>\n';var totalCourses=0;var totalPercent=0;var totalPoint=0;var totalCredit=0;Object.values(data).each(function(d){var point=percent2point(d.percent);b+='<tr><td><input type="checkbox" id="include_'+d.id+'"'+(d.include?' checked="checked"':'')+' on'+(Prototype.Browser.IE?'click':'change')+'="include('+d.id+')" /></td><td>'+d.code+'</td><td>'+d.name+'</td><td>'+d.english+'</td><td>'+d.credit+'</td><td>'+d.percent+'</td><td>'+point+'</td></tr>';if(!d.include)return;++totalCourses;totalPercent+=d.credit*d.percent;totalPoint+=d.credit*point;totalCredit+=d.credit;});var brief='<p>'+totalCourses+'门课程<br/>总学积分=∑(学分×成绩)/∑学分='+(totalPercent/totalCredit)+'<br/>总平均积点GPA=∑(学分×积点)/∑学分='+(totalPoint/totalCredit)+'<br/>只有打勾的课程计算在内，其他课程不计算</p>';b=brief+b+'</table>'+brief;$('result').update(b);}
+function include(id)
+{var included=$('include_'+id).checked;data[id].include=included;count();}
+function percent2point(p)
+{switch(algorithm)
+{case'sjtu':if(p>=95)return 4.3;if(p>=90)return 4.0;if(p>=85)return 3.7;if(p>=80)return 3.3;if(p>=75)return 3.0;if(p>=70)return 2.7;if(p>=67)return 2.3;if(p>=65)return 2.0;if(p>=62)return 1.7;if(p>=60)return 1.0;return 0;case'us1':if(p>=90)return 4.0;if(p>=80)return 3.0;if(p>=70)return 2.0;if(p>=60)return 1.0;return 0;case'us2':if(p>=90)return 4.0;if(p>=85)return 3.5;if(p>=80)return 3.0;if(p>=75)return 2.5;if(p>=70)return 2.0;if(p>=65)return 1.5;if(p>=60)return 1.0;return 0;case'us3':if(p>=90)return 4.0;if(p>=87)return 3.7;if(p>=83)return 3.3;if(p>=80)return 3.0;if(p>=77)return 2.7;if(p>=73)return 2.3;if(p>=70)return 2.7;if(p>=60)return 1.0;return 0;case'pku':if(p>=90)return 4.0;if(p>=85)return 3.7;if(p>=82)return 3.3;if(p>=78)return 3.0;if(p>=75)return 2.7;if(p>=72)return 2.3;if(p>=68)return 2.0;if(p>=64)return 1.5;if(p>=60)return 1.0;return 0;case'canada':if(p>=90)return 4.3;if(p>=85)return 4.0;if(p>=80)return 3.7;if(p>=75)return 3.3;if(p>=70)return 3.0;if(p>=65)return 2.7;if(p>=60)return 2.3;return 0;}
+return 0;}
+function english_lookup(){if(!$('lookup_english').checked)return false;new Ajax.Request('english_name.php',{contentType:'text/plain',postBody:Object.values(data).pluck('name').join('\n'),onComplete:english_resp});return true;}
+function english_resp(resp){var a=resp.responseJSON;Object.values(data).each(function(r){if(a[r.name])r.english=a[r.name];});c('func-english');count();}
+WebSite.SetLicense(WebSite.LICENSE_GPL);
+//]]></script>
+</body></html>

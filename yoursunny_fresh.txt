@@ -1,0 +1,11 @@
+﻿
+20081114	学习	/study/IS409/	下一代网络及软交换原理	大作业要求
+20081114	学习	/study/IS220/	网络安全管理体系与技术	ppt打包
+20081109	学习	/study/IS407/p/	现代密码学样卷	原创作品，共同学习
+20081108	学习	/study/IS407/	现代密码学	电子书
+20081102	学习	/study/IS216/?question=list	Internet安全协议与标准练习题	阳光男孩整理
+20081027	学习	/study/IS216/	Internet安全协议与标准	协议分析
+20081030	学习	/study/IS221/?topic=index	信息安全工程原理知识要点	阳光男孩整理
+20081027	学习	/study/IS219/	Windows安全原理与技术	网络协议基础及安全性分析
+20081023	项目	http://www.65536.cn/work/2008/hProxyN/	hProxyN精巧型HTTP代理服务器	产品设计讲稿
+20080901	工具	/study/GPA/	上海交通大学本科生GPA计算器	最方便的GPA计算工具；现已支持Chrome浏览器

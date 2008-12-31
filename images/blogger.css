@@ -1,0 +1,6 @@
+@import url(yoursunny.css);
+#navbar-iframe { display:none !important; }
+.p a { text-decoration:none; }
+.p a:hover { text-decoration:underline; }
+.p ul { margin:0; padding:0; list-style:none outside none; }
+.p ul li { width:180px; padding-left:10px; background:transparent url(arrow_right.gif) no-repeat 0 50%; overflow:hidden; white-space:nowrap; }

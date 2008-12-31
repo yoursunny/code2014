@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>dbMySQL (PHP) - 你的阳光技术频道</title>
+<link rel="stylesheet" type="text/css" href="../../../images/yoursunny.css" />
+<script type="text/javascript" src="../../../lib/lib.js.php"></script>
+</head>
+<body><div id="container">
+
+<div id="header">
+<h2><a href="http://yoursunny.com"><span>你的阳光 yoursunny.com</span></a></h2>
+<ul id="nav-header">
+<li><a href="http://yoursunny.com">首页</a></li>
+<li><a href="http://m.yoursunny.com">个人</a></li>
+<li><a href="http://www.65536.cn">技术</a></li>
+<li><a href="http://study.yoursunny.com">学习</a></li>
+</ul>
+</div>
+<div id="sub-nav"><ul>
+<li><a href="http://www.65536.cn">你的阳光技术频道 www.65536.cn</a></li>
+<li class="mark">&raquo;</li>
+<li><a href="../../">作品</a></li>
+<li class="mark">&raquo;</li>
+<li><a href="./">dbMySQL</a></li>
+</ul></div>
+
+<div class="b">
+<h2 class="bh">dbMySQL</h2>
+<table class="p">
+<tr>
+<td class="pcont">
+<h1 class="ptitle">dbMySQL数据源访问类</h1>
+<div class="pmsg">
+<p>dbMySQL类，用于PHP访问MySQL数据库，而编程更加方便、安全性更高。<br />
+<a href="dbMySQL.zip" onclick="c('/work/2006/dbMySQL/dbMySQL.zip')">下载dbMySQL</a></p>
+<ul>
+<li>高安全性：强制检查类型、自动转义，避免SQL注入漏洞</li>
+<li>方便编程：面向对象语法，不必写mysql_fetch_assoc等长长的函数名</li>
+<li>方便编程：仿reader机制，直接从对象读出数据，不必再写$resultID</li>
+<li>支持表名前缀：允许在一个数据库中运行多个应用</li>
+</ul>
+<p>样例代码：</p>
+<pre>
+&lt;?php
+require_once 'dbMySQL.php';
+$db=new dbMySQL('localhost','root','password','database','pr_',FALSE);
+//插入记录
+$db->execute('INSERT INTO ###statistics (t,ip) VALUES (NOW(),?ip)',array('ip'=>$_SERVER['REMOTE_ADDR']));
+//实际执行 INSERT INTO pr_statistics (t,ip) VALUES (NOW(),'59.78.20.24')
+//查询记录
+$db->query('SELECT * FROM ###statistics ORDER BY t DESC LIMIT 0,?1n',array('1n'=>$_GET['n']));
+//实际执行SELECT * FROM pr_statistics ORDER BY t DESC LIMIT 0,10
+while (!$db->eof()) {
+&nbsp;&nbsp;&nbsp;&nbsp;$row=$db->read();
+&nbsp;&nbsp;&nbsp;&nbsp;echo $row['ip'].'&lt;br/&gt;';
+}
+?&gt;
+</pre>
+<h3>类库函数列表</h3>
+<table border="1">
+<caption>class dbMySQL</caption>
+<tr><th>说明</th><th>定义</th><th>备注</th></tr>
+<tr><td>构造函数</td><td>function __construct(主机名$host,用户名$username,密码$password,库名$dbname,表名前缀$prefix='',是否永久连接$pconnect=TRUE)</td><td>new dbMySQL(...)创建新对象</td></tr>
+<tr><td>直接执行SQL语句</td><td>function execute_sql(语句$SQL)</td><td>无结果；不处理转义、表名前缀；无安全性，不推荐使用</td></tr>
+<tr><td>执行SQL语句</td><td>function execute(语句$SQL,参数$p=NULL,表名前缀替代符$prefix='###')</td><td>无结果</td></tr>
+<tr><td>直接执行SQL查询</td><td>function query_sql(语句$SQL)</td><td>有结果；不处理转义、表名前缀；无安全性，不推荐使用</td></tr>
+<tr><td>执行SQL查询</td><td>function query(语句$SQL,参数$p=NULL,表名前缀替代符$prefix='###')</td><td>有结果</td></tr>
+<tr><td>提取结果</td><td>function read()</td><td>提取一行结果为关联数组；已提取完时返回NULL</td></tr>
+<tr><td>总行数</td><td>function num_rows()</td><td>返回刚才的语句影响行数、或查询结果行数</td></tr>
+<tr><td>是否提取完</td><td>function eof()</td><td>如果已提取完返回true</td></tr>
+</table>
+<h3>带参数执行、查询说明</h3>
+<p>数组$p "a"->"ppp"<br />
+SELECT * FROM j WHERE m=?a 解析为 SELECT * FROM j WHERE m='ppp'ִ<br />
+参数名称第一位是小写字母，作为字符型参数，编码并加单引号<br />
+参数名称第一位是数字，作为数字型参数，如果不是数字就出错<br />
+参数名称第一位是其他情况，直接带入SQL表达式<br />
+$prefix表示前缀占位符，默认###，FROM ###kk在前缀是pr_时解析为FROM pr_kk</p>
+</div>
+</td>
+<td class="pside">
+<script type="text/javascript">WebSite.writeAd('160x600');</script>
+</td>
+</tr>
+</table>
+</div>
+
+</div>
+<div id="footer"><div id="footercontent"></div></div>
+</body></html>

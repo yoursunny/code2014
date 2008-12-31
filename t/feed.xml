@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>你的阳光技术频道</title>
+	<subtitle>阳光男孩的原创网络技术文章</subtitle>
+	<updated>2008-07-02T00:00:00Z</updated>
+	<link rel="alternate" type="text/html" href="http://www.65536.cn/"/>
+	<id>http://www.65536.cn/t/feed.xml</id>
+	<rights>CreativeCommons BY-NC 3.0</rights>
+	<generator>我不用CMS——手工打造的HTML和Atom feed！</generator>
+	<entry>
+		<id>http://www.65536.cn/t/2008/CS-BS.htm</id>
+		<title>信息系统计算模型：从C/S、B/S到云计算</title>
+		<updated>2008-07-02T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2008/CS-BS.htm"/>
+		<summary>详细介绍信息系统的发展过程，C/S和B/S软件的差别，促进B/S发展的新技术，展望未来</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2007/Net-intro.htm</id>
+		<title>.Net介绍 &amp; Visual Studio 2008 下载地址</title>
+		<updated>2007-12-11T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2007/Net-intro.htm"/>
+		<summary>简略介绍.Net Framework的框架、语言、集成开发环境Visual Studio 2008等。</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2007/selfssl.htm</id>
+		<title>使用SelfSSL创建自签名的IIS证书</title>
+		<updated>2007-11-09T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2007/selfssl.htm"/>
+		<summary>1分钟内搭建一个测试用途的HTTP站点——使用SelfSSL.exe</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2007/cert-mail.htm</id>
+		<title>发送数字证书加密和签名的电子邮件(带视频)</title>
+		<updated>2007-10-09T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2007/cert-mail.htm"/>
+		<summary>向CA365申请免费数字证书，然后使用Foxmail发送含有带有数字签名并用别人证书加密的电子邮件。</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2007/pki-encrypt.htm</id>
+		<title>公钥密码加密和鉴别过程（PKI体系）</title>
+		<updated>2007-10-09T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2007/pki-encrypt.htm"/>
+		<summary>《信息安全综合实践》小作业。介绍了PKI体系的加密和鉴别过程；以及应用举例：Windows Live ID单点登录服务</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2007/webdesign.htm</id>
+		<title>Web设计的核心准则</title>
+		<updated>2007-09-02T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2007/webdesign.htm"/>
+		<summary>《Web设计大全》一书的精华部分，由本人手工录入。不涉及具体技术，只谈设计准则，值得参考。想做一个优秀的网站，就一定要认真看一遍、并且认真实践！</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2007/google-ad.htm</id>
+		<title>从谷歌谈网络广告媒体</title>
+		<updated>2007-07-02T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2007/google-ad.htm"/>
+		<summary>本人《现代广告学》课程作业。从谷歌出发，讨论了网络广告媒体的工作方式、特点、优点，介绍了网络广告媒体的新形式。</summary>
+	</entry>
+</feed>

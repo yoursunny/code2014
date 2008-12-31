@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>AlbumPlayer相册播放器 (JavaScript) - 你的阳光技术频道</title>
+<link rel="stylesheet" type="text/css" href="../../../images/yoursunny.css" />
+<script type="text/javascript" src="../../../lib/lib.js.php"></script>
+<!--这里没有引用prototype.js，因为lib.js中已经包含了它们-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.1/scriptaculous.js?load=builder,effects"></script>
+<script type="text/javascript" src="album_player.js"></script>
+</head>
+<body><div id="container">
+
+<div id="header">
+<h2><a href="http://yoursunny.com"><span>你的阳光 yoursunny.com</span></a></h2>
+<ul id="nav-header">
+<li><a href="http://yoursunny.com">首页</a></li>
+<li><a href="http://m.yoursunny.com">个人</a></li>
+<li><a href="http://www.65536.cn">技术</a></li>
+<li><a href="http://study.yoursunny.com">学习</a></li>
+</ul>
+</div>
+<div id="sub-nav"><ul>
+<li><a href="http://www.65536.cn">你的阳光技术频道 www.65536.cn</a></li>
+<li class="mark">&raquo;</li>
+<li><a href="../../">作品</a></li>
+<li class="mark">&raquo;</li>
+<li><a href="./">AlbumPlayer相册播放器</a></li>
+</ul></div>
+
+<div class="b">
+<h2 class="bh">AlbumPlayer</h2>
+<table class="p">
+<tr>
+<td class="pcont">
+<h1 class="ptitle">AlbumPlayer相册播放器</h1>
+<div class="pmsg">
+<p>一个JavaScript类库，用于动态显示相册，支持多种转场效果<br />
+<a href="AlbumPlayer.zip" onclick="c('/work/2007/AlbumPlayer/AlbumPlayer.zip')">下载AlbumPlayer</a></p>
+<p>效果演示：</p>
+<div id="album"></div>
+<script type="text/javascript">
+var my_player=new AlbumPlayer('album',500,375,'#FFFFFF');
+my_player.add('http://tu.6.cn/img/id/83b46b8d5a40e7795a9fc9a8d81e5e86',640,480,3000,'fade');
+my_player.add('http://tu.6.cn/img/id/37a92ef45a1b5971b4868e5ba5226245',640,480,1100,'dropout');
+my_player.add('http://tu.6.cn/img/id/43b6c5d31d589e3c036493db2be0adb8',500,375,1600,'shrink');
+my_player.add('http://tu.6.cn/img/id/077d4c40d58b8bda74f920e76732bb00',480,640,500,'appear');
+my_player.add('http://tu.6.cn/img/id/c0f1cab958fb3dbc68284637d4849a30',1024,768,2100,'blindup');
+my_player.add('http://tu.6.cn/img/id/56eb1382393cc6b4115df56e1b7497a4',400,300,4000,'slidedown');
+my_player.start();
+</script>
+<p>调用代码：</p>
+<pre>
+&lt;head&gt;
+&lt;!--相册播放器要求使用Prototype和Script.aculo.us两个类库--&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;prototype.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;scriptaculous.js?load=builder,effects&quot;&gt;&lt;/script&gt;
+&lt;!--导入相册播放器的JS文件--&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;album_player.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;!--这个div是相册的容器--&gt;
+&lt;div id=&quot;album&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+//创建对象，四个参数依次为：相册容器id，宽度，高度，背景色
+var my_player=new AlbumPlayer('album',500,375,'#FFFFFF');
+//添加照片，五个参数依次为：照片URI，宽度，高度，显示时间(毫秒)，转场效果
+//大照片会缩小，小照片不会放大
+my_player.add('photo1.jpg',640,480,3000,'fade');
+my_player.add('photo2.jpg',640,480,1100,'dropout');
+my_player.add('photo3.jpg',500,375,1600,'shrink');
+my_player.add('photo4.jpg',480,640,500,'appear');
+my_player.add('photo5.jpg',1024,768,2100,'blindup');
+my_player.add('photo6.jpg',400,300,4000,'slidedown');
+//启动相册播放，不要漏掉这行
+my_player.start();
+&lt;/script&gt;
+&lt;/body&gt;
+</pre>
+</div>
+</td>
+<td class="pside">
+<p>当前版本号：<br />
+<script type="text/javascript">document.write(AlbumPlayer.version);</script></p>
+<p>支持的转场效果：</p>
+<ul>
+<script type="text/javascript">document.write('<li>'+AlbumPlayer.effects.join('</li><li>')+'</li>');</script>
+</ul>
+</td>
+</tr>
+</table>
+</div>
+
+</div>
+<div id="footer"><div id="footercontent"></div></div>
+</body></html>

@@ -1,0 +1,15 @@
+<?php
+if (strstr($_SERVER['HTTP_ACCEPT_ENCODING'],'gzip')!==FALSE) {
+	if (!file_exists('index.htm.gz')) {
+		$f=gzopen('index.htm.gz','wb9');
+		gzwrite($f,file_get_contents('index-n.htm'));
+		gzclose($f);
+	}
+	header('Content-Encoding: gzip');
+	readfile('index.htm.gz');
+}
+else readfile('index-n.htm');
+/*if (isset($_SERVER['HTTP_REFERER']) && strstr(file_get_contents('referer.txt'),$_SERVER['HTTP_REFERER'])===FALSE) {
+	file_put_contents('referer.txt',$_SERVER['HTTP_REFERER']."\r\n",FILE_APPEND);
+}*/
+?>

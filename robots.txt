@@ -1,0 +1,9 @@
+User-Agent: *
+Disallow: /lib/
+Disallow: /study/*/?d=
+Disallow: /study/*/?a=downslice
+
+User-Agent: MediaPartners-Google
+Allow: /lib/ref
+Allow: /study/*/?d=
+

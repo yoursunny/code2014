@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>treediff (PowerShell) - 你的阳光技术频道</title>
+<link rel="stylesheet" type="text/css" href="../../../images/yoursunny.css" />
+<script type="text/javascript" src="../../../lib/lib.js.php"></script>
+<meta name="keywords" content="treediff,windiff,文件比较,文件夹比较,目录比较" />
+</head>
+<body><div id="container">
+
+<div id="header">
+<h2><a href="http://yoursunny.com"><span>你的阳光 yoursunny.com</span></a></h2>
+<ul id="nav-header">
+<li><a href="http://yoursunny.com">首页</a></li>
+<li><a href="http://m.yoursunny.com">个人</a></li>
+<li><a href="http://www.65536.cn">技术</a></li>
+<li><a href="http://study.yoursunny.com">学习</a></li>
+</ul>
+</div>
+<div id="sub-nav"><ul>
+<li><a href="http://www.65536.cn">你的阳光技术频道 www.65536.cn</a></li>
+<li class="mark">&raquo;</li>
+<li><a href="../../">作品</a></li>
+<li class="mark">&raquo;</li>
+<li><a href="./">treediff</a></li>
+</ul></div>
+
+<div class="b">
+<h2 class="bh">treediff</h2>
+<table class="p">
+<tr>
+<td class="pcont">
+<h1 class="ptitle">treediff</h1>
+<div class="pmsg">
+<p>tree——树——目录树；diff——差别。treediff——比较两个目录的差别。<br/>
+这个脚本可以对两个目录中的文件<i>属性</i>进行比较，查出文件名、修改时间、文件大小的差异，形成Excel格式的报告。</p>
+<p><a href="treediff.ps1" onclick="c('/work/2008/treediff/treedif.ps1')">下载treediff.ps1</a><br/>
+使用说明：修改文件开头的配置选项，然后设置计划任务。</p>
+<p>treediff与windiff的主要区别：treediff只比较文件属性、windiff要比较文件内容，因此treediff的速度快；treediff可以设置容许修改时间有n秒的差异、容许文件大小有x字节的差异，而windiff没有这个功能。</p>
+</div>
+</td>
+<td class="pside">
+<p>当前版本号：<br />
+2008-08-14</p>
+<script type="text/javascript">WebSite.writeAd('180x150');</script>
+<p>提示：这个脚本需要<a href="http://www.microsoft.com/windowsserver2003/technologies/management/powershell/download.mspx">Windows PowerShell 1.0</a>的支持。设置计划任务时，命令行为<i>powershell.exe .\文件名.ps1</i>，注意不能漏掉<i>.\</i>部分；工作目录设置为ps1文件所在目录。</p>
+</td>
+</tr>
+</table>
+</div>
+
+</div>
+<div id="footer"><div id="footercontent"></div></div>
+</body></html>

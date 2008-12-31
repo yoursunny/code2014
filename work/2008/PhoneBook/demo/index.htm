@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>个人电话本</title>
+<link rel="stylesheet" type="text/css" href="p.css"/>
+<script type="text/javascript" src="../../../../lib/lib.js.php"><!--Prototype.js--></script>
+<script type="text/javascript" src="lib.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+<div id="wrapper">
+<div id="nav">
+<div id="nav_left">
+<span><b>个人电话本</b></span>
+<span><a href="http://www.65536.cn">你的阳光技术频道</a></span>
+</div>
+<div id="nav_right">
+<span><a href="javascript:PhoneBook.Mobile.dialog()">手机设置</a></span>
+<span><a href="javascript:PhoneBook.DataBackup.dialog()">数据备份</a></span>
+<span><a href="javascript:PhoneBook.logout()">注销登录</a></span>
+</div>
+</div>
+<div id="main">
+<div id="app">
+<div id="searchbar">
+<a href="javascript:PhoneBook.UI.showAdd()" class="ab"><img src="images/vcard_add.png" width="16" height="16" alt="添加联系人"/> 添加联系人</a>
+<input id="search_q" type="text"/>
+</div>
+<div id="tags">
+<ul id="tags_l"></ul>
+</div>
+<div id="detail">
+<div id="detail_t">
+<span id="detail_tl">
+<a id="detail_person_edit" href="javascript:PhoneBook.UI.PersonEdit()" class="ab"><img src="images/pencil.png" width="16" height="16" alt="编辑"/> 编辑</a>
+<a id="detail_person_tag_edit" href="javascript:PhoneBook.UI.PersonTagEdit()" class="ab"><img src="images/tag_blue.png" width="16" height="16" alt="标签"/> 标签</a>
+</span>
+<span id="detail_tr">
+<a id="detail_person_delete" href="javascript:PhoneBook.UI.PersonDelete()" class="ab"><img src="images/vcard_delete.png" width="16" height="16" alt="删除联系人"/> 删除联系人</a>
+</span>
+</div>
+<div id="detail_i"></div>
+</div>
+<div id="persons">
+<ul id="persons_l"></ul>
+</div>
+</div>
+<div id="sidebar">
+<script type="text/javascript">WebSite.writeAd('160x600');</script>
+</div>
+</div>
+</div>
+<div id="modal_back" style="display:none;"></div>
+<div id="dialog_login" style="display:none;">
+<p>欢迎使用<b>个人电话本</b>，请登录以继续操作</p>
+<p><a href="javascript:PhoneBook.login()">使用Windows Live ID登录</a></p>
+<p>如果你想快速体验本程序功能，你也可以<a href="javascript:PhoneBook.login_guest()">使用guest体验帐号登录</a> 注意：guest帐号的数据可被任何人看到</p>
+<p>这个演示由<b>www.65536.cn</b>短期提供，随时关闭，不承诺保留数据！</p>
+</div>
+<div id="dialog_mobile" style="display:none;">
+<p><b>个人电话本</b>支持WAP手机上网访问</p>
+<p>你的入口短网址：<span id="wap_tinyurl"></span><br/>
+长网址：<span id="wap_longurl"></span><br/>
+(如果你的手机无法登录短网址，请使用长网址)</p>
+<p>手机登录密码：<input type="text" id="wap_pin"/> <a href="javascript:PhoneBook.Mobile.SavePIN()">更改</a>
+<br/>（为便于手机输入，建议只使用数字+字母；如果设置为空则手机不能登录）</p>
+<a href="javascript:PhoneBook.Mobile.dialog_close()">关闭</a>
+</div>
+<div id="dialog_backup" style="display:none;">
+<p><b>数据备份</b></p>
+<p><a href="backup.php">导出用户数据</a></p>
+<a href="javascript:PhoneBook.DataBackup.dialog_close()">关闭</a>
+</div>
+<div id="dialog_email_multi" style="display:none;">
+请复制下列电子邮件地址列表：<br/>
+<textarea id="email_multi_l"></textarea><br/>
+<a href="javascript:PhoneBook.UI.EmailMulti_close()">关闭</a>
+</div>
+<div id="tag_editor_back" style="display:none;" onclick="PhoneBook.UI.TagEditor.hide()"></div>
+<ul id="tag_editor" style="position:absolute;display:none;"></ul>
+</div>
+<div id="meet_editor" style="display:none;">
+<p>此功能在当前版本尚未实现
+<a href="javascript:PhoneBook.UI.hideModalDialog('meet_editor')">返回</a>
+</p>
+<img src="images/hainei_meet.png" width="528" height="708" alt="hainei.com" onclick="PhoneBook.UI.hideModalDialog('meet_editor')"/>
+</div>
+</body>
+</html>

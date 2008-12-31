@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>公钥密码加密和鉴别过程（PKI体系） - 你的阳光技术频道 www.65536.cn</title>
+<link rel="stylesheet" type="text/css" href="../../images/yoursunny.css" />
+<script type="text/javascript" src="../../lib/lib.js.php"></script>
+<meta name="keywords" content="公钥密码,公钥密码体系,公开密钥,公钥体系,加密,鉴别,PKI,Windows Live ID" />
+</head>
+<body><div id="container">
+
+<div id="header">
+<h2><a href="http://yoursunny.com"><span>你的阳光 yoursunny.com</span></a></h2>
+<ul id="nav-header">
+<li><a href="http://yoursunny.com">首页</a></li>
+<li><a href="http://m.yoursunny.com">个人</a></li>
+<li><a href="http://www.65536.cn">技术</a></li>
+<li><a href="http://study.yoursunny.com">学习</a></li>
+</ul>
+</div>
+<div id="sub-nav"><ul>
+<li><a href="../../">你的阳光技术频道 www.65536.cn</a></li>
+<li class="mark">&raquo;</li>
+<li><a href="../">技术文章</a></li>
+<li class="mark">&raquo;</li>
+<li><span>公钥密码加密和鉴别过程（PKI体系）</span></li>
+</ul></div>
+
+<div class="b">
+<h2 class="bh">公钥密码加密和鉴别过程（PKI体系）</h2>
+<table class="p">
+<tr>
+<td class="pcont">
+<h1 class="ptitle">公钥密码加密和鉴别过程（PKI体系）</h1>
+<div class="pmsg">
+阳光男孩 发表于 2007-10-09 || 《信息安全综合实践》小作业
+<h2>公钥密码加密和鉴别过程（PKI体系）</h2>
+<ol>
+<li>用户向RA提交证书申请，RA审查后由CA颁发证书给用户</li>
+<li>发送方计算信息摘要值</li>
+<li>发送方将信息摘要值发送给时间戳服务器，获取带有服务器签名的时间戳</li>
+<li>发送方将信息摘要值、时间戳用自己的私钥加密，得到签名数据</li>
+<li>发送方随机产生一个对称密钥，用此密钥和某种算法对信息进行对称加密，得到密文</li>
+<li>发送方将上一步使用的对称密钥和算法代号用接收方的公钥加密，和密文保存在一起</li>
+<li>发送方将签名数据和密文通过不安全信道发送给接收方</li>
+<li>接收方用自己的私钥解密密文的对称密钥和算法代号部分</li>
+<li>接收方用上一步得到的算法和对称密钥对密文正文进行解密，得到明文信息</li>
+<li>接收方用发送方的公钥对签名数据进行解密</li>
+<li>接收方计算信息摘要值，与签名数据解密结果中的摘要值进行比较，如果一致则信息没有被篡改</li>
+<li>接收方检查时间戳，确认没有遭受重放攻击</li>
+</ol>
+<h2>应用实例——Windows Live ID单点登录服务</h2>
+<p class="indent">Windows Live ID是Microsoft公司提供的单点登录服务，应用于Windows Live、MSN等网站，并且其他站点也通过SDK调用Windows Live认证服务。</p>
+<p class="indent">Windows Live ID在以下方面使用了公钥密码技术：</p>
+<ul>
+<li>登录服务器https://login.live.com/使用了基于SSL的https协议，浏览器产生一个对称密钥用服务器证书的公钥加密后发送给服务器，此后的通信都是用这个对称密钥加密进行的</li>
+<li>Windows Live ID服务与成员站点（调用服务的站点）对于账户信息的签名是采用公钥密码技术，但是加密是采用对称密码技术</li>
+</ul>
+</div>
+</td>
+<td class="pside">
+<script type="text/javascript">WebSite.writeAd('160x600');</script>
+</td>
+</tr>
+</table>
+</div>
+
+</div>
+<div id="footer"><div id="footercontent"></div></div>
+</body></html>

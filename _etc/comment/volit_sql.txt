@@ -1,0 +1,54 @@
+-- phpMyAdmin SQL Dump
+-- version 2.11.3
+-- http://www.phpmyadmin.net
+--
+-- 主机: localhost
+-- 生成日期: 2008 年 06 月 12 日 19:22
+-- 服务器版本: 5.0.45
+-- PHP 版本: 5.2.4
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- 数据库: `yoursunny_com`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ys_comment`
+--
+
+CREATE TABLE IF NOT EXISTS `ys_comment` (
+  `ID` int(11) NOT NULL auto_increment,
+  `page` varchar(60) NOT NULL,
+  `t` datetime NOT NULL,
+  `person` varchar(20) NOT NULL,
+  `link` varchar(100) NOT NULL,
+  `msg` varchar(500) NOT NULL,
+  `pass` tinyint(1) NOT NULL,
+  PRIMARY KEY  (`ID`),
+  KEY `page` (`page`,`t`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+
+--
+-- 导出表中的数据 `ys_comment`
+--
+
+INSERT INTO `ys_comment` (`ID`, `page`, `t`, `person`, `link`, `msg`, `pass`) VALUES
+(1, '/study/IS406/', '2008-03-05 23:21:51', '小洋在线', '', 'nice!', 1),
+(3, '/study/IS206/', '2008-03-28 13:12:16', '', '', '那个专门用来看代码的软件叫什么名字？', 1),
+(4, '/study/IS206/', '2008-03-30 10:52:49', '阳光男孩', 'http://www.65536.cn', '@楼上没写名字的孩子\r\nSource In Sight\r\n是个商业软件，而且Linux下无法运行，垃圾', 1),
+(5, '/study/IS206/', '2008-03-30 13:49:44', '', '', 'http://www.greendown.cn/soft/6672.html\r\nSource Insight 3.50.0056┊是项目开发的编辑器和代码浏览器┊英文绿色特别版 ', 1),
+(9, '/study/IS208/', '2008-04-21 09:31:21', '', '', '有没有作业题？？', 1),
+(10, '/study/IS215/', '2008-04-21 22:03:42', '偶像,我要向你学习', '', '要跟你一样,那么牛X.', 1),
+(11, '/study/IS208/', '2008-04-24 21:06:21', '', '', '作业参考模板放错东西了？？？是作业题的链接～', 1),
+(12, '/study/IS208/', '2008-04-25 09:57:48', '', '', '作业参考模板不对', 1),
+(13, '/study/IS208/', '2008-04-25 21:12:41', '阳光男孩', 'http://yoursunny.com', '作业参考模板原来链接错了，现在已经修正', 1),
+(14, '/study/IS406/', '2008-04-29 08:33:27', '', '', '3级对称CLOS网络严格无阻塞条件m≥2n-1；可重排无阻塞条件m≥n\r\n其中n是第2级单元数，m是第1、3级单元数\r\n\r\n这也可以的阿？错的也太离谱了。', 1),
+(16, '/study/EN001/', '2008-05-13 09:16:34', 'cindy', '', '下不下来。\r\n', 1),
+(17, '', '2008-05-13 09:17:15', 'cindy', '', 'Voa could not be downloaded. Why?', 1),
+(18, '/study/IS208/', '2008-05-20 21:11:27', '鱼', '', '为什么没有09？', 1),
+(19, '/study/IS206/', '2008-05-25 15:05:21', '', '', '帅哥，能不能把操作系统第2个作业的要求发上来？', 1),
+(20, '/study/IS208/', '2008-05-29 22:23:47', '阳光男孩', 'http://yoursunny.com', '@鱼\r\n09章上课没讲过，所以没有', 1),
+(21, '/z/2008/valentine/', '2008-06-05 20:58:19', '麻煩巫仙', '', 'Great!', 1);

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GChart测试页</title>
+<script type="text/javascript" src="/_etc/lib/prototype.js"></script>
+<script type="text/javascript" src="GChart.js"></script>
+</head>
+
+<body>
+<div id="show"></div>
+<script type="text/javascript">
+var chart=new GChart.XYChart();
+chart.width=300;
+chart.height=200;
+chart.min=-2;
+chart.max=6;
+chart.newDataSet('');
+chart.addPoint(1,3);
+chart.addPoint(4,2);
+chart.addPoint(3,1.4,{type:'c',color:'00ff00',size:8});
+chart.addDataSet([1,2,3,4],[1,2,3,4],'ff0000','',{type:'x',color:'009900',size:9});
+chart.title.t='sample';
+chart.title.color='ff00ff';
+var u=chart.url();
+$('show').update('<img src="'+u+'" /><br />'+u);
+</script>
+</body>
+</html>

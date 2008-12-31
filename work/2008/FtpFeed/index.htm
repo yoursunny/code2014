@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>FtpFeed (PHP) - 你的阳光技术频道</title>
+<link rel="stylesheet" type="text/css" href="../../../images/yoursunny.css" />
+<script type="text/javascript" src="../../../lib/lib.js.php"></script>
+<meta name="keywords" content="FTP,FTP列目录,FTP目录列表,RSS,Feed,聚合源" />
+</head>
+<body><div id="container">
+
+<div id="header">
+<h2><a href="http://yoursunny.com"><span>你的阳光 yoursunny.com</span></a></h2>
+<ul id="nav-header">
+<li><a href="http://yoursunny.com">首页</a></li>
+<li><a href="http://m.yoursunny.com">个人</a></li>
+<li><a href="http://www.65536.cn">技术</a></li>
+<li><a href="http://study.yoursunny.com">学习</a></li>
+</ul>
+</div>
+<div id="sub-nav"><ul>
+<li><a href="http://www.65536.cn">你的阳光技术频道 www.65536.cn</a></li>
+<li class="mark">&raquo;</li>
+<li><a href="../../">作品</a></li>
+<li class="mark">&raquo;</li>
+<li><a href="./">FtpFeed</a></li>
+</ul></div>
+
+<div class="b">
+<h2 class="bh">FtpFeed</h2>
+<table class="p">
+<tr>
+<td class="pcont">
+<h1 class="ptitle">FtpFeed</h1>
+<div class="pmsg">
+<p>把FTP目录列表转换为RSS聚合源。一个PHP脚本，需使用ftp_*系列函数。<br/>
+<a href="FtpFeed.php">演示</a>
+<a href="FtpFeed.zip" onclick="c('/work/2008/FtpFeed/FtpFeed.zip')">下载FtpFeed</a></p>
+<h3>配置代码</h3>
+<pre>$server='202.120.2.2';
+$user='lgshen';
+$pass='lgshen';
+$path='upload/';
+$title='计算机病毒原理作业上传';
+$description='刘功申FTP上传目录';
+//$linkbase='ftp://lgshen:lgshen@202.120.2.2/'.urlencode(iconv('utf-8','gbk','计算机病毒及其防范技术代码')).'/';
+$linkbase='ftp://lgshen:lgshen@202.120.2.2/upload/';</pre>
+<p>如果FTP路径包含中文，则$linkbase中的中文部分可能需要转换为gbk字符集然后进行urlencode。如果发现链接地址不对，请自行修改。</p>
+<p>警告：请不要轻易修改成允许转换任何FTP服务器，以免被攻击者利用作为FTP密码破解的跳板。</p>
+</div>
+</td>
+<td class="pside">
+<p>当前版本号：<br />
+2008-06-12</p>
+</td>
+</tr>
+</table>
+</div>
+
+
+</div>
+<div id="footer"><div id="footercontent"></div></div>
+</body></html>

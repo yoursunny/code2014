@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>IIS日志处理 IISlog_parse IISlog_gzip (PowerShell) - 你的阳光技术频道</title>
+<link rel="stylesheet" type="text/css" href="../../../images/yoursunny.css" />
+<script type="text/javascript" src="../../../lib/lib.js.php"></script>
+<meta name="keywords" content="IISlog_parse,IISlog_gzip,IIS日志,服务器日志,IISlog,IIS log,LogParser" />
+</head>
+<body><div id="container">
+
+<div id="header">
+<h2><a href="http://yoursunny.com"><span>你的阳光 yoursunny.com</span></a></h2>
+<ul id="nav-header">
+<li><a href="http://yoursunny.com">首页</a></li>
+<li><a href="http://m.yoursunny.com">个人</a></li>
+<li><a href="http://www.65536.cn">技术</a></li>
+<li><a href="http://study.yoursunny.com">学习</a></li>
+</ul>
+</div>
+<div id="sub-nav"><ul>
+<li><a href="http://www.65536.cn">你的阳光技术频道 www.65536.cn</a></li>
+<li class="mark">&raquo;</li>
+<li><a href="../../">作品</a></li>
+<li class="mark">&raquo;</li>
+<li><a href="./">IIS日志处理</a></li>
+</ul></div>
+
+<div class="b">
+<h2 class="bh">IIS日志处理</h2>
+<table class="p">
+<tr>
+<td class="pcont">
+<h1 class="ptitle">IIS日志处理</h1>
+<div class="pmsg">
+<h2>IISlog_parse.ps1 日志分析脚本</h2>
+<p>如何了解网站错误？如何统计网站流量？IIS日志是一个重要的信息来源。但是，动辄数百兆的日志，人工如何能看完呢？<br/>
+这个脚本利用LogParser工具分析IIS日志，统计404、500等错误的发生情况，并统计整个网站、首页、指定目录的IP/Hit/PV访问量。分析结果产生文本文件，每天发送到管理员的信箱中。</p>
+<p><a href="IISlog_parse.ps1" onclick="c('/work/2008/IISlog/IISlog_parse.ps1')">下载IISlog_parse.ps1</a><br/>
+使用说明：修改文件开头的配置选项，然后设置计划任务，在前一天的日志记录结束后调用此脚本。该文件所在目录中要建立report和temp两个子目录。</p>
+<h2>IISlog_gzip.ps1 日志压缩脚本</h2>
+<p>网站的IIS日志是网站使用情况的记录文件，有重要的统计意义。但是，每天数百兆的日志，会占用大量的空间。<br/>
+这个脚本会自动将数天前的日志文件转移到其他地方（例如拥有海量磁盘的文件服务器），并且压缩成gzip或rar格式。</p>
+<p><a href="IISlog_gzip.ps1" onclick="c('/work/2008/IISlog/IISlog_gzip.ps1')">下载IISlog_parse.ps1</a><br/>
+使用说明：修改文件开头的配置选项，然后设置每天一次的计划任务。如果选择rar格式，则需要安装WinRAR软件。</p>
+</div>
+</td>
+<td class="pside">
+<p>IISlog_parse版本号：<br />
+2008-08-11</p>
+<p>IISlog_gzip版本号：<br />
+2008-08-28</p>
+<script type="text/javascript">WebSite.writeAd('180x150');</script>
+<p>提示：这两个脚本需要<a href="http://www.microsoft.com/windowsserver2003/technologies/management/powershell/download.mspx">Windows PowerShell 1.0</a>的支持。设置计划任务时，命令行为<i>powershell.exe .\文件名.ps1</i>，注意不能漏掉<i>.\</i>部分；工作目录设置为ps1文件所在目录。</p>
+</td>
+</tr>
+</table>
+</div>
+
+</div>
+<div id="footer"><div id="footercontent"></div></div>
+</body></html>

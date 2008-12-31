@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>从IP判断地理位置 - 你的阳光技术频道</title>
+<link rel="stylesheet" type="text/css" href="../../../images/yoursunny.css" />
+<script type="text/javascript" src="../../../lib/lib.js.php"></script>
+<script type="text/javascript">WebSite.cbase='/work/2008/MobileIPquery/';</script>
+<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAihENVS8xCSR18JFDkoNVLhQeQHHT99Gc6LfE5Sc_D83CJnXdwhRDK9hRyd-kAuMdQ2xTc0a_fohGiw"></script>
+</head>
+<body><div id="container">
+
+<div id="header">
+<h2><a href="http://yoursunny.com"><span>你的阳光 yoursunny.com</span></a></h2>
+<ul id="nav-header">
+<li><a href="http://yoursunny.com">首页</a></li>
+<li><a href="http://m.yoursunny.com">个人</a></li>
+<li><a href="http://www.65536.cn">技术</a></li>
+<li><a href="http://study.yoursunny.com">学习</a></li>
+</ul>
+</div>
+<div id="sub-nav"><ul>
+<li><a href="http://www.65536.cn">你的阳光技术频道 www.65536.cn</a></li>
+<li class="mark">&raquo;</li>
+<li><a href="../../">作品</a></li>
+<li class="mark">&raquo;</li>
+<li><a href="./">手机号码IP地址归属地查询</a></li>
+</ul></div>
+
+<div class="b">
+<h2 class="bh">手机号码IP地址归属地查询</h2>
+<table class="p">
+<tr>
+<td class="pcont">
+<h1 class="ptitle">[GeoIP]获取、显示IP归属国家、城市(英文)</h1>
+<div class="pmsg">
+<p>通过Maxmind提供的GeoIP服务，可以通过网页嵌入代码免费获得当前访问者IP地址对应的国家、城市、经纬度。</p>
+<p><b>&lt;script type="text/javascript" src="http://j.maxmind.com/app/geoip.js"&gt;&lt;/script&gt;</b><br />
+脚本中含有一系列函数调用，而没有write，需要自己处理<br />
+<script type="text/javascript" src="http://j.maxmind.com/app/geoip.js"></script>
+<script type="text/javascript">//<![CDATA[
+document.write('国家代码：'+geoip_country_code()+'<br/>国家名称：'+geoip_country_name()+'<br/>城市：'+geoip_city()+'<br/>经纬度：('+geoip_latitude()+','+geoip_longitude()+')');
+//]]></script></p>
+<p>全世界的数据都有。免费服务只能获得国家、城市、经纬度，而不能获得网络类型(电信/网通)等；而且只能获得当前访问者信息，而不能够查询任意IP地址。</p>
+</div>
+</td>
+<td class="pside">
+由于GeoIP的服务包含了城市经纬度，你甚至可以用Google Maps显示当前城市地图：
+<div id="googlemap_container" style="width:180px;height:180px;"></div>
+看到你现在身处的位置了吗？
+</td>
+</tr>
+</table>
+</div>
+
+</div>
+<div id="footer"><div id="footercontent"></div></div>
+<script type="text/javascript">//<![CDATA[
+google.load('maps','2');
+var googlemap=null;
+google.setOnLoadCallback(function(){
+	googlemap=new google.maps.Map2($('googlemap_container'));
+	var point=new google.maps.LatLng(Number(geoip_latitude()),Number(geoip_longitude()));
+	googlemap.setCenter(point,7);
+	googlemap.setMapType(G_SATELLITE_MAP);
+	googlemap.addOverlay(new GMarker(point));
+});
+//]]></script>
+</body></html>

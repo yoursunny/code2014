@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>[hProxyN] HttpProxyWWWAuthenticate</title>
+<meta name="robots" content="noindex,nofollow" />
+<script type="text/javascript">//<![CDATA[
+function authenticate() {
+  document.cookie='_hProxyN_88FC80D9-09FF-4ab7-922E-E7E85FA6A0DC_HttpProxyWWWAuthenticate='+escape(document.getElementById('userid').value)+'; path=/';
+  document.cookie='_hProxyN_5ADE96E6-02A1-400c-800E-C105A3D3F19E_HttpProxyWWWAuthenticate='+escape(document.getElementById('password').value)+'; path=/';
+  location.replace(location.href);
+  return false;
+}
+//]]></script>
+</head>
+<body>
+<p>[hProxyN] origin server requires WWW-Authenticate, please provide your crendentials below</p>
+<form action="" onsubmit="return authenticate();">
+<table>
+<tr>
+<td>userid</td>
+<td><input type="text" name="userid" id="userid" /></td>
+</tr>
+<tr>
+<td>password</td>
+<td><input type="password" name="password" id="password" /></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><input type="submit" value="continue" /></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

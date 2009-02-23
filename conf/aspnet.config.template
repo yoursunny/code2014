@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <sectionGroup name="hProxyN" type="yoursunny.P2008.hProxyN.hProxyNConfigurationSectionGroup,hProxyN">
+      <section name="Listener" type="yoursunny.P2008.hProxyN.ListenerConfigurationSection,hProxyN"/>
+      <section name="Logging" type="yoursunny.P2008.hProxyN.LoggingConfigurationSection,hProxyN"/>
+      <section name="Plugins" type="yoursunny.P2008.hProxyN.PluginsConfigurationSection,hProxyN"/>
+      <sectionGroup name="PluginConfiguration" type="yoursunny.P2008.hProxyN.PluginConfigurationSectionGroup,hProxyN">
+        <section name="AspNet" type="yoursunny.P2008.hProxyN.AspNetConfigurationSection,AspNetHosting"/>
+      </sectionGroup>
+    </sectionGroup>
+  </configSections>
+  <hProxyN>
+    <Listener mode="console">
+      <EndPoints>
+        <listen IP="any" port="81"/>
+      </EndPoints>
+    </Listener>
+    <Logging enabled="true">
+      <Output path="STDOUT" utc="false"/>
+      <Format type="yoursunny.P2008.hProxyN.IISW3CLogFormat" encoding="utf-8"/>
+      <Fields>
+        <field name="time"/>
+        <field name="c-ip"/>
+        <field name="cs-method"/>
+        <field name="cs-host"/>
+        <field name="cs-uri-stem"/>
+        <field name="cs-uri-query"/>
+        <field name="sc-status"/>
+        <field name="time-taken"/>
+        <field name="s-ip"/>
+        <field name="s-port"/>
+        <field name="cs-host"/>
+      </Fields>
+    </Logging>
+    <Plugins>
+      <PluginCollection>
+        <plugin type="yoursunny.P2008.hProxyN.AspNet,AspNetHosting"/>
+      </PluginCollection>
+    </Plugins>
+    <PluginConfiguration>
+      <AspNet>
+	    <Applications>
+	      <Application hostname="localhost" port="81" vpath="/" path="$_wwwroot_$"/>
+	    </Applications>
+      </AspNet>
+    </PluginConfiguration>
+  </hProxyN>
+</configuration>

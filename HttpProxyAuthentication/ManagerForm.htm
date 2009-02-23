@@ -1,0 +1,75 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>[hProxyN] HttpProxyAuthentication - Credentials Manager</title>
+<meta name="robots" content="noindex,nofollow" />
+</head>
+<body>
+<h1>[hProxyN] HttpProxyAuthentication - Credentials Manager</h1>
+<h2>ADD USER</h2>
+<form action="adduser.cgi" method="post">
+<table>
+<tr>
+<td>userid</td>
+<td><input type="text" name="userid" /></td>
+</tr>
+<tr>
+<td>password</td>
+<td><input type="password" name="password" /></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><input type="submit" value="add user" /></td>
+</tr>
+</table>
+</form>
+<div id="op_existing">
+<h2>REMOVE USER</h2>
+<form action="removeuser.cgi" method="post">
+<table>
+<tr>
+<td>userid</td>
+<td><input type="text" name="userid" /></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><input type="submit" value="remove user" /></td>
+</tr>
+</table>
+</form>
+<h2>RESET PASSWORD</h2>
+<form action="resetpassword.cgi" method="post">
+<table>
+<tr>
+<td>userid</td>
+<td><input type="text" name="userid" /></td>
+</tr>
+<tr>
+<td>password</td>
+<td><input type="password" name="password" /></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><input type="submit" value="reset password" /></td>
+</tr>
+</table>
+</form>
+</div>
+<script type="text/javascript">//<![CDATA[
+${A9BC8F6D-8CFA-4930-AE62-ACF322E756F6}$
+if (userlist!=null) {
+  var b='<h2>EXISTING USERS</h2><table>';
+  for (var i=0;i<userlist.length;++i) {
+    var u=userlist[i].replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    b+='<tr><th>'+u+'</th><td>'
+      +'<form action="removeuser.cgi" method="post"><input type="hidden" name="userid" value="'+u+'"/><input type="submit" value="remove"/></form>'
+      +'</td><td>'
+      +'<form action="resetpassword.cgi" method="post"><input type="hidden" name="userid" value="'+u+'"/><input type="password" name="password"/><input type="submit" value="reset password"/></form>'
+      +'</td></tr>';
+  }
+  b+='</table>';
+  document.getElementById('op_existing').innerHTML=b;
+}
+//]]></script>
+</body>
+</html>

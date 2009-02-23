@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AccessControlList>
+  <chain id="MAIN">
+    <rule>
+      <condition>
+        <not>
+          <client subnet="127.0.0.1" mask="255.0.0.0"/>
+        </not>
+      </condition>
+      <action target="DENY"/>
+    </rule>
+    <rule>
+      <condition>
+        <not>
+          <or>
+            <method name="GET"/>
+            <method name="HEAD"/>
+          </or>
+        </not>
+      </condition>
+      <action target="DENY"/>
+    </rule>
+    <rule>
+      <condition>
+        <server domain="sjtu.edu.cn"/>
+      </condition>
+      <action target="sjtu"/>
+    </rule>
+    <rule>
+      <condition>
+        <server host="tieba.baidu.com"/>
+      </condition>
+      <action target="DENY"/>
+    </rule>
+    <rule>
+      <condition>
+        <referer pattern="http:\/\/yoursunny\.com.*"/>
+        <server host="feed.feedsky.com"/>
+      </condition>
+      <action target="DENY"/>
+    </rule>
+    <rule>
+      <action target="ACCEPT"/>
+    </rule>
+  </chain>
+  <chain id="sjtu">
+    <rule>
+      <condition>
+        <user list="sjtu,sjtuer"/>
+      </condition>
+      <action target="ACCEPT"/>
+    </rule>
+    <rule>
+      <condition>
+        <or>
+          <and>
+            <server host="comic.sjtu.edu.cn"/>
+            <url pattern=".*\.asp"/>
+          </and>
+          <server domain="seiee.sjtu.edu.cn"/>
+        </or>
+      </condition>
+      <action target="DENY"/>
+    </rule>
+    <rule>
+      <condition>
+        <server subnet="202.120.58.161" mask="255.255.255.255"/>
+        <url pattern="\/bbsb?find.*"/>
+      </condition>
+      <action target="DENY"/>
+    </rule>
+    <rule>
+      <condition>
+        <server subnet="202.120.58.161" mask="255.255.255.255"/>
+        <server port="8000"/>
+      </condition>
+      <action target="DENY"/>
+    </rule>
+    <rule>
+      <condition>
+        <or>
+          <server host="bbs.sjtu.edu.cn"/>
+          <server host="bbs6.sjtu.edu.cn"/>
+        </or>
+        <url pattern="\/bbsdoc.*"/>
+        <not>
+          <scripting language="VBScript">
+            <![CDATA[
+If InStr(ACL.url_s,"board=IS")>0 Then
+  ACL.Yes
+Else
+  ACL.No
+End If
+            ]]>
+          </scripting>
+        </not>
+      </condition>
+      <action target="DENY"/>
+    </rule>
+    <rule>
+      <condition>
+        <or>
+          <server host="bbs6.sjtu.edu.cn"/>
+          <server host="bbs.sjtu.edu.cn"/>
+        </or>
+        <url pattern="\/bbstdoc.*"/>
+        <not>
+          <scripting language="PowerShell">
+            <![CDATA[
+if ($ACL.url.Query.Contains("board=SJTUNews")) {
+  $ACL.Yes()
+} else {
+  $ACL.No()
+}
+            ]]>
+          </scripting>
+        </not>
+      </condition>
+      <action target="DENY"/>
+    </rule>
+    <rule>
+      <action target="ACCEPT"/>
+    </rule>
+  </chain>
+</AccessControlList>

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <sectionGroup name="hProxyN" type="yoursunny.P2008.hProxyN.hProxyNConfigurationSectionGroup,hProxyN">
+      <section name="Listener" type="yoursunny.P2008.hProxyN.ListenerConfigurationSection,hProxyN"/>
+      <section name="Logging" type="yoursunny.P2008.hProxyN.LoggingConfigurationSection,hProxyN"/>
+      <section name="Plugins" type="yoursunny.P2008.hProxyN.PluginsConfigurationSection,hProxyN"/>
+      <sectionGroup name="PluginConfiguration" type="yoursunny.P2008.hProxyN.PluginConfigurationSectionGroup,hProxyN">
+        <section name="WebHosting" type="yoursunny.P2008.hProxyN.WebHostingConfigurationSection,WebHosting"/>
+      </sectionGroup>
+    </sectionGroup>
+  </configSections>
+  <hProxyN>
+    <Listener mode="console">
+      <EndPoints>
+        <listen IP="any" port="81"/>
+      </EndPoints>
+    </Listener>
+    <Logging enabled="true">
+      <Output path="STDOUT" utc="false"/>
+      <Format type="yoursunny.P2008.hProxyN.IISW3CLogFormat" encoding="utf-8"/>
+      <Fields>
+        <field name="time"/>
+        <field name="c-ip"/>
+        <field name="cs-method"/>
+        <field name="cs-host"/>
+        <field name="cs-uri-stem"/>
+        <field name="cs-uri-query"/>
+        <field name="sc-status"/>
+        <field name="time-taken"/>
+        <field name="s-ip"/>
+        <field name="s-port"/>
+        <field name="cs-host"/>
+      </Fields>
+    </Logging>
+    <Plugins>
+      <PluginCollection>
+        <plugin type="yoursunny.P2008.hProxyN.WebHosting,WebHosting"/>
+        <plugin type="yoursunny.P2008.hProxyN.StaticHosting,WebHosting"/>
+        <plugin type="yoursunny.P2008.hProxyN.WebHostingDirectoryIndex,WebHosting"/>
+      </PluginCollection>
+    </Plugins>
+    <PluginConfiguration>
+      <WebHosting>
+        <EndPoints>
+          <listen IP="127.0.0.1" port="81"/>
+          <listen IP="::1" port="81"/>
+          <listen IP="127.0.0.2" port="81"/>
+        </EndPoints>
+        <VHosts>
+          <VHost IP="127.0.0.1" port="81" hostname="localhost">
+            <VDirs>
+              <VDir vpath="(.*\/)" handler="DirectoryIndex" file="$_wwwroot_$/site1/$1" param="index=index.htm|static|"/>
+              <VDir vpath="(.*\.(?:htm|html|js|css|jpg|png|gif))" handler="static" file="$_wwwroot_$/site1/$1" param=""/>
+            </VDirs>
+          </VHost>
+          <VHost IP="::1" port="81" hostname="localhost">
+            <VDirs>
+              <VDir vpath="(.*\/)" handler="DirectoryIndex" file="$_wwwroot_$/site1/$1" param="index=index.htm|static|"/>
+              <VDir vpath="(.*\.(?:htm|html|js|css|jpg|png|gif))" handler="static" file="$_wwwroot_$/site1/$1" param=""/>
+            </VDirs>
+          </VHost>
+          <VHost IP="127.0.0.1" port="81" hostname="127.0.0.1">
+            <VDirs>
+              <VDir vpath="(.*\.(?:htm|html|js|css|jpg|png|gif))" handler="static" file="$_wwwroot_$/site2/$1" param=""/>
+            </VDirs>
+          </VHost>
+          <VHost IP="127.0.0.2" port="81" hostname=".*">
+            <VDirs>
+              <VDir vpath="(.*\/)" handler="DirectoryIndex" file="$_wwwroot_$/site3/$1" param="index=index.htm|static|"/>
+              <VDir vpath="(.*\.(?:htm|html|js|css|jpg|png|gif))" handler="static" file="$_wwwroot_$/site3/$1" param=""/>
+            </VDirs>
+          </VHost>
+        </VHosts>
+      </WebHosting>
+    </PluginConfiguration>
+  </hProxyN>
+</configuration>

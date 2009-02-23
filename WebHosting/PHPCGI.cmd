@@ -1,0 +1,9 @@
+@ECHO OFF
+SETLOCAL
+:S
+IF %2.==. GOTO R
+SET %2:~1.-1%
+SHIFT /2
+GOTO S
+:R
+%1

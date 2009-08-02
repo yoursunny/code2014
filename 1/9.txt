@@ -1,0 +1,22 @@
+?>		
+		<div class="clear"></div>
+	
+	</div>
+	<!-- /Main -->
+	
+	<!-- Footer -->
+	<div id="footer">
+	Green Delight Designed by
+<a href="http://www.bytesforall.com/">Bytesforall Webdesign</a> Coding by <a href="http://www.maiahost.com"> Cheap web hosting</a> | <a href="http://templates4all.com">Website Templates</a> |
+<a href="http://www.thepatio.ws/">Private Krankenversicherung</a> 
+	</div>
+	<!-- Footer -->
+
+</div></div></div>
+<!-- /Page -->
+
+<?php wp_footer(); ?>
+
+</body>
+
+</html><?

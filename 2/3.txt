@@ -1,0 +1,398 @@
+
+require('../class/connect.php');
+include('../class/db_sql.php');
+include('../class/config.php');
+include('../class/class.php');
+include('../class/user.php');
+include('../class/MemberLevel.php');
+include('../class/q_functions.php');
+include('../class/qinfofun.php');
+include('../class/checkedip.php');
+$link=db_connect();
+$empire=new mysqlquery();
+$ReturnIP=checkedip();
+if($public_r['addnews_ok'])
+{
+printerror('NotOpenCQInfo','',1);
+}
+$classid=(int)$_GET['classid'];
+$jzfenleiform='';
+$sj_classid=array('96','97','98','99','100','101','102','103','104','105','106','107','108','109','110','111','112','113','114','115','116','9','134','135','136','137','138','139','143','145','146','147','148','149','150','153','154','156','157','10','158','159','160','161','162','163','164','165','166','167','168','169','170','171','11','172','173','174','175','176','179','180','181','182','183','184','185','186','189','190','191');
+in_array($classid,$sj_classid)?$jzfenleiform='/sjpp.html':$jzfenleiform='/post.html';
+$cate='';
+$job_array=array('65','66','67','68','69','70','71','72','73','74','75','80','81','82','117','119','120','121','122','126','133');
+$sale_array=array('22','23','24','25','26','27','28','29','30','31','32','33','36','37','38');
+$car_array=array('83','84');
+$marry_array=array('42','43','44');
+if (in_array($classid,$job_array))
+{
+$cate='<tr><td align="right" valign="top"></td><td><input name="cate" id="cate" type="radio" value="招聘" checked="checked"><label for="cate">招聘</label><input name="cate" id="cate1" type="radio" value="求职"><label for="cate1">求职</label></td></tr>
+<tr>
+        <td width="14%" align="right"><span class="redn">*</span> <strong>学 历：</strong></td>
+        <td width="86%"><select name="edu" id="edu"><option value="不限">不限</option><option value="高中/中专">高中/中专</option><option value="大专">大专</option><option value="本科">本科</option><option value="硕士以上">硕士以上</option></select>&nbsp;&nbsp;&nbsp;<span class="redn">*</span> <b>薪资：</b><input name="jiage" type="text" size=4 id="jiage" value="" onKeyUp="value=value.replace(/\D+/g,\'\')"> 元/月&nbsp;&nbsp;&nbsp;<span class="redn">*</span>  <b>专业</b> <input name="zhuanye" type="text" id="zhuanye" value="" size="8"> 
+<span class="notes">如:艺术设计</span></td>
+      </tr>';
+}
+elseif (in_array($classid,$sale_array))
+{
+$cate='<tr><td align="right"></td><td><input name="cate" id="cate" type="radio" value="出售" checked="checked"><label for="cate">出售</label><input name="cate" id="cate1" type="radio" value="求购"><label for="cate1">求购</label><input name="cate" id="cate2" type="radio" value="交换"><label for="cate2">交换</label></td></tr>      <tr>
+        <td width="14%" align="right"><span class="redn">*</span> <strong>成 色：</strong></td>
+        <td width="86%"><select name="chengse" id="chengse"><option value="全新">全新</option><option value="99成新">99成新</option><option value="95成新">95成新</option><option value="9成新">9成新</option><option value="8成新">8成新</option><option value="7成新">7成新</option><option value="6成以下">6成以下</option></select>&nbsp;&nbsp;&nbsp;<span class="redn">*</span> <b>价格：</b><input name="jiage" type="text" size=4 id="jiage" value="" onKeyUp="value=value.replace(/\D+/g,\'\')"> 元</td>
+      </tr>';
+}
+elseif (in_array($classid,$car_array))
+{
+$cate='<tr><td align="right" valign="top"></td><td><input name="cate" id="cate" type="radio" value="出售" checked="checked"><label for="cate">出售</label><input name="cate" id="cate1" type="radio" value="求购"><label for="cate1">求购</label></td></tr><tr>
+        <td width="14%" align="right"><span class="redn">*</span> <strong>成 色：</strong></td>
+        <td width="86%"><select name="chengse" id="chengse"><option value="全新">全新</option><option value="99成新">99成新</option><option value="95成新">95成新</option><option value="9成新">9成新</option><option value="8成新">8成新</option><option value="7成新">7成新</option><option value="6成以下">6成以下</option></select> <b>价格：</b><input name="jiage" type="text" size=4 id="jiage" value="" onKeyUp="value=value.replace(/\D+/g,\'\')"> 元</td>
+      </tr>';
+}
+elseif (in_array($classid,$marry_array))
+{
+$cate='<tr bgcolor="#CFE4A3">
+  <td align="right"><span class="redn">*</span> <strong>我的性别：</strong></td>
+  <td><input name="mysex" type="radio" id="mysex" value="男" checked="checked"><label for="mysex">男</label> <input name="mysex"  id="mysex" type="radio" value="女"><label for="mysex">女</label>&nbsp;年龄：<input name="myage" type="text" size=3 id="myage"> 岁&nbsp;身高：<input name="myhight" type="text" id="myhight" value="" size="3"> CM&nbsp;户籍：<select name="myhuji" id="myhuji"><option value="保密">保密</option><option value="北京">北京</option><option value="天津">天津</option><option value="河北">河北</option><option value="山西">山西</option><option value="内蒙古">内蒙古</option><option value="辽宁">辽宁</option><option value="吉林">吉林</option><option value="黑龙江">黑龙江</option><option value="上海">上海</option><option value="江苏">江苏</option><option value="浙江">浙江</option><option value="安徽">安徽</option><option value="福建">福建</option><option value="江西">江西</option><option value="山东">山东</option><option value="河南">河南</option><option value="湖北">湖北</option><option value="湖南">湖南</option><option value="广东">广东</option><option value="广西">广西</option><option value="海南">海南</option><option value="重庆">重庆</option><option value="四川">四川</option><option value="贵州">贵州</option><option value="云南">云南</option><option value="西藏">西藏</option><option value="陕西">陕西</option><option value="甘肃">甘肃</option><option value="青海">青海</option><option value="宁夏">宁夏</option><option value="新疆">新疆</option><option value="港澳台">港澳台</option><option value="外籍">外籍</option></select>&nbsp;学历：<select name="myedu" id="myedu"><option value="保密">保密</option><option value="高中/中专">高中/中专</option><option value="大专">大专</option><option value="本科">本科</option><option value="硕士以上">硕士以上</option></select></td></tr>
+        <tr bgcolor="#EFC5ED">
+        <td width="14%" align="right" height="25"><span class="redn">*</span> <strong>对方要求：</strong></td>
+        <td width="86%" height="25"><input name="sex" id="sex" type="radio" value="男"><label for="sex">男</label> <input name="sex"  id="sex" type="radio" value="女"><label for="sex">女</label>&nbsp;年龄：<select name="age" id="age"><option value="不限">不限</option><option value="0-15岁">0-15岁</option><option value="16-22岁">16-22岁</option><option value="20-30岁">20-30岁</option><option value="31-40岁">31-40岁</option><option value="40-无限">40-无限</option></select>&nbsp;身高：<select name="hight" id="hight"><option value="不限">不限</option><option value="145CM以下">145CM以下</option><option value="145-155CM">145-155CM</option><option value="155-165CM">155-165CM</option><option value="165-175CM">165-175CM</option><option value="175-185CM">175-185CM</option><option value="185CM以上">185CM以上</option></select>&nbsp;户籍：<select name="huji" id="huji"><option value="不限">不限</option><option value="北京">北京</option><option value="天津">天津</option><option value="河北">河北</option><option value="山西">山西</option><option value="内蒙古">内蒙古</option><option value="辽宁">辽宁</option><option value="吉林">吉林</option><option value="黑龙江">黑龙江</option><option value="上海">上海</option><option value="江苏">江苏</option><option value="浙江">浙江</option><option value="安徽">安徽</option><option value="福建">福建</option><option value="江西">江西</option><option value="山东">山东</option><option value="河南">河南</option><option value="湖北">湖北</option><option value="湖南">湖南</option><option value="广东">广东</option><option value="广西">广西</option><option value="海南">海南</option><option value="重庆">重庆</option><option value="四川">四川</option><option value="贵州">贵州</option><option value="云南">云南</option><option value="西藏">西藏</option><option value="陕西">陕西</option><option value="甘肃">甘肃</option><option value="青海">青海</option><option value="宁夏">宁夏</option><option value="新疆">新疆</option><option value="港澳台">港澳台</option><option value="外籍">外籍</option></select>&nbsp;学历：<select name="edu" id="edu"><option value="不限">不限</option><option value="高中/中专">高中/中专</option><option value="大专">大专</option><option value="本科">本科</option><option value="硕士以上">硕士以上</option></select></td>
+      </tr>';
+}
+$house='';
+$chu_array=array('12','13','14','17','18','19');
+$mai_array=array('15','16');
+if (in_array($classid,$chu_array))
+{
+$house='<input name="jiage" type="text" id="jiage" size="4" onKeyUp="value=value.replace(/\D+/g,\'\')"> 元/月';
+}
+elseif  (in_array($classid,$mai_array))
+{
+$house='<input name="jiage" type="text" id="jiage" size="4" onKeyUp="value=value.replace(/\D+/g,\'\')"> 万元';
+}
+$mid=(int)$_GET['mid'];
+if(empty($classid)||empty($mid))
+{
+printerror('EmptyQinfoCid','',1);
+}
+$enews=$_GET['enews'];
+if(empty($enews))
+{
+$enews='MAddInfo';
+}
+$muserid=(int)getcvar('mluserid');
+$guserid=(int)getcvar('mluserid');
+$musername=getcvar('mlusername');
+$mrnd=getcvar('mlrnd');
+$showkey='';
+$r['newstext']='';
+if($muserid)
+{
+$memberinfor=$empire->fetch1('select u.*,ui.* from '.$user_tablename." u LEFT JOIN {$dbtbpre}enewsmemberadd ui ON u.{$user_userid}=ui.userid where u.{$user_userid}='$muserid' limit 1");
+}
+if($enews=='MAddInfo')
+{
+$cr=DoQCheckAddLevel($classid,$muserid,$musername,$mrnd,0,1);
+$mr=$empire->fetch1("select qenter,qmname,tobrf from {$dbtbpre}enewsmod where mid='$cr[modid]'");
+if(empty($mr['qenter']))
+{
+printerror('NotOpenCQInfo','history.go(-1)',1);
+}
+$ecmsfirstpost=1;
+$word='您当前选择的分类是：';
+$rechangeclass="&nbsp;&nbsp;<span class='px12'>[<a href='$jzfenleiform'>更改分类</a>]</span>";
+if($cr['qaddshowkey'])
+{
+$showkey="<tr>
+      <td width=\"13%\" align=\"right\"  valign=\"top\"><span class=\"redn\">*</span> <strong>验证码：</strong></td>
+      <td width=\"87%\"><input name=\"key\" type=\"text\" size=\"6\"> <img src=\"../ShowKey?ecms\"></td></tr>";
+}
+$imgwidth=0;
+$imgheight=0;
+if(strstr($mr['qenter'],'morepic<'))
+{
+$morepicnum=3;
+$morepicpath="<table width='100%' border=0 align=center cellpadding=3 cellspacing=1>
+		<tr> 
+			<td width='7%'><div align=center>1</div></td>
+			<td width='33%'><div align=center>
+			<input name=msmallpic[] type=text id=msmallpic[] size=28>
+			</div></td>
+			<td width='30%'><div align=center>
+			<input name=mbigpic[] type=text id=mbigpic[] size=28>
+			</div></td>
+			<td width='30%'><div align=center>
+			<input name=mpicname[] type=text id=mpicname[]>
+			</div></td>
+		</tr>
+		<tr> 
+			<td><div align=center>2</div></td>
+			<td><div align=center>
+			<input name=msmallpic[] type=text id=msmallpic[] size=28>
+			</div></td>
+			<td><div align=center>
+			<input name=mbigpic[] type=text id=mbigpic[] size=28>
+			</div></td>
+			<td><div align=center>
+			<input name=mpicname[] type=text id=mpicname[]>
+			</div></td>
+		</tr>
+		<tr> 
+			<td><div align=center>3</div></td>
+			<td><div align=center>
+			<input name=msmallpic[] type=text id=msmallpic[] size=28>
+			</div></td>
+			<td><div align=center>
+			<input name=mbigpic[] type=text id=mbigpic[] size=28>
+			</div></td>
+			<td><div align=center>
+			<input name=mpicname[] type=text id=mpicname[]>
+			</div></td>
+		</tr></table>";
+}
+$filepass=time();
+}
+else
+{
+$word='修改信息';
+$ecmsfirstpost=0;
+$id=(int)$_GET['id'];
+if(empty($id))
+{
+printerror('EmptyQinfoCid','',1);
+}
+$cr=DoQCheckAddLevel($classid,$muserid,$musername,$mrnd,1,0);
+$mr=$empire->fetch1("select qenter,qmname,tobrf from {$dbtbpre}enewsmod where mid='$cr[modid]'");
+if(empty($mr['qenter']))
+{
+printerror('NotOpenCQInfo','history.go(-1)',1);
+}
+$r=CheckQdoinfo($classid,$id,$muserid,$cr['tbname'],$cr['adminqinfo'],1);
+$imgwidth=170;
+$imgheight=120;
+$morepicpath='';
+if(strstr($mr['qenter'],'morepic<'))
+{
+$morepicnum=0;
+if($r[morepic])
+{
+$r[morepic]=stripSlashes($r[morepic]);
+$j=0;
+$pd_record=explode("\r\n",$r[morepic]);
+for($i=0;$i<count($pd_record);$i++)
+{
+$j=$i+1;
+$pd_field=explode('::::::',$pd_record[$i]);
+$morepicpath.="<tr> 
+	<td width='7%'><div align=center>".$j."</div></td>
+    <td width='33%'><div align=center>
+        <input name=msmallpic[] type=text value='".$pd_field[0]."' size=28>
+      </div></td>
+    <td width='30%'><div align=center>
+        <input name=mbigpic[] type=text value='".$pd_field[1]."' size=28>
+      </div></td>
+    <td width='30%'><div align=center>
+        <input name=mpicname[] type=text value='".$pd_field[2]."'><input type=hidden name=mpicid[] value=".$j.'><input type=checkbox name=mdelpicid[] value='.$j.'>删
+      </div></td></tr>';
+}
+$morepicnum=$j;
+$morepicpath="<table width='100%' border=0 cellspacing=1 cellpadding=3>".$morepicpath.'</table>';
+}
+}
+$filepass=$id;
+}
+$tbname=$cr['tbname'];
+esetcookie('qeditinfo','dgcms');
+$classurl=sys_ReturnBqClassname($cr,9);
+$postclass="<a href='".$classurl."' target='_blank'><span class='redb'>".$class_r[$classid]['classname'].'</span></a>'.$rechangeclass;
+if($cr['bclassid'])
+{
+$bcr['classid']=$cr['bclassid'];
+$bclassurl=sys_ReturnBqClassname($bcr,9);
+$postclass="<a href='".$bclassurl."' target=_blank><span  class='redb'>".$class_r[$cr['bclassid']]['classname'].'</span></a>&nbsp;->&nbsp;'.$postclass;
+}
+$url="<a href='../../'>首页</a>&nbsp;>&nbsp;<a href='../member/cp'>控制面板</a>&nbsp;>&nbsp;<a href='ListInfo.php?mid=".$cr['modid']."'>管理信息</a>&nbsp;>&nbsp;".$word.'&nbsp;('.$mr[qmname].')';
+if(strstr($mr['qenter'],'playerid<'))
+{
+$player_sql=$empire->query("select id,player from {$dbtbpre}enewsplayer");
+while($player_r=$empire->fetch($player_sql))
+{
+$select_player='';
+if($r[playerid]==$player_r[id])
+{
+$select_player=' selected';
+}
+$player_class.="<option value='".$player_r[id]."'".$select_player.'>'.$player_r[player].'</option>';
+}
+}
+if(strstr($mr['qenter'],'newstext<'))
+{
+$htmlareacode="<script type=\"text/javascript\">
+      _editor_url = \"../data/htmlarea\";
+      _editor_lang = \"en\";
+	</script>
+	<script type=\"text/javascript\" src=\"../data/htmlarea/htmlarea.php?userid=$muserid&username=$musername&rnd=$mrnd&classid=$classid&filepass=$filepass\"></script>
+	<script type=\"text/javascript\" src=\"../data/htmlarea/plugins/FullPage/full-page.js\"></script>
+	<script type=\"text/javascript\" src=\"../data/htmlarea/plugins/FullPage/lang/en.js\"></script>
+	<script type=\"text/javascript\">
+	//HTMLArea.loadPlugin(\"FullPage\");
+	var editor = null;
+	function initEditor() {
+		editor = new HTMLArea(\"newstext\");
+		editor.registerPlugin(FullPage);
+		editor.generate();
+		document.all['title'].focus();
+		return false;
+	}
+	function InsertFile(html){
+		editor.focusEditor();
+		editor.insertHTML(html);
+	}
+    </script>";
+$onload='<script>initEditor();</script>';
+}
+if(empty($musername))
+{
+$musername='游客发布&nbsp;<a href=../e/member/login class=px12>登陆</a>&nbsp;<a href=/e/member/register class=px12>注册</a>';
+}
+if (empty ($guserid))
+{
+$guserid="<tr><td align=\"right\" valign=\"top\"><strong>信息密码：</strong></td>
+        <td><input name=\"password\" type=\"text\" id=\"password\" value=\"\"> <span class=\"notes\">凭此密码您可以随时删除您发布的信息</span></td></tr>";
+}
+else
+{
+$guserid='';
+}
+$cnews='';
+$new_classid=array('64');
+in_array($classid,$new_classid)?$cnews='<script>
+function bs(){
+	var f=document.add
+	if(f.title.value.length==0){alert("标题还没写");f.title.focus();return false;}
+	if(f.classid.value==0){alert("请选择栏目");f.classid.focus();return false;}
+}
+function foreColor(){
+  if(!Error())	return;
+  var arr = showModalDialog("../e/data/html/selcolor.html", "", "dialogWidth:18.5em; dialogHeight:17.5em; status:0");
+  if (arr != null) document.add.titlecolor.value=arr;
+  else document.add.titlecolor.focus();
+}
+function FieldChangeColor(obj){
+  if(!Error())	return;
+  var arr = showModalDialog("../e/data/html/selcolor.html", "", "dialogWidth:18.5em; dialogHeight:17.5em; status:0");
+  if (arr != null) obj.value=arr;
+  else obj.focus();
+}
+</script>':$cnews='';
+$modfile='../data/html/q'.$cr['modid'].'.php';
+include('../data/template/cp_3.php');
+;echo '';echo $cnews;echo '';echo $htmlareacode;echo '<noscript>
+<iframe src=*.htm></iframe>
+</noscript>
+<script language=javascript src="PopupCalendar.js"></script>
+<script>
+var oCalendarEn=new PopupCalendar("oCalendarEn");    //初始化控件时,请给出实例名称如:oCalendarEn
+oCalendarEn.Init();
+var oCalendarChs=new PopupCalendar("oCalendarChs");    //初始化控件时,请给出实例名称:oCalendarChs
+oCalendarChs.weekDaySting=new Array("日","一","二","三","四","五","六");
+oCalendarChs.monthSting=new Array("一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月");
+oCalendarChs.oBtnTodayTitle="今天";
+oCalendarChs.oBtnCancelTitle="取消";
+oCalendarChs.Init();
+</script>
+<script language="javascript" type="text/javascript">
+
+var annonymous = true;
+function checkForm()
+{
+	var frm;
+	frm = document.getElementById("add");
+	
+	if(frm.title.value == ""){
+		alert("标题不能为空!");
+		frm.title.focus();
+		return false;
+	}
+	
+	if(frm.title.value.length < 3){
+		alert("标题太短，至少3个字符以上!");
+		frm.title.focus();
+		return false;
+	}
+	
+	if(frm.smalltext.value == ""){
+		alert("信息内容不能为空!");
+		frm.smalltext.focus();
+		return false;
+	}
+	
+	if(frm.smalltext.value.length < 10){
+		alert("信息内容太短，至少10个字符以上!");
+		frm.smalltext.focus();
+		return false;
+	}
+	
+	//if(frm.phone1.value == ""){
+	//	alert("手机/电话号码不能为空!");
+	//	frm.phone1.focus();
+	//	return false;
+	//}
+	//    var myreg = /^(((13[0-9]{1})|159)+\\d{8})$/;
+    //if(!myreg.test(frm.phone1.value))
+    //{
+    //    alert(\'请输入合法的手机/电话号码！\');
+    //    frm.phone1.focus();
+    //    return false;
+    //} 
+	
+	if(frm.gqtime.value == ""){
+		alert("请选择信息有效时间!");
+		frm.gqtime.focus();
+		return false;
+	}
+	
+	if(frm.gqtime.value.length < 8){
+		alert("输入格式不正确,格式：2007-08-01!");
+		frm.gqtime.focus();
+		return false;
+	}
+	if(frm.cncode.value == ""){
+		alert("请填写验证码!");
+		frm.cncode.focus();
+		return false;
+	}
+
+	return true;
+}
+</script>
+<form name="add" id="add" method="POST" enctype="multipart/form-data" action="ecms.php" onsubmit="return checkForm()">
+<input type=hidden value=';echo $enews;echo ' name=enews> <input type=hidden value=';echo $classid;echo ' name=classid> 
+<input name=id type=hidden id="id" value=';echo $id;echo '> <input type=hidden value="';echo $filepass;echo '" name=filepass> 
+<input name=mid type=hidden id="mid" value=';echo $mid;echo '>
+<input type=hidden value=jzfenleiform name="';echo $jzfenleiform;echo '">
+
+<table width="80%" border="0" align="center" cellpadding="4" cellspacing="4" style="font-size:14px">
+      <tr>
+        <td colspan="2"> ';echo $word;echo ' <span class="px14">';echo $postclass;echo '</span></td>
+      </tr>
+      <!--tr>
+        <td width="13%" align="right" valign="top"><strong>发布者：</strong></td>
+        <td width="87%"><font color=red>';echo $musername;echo '</font></td>
+      </tr-->
+ 
+	    ';
+@include($modfile);
+;echo ' ';echo $showkey;echo ' ';echo $ReturnIP;echo '      <tr>
+        <td align="center">&nbsp;</td>
+        <td><input type="submit" name="addnews" value="  发布信息  " class="bigbutton"></td>
+      </tr>
+	 
+    </form>
+	</td>
+  </tr>
+</table>
+<div class="mw">
+';
+db_close();
+$empire=null;
+include('../data/template/cp_4.php');
+echo $onload;

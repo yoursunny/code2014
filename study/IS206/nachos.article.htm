@@ -1,0 +1,182 @@
+操作系统
+Nachos: Not Another Completely Heuristic Operating System
+
+transitional
+<p>阳光男孩的Nachos实验报告</p>
+<ul>
+<li><a href="nachos1.htm">Implementing Priority Scheduler with Round-Robin on Nachos</a></li>
+<li><a href="nachos2.htm">Implementing Virtual Memory on Nachos</a></li>
+</ul>
+<hr/>
+<div id="evaw" style="text-align: right;">最后更新：2008-07-06<br id="tw:r" />
+</div><p id="s.59">&nbsp;&nbsp;&nbsp; <b id="iauw">Not Another Completely Heuristic Operating System</b>, or <b id="h5rw">Nachos</b>, is instructional software for teaching undergraduate, and potentially graduate level operating systems courses. It was developed at the University of California, Berkeley, designed by Thomas Anderson, and is used by numerous schools. 以上内容摘自Wikipedia </p><br id="s2sj" />
+我使用的操作系统是Ubuntu Desktop <strike id="rrwd">7.10</strike> 8.04，Nachos版本是C++ 4.1版。<br id="k0kc" />
+<hr id="uin:" style="width: 100%; height: 2px;" />
+<h2 id="o05_">推荐的资源链接</h2><ul id="j00e"><li id="zfg_">Nachos主页 <a title="http://www.cs.washington.edu/homes/tom/nachos/" href="http://www.cs.washington.edu/homes/tom/nachos/" id="y7__">http://www.cs.washington.edu/homes/tom/nachos/</a> </li><li id="r_li">李小勇老师提供的Nachos：<a title="介绍课件" href="./?d=nachos-intro.ppt" id="sgk:">介绍课件</a>、<a title="C++ 4.1版本" target="_blank" href="./?d=nachos_cpp41.zip" id="sq3c">C++ 4.1版本</a>、<a title="Java 5.0版本" target="_blank" href="./?d=nachos_java50.zip" id="bcsl">Java 5.0版本</a></li><li id="jmpx"><a title="A Road Map Through Nachos" href="http://www.cs.duke.edu/%7Enarten/110/nachos/main/main.html" id="ouft">A Road Map Through Nachos</a>&nbsp;<a title="http://www.cs.duke.edu/~narten/110/nachos/main/main.html" href="http://www.cs.duke.edu/%7Enarten/110/nachos/main/main.html" id="zdtf"></a>概要性介绍了Nachos源码的各个部分：机器、线程、用户进程、文件系统……</li><li id="qy05"> <a title="Guide to reading the NACHOS source" href="http://people.cs.uchicago.edu/%7Eodonnell/OData/Courses/CS230/NACHOS/reading-code.html" id="b46b">Guide to reading the NACHOS source</a> 深入阅读线程调度与启动、系统调用、地址转换、用户态地址空间部分源码</li></ul><hr id="uhvg" style="width: 100%; height: 2px;" />
+<h2 id="m338">2008-07-06</h2>又弄了一整天，一下子就写完了！2516行的输出……<br id="b.2u" />
+实验报告的字数统计<br id="knlc" />
+<div id="b.2u0" style="margin-left: 40px;">Words:&nbsp;&nbsp;&nbsp; &nbsp;28545<br id="knlc0" />
+Characters (no spaces):&nbsp;&nbsp;&nbsp; &nbsp;111452<br id="knlc1" />
+Characters (with spaces):&nbsp;&nbsp;&nbsp; &nbsp;133315<br id="knlc2" />
+Paragraphs:&nbsp;&nbsp;&nbsp; &nbsp;4289<br id="knlc3" />
+Sentences:&nbsp;&nbsp;&nbsp; &nbsp;4379<br id="knlc4" />
+Pages (approximate):&nbsp;&nbsp;&nbsp; &nbsp;95<br id="azpi" />
+</div>分享一条经验：在不知从何入手的时候，可以先写出一个个与实验目标有关的功能块，然后把它们组合起来。<hr id="m3381" size="2" width="100%" />
+<h2 id="f1gh">2008-07-05 再次开始：虚拟存储</h2>第二次作业，拖到今天才开始做；前面有考试、后面有生产实习，只有短短2天可以做这个作业。这次的作业要求是：实现虚拟存储（单线程，根据Modify、Referenced位决定换出，对NOFF文件进行lazy-load）。<br id="a75c" />
+<br id="ysjg" />
+与虚拟存储有关的源码文件包括<br id="ysjg0" />
+<ul id="xajz"><li id="xajz0">machine/translate.h（不准修改），页表项的结构。Reference位称为use，Modify位称为dirty<br id="u3eb" />
+</li><li id="u3eb1">userprog/addrspace.cc，虚拟地址空间；包括pageTable初始化和管理，以及读取NOFF文件。目前是虚拟地址与物理地址一一对应，也就是“实模式”。要改成虚拟存储，肯定需要另一个类内部使用的page=&gt;pageFrame转换表。</li><li id="uhrk">userprog/exception.cc，中断处理；缺页中断就是在这里处理的</li><li id="xpm5">threads/alarm.cc，时钟中断；需要定期清除Reference位<br id="xpm50" />
+</li></ul>Nachos虚拟机实际上支持两种虚拟存储机制（machine/translate.cc）：<br id="pkx3" />
+<ol id="pkx30"><li id="pkx31">pageTable：单级页表，但是无快表；当页表项中valid位为0时此页表项无效（注释中If this bit is set, the translation is ignored.说valid为1时页表项无效，正好说反了），就引起缺页中断</li><li id="pkx32">TLB：快表，但是无页表；如果快表中没查到，就引起缺页中断<br id="pkx33" />
+</li></ol><div id="pkx34">缺页中断处理完毕后，PC不增加，重新取指执行。<br id="xtpa" />
+<br id="ni9g" />
+在machine/machine.cc里发现了《计算机组成》一道考题（写个程序判断LittleEndian还是BigEndian）的答案：<br id="nexw" />
+<font id="brkq" size="2">static<br id="nexw0" />
+void CheckEndian()<br id="nexw1" />
+{<br id="nexw2" />
+&nbsp;&nbsp;&nbsp; union checkit {<br id="nexw3" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char charword[4];<br id="nexw4" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int intword;<br id="nexw5" />
+&nbsp;&nbsp;&nbsp; } check;<br id="nexw6" />
+<br id="nexw7" />
+&nbsp;&nbsp;&nbsp; check.charword[0] = 1;<br id="nexw8" />
+&nbsp;&nbsp;&nbsp; check.charword[1] = 2;<br id="nexw9" />
+&nbsp;&nbsp;&nbsp; check.charword[2] = 3;<br id="nexw10" />
+&nbsp;&nbsp;&nbsp; check.charword[3] = 4;<br id="nexw11" />
+<br id="nexw12" />
+#ifdef HOST_IS_BIG_ENDIAN<br id="nexw13" />
+&nbsp;&nbsp;&nbsp; ASSERT (check.intword == 0x01020304);<br id="nexw14" />
+#else<br id="nexw15" />
+&nbsp;&nbsp;&nbsp; ASSERT (check.intword == 0x04030201);<br id="nexw16" />
+#endif<br id="nexw17" />
+}<br id="nexw18" />
+</font>稍改一下就是那道题的答案了；union这个方法，看起来比指针“高级”一点。<br id="nb20" />
+<br id="kbx10" />
+今天主要是阅读，程序也写了一些，未测试。<br id="oj_c" />
+noff.h需要添加include guard（#ifndef……#define……#endif）才能正常编译。<br id="f1gh0" />
+<hr id="k:41" size="2" width="100%" />
+<h2 id="zdvt">2008-04-17 作业完成</h2>我的报告写完了！完全在Linux下，用Firefox和Google Docs完成的。Google Docs对文章字数的统计和易懂性的评价：<br id="q8yd" />
+<font id="ywg_" size="2"><b id="qy050">Counts</b><br id="b7:1" />
+Words:&nbsp;&nbsp;&nbsp; &nbsp;2457<br id="uxum" />
+Characters (no spaces):&nbsp;&nbsp;&nbsp; &nbsp;19004<br id="j1nu" />
+Characters (with spaces):&nbsp;&nbsp;&nbsp; &nbsp;21432<br id="io:d" />
+Paragraphs:&nbsp;&nbsp;&nbsp; &nbsp;558<br id="e65a" />
+Sentences:&nbsp;&nbsp;&nbsp; &nbsp;717<br id="m70f" />
+Pages (approximate):&nbsp;&nbsp;&nbsp; &nbsp;17<br id="oq2i" />
+&nbsp;&nbsp;&nbsp; <br id="qipc" />
+<b id="qy051">Readability</b><br id="f14x" />
+Average sentences per paragraph:&nbsp;&nbsp;&nbsp; &nbsp;1.28<br id="c7ra" />
+Average words per sentence:&nbsp;&nbsp;&nbsp; &nbsp;3.43<br id="pvyn" />
+Average characters per word:&nbsp;&nbsp;&nbsp; &nbsp;7.73<br id="y3ij" />
+Average words per page:&nbsp;&nbsp;&nbsp; &nbsp;144.53<br id="wdm1" />
+Flesch Reading Ease: [?]&nbsp;&nbsp;&nbsp; &nbsp;55.81<br id="m9zi" />
+Flesch-Kincaid Grade Level: [?]&nbsp;&nbsp;&nbsp; &nbsp;6.00<br id="w778" />
+Automated Readability Index: [?]&nbsp;&nbsp;&nbsp; &nbsp;17.00</font><br id="wnai" />
+<hr id="ztra" style="width: 100%; height: 2px;" />
+<h2 id="qy052">2008-04-16 撰写实验报告<br id="m.lk" />
+</h2>在不抓紧做作业的孩子们的强烈要求下，老师把作业截止日期延长了三天，19日清晨06:00交。对于我这个做的差不多的作业来说，只不过有了更加充裕的时间撰写实验报告。<br id="b4.s" />
+程序可能还有问题，但是不打算再作什么修改。开始写报告了。<br id="b9jz" />
+<br id="rf5e" />
+上pic吧（其实是stderr的输出文本~）<br id="e_i1" />
+<font id="v19v" size="1">Thread main fork 588<br id="bi2m" />
+Forking thread: main588 f(a): 134595880 0x24c<br id="nkk_" />
+Putting thread on ready list: main588 priority=128<br id="r6:u" />
+<font id="lxbd" size="3">Newly-ready thread main588(priority128) &lt; running thread main(129), yield and switch&nbsp;&nbsp;&nbsp; 新线程优先级较高，马上中断当前线程</font><br id="cqmn" />
+Yielding thread: main<br id="x7ep" />
+Putting thread on ready list: main priority=129<br id="iov_" />
+Scheduler readyList contents:<br id="g6v3" />
+Thread main448400 priority=129 status=READY<br id="n2j7" />
+Thread main priority=129 status=READY<br id="uu2d" />
+Thread main716 priority=255 status=READY<br id="o-k9" />
+Scheduler allThreadsList contents:<br id="aqns" />
+Thread postal worker priority=128 status=BLOCKED<br id="pyjs" />
+Thread main priority=129 status=READY<br id="h6ld" />
+Thread main716 priority=255 status=READY<br id="owex" />
+Thread main448400 priority=129 status=READY<br id="e4-7" />
+Thread main588 priority=128 status=READY<br id="hp07" />
+Switching from: main to: main588<br id="guho" />
+Beginning thread: main588<br id="bv37" />
+NoffThread main588 start at 588<br id="tq4q" />
+<font id="a59o" size="3">Thread main588 used up its time, inc priority to 129 and yield&nbsp;&nbsp;&nbsp; 时间片用完了，降低优先级</font><br id="xxot" />
+Yielding thread: main588<br id="u5oi" />
+Putting thread on ready list: main588 priority=129<br id="goas" />
+<font id="hh2n" size="3">Scheduler readyList contents:<br id="ennz" />
+Thread main priority=129 status=READY</font></font><font id="qy053" size="3">&nbsp;&nbsp;&nbsp; 为什么没有main448400？因为Yielding main588得时候已经从readyList里取出了</font><br id="j_0y" />
+<font id="qy054" size="1"><font id="prhv" size="3">Thread main588 priority=129 status=READY<br id="ctmw" />
+Thread main716 priority=255 status=READY<br id="prz8" />
+</font>Scheduler allThreadsList contents:<br id="lmhd" />
+Thread postal worker priority=128 status=BLOCKED<br id="vw_l" />
+Thread main priority=129 status=READY<br id="eo5n" />
+Thread main716 priority=255 status=READY<br id="a6g8" />
+Thread main448400 priority=129 status=READY<br id="u:lx" />
+Thread main588 priority=129 status=READY<br id="vl:2" />
+<font id="xgp1" size="3">Switching from: main588 to: main448400&nbsp;&nbsp;&nbsp; 总是选择优先级最高的READY线程，main716优先级255为最低，不会被选中</font><br id="zpr9" />
+Now in thread: main448400</font><br id="a1o1" />
+<br id="y5bw" />
+<hr id="a8uw" style="width: 100%; height: 2px;" />
+<h2 id="ffr4">2008-04-13 初步成形<br id="z-h1" />
+</h2>我的作业，上午解决了大部分问题，在一个简单test case的调试输出看起来，我的scheduler已经能正常运行了。剩下的问题是，如何让助教相信这个scheduler能正常运行并符合需求呢？我是SDE的料，不是SDET的料啊（SDE=Software Development Engineer，SDET=Software Development Engineer in Test）。<br id="wo.t" />
+声明：对Nachos C++、Linux平台运行Nachos、作业有问题可以来信探讨，但是我手头项目太多，不能保证回信；我不提供作业代码和实验报告，请勿索取。<br id="dv:d" />
+<hr id="rqma" style="width: 100%; height: 2px;" />
+<h2 id="y7mp">2008-04-12 地址空间，Yield，alarm<br id="r1az" />
+</h2>10日，我自认为完成了Exec系统调用，实际上并不正确：我Fork出的UNIX函数是NoffProcess，它创建了一个新的AddrSpace；然而，AddrSpace的构造函数会把整个machine-&gt;mainMemory清零，这样就破坏了所有原来的MIPS程序。应该实现ThreadFork这个系统调用，才能正常创建新线程。<br id="wk6c" />
+很快就把ThreadFork系统调用（以及相应的UNIX函数NoffThread）写好了，但是发现除了我的scheduler以外还发生了其他线程切换，从Interrupt那里一路查过去，发现是threads/alarm作怪（是一个随机时隙的round-robin），禁用它。不过这个alarm的代码还是很有参考价值的，它告诉我：在中断服务函数中如果要Yield“当前线程”（被中断掉的线程），应该调用kernel-&gt;interrupt-&gt;YieldOnReturn()而不是kernel-&gt;currentThread-&gt;Yield()。<br id="o9uw" />
+<br id="gr9q" />
+我的作业总算会调用定时中断了，不过还是有问题：已经Yield的线程仍然会被降低优先级，而且SortedList::Apply似乎没有正确工作。<br id="ybk-" />
+<hr id="i2pd" style="width: 100%; height: 2px;" />
+<h2 id="kx.o">2008-04-10 线程切换原理，系统调用参数的取得，新线程启动<br id="vth1" /> 
+</h2>中文输入法问题上次解决了，但是Terminal里又显示不出中文了，gcc输出的却是中文（显示为问号）。把gcc输出改成英文的方法是在Makefile里加一行LANG=en_US.UTF_8，就可以了。<br id="rgt6" />
+Nachos的线程切换并不是在MIPS虚拟机里进行的，而是把“执行MIPS虚拟机的UNIX用户态线程”一起切换掉。<br id="pkba" />
+<br id="cc86" />
+要使Nachos能同时启动多个线程，必须实现系统调用SC_Exec或SC_ExecV，然后在test/中的某个程序里执行Exec(程序名)。那么，userprog/exception.cc里如何取得这个程序名呢？<br id="x5yw" />
+test/start.s指出，第一个参数（即程序名参数）在MIPS的r4寄存器里。那我就这样写：<br id="liz_" />
+char* exec_name=(char*)kernel-&gt;machine-&gt;ReadRegister(4); DEBUG(dbgSys,&quot;Exec &quot;&lt;&lt;exec_name);<br id="t3cn" />
+取数字参数这样一点也没问题，字符串不行。运行时出现错误信息：“段错误”──也就是内存访问异常，缓冲区溢出实验就是报这个错。<br id="vc4n" />
+看看exec_name究竟是什么？把上面的两个char*改成int，运行时出现：Exec 512。<br id="hx1y" />
+这下明白了，r4寄存器里是MIPS虚拟机内存的指针，而不是主机内存。知道怎么办了吧？用kernel-&gt;machine-&gt;ReadMem逐字节copy出来就可以了，不过要当心缓冲区溢出。<br id="yjp6" />
+<br id="qouh" />
+要启动一个新的线程并执行另一个noff程序（就像Windows的CreateProcess那样），仅仅创建Thread和Fork是不行的。Thread::Fork只能开始一个UNIX用户态线程，而不是noff程序。解决方法是Fork出一个UNIX函数，这个函数创建一个AddrSpace然后载入一个noff并运行（noff的文件名可以作为参数传递，都在主机内存里，不用再次copy）。参考：threads/thread.cc的Thread::SelfTest，threads/main.cc的run an initial user program。#这个方法不可行，见2008-04-12<br id="bn.0" />
+<br id="r94p" />
+至于作业──优先级Round-Robin调度，准备做成动态调整的。今天做的，中断时间不对，且线程无法终止，就不截图了。<br id="qi35" />
+<hr id="hs8e" style="width: 100%; height: 2px;" />
+<h2 id="ja:3">2008-04-03 系统调用<br id="grha" />
+</h2><p id="nv.d">一不小心把Ubuntu里的中文输入法弄坏了，反复安装多次才修复，而且弄出了传说中的fcitx，还有微软雅黑字体……<br id="u62q" />
+</p><p id="qy055">尝试用nathos调用执行“用户程序”（MIPS平台的程序，用./nachos -x 程序名.noff执行），看到了很多Unexcepted system call，怎么回事？<a title="这篇文章" href="http://pundit2006.bokee.com/2413157.html" id="muoj">这篇文章</a>介绍，nathos本来只支持很少几种系统调用──SC_Halt（程序终止）、SC_Add（很无聊的加法），其他要自己做的（修改userprog/exception）。</p><p id="qy056">2008-03-20提出的问题“哪些代码运行于MIPS虚拟机？”，现在大致清楚了：</p><ul id="xf7l"><li id="t3i3">test/内的代码运行于MIPS虚拟机，需要使用交叉编译器。<br id="i.h8" />
+（注意test/Makefile.dep里的CPP、GCCDIR两个定义要修改成实际安装的版本）</li><li id="mxyh">其他代码均直接运行于Linux，使用x86编译器、不是交叉编译器。<br id="gsx7" />
+（2008-03-18提到修改build.linux/Makefile里的路径，这种做法不正确、Makefile注释里要求不要这么做，所以还是手动cd build.linux再make depend和make吧）</li></ul>出于好奇还看了看lib/copyright.h版权说明：版权归加州大学，授权任何人使用、修改、发布等，条件是加州大学不承担任何责任。<br id="j6gn" />
+<br id="m1t6" />
+今天的成果：（命令行启动参数见threads/main.cc开头注释，“-x 文件名.noff”执行用户程序、“-d +”显示调试信息）<br id="o6fp" />
+<div id="r5ry" style="padding: 1em 0pt; text-align: left;"><img id="yfsp" style="width: 724px; height: 224px;" src="http://docs.google.com/File?id=dc67cnjv_343cpdcf7d2" alt=""/></div>
+sunny.noff程序主体是for (i=0;i&lt;1000;++i);这个空循环，Ticks: user 2013数值较大，证明noff被运行了。因为没有系统调用，所以noff无法调用I/O；下次创建一个带DEBUG的系统调用，就可以观察noff的运行了。<hr id="p32o" style="width: 100%; height: 2px;" />
+<h2 id="qy057">2008-03-20 阅读Road Map<br id="hruh" />
+</h2><p id="whjx">今天阅读了A Road Map Through Nachos的1～3章节，了解了很多问题。有一点还没完全搞清：哪些代码是运行于UNIX，哪些代码是运行于MIPS虚拟机的？</p><p id="x:90">作业一是增加优先级和时间片调度，只要修改code/threads/scheduler.cc就可以了。最大的问题是，如何知道线程的优先级？类对外的接口是不可以改的，所以只能用自适应的算法，自动配置优先级。而从原来的非抢占式调度改为抢占式调度，必须修改时钟中断，以便在合适的时机剥夺线程的CPU使用权——这样thread.cc也需要改……<br id="i0kd" />
+</p><hr id="gd8q" />
+<h2 id="w218">2008-03-18 重新安装新版本，全部可以编译<br id="vlt4" />
+</h2>我放弃了2月20日弄的3.4版本，今天用的是老师给的C++ 4.1版。只需要修改很少的地方，就可以全部编译通过：<br id="m3iv" />
+<ul id="lb30"><li id="dv_0">lib/list.cc<br id="hf0b" />
+开头加上#ifdef LIST_H，末尾加上#endif<br id="cops" />
+引用本类的成员变量、成员函数时要写上this-&gt;<br id="kfc3" />
+</li><li id="dqan">lib/hash.cc<br id="u4:a" />
+开头加上#ifdef HASH_H，末尾加上#endif<br id="mhv-" />
+引用本类的成员变量、成员函数时要写上this-&gt;</li><li id="oad4">build.linux/Makefile与Makefile.dep<br id="nba2" />
+去除那个--writeable-strings；如果用IDE的话，可能还需要把../替换成合适的路径<br id="jckk" />
+（我用Code::Blocks，在code目录建立的工程，所以要把../替换成./）<br id="o3ly" />
+</li></ul><hr id="tkjg" style="width: 100%; height: 2px;" />
+<h2 id="a.6y">2008-02-20 Nachos的第一次安装，能编译/threads了</h2>今天，我从<a title="ftp://202.120.2.148/nachos/finalversion/code/" href="ftp://202.120.2.148/nachos/finalversion/code/" id="xze4">ftp://202.120.2.148/nachos/finalversion/code/</a>下载到一份大致可用的Nachos源码(C++ 3.4版)。不过，整个程序无法编译通过（FileSystem类有几个函数没有定义，导致/userprog无法编译通过；可能本该如此，那些函数需要自己完成？），而/threads目录已经可以编译通过、且能够运行了。运行截图：<br id="muup" />
+<div id="fbmj" style="padding: 1em 0pt; text-align: left;"><img id="cpks" style="width: 399px; height: 183px;" src="http://docs.google.com/File?id=dc67cnjv_212crpf2wcx" alt=""/></div>
+我修改了如下文件：<br id="aqq8" />
+<ul id="a2o5"><li id="qx1h"><font id="mg0b" size="2">/Makefile<br id="ir_i" />
+把MAKE=gmake改成MAKE=make，因为Ubuntu中没有gmake；当然sudo ln /usr/bin/gmake /usr/bin/make也可以。</font></li><li id="p7pc"><font id="iwks" size="2">/Makefile.common<br id="d.a3" />
+去掉里面的两个-writable-strings，因为gcc不再支持这个命令行参数。</font></li><li id="l..e"><font id="tm:s" size="2">/threads/thread.cc<br id="ble:" />
+去掉以下三个static关键字：<br id="e7oc" />
+static int Thread::CurID=0; <br id="lglp" />
+static Thread* Thread::GetThread(int id) <br id="wh4." />
+static void Thread::InitThread()</font></li><li id="m1-."><font id="iusb" size="2">/machine/sysdep.h<br id="case" />
+注释掉文件末尾atoi、atof、abs这三行定义，因为它们的throw与现在的C库冲突。<br id="n.2h" />
+</font></li><li id="iz6v"><font id="tv8p" size="2">/threads/system.h<br id="n2i7" />
+增加一个#include &lt;stdlib.h&gt;，否则会找不到atoi等函数。</font></li><li id="uniw"><font id="swom" size="2">/machine/sysdep.h<br id="o22h" />
+增加一个#include &lt;errno.h&gt;，否则会出现non-TLS云云。<br id="gqw2" />
+srand、rand、sleep、abort、exit、socket等函数全部注释掉，否则会与stdlib.h冲突。<br id="wl1w" />
+ReadFromSocket函数中，&amp;size改成(socklen_t *)&amp;size，否则会提示类型不匹配。</font></li></ul>参考资料：<a title="基于Nachos平台的操作系统上机实践指南" href="https://docs.google.com/View?docid=dc67cnjv_216crf6f6gh" id="vcy8">基于Nachos平台的操作系统上机实践指南</a> by 南开大学机器智能研究所 [<a title="via" target="_blank" href="http://202.113.25.72/OSTEACH/upload/UpInstructionFile20051122152112.doc" id="bq.8">via</a>]<br id="z:h0" />
+</div>

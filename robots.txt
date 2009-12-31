@@ -1,0 +1,12 @@
+Sitemap: http://yoursunny.com/?a=sitemap
+Sitemap: http://www.65536.cn/?a=sitemap
+
+User-Agent: *
+Disallow: /lib/
+Disallow: /study/*/?a=downslice
+Disallow: /admin/
+
+User-Agent: MediaPartners-Google
+Allow: /lib/9/ad-
+Allow: /lib/search/
+

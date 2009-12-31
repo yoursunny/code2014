@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>你的阳光 yoursunny.com</title>
+<link rel="stylesheet" type="text/css" href="/images/9/" />
+<script type="text/javascript" src="/lib/9.js"></script>
+<style type="text/css">/*<![CDATA[*/
+/*]]>*/</style>
+</head><body>
+
+<div class="header">
+<h2><a href="http://yoursunny.com/">你的阳光</a></h2>
+<ul>
+<li><a href="http://m.yoursunny.com/"><span>个人</span></a></li>
+<li><a href="http://study.yoursunny.com/"><span>学习</span></a></li>
+<li><a href="http://www.65536.cn/"><span>技术</span></a></li>
+<li><a href="http://www.65536.cn/work/"><span>作品</span></a></li>
+</ul>
+<ol>
+<li><a href="/">你的阳光</a></li>
+<li><span>首页</span></li>
+</ol>
+</div>
+
+<div class="content"><div class="p"><div class="p-wrap">
+<h1 class="tit">Element.replace</h1>
+<div class="p-body">
+<p>Replaces <code>element</code> by the content of the <code>html</code> argument and returns the removed <code>element</code>.</p>
+<p class="notice">Using <code>replace</code> as an instance method (e.g., <code>$('foo').replace('&lt;p&gt;Bar&lt;/p&gt;')</code>) causes errors in Opera 9 when used on <code>input</code> elements. The <code>replace</code> property is reserved on <code>input</code>s as part of <a href="javascript:if(confirm('http://www.whatwg.org/specs/web-forms/current-work/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?'))window.location='http://www.whatwg.org/specs/web-forms/current-work/'" tppabs="http://www.whatwg.org/specs/web-forms/current-work/">Web Forms 2</a>. As a workaround, use the generic version instead (<code>Element.replace('foo', '&lt;p&gt;Bar&lt;/p&gt;')</code>).</p>
+<p><code>html</code> can be either plain text, an HTML snippet or any JavaScript object which has a <code>toString()</code> method.</p>
+<p>If it contains any <code>&lt;script&gt;</code> tags, these will be evaluated after <code>element</code> has been replaced (<code>Element.replace()</code> internally calls <a href="../string/evalScripts.htm" tppabs="http://prototypejs.org/api/string/evalScripts">String#evalScripts</a>).</p>
+<p>Note that if no argument is provided, <code>Element.replace</code> will simply clear <code>element</code> of its content. However, using <a href="remove.htm" tppabs="http://prototypejs.org/api/element/remove"><code>Element.remove</code></a> to do so is both faster and more standard compliant.</p>
+</div></div></div></div>
+
+<div class="content"><div class="main">
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">post title</h1>
+<div class="p-body">
+<p>hello<br/>world</p>
+<ul><li>hello</li><li>hello</li></ul>
+</div></div></div>
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">post title</h1>
+<div class="p-body">
+<div class="ad-post"></div>
+<p class="para">hello<br/>world</p>
+<ol><li>hello</li><li>hello</li></ol>
+<blockquote>
+<p><img src="images/photo.jpg" width="180" height="122" alt="照片" class="f-right border"/><img src="images/photo.jpg" width="180" height="122" alt="照片" class="f-right border"/></p>
+<p class="indent">
+Note. We recommend that style sheet implementations provide a mechanism for inserting quotation marks before and after a quotation delimited by BLOCKQUOTE in a manner appropriate to the current language context and the degree of nesting of quotations.
+However, as some authors have used BLOCKQUOTE merely as a mechanism to indent text, in order to preserve the intention of the authors, user agents should not insert quotation marks in the default style.
+The usage of BLOCKQUOTE to indent text is deprecated in favor of style sheets.
+</p></blockquote>
+<ul><li><a href="javascript:alert(a)">hello</a></li><li>hello<ul><li>a</li><li>b<ul><li>c<ul><li>d</li></ul></li></ul></li></ul></li></ul>
+</div></div></div>
+
+</div><div class="sidebar">
+
+<div class="p"><div class="p-wrap">
+<h3 class="tit">widget title</h3>
+<div class="p-body">
+<p>hello</p>
+<ul class="anu"><li><a href="javascript:alert(a)">hello</a></li><li>hello<ul><li>a</li><li>b<ul><li>c<ul><li>d</li></ul></li></ul></li></ul></li></ul>
+</div></div></div>
+
+<div class="ad-sidebar"></div>
+
+</div></div>
+
+<div class="footer">
+<p class="copyright">&copy;2006-2009 yoursunny.com, CreativeCommons BY-NC 3.0</p>
+<ul class="links">
+<li><a href="/m/about.htm">关于本站</a></li>
+<li><a href="/m/contact.htm">联系方式</a></li>
+<li><a href="/m/sitemap.htm">网站地图</a></li>
+</ul>
+</div>
+
+<script type="text/javascript">//<![CDATA[
+//WebSite.bannerAd=false;
+//]]></script>
+</body></html>

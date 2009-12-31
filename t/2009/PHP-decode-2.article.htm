@@ -1,0 +1,722 @@
+又一个加密PHP脚本的解码方法
+PHP解密,PHP解码,PHP混淆,base64,base64_decode,eval,echo,__FILE__,strtr
+prettify no-sidebar
+阳光男孩 发表于 2009-08-23
+
+<p>三个星期以前我发布了<a href="PHP-decode.htm">一篇文章</a>，介绍了base64加密的PHP脚本的解码方法。前几天，飞信好友<i>行者</i>又扔来了一段更加复杂、诡异的PHP脚本：</p>
+<p><a href="PHP-decode-2.zip" onclick="c('PHP-decode-2.zip')">下载每一步的源代码</a></p>
+<pre class="prettyprint lang-php break-line">
+//0.php
+&lt;?php 
+$OOO0O0O00=__FILE__;$OOO000000=urldecode('%74%68%36%73%62%65%68%71%6c%61%34%63%6f%5f%73%61%64%66%70%6e%72');$OO00O0000=26408;$OOO0000O0=$OOO000000{4}.$OOO000000{9}.$OOO000000{3}.$OOO000000{5};$OOO0000O0.=$OOO000000{2}.$OOO000000{10}.$OOO000000{13}.$OOO000000{16};$OOO0000O0.=$OOO0000O0{3}.$OOO000000{11}.$OOO000000{12}.$OOO0000O0{7}.$OOO000000{5};$O0O0000O0='OOO0000O0';eval(($$O0O0000O0('JE9PME9PMDAwMD0kT09PMDAwMDAwezE3fS4kT09PMDAwMDAwezEyfS4kT09PMDAwMDAwezE4fS4kT09PMDAwMDAwezV9LiRPT08wMDAwMDB7MTl9O2lmKCEwKSRPMDAwTzBPMDA9JE9PME9PMDAwMCgkT09PME8wTzAwLCdyYicpOyRPTzBPTzAwME89JE9PTzAwMDAwMHsxN30uJE9PTzAwMDAwMHsyMH0uJE9PTzAwMDAwMHs1fS4kT09PMDAwMDAwezl9LiRPT08wMDAwMDB7MTZ9OyRPTzBPTzAwTzA9JE9PTzAwMDAwMHsxNH0uJE9PTzAwMDAwMHswfS4kT09PMDAwMDAwezIwfS4kT09PMDAwMDAwezB9LiRPT08wMDAwMDB7MjB9OyRPTzBPTzAwME8oJE8wMDBPME8wMCwxMTgyKTskT08wME8wME8wPSgkT09PMDAwME8wKCRPTzBPTzAwTzAoJE9PME9PMDAwTygkTzAwME8wTzAwLDkwOCksJ0kvTU5LQUNkVlJHUXlEV1VncTY4d3BrYXpMTzVsdG5tVEIrMGJ2OXVIcnhGN1hTWTFFM2ZaaGlqYzRlMm9Kc1A9JywnQUJDREVGR0hJSktMTU5PUFFSU1RVVldYWVphYmNkZWZnaGlqa2xtbm9wcXJzdHV2d3h5ejAxMjM0NTY3ODkrLycpKSk7ZXZhbCgkT08wME8wME8wKTs=')));return;?&gt;
+tiBr5CwHGMBrljDvtMTb6AqwwAJ8qpRkqpRmpbA6wh7uwZp6pbp6aZ4/8wwua6brR+zHVkp3LktrGMlHGMcxaMcrUiqHzkvSzk4lQ9DY56voGMBlQ+rlaMcrUiBFyuDH5jplQ9DY56voGMBlQ+rlaMcrUiEYziA7OCJftMbuQMqVpAqgahDAwvLAwvJkgpR8k3t8qpRkqpRm8bADq6ttG6brmd1HGCvflipZGMqmwZp6pbp6k3tVpAqgaZBUwhgua6brR+zHVkp3LktrGMlHGMcxaMcrUiqHzkvSzk4lQ9DY56voGMBlQ+rlaMcrUiBFyuDH5jplQ9DY56voGMBlQ+rlaMcrUiEYziA7OCJftMbuQMqmwZp6pbp6k3tVpAqgaZBUwhgua6brG6vbOkwHRomF3Fu81JU31P7TLCBBOk4B5+405iZTOC73liBYt6405iij1o2GHe3EYFazEsYGStUNH2r75iDB5CBYlj6BH2UyZUG4S7Q3EsY/x7shwpC0S0gED8V1DMlrW3qU8fI18fI18fIJljq3ajRvlCEBziwHRhJmqbvyqpJmR31+R3VSRKJU8f/UyKo1yMc+R3V7GMqU8Zo1yNI18fIHRKJUyKJUyN/UyMTb8Zo18Zo1yN/UGMqUyNI18f/UyNI7RKJUyN/UyNI1yMb7RZbY8w4QgwDbpvRdwavKphpul8zctj/Fzary8fp7tC4XpKVFyCRiWapVluBCDhB8k8AAyiLOOCvxzfqvy9JGlhIJR31ugwRNqKpCqZBR6bXy8w4UwAA6whqppvtzkprBz9DbLkLuOCvxOiEX59J1laRftdpitjB4n0IEy0yZD8zjWNbFQ3lrG6brWiL05CJfL6Tb8fI1yKo18fI1G8Xvt9A7GMqU8fI18fI18fIrW1==Ngr3LaAhOaRvGMlSQ+J05CAfl3J05i4SLkDZQu/HlMlrW1ZGOk405dpbL6TuQ+cYziEBljyYLCRmljA7Qu/HlMlrW1ZGOk405dpbL6TuQ+cYziEBljyY（后面还有大量数据，省略）
+</pre>
+<p>其中，在“?&gt;”后面的数据足有27KB（共27316字节）。显然，这些数据并不是直接输出给客户端的，而要在服务端经过一定的处理。这27KB的数据看起来很像base64编码，但是直接用base64_decode解码得不到任何有意义的结果。</p>
+<p>仔细观察，在前面的PHP代码部分有一个eval。那就按照上一篇文章的办法，把它改成echo试试！</p>
+<pre class="prettyprint lang-php break-line">
+//1.php
+&lt;?php 
+$OOO0O0O00=__FILE__;$OOO000000=urldecode('%74%68%36%73%62%65%68%71%6c%61%34%63%6f%5f%73%61%64%66%70%6e%72');$OO00O0000=26408;$OOO0000O0=$OOO000000{4}.$OOO000000{9}.$OOO000000{3}.$OOO000000{5};$OOO0000O0.=$OOO000000{2}.$OOO000000{10}.$OOO000000{13}.$OOO000000{16};$OOO0000O0.=$OOO0000O0{3}.$OOO000000{11}.$OOO000000{12}.$OOO0000O0{7}.$OOO000000{5};$O0O0000O0='OOO0000O0';echo(($$O0O0000O0('JE9PME9PMDAwMD0kT09PMDAwMDAwezE3fS4kT09PMDAwMDAwezEyfS4kT09PMDAwMDAwezE4fS4kT09PMDAwMDAwezV9LiRPT08wMDAwMDB7MTl9O2lmKCEwKSRPMDAwTzBPMDA9JE9PME9PMDAwMCgkT09PME8wTzAwLCdyYicpOyRPTzBPTzAwME89JE9PTzAwMDAwMHsxN30uJE9PTzAwMDAwMHsyMH0uJE9PTzAwMDAwMHs1fS4kT09PMDAwMDAwezl9LiRPT08wMDAwMDB7MTZ9OyRPTzBPTzAwTzA9JE9PTzAwMDAwMHsxNH0uJE9PTzAwMDAwMHswfS4kT09PMDAwMDAwezIwfS4kT09PMDAwMDAwezB9LiRPT08wMDAwMDB7MjB9OyRPTzBPTzAwME8oJE8wMDBPME8wMCwxMTgyKTskT08wME8wME8wPSgkT09PMDAwME8wKCRPTzBPTzAwTzAoJE9PME9PMDAwTygkTzAwME8wTzAwLDkwOCksJ0kvTU5LQUNkVlJHUXlEV1VncTY4d3BrYXpMTzVsdG5tVEIrMGJ2OXVIcnhGN1hTWTFFM2ZaaGlqYzRlMm9Kc1A9JywnQUJDREVGR0hJSktMTU5PUFFSU1RVVldYWVphYmNkZWZnaGlqa2xtbm9wcXJzdHV2d3h5ejAxMjM0NTY3ODkrLycpKSk7ZXZhbCgkT08wME8wME8wKTs=')));return;?&gt;
+/* 27316 bytes encoded data */
+</pre>
+<p>运行方式还是 wget http://localhost/1.php -O1.txt ，运行结果如下：</p>
+<pre class="prettyprint lang-php break-line">
+//1.txt
+$OO0OO0000=$OOO000000{17}.$OOO000000{12}.$OOO000000{18}.$OOO000000{5}.$OOO000000{19};if(!0)$O000O0O00=$OO0OO0000($OOO0O0O00,'rb');$OO0OO000O=$OOO000000{17}.$OOO000000{20}.$OOO000000{5}.$OOO000000{9}.$OOO000000{16};$OO0OO00O0=$OOO000000{14}.$OOO000000{0}.$OOO000000{20}.$OOO000000{0}.$OOO000000{20};$OO0OO000O($O000O0O00,1182);$OO00O00O0=($OOO0000O0($OO0OO00O0($OO0OO000O($O000O0O00,908),'I/MNKACdVRGQyDWUgq68wpkazLO5ltnmTB+0bv9uHrxF7XSY1E3fZhijc4e2oJsP=','ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/')));eval($OO00O00O0);
+</pre>
+<p>用1.txt的结果替换1.php中那个echo，得到：</p>
+<pre class="prettyprint lang-php break-line">
+//1a.php
+&lt;?php 
+$OOO0O0O00=__FILE__;$OOO000000=urldecode('%74%68%36%73%62%65%68%71%6c%61%34%63%6f%5f%73%61%64%66%70%6e%72');$OO00O0000=26408;$OOO0000O0=$OOO000000{4}.$OOO000000{9}.$OOO000000{3}.$OOO000000{5};$OOO0000O0.=$OOO000000{2}.$OOO000000{10}.$OOO000000{13}.$OOO000000{16};$OOO0000O0.=$OOO0000O0{3}.$OOO000000{11}.$OOO000000{12}.$OOO0000O0{7}.$OOO000000{5};$O0O0000O0='OOO0000O0';$OO0OO0000=$OOO000000{17}.$OOO000000{12}.$OOO000000{18}.$OOO000000{5}.$OOO000000{19};if(!0)$O000O0O00=$OO0OO0000($OOO0O0O00,'rb');$OO0OO000O=$OOO000000{17}.$OOO000000{20}.$OOO000000{5}.$OOO000000{9}.$OOO000000{16};$OO0OO00O0=$OOO000000{14}.$OOO000000{0}.$OOO000000{20}.$OOO000000{0}.$OOO000000{20};$OO0OO000O($O000O0O00,1182);$OO00O00O0=($OOO0000O0($OO0OO00O0($OO0OO000O($O000O0O00,908),'I/MNKACdVRGQyDWUgq68wpkazLO5ltnmTB+0bv9uHrxF7XSY1E3fZhijc4e2oJsP=','ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/')));eval($OO00O00O0);return;?&gt;
+/* 27316 bytes encoded data */
+</pre>
+<p>又看到了eval，那就再换成echo吧！遗憾的是，这样做不能得到正确的结果。原因是：</p>
+<ul>
+<li>文件末有27KB的数据，这些数据应该包含了经过编码的程序代码。</li>
+<li>开头的解码脚本从__FILE__变量获取当前执行的文件名，然后定位到27KB数据内部的某个位置（可能是开头或中间），解码并执行那些数据中蕴藏的程序。</li>
+<li>从0.php变换到1a.php的过程中，开头的解码脚本的长度被改变，造成不能定位到正确的位置。</li>
+</ul>
+<p>在1a.php已经可以看到三个数字：26408、1182、908。但是，无法判断这些数字将使解码脚本定位到27KB数据的哪个位置。</p>
+<p>老路行不通了！现在必须分析这段解码脚本的流程。先把代码整理一下：</p>
+<pre class="prettyprint lang-php break-line">
+&lt;?php 
+$OOO0O0O00=__FILE__;
+$OOO000000=urldecode('%74%68%36%73%62%65%68%71%6c%61%34%63%6f%5f%73%61%64%66%70%6e%72');
+$OO00O0000=26408;
+$OOO0000O0=$OOO000000{4}.$OOO000000{9}.$OOO000000{3}.$OOO000000{5};
+$OOO0000O0.=$OOO000000{2}.$OOO000000{10}.$OOO000000{13}.$OOO000000{16};
+$OOO0000O0.=$OOO0000O0{3}.$OOO000000{11}.$OOO000000{12}.$OOO0000O0{7}.$OOO000000{5};
+$O0O0000O0='OOO0000O0';
+$OO0OO0000=$OOO000000{17}.$OOO000000{12}.$OOO000000{18}.$OOO000000{5}.$OOO000000{19};
+if(!0)$O000O0O00=$OO0OO0000($OOO0O0O00,'rb');
+$OO0OO000O=$OOO000000{17}.$OOO000000{20}.$OOO000000{5}.$OOO000000{9}.$OOO000000{16};
+$OO0OO00O0=$OOO000000{14}.$OOO000000{0}.$OOO000000{20}.$OOO000000{0}.$OOO000000{20};
+$OO0OO000O($O000O0O00,1182);
+$OO00O00O0=($OOO0000O0($OO0OO00O0($OO0OO000O($O000O0O00,908),'I/MNKACdVRGQyDWUgq68wpkazLO5ltnmTB+0bv9uHrxF7XSY1E3fZhijc4e2oJsP=','ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/')));
+eval($OO00O00O0);
+return;
+?&gt;
+/* 27316 bytes encoded data */
+</pre>
+<p>然后，便是一行行弄清解码脚本中每个变量的值，这样就可以看懂其流程。例如<code class="prettyprint lang-php">$OOO000000=urldecode('%74%68%36%73%62%65%68%71%6c%61%34%63%6f%5f%73%61%64%66%70%6e%72');</code>，可以在其后面加一句<code class="prettyprint lang-php">die($OOO000000);</code>，就能看到这个变量的值是<code class="prettyprint lang-php">'th6sbehqla4co_sadfpnr'</code>。</p>
+<p>对解码脚本的分析结果是：</p>
+<pre class="prettyprint lang-php break-line">
+//1c.php
+&lt;?php 
+$OOO0O0O00=__FILE__;
+
+//$OOO000000=urldecode('%74%68%36%73%62%65%68%71%6c%61%34%63%6f%5f%73%61%64%66%70%6e%72');
+$OOO000000='th6sbehqla4co_sadfpnr';
+
+$OO00O0000=26408;
+
+//$OOO0000O0=$OOO000000{4}.$OOO000000{9}.$OOO000000{3}.$OOO000000{5};
+//$OOO0000O0.=$OOO000000{2}.$OOO000000{10}.$OOO000000{13}.$OOO000000{16};
+//$OOO0000O0.=$OOO0000O0{3}.$OOO000000{11}.$OOO000000{12}.$OOO0000O0{7}.$OOO000000{5};
+$OOO0000O0='base64_decode';
+
+$O0O0000O0='OOO0000O0';
+
+//$OO0OO0000=$OOO000000{17}.$OOO000000{12}.$OOO000000{18}.$OOO000000{5}.$OOO000000{19};
+$OO0OO0000='fopen';
+
+//if(!0)$O000O0O00=$OO0OO0000($OOO0O0O00,'rb');
+$O000O0O00=fopen($OOO0O0O00,'rb');
+
+//$OO0OO000O=$OOO000000{17}.$OOO000000{20}.$OOO000000{5}.$OOO000000{9}.$OOO000000{16};
+$OO0OO000O='fread';
+
+//$OO0OO00O0=$OOO000000{14}.$OOO000000{0}.$OOO000000{20}.$OOO000000{0}.$OOO000000{20};
+$OO0OO00O0='strtr';
+
+//$OO0OO000O($O000O0O00,1182);
+fread($O000O0O00,1182);
+
+/*$OO00O00O0=($OOO0000O0(
+	$OO0OO00O0(
+		$OO0OO000O($O000O0O00,908),
+		'I/MNKACdVRGQyDWUgq68wpkazLO5ltnmTB+0bv9uHrxF7XSY1E3fZhijc4e2oJsP=',
+		'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+		)
+	)
+);*/
+$OO00O00O0=(base64_decode(
+	strtr(
+		fread($O000O0O00,908),
+		'I/MNKACdVRGQyDWUgq68wpkazLO5ltnmTB+0bv9uHrxF7XSY1E3fZhijc4e2oJsP=',
+		'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+		)
+	)
+);
+
+eval($OO00O00O0);
+return;
+?&gt;
+/* 27316 bytes encoded data */
+</pre>
+<p>其中涉及文件操作的，也就是这几句：</p>
+<pre class="prettyprint lang-php break-line">
+$OOO0O0O00=__FILE__;//获取当前文件名
+$O000O0O00=fopen($OOO0O0O00,'rb');//打开文件
+fread($O000O0O00,1182);//跳过1182字节
+$OO00O00O0=(base64_decode(
+	strtr(
+		fread($O000O0O00,908),
+		'I/MNKACdVRGQyDWUgq68wpkazLO5ltnmTB+0bv9uHrxF7XSY1E3fZhijc4e2oJsP=',
+		'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+		)
+	)
+);//读取908字节，根据代码表替换字符，base64解码
+eval($OO00O00O0);//执行解码后的代码
+</pre>
+<p>在1a.php中把eval替换为echo之所以行不通，就是因为这里写着的跳过1182字节。跳过1182字节是针对原始文件而言的，修改过后文件大小改变，需要跳过的字节数就不一定是1182字节了。现在，只要从原始文件中跳过1182字节后复制908字节，替换掉<code class="prettyprint lang-php">fread($O000O0O00,908)</code>，然后把eval换成echo就可以了。</p>
+<p>不过，也许是因为我得到文件已经被别人修改过，跳过1182字节后复制的数据无法正确解码。我尝试复制了那27KB数据开头的908字节，才看到了正确的结果。</p>
+<pre class="prettyprint lang-php break-line">
+//2.php
+&lt;?php 
+$A='tiBr5CwHGMBrljDvtMTb6AqwwAJ8qpRkqpRmpbA6wh7uwZp6pbp6aZ4/8wwua6brR+zHVkp3LktrGMlHGMcxaMcrUiqHzkvSzk4lQ9DY56voGMBlQ+rlaMcrUiBFyuDH5jplQ9DY56voGMBlQ+rlaMcrUiEYziA7OCJftMbuQMqVpAqgahDAwvLAwvJkgpR8k3t8qpRkqpRm8bADq6ttG6brmd1HGCvflipZGMqmwZp6pbp6k3tVpAqgaZBUwhgua6brR+zHVkp3LktrGMlHGMcxaMcrUiqHzkvSzk4lQ9DY56voGMBlQ+rlaMcrUiBFyuDH5jplQ9DY56voGMBlQ+rlaMcrUiEYziA7OCJftMbuQMqmwZp6pbp6k3tVpAqgaZBUwhgua6brG6vbOkwHRomF3Fu81JU31P7TLCBBOk4B5+405iZTOC73liBYt6405iij1o2GHe3EYFazEsYGStUNH2r75iDB5CBYlj6BH2UyZUG4S7Q3EsY/x7shwpC0S0gED8V1DMlrW3qU8fI18fI18fIJljq3ajRvlCEBziwHRhJmqbvyqpJmR31+R3VSRKJU8f/UyKo1yMc+R3V7GMqU8Zo1yNI18fIHRKJUyKJUyN/UyMTb8Zo18Zo1yN/UGMqUyNI18f/UyNI7RKJUyN/UyNI1yMb7RZbY8w4QgwDbpvRdwavKphpul8zctj/Fzary8fp7tC4XpKVFyCRiWapVluBCDhB8k8AAyiLOOCvxzfqvy9JGlhIJR31ugwRNqKpCqZBR6bXy8w4UwAA6whqppvtzkprBz9DbLkLuOCvxOiEX59J1laRftdpitjB4n0IEy0yZD8zjWNbFQ3lrG6brWiL05CJfL6Tb8fI1yKo18fI1G8Xvt9A7GMqU8fI18fI18fIrW1==';
+
+$OO00O00O0=(base64_decode(
+	strtr(
+		$A,
+		'I/MNKACdVRGQyDWUgq68wpkazLO5ltnmTB+0bv9uHrxF7XSY1E3fZhijc4e2oJsP=',
+		'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+		)
+	)
+);
+
+echo($OO00O00O0);
+return;
+?&gt;
+</pre>
+<pre class="prettyprint lang-php break-line">
+//2.txt
+while(((isset($HTTP_SERVER_VARS['SERVER_NAME']))&amp;&amp;(!eregi('((.*\.)?dhainan\.com)|((\.*\\.)?hk2shou\.com)|((\.*\\.)?localhost)',$HTTP_SERVER_VARS['SERVER_NAME'])))||((isset($_SERVER['HTTP_HOST']))&amp;&amp;(!eregi('((.*\.)?dhainan\.com)|((\.*\\.)?hk2shou\.com)|((\.*\\.)?localhost)',$_SERVER['HTTP_HOST']))))die('请使用域名 dhainan.com hk2shou.com访问，本地请使用：localhost。程序购买请联系QQ：415204');$OO00O00O0=str_replace('__FILE__',"'".$OOO0O0O00."'",($OOO0000O0($OO0OO00O0($OO0OO000O($O000O0O00,$OO00O0000),'I/MNKACdVRGQyDWUgq68wpkazLO5ltnmTB+0bv9uHrxF7XSY1E3fZhijc4e2oJsP=','ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'))));fclose($O000O0O00);eval($OO00O00O0);
+</pre>
+<p>再次出现eval，还是没有解完。将2.txt内容替换掉2.php的echo部分，然后再整理代码、分析各变量：</p>
+<pre class="prettyprint lang-php break-line">
+//2a.php
+&lt;?php
+$OOO0O0O00=__FILE__;
+
+//$OOO000000=urldecode('%74%68%36%73%62%65%68%71%6c%61%34%63%6f%5f%73%61%64%66%70%6e%72');
+$OOO000000='th6sbehqla4co_sadfpnr';
+
+$OO00O0000=26408;
+
+//$OOO0000O0=$OOO000000{4}.$OOO000000{9}.$OOO000000{3}.$OOO000000{5};
+//$OOO0000O0.=$OOO000000{2}.$OOO000000{10}.$OOO000000{13}.$OOO000000{16};
+//$OOO0000O0.=$OOO0000O0{3}.$OOO000000{11}.$OOO000000{12}.$OOO0000O0{7}.$OOO000000{5};
+$OOO0000O0='base64_decode';
+
+$O0O0000O0='OOO0000O0';
+
+//$OO0OO0000=$OOO000000{17}.$OOO000000{12}.$OOO000000{18}.$OOO000000{5}.$OOO000000{19};
+$OO0OO0000='fopen';
+
+//if(!0)$O000O0O00=$OO0OO0000($OOO0O0O00,'rb');
+$O000O0O00=fopen($OOO0O0O00,'rb');
+
+//$OO0OO000O=$OOO000000{17}.$OOO000000{20}.$OOO000000{5}.$OOO000000{9}.$OOO000000{16};
+$OO0OO000O='fread';
+
+$OO0OO00O0=$OOO000000{14}.$OOO000000{0}.$OOO000000{20}.$OOO000000{0}.$OOO000000{20};
+$OO0OO00O0='strtr';
+
+//$OO0OO000O($O000O0O00,1182);
+fread($O000O0O00,1182);
+
+/*$OO00O00O0=($OOO0000O0(
+	$OO0OO00O0(
+		$OO0OO000O($O000O0O00,908),
+		'I/MNKACdVRGQyDWUgq68wpkazLO5ltnmTB+0bv9uHrxF7XSY1E3fZhijc4e2oJsP=',
+		'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+		)
+	)
+);*/
+$OO00O00O0=(base64_decode(
+	strtr(
+		fread($O000O0O00,908),
+		'I/MNKACdVRGQyDWUgq68wpkazLO5ltnmTB+0bv9uHrxF7XSY1E3fZhijc4e2oJsP=',
+		'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+		)
+	)
+);
+
+
+
+
+/*
+while (
+	(
+		(isset($HTTP_SERVER_VARS['SERVER_NAME']))
+		&amp;&amp;
+		(!eregi('((.*\.)?dhainan\.com)|((\.*\\.)?hk2shou\.com)|((\.*\\.)?localhost)',$HTTP_SERVER_VARS['SERVER_NAME']))
+	)
+	||
+	(
+		(isset($_SERVER['HTTP_HOST']))
+		&amp;&amp;
+		(!eregi('((.*\.)?dhainan\.com)|((\.*\\.)?hk2shou\.com)|((\.*\\.)?localhost)',$_SERVER['HTTP_HOST']))
+	)
+) die('请使用域名 dhainan.com hk2shou.com访问，本地请使用：localhost。程序购买请联系QQ：415204');
+*/
+
+
+/*
+$OO00O00O0=str_replace(
+	'__FILE__',
+	"'".$OOO0O0O00."'",
+	($OOO0000O0(
+		$OO0OO00O0(
+			$OO0OO000O($O000O0O00,$OO00O0000),
+			'I/MNKACdVRGQyDWUgq68wpkazLO5ltnmTB+0bv9uHrxF7XSY1E3fZhijc4e2oJsP=',
+			'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+			)
+		)
+	)
+);*/
+$OO00O00O0=str_replace(
+	'__FILE__',
+	"'".$OOO0O0O00."'",
+	(base64_decode(
+		strtr(
+			fread($O000O0O00,26408),
+			'I/MNKACdVRGQyDWUgq68wpkazLO5ltnmTB+0bv9uHrxF7XSY1E3fZhijc4e2oJsP=',
+			'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+			)
+		)
+	)
+);
+fclose($O000O0O00);
+eval($OO00O00O0);
+?&gt;
+</pre>
+<p>那段判断域名的代码已经注释掉了。有用的就是最后一段：</p>
+<pre class="prettyprint lang-php break-line">
+# 先前已经打开文件，定位到27KB数据开头，读取908字节
+$OO00O00O0=str_replace(
+	'__FILE__',
+	"'".$OOO0O0O00."'",
+	(base64_decode(
+		strtr(
+			fread($O000O0O00,26408),
+			'I/MNKACdVRGQyDWUgq68wpkazLO5ltnmTB+0bv9uHrxF7XSY1E3fZhijc4e2oJsP=',
+			'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+			)
+		)
+	)
+);//读取26408字节，根据代码表替换字符，base64解码，把__FILE__替换为真正的当前文件名
+fclose($O000O0O00);//关闭文件
+eval($OO00O00O0);//执行代码
+</pre>
+<p>处理方法就很明显了，从原始文件的27KB数据开头起，跳过908字节，复制26408字节，替换掉<code class="prettyprint lang-php">fread($O000O0O00,26408)</code>，eval换成echo。前面那次解码使用的代码也需要删除，但是<code class="prettyprint lang-php">$OOO0O0O00=__FILE__;</code>这句要留着，因为str_replace里用到了这个变量。</p>
+<pre class="prettyprint lang-php break-line">
+//3.php
+&lt;?php
+$OOO0O0O00=__FILE__;
+
+$A='Ngr3LaAhOaRvGMlSQ+J05CAfl3J05i4SLkDZQu/HlMlrW1ZGOk405dpbL6TuQ+cYziEBljyYLCRmljA7Qu/HlMlrW1ZGOk405dpbL6TuQ+cYziEBljyYziJSL9vuQu/HlMlrW1ZGOk405dpbL6TuQ+cYziEBljyYziEBljySlCB1R3b2Ngrr59D7tkqvGMlSQ+J05CAfl3Jhlip3Qu/HlMlrW1ZGOk405dpbL6TuQ+cYziEBljyY8kpXz9p38CpiLk1SlCB1R3b2Ngrr59D7tkqvGMlSQ+J05CAfl3JEaiLh59DZOkJSl341OdIuG87DM9vSziEhLCwHR3cSQiD7zaDfQjAr59LYLupSQu/HlMlrW1ZGOk405dpbL6TuQ+cYziEBljyYziBvziXvLCv1Qu/HlMlrW1ZGRCEr597JLCRmziJS59p0tMTrW1ZGRCpXlCv3L8hSLalT5avflkEEtkp3n6TrW1ZGRARvtdp35bvgUkDHLkDFLkqrlMTrW1ZGOkzHRd/hz9ErzhJ3k3tBLCqSLatfaiJFRhZrNgr2Ngr1l9vStCp3l9J3GMtW5jqUlCpSghAR59LYR31uR31EG87DMuZDM+q05CAflivbU6Br5ugrRAJdqpq5RiD7zaDfOkgua87DM+qxn9Lv59EvOkLYl9ZJR3l2NgHblirmziEBljDrLNhBluRBn6TuW8zuQMl4D3l7RfbcR31uW8buQMlEyNIuQMlEyNKuQMlEyNVuQMlEyNyuQMlEyNguQMlEyNwuQMlEyNzuQMlEyNluQMlEyNTuQMlEyNbuQMlEy8IuQMlEy8KuQMlEy8VuQMlEy8yuQMlEy8guQMlEy8wuQMlEy8zuQMl4R31uy8yZR31uy8yhR31uy8yiR31uy8yjR31uy8ycR31uy8y4R31uy8gfR31uy8ghR31uy8giR31uy8gjR31uy8gcR31uy8g4R31uy8w1R31uy8wfR31uy8wZR31uy8wiR31uy8wjR31uy8IuQMlED8TuQMl（后面还有大量数据，省略）';
+
+
+$OO00O00O0=str_replace(
+	'__FILE__',
+	"'".$OOO0O0O00."'",
+	(base64_decode(
+		strtr(
+			$A,
+			'I/MNKACdVRGQyDWUgq68wpkazLO5ltnmTB+0bv9uHrxF7XSY1E3fZhijc4e2oJsP=',
+			'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+			)
+		)
+	)
+);
+echo($OO00O00O0);
+?&gt;
+</pre>
+<p>又一次 wget http://localhost/3.php -O3.txt ，获得最终结果！</p>
+<pre class="prettyprint lang-php break-line">
+//3.txt
+
+require('../class/connect.php');
+include('../class/db_sql.php');
+include('../class/config.php');
+include('../class/class.php');
+include('../class/user.php');
+include('../class/MemberLevel.php');
+include('../class/q_functions.php');
+include('../class/qinfofun.php');
+include('../class/checkedip.php');
+$link=db_connect();
+$empire=new mysqlquery();
+$ReturnIP=checkedip();
+if($public_r['addnews_ok'])
+{
+printerror('NotOpenCQInfo','',1);
+}
+$classid=(int)$_GET['classid'];
+$jzfenleiform='';
+$sj_classid=array('96','97','98','99','100','101','102','103','104','105','106','107','108','109','110','111','112','113','114','115','116','9','134','135','136','137','138','139','143','145','146','147','148','149','150','153','154','156','157','10','158','159','160','161','162','163','164','165','166','167','168','169','170','171','11','172','173','174','175','176','179','180','181','182','183','184','185','186','189','190','191');
+in_array($classid,$sj_classid)?$jzfenleiform='/sjpp.html':$jzfenleiform='/post.html';
+$cate='';
+$job_array=array('65','66','67','68','69','70','71','72','73','74','75','80','81','82','117','119','120','121','122','126','133');
+$sale_array=array('22','23','24','25','26','27','28','29','30','31','32','33','36','37','38');
+$car_array=array('83','84');
+$marry_array=array('42','43','44');
+if (in_array($classid,$job_array))
+{
+$cate='&lt;tr&gt;&lt;td align="right" valign="top"&gt;&lt;/td&gt;&lt;td&gt;&lt;input name="cate" id="cate" type="radio" value="招聘" checked="checked"&gt;&lt;label for="cate"&gt;招聘&lt;/label&gt;&lt;input name="cate" id="cate1" type="radio" value="求职"&gt;&lt;label for="cate1"&gt;求职&lt;/label&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+        &lt;td width="14%" align="right"&gt;&lt;span class="redn"&gt;*&lt;/span&gt; &lt;strong&gt;学 历：&lt;/strong&gt;&lt;/td&gt;
+        &lt;td width="86%"&gt;&lt;select name="edu" id="edu"&gt;&lt;option value="不限"&gt;不限&lt;/option&gt;&lt;option value="高中/中专"&gt;高中/中专&lt;/option&gt;&lt;option value="大专"&gt;大专&lt;/option&gt;&lt;option value="本科"&gt;本科&lt;/option&gt;&lt;option value="硕士以上"&gt;硕士以上&lt;/option&gt;&lt;/select&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span class="redn"&gt;*&lt;/span&gt; &lt;b&gt;薪资：&lt;/b&gt;&lt;input name="jiage" type="text" size=4 id="jiage" value="" onKeyUp="value=value.replace(/\D+/g,\'\')"&gt; 元/月&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span class="redn"&gt;*&lt;/span&gt;  &lt;b&gt;专业&lt;/b&gt; &lt;input name="zhuanye" type="text" id="zhuanye" value="" size="8"&gt; 
+&lt;span class="notes"&gt;如:艺术设计&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;';
+}
+elseif (in_array($classid,$sale_array))
+{
+$cate='&lt;tr&gt;&lt;td align="right"&gt;&lt;/td&gt;&lt;td&gt;&lt;input name="cate" id="cate" type="radio" value="出售" checked="checked"&gt;&lt;label for="cate"&gt;出售&lt;/label&gt;&lt;input name="cate" id="cate1" type="radio" value="求购"&gt;&lt;label for="cate1"&gt;求购&lt;/label&gt;&lt;input name="cate" id="cate2" type="radio" value="交换"&gt;&lt;label for="cate2"&gt;交换&lt;/label&gt;&lt;/td&gt;&lt;/tr&gt;      &lt;tr&gt;
+        &lt;td width="14%" align="right"&gt;&lt;span class="redn"&gt;*&lt;/span&gt; &lt;strong&gt;成 色：&lt;/strong&gt;&lt;/td&gt;
+        &lt;td width="86%"&gt;&lt;select name="chengse" id="chengse"&gt;&lt;option value="全新"&gt;全新&lt;/option&gt;&lt;option value="99成新"&gt;99成新&lt;/option&gt;&lt;option value="95成新"&gt;95成新&lt;/option&gt;&lt;option value="9成新"&gt;9成新&lt;/option&gt;&lt;option value="8成新"&gt;8成新&lt;/option&gt;&lt;option value="7成新"&gt;7成新&lt;/option&gt;&lt;option value="6成以下"&gt;6成以下&lt;/option&gt;&lt;/select&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span class="redn"&gt;*&lt;/span&gt; &lt;b&gt;价格：&lt;/b&gt;&lt;input name="jiage" type="text" size=4 id="jiage" value="" onKeyUp="value=value.replace(/\D+/g,\'\')"&gt; 元&lt;/td&gt;
+      &lt;/tr&gt;';
+}
+elseif (in_array($classid,$car_array))
+{
+$cate='&lt;tr&gt;&lt;td align="right" valign="top"&gt;&lt;/td&gt;&lt;td&gt;&lt;input name="cate" id="cate" type="radio" value="出售" checked="checked"&gt;&lt;label for="cate"&gt;出售&lt;/label&gt;&lt;input name="cate" id="cate1" type="radio" value="求购"&gt;&lt;label for="cate1"&gt;求购&lt;/label&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+        &lt;td width="14%" align="right"&gt;&lt;span class="redn"&gt;*&lt;/span&gt; &lt;strong&gt;成 色：&lt;/strong&gt;&lt;/td&gt;
+        &lt;td width="86%"&gt;&lt;select name="chengse" id="chengse"&gt;&lt;option value="全新"&gt;全新&lt;/option&gt;&lt;option value="99成新"&gt;99成新&lt;/option&gt;&lt;option value="95成新"&gt;95成新&lt;/option&gt;&lt;option value="9成新"&gt;9成新&lt;/option&gt;&lt;option value="8成新"&gt;8成新&lt;/option&gt;&lt;option value="7成新"&gt;7成新&lt;/option&gt;&lt;option value="6成以下"&gt;6成以下&lt;/option&gt;&lt;/select&gt; &lt;b&gt;价格：&lt;/b&gt;&lt;input name="jiage" type="text" size=4 id="jiage" value="" onKeyUp="value=value.replace(/\D+/g,\'\')"&gt; 元&lt;/td&gt;
+      &lt;/tr&gt;';
+}
+elseif (in_array($classid,$marry_array))
+{
+$cate='&lt;tr bgcolor="#CFE4A3"&gt;
+  &lt;td align="right"&gt;&lt;span class="redn"&gt;*&lt;/span&gt; &lt;strong&gt;我的性别：&lt;/strong&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;input name="mysex" type="radio" id="mysex" value="男" checked="checked"&gt;&lt;label for="mysex"&gt;男&lt;/label&gt; &lt;input name="mysex"  id="mysex" type="radio" value="女"&gt;&lt;label for="mysex"&gt;女&lt;/label&gt;&amp;nbsp;年龄：&lt;input name="myage" type="text" size=3 id="myage"&gt; 岁&amp;nbsp;身高：&lt;input name="myhight" type="text" id="myhight" value="" size="3"&gt; CM&amp;nbsp;户籍：&lt;select name="myhuji" id="myhuji"&gt;&lt;option value="保密"&gt;保密&lt;/option&gt;&lt;option value="北京"&gt;北京&lt;/option&gt;&lt;option value="天津"&gt;天津&lt;/option&gt;&lt;option value="河北"&gt;河北&lt;/option&gt;&lt;option value="山西"&gt;山西&lt;/option&gt;&lt;option value="内蒙古"&gt;内蒙古&lt;/option&gt;&lt;option value="辽宁"&gt;辽宁&lt;/option&gt;&lt;option value="吉林"&gt;吉林&lt;/option&gt;&lt;option value="黑龙江"&gt;黑龙江&lt;/option&gt;&lt;option value="上海"&gt;上海&lt;/option&gt;&lt;option value="江苏"&gt;江苏&lt;/option&gt;&lt;option value="浙江"&gt;浙江&lt;/option&gt;&lt;option value="安徽"&gt;安徽&lt;/option&gt;&lt;option value="福建"&gt;福建&lt;/option&gt;&lt;option value="江西"&gt;江西&lt;/option&gt;&lt;option value="山东"&gt;山东&lt;/option&gt;&lt;option value="河南"&gt;河南&lt;/option&gt;&lt;option value="湖北"&gt;湖北&lt;/option&gt;&lt;option value="湖南"&gt;湖南&lt;/option&gt;&lt;option value="广东"&gt;广东&lt;/option&gt;&lt;option value="广西"&gt;广西&lt;/option&gt;&lt;option value="海南"&gt;海南&lt;/option&gt;&lt;option value="重庆"&gt;重庆&lt;/option&gt;&lt;option value="四川"&gt;四川&lt;/option&gt;&lt;option value="贵州"&gt;贵州&lt;/option&gt;&lt;option value="云南"&gt;云南&lt;/option&gt;&lt;option value="西藏"&gt;西藏&lt;/option&gt;&lt;option value="陕西"&gt;陕西&lt;/option&gt;&lt;option value="甘肃"&gt;甘肃&lt;/option&gt;&lt;option value="青海"&gt;青海&lt;/option&gt;&lt;option value="宁夏"&gt;宁夏&lt;/option&gt;&lt;option value="新疆"&gt;新疆&lt;/option&gt;&lt;option value="港澳台"&gt;港澳台&lt;/option&gt;&lt;option value="外籍"&gt;外籍&lt;/option&gt;&lt;/select&gt;&amp;nbsp;学历：&lt;select name="myedu" id="myedu"&gt;&lt;option value="保密"&gt;保密&lt;/option&gt;&lt;option value="高中/中专"&gt;高中/中专&lt;/option&gt;&lt;option value="大专"&gt;大专&lt;/option&gt;&lt;option value="本科"&gt;本科&lt;/option&gt;&lt;option value="硕士以上"&gt;硕士以上&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr bgcolor="#EFC5ED"&gt;
+        &lt;td width="14%" align="right" height="25"&gt;&lt;span class="redn"&gt;*&lt;/span&gt; &lt;strong&gt;对方要求：&lt;/strong&gt;&lt;/td&gt;
+        &lt;td width="86%" height="25"&gt;&lt;input name="sex" id="sex" type="radio" value="男"&gt;&lt;label for="sex"&gt;男&lt;/label&gt; &lt;input name="sex"  id="sex" type="radio" value="女"&gt;&lt;label for="sex"&gt;女&lt;/label&gt;&amp;nbsp;年龄：&lt;select name="age" id="age"&gt;&lt;option value="不限"&gt;不限&lt;/option&gt;&lt;option value="0-15岁"&gt;0-15岁&lt;/option&gt;&lt;option value="16-22岁"&gt;16-22岁&lt;/option&gt;&lt;option value="20-30岁"&gt;20-30岁&lt;/option&gt;&lt;option value="31-40岁"&gt;31-40岁&lt;/option&gt;&lt;option value="40-无限"&gt;40-无限&lt;/option&gt;&lt;/select&gt;&amp;nbsp;身高：&lt;select name="hight" id="hight"&gt;&lt;option value="不限"&gt;不限&lt;/option&gt;&lt;option value="145CM以下"&gt;145CM以下&lt;/option&gt;&lt;option value="145-155CM"&gt;145-155CM&lt;/option&gt;&lt;option value="155-165CM"&gt;155-165CM&lt;/option&gt;&lt;option value="165-175CM"&gt;165-175CM&lt;/option&gt;&lt;option value="175-185CM"&gt;175-185CM&lt;/option&gt;&lt;option value="185CM以上"&gt;185CM以上&lt;/option&gt;&lt;/select&gt;&amp;nbsp;户籍：&lt;select name="huji" id="huji"&gt;&lt;option value="不限"&gt;不限&lt;/option&gt;&lt;option value="北京"&gt;北京&lt;/option&gt;&lt;option value="天津"&gt;天津&lt;/option&gt;&lt;option value="河北"&gt;河北&lt;/option&gt;&lt;option value="山西"&gt;山西&lt;/option&gt;&lt;option value="内蒙古"&gt;内蒙古&lt;/option&gt;&lt;option value="辽宁"&gt;辽宁&lt;/option&gt;&lt;option value="吉林"&gt;吉林&lt;/option&gt;&lt;option value="黑龙江"&gt;黑龙江&lt;/option&gt;&lt;option value="上海"&gt;上海&lt;/option&gt;&lt;option value="江苏"&gt;江苏&lt;/option&gt;&lt;option value="浙江"&gt;浙江&lt;/option&gt;&lt;option value="安徽"&gt;安徽&lt;/option&gt;&lt;option value="福建"&gt;福建&lt;/option&gt;&lt;option value="江西"&gt;江西&lt;/option&gt;&lt;option value="山东"&gt;山东&lt;/option&gt;&lt;option value="河南"&gt;河南&lt;/option&gt;&lt;option value="湖北"&gt;湖北&lt;/option&gt;&lt;option value="湖南"&gt;湖南&lt;/option&gt;&lt;option value="广东"&gt;广东&lt;/option&gt;&lt;option value="广西"&gt;广西&lt;/option&gt;&lt;option value="海南"&gt;海南&lt;/option&gt;&lt;option value="重庆"&gt;重庆&lt;/option&gt;&lt;option value="四川"&gt;四川&lt;/option&gt;&lt;option value="贵州"&gt;贵州&lt;/option&gt;&lt;option value="云南"&gt;云南&lt;/option&gt;&lt;option value="西藏"&gt;西藏&lt;/option&gt;&lt;option value="陕西"&gt;陕西&lt;/option&gt;&lt;option value="甘肃"&gt;甘肃&lt;/option&gt;&lt;option value="青海"&gt;青海&lt;/option&gt;&lt;option value="宁夏"&gt;宁夏&lt;/option&gt;&lt;option value="新疆"&gt;新疆&lt;/option&gt;&lt;option value="港澳台"&gt;港澳台&lt;/option&gt;&lt;option value="外籍"&gt;外籍&lt;/option&gt;&lt;/select&gt;&amp;nbsp;学历：&lt;select name="edu" id="edu"&gt;&lt;option value="不限"&gt;不限&lt;/option&gt;&lt;option value="高中/中专"&gt;高中/中专&lt;/option&gt;&lt;option value="大专"&gt;大专&lt;/option&gt;&lt;option value="本科"&gt;本科&lt;/option&gt;&lt;option value="硕士以上"&gt;硕士以上&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;
+      &lt;/tr&gt;';
+}
+$house='';
+$chu_array=array('12','13','14','17','18','19');
+$mai_array=array('15','16');
+if (in_array($classid,$chu_array))
+{
+$house='&lt;input name="jiage" type="text" id="jiage" size="4" onKeyUp="value=value.replace(/\D+/g,\'\')"&gt; 元/月';
+}
+elseif  (in_array($classid,$mai_array))
+{
+$house='&lt;input name="jiage" type="text" id="jiage" size="4" onKeyUp="value=value.replace(/\D+/g,\'\')"&gt; 万元';
+}
+$mid=(int)$_GET['mid'];
+if(empty($classid)||empty($mid))
+{
+printerror('EmptyQinfoCid','',1);
+}
+$enews=$_GET['enews'];
+if(empty($enews))
+{
+$enews='MAddInfo';
+}
+$muserid=(int)getcvar('mluserid');
+$guserid=(int)getcvar('mluserid');
+$musername=getcvar('mlusername');
+$mrnd=getcvar('mlrnd');
+$showkey='';
+$r['newstext']='';
+if($muserid)
+{
+$memberinfor=$empire-&gt;fetch1('select u.*,ui.* from '.$user_tablename." u LEFT JOIN {$dbtbpre}enewsmemberadd ui ON u.{$user_userid}=ui.userid where u.{$user_userid}='$muserid' limit 1");
+}
+if($enews=='MAddInfo')
+{
+$cr=DoQCheckAddLevel($classid,$muserid,$musername,$mrnd,0,1);
+$mr=$empire-&gt;fetch1("select qenter,qmname,tobrf from {$dbtbpre}enewsmod where mid='$cr[modid]'");
+if(empty($mr['qenter']))
+{
+printerror('NotOpenCQInfo','history.go(-1)',1);
+}
+$ecmsfirstpost=1;
+$word='您当前选择的分类是：';
+$rechangeclass="&amp;nbsp;&amp;nbsp;&lt;span class='px12'&gt;[&lt;a href='$jzfenleiform'&gt;更改分类&lt;/a&gt;]&lt;/span&gt;";
+if($cr['qaddshowkey'])
+{
+$showkey="&lt;tr&gt;
+      &lt;td width=\"13%\" align=\"right\"  valign=\"top\"&gt;&lt;span class=\"redn\"&gt;*&lt;/span&gt; &lt;strong&gt;验证码：&lt;/strong&gt;&lt;/td&gt;
+      &lt;td width=\"87%\"&gt;&lt;input name=\"key\" type=\"text\" size=\"6\"&gt; &lt;img src=\"../ShowKey?ecms\"&gt;&lt;/td&gt;&lt;/tr&gt;";
+}
+$imgwidth=0;
+$imgheight=0;
+if(strstr($mr['qenter'],'morepic&lt;'))
+{
+$morepicnum=3;
+$morepicpath="&lt;table width='100%' border=0 align=center cellpadding=3 cellspacing=1&gt;
+		&lt;tr&gt; 
+			&lt;td width='7%'&gt;&lt;div align=center&gt;1&lt;/div&gt;&lt;/td&gt;
+			&lt;td width='33%'&gt;&lt;div align=center&gt;
+			&lt;input name=msmallpic[] type=text id=msmallpic[] size=28&gt;
+			&lt;/div&gt;&lt;/td&gt;
+			&lt;td width='30%'&gt;&lt;div align=center&gt;
+			&lt;input name=mbigpic[] type=text id=mbigpic[] size=28&gt;
+			&lt;/div&gt;&lt;/td&gt;
+			&lt;td width='30%'&gt;&lt;div align=center&gt;
+			&lt;input name=mpicname[] type=text id=mpicname[]&gt;
+			&lt;/div&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt; 
+			&lt;td&gt;&lt;div align=center&gt;2&lt;/div&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;div align=center&gt;
+			&lt;input name=msmallpic[] type=text id=msmallpic[] size=28&gt;
+			&lt;/div&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;div align=center&gt;
+			&lt;input name=mbigpic[] type=text id=mbigpic[] size=28&gt;
+			&lt;/div&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;div align=center&gt;
+			&lt;input name=mpicname[] type=text id=mpicname[]&gt;
+			&lt;/div&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt; 
+			&lt;td&gt;&lt;div align=center&gt;3&lt;/div&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;div align=center&gt;
+			&lt;input name=msmallpic[] type=text id=msmallpic[] size=28&gt;
+			&lt;/div&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;div align=center&gt;
+			&lt;input name=mbigpic[] type=text id=mbigpic[] size=28&gt;
+			&lt;/div&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;div align=center&gt;
+			&lt;input name=mpicname[] type=text id=mpicname[]&gt;
+			&lt;/div&gt;&lt;/td&gt;
+		&lt;/tr&gt;&lt;/table&gt;";
+}
+$filepass=time();
+}
+else
+{
+$word='修改信息';
+$ecmsfirstpost=0;
+$id=(int)$_GET['id'];
+if(empty($id))
+{
+printerror('EmptyQinfoCid','',1);
+}
+$cr=DoQCheckAddLevel($classid,$muserid,$musername,$mrnd,1,0);
+$mr=$empire-&gt;fetch1("select qenter,qmname,tobrf from {$dbtbpre}enewsmod where mid='$cr[modid]'");
+if(empty($mr['qenter']))
+{
+printerror('NotOpenCQInfo','history.go(-1)',1);
+}
+$r=CheckQdoinfo($classid,$id,$muserid,$cr['tbname'],$cr['adminqinfo'],1);
+$imgwidth=170;
+$imgheight=120;
+$morepicpath='';
+if(strstr($mr['qenter'],'morepic&lt;'))
+{
+$morepicnum=0;
+if($r[morepic])
+{
+$r[morepic]=stripSlashes($r[morepic]);
+$j=0;
+$pd_record=explode("\r\n",$r[morepic]);
+for($i=0;$i&lt;count($pd_record);$i++)
+{
+$j=$i+1;
+$pd_field=explode('::::::',$pd_record[$i]);
+$morepicpath.="&lt;tr&gt; 
+	&lt;td width='7%'&gt;&lt;div align=center&gt;".$j."&lt;/div&gt;&lt;/td&gt;
+    &lt;td width='33%'&gt;&lt;div align=center&gt;
+        &lt;input name=msmallpic[] type=text value='".$pd_field[0]."' size=28&gt;
+      &lt;/div&gt;&lt;/td&gt;
+    &lt;td width='30%'&gt;&lt;div align=center&gt;
+        &lt;input name=mbigpic[] type=text value='".$pd_field[1]."' size=28&gt;
+      &lt;/div&gt;&lt;/td&gt;
+    &lt;td width='30%'&gt;&lt;div align=center&gt;
+        &lt;input name=mpicname[] type=text value='".$pd_field[2]."'&gt;&lt;input type=hidden name=mpicid[] value=".$j.'&gt;&lt;input type=checkbox name=mdelpicid[] value='.$j.'&gt;删
+      &lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;';
+}
+$morepicnum=$j;
+$morepicpath="&lt;table width='100%' border=0 cellspacing=1 cellpadding=3&gt;".$morepicpath.'&lt;/table&gt;';
+}
+}
+$filepass=$id;
+}
+$tbname=$cr['tbname'];
+esetcookie('qeditinfo','dgcms');
+$classurl=sys_ReturnBqClassname($cr,9);
+$postclass="&lt;a href='".$classurl."' target='_blank'&gt;&lt;span class='redb'&gt;".$class_r[$classid]['classname'].'&lt;/span&gt;&lt;/a&gt;'.$rechangeclass;
+if($cr['bclassid'])
+{
+$bcr['classid']=$cr['bclassid'];
+$bclassurl=sys_ReturnBqClassname($bcr,9);
+$postclass="&lt;a href='".$bclassurl."' target=_blank&gt;&lt;span  class='redb'&gt;".$class_r[$cr['bclassid']]['classname'].'&lt;/span&gt;&lt;/a&gt;&amp;nbsp;-&gt;&amp;nbsp;'.$postclass;
+}
+$url="&lt;a href='../../'&gt;首页&lt;/a&gt;&amp;nbsp;&gt;&amp;nbsp;&lt;a href='../member/cp'&gt;控制面板&lt;/a&gt;&amp;nbsp;&gt;&amp;nbsp;&lt;a href='ListInfo.php?mid=".$cr['modid']."'&gt;管理信息&lt;/a&gt;&amp;nbsp;&gt;&amp;nbsp;".$word.'&amp;nbsp;('.$mr[qmname].')';
+if(strstr($mr['qenter'],'playerid&lt;'))
+{
+$player_sql=$empire-&gt;query("select id,player from {$dbtbpre}enewsplayer");
+while($player_r=$empire-&gt;fetch($player_sql))
+{
+$select_player='';
+if($r[playerid]==$player_r[id])
+{
+$select_player=' selected';
+}
+$player_class.="&lt;option value='".$player_r[id]."'".$select_player.'&gt;'.$player_r[player].'&lt;/option&gt;';
+}
+}
+if(strstr($mr['qenter'],'newstext&lt;'))
+{
+$htmlareacode="&lt;script type=\"text/javascript\"&gt;
+      _editor_url = \"../data/htmlarea\";
+      _editor_lang = \"en\";
+	&lt;/script&gt;
+	&lt;script type=\"text/javascript\" src=\"../data/htmlarea/htmlarea.php?userid=$muserid&amp;username=$musername&amp;rnd=$mrnd&amp;classid=$classid&amp;filepass=$filepass\"&gt;&lt;/script&gt;
+	&lt;script type=\"text/javascript\" src=\"../data/htmlarea/plugins/FullPage/full-page.js\"&gt;&lt;/script&gt;
+	&lt;script type=\"text/javascript\" src=\"../data/htmlarea/plugins/FullPage/lang/en.js\"&gt;&lt;/script&gt;
+	&lt;script type=\"text/javascript\"&gt;
+	//HTMLArea.loadPlugin(\"FullPage\");
+	var editor = null;
+	function initEditor() {
+		editor = new HTMLArea(\"newstext\");
+		editor.registerPlugin(FullPage);
+		editor.generate();
+		document.all['title'].focus();
+		return false;
+	}
+	function InsertFile(html){
+		editor.focusEditor();
+		editor.insertHTML(html);
+	}
+    &lt;/script&gt;";
+$onload='&lt;script&gt;initEditor();&lt;/script&gt;';
+}
+if(empty($musername))
+{
+$musername='游客发布&amp;nbsp;&lt;a href=../e/member/login class=px12&gt;登陆&lt;/a&gt;&amp;nbsp;&lt;a href=/e/member/register class=px12&gt;注册&lt;/a&gt;';
+}
+if (empty ($guserid))
+{
+$guserid="&lt;tr&gt;&lt;td align=\"right\" valign=\"top\"&gt;&lt;strong&gt;信息密码：&lt;/strong&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;input name=\"password\" type=\"text\" id=\"password\" value=\"\"&gt; &lt;span class=\"notes\"&gt;凭此密码您可以随时删除您发布的信息&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;";
+}
+else
+{
+$guserid='';
+}
+$cnews='';
+$new_classid=array('64');
+in_array($classid,$new_classid)?$cnews='&lt;script&gt;
+function bs(){
+	var f=document.add
+	if(f.title.value.length==0){alert("标题还没写");f.title.focus();return false;}
+	if(f.classid.value==0){alert("请选择栏目");f.classid.focus();return false;}
+}
+function foreColor(){
+  if(!Error())	return;
+  var arr = showModalDialog("../e/data/html/selcolor.html", "", "dialogWidth:18.5em; dialogHeight:17.5em; status:0");
+  if (arr != null) document.add.titlecolor.value=arr;
+  else document.add.titlecolor.focus();
+}
+function FieldChangeColor(obj){
+  if(!Error())	return;
+  var arr = showModalDialog("../e/data/html/selcolor.html", "", "dialogWidth:18.5em; dialogHeight:17.5em; status:0");
+  if (arr != null) obj.value=arr;
+  else obj.focus();
+}
+&lt;/script&gt;':$cnews='';
+$modfile='../data/html/q'.$cr['modid'].'.php';
+include('../data/template/cp_3.php');
+;echo '';echo $cnews;echo '';echo $htmlareacode;echo '&lt;noscript&gt;
+&lt;iframe src=*.htm&gt;&lt;/iframe&gt;
+&lt;/noscript&gt;
+&lt;script language=javascript src="PopupCalendar.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+var oCalendarEn=new PopupCalendar("oCalendarEn");    //初始化控件时,请给出实例名称如:oCalendarEn
+oCalendarEn.Init();
+var oCalendarChs=new PopupCalendar("oCalendarChs");    //初始化控件时,请给出实例名称:oCalendarChs
+oCalendarChs.weekDaySting=new Array("日","一","二","三","四","五","六");
+oCalendarChs.monthSting=new Array("一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月");
+oCalendarChs.oBtnTodayTitle="今天";
+oCalendarChs.oBtnCancelTitle="取消";
+oCalendarChs.Init();
+&lt;/script&gt;
+&lt;script language="javascript" type="text/javascript"&gt;
+
+var annonymous = true;
+function checkForm()
+{
+	var frm;
+	frm = document.getElementById("add");
+	
+	if(frm.title.value == ""){
+		alert("标题不能为空!");
+		frm.title.focus();
+		return false;
+	}
+	
+	if(frm.title.value.length &lt; 3){
+		alert("标题太短，至少3个字符以上!");
+		frm.title.focus();
+		return false;
+	}
+	
+	if(frm.smalltext.value == ""){
+		alert("信息内容不能为空!");
+		frm.smalltext.focus();
+		return false;
+	}
+	
+	if(frm.smalltext.value.length &lt; 10){
+		alert("信息内容太短，至少10个字符以上!");
+		frm.smalltext.focus();
+		return false;
+	}
+	
+	//if(frm.phone1.value == ""){
+	//	alert("手机/电话号码不能为空!");
+	//	frm.phone1.focus();
+	//	return false;
+	//}
+	//    var myreg = /^(((13[0-9]{1})|159)+\\d{8})$/;
+    //if(!myreg.test(frm.phone1.value))
+    //{
+    //    alert(\'请输入合法的手机/电话号码！\');
+    //    frm.phone1.focus();
+    //    return false;
+    //} 
+	
+	if(frm.gqtime.value == ""){
+		alert("请选择信息有效时间!");
+		frm.gqtime.focus();
+		return false;
+	}
+	
+	if(frm.gqtime.value.length &lt; 8){
+		alert("输入格式不正确,格式：2007-08-01!");
+		frm.gqtime.focus();
+		return false;
+	}
+	if(frm.cncode.value == ""){
+		alert("请填写验证码!");
+		frm.cncode.focus();
+		return false;
+	}
+
+	return true;
+}
+&lt;/script&gt;
+&lt;form name="add" id="add" method="POST" enctype="multipart/form-data" action="ecms.php" onsubmit="return checkForm()"&gt;
+&lt;input type=hidden value=';echo $enews;echo ' name=enews&gt; &lt;input type=hidden value=';echo $classid;echo ' name=classid&gt; 
+&lt;input name=id type=hidden id="id" value=';echo $id;echo '&gt; &lt;input type=hidden value="';echo $filepass;echo '" name=filepass&gt; 
+&lt;input name=mid type=hidden id="mid" value=';echo $mid;echo '&gt;
+&lt;input type=hidden value=jzfenleiform name="';echo $jzfenleiform;echo '"&gt;
+
+&lt;table width="80%" border="0" align="center" cellpadding="4" cellspacing="4" style="font-size:14px"&gt;
+      &lt;tr&gt;
+        &lt;td colspan="2"&gt; ';echo $word;echo ' &lt;span class="px14"&gt;';echo $postclass;echo '&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;!--tr&gt;
+        &lt;td width="13%" align="right" valign="top"&gt;&lt;strong&gt;发布者：&lt;/strong&gt;&lt;/td&gt;
+        &lt;td width="87%"&gt;&lt;font color=red&gt;';echo $musername;echo '&lt;/font&gt;&lt;/td&gt;
+      &lt;/tr--&gt;
+ 
+	    ';
+@include($modfile);
+;echo ' ';echo $showkey;echo ' ';echo $ReturnIP;echo '      &lt;tr&gt;
+        &lt;td align="center"&gt;&amp;nbsp;&lt;/td&gt;
+        &lt;td&gt;&lt;input type="submit" name="addnews" value="  发布信息  " class="bigbutton"&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+	 
+    &lt;/form&gt;
+	&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;div class="mw"&gt;
+';
+db_close();
+$empire=null;
+include('../data/template/cp_4.php');
+echo $onload;
+
+</pre>
+<p>看来是某分类信息发布程序的一个页面。PHP是一个自由、开源的世界，将代码弄成这样，影响执行效率、不便于修改，何必呢？</p>
+<p><a href="PHP-decode-2.zip" onclick="c('PHP-decode-2.zip')">下载每一步的源代码</a></p>
+<p>好吧，我已经写了两篇有关PHP解码的文章了，最近不会再有更多的相关文章了。如果你遇到了一段被编码的PHP脚本，最好的处理办法就是不使用这个程序。对一切有违自由、开源精神的PHP程序，请各位自觉抵制。</p>
+
+<script type="text/javascript">//<![CDATA[
+$$('.break-line').each(function(code){
+	var len=110;
+	var h=code.innerHTML.unescapeHTML().replace(/\t/g,'  ').replace(/\r/g,'').split('\n');
+	var b=[];
+	h.each(function(l){
+		while (l.length>len) {
+			b.push(l.substr(0,len));
+			l=l.substr(len);
+		}
+		b.push(l);
+	});
+	var r=b.collect(function(l){
+		return l.escapeHTML();
+	}).join('\n');
+	code.innerHTML=r;
+});
+//]]></script>

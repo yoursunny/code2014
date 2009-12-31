@@ -1,0 +1,1 @@
+E:\web\sites\yoursunny9\study\_zip\zip.exe -9 -j %1.zip %* E:\web\sites\yoursunny9\study\_zip\readme.htm

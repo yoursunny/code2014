@@ -1,0 +1,566 @@
+嵌入式系统原理与应用
+嵌入式系统原理与应用 提纲
+
+transitional
+<div style="text-align: left;">嵌入式系统原理与应用 提纲 by <a title="阳光男孩" href="http://m.yoursunny.com">阳光男孩</a> || 你的阳光学习频道 <a title="http://yoursunny.com" href="http://yoursunny.com/study/IS222/outline.htm">http://study.yoursunny.com</a><br /> 客服电话021-31001856转*018225008# || Provided as-is, absolutely no warranty<br /> <br /> 考试题型和范围<br /> 
+<ul>
+<li>单选20、多选20、填空20、判断10&mdash;&mdash;概述(不含历史)，软件(不含具体产品介绍)，硬件</li>
+<li>简答20&mdash;&mdash;Bootloader，设计方法，Linux</li>
+<li>应用10&mdash;&mdash;实例(根据需求选平台、开发方法)</li>
+</ul>
+下文中@后面文字为阳光男孩加的注释<br /></div>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h1>一、嵌入式系统基础</h1>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h2>㈠嵌入式系统概述<br /></h2>
+<ul>
+<li>嵌入式计算机系统(简称嵌入式系统)：看不见的计算机，一般不能被用户编程，它有一些专用的I/O设备，对用户的接口是应用专用的</li>
+<li>定义：以应用为中心，以计算机技术为基础，软件硬件可裁剪，适应应用系统对功能、可靠性、成本、体积、功耗严格要求的计算机系统 </li>
+<li>体系结构 @单选题<br /> 
+<ul>
+<li>冯诺依曼结构：指令数据一起存储；桌面计算机采用</li>
+<li>哈佛结构：指令数据分开存储；嵌入式系统通常采用</li>
+</ul>
+</li>
+<li>系统层次比较 @填空题<br /> 
+<ul>
+<li>桌面计算机：硬件-固件-操作系统-应用程序</li>
+<li>复杂嵌入式系统：硬件-固件-操作系统-应用程序</li>
+<li>简单嵌入式系统：硬件-固件</li>
+</ul>
+</li>
+<li>嵌入式系统发展：1960年出现(航天)，1965年军用，1973年民用，1980年代完善，1990年代广泛应用 @历史不考～ </li>
+<li>嵌入式系统价值体现：外观，品牌，功能，重量，价格，质量，服务，综合</li>
+</ul>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h3>实时系统<br /></h3>
+<ul>
+<li>嵌入式系统不一定是实时系统，实时系统一般都是嵌入式系统 @判断题 </li>
+<li>POSIX实时系统：操作系统有能力在限定响应时间范围内，提供满足需求的服务</li>
+<li>实时系统指标 @单选题<br /> 
+<ul>
+<li>响应时间：识别外部事件-&gt;响应</li>
+<li>生存时间：数据有效等待时间</li>
+<li>吞吐量：可处理时间总数/单位时间</li>
+</ul>
+</li>
+<li>实时系统响应时间在10&mu;s数量级；响应时间可预测性比速度更重要</li>
+<li>怎么达到实时的要求？ @多选题/简答题<br /> 
+<ul>
+<li>充分发挥硬件的功能</li>
+<li>微处理器的终端机制</li>
+<li>简单的单线程循环程序</li>
+<li>基于实时操作系统的复杂多线程程序</li>
+<li>以硬件的方式实现软件</li>
+</ul>
+</li>
+</ul>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h3>嵌入式系统分类</h3>
+<ul>
+<li>按确定性分类 @单选题，根据[01嵌入式系统概述.ppt]125页图片选择类别名称<br /> 
+<ul>
+<li>硬实时系统：响应时间不能满足会导致系统崩溃</li>
+<li>软实时系统：响应时间不能满足无致命错误</li>
+<li>严格实时系统：响应时间不能满足导致无法接受的低质量服务</li>
+<li>非实时系统</li>
+</ul>
+</li>
+<li>实时系统-按软件结构分类
+<ul>
+<li>单线程程序
+<ul>
+<li>简单轮询系统：软件结构简单，应用领域有限</li>
+<li>有限状态机：小系统结构简单，快速执行，应用领域有限 </li>
+</ul>
+</li>
+<li>事件驱动程序
+<ul>
+<li>前后台系统 @填空题<br /> 
+<ul>
+<li>前台-中断级：中断服务程序处理异步事件；后台-任务级：应用程序，无限的循环</li>
+<li>性能指标：中断延迟时间，响应时间，恢复时间 </li>
+</ul>
+</li>
+<li>实时多任务系统：多线程，保证实时性，模块化好易维护，需使用RTOS增加开销</li>
+<li>多处理机系统
+<ul>
+<li>紧耦合系统：共享内存交换信息</li>
+<li>松耦合系统：通讯链路交换信息 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h2>㈡嵌入式系统软件</h2>
+<ul>
+<li>软件体系结构 @多选题<br /> 
+<ul>
+<li>驱动层
+<ul>
+<li>板级初始化程序：初始化CPU、存储器、中断控制器、DMA、定时器等</li>
+<li>与系统软件相关的驱动</li>
+<li>与应用软件相关的驱动</li>
+</ul>
+</li>
+<li>操作系统层：(必须)嵌入式内核，(可选)嵌入式TCP/IP网络，嵌入式文件系统，嵌入式GUI系统，电源管理</li>
+<li>中间件层：(可选)嵌入式COBRA，嵌入式JAVA，嵌入式DCOM&hellip;&hellip;</li>
+<li>应用层：完成特定的工作</li>
+</ul>
+</li>
+<li>特征 @多选题/填空题<br /> 
+<ul>
+<li>固化存储于ROM，高质量高可靠性，高实时性，特殊开发平台，需要RTOS支持，开发人员是应用专家</li>
+</ul>
+</li>
+<li>实时软件要求 @填空题<br /> 
+<ul>
+<li>实时性，处理异步并发事件能力，快启动自恢复，应用程序与RTOS一体，独立开发平台</li>
+</ul>
+</li>
+<li>软件组成 @多选题
+<ul>
+<li>Bootloader</li>
+<li>操作系统</li>
+<li>应用程序</li>
+</ul>
+</li>
+<li>嵌入式系统软件对存储器的需求 @填空题
+<ul>
+<li>ROM需求<br /> 
+<ul>
+<li>前后台系统：总代码量=应用程序代码</li>
+<li>多任务系统：总代码量=应用程序代码+内核代码(1~100K,8bit最小内核1~3K)</li>
+</ul>
+</li>
+<li>RAM需求
+<ul>
+<li>多任务系统，无单独任务中断用栈：总RAM=应用程序需求+(任务栈需求+最大中断嵌套栈需求)&times;任务数</li>
+<li>多任务系统，中断用栈分离：总RAM=应用程序需求+内核数据区需求+各任务栈需求+最大中断嵌套栈需求</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>操作系统基础 @略</p>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h3>嵌入式操作系统</h3>
+<ul>
+<li>实时操作系统内核 @多选题，[01嵌入式系统软件.ppt]90页<br /> 
+<ul>
+<li>核心：多任务环境；外围：文件系统接口，虚拟内存管理，网络协议栈，I/O系统接口</li>
+<li>最简内核(纳核)8K，只剩下任务的管理与调度</li>
+</ul>
+</li>
+<li>按实时性分类 @判断题<br /> 
+<ul>
+<li>强实时系统：ms~&mu;s数量级，数控机床</li>
+<li>弱实时系统：s数量级，工程机械</li>
+</ul>
+</li>
+<li>实时操作系统：VxWorks,WinCE,Palm,Linux,ucLinux @产品不考</li>
+<li>实时操作系统组成：交叉编译器，RTOS本身，软件调试工具包</li>
+<li>实时操作系统特点 @填空题<br /> 
+<ul>
+<li>确定性：响应时间实时、可预测、可重复实现；中断请求-&gt;中断响应</li>
+<li>响应性：ISR(中断服务程序)执行时间；中断响应-&gt;中断结束<br /> 响应时间=确定性+响应性 @判断题 </li>
+<li>用户控制：允许用户(开发者)精确控制任务优先级</li>
+<li>可靠性：避免性能丧失或降低</li>
+<li>软失败操作：最小化系统错误的影响 </li>
+</ul>
+</li>
+</ul>
+<p>实时系统基本概念 @略</p>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h3>GUI 图形化对话接口</h3>
+<ul>
+<li>GUI的主要特征：Windows,Icons,Menu,Pointing devices @填空题/多选题 </li>
+<li>嵌入式GUI的特点：体积小，功能强，算法简洁占资源少，可靠性高，模块化便于移植 </li>
+</ul>
+<p>&nbsp;</p>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h2>㈢嵌入式系统硬件</h2>
+<ul>
+<li>硬件平台架构：CPU，总线，内存，I/O设备 @多选题 </li>
+<li>开发板，BSP，PLD，FPGA，ASIC，COTS商业通用组件(传感器等)，特定处理器(DSP、MCU、MPU) @判断题</li>
+<li>基于PC平台的嵌入式系统：价格低廉，易于采购，开发环境丰富，熟悉；需要大量硬件资源，非实时 @应用题 </li>
+</ul>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h3>嵌入式处理器</h3>
+<ul>
+<li>指令集 @判断题<br /> 
+<ul>
+<li>复杂指令集(CISC)：大量指令和寻址方式；桌面机CPU采用</li>
+<li>精简指令集(RISC)：只含最有用的指令，确保数据通道高效执行，CPU硬件结构简单；ARM、DSP采用 </li>
+<li>并行指令集(EPIC)</li>
+<li>超长指令集(VLIW)</li>
+</ul>
+</li>
+<li>指令系统设计
+<ul>
+<li>指令系统设计 @填空题<br /> 
+<ul>
+<li>决定于应用、性能、代码密度、方言</li>
+<li>包括符号指令设计、编码设计</li>
+</ul>
+</li>
+<li>指令的类型
+<ul>
+<li>寻址方式</li>
+<li>传输类指令</li>
+<li>运算类指令</li>
+<li>系统类指令</li>
+</ul>
+</li>
+<li>指令的编码
+<ul>
+<li>与代码密度、功耗、译码器相关</li>
+<li>垂直编码译码器简单、效率低；非垂直编码译码器复杂、效率高 @判断题</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>可重配置处理器，不可重配置处理器</li>
+<li>处理器分类
+<ul>
+<li>指令长度：4,8,16,32,64</li>
+<li>集成度：MPU,单片机,SoC</li>
+<li>用途
+<ul>
+<li>通用处理器：x86,ARM,MIPS,PowerPC</li>
+<li>专用处理器：DSP,IXP,IOP</li>
+</ul>
+</li>
+<li>指令集</li>
+</ul>
+</li>
+<li>影响CPU性能的因素
+<ul>
+<li>流水线：几个指令并行执行</li>
+<li>超标量：采用多条流水线结构</li>
+<li>高速缓存：保存部分主存内容的拷贝
+<ul>
+<li>数据cache，指令cache，混合cache</li>
+<li>cache命中，通写、回写 </li>
+</ul>
+</li>
+<li>总线和总线桥</li>
+</ul>
+</li>
+<li>嵌入式处理器分类
+<ul>
+<li>嵌入式微处理器MPU：PowerPC,Motorola 68000,ARM
+<ul>
+<li>与通用处理器相比，只保留嵌入式应用相关的硬件</li>
+<li>用于执行单一特定程序 </li>
+</ul>
+</li>
+<li>嵌入式微控制器MCU：8051,MCS-251
+<ul>
+<li>单片机：内部集成ROM RAM 总线 I/O A/D D/A 串口 Flash等各种必要功能和外设 </li>
+</ul>
+</li>
+<li>嵌入式DSP：适合连续的数据流处理、高精度复杂运算</li>
+<li>SoC/RSoC：结合许多功能区块，做在一个芯片上；软硬件无缝结合</li>
+<li>通用处理器：x86,AMD
+<ul>
+<li>内存可编程，通用寄存器，通用算术逻辑单元</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h3>常见嵌入式处理器</h3>
+<ul>
+<li>ARM
+<ul>
+<li>IP核：ARM RISC处理器是SoC的重要部件，连接了数码世界的软、硬件</li>
+<li>ARM系列：ARM7,ARM9,StrongARM,XScale&hellip;&hellip;</li>
+<li>ARM优势：RISC 32位处理器，价格低廉，合作伙伴众多，低功耗</li>
+</ul>
+</li>
+<li>MIPS
+<ul>
+<li>ISA指令集体系，支持64位整数 </li>
+</ul>
+</li>
+</ul>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h3>显示屏</h3>
+<ul>
+<li>LCD液晶显示屏
+<ul>
+<li>段式液晶</li>
+<li>字符型液晶</li>
+<li>图形点阵型液晶</li>
+</ul>
+</li>
+<li>触摸屏 </li>
+</ul>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h3>存储系统</h3>
+<ul>
+<li>RAM：SRAM,DRAM</li>
+<li>ROM：Masked ROM,OTP PROM,EPROM,EEPROM</li>
+<li>Flash：NOR Flash,NAND Flash
+<ul>
+<li>Flash设备按块读写，每块可写入100000次</li>
+<li>Flash设备模拟为512字节的块设备时，为了提供平均损耗，设备与文件系统上的逻辑位并不一一对应 @判断题</li>
+<li>开发板上的Flash内存逻辑分区：Boot Flash + Application Flash </li>
+</ul>
+</li>
+</ul>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h3>总线</h3>
+<ul>
+<li>总线的主要参数
+<ul>
+<li>带宽(=工作时钟频率&times;位宽) @填空题 </li>
+<li>位宽</li>
+<li>工作时钟频率</li>
+</ul>
+</li>
+<li>总线分类
+<ul>
+<li>按接口分类 @多选题&ldquo;下列哪些是内部总线：A VXI,B I2C,C SCI,D PCI&rdquo; </li>
+</ul>
+<ul>
+<li>&nbsp;
+<ul>
+<li>片内总线：处理器内部ALU与寄存器连接</li>
+<li>局部总线：CPU引脚的延伸</li>
+<li>系统总线：计算机系统各插件板的连接总线；ISA,PCI,CompactPCI </li>
+<li>内部总线：I2C,I2S,SPI,SCI</li>
+<li>外部总线：计算机系统之间、计算机与外设之间连接；RS-232,IEEE1394,USB</li>
+<li>现场总线：CAN</li>
+</ul>
+</li>
+<li>按功能分类 @填空题<br /> 
+<ul>
+<li>地址总线：决定了寻址范围</li>
+<li>数据总线：决定了同时传送的数据位数</li>
+<li>控制总线</li>
+<li>电源和地线</li>
+<li>备用线 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h3>接口</h3>
+<ul>
+<li>并口，串口，USB</li>
+</ul>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h3>JTAG</h3>
+<ul>
+<li>Joint Test Action Group</li>
+<li>使得集成电路固定在PCB上，只通过边界扫描便可以被测试 </li>
+</ul>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h3>板级支持包BSP</h3>
+<ul>
+<li>标准开发板上运行的一部分软件，支持操作系统的引导与开发</li>
+<li>BSP特点
+<ul>
+<li>硬件相关性</li>
+<li>操作系统相关性</li>
+</ul>
+</li>
+<li>架构：引导程序，硬件抽象层，驱动，配置文件</li>
+<li>功能
+<ul>
+<li>嵌入式系统初始化<br /> 
+<ul>
+<li>片级初始化：初始化微处理器</li>
+<li>板级初始化：初始化其他硬件</li>
+<li>系统级初始化：初始化操作系统</li>
+</ul>
+</li>
+<li>硬件相关的设备驱动程序 </li>
+</ul>
+</li>
+</ul>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h1>二、嵌入式系统高级知识</h1>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h2>㈠Bootloader</h2>
+<ul>
+<li>Bootloader：在操作系统内核运行之前运行的一段小程序，它初始化硬件设备、建立内存空间映射图，从而将系统的软硬件环境带到合适的状态，为调用操作系统内核作好准备 </li>
+<li>嵌入式系统启动过程 @简答题<br /> <ol>
+<li>系统上电或复位，从0x0地址开始执行
+<ul>
+<li>bank的划分：把外部总线分成不同的bank空间，对应不同的地址；每个bank可以对应一个ROM、Flash、DRAM等设备</li>
+<li>0x0地址(CPU也可能规定其他地址)保存有启动代码，通常对应bank0(连接Boot Flash)</li>
+</ul>
+</li>
+<li>Bootloader stage1任务：用汇编语言编写
+<ul>
+<li>硬件设备初始化：关中断，设置CPU频率，RAM初始化，LED(或其他可以表明系统状态的简单设备)初始化，关闭cache</li>
+<li>为stage2准备RAM地址空间，将stage2代码拷贝到RAM中，设置堆栈指针，跳转到stage2入口 </li>
+</ul>
+</li>
+<li>Bootloader stage2任务：用C语言编写，但不能动态链接glibc(允许静态链接)
+<ul>
+<li>初始化本阶段要用到的硬件设备：一个串口进行I/O，计时器</li>
+<li>建立系统内存映射：配置其他bank，设置端口、外设工作模式</li>
+<li>加载操作系统内核和根文件系统映像</li>
+<li>为内核设置启动参数，调用操作系统内核</li>
+</ul>
+</li>
+<li>操作系统启动 </li>
+</ol></li>
+<li>Bootloader的制作
+<ul>
+<li>原有Bootloader下载新Bootloader</li>
+<li>将Flash ROM插在编程器上</li>
+<li>使用JTAG接口</li>
+</ul>
+</li>
+<li>操作模式
+<ul>
+<li>启动加载模式(自主模式)：从嵌入式系统的某个存储设备(通常是Flash ROM)加载操作系统到RAM</li>
+<li>下载模式：通过串口或以太网下载操作系统内核与根文件系统；只用于开发(第一次安装和升级)</li>
+</ul>
+</li>
+</ul>
+<p>ARM启动过程 @略<br /> U-BOOT @略</p>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h2>㈡ARM处理器</h2>
+<p>@略</p>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h1>三、嵌入式系统设计</h1>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h2>㈠系统级设计</h2>
+<div>
+<div>
+<p><img style="width: 540px; height: 376px;" src="http://docs.google.com/File?id=dc67cnjv_350fmxx2cfp_b" alt="" /></p>
+</div>
+<br /></div>
+<ul>
+<li>计算机设计：实时性，响应性，安全可靠性，苛刻环境适应性，低成本</li>
+<li>系统级设计：产品功能，系统安全可靠性，物理系统的控制</li>
+<li>生命周期：市场需要&rarr;概念设计&rarr;产品设计、生产流程设计&rarr;生产&rarr;发布&rarr;支持&rarr;升级&rarr;淘汰</li>
+<li>商业模型：设计和生产费用，循环周期，产品系列</li>
+<li>设计原则 </li>
+</ul>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h2>㈡软硬件协同设计</h2>
+<div style="padding: 1em 0pt; text-align: left;"><img style="width: 537px; height: 298px;" src="http://docs.google.com/File?id=dc67cnjv_351hcnsm5c2_b" alt="" /></div>
+<p>&nbsp;</p>
+<ul>
+<li>软硬件协同设计：软硬件共同设计目的是为硬件和软件的协同描述、验证和综合提供一种集成环境 </li>
+<li>传统设计方法(系统级设计)的存在的问题 @简答题<br /> 
+<ul>
+<li>缺少统一的软硬件表示方法</li>
+<li>软硬件划分依靠先验定义</li>
+<li>不能够验证整个系统</li>
+<li>软硬件边界不兼容问题难以发现</li>
+<li>缺少成熟的设计流程</li>
+<li>上市时间困难（容易拖期） </li>
+<li>难以更改描述</li>
+</ul>
+</li>
+<li>软硬件协同设计理论体系
+<ul>
+<li>系统任务描述</li>
+<li>软硬件划分</li>
+<li>软硬件协同综合</li>
+<li>软硬件协同仿真</li>
+</ul>
+</li>
+<li>软硬件共同设计带来的好处
+<ul>
+<li>缩短开发周期</li>
+<li>取得更好的设计效果</li>
+<li>满足苛刻的限制</li>
+<li>平台=芯片+开发系统、典型应用+服务和技术支持</li>
+</ul>
+</li>
+<li>软硬件协同设计的基本需求 @简答题<br /> 
+<ul>
+<li>统一的软硬件描述方式：目前较为缺乏 </li>
+<li>交互式软硬件划分技术</li>
+<li>完整的软硬件模型基础</li>
+<li>正确的验证方法：目前较为缺乏</li>
+</ul>
+</li>
+<li>软硬件协同设计内容
+<ul>
+<li>设计描述</li>
+<li>设计建模</li>
+<li>设计空间的研究和划分</li>
+<li>合成与优化</li>
+<li>设计验证</li>
+<li>设计实现 </li>
+</ul>
+</li>
+</ul>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h2>㈢软硬件协同划分</h2>
+<p>@根本没讲过，略</p>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h1>四、Linux嵌入式系统开发</h1>
+<ul>
+<li>Linux实时实现方法
+<ul>
+<li>实时内核调度实时任务，无实时任务时实时内核调度标准内核运行普通进程</li>
+<li>将标准内核修改为支持实时任务和普通进程</li>
+</ul>
+</li>
+<li>Linux为什么成为嵌入式操作系统的主流
+<ul>
+<li>免费</li>
+<li>稳定</li>
+<li>网络功能强</li>
+<li>开发工具丰富</li>
+<li>大量文档 </li>
+</ul>
+</li>
+<li>嵌入式系统开发模式 @简答题<br /> 
+<ul>
+<li>本机开发</li>
+<li>交叉开发</li>
+<li>仿真开发</li>
+</ul>
+</li>
+<li>Linux的内核格式 @判断题<br /> 
+<ul>
+<li>vmlinux：未压缩的可执行文件</li>
+<li>zImage：经压缩，1MB实模式内存</li>
+<li>bzImage：经压缩，无1MB限制，现在常用 </li>
+</ul>
+</li>
+</ul>
+<p>@我不认为这章要考，做过实验～，因此其他内容略</p>
+<p style="color: #ffffff; font-size: 9px; line-height: 1px;">本文来自<a style="color: #ffffff;" href="http://yoursunny.com">你的阳光</a>（http://yoursunny.com）</p>
+<h1>五、嵌入式系统产品开发实例</h1>
+<p>@应用题；别忘了第一章的&ldquo;嵌入式系统价值体现&rdquo;～</p>
+<ul>
+<li>硬件平台选择
+<ul>
+<li>性能：建立原型系统测试效率能否满意，参考其他同类产品</li>
+<li>价格</li>
+</ul>
+</li>
+<li>软件平台选择
+<ul>
+<li>WinCE，Linux(开源嵌入式Linux、商业嵌入式Linux、普通Linux)，VxWorks</li>
+<li>无操作系统，条件为：任务简单，单任务</li>
+</ul>
+</li>
+<li>开发工具选择</li>
+<li>Bootloader选择</li>
+<li>设计方法：状态机，中断，状态机+中断
+<ul>
+<li>实时性要求</li>
+<li>系统复杂度：设计复杂度，实现复杂度</li>
+<li>系统可扩展性</li>
+</ul>
+</li>
+</ul>

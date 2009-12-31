@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>XmppProxy (Python C#) - 你的阳光技术频道 www.65536.cn</title>
+<link rel="stylesheet" type="text/css" href="/images/9/" />
+<script type="text/javascript" src="/lib/9.js?prettify"></script>
+</head><body>
+
+<div class="header">
+<h2><a href="http://yoursunny.com/">你的阳光</a></h2>
+<ul>
+<li><a href="http://m.yoursunny.com/"><span>个人</span></a></li>
+<li><a href="http://study.yoursunny.com/"><span>学习</span></a></li>
+<li><a href="http://www.65536.cn/"><span>技术</span></a></li>
+<li><a href="http://www.65536.cn/work/"><span>作品</span></a></li>
+</ul>
+<ol>
+<li><a href="http://yoursunny.com/">你的阳光</a></li>
+<li><a href="/">技术频道</a></li>
+<li><a href="../../">作品</a></li>
+<li><span>XmppProxy</span></li>
+</ol>
+</div>
+
+<div class="content"><div class="main">
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">XmppProxy</h1>
+<div class="p-body headers">
+
+<p>XMPP，即Extensible Messaging and Presence Protocol，是Jabber、Google Talk等即时消息工具使用的网络协议。但是，XMPP协议并不局限于单一的“聊天”用途，它也可以干更多、更精彩的事情。比如，我们的XmppProxy！</p>
+<p><b>XmppProxy</b>是一款用XMPP作为传输机制的代理服务器软件。这套软件由两部分组成：</p>
+<ul>
+<li>fetchClient，提供一个HTTP代理服务器(不支持HTTPS)，将HTTP请求封装成XMPP消息发送给fetchBot，并将收到的响应消息转换成HTTP响应。使用C#语言实现，运行于Windows Server平台。</li>
+<li>fetchBot，负责抓取网页的机器人。使用Python语言实现，运行于Google App Engine上。</li>
+</ul>
+<p>XmppProxy的一个用途是帮助没有部分网站的HTTP访问权限、而可以正常登录Google Talk等XMPP网络的企业、学校内网用户，让他们也能正常访问网站。<br/>提醒：请注意遵守所在企业、学校的管理规定。</p>
+<p>fetchClient仅有基本的HTTP代理服务器功能。如果需要访问日志、身份认证、访问控制等，则需要与<a href="http://www.65536.cn/work/2008/hProxyN/">hProxyN</a>配合使用（将fetchClient设置为hProxyN的InboundGateway）。</p>
+
+<h2>下载和安装</h2>
+<p>下载<a href="XmppProxy_20091008.zip" onclick="c('XmppProxy_20091008.zip')">XmppProxy</a>，
+当前版本：20091008。<br/>
+fetchBot与fetchClient版本必须一致才能正常运行。</p>
+<h3>fetchBot的安装</h3>
+<p>以下步骤将在Google App Engine应用<samp>application-id.appspot.com</samp>上安装一个fetchBot，且其JID是<samp>fetchbot@application-id.appspotchat.com</samp>。</p>
+<ol>
+<li>在/app.yaml中增加下列记录：<pre>
+inbound_services:
+- xmpp_message
+
+handlers:
+- url: /_ah/xmpp/message/chat/
+  script: /xmppbot/router.py
+</pre></li>
+<li>在应用根目录内创建目录/xmppbot。</li>
+<li>将压缩包内的/xmppbot/*.py复制到应用的/xmppbot目录内。</li>
+<li>修改/xmppbot/router.py，将<code class="prettyprint lang-py">if to=='jid':</code>改为<code class="prettyprint lang-py">if to=='fetchbot':</code>（其中fetchbot是JID中@前面的部分）。</li>
+<li>用appcfg.py update命令更新应用程序。</li>
+</ol>
+<p>如果你还没有Google App Engine帐号，想先体验XmppProxy的功能，可以先安装fetchClient并使用这个fetchBot：<br/><span style="font-size:82%;">b4144bcd-5e56-4384-b02d-a64274020ddb<script type="text/javascript">document.write('@');</script>yoursunny-app.appspotchat.com</span><br/>体验专用fetchBot限制只能访问www.google.cn和www.bing.com。</p>
+<h3>fetchClient的配置</h3>
+<ol>
+<li>如果没有.Net Framework 2.0，请先下载安装。</li>
+<li>将压缩包内的/dotnet_client/*.*复制到一个新目录。</li>
+<li>修改XmppProxy.exe.config，各选项设置如下：<ul>
+<li><var>listen_ip</var>：HTTP代理监听的IP，只支持IPv4；设置为127.0.0.1只能从本机连接，设置为局域网/公网IP则可以从其他机器连接。</li>
+<li><var>listen_port</var>：HTTP代理监听的TCP端口。</li>
+<li><var>xmpp_jid</var>：登录XMPP网络的JID，一般是Gmail。</li>
+<li><var>xmpp_password</var>：xmpp_jid对应的密码。</li>
+<li><var>fetchbot_jid</var>：fetchBot的JID，例如<samp>fetchbot@application-id.appspotchat.com</samp>。</li>
+</ul></li>
+<li>启动XmppProxy.exe；将网络浏览器的代理服务器设置为上面填写的listen_ip:listen_port（例如<samp>127.0.0.1:23128</samp>），尝试访问网页。</li>
+</ol>
+
+</div></div></div>
+
+</div><div class="sidebar">
+
+<div class="ad-sidebar"></div>
+
+</div></div>
+
+<div class="footer">
+<p class="copyright">&copy;2006-2009 yoursunny.com, CreativeCommons BY-NC 3.0</p>
+<ul class="links">
+<li><a href="http://yoursunny.com/m/about.htm">关于本站</a></li>
+<li><a href="http://yoursunny.com/m/contact.htm">联系方式</a></li>
+<li><a href="http://yoursunny.com/m/sitemap.htm">网站地图</a></li>
+</ul>
+</div>
+
+</body></html>

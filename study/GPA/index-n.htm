@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>阳光GPA计算器 - 你的阳光学习频道 study.yoursunny.com | 上海交通大学本科生GPA计算器,阳光男孩的GPA计算器</title>
+<meta name="keywords" content="上海交通大学,本科生,GPA,积点,绩点,计算,计算器,成绩大表,出国成绩单" />
+<meta name="description" content="最方便快捷的GPA计算工具，无需手工录入，自动导入各类报表、轻轻一点即可获得GPA计算结果；支持勾选部分课程进行计算；支持交大、美国、北大、加拿大、浙江大学多种算法选择" />
+<link rel="stylesheet" type="text/css" href="/images/9/" />
+<script type="text/javascript" src="/lib/9.js?cdn"></script>
+<style type="text/css">/*<![CDATA[*/
+html { min-width:970px; }
+#browser_warning { margin:20px 0; color:#f06; }
+#update_history .more-history { display:none; }
+#intro_steps { color:#f63; text-align:center; }
+#app { width:820px; min-height:420px; margin:20px auto; padding:10px; border:dotted 3px #090; overflow:auto; }
+#app table { margin:12px; border-left:solid 1px #9cf; border-top:solid 1px #9cf; }
+#app th,#app td { padding:4px; border-right:solid 1px #9cf; border-bottom:solid 1px #9cf; }
+#calc_result { z-index:1; padding:5px 9px 5px 9px; background:#393; right:0; bottom:0; color:#fff; position:fixed; }
+#app textarea { width:800px; height:300px; }
+#algorithm_view { width:310px; }
+#algorithm_view table { width:300px; }
+/*]]>*/</style>
+</head><body>
+
+<div class="header">
+<h2><a href="http://yoursunny.com/">你的阳光</a></h2>
+<ul>
+<li><a href="http://m.yoursunny.com/"><span>个人</span></a></li>
+<li><a href="http://study.yoursunny.com/"><span>学习</span></a></li>
+<li><a href="http://www.65536.cn/"><span>技术</span></a></li>
+<li><a href="http://www.65536.cn/work/"><span>作品</span></a></li>
+</ul>
+<ol>
+<li><a href="/">你的阳光</a></li>
+<li><a href="../">学习频道</a></li>
+<li><span>阳光GPA计算器</span></li>
+</ol>
+</div>
+
+<div class="content">
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">阳光GPA计算器</h1>
+<div class="p-body headers">
+<p>最方便快捷的GPA计算工具，无需手工录入，自动导入各类报表、轻轻一点即可获得GPA计算结果。计算结果仅供参考。</p>
+<noscript><p>GPA计算器需要调用JavaScript脚本语言。如果你没有开启JavaScript，将无法使用GPA计算器。</p></noscript>
+<p id="intro_steps">阳光GPA计算器使用步骤：选择输入方式 &raquo; 输入课程信息 &raquo; 选择算法 &raquo; 计算GPA
+&nbsp;&nbsp; <a href="javascript:;" onclick="GPA.Restart();">重新开始</a></p>
+<div id="browser_warning" style="display:none;"></div>
+<div id="app">
+<div id="step_input_choose" class="step">
+<div id="app_ad"></div>
+<h2>选择输入方式</h2>
+<ul>
+<li><a href="javascript:GPA.Input('Table');">表格录入</a>，手工录入学分、成绩等</li>
+<li><a href="javascript:GPA.Input('CSV');">CSV/TXT文件上传</a>，上传使用表格软件（如EXCEL）编辑好的课程信息</li>
+<li><a href="javascript:GPA.Input('XHTML');">XHTML文件上传</a>，上传您上次使用阳光GPA计算器时保存的XHTML数据文件</li>
+<li><a href="javascript:GPA.Input('JSON');">JSON导入</a>，粘贴您上次使用阳光GPA计算器时保存的JSON数据</li>
+<li><a href="javascript:GPA.Input('SJTU');">上海交大修业查询</a>，粘贴教务处修业查询报表，适用于上海交通大学本科生</li>
+<li id="input_jAccount"><a href="javascript:GPA.Input('jAccount');">上海交大jAccount</a>，输入jAccount帐号密码、自动提取成绩单，适用于上海交通大学本科生</li>
+</ul>
+</div>
+<div id="step_input" class="step"></div>
+<div id="step_algorithm" class="step"></div>
+<div id="step_calc" class="step"></div>
+<div id="step_export" class="step"></div>
+</div>
+
+<h2>GPA计算器 更新历史</h2>
+<ul id="update_history">
+<li>2009-04-16 根据jAccount条款，对非手机用户关闭上海交大jAccount输入方式</li>
+<li>2009-02-02 加入北京大学（2007级及之后）GPA算法、复旦大学GPA算法、上海大学GPA算法</li>
+<li>2009-01-15 新增上海交大jAccount输入方式，根据jAccount帐号自动下载报表；加入浙江大学GPA算法</li>
+<li>2009-01-13 【阳光GPA计算器】支持WAP手机访问，拿起你的手机：http://yoursunny.com</li>
+<li>2008-12-10 推出校内APP版本，校内网用户请访问<a href="http://apps.xiaonei.com/gpacalc" rel="external">阳光GPA计算器-校内版</a></li>
+<li><a href="javascript:;" onclick="this.up().remove();$$('#update_history .more-history').invoke('removeClassName','more-history')">显示全部更新历史</a></li>
+<li class="more-history">2008-12-03 “上海交通大学本科生GPA计算器”升级为“阳光GPA计算器”，大量功能更新</li>
+<li class="more-history">2008-03-03 <a href="http://www.no2678.com/GPA.htm" rel="externel">Elecmon的GPA计算器</a>，单文件、客户端脚本，可以保存后使用</li>
+<li class="more-history">2008-02-27 <a href="http://www.trueif.com/sjtu/GPA/" rel="externel">trueif的GPA计算器</a>，服务端计算、只支持交大</li>
+</ul>
+<p>这不是你熟悉的《上海交通大学本科生GPA计算器》？<a href="20080901.htm" class="newwin" rel="nofollow">进入旧版GPA计算器</a></p>
+</div></div></div>
+
+<p class="f-clear" style="font-size:70%;color:#666666;">上海交通大学GPA 上海交大GPA GPA计算 GPA计算器 交大GPA 如何计算GPA GPA算法 GPA程序 学积点 学绩点 出国成绩单 成绩大表 留学成绩单 留学手册 GPA计算方法 上交大4.3算法 上交大GPA 课程英文名称 英文课程名称 GPA下载 GPA怎么算 绩点计算器 上海交通大学教务处 上海交大教务处 美国GPA 加拿大GPA 北大GPA 北京大学GPA 浙江大学GPA算法</p>
+</div>
+
+<div class="footer">
+<p class="copyright">&copy;2006-2009 yoursunny.com, All Rights Reserved</p>
+<ul class="links">
+<li><a href="/m/about.htm">关于本站</a></li>
+<li><a href="/m/contact.htm">联系方式</a></li>
+<li><a href="/m/sitemap.htm">网站地图</a></li>
+</ul>
+</div>
+
+<script type="text/javascript">//<![CDATA[
+WebSite.bannerAd=false;
+Event.onReady(function(){
+	$('app_ad').update('<iframe src="'+(WebSite.isTest?'about:blank':'alimama.htm')+'" width="800" height="90" scrolling="no" frameborder="0" marginheight="0" marginwidth="0" border="0"></iframe>');
+	GPA.CheckUA();
+});
+//]]></script>
+<script type="text/javascript" src="component.php?core,input"></script>
+</body></html>

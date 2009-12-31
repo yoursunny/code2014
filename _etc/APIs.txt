@@ -1,0 +1,11 @@
+Google AJAX Feed API  yoursunny.com
+http://code.google.com/apis/ajaxfeeds/
+ABQIAAAAihENVS8xCSR18JFDkoNVLhTXx8CGU_1THg9LFcfWJDsTSLYqMxSLZEF74VuWT1gqOZwGUVxsLvsyoA
+
+Google Maps API  www.65536.cn
+http://code.google.com/apis/maps/index.html
+ABQIAAAAihENVS8xCSR18JFDkoNVLhQeQHHT99Gc6LfE5Sc_D83CJnXdwhRDK9hRyd-kAuMdQ2xTc0a_fohGiw
+
+http://open.baidu.com
+yoursunny
+qL6e6Br,sQA5cPn8

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>信息系统计算模型：从C/S、B/S到云计算 - 你的阳光技术频道 www.65536.cn</title>
+<meta name="keywords" content="信息系统,计算模型,C/S,B/S,C/S B/S 区别,C/S B/S 异同,AJAX,Silverlight,Gears,App Engine,云计算"/>
+<link rel="alternate" type="application/atom+xml" href="http://feed.feedsky.com/65536" />
+<link rel="stylesheet" type="text/css" href="/images/9/" />
+<script type="text/javascript" src="/lib/9.js"></script>
+</head><body>
+
+<div class="header">
+<h2><a href="http://yoursunny.com/">你的阳光</a></h2>
+<ul>
+<li><a href="http://m.yoursunny.com/"><span>个人</span></a></li>
+<li><a href="http://study.yoursunny.com/"><span>学习</span></a></li>
+<li><a href="http://www.65536.cn/"><span>技术</span></a></li>
+<li><a href="http://www.65536.cn/work/"><span>作品</span></a></li>
+</ul>
+<ol>
+<li><a href="http://yoursunny.com/">你的阳光</a></li>
+<li><a href="/">技术频道</a></li>
+<li><a href="../">文章</a></li>
+<li><span>信息系统计算模型：从C/S、B/S到云计算</span></li>
+</ol>
+</div>
+
+<div class="content">
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">信息系统计算模型：从C/S、B/S到云计算</h1>
+<div id="posts" class="p-body headers">
+
+<p class="byline">阳光男孩 发表于 2008-07-02 || 《大型应用软件课程设计》大作业</p>
+
+
+<p class="indent">随着计算机软件的不断发展，计算机软件的科学计算、信息处理两大用途中，信息处理应用变得越来越广泛。信息处理软件自始就是多用户的：UNIX上的mail是最早的信息处理软件之一，它的作用是在同一台UNIX机器的不同用户间传递文本信件。计算机网络出现后，多用户的信息处理软件得到进一步发展，演变成“信息系统”。一个基于计算机的<a href="http://zh.wikipedia.org/wiki/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F">信息系统</a>，是以计算机软件、硬件、存储和电信等技术为核心的人机系统。</p>
+
+<h2>回到过去——单机时代</h2>
+<p class="indent">最早的信息处理软件<a href="http://en.wikipedia.org/wiki/Mail_(Unix)">mail</a>是多用户的，但是它只能在同一台机器的不同用户间传递信息，而不能实现跨机器的传递。<a href="http://en.wikipedia.org/wiki/UUCP">uucp</a>可以实现跨主机的信息传递，但是主机间的网络连接不是持续的，信息到达的时间无法保证。那时，计算机信息处理仍然是以单机为主，通过软盘或非持续的网络连接在主机间交换数据。</p>
+<p class="indent">在中文市场，求伯君开发的WPS字处理软件取得了很大的市场份额。<a href="http://wps.kingsoft.com/special/wps2005/review1.shtml">WPS最早的版本</a>基于彩色文本界面，通过控制字符决定文字、段落的格式。WPS处理的对象是中文文档，信息处理的主要目的是根据需要的格式<b>打印文档</b>——信息在计算机上的处理是次要的，文档的主要形式是打印稿。</p>
+<p class="indent"><a href="http://wiki.ccw.com.cn/FoxBase">FoxBase</a>等单机版数据库管理系统也迅速发展。开发者在此类数据库基础上，开发了单机版本的图书馆、工资等各类<a href="http://zh.wikipedia.org/wiki/%E7%AE%A1%E7%90%86%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F">管理信息系统</a>。</p>
+
+<h2>局域网与C/S</h2>
+<p class="indent">用FoxBase或后来的<a href="http://office.microsoft.com/access">Access</a>开发的单机版管理信息系统有一个很大的缺点：<b>工作只能在一台计算机上完成</b>，无法多人同时工作。最初的解决方法是，将数据库拆分为多个部分；例如，将图书馆分为“文科书籍”、“理工科书籍”两个单机数据库，两者完全分开。可是，如果想实现“总共允许借5本书”这种功能，就不得不依赖于“在借书卡上记载已借书籍数量”及随后的人工检查操作。</p>
+<p class="indent">多人协作的问题，在局域网应用于信息系统后得到了解决。选择一台性能较好的PC机作为服务器，运行网络版数据库服务软件，例如SQL Server；其他PC机作为客户机，连接到服务器工作。这就是最初的C/S信息系统——客户机/服务器计算模式。通常，开发者在数据库服务器上创建数据库并编写一些存储过程来操作数据库，并为每位员工创建各自的数据库帐号、对帐号赋予必要的权限。所有的客户机上都需要安装好信息管理的专用应用程序，例如“图书馆管理系统”；工作时打开这个软件并输入员工自己的数据库帐号，软件直接连接数据库服务器，开始工作。多人协同工作造成的冲突等问题由数据库服务器的完整性约束或存储过程解决，而数据的正确性检查等往往由客户机上的应用程序负责。</p>
+<p class="indent">这种基本的C/S计算模式至今仍然广泛应用着。C/S的最大优点是客户机功能强大，打印、读卡、扫描、图像视频处理等各类功能，单机环境能完成的，在C/S计算模式中一定能够实现。但是，通过完整性约束和存储过程实现的数据检查、通过数据库帐号实现的权限控制，功能是有限的。</p>
+<p class="indent">为了加强服务器的审计能力，一些信息系统转向了更加强大的<a href="http://www.oracle.com/">Oracle数据库服务器</a>：Oracle可以显著增强服务器的审计能力，但是它价格昂贵、配置难度高。另一些信息系统，则转向了<a href="http://www.itisedu.com/phrase/200604091924455.html">三层企业应用架构</a>——在客户机与数据库服务器间增设一层应用服务器负责事务逻辑，所有请求需经应用服务器处理和过滤后，才能进入数据库。从客户机看来，使用三层架构后，客户机上仍然需要安装软件，因此这还是C/S计算模式。</p>
+<p class="indent">C/S计算模式，不论是基本形式还是三层架构，在功能强大的另一面，有几个显著的缺点：</p>
+<ol>
+<li>客户机成本高。客户机上需要安装软件并执行大量计算任务，这对客户机的硬件配置提出了较高的要求；随着硬件价格的下降，这个问题变得不再突出。软件往往依赖于客户机的操作系统，Windows和Mac OS X操作系统上软件开发较为方便、但是操作系统本身价格高，Linux免费、但是软件开发成本高。客户机部署难，这是最严重的问题；客服人员往往需要为每一台客户机安装、升级、修复软件，在客户机数量增加时工作量显著上升。</li>
+<li>不适合远程访问。C/S开发者可能很习惯SELECT * FROM employee这样的语句，而这样的语句会使数据库返回大量结果；在远程访问的情况下，低速的网络连接将导致客户机响应缓慢，用户体验大打折扣。远程访问的安全性问题也值得关注，任何人都可以在网络上进行窃听；窃听问题可以通过VPN解决，但是VPN配置的难度也是不小的。</li>
+</ol>
+<p class="indent">C/S计算模式在当今的适用场合：企业局域网应用、客户机数量不多、对安全性要求很高。</p>
+
+<h2>浏览器与B/S</h2>
+<p class="indent">从Windows 95 OSR2开始，Windows操作系统开始捆绑IE浏览器。虽然这种捆绑销售行为<a href="http://www.bbwdm.cn/show_info.asp?id=10250">使微软公司遭到起诉</a>、并<a href="http://blog.sina.com.cn/s/blog_3ee6b10601007x79.html">阻碍了IE新版本的推广</a>，但是Windows中集成的IE使得用户通过浏览器访问Internet变得更加方便。买来的计算机已经预装了操作系统，而操作系统中已经捆绑了网络浏览器！</p>
+<p class="indent">信息系统的开发者看到了解决C/S客户机部署难问题的一个出路——将C/S中的C（客户机软件）用操作系统中已经捆绑的、人人会用的网络浏览器代替。这样，开发者和客服人员只需要安装、升级、维护网络服务器，而客户机不再需要专门的维护和技术支持。当网络浏览器（Browser）替代了C，B/S计算模式就出现了。</p>
+<p class="indent">虽然B/S解决了客户端部署难的问题，但是早期的B/S系统开发成本是高于C/S的。当时的浏览器技术并不成熟，浏览器的功能只有发出简单的HTTP请求、呈现HTML网页、填写表单并通过HTTP请求提交到服务器，在客户端无法对数据作任何处理。早期的服务端技术也相当高深，主要是使用C语言或Perl语言通过CGI接口进行开发，信息系统一切功能都需要用CGI对stdin、stdout的数据流读写操作实现，而不是Windows开发中的“鼠标点击”、“键盘按键”等直观的事件。因为成本的原因，早期的B/S信息系统只用于用户众多且非常分散的场合，例如图书检索、网页搜索等。</p>
+
+<h2>Web标准推动B/S</h2>
+<p class="indent">B/S的真正流行，是在现代浏览器对Web标准支持较为完善的时候。从IE 6.0、Firefox 1.5等开始，现代浏览器都可以比较好的支持HTML 4.0、CSS 2.0、JavaScript等Web标准，在客户端可以呈现图片、漂亮而结构清晰的网页界面，还可以在客户端进行简单的数据验证、初步的数据处理。同时，PHP和ASP出现后，服务端开发较C或Perl的CGI方便得多，使B/S信息系统的成本大大降低；如果使用ASP.NET和Visual Web Developer，甚至可以用与C/S类似的方法进行B/S开发。</p>
+<p class="indent">但是，B/S与C/S毕竟是不同的！</p>
+<table border="1">
+<tr><th>类别</th><th>项目</th><th>C/S</th><th>B/S</th></tr>
+<tr><td rowspan="6">用户体验</td><td>系统的进入</td><td>启动应用程序</td><td>打开网址</td></tr>
+<tr><td>登录认证</td><td>无认证 或 用户名密码 或 域控制器验证</td><td>用户名密码 或 数字证书 或 CardSpace 或 第三方认证服务</td></tr>
+<tr><td>退出时机</td><td>点击退出按钮</td><td>随时关闭网页退出</td></tr>
+<tr><td>期待的响应速度</td><td>0.5秒</td><td>6秒</td></tr>
+<tr><td>界面风格</td><td>各种软件有较大差异</td><td>各种软件基本一致</td></tr>
+<tr><td>界面自定义</td><td>通常不支持</td><td>通常可支持，CSS实现较方便</td></tr>
+<tr><td rowspan="9">运行环境</td><td>服务器操作系统</td><td>固定</td><td>通常固定</td></tr>
+<tr><td>服务器安全级别</td><td colspan="2">至少 自主访问控制</td></tr>
+<tr><td>数据库服务软件</td><td colspan="2">固定</td></tr>
+<tr><td>网络服务软件</td><td>不需要</td><td>Web服务，所用软件通常固定</td></tr>
+<tr><td>应用服务软件</td><td>信息系统应用服务端，直接连接网络</td><td>信息系统Web服务端脚本</td></tr>
+<tr><td>租用服务器</td><td>必须是独立服务器或VPS</td><td>可以使用虚拟主机</td></tr>
+<tr><td>客户机操作系统</td><td>固定</td><td>任意</td></tr>
+<tr><td>客户机软件</td><td>需要安装专用软件</td><td>通常只需Web浏览器</td></tr>
+<tr><td>客户机升级</td><td>手工 或 通过自动更新系统</td><td>进入系统时总是最新版本</td></tr>
+<tr><td rowspan="5">功能、性能</td><td>功能实现位置</td><td>主要在客户机</td><td>主要在服务器</td></tr>
+<tr><td>可实现的功能</td><td>限制较少</td><td>受浏览器能力限制较大</td></tr>
+<tr><td>安全性</td><td>可做到较高</td><td>受浏览器漏洞影响</td></tr>
+<tr><td>移动/远程访问</td><td>困难</td><td>较容易</td></tr>
+<tr><td>数据存储</td><td>服务器 和 客户机</td><td>服务器</td></tr>
+</table>
+
+<h2>新技术点亮B/S</h2>
+<p class="indent">B/S的发展很大程度上取决于浏览器技术的发展。虽然B/S的程序都运行于服务器，但是服务器技术再繁杂、开发者也有办法解决，而客户机上的浏览器是开发者无法控制的。</p>
+<p class="indent"><a href="http://baike.baidu.com/view/28141.htm">ActiveX控件</a>是最早的浏览器增强技术。ActiveX控件由B/S应用的开发者编写，当用户使用IE浏览器访问时会自动提示下载，用户只需确认即可安装。在ActiveX控件中，可以做Windows应用能做的任何事情，这使得B/S应用获得了与C/S等同的处理能力（和效率）。例如，<a href="https://www.alipay.com">支付宝</a>通过ActiveX技术，创建了一个安全而便捷的在线支付平台。但是，近年来ActiveX控件也出现了“部署难”的问题，因为网上存在大量不安全的ActiveX控件，使得现在的用户不再确认安装ActiveX控件；这样，ActiveX就只能在企业内部应用中使用，而很难在广域网上推广。</p>
+<p class="indent"><a href="http://zh.wikipedia.org/wiki/AJAX">AJAX</a>是一种客户端交互技术。IE 5引入了XmlHttpRequest，在原有的表单提交以外增加了一种向服务器发送数据的方法。使用AJAX，可以使B/S应用获得与C/S应用相似的响应速度，而并不需要在客户机上安装任何额外的软件。但是，AJAX开发者往往需要花费大量时间解决不同浏览器的兼容性问题，增加了开发成本；好在<a href="http://prototypejs.org">Prototype.js</a>、<a href="http://jquery.com">jQuery</a>等开发库已经封装了浏览器差异部分，大大方便了AJAX开发。</p>
+<p class="indent"><a href="http://www.adobe.com/products/flash/">Flash</a>和<a href="http://silverlight.net/">Silverlight</a>则扩充了B/S应用在图形、动画、流媒体方面的能力。虽然它们都是ActiveX控件，但是大部分用户已经接受了它们。而使用Flash和Silverlight开发的应用，并不需要再次让用户确认安装；安全性由“沙箱”技术确保，遗憾的是Flash 9.0.115曾出现<a href="http://www.adobe.com/support/security/bulletins/apsb08-11.html">严重漏洞</a>。Flash和Silverlight是跨浏览器的，在非IE的浏览器中同样可以运行。</p>
+<p class="indent"><a href="http://java.sun.com/applets/">Java Applet</a>提高了B/S应用的执行效率。用AJAX构建的B/S应用，客户端的JavaScript是解释执行的，效率较低、处理大量数据或复杂运算力不从心；并且，客户端代码无法有效加密，难以保护软件著作权。Java Applet由开发者事先编译好，然后下载到客户机运行已编译的字节码；其缺点是下载Applet文件需要一定时间，且部分浏览器并未安装Java运行环境。</p>
+<p class="indent"><a href="http://code.google.com/apis/gears/">Google Gears</a>使B/S应用可以离线存储数据，在网络连接中断的情况下仍然可以继续工作。但是Gears应用开发较为困难，尤其是企业应用中的数据同步问题很难解决，因此没有得到广泛的应用。</p>
+<p class="indent">运用了这些新技术，B/S与C/S的差异渐渐缩小。</p>
+
+<h2>走上云端</h2>
+<p class="indent">今年热门话题之一可能就是<a href="http://zh.wikipedia.org/wiki/%E4%BA%91%E8%AE%A1%E7%AE%97">云计算</a>了。云计算是分布式计算的一种，将程序分拆为许多部分交由不同的服务器进行处理，然后组合处理结果传回用户。</p>
+<p class="indent">云计算至今仍然是比较<b>神秘</b>的东西。普通开发者最容易接触到的，也只有<a href="http://code.google.com/appengine/">App Engine</a>这个平台——在Google数据中心托管你用Python编写的程序。</p>
+<p class="indent">云计算对于信息系统，只是一种与大型中央服务器不同的服务端结构，同C/S或B/S没有必然联系。App Engine提供的是HTTP访问，看起来只能运行B/S程序，但是在<i>云计算</i>这种架构上运行C/S程序同样是可行的。云计算对信息系统的最大意义，是省去服务器的初步投资、免除服务器管理任务，只需租用足够的计算资源满足需要，计算资源非常稳定也不会浪费。</p>
+
+<h2>展望</h2>
+<p class="indent">从C/S，到B/S，再到云计算，信息系统逐步发展、走向现代化。</p>
+<p class="indent">我认为，未来的信息系统，将是B/S与云计算结合的模式：</p>
+<ol>
+<li>客户端平台基础设施：拥有浏览器、类似Java的中间件环境、类似Gears的离线存储功能，只需要1GHz数量级的运算速度和128MB数量级的存储容量。客户端可以表现为PC、手机、<a href="http://www.microsoft.com/surface/">Surface</a>等任何类型的终端。不严格区分硬件和软件，根据“台”收费。</li>
+<li>计算资源基础设施：支持通用编程语言的云计算平台，任何人可以租用。不同租用者的应用不会相互干扰。根据CPU运算、数据存储等多项标准计费。</li>
+<li>通信基础设施：高速、高速、再高速的网络连接（云计算和B/S太依赖网络连接了）。以及域名相关服务，通过一个域名可以寻址到某项应用最接近使用者的云计算入口。根据网络流量计费。</li>
+<li>应用程序开发者：向企业及其用户提供信息系统的开发和定制服务。</li>
+</ol>
+
+</div></div></div>
+
+</div>
+
+<div class="footer">
+<p class="copyright">&copy;2006-2009 yoursunny.com, CreativeCommons BY-NC 3.0</p>
+<ul class="links">
+<li><a href="http://yoursunny.com/m/about.htm">关于本站</a></li>
+<li><a href="http://yoursunny.com/m/contact.htm">联系方式</a></li>
+<li><a href="http://yoursunny.com/m/sitemap.htm">网站地图</a></li>
+</ul>
+</div>
+
+</body></html>

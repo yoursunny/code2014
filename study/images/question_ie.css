@@ -1,0 +1,12 @@
+.q { border:solid 1px #999; margin-top:15px; padding:20px; }
+.q.correct { border:solid 1px #090; }
+.q.wrong { border:solid 1px #f00; }
+.q li span { cursor:hand; }
+.q .a li { cursor:auto; }
+.q.yesno.m p { background-repeat:no-repeat; background-position:left; padding-left:20px; }
+.q .a-ud { border-bottom:solid 1px #c60; }
+.q .a { visibility:hidden; }
+.q.m .a { visibility:inherit; }
+.q li.s { background-image:url(question_s.png); }
+.q.m li.y,.q.yesno.m p.y,.q.choice.m li.y.s { background-image:url(question_y.png); }
+.q.yesno.m p.n,.q.choice.m li.s,.q.multi.m li.n.s { background-image:url(question_n.png); }

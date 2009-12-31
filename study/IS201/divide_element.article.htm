@@ -1,0 +1,33 @@
+信息安全的数学基础
+分解质因数工具
+
+
+<script type="text/javascript">//<![CDATA[
+//分解质因数工具 2007-12-09
+function d()
+{
+	var n=parseInt(document.getElementById('n').value,10);
+	if (n<2) return alert('请输入大于1的正整数');
+	var b='<br/>'+n+'=';
+	var m=n;
+	for (var k=2;k<=Math.floor(Math.sqrt(n));++k)
+	{
+		var j=0;
+		while (m%k==0)
+		{
+			m/=k;
+			++j;
+		}
+		if (j>0) b+=''+k+(j>1?'<sup>'+j+'</sup>':'')+'×';
+	}
+	if (m>1) b+=m; else b=b.substr(0,b.length-1);
+	document.getElementById('o').innerHTML+=b;
+}
+//]]></script>
+<div id="app">
+要分解的数
+<input type="text" id="n" value="2" onfocus="this.select()" onkeydown="if (event.which==13) d();" />
+<input type="button" value="分解" onclick="d()" />
+<br />
+<div id="o"></div>
+</div>

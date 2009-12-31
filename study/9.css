@@ -1,0 +1,4 @@
+@charset "utf-8";
+
+.course-down h3 { font-size:120%; margin-top:15px; }
+.course-down .entry-title,.course-down .feedurl { display:none; }

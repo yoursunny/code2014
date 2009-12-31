@@ -1,0 +1,10 @@
+[index]
+index.htm
+index.php
+index.asp
+
+[mime-type]
+.svg	image/svg+xml	image/svg%2Bxml
+.dia	application/x-dia-diagram
+.7z 	application/x-7z-compressed
+.ps1	text/plain

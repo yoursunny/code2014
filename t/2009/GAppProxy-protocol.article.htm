@@ -1,0 +1,60 @@
+GAppProxy架构及协议分析
+GAppProxy,App Engine,协议分析,代理协议,代理服务器,HTTP代理,fetchServer,fetch.py,负载平衡,available_fetchserver.py
+no-sidebar
+阳光男孩 发表于 2009-02-23
+<p><a href="http://code.google.com/p/gappproxy/" rel="external" onclick="c('GAppProxy-protocol.googlecode')">GAppProxy</a>是一款基于Google App Engine的HTTP代理服务器，GAppProxy的作者是dugang。</p>
+<p>GAppProxy是用Python语言编写的，包含客户端、fetch服务器、负载平衡器三个模块。</p>
+<p>精巧型代理服务器<a href="http://www.65536.cn/work/2008/hProxyN/">hProxyN</a>的20090223版本加入了GAppProxy插件。GAppProxy插件使hProxyN可以通过GAppProxy协议转发请求。</p>
+<h2>GAppProxy模块组成</h2>
+<h3>客户端</h3>
+<p>客户端运行于每位用户自己的机器上。支持的操作系统很多，只要有Python解释程序就行。</p>
+<p>客户端监听本机的8000端口。接收到来自浏览器的HTTP请求后，将符合要求的请求编码后发送给fetchServer，然后读取服务器响应，向浏览器返回HTTP头和数据。对于HTTPS请求，则解密成HTTP请求，然后在明文状态下处理。</p>
+<h3>fetch服务器 fetchServer</h3>
+<p>fetchServer运行于Google App Engine上。</p>
+<p>fetchServer接收对/fetch.py的POST请求，对符合要求的请求调用urlfetch API，然后与HTTP头一起编码后发回客户端。</p>
+<h3>负载平衡器</h3>
+<p>负载平衡器运行于Google App Engine上。目前这个模块没有开源。</p>
+<p>负载平衡器接收对/available_fetchserver.py的GET请求，并返回一个fetchServer地址。</p>
+<h2>GAppProxy协议</h2>
+<p>以下协议内容是根据GAppProxy svn r68版本源码分析而得。</p>
+<h3>GAppProxy负载平衡协议</h3>
+<ul>
+<li>请求：GET /available_fetchserver.py HTTP/1.1</li>
+<li>响应：text/plain，包含一个fetchServer地址</li>
+</ul>
+<h3>GAppProxy fetchServer协议</h3>
+<ul>
+<li>请求：POST /fetch.py HTTP/1.1<br/>
+包含这些POST字段（每个字段值都经过UrlEncode编码）：<ul>
+<li>method=请求方法名；可以是GET、HEAD、POST</li>
+<li>path=完整的URL</li>
+<li>headers=请求头部；每行一个，用:分隔名称和值</li>
+<li>encodeResponse=响应体编码方式；base64=base64编码，compress=当Content-Type包含"text"时gzip编码、否则不编码，其他值=不编码</li>
+<li>postData=请求体</li>
+<li>version=客户端版本；例如r68</li>
+</ul></li>
+<li>响应：HTTP/1.1 200 OK<br/>
+响应主体包含来自远程网站的状态行、HTTP头、响应体（以请求中指定的编码方式编码），与HTTP响应格式一致<br/>
+当遇到错误时，响应主体内的状态行会包含以下错误代码：<ul>
+<li>请求方法不受支持——403</li>
+<li>URL不完整——403</li>
+<li>POST请求体长度与headers参数内Content-Length值不一致——403</li>
+<li>网站响应太长——413</li>
+<li>三次请求失败——504</li>
+</ul></li>
+</ul>
+<h2>GAppProxyN的局限性</h2>
+<h3>GAppProxy对请求的检查要求</h3>
+<ol>
+<li>请求方法是GET、HEAD、POST</li>
+<li>POST请求体不超过2MB</li>
+<li>只支持80端口的HTTP请求、和443端口的HTTPS请求</li>
+</ol>
+<h3>GAppProxy的其他限制</h3>
+<ol>
+<li>请求Referer会被指定为fetchServer的地址。如果网站需要检查Referer（例如论坛后台的防XSS、图片防盗链），则不能正常工作。</li>
+<li>请求User-Agent会被指定为AppEngine-Google。网站上判断浏览器类型并发送个性化内容的脚本不能准确判断。</li>
+<li>来自网站的响应体不能超过10MB</li>
+</ol>
+
+

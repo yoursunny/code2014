@@ -1,0 +1,98 @@
+手机号码IP地址归属地查询
+PHP
+
+
+
+<style type="text/css">
+#l_demos li { text-decoration:underline; color:#0000CC; cursor:pointer; }
+</style>
+<p>一个PHP脚本，用于查询手机号码、IPv4地址的归属地。<br />
+只依赖fsockopen函数（要求allow_url_fopen），不需要任何PHP扩展。<br />
+数据来源：移动、联通、电信、IP.CN，均为直接在线查询，不使用数据库。<br />
+<a href="query.zip" onclick="c('query.zip')">下载手机号码IP地址归属地查询PHP脚本</a></p>
+<h3>手机号码IP地址归属地查询演示</h3>
+<div>
+手机号码/IP地址/域名：<input id="demo_input" type="text" value="www.65536.cn" /><input type="button" value="查询" onclick="c('demo-type');run_demo($F('demo_input'))" />
+<div id="demo_output"></div>
+</div>
+<h3>调用方法</h3>
+<p>通常使用AJAX调用<br />
+输入：query.php?q=要查询的11位手机号码或IP地址或域名<br />
+输出：JSON格式，<br />
+{<br />
+&nbsp;&nbsp;type:查询类型，mobile或ip<br />
+&nbsp;&nbsp;(手机号码)company:通讯公司，支持cmcc、unicom、telecom三家公司<br />
+&nbsp;&nbsp;(移动手机)province:省份<br />
+&nbsp;&nbsp;(移动手机)city:城市<br />
+&nbsp;&nbsp;(IP/域名)ip:IP地址<br />
+&nbsp;&nbsp;result:查询结果<br />
+}</p>
+<h3>更新记录</h3>
+<ul>
+<li>2008-12-12 增加电信189号段。联通网站对HTTP/1.1增加了chunk编码，改用HTTP/1.0请求。</li>
+<li>2008-10-09 因为cz88.net无法访问，IP归属地从IP.CN提取。CDMA手机数据从电信网站提取。</li>
+</ul>
+<h3>局限性提示</h3>
+<p>本程序的查询功能是通过分析HTML流实现的，所以当移动、联通、电信、IP.CN网站改版时，就无法继续使用。我只能说，在本程序发布之时，查询功能是可以正常使用的。</p>
+<script type="text/javascript">//<![CDATA[
+function click_demo(q)
+{
+	c('demo-click');
+	run_demo(q);
+}
+function run_demo(q)
+{
+	new Ajax.Request('query.php',{method:'get',parameters:{q:q},onComplete:show_demo});
+	$('demo_input').value=q;
+	$('demo_output').update('正在查询，请稍候；查询耗时较长，约需15秒');
+}
+function show_demo(resp)
+{
+	var d=resp.responseJSON;
+	var b=''
+	switch (d.type)
+	{
+		case 'mobile':
+			b+='查询类型type：手机归属地mobile<br/>';
+			switch (d.company)
+			{
+				case 'cmcc':
+					b+='通讯公司company：中国移动cmcc<br/>省份province：'+d.province+'<br/>城市city：'+d.city+'<br/>';
+					break;
+				case 'unicom':
+					b+='通讯公司company：中国联通unicom<br/>';
+					break;
+				case 'telecom':
+					b+='通讯公司company：中国电信telecom<br/>';
+					break;
+			}
+			break;
+		case 'ip':
+			b+='查询类型type：IP地址ip<br/>IP地址ip：'+d.ip+'<br/>';
+			break;
+	}
+	b+='查询结果result：'+d.result;
+	$('demo_output').update(b);
+}
+//]]></script>
+<!-- sidebar -->
+<p>当前版本号：<br />
+2008-10-09</p>
+<h3>查询举例</h3>
+<ul id="l_demos">
+<li onclick="click_demo('15900941215')">15900941215</li>
+<li onclick="click_demo('13156980000')">13156980000</li>
+<li onclick="click_demo('13564450000')">13564450000</li>
+<li onclick="click_demo('13318610000')">13318610000</li>
+<li onclick="click_demo('18912345678')">18912345678</li>
+<li onclick="click_demo('202.120.54.34')">202.120.54.34</li>
+<li onclick="click_demo('59.78.20.24')">59.78.20.24</li>
+<li onclick="click_demo('yoursunny.com')">yoursunny.com</li>
+<li onclick="click_demo('im.live.cn')">im.live.cn</li>
+</ul>
+<h3>相关技巧</h3>
+<ul>
+<li><a href="qqwry.htm">纯真IP数据库</a></li>
+<li><a href="sms.htm">短信查询手机归属地</a></li>
+<li><a href="geoip.htm">从IP判断地理位置</a></li>
+</ul>

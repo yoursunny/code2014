@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GPA计算器 上海交通大学修业查询 输入</title>
+<meta name="robots" content="noindex"/>
+<script type="text/javascript">//<![CDATA[
+var GPA=parent.GPA;
+if (!GPA) location.replace('./');
+//]]></script>
+<script type="text/javascript" src="/lib/9.js?cdn,tinymce"></script>
+<script type="text/javascript">//<![CDATA[
+WebSite.cauto=false;
+WebSite.TinyMCE.init(
+	{
+		plugins:'',
+		theme_advanced_toolbar_location:'external',
+		theme_advanced_buttons1:'',
+		theme_advanced_buttons2:'',
+		theme_advanced_buttons3:''
+	},
+	{
+		plugins:''
+	}
+);
+//]]></script>
+<style type="text/css">/*<![CDATA[*/
+.mceExternalToolbar { display:none !important; }
+/*]]>*/</style>
+</head><body style="margin:10px 50px;padding:0;">
+<textarea id="editor"></textarea>
+<script type="text/javascript">//<![CDATA[
+WebSite.TinyMCE.create('editor',GPA.xiaonei_app?630:700,180);
+//]]></script>
+<script type="text/javascript">//<![CDATA[
+var ed=WebSite.TinyMCE.getEditor('editor');
+GPA.Input.SJTU.addMethods({
+	get:function() {
+		var L=new GPA.CourseCollection();
+		var dom=ed.dom;
+		var TABLEs=dom.select('table');
+		TABLEs.each(function(TABLE,i){
+			var TRs=dom.select('tr',TABLE);
+			TRs.each(function(TR){
+				var TDs=dom.select('td',TR);
+				if (TDs.length<8) return;
+				var c=new GPA.Course();
+				var v=function(i){return TDs[i].firstChild.nodeValue.strip();};
+				c.code=v(1);
+				if (c.code=='课程代码') return;
+				c.name=v(2);
+				c.credit=parseFloat(v(5),10);
+				c.grade=parseInt(v(6),10);
+				c.selected=[1,5].include(i);
+				L.Add(c);
+			});
+		});
+		return L;
+	},
+	alertInvalid:function() {
+		alert(ed_pasted?'没有找到课程信息，可能是粘贴的报表不正确。\n请全选网页后复制，粘贴后切勿修改。':'你尚未粘贴修业查询报表，请查询报表并粘贴。');
+	}
+});
+var ed_pasted=false;
+ed.onPaste.add(function(){ed_pasted=true;});
+GPA.hideLoading();
+//]]></script>
+</body></html>

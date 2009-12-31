@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>从IP判断地理位置 - 你的阳光技术频道 www.65536.cn</title>
+<link rel="stylesheet" type="text/css" href="/images/9/" />
+<script type="text/javascript" src="/lib/9.js?prettify"></script>
+</head><body>
+
+<div class="header">
+<h2><a href="http://yoursunny.com/">你的阳光</a></h2>
+<ul>
+<li><a href="http://m.yoursunny.com/"><span>个人</span></a></li>
+<li><a href="http://study.yoursunny.com/"><span>学习</span></a></li>
+<li><a href="http://www.65536.cn/"><span>技术</span></a></li>
+<li><a href="http://www.65536.cn/work/"><span>作品</span></a></li>
+</ul>
+<ol>
+<li><a href="http://yoursunny.com/">你的阳光</a></li>
+<li><a href="/">技术频道</a></li>
+<li><a href="../../">作品</a></li>
+<li><a href="./">手机号码IP地址归属地查询</a></li>
+<li><span>从IP判断地理位置</span></li>
+</ol>
+</div>
+
+<div class="content"><div class="main">
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">从IP判断地理位置</h1>
+<div class="p-body headers">
+
+<h3>GeoIP服务</h3>
+<p>通过Maxmind提供的GeoIP服务，可以通过网页嵌入代码免费获得当前访问者IP地址对应的国家、城市、经纬度。</p>
+<p><code class="prettyprint lang-html">&lt;script type="text/javascript" src="http://j.maxmind.com/app/geoip.js"&gt;&lt;/script&gt;</code><br />
+脚本中含有一系列函数调用，而没有write，需要自己处理<br />
+<script type="text/javascript" src="http://j.maxmind.com/app/geoip.js"></script>
+<script type="text/javascript">//<![CDATA[
+document.write('国家代码：'+geoip_country_code()+'<br/>国家名称：'+geoip_country_name()+'<br/>城市：'+geoip_city()+'<br/>经纬度：('+geoip_latitude()+','+geoip_longitude()+')');
+//]]></script></p>
+<p>全世界的数据都有。免费服务只能获得国家、城市、经纬度，而不能获得网络类型(电信/网通)等；而且只能获得当前访问者信息，而不能够查询任意IP地址。</p>
+
+</div></div></div>
+
+</div><div class="sidebar">
+
+<div class="p"><div class="p-wrap">
+<div class="p-body">
+
+<script type="text/javascript" src="http://dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2&amp;mkt=en-us"></script>
+由于GeoIP的服务包含了城市经纬度，你甚至可以用Virtual Earth显示当前城市地图：
+<div id="vemap_container" style="position:relative;width:250px;height:250px;"></div>
+看到你现在身处的位置了吗？
+<script type="text/javascript">//<![CDATA[
+var map = new VEMap('vemap_container');
+map.LoadMap();
+map.SetCenterAndZoom(new VELatLong(geoip_latitude(),geoip_longitude()),7);
+map.SetMapStyle(VEMapStyle.Aerial);
+map.HideDashboard();
+map.HideScalebar();
+//]]></script>
+</div></div></div>
+</div></div>
+
+<div class="footer">
+<p class="copyright">&copy;2006-2009 yoursunny.com, CreativeCommons BY-NC 3.0</p>
+<ul class="links">
+<li><a href="http://yoursunny.com/m/about.htm">关于本站</a></li>
+<li><a href="http://yoursunny.com/m/contact.htm">联系方式</a></li>
+<li><a href="http://yoursunny.com/m/sitemap.htm">网站地图</a></li>
+</ul>
+</div>
+
+</body></html>

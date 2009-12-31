@@ -1,0 +1,241 @@
+Windows安全原理与技术
+文件系统安全，网络传输安全，应用服务安全 习题
+
+no-ad
+<style type="text/css">
+#q_IPSec ol { margin-left:3ex; }
+</style>
+<script type="text/javascript" src="../question.js"></script>
+
+<div class="q choice">
+<p>将NTFS文件系统转换为FAT32文件系统的命令行是</p>
+<ul>
+<li>convert E: /FS:FAT32</li>
+<li>convert E: /FS:FAT</li>
+<li>mkfat32fs E:</li>
+<li class="y">以上都不对<span class="a">——NTFS不能无损转换FAT32的</a></li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>evol.rtf目前的权限情况是luth完全控制，执行下列哪条命令后，luth仍然能够读取hello.rtf？</p>
+<ul>
+<li>cacls evol.rtf /e /d luth</li>
+<li>cacls evol.rtf /g ellendy:C</li>
+<li class="y">cacls evol.rtf /e /g ellendy:C</li>
+<li>cacls evol.rtf /e /p luth:N</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>evol.rtf目前的权限情况是ellendy修改，执行下列哪条命令后，ellendy仍然能够修改hello.rtf？</p>
+<ul>
+<li>cacls evol.rtf /e /d ellendy</li>
+<li>cacls evol.rtf /g ellendy:R</li>
+<li class="y">cacls evol.rtf /e /g ellendy:R</li>
+<li>cacls evol.rtf /e /p ellendy:R</li>
+</ul>
+</div>
+
+<div class="q yesno">
+<p class="y">EFS使用对称密码算法加密文件。</p>
+</div>
+
+<div class="q choice">
+<p>EFS加密文件所用的密钥存储在</p>
+<ul>
+<li>活动目录</li>
+<li class="y">数据加密区域</li>
+<li>注册表</li>
+<li>文件头</li>
+</ul>
+</div>
+
+<div class="q yesno">
+<p class="n">C:\windows\ntoskrnl.exe可以被EFS加密。</p>
+</div>
+
+<div class="q choice">
+<p>将加密文件D:\0x35.txt移动到未加密目录E:\home，则E:\home\0x35.txt</p>
+<ul>
+<li class="y">加密</li>
+<li>未加密</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>将未加密文件D:\elppa.txt移动到加密目录D:\lrig，则D:\lrig\elppa.txt</p>
+<ul>
+<li class="y">加密<span class="a">——经实验验证</span></li>
+<li>未加密</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>将加密文件D:\zokihsih.txt移动到未加密目录D:\dneirf，则D:\dneirf\zokihsih.txt</p>
+<ul>
+<li class="y">加密</li>
+<li>未加密</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>将未加密文件D:\76.txt复制到加密目录E:\gnirad，则E:\gnirad\76.txt</p>
+<ul>
+<li class="y">加密</li>
+<li>未加密</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>为E:启用磁盘配额，设置每个用户的空间限制设置为100MB、警告级别设置为50MB。ellendy原来有40MB文件，现在试图将80MB文件存储在另一用户所有的E:\elppa目录内(假设有写入权限)，那么：</p>
+<ul>
+<li>操作成功，不产生配额警告事件</li>
+<li>操作成功，产生配额警告事件</li>
+<li class="y">操作失败</li>
+</ul>
+</div>
+
+<div class="q yesno">
+<p class="n">一台默认配置Windows 2000计算机，只开放TCP/135和TCP/80端口、且开放IPC$共享，则它可能存在空会话漏洞。</p>
+</div>
+
+<div class="q multi">
+<p>一台服务器，星期日、三进行完全备份，星期一、二、四、五、六进行增量备份。在星期五执行备份之后硬盘损坏需要恢复数据，此时至少需要哪些备份文件</p>
+<ul>
+<li class="n">星期二的增量备份卷</li>
+<li class="y">星期三的完全备份卷</li>
+<li class="y">星期四的增量备份卷</li>
+<li class="y">星期五的增量备份卷</li>
+</ul>
+</div>
+
+<div class="q multi">
+<p>一台服务器，星期日、三进行完全备份，星期一、二、四、五、六进行差异备份。在星期五执行备份之后硬盘损坏需要恢复数据，此时至少需要哪些备份文件</p>
+<ul>
+<li class="n">星期二的差异备份卷</li>
+<li class="y">星期三的完全备份卷</li>
+<li class="n">星期四的差异备份卷</li>
+<li class="y">星期五的差异备份卷</li>
+</ul>
+</div>
+
+<div class="q answer">
+<p>Windows Server 2003中文版。请用IPSec配置工具：禁止使用交大代理(202.120.2.30:80,8000)，禁止在本机开设<a href="http://yoursunny.com/study/IS409/ScoreBoard.htm">ScoreBoard</a>服务端(UDP/1127)，与192.168.2.0/24必须安全通讯(密钥yoursunny.com)。</p>
+<ol id="q_IPSec" class="a">
+<li>开始-管理工具-本地安全策略</li>
+<li>右击[IP安全策略在本地计算机]-管理IP筛选器表和筛选器操作<ol>
+<li>[管理IP筛选器列表]选项卡-添加<ol>
+<li>名称：inproxy</li>
+<li>添加<ol>
+<li>源地址：我的IP地址</li>
+<li>目标地址：一个特定的IP地址，202.120.2.30</li>
+<li>协议类型：TCP</li>
+<li>从任意端口，到80端口</li>
+</ol></li>
+<li>添加<ol>
+<li>源地址：我的IP地址</li>
+<li>目标地址：一个特定的IP地址，202.120.2.30</li>
+<li>协议类型：TCP</li>
+<li>从任意端口，到8000端口</li>
+</ol></li>
+</ol></li>
+<li>[管理IP筛选器列表]选项卡-添加<ol>
+<li>名称：ScoreBoard server</li>
+<li>添加<ol>
+<li>源地址：任何IP地址</li>
+<li>目标地址：我的IP地址</li>
+<li>协议类型：UDP</li>
+<li>从任意端口，到1127端口</li>
+</ol></li>
+</ol></li>
+<li>[管理IP筛选器列表]选项卡-添加<ol>
+<li>名称：subnet</li>
+<li>添加<ol>
+<li>源地址：我的IP地址</li>
+<li>目标地址：一个特定的IP子网，192.168.2.0，255.255.255.0</li>
+<li>协议类型：任意</li>
+<li>从任意端口，到1127端口</li>
+</ol></li>
+</ol></li>
+<li>[管理筛选器操作]选项卡-添加<ol>
+<li>名称：DROP</li>
+<li>行为：阻止</li>
+</ol></li>
+</ol></li>
+<li>右击[IP安全策略在本地计算机]-创建IP安全策略<ol>
+<li>名称：test01</li>
+<li>接受默认值，完成向导，进入[test01 属性]对话框</li>
+<li>[规则]选项卡-添加<ol>
+<li>IP筛选器列表：inproxy</li>
+<li>筛选器操作：DROP</li>
+</ol></li>
+<li>[规则]选项卡-添加<ol>
+<li>IP筛选器列表：ScoreBoard server</li>
+<li>筛选器操作：DROP</li>
+</ol></li>
+<li>[规则]选项卡-添加<ol>
+<li>IP筛选器列表：inproxy</li>
+<li>筛选器操作：需要安全</li>
+<li>使用此字符串保护密钥交换：yoursunny.com</li>
+</ol></li>
+</ol></li>
+<li>右击[test01]-指派</li>
+</ol>
+</div>
+
+<div class="q yesno">
+<p class="n">IPSec策略中，test02策略屏蔽了所有ICMP通讯，test03策略屏蔽了所有UDP通讯。现在想既屏蔽ICMP通讯又屏蔽UDP通讯，只要同时指派test02和test03两个策略就可以了。<span class="a">——同一时刻只能指派一个策略。正确方法是创建一个合并了那些规则的新策略，然后指派它。</span></p>
+</div>
+
+<div class="q choice">
+<p>SSL工作于</p>
+<ul>
+<li>应用层</li>
+<li class="y">传输层</li>
+<li>网络层</li>
+<li>物理层</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>https协议通常使用哪个端口</p>
+<ul>
+<li>UDP/443</li>
+<li class="y">TCP/443</li>
+<li>UDP/465</li>
+<li>TCP/465</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>IIS6已经配置了SSL，并能够通过 https://www.contoso.com 访问。现在想禁止通过 http://www.contoso.com 访问，最佳方法是：</p>
+<ul>
+<li>用IPSec或硬件防火墙屏蔽TCP/80端口</li>
+<li class="y">勾选“要求安全通道(SSL)”</li>
+<li>选择“要求客户端证书”</li>
+<li>设置“集成Windows身份验证”，且不勾选“启用匿名访问”</li>
+</ul>
+</div>
+
+<div class="q multi">
+<p>IIS5服务器中，对于一般应用而言，哪些应用程序映射可以删除？</p>
+<ul>
+<li class="y">htr</li>
+<li class="n">asp</li>
+<li class="y">idq</li>
+<li class="y">printer</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>刚刚安装好的正版Windows Server 2003，IIS6不能运行ASP(保证程序没问题)，但是HTML访问正常，应如何解决？</p>
+<ul>
+<li>应用程序映射中添加asp</li>
+<li class="y">Web服务扩展-Active Server Pages-允许</li>
+<li>拨打Microsoft客服热线</li>
+<li>bg阳光男孩，让他来解决<span class="a">——本人不接受私人bg</span></li>
+</ul>
+</div>
+
+<a href="javascript:;" onclick="q_reset()">清除所有答题记录</a>

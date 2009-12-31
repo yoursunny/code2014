@@ -1,0 +1,85 @@
+/* '9' means version 2009 */
+#conash3D0 { display:none; }
+
+/* Condensed Meyer Reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { padding:0; margin:0; }
+fieldset,img { border:0; }
+table { border-collapse: collapse; border-spacing: 0; }
+ol,ul { list-style: none; }
+address,caption,cite,code,dfn,em,strong,th,var { font-weight: normal; font-style: normal; }
+caption,th { text-align: left; }
+h1,h2,h3,h4,h5,h6 { font-weight: normal; font-size: 100%; }
+q:before,q:after { content: ''; }
+abbr,acronym { border: 0; }
+
+/* page style */
+html { font-size:medium; font-family:Verdana; color:#333; min-width:900px; }
+body { background:#f2f2e8; font-size:100%; }
+.header,.content,.footer { padding:0 35px; clear:both; }
+.header,.tit { font-family:Tohama; }
+.ad { text-align:center; }
+
+.header { height:175px; background:#f7f7ef repeat-x; line-height:45px; }
+.header.noBannerAd { height:85px; }
+.header a { text-decoration:none; color:#333; }
+.header h2 { float:left; margin:0 10px; font-size:130%; background:no-repeat 1ex 50%; }
+.header h2 a { display:block; width:8em; text-indent:5ex; }
+.header h2 a:hover { background:no-repeat 7em; }
+.header ul li { float:left; margin:0 10px; height:26px; margin-top:10px; }
+.header ul a { display:block; height:26px; background:#639a00 no-repeat left; padding-left:20px; line-height:26px; color:#fff; font-size:80%; }
+.header ul a span { display:block; height:26px; background:#639a00 no-repeat right; padding-right:20px; cursor:pointer; }
+.header ol { clear:both; }
+.header ol li { float:left; background:no-repeat left bottom; padding:3px 0 0 20px; font-size:90%; line-height:1em; }
+.header.noBannerAd ol li { padding-top:8px; }
+.header form { float:right; height:45px; }
+.search-box { width:15em; height:18px; line-height:18px; margin-top:10px; vertical-align:top; }
+.search-btn { height:24px; line-height:24px; margin-top:10px; vertical-align:top; width:5em; }
+.ad-banner { clear:both; }
+
+.main { float:left; width:67%; }
+.sidebar { float:right; width:32%; }
+
+.p { margin-bottom:16px; background:#f7f7ef repeat-x top; border:solid 1px #e7e3ce; }
+.p-wrap { background:repeat-x bottom; padding:16px 20px 25px 20px; }
+.tit { margin-bottom:20px; font-size:170%; }
+.sidebar .tit { font-size:140%; }
+.tit,.tit a { text-decoration:none; color:#369; }
+.p-body { }
+.sidebar .p-body { font-size:92%; }
+.p ol li { list-style:decimal inside; }
+.p ul li { background:no-repeat left top; padding-left:20px; }
+.p ul ul li { background-image:none; list-style:disc outside; padding-left:0; margin-left:15px; }
+.p ul ul ul li { list-style-type:circle; }
+.p ul ul ul ul li { list-style-type:square; }
+.p blockquote { background:no-repeat; margin:15px; padding-left:25px; }
+.p-body p { margin:1ex 0; }
+.p-body a { text-decoration:underline; }
+.p-body a:hover { text-decoration:none; }
+.ad-post { }
+.ad-sidebar .p-wrap { padding-left:0; padding-right:0; }
+
+.footer { background:#e7e7d6; border-top:solid 2px #dedfc6; padding-top:20px; padding-bottom:40px; font-size:85%; }
+.copyright { float:right; }
+.footer .links { float:left; }
+.footer .links li { float:left; padding:0 15px; border-left:solid 1px #333; }
+.footer .links li:first-child { border-left:none; }
+.footer a { text-decoration:none; color:#333; }
+.footer a:hover { text-decoration:underline; }
+
+/* handy classes */
+.indent { text-indent:2em; }
+.para { margin-bottom:1em; }
+.f-clear { clear:both; }
+.f-left { float:left; clear:left; }
+.f-right { float:right; clear:right; }
+img.border { border:solid 3px #cdcda9; margin:5px 10px; padding:1px; }
+.center { text-align:center; }
+.anu a { text-decoration:none; }/* anchor no underline */
+.anu a:hover { text-decoration:underline; }
+.headers h1 { font-size:130%; }/* headers=show headers with different size */
+.headers h2 { font-size:125%; }
+.headers h3 { font-size:120%; }
+.headers h4 { font-size:115%; }
+.headers h5 { font-size:110%; }
+.headers h1,.headers h2,.headers h3,.headers h4,.headers h5 { font-weight:bold; margin-top:10px; margin-bottom:5px; }
+

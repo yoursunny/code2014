@@ -1,0 +1,316 @@
+用yate2实现软VoIP语音通话(SIP协议)
+VoIP,SIP,yate,yate2,软交换,网络电话,免费网络电话,下一代网络,NGN
+no-sidebar
+阳光男孩 发表于 2009-01-08
+
+<p class="indent">2009年1月7日，工业与信息化部发放了三张3G牌照，标志着中国进入了通信技术的新时代。3G的重要特性之一是高速数据链路，移动上网速度大大提高。同时，中国移动也大幅下调了2G网络GPRS上网的资费。可是，语音通话费用仍然按兵不动。作为永远处于弱势的用户，我们却可以通过VoIP网络电话自己实现免费语音通话。</p>
+<p class="indent">网络电话是下一代网络(NGN)的重要应用之一。“下一代网络”是指10年以后的网络，全部基于软交换(Softswitch)技术。但是，拨打<b>VoIP</b>免费网络电话，并不需要在等待10年。基于现有的TCP/IP网络，我们已经可以使用开源的VoIP软件，实现PC-to-PC的免费语音通话。（注：这里的“免费”，是指不需要支付传统语音通话费用，ADSL/FTTB/3G等上网接入仍然是需要费用的）</p>
+<p class="indent">下面，我将介绍如何用<b>yate2</b>软件搭建VoIP服务器，并用SIP协议完成语音通话。在我的实例中，使用了局域网内的3台PC，Windows操作系统，接在同一个集线器上，并不是广域网或3G接入。</p>
+
+
+<h2>yate2建立VoIP服务器</h2>
+<p class="indent"><a href="http://yate.null.ro/pmwiki/" rel="external" onclick="c('VoIP-yate2-SIP.yate')">Yate = Yet Another Telephony Engine</a>，是一款开源的VoIP网络电话软件。它可以作为服务器、也可以作为客户端使用。yate2可以在Linux下运行、也可以在Windows下运行。<a href="http://yate.null.ro/pmwiki/index.php?n=Main.Download" rel="external" onclick="c('VoIP-yate2-SIP.yate-download')">yate2下载地址</a></p>
+
+<h3>VoIP服务器可以干什么？</h3>
+<ul>
+<li>客户端使用各自的用户名和密码登录到服务器上</li>
+<li>用户通过“电话号码”拨叫另一用户</li>
+<li>服务器负责转发拨叫请求及此后的其他控制信令</li>
+<li>服务器可以转发话音数据包</li>
+</ul>
+<p class="indent">建立服务器这一步不是必须的。yate2支持两个客户端通过IP地址直接连接，而不需要建立服务器。如果你需要支持较多的用户能够互相通话，通常要建立服务器；如果只有2个用户，则可以采用直连方式。</p>
+
+<h3>建立VoIP服务器的前提条件</h3>
+<ul>
+<li>一台计算机，作为服务器</li>
+<li>服务器通常需要拥有固定的公网IP地址</li>
+<li>服务器上不能再运行客户端（也就是说，客户端、服务器不能同时启动，否则会冲突）</li>
+</ul>
+
+<h3>用yate2搭建VoIP服务器的步骤</h3>
+<ol>
+<li>下载并安装yate2（最好完全安装所有组件，仅30MB）</li>
+<li>打开yate2安装目录的conf.d子目录</li>
+<li>将regfile.conf.sample复制一份，改名为regfile.conf，打开作下列修改：<ul>
+<li>找到<code>;auth=100</code>、<code>;register=100</code>、<code>;route=100</code>三行，分别去掉前面的分号</li>
+<li>对需要建立的每一个用户，在文件末尾增加两行：<br/>
+<code>
+[<var>用户名</var>]<br/>
+password=<var>密码</var>
+</code><br/>
+例如建立用户sunny，密码为870212，则写成：<br/>
+<code>
+[sunny]<br/>
+password=870212
+</code>
+</li>
+</ul>这样，yate2服务器就有了身份认证功能</li>
+<li>将regexroute.conf.sample复制一份，改名为regexroute.conf，打开作下列修改：<ul>
+<li>找到<code>[default]</code>，在后面增加一行<br/>
+<code>${username}^$=-;error=noauth</code><br/>
+这样未登录的用户就不能拨打电话</li>
+<li>对需要建立的每一个电话号码，在刚才插入处之后增加一行<br/>
+<code>^<var>电话号码</var>$=return;called=<var>用户名</var></code><br/>
+例如当有人拨打号码15900941215，就呼叫用户sunny，则写成：<br/>
+<code>^15900941215$=return;called=sunny</code>
+</li>
+</ul>这样，yate2服务器就有了电话路由功能</li>
+<li>开始-管理工具-服务，重新启动<i>Yet Another Telephony Engine</i>服务</li>
+</ol>
+<p class="indent">如果服务成功启动、没有错误提示，你已经正确建立了最简单的yate2网络电话服务器。</p>
+
+
+<h2>通过yate2服务器打电话</h2>
+<p class="indent">再次提醒，不能在运行yate2服务器的计算机上打开yate2客户端软件，否则是无法正常运行的。</p>
+<ol>
+<li>开始-Yate-Yate Client，启动yate2客户端</li>
+<li>Accounts页-New，打开新建帐户对话框，填写各项目：<ul>
+<li>Protocol=sip</li>
+<li>Use provider，不要选择</li>
+<li>Account，可以随意输入</li>
+<li>Username=用户名，@后面留空</li>
+<li>Password=密码</li>
+<li>Server=服务器的IP地址</li>
+</ul>点击OK后，Status应该会显示“Registered”</li>
+<li>Calls页，Account=前面填写的account名称，然后输入另一个用户的电话号码，点击Call就可以打电话了</li>
+<li>如果有电话打进来，选中它并点击Take the call就可以接听</li>
+<li>点击Hangup挂断</li>
+</ol>
+
+
+<h2>yate2直连打电话</h2>
+<p class="indent">如果只有2个用户需要相互通话，就不必劳神建立VoIP服务器了(何况服务器还要占据一台计算机)。yate2支持直连通话，配置方法如下：</p>
+<ol>
+<li>被叫用户只需开启Yate Client（当然要在防火墙中允许它），不需要配置</li>
+<li>主叫用户，Accounts页-New，打开新建帐户对话框，填写各项目：<ul>
+<li>Protocol=sip</li>
+<li>Use provider，不要选择</li>
+<li>Account，可以随意输入</li>
+<li>Username，留空</li>
+<li>Password，留空</li>
+<li>Server=被叫用户的IP地址</li>
+</ul>点击OK后，Status并不会显示“Registered”，但是这没有关系</li>
+<li>主叫用户，Calls页，Account=前面填写的account名称，然后随便输入一个号码，点击Call就可以打电话了</li>
+<li>被叫用户，选中打进来的电话并点击Take the call就可以接听</li>
+<li>点击Hangup挂断</li>
+</ol>
+
+
+<h2>SIP协议</h2>
+<p class="indent">yate2支持SIP、H.323、jabber、iax等多种VoIP协议，而先前我选择的是SIP协议。SIP协议定义了一组VoIP网络电话信令，传输层基于UDP协议、端口号为5060；SIP只提供控制信令，并不负责语音数据的编码和传输。</p>
+
+<h3>通过yate2服务器通话，SIP协议分析</h3>
+<p class="indent">我用Wireshark抓包分析了一次通话过程。这次通话的情况如下：</p>
+<ul>
+<li>服务器：192.168.1.50</li>
+<li>主叫方：192.168.1.183，用户名u1，电话号码1</li>
+<li>被叫方：192.168.1.101，用户名u2，电话号码2</li>
+<li>通话过程：主叫方拨打号码2，被叫接听，稍后由主叫挂断</li>
+</ul>
+<table border="1">
+<tr><th>说明</th><th>主叫方192.168.1.183 &lt;=&gt; 服务器192.168.1.50</th><th>服务器192.168.1.50 &lt;=&gt; 被叫方192.168.1.101</th><th>其他头部信息</th></tr>
+<tr>
+<td>发起呼叫</td>
+<td><abbr title="从主叫方，到服务器">=&gt;</abbr> INVITE sip:2@192.168.1.50</td>
+<td></td>
+<td>没有Authorization头，Call-ID:2126492930@192.168.1.50</td>
+</tr>
+<tr>
+<td></td>
+<td><abbr title="从服务器，到主叫方">&lt;=</abbr> 100 Trying</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>缺少认证</td>
+<td><abbr title="从服务器，到主叫方">&lt;=</abbr> 401 Unauthorized</td>
+<td></td>
+<td>包含WWW-Authenticate头</td>
+</tr>
+<tr>
+<td>放弃呼叫</td>
+<td><abbr title="从主叫方，到服务器">=&gt;</abbr> ACK sip:2@192.168.1.50</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>发起呼叫</td>
+<td><abbr title="从主叫方，到服务器">=&gt;</abbr> INVITE sip:2@192.168.1.50</td>
+<td></td>
+<td>From:&lt;sip:u1@192.168.1.50&gt;;tag=1542144666
+，包含Authorization头，Max-Forwards:20，Call-ID:2126492930@192.168.1.50</td>
+</tr>
+<tr>
+<td></td>
+<td><abbr title="从服务器，到主叫方">&lt;=</abbr> 100 Trying</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>转发呼叫</td>
+<td></td>
+<td><abbr title="从服务器，到被叫方">=&gt;</abbr> INVITE sip:u2@192.168.1.50</td>
+<td>From:&lt;sip:u1@192.168.1.50&gt;;tag=831312670
+，没有Authorization头，Max-Forwards:19，Call-ID:495687575@192.168.1.50</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><abbr title="从被叫方，到服务器">&lt;=</abbr> 100 Trying</td>
+<td></td>
+</tr>
+<tr>
+<td>振铃</td>
+<td></td>
+<td><abbr title="从被叫方，到服务器">&lt;=</abbr> 180 Ringing</td>
+<td></td>
+</tr>
+<tr>
+<td>转发振铃</td>
+<td><abbr title="从服务器，到主叫方">&lt;=</abbr> 180 Ringing</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>接听</td>
+<td></td>
+<td><abbr title="从被叫方，到服务器">&lt;=</abbr> 200 OK</td>
+<td></td>
+</tr>
+<tr>
+<td>确认</td>
+<td></td>
+<td><abbr title="从服务器，到被叫方">=&gt;</abbr> ACK sip:u2@192.168.1.50</td>
+<td>From:&lt;sip:u1@192.168.1.50&gt;;tag=831312670</td>
+</tr>
+<tr>
+<td>转发接听</td>
+<td><abbr title="从服务器，到主叫方">&lt;=</abbr> 200 OK</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>确认</td>
+<td><abbr title="从主叫方，到服务器">=&gt;</abbr> ACK sip:2@192.168.1.50</td>
+<td></td>
+<td>From:&lt;sip:u1@192.168.1.50&gt;;tag=1542144666</td>
+</tr>
+<tr>
+<td colspan="4">上面的过程，建立了主叫方-服务器、服务器-被叫方的两个VoIP电话连接；主叫方不知道被叫方的用户名和IP地址，被叫方知道主叫方的用户名、但不知道IP地址</td>
+</tr>
+<tr>
+<td colspan="4">现在出现大量的双向RTP数据包，封装了语音数据（甚至可以解码并窃听语音内容）；使用随机高端口（在SIP协议的INVITE、200两种报文中，用SDP协议声明了RTP使用的UDP端口、语音编码方式等），经过服务器转发</td>
+</tr>
+<tr>
+<td>挂断</td>
+<td><abbr title="从主叫方，到服务器">=&gt;</abbr> BYE sip:2@192.168.1.50:5060</td>
+<td></td>
+<td>Reason:SIP;text="User hangup"</td>
+</tr>
+<tr>
+<td colspan="4">主叫方已经停止发送和接收RTP数据包，而被叫方的RTP包仍然不断经服务器转发到达，主叫方回应ICMP Port unreachable消息。</td>
+</tr>
+<tr>
+<td></td>
+<td><abbr title="从服务器，到主叫方">&lt;=</abbr> 100 Trying</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><abbr title="从服务器，到主叫方">&lt;=</abbr> 401 Unauthorized</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>挂断</td>
+<td><abbr title="从主叫方，到服务器">=&gt;</abbr> BYE sip:2@192.168.1.50:5060</td>
+<td></td>
+<td>这次带上Authorization头</td>
+</tr>
+<tr>
+<td></td>
+<td><abbr title="从服务器，到主叫方">&lt;=</abbr> 100 Trying</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>同意挂断</td>
+<td><abbr title="从服务器，到主叫方">&lt;=</abbr> 200 OK</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>通知被叫挂断</td>
+<td></td>
+<td><abbr title="从服务器，到被叫方">=&gt;</abbr> BYE sip:u2@192.168.1.101:5060</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="4">服务器也停止接收RTP数据包，而被叫方的RTP包仍然不断到达，服务器回应ICMP Port unreachable消息。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><abbr title="从被叫方，到服务器">&lt;=</abbr> 100 Trying</td>
+<td></td>
+</tr>
+<tr>
+<td>同意挂断</td>
+<td></td>
+<td><abbr title="从被叫方，到服务器">&lt;=</abbr> 200 OK</td>
+<td></td>
+</tr>
+</table>
+
+<h3>登录(Register)与退出(Unregister)</h3>
+<p class="indent">假设有人拨打电话号码1。根据regexroute.conf，服务器知道号码1对应于用户u1。那么，服务器怎么知道u1的IP地址呢？这就需要通过接收登录与退出消息来记录用户状态。</p>
+<ul>
+<li>登录：<br/><code>
+REGISTER sip:192.168.1.50<br/>
+Contact:&lt;sip:u1@192.168.1.183:5060&gt;<br/>
+Expires:600<br/>
+To:&lt;sip:u1@192.168.1.50&gt;</code></li>
+<li>退出：<br/><code>
+REGISTER sip:192.168.1.50<br/>
+Contact:&lt;sip:u1@192.168.1.183:5060&gt;<br/>
+Expires:0<br/>
+To:&lt;sip:u1@192.168.1.50&gt;</code></li>
+<li>两者的区别就是Expires，0表示退出，非0表示登录</li>
+<li>如果缺少身份认证，服务器会返回401；通过身份认证后，服务器返回200</li>
+</ul>
+
+<h3>yate2直连通话，SIP协议分析</h3>
+<p class="indent">直接贴出Wireshark的自动分析结果吧～Statistics-VoIP Calls-Graph就可以看到</p>
+<pre>
+|Time     | 192.168.1.101     | 192.168.1.183     |
+|3.985    |         INVITE SDP                    |SIP From: sip:anonymous@192.168.1.183 To:sip:0@192.168.1.183
+|         |(5060)   ------------------&gt;  (5060)   |
+|4.004    |         100 Trying|                   |SIP Status
+|         |(5060)   &lt;------------------  (5060)   |
+|4.035    |         180 Ringing                   |SIP Status
+|         |(5060)   &lt;------------------  (5060)   |
+|11.818   |         200 OK SDP                    |SIP Status
+|         |(5060)   &lt;------------------  (5060)   |
+|11.826   |         ACK       |                   |SIP Request
+|         |(5060)   ------------------&gt;  (5060)   |
+|11.857   |         RTP (g711U)                   |RTP Num packets:281  Duration:5.597s SSRC:0x1726C94E
+|         |(27392)  &lt;------------------  (27824)  |
+|11.954   |         RTP (g711U)                   |RTP Num packets:280  Duration:5.550s SSRC:0x7805579C
+|         |(27392)  ------------------&gt;  (27824)  |
+|17.495   |         BYE       |                   |SIP Request
+|         |(5060)   &lt;------------------  (5060)   |
+|17.514   |         100 Trying|                   |SIP Status
+|         |(5060)   ------------------&gt;  (5060)   |
+|17.526   |         200 OK    |                   |SIP Status
+|         |(5060)   ------------------&gt;  (5060)   |
+</pre>
+<p class="indent">与经过服务器的通话相比，直连通话就显得非常简单了：没有身份认证过程，不需要转发信令与RTP数据。</p>
+
+
+
+
+
+
+
+

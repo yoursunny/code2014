@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>FtpFeed (PHP) - 你的阳光技术频道 www.65536.cn</title>
+<meta name="keywords" content="FTP,FTP列目录,FTP目录列表,RSS,Feed,聚合源"/>
+<link rel="stylesheet" type="text/css" href="/images/9/" />
+<script type="text/javascript" src="/lib/9.js?prettify"></script>
+</head><body>
+
+<div class="header">
+<h2><a href="http://yoursunny.com/">你的阳光</a></h2>
+<ul>
+<li><a href="http://m.yoursunny.com/"><span>个人</span></a></li>
+<li><a href="http://study.yoursunny.com/"><span>学习</span></a></li>
+<li><a href="http://www.65536.cn/"><span>技术</span></a></li>
+<li><a href="http://www.65536.cn/work/"><span>作品</span></a></li>
+</ul>
+<ol>
+<li><a href="http://yoursunny.com/">你的阳光</a></li>
+<li><a href="/">技术频道</a></li>
+<li><a href="../../">作品</a></li>
+<li><span>FtpFeed</span></li>
+</ol>
+</div>
+
+<div class="content"><div class="main">
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">FtpFeed</h1>
+<div class="p-body headers">
+
+<p>把FTP目录列表转换为RSS聚合源。一个PHP脚本，需使用ftp_*系列函数。<br/>
+<a href="FtpFeed.php">演示</a>
+<a href="FtpFeed.zip" onclick="c('FtpFeed.zip')">下载FtpFeed</a></p>
+<h3>配置代码</h3>
+<pre class="prettyprint lang-php">$server='202.120.2.2';
+$user='kchen';
+$pass='public';
+$path='upload/';
+$title='下一代网络与软交换';
+$description='陈凯FTP上传目录';
+$linkbase='ftp://kchen:public@202.120.2.2/upload/';</pre>
+<p>如果FTP路径包含中文，则$linkbase中的中文部分可能需要转换为gbk字符集然后进行urlencode。如果发现链接地址不对，请自行修改。</p>
+<p>警告：请不要轻易修改成允许转换任何FTP服务器，以免被攻击者利用作为FTP密码破解的跳板。</p>
+
+</div></div></div>
+
+</div><div class="sidebar">
+
+<div class="p"><div class="p-wrap">
+<div class="p-body">
+
+<p>当前版本号：<br />
+2008-06-12</p>
+
+</div></div></div>
+</div></div>
+
+<div class="footer">
+<p class="copyright">&copy;2006-2009 yoursunny.com, CreativeCommons BY-NC 3.0</p>
+<ul class="links">
+<li><a href="http://yoursunny.com/m/about.htm">关于本站</a></li>
+<li><a href="http://yoursunny.com/m/contact.htm">联系方式</a></li>
+<li><a href="http://yoursunny.com/m/sitemap.htm">网站地图</a></li>
+</ul>
+</div>
+
+</body></html>

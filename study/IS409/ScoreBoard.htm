@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ScoreBoard协议及其Wireshark插件</title>
+<script type="text/javascript" src="/lib/9.js"></script>
+</head><body>
+<h1>ScoreBoard协议及其Wireshark插件</h1>
+<p>下一代网络及软交换原理 作业2<br/>
+5050369043 石君霄<br/>
+2008-11-27 ~ 2008-11-28</p>
+<h2>ScoreBoard协议</h2>
+<p>ScoreBoard协议用于更新比分牌的数值的背景颜色</p>
+<p>服务端监听UDP1127端口，客户端端口任意 (为什么是1127端口？因为这个协议是11月27日设计的)</p>
+<h3>报文格式</h3>
+<p>每个报文的前16字节是固定的识别符identifier：<br/>
+<code>e2 cb b5 80 cb 09 4e ba a3 6b f6 07 ce 95 3f 2b</code>
+</p>
+<p>第17字节表示报文类型operator：</p>
+<ul>
+<li>00 get-value  获取比分数值</li>
+<li>01 set-value  设置比分数值</li>
+<li>80 resp-value 应答比分数值</li>
+<li>10 get-color  获取背景色</li>
+<li>11 set-color  设置背景色</li>
+<li>90 resp-color 应答背景色</li>
+</ul>
+<p>数据部分：</p>
+<ul>
+<li>00、80类型的报文<ul>
+<li>第18~21字节为左边的比分数值(32位无符号整数，big endian)</li>
+<li>第22~25字节为右边的比分数值(32位无符号整数，big endian)</li>
+</ul></li>
+<li>10、90类型的报文<ul>
+<li>第18字节为红色分量</li>
+<li>第19字节为绿色分量</li>
+<li>第20字节为蓝色分量</li>
+</ul></li>
+</ul>
+<h3>交互流程</h3>
+<ul>
+<li>客户端使用00、01类型的报文请求服务端，服务端应当回复80类型的报文</li>
+<li>客户端使用10、11类型的报文请求服务端，服务端应当回复90类型的报文</li>
+</ul>
+<h2>ScoreBoard程序实现</h2>
+<h3>服务端ScoreBoard.exe</h3>
+<p>使用Windows Presentation Foundation显示界面、C#编程；运行环境需要.Net Framework 3.5</p>
+<h3>客户端client.ps1</h3>
+<p>使用Windows PowerShell 1.0脚本语言编程</p>
+<ol>
+<li>先用记事本打开client.ps1，在$server后写上服务端的IP地址</li>
+<li>打开Windows PowerShell 1.0，转到client.ps1所在目录，输入命令 . .\client.ps1 (注意开头的点)</li>
+<li>然后可以通过以下命令控制服务端<dl>
+<dt>GetValue</dt>
+<dd>获取比分数值</dd>
+<dt>SetValue 1 2</dt>
+<dd>设置比分数值为1:2</dd>
+<dt>GetColor</dt>
+<dd>获取背景色</dd>
+<dt>SetColor 255 128 3</dt>
+<dd>设置背景色为 rgb(255,128,3)</dd>
+</dl></li>
+</ol>
+<div>
+<object type="application/x-shockwave-flash" data="ScoreBoard.swf" width="537" height="576">
+<param name="movie" value="ScoreBoard.swf" />
+<param name="quality" value="best" />
+</object>
+</div>
+<h2>ScoreBoard协议的Wireshark插件</h2>
+<p>Wireshark插件是使用Lua脚本语言编写的，<a href="http://www.65536.cn/t/2008/Wireshark-Lua-dissector.htm">插件编写方法及源码</a></p>
+<h3>安装方法</h3>
+<ol>
+<li>将ScoreBoard.lua复制到Wireshark安装目录</li>
+<li>用记事本打开Wireshark安装目录的init.lua文件<ul>
+<li>找到disable_lua = true;，在这一行前面添加<code>--</code></li>
+<li>在文件末尾另起一行，写入<code>dofile("ScoreBoard.lua")</code></li>
+</ul></li>
+</ol>
+<p>安装后，Wireshark就可以识别ScoreBoard协议<br/>
+你可以使用这个过滤器<code>udp.srcport==1127 or udp.dstport==1127</code></p>
+<h3>插件截图</h3>
+<p>
+<img src="http://img123.imageshack.us/img123/6185/getvaluekr1.gif" width="720" height="416" alt="get-value"/><br/>
+<img src="http://img392.imageshack.us/img392/1197/setvalueub7.gif" width="720" height="416" alt="set-value"/><br/>
+<img src="http://img116.imageshack.us/img116/1076/respvaluesn0.gif" width="720" height="416" alt="resp-value"/><br/>
+<img src="http://img75.imageshack.us/img75/5306/getcolorxh7.gif" width="720" height="416" alt="get-color"/><br/>
+<img src="http://img399.imageshack.us/img399/9830/setcolorws4.gif" width="720" height="416" alt="set-color"/><br/>
+<img src="http://img122.imageshack.us/img122/4228/respcolorpm5.gif" width="720" height="416" alt="resp-color"/><br/>
+</p>
+</body></html>

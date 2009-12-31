@@ -1,0 +1,51 @@
+<html><body>
+
+<!-- Include the Google Friend Connect javascript library. -->
+<script type="text/javascript" src="http://www.google.com/friendconnect/script/friendconnect.js"></script>
+
+<div id="div-1228444047928" style="width:250px;"></div>
+<div id="div-1228444317627" style="width:250px;"></div>
+<!-- Define the div tag where the gadget will be inserted. -->
+<div id="div-1228443768906" style="width:250px;"></div>
+<!-- Render the gadget into a div. -->
+<script type="text/javascript">
+var skin = {};
+skin['BORDER_COLOR'] = '#F7F7EF';
+skin['ENDCAP_BG_COLOR'] = '#F7F7EF';
+skin['ENDCAP_TEXT_COLOR'] = '#336699';
+skin['ENDCAP_LINK_COLOR'] = '#0000FF';
+skin['ALTERNATE_BG_COLOR'] = '#FFFFFF';
+skin['CONTENT_BG_COLOR'] = '#FFFFFF';
+skin['CONTENT_LINK_COLOR'] = '#0000FF';
+skin['CONTENT_TEXT_COLOR'] = '#333333';
+skin['CONTENT_SECONDARY_LINK_COLOR'] = '#7777CC';
+skin['CONTENT_SECONDARY_TEXT_COLOR'] = '#666666';
+skin['CONTENT_HEADLINE_COLOR'] = '#333333';
+skin['DEFAULT_COMMENT_TEXT'] = '\u5199\u4e0b\u4f60\u7684\u8bc4\u4ef7';
+skin['HEADER_TEXT'] = '\u5bf9\u6b64\u5185\u5bb9\u7684\u8bc4\u4ef7';
+skin['POSTS_PER_PAGE'] = '5';
+google.friendconnect.container.setParentUrl('/lib/google-friend-connect/' /* location of rpc_relay.html and canvas.html */);
+google.friendconnect.container.renderReviewGadget(
+ { id: 'div-1228443768906',
+   site: '02145106343004500556',
+   'view-params':{"disableMinMax":"false","scope":"ID",/*"allowAnonymousPost":"true",*/"docId":"5263","startMaximized":"true"}
+},
+  skin);
+
+
+skin['ALIGNMENT'] = 'right';
+google.friendconnect.container.renderSignInGadget(
+ { id: 'div-1228444047928',
+   site: '02145106343004500556'},
+  skin);
+
+skin['HEIGHT'] = '300';
+google.friendconnect.container.renderMembersGadget(
+ { id: 'div-1228444317627',
+   site: '02145106343004500556'},
+  skin);
+
+</script>
+
+
+</body></html>

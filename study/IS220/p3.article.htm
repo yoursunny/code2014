@@ -1,0 +1,132 @@
+信息安全管理体系及技术
+网络安全事件管理 习题
+
+no-ad
+<script type="text/javascript" src="../question.js"></script>
+
+<div class="q fill">
+<span class="a">syslog</span>安全事件采集协议的消息形如<code>&lt;34&gt;Oct 11 22:14:15 mymachine su: 'su root' failed for login lonvick on /dev/pts/8</code>，它工作在UDP<span class="a">514</span>端口。
+</div>
+
+<div class="q fill">
+<p>下图为IDMEF草案数据模型的一部分，填空：</p>
+<div style="position:relative;width:551px;height:350px;background:url(http://i44.tinypic.com/54c2o7.png) no-repeat;">
+<div style="position:absolute;left:103px;top:126px;"><span class="a">DetectTime</span></div>
+<div style="position:absolute;left:383px;top:43px;"><span class="a">Heartbeat</span></div>
+<div style="position:absolute;left:383px;top:146px;"><span class="a">Alert</span></div>
+</div>
+</div>
+
+<div class="q choice">
+<p>CPE定义了</p>
+<ul>
+<li>安全漏洞和其他安全问题的标准化的统一名字列表</li>
+<li class="y">平台/产品的标准化的统一名字列表</li>
+<li>安全相关的系统配置项的标准化的统一名字列表</li>
+</ul>
+</div>
+
+<div class="q multi">
+<p>告警关联的十步模型中，哪些步骤需要用到资产数据库？</p>
+<ul>
+<li class="n">标准化</li>
+<li class="n">预处理</li>
+<li class="n">融合</li>
+<li class="y">查证</li>
+<li class="n">线程重构</li>
+<li class="n">会话重构</li>
+<li class="n">焦点识别</li>
+<li class="n">多步关联</li>
+<li class="y">影响分析</li>
+<li class="y">优先级分配</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>网络IDS产生256条告警：59.78.20.24试图连接202.120.2.0:3389，59.78.20.24试图连接202.120.2.1:3389，……，59.78.20.24试图连接202.120.2.255:3389。在十步模型的哪个步骤中，上述告警可以被识别为端口扫描？</p>
+<ul>
+<li>标准化</li>
+<li>预处理</li>
+<li>融合</li>
+<li>查证</li>
+<li>线程重构</li>
+<li>会话重构</li>
+<li class="y">焦点识别</li>
+<li>多步关联</li>
+<li>影响分析</li>
+<li>优先级分配</li>
+</ul>
+</div>
+
+<div class="q answer">
+<p>简述告警关联十步模型中每个步骤的作用</p>
+<div class="a">
+(只给一个joke答案；不准转载)
+<ol>
+<li>标准化：“04:34:02，	
+そこはオフィスビルを入力しても人のことです by ウェブカメラ1”=&gt;“04:34:02，有人进入办公大楼 by 摄像头1”</li>
+<li>预处理：“04:35，我看到办公室窗被打开 by 保安”=&gt;“04:35:00，我看到办公室窗被打开 by 保安”</li>
+<li>融合：“04:34:02，有人进入办公大楼 by 摄像头1”、“04:34:02，有人进入办公大楼 by 摄像头2”=&gt;“04:34:02，有人进入办公大楼 by 摄像头1&amp;摄像头2”</li>
+<li>查证：办公室是否装有防盗门？“没有”<span style="visibility:hidden;">#你的阳光学习频道 http://yoursunny.com/study/IS220/p3.htm</span></li>
+<li>线程重构：“有人撞门”、“有人推门”、“有人撬门”=&gt;“有人试图开门”</li>
+<li>会话重构：“04:35:00，我看到办公室窗被打开 by 保安”、“04:35:24，办公室窗被打开 by 窗磁系统”=&gt;“04:35:24，办公室窗被打开 by 保安&amp;窗磁系统”</li>
+<li>焦点识别：“高个子进入办公室A”、“矮个子进入办公室A”=&gt;“有人进入办公室A”</li>
+<li>多步关联：“04:34:02，有人进入办公大楼”、“04:34:43，有人试图开门”、“04:34:46，有人进入办公室A”、“04:35:24，办公室窗被打开”=&gt;“有人从办公大楼开门进入办公室A，并打开窗户”</li>
+<li>影响分析：办公室A内有重要图纸，可能被翻拍</li>
+<li>优先级分配：优先级=6.5</li>
+</ol>
+</div>
+</div>
+
+<div class="q multi">
+<p>已知超告警类型<br/>
+SadmindBufferOverflow=({<var>VictimIP</var>,<var>VictimPort</var>},ExistHost(<var>VictimIP</var>)∧VulnerableSadmind(<var>VictimIP</var>),{GainRootAccess(<var>VictimIP</var>)})
+<br/>，并且有SadmindBufferOverflow类型的超告警<br/>
+{(VictimIP=152.1.19.5,VictimPort=1235),(VictimIP=152.1.19.7,VictimPort=1235)}
+<br/>。可以推断，下列哪些是正确的？</p>
+<ul>
+<li class="y">在152.1.19.5、152.1.19.7上都存在主机</li>
+<li class="n">在152.1.19.5、152.1.19.7上至少存在一台主机</li>
+<li class="y">152.1.19.5:1235和152.1.19.7:1235上都存在有漏洞的Sadmind服务</li>
+<li class="n">攻击者一定获得了root权限</li>
+<li class="y">攻击者可能获得了root权限</li>
+</ul>
+</div>
+
+<div class="q yesno">
+<p class="n">已知<var>h<sub>SadmindPing</sub></var> prepares-for <var>h<sub>SadmindBOF</sub></var>，那么要实施SadmindBufferOverflow攻击就必须先实施SadmindPing攻击。</p>
+<span class="a">攻击者可能(盲目)进行后面的攻击步骤</span>
+</div>
+
+<div class="q answer">
+<p>超告警的“结果”部分定义为“可能结果”、而不是“实际结果”，为什么要这样定义？</p>
+<ul class="a">
+<li>IDS，尤其是网络IDS，没有足够的信息来推断攻击是否成功</li>
+<li>即使前一步攻击没有成功，攻击者可能并不知道这个失败(例如利用脚本发动的攻击)；于是，攻击者仍然执行了下一步攻击。对于这种情况，前后两步攻击仍然应该进行关联</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>在TIAA中，要查看针对交大校内FTP2(202.120.58.162)的超告警，应该选用：</p>
+<ul>
+<li>告警聚合/分解</li>
+<li class="y">聚焦分析</li>
+<li>聚类分析</li>
+<li>频率分析</li>
+<li>连接分析</li>
+<li>关联分析</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>在TIAA中，要查看各个源IP地址(SrcIP)超告警的次数，应该：</p>
+<ul>
+<li>执行告警聚合/分解</li>
+<li>对每个SrcIP取值分别执行聚焦分析</li>
+<li>根据SrcIP执行聚类分析</li>
+<li class="y">对SrcIP变量执行频率分析(计数模式)</li>
+<li>对SrcIP变量执行频率分析(加权模式)</li>
+</ul>
+</div>
+
+<a href="javascript:;" onclick="q_reset()">清除所有答题记录</a>

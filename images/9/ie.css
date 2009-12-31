@@ -1,0 +1,35 @@
+/* fix for IE5.5, IE6, IE7
+ * <!--[if lte IE 7]><link rel="stylesheet" href="images/ie.css"/><![endif]-->
+ */
+
+/* IE5.5, IE6, IE7 */
+.footer { display:inline-block; }
+
+/* IE5.5, IE6
+ * hack: _property:
+ */
+* { _display:expression((this.currentStyle.styleFloat=='left' || this.currentStyle.styleFloat=='right')?'inline':''); }
+body { _width:expression(document.body.clientWidth<1000?'1000px':'100%'); }
+.header ul a { _width:expression((this.innerText.length+2)+'em'); _text-align:center; }
+.footer .links li { _border-left-style:expression((this.parentNode.firstChild==this)?'none':'solid'); }/* simulate :first-child */
+.p-body pre { _font-size:88%; _width:98%; _overflow-x:auto; }
+
+/* IE5.5  limited function; prototype.js is not compatible with IE5.5
+ * hack: _property /** /:, space before "/*" is required
+ */
+html { _font-size /**/:small; }
+.header ul a { _width /**/:expression(''+(this.innerText.length*2+7)+'ex'); }
+.main { _width /**/:62%; }
+.sidebar { _width /**/:30%; }
+.post ol li { _list-style-position /**/:outside; margin-left /**/:2em; }
+.header ul a span { _cursor /**/:hand; }
+.search-box { _height /**/:24px; _line-height /**/:24px; }
+
+/* IE6  Yes, yoursunny.com is supporting IE6 again
+ * hack: unknown
+ */
+
+/* IE7
+ * hack: html > body selector
+ */
+

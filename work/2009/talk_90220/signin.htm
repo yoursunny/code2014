@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Windows Live Messenger</title>
+<meta name="robots" content="noindex"/>
+<script type="text/javascript" src="http://www.wlmessenger.net/api/2.5/messenger.js"></script>
+</head><body style="margin:0;padding:0;">
+<div id="signin" style="width:240px;height:100px;"></div>
+<script type="text/javascript">//<![CDATA[
+(function(){
+
+function invoke() {//call a method outside iframe
+	var func=arguments[0],p=[];
+	for (var i=1;i<arguments.length;++i) p.push(arguments[i]);
+	return parent.talk[func].apply(parent.talk,p);
+}
+function enum_string(v,en) {
+	for (var p in en) {
+		if (en[p]==v) return p;
+	}
+	return '';
+}
+function defer() {
+	var func=arguments[0],p=[];
+	for (var i=1;i<arguments.length;++i) p.push(arguments[i]);
+	var t=this;
+	setTimeout(function(){func.apply(t,p);},50);
+}
+var User=null;
+var Contacts={};
+var Conversations={};
+function load_contact(c) {
+	var p=c.get_presence();
+	var n=c.get_currentAddress().get_address();
+	if (!Contacts[n]) {
+		c.add_propertyChanged(function(sender,e){load_contact(c,null);defer(invoke,'onContactChanged',n);});
+		p.add_propertyChanged(function(sender,e){load_contact(c,null);defer(invoke,'onContactChanged',n);});
+	}
+	Contacts[n]={
+		Address:c.get_currentAddress().get_address(),
+		Nickname:c.get_nickname(),
+		DisplayName:c.get_displayName(),
+		DisplayPictureUrl:p.get_displayPictureUrl().toString(),
+		IsBlocked:c.get_isBlocked(),
+		PersonalMessage:p.get_personalMessage(),
+		Status:enum_string(p.get_status(),Microsoft.Live.Messenger.PresenceStatus)
+	};
+}
+function load_contacts(collection) {
+	for (var i=0,len=collection.get_count();i<len;++i) {
+		load_contact(collection.get_item(i));
+	}
+}
+function update_contacts(changed,e) {
+	switch (changed) {
+		case 'init':
+			load_contacts(User.get_onlineContacts());
+			load_contacts(User.get_offlineContacts());
+			var a=[];for(var n in Contacts)a.push(n);
+			defer(invoke,'onContactInit',a);
+			break;
+		case 'online':
+			if (e.get_action()!=Microsoft.Live.Core.NotifyCollectionChangedAction.add) return;
+			var a=[];
+			for (var l=e.get_newItems(),i=0;i<l.length;++i) {
+				var c=l[i];
+				load_contact(c);
+				a.push(c.get_currentAddress().get_address());
+			}
+			defer(invoke,'onContactOnline',a);
+			break;
+		case 'offline':
+			if (e.get_action()!=Microsoft.Live.Core.NotifyCollectionChangedAction.add) return;
+			var a=[];
+			for (var l=e.get_newItems(),i=0;i<l.length;++i) {
+				var c=l[i];
+				load_contact(c);
+				a.push(c.get_currentAddress().get_address());
+			}
+			defer(invoke,'onContactOffline',a);
+			break;
+	}
+}
+function process_pending() {
+	var collection=User.get_pendingContacts();
+	var a=[];
+	for (var i=0,len=collection.get_count();i<len;++i) {
+		a.push(collection.get_item(i));
+	}
+	for (var i=0;i<a.length;++i) {
+		var c=a[i];
+		invoke('onContactPending',c.get_imAddress().get_address(),c.get_inviteMessage());
+	}
+}
+window.talk={
+	//创建登录控件
+	CreateSignInControl:function() {
+		var SignInControl=new Microsoft.Live.Messenger.UI.SignInControl('signin','http://65536.sunny/work/2009/livemsgr/privacy.htm','http://65536.sunny/work/2009/livemsgr/channel.htm','zh-CN');
+		SignInControl.add_authenticationCompleted(function(sender,e){
+			User=new Microsoft.Live.Messenger.User(e.get_identity());
+			User.add_signInCompleted(function(sender,e){
+				if (e.get_resultCode()===Microsoft.Live.Messenger.SignInResultCode.success) {
+					Contacts={};
+					Conversations={};
+					update_contacts('init');
+					invoke('onSignIn');
+				}
+			});
+			User.add_signOutCompleted(function(sender,e){User=null;invoke('onSignOut');});
+			User.add_signedOutRemotely(function(sender,e){User=null;invoke('onSignOut');});
+			User.get_onlineContacts().add_collectionChanged(function(sender,e){defer(update_contacts,'online',e);});
+			User.get_offlineContacts().add_collectionChanged(function(sender,e){defer(update_contacts,'offline',e);});
+			User.get_pendingContacts().add_collectionChanged(function(sender,e){defer(process_pending);});
+			User.signIn();
+		});
+	},
+	//注销
+	SignOut:function() {
+		User.signOut();
+	},
+	//获取我的地址
+	GetMyAddress:function() {
+		if (User==null) return null;
+		return User.get_address().get_address();;
+	},
+	//获取我的状态
+	GetMyPresence:function() {
+		if (User==null) return null;
+		var p=User.get_presence();
+		return {
+			DisplayName:p.get_displayName(),
+			DisplayPictureUrl:p.get_displayPictureUrl.toString(),
+			PersonalMessage:p.get_personalMessage(),
+			Status:enum_string(p.get_status(),Microsoft.Live.Messenger.PresenceStatus)
+		};
+	},
+	//设置我的名字
+	SetMyDisplayName:function(n) {
+		User.get_presence().set_displayName(n);
+	},
+	//设置我的状态
+	SetMyStatus:function(ps) {
+		User.get_presence().set_status(Microsoft.Live.Messenger.PresenceStatus[ps]);
+	},
+	//获取联系人信息
+	GetContact:function(address) {
+		return Contacts[address];
+	},
+	//添加联系人
+	AddContactIfNotExist:function(address,invite) {
+		if (Contacts[address]) return false;
+		else User.addContact(address,invite);
+	},
+	//通过或拒绝待定联系人
+	ProcessPendingContact:function(address,action) {
+		var l=User.get_pendingContacts();
+		for (var i=0,len=collection.get_count();i<len;++i) {
+			var c=collection.get_item(i);
+			if (r=='accept') c.accept();
+			else if (r=='decline') c.decline();
+		}
+	}
+};
+window.onload=function(){invoke('onIframeReady');};
+
+})();
+//]]></script>
+</body></html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SecureSubmit 安全数据提交 (JS+PHP/ASPX/ASP) - 你的阳光技术频道 www.65536.cn</title>
+<meta name="keywords" content="secure,submit,https,保密性,数据提交,数据传输,凭据"/>
+<link rel="stylesheet" type="text/css" href="/images/9/" />
+<script type="text/javascript" src="/lib/9.js"></script>
+</head><body>
+
+<div class="header">
+<h2><a href="http://yoursunny.com/">你的阳光</a></h2>
+<ul>
+<li><a href="http://m.yoursunny.com/"><span>个人</span></a></li>
+<li><a href="http://study.yoursunny.com/"><span>学习</span></a></li>
+<li><a href="http://www.65536.cn/"><span>技术</span></a></li>
+<li><a href="http://www.65536.cn/work/"><span>作品</span></a></li>
+</ul>
+<ol>
+<li><a href="http://yoursunny.com/">你的阳光</a></li>
+<li><a href="/">技术频道</a></li>
+<li><a href="../../">作品</a></li>
+<li><span>SecureSubmit 安全数据提交</span></li>
+</ol>
+</div>
+
+<div class="content"><div class="main">
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">SecureSubmit 安全数据提交</h1>
+<div class="p-body headers">
+
+<p>“帐号、密码”是当今互联网站点的主要认证方式。当用户输入了正确的“帐号、密码”，网站就知道了这位用户的身份，从而提供个性化服务。其中，密码必须妥善保管，不能够被别人获得。很多程序已经实现了在数据库中存储密码的散列而不是明文密码，从而防止数据库被入侵后密码被窃取。然而，在密码在网络上传输的时候，攻击者也可以窃取密码。因为，大部分网站是使用没有加密机制的HTTP协议，密码通过HTTP协议传输是在网络上表现为明文，攻击者可以非常容易的使用嗅探工具在网络上窃听到，然后冒充用户为所欲为。</p>
+<p>因此，在传输密码时，进行一定的加密，就成为了必需。</p>
+
+<h2>HTTPS——高成本的标准解决方法</h2>
+<p>最标准的解决方法是：HTTPS协议。HTTPS协议在HTTP协议的基础上增加了公钥加密的功能，因而攻击者很难窃听到密码。但是，HTTPS协议的成本很高：它要求服务器上安装一个与网站域名对应的数字证书，并且要求网站拥有独立的IP地址。这两点对于使用虚拟主机的小型网站来说是无法实现的。</p>
+
+<h2>MD5——局限性</h2>
+<p>有开发者在浏览器上实现了MD5散列算法，然后向服务器发送密码的散列：</p>
+<ul>
+<li>S-C: salt</li>
+<li>C-S: H=MD5(salt,password)</li>
+<li>S: compare H with MD5(salt,correct-password)</li>
+</ul>
+<p>这种方法，当服务器能知道密码的明文时，是可行的。可是，有时候数据库里存储的是MD5(correct-password)，这导致计算MD5(salt,correct-password)变得不可能。此时有人想出了这个办法：</p>
+<ul>
+<li>C-S: H=MD5(password)</li>
+<li>S: compare H with MD5(correct-password)</li>
+</ul>
+<p>看似密码是加密传输的，但是安全性相比明文传输却没有提高。只需窃听到H，就可以绕过浏览器上的MD5散列算法，直接向服务器发送H就能通过认证。</p>
+<p>另一类情况是，服务器不知道密码的任何计算结果，而是需要到第三方网络服务去验证“帐号、密码”的正确性；或者用户正在修改自己的密码。这些场景中，服务器必须有办法知道密码的明文，而从MD5散列结果是不可能计算明文的。</p>
+<p>因此，利用MD5散列传输密码，仅仅适用于服务器知道正确密码的明文这种情况，有较大的局限性。</p>
+
+<h2>SecureSubmit——折中的解决方案</h2>
+<iframe width="700" height="150" src="demo.htm" frameborder="0">SecureSubmit演示</iframe>
+<p>我设计的SecureSubmit，利用AJAX技术，用Diffie-Hellman算法（DH）在浏览器和服务器之间协商一个64-bit的共享密钥，然后用DES算法加密所需提交的数据（如密码），在服务器上解密。</p>
+<ul>
+<li>C: generate g n x, 1&lt;g&lt;n; calculate X=g<sup>x</sup> mod n</li>
+<li>C-S: g n X</li>
+<li>S: generate y; calculate Y=g<sup>y</sup> mod n, K=X<sup>y</sup> mod n</li>
+<li>S-C: Y</li>
+<li>C: calculate K=Y<sup>x</sup> mod n // this K == K on server</li>
+<li>C: encrypt v=DES(K,password,ECB)</li>
+<li>C-S: v</li>
+<li>S: decrypt password=DES<sup>-1</sup>(K,v,ECB)</li>
+</ul>
+<p>根据DH算法的特性，仅凭在网络上明文传输的g n X Y四个变量，是无法算出64-bit密钥的。至于DES算法的加密强度，确实不算高，但是已经够用了。</p>
+<p>需要指出的是，这个方案仍然是可以被攻击的。但是，只有窃听能力的攻击者无法获取密码，需要有篡改能力才能获取密码。攻击方法是：攻击者生成自己的y'并计算Y，并将服务器发出的Y替换成自己算出的Y，这样就能算出K并获取密码；然后另外生成一个x和X与服务器交互即可。</p>
+
+
+</div></div></div>
+
+</div><div class="sidebar">
+
+<div class="p"><div class="p-wrap">
+<div class="p-body">
+
+<a href="http://www.codeplex.com/SecureSubmit" target="_blank" onclick="c('CodePlex')"><img src="http://i1.codeplex.com/Images/banner_logo.jpg?v=13459" width="180" height="68" border="0" alt="CodePlex" /></a>
+本项目已经在开源站点CodePlex发布，请<a href="http://www.codeplex.com/SecureSubmit" target="_blank" onclick="c('CodePlex')">访问CodePlex</a>下载本项目文件
+
+</div></div></div>
+</div></div>
+
+<div class="footer">
+<p class="copyright">&copy;2006-2009 yoursunny.com, CreativeCommons BY-NC 3.0</p>
+<ul class="links">
+<li><a href="http://yoursunny.com/m/about.htm">关于本站</a></li>
+<li><a href="http://yoursunny.com/m/contact.htm">联系方式</a></li>
+<li><a href="http://yoursunny.com/m/sitemap.htm">网站地图</a></li>
+</ul>
+</div>
+
+</body></html>

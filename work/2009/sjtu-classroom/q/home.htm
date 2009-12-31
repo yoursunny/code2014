@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML Basic 1.1//EN" "http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>上海交通大学教室查询系统</title>
+</head><body>
+<h1>上海交通大学教室查询系统</h1>
+<form action="./" method="get"><div>
+<p>开始自修：
+<select name="start">
+<option value="0">现在</option>
+<option value="300" selected="selected">五分钟后</option>
+<option value="1800">半小时后</option>
+<option value="3600">一小时后</option>
+</select>
+</p>
+<p>自修时长：
+<select name="length">
+<option value="1800">半小时</option>
+<option value="3600" selected="selected">一小时</option>
+<option value="7200">两小时</option>
+<option value="10800">三小时</option>
+</select>
+</p>
+<p>教学大楼：<br/>
+<input name="building" type="radio" value="W" checked="checked"/>西区任意
+<input name="building" type="radio" value="1"/>上院
+<input name="building" type="radio" value="2"/>中院
+<input name="building" type="radio" value="3"/>下院
+<br/>
+<input name="building" type="radio" value="E"/>东区任意
+<input name="building" type="radio" value="4"/>东上院
+<input name="building" type="radio" value="5"/>东中院
+<input name="building" type="radio" value="6"/>东下院
+</p>
+<p>特别要求：
+<input name="ac" type="checkbox" value="1"/>空调教室
+</p>
+<p>
+<button type="submit">查询空闲教室</button>
+</p>
+</div></form>
+<p>数据来源：上海交通大学教务处<br/>
+手机版制作：<a href="/">阳光男孩</a></p>
+<p><img src="http://img.users.51.la/1697972.asp" alt=""/></p>
+</body></html>

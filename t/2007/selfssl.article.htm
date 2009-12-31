@@ -1,0 +1,20 @@
+使用SelfSSL创建自签名的IIS证书
+SelfSSL.exe,IIS,数字证书,SSL,SSL加密,HTTPS
+
+阳光男孩 发表于 2007-11-09
+<p>微软<a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=56FC92EE-A71A-4C73-B628-ADE629C89499" target="_blank">IIS 6.0 Resource Kit</a>中的小工具SelfSSL可以创建自签名的IIS证书，用于测试目的。所谓“自签名”，就是指该证书本身是一个根CA证书，同时又能作为服务器证书。当然，这个根CA证书是默认不受信任的，所以只能用于测试，不能用于实际的公开站点。</p>
+<p>步骤：<a href="http://kftvbg.bay.livefilestore.com/y1pTXw5cpnw9yWvkGpnuIeciX4rcS64T1rxbSJvDCv2fXmk8Qvjkr9P_p36XNbcz8yKuI1JyA1MVsypxpt_XEB4BtwuPgYX3tOy/IS497_selfssl.exe">下载SelfSSL.exe</a>，然后在Administrator下打开<br />
+<img src="http://tu.6.cn/img/id/823e74e71a69210a4bdee1d3242e123a" width="535" height="120" /><br />
+对问题回答y并按回车，就会为IIS的默认Web站点创建一个自签名的证书</p>
+<p>然后要在IIS里操作：右击Websites下的Default Web Site，选Properties，在Directory Security选项卡点击Server Certificate，然后按提示，指派一个现有证书<img src="http://tu.6.cn/img/id/db9e79f91379ad4e3c55398fcd1e2be1" width="481" height="361" /><br />
+选择刚才创建的证书<br />
+<img src="http://tu.6.cn/img/id/f17bb545295c5669240f9117eac19f4f" width="482" height="362" /><br />
+双击证书，可以查看证书内容，可以看到不受信任：<br />
+<img src="http://tu.6.cn/img/id/b7fdbcc068b20678d7ce3e1fe711c53d" width="408" height="474" /><br />
+下一步选择HTTPS的端口，默认端口是443。</p>
+<p>尝试用IE访问一下：<br />
+<img src="http://tu.6.cn/img/id/8cbbad2243ab1dc8a438b5b8c9b24eb5" width="450" height="317" /><br />
+警告根证书不受信任（用在公开站点，给用户感觉就是“网站不安全”），点Yes<br />
+<img src="http://tu.6.cn/img/id/dbb5099d5e1908042010ea087b25a642" width="465" height="314" /><br />
+成功打开https协议的网站（注意状态栏的锁），我们成功了！</p>
+<p>注意：因为SSL加密的内容包含域名，所以无法在相同IP地址、相同端口，用域名区分开设多个SSL站点；这一点在IIS的帮助文档里写得很清楚。</p>

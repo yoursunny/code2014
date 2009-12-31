@@ -1,0 +1,729 @@
+操作系统
+Implementing Priority Scheduler with Round-Robin on Nachos
+
+transitional no-ad
+<p><a href="nachos.htm">返回：你的阳光学习频道nachos主页</a><br/>
+<a href="nachos_80706.zip" onclick="c('nachos_work.zip')">源代码下载</a>(你可能需要修改Makefile和shell脚本才能编译运行)</p>
+<div  style="TEXT-ALIGN:center">
+  作者：F0503602 石君霄 5050369043&nbsp; 2008-03-18 ~ 2008-04-17<br  />
+</div>
+<p>
+  本文为本人原创作品，转载请注明出处：<a href="http://www.65536.cn/">你的阳光技术频道http://www.65536.cn/</a> ；请注重学术诚信，切勿抄袭</p>
+<h2>
+  一、实验目的</h2>
+<ol>
+  <li>
+    了解操作系统内核、虚拟机原理<br  />
+  </li>
+  <li>
+    加深对操作系统线程管理、线程调度的理解  </li>
+  <li>
+    练习C、C++、32位汇编语言编程<br  />
+  </li>
+</ol>
+<h2>
+  二、实验环境</h2>
+<ul>
+  <li>
+    计算机硬件：DELL INSPRION 600m  </li>
+  <li>
+    主机操作系统：Ubuntu Desktop 7.10 gutsy，gnome  </li>
+  <li>
+    编译器：gcc 4.1.3 for i486-linux-gnu，gcc 2.95.2 for decstation-ultrix，coff2noff 1.0  </li>
+  <li>
+    集成开发环境：Code::Blocks 8.02  </li>
+  <li>
+    Nachos C++ 4.1版本<br  />
+  </li>
+</ul>
+<h2>
+  三、简要步骤</h2>
+<ol>
+  <li>
+    准备实验环境，下载和安装必要的软件  </li>
+  <li>
+    阅读资料，了解Nachos原理  </li>
+  <li>
+    修正Nachos源码，使之能编译通过  </li>
+  <li>
+    设计并实现抢占式优先级调度算法  </li>
+  <li>
+    增加一些系统调用，以便测试  </li>
+  <li>
+    设计和制作测试程序  </li>
+  <li>
+    输出并分析测试结果<br  />
+  </li>
+</ol>
+<h2>
+  四、抢占式优先级调度算法</h2>
+与JAVA版本相比，C++版本的Nachos制作时间较早，自带功能也比较少。首先对Nachos源码及Makefile进行了一定的修正，使它本身能正常编译通过和运行；然后入手实现抢占式优先级调度算法。<br  />
+<h3  style="TEXT-ALIGN:center">
+  ㈠编译选项</h3>
+<p>
+  为了方便的看出哪些代码是修改过的，我使用了#ifdef、#ifndef预处理分支，并在Makefile的DEFINES末尾加上-DPRIORITY_SCHED。</p>
+<p>
+  例如：<br  />
+</p>
+<p></p>
+<div  style="PADDING:1em 0pt; TEXT-ALIGN:left">
+  <font  size="2">&nbsp; </font><font color="#0000ff"  size="2">private</font><font  size="2">:<br  />
+  &nbsp;&nbsp;&nbsp; </font><font color="#6aa84f"  size="2">#ifndef PRIORITY_SCHED</font><font  size="2"><br  />
+  &nbsp;&nbsp;&nbsp; List</font><font color="#ff0000"  size="2">&lt;</font><font  size="2">Thread </font><font color="#ff0000"  size="2">*&gt; *</font><font  size="2">readyList<font color="#ff0000">;</font>&nbsp; <font color="#666666">// queue of threads that are ready to run, but not running</font><br  />
+  &nbsp;&nbsp;&nbsp; </font><font color="#6aa84f"  size="2">#endif</font><font  size="2"><br  />
+  &nbsp;&nbsp;&nbsp; </font><font color="#6aa84f"  size="2">#ifdef PRIORITY_SCHED</font><font  size="2"><br  />
+  &nbsp;&nbsp;&nbsp; SchedulerRoundRobin</font><font color="#ff0000"  size="2">*</font><font  size="2"> schedulerRoundRobin<font color="#ff0000">;</font><br  />
+  &nbsp;&nbsp;&nbsp; Timer</font><font color="#ff0000"  size="2">*</font><font  size="2"> timerRoundRobin<font color="#ff0000">;</font><br  />
+  &nbsp;&nbsp;&nbsp; </font><font color="#6aa84f"  size="2">#endif</font><br  />
+</div>
+<p></p>
+<h3  style="TEXT-ALIGN:center">
+  ㈡主要数据结构</h3>
+<font color="#0000ff">class</font> Thread <font color="#ff0000">{</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#0000ff">int</font> priority;<br  />
+&nbsp;&nbsp;&nbsp; <font color="#0000ff">bool</font> just_run;<br  />
+<font color="#ff0000">}</font><br  />
+<ul>
+  <li>
+    priority：优先级数值，0表示优先级最高，255表示优先级最低  </li>
+  <li>
+    just_run：线程是否刚刚启动（在刚才的时间片内开始执行），如果是，暂不剥夺CPU  </li>
+</ul>
+<br  />
+<font color="#0000ff">class</font> Scheduler <font color="#ff0000">{</font><br  />
+&nbsp;&nbsp;&nbsp; SortedList<font color="#ff0000">&lt;</font>Thread<font color="#ff0000">*&gt;*</font> readyList;<br  />
+&nbsp;&nbsp;&nbsp; List<font color="#ff0000">&lt;</font>Thread<font color="#ff0000">*&gt;*</font> allThreadsList;<br  />
+&nbsp;&nbsp;&nbsp; SchedulerRoundRobin<font color="#ff0000">*</font> schedulerRoundRobin;<br  />
+&nbsp;&nbsp;&nbsp; Timer<font color="#ff0000">*</font> timerRoundRobin;<br  />
+<font color="#ff0000">}</font><br  />
+<ul>
+  <li>
+    readyList：从原来的List改成了SortedList，排序依据为<font color="#9900ff">priority升序排列</font>；这样readyList中最前面的就是优先级最高的READY线程  </li>
+  <li>
+    allThreadsList：<font color="#9900ff">所有线程</font>的一个列表  </li>
+  <li>
+    schedulerRoundRobin：定时执行，用于时间片调度  </li>
+  <li>
+    timerRoundRobin：调用schedulerRoundRobin的定时器<br  />
+  </li>
+</ul>
+<br  />
+<font color="#0000ff">class</font> SchedulerRoundRobin <font color="#ff0000">:</font> <font color="#0000ff">public</font> CallBackObj;<br  />
+<ul>
+  <li>
+    用于时间片调度的类<br  />
+  </li>
+</ul>
+<h3  style="TEXT-ALIGN:center">
+  ㈢优先级分配策略</h3>
+<ol>
+  <li>
+    在Thread::Fork中，线程的priority置初值128  </li>
+  <li>
+    当线程用完一个<font color="#9900ff">完整</font>的时间片时（由just_run确保），优先级降低（<font color="#9900ff">priority加1</font>）<br  />
+    ⑴如果有优先级相等或更高的线程，马上剥夺当前线程的CPU<br  />
+    ⑵如果所有其他线程优先级都比当前线程低，继续执行当前线程<br  />
+  </li>
+  <li>
+    线程用完时间片之前<font color="#9900ff">主动放弃</font>CPU（Yield）或阻塞，priority不变  </li>
+  <li>
+    有线程READY时，如果该线程比当前线程优先级高，立即剥夺当前线程CPU、priority不变<br  />
+  </li>
+</ol>
+<h3  style="TEXT-ALIGN:center">
+  ㈣优先级分配策略的函数实现</h3>
+⑴<br  />
+首先禁用可能干扰优先级调度的其他调度算法。具体的说，就是在Alarm::CallBack函数开头直接return。Alarm类是原先自带的随机时间片轮转调度算法。<br  />
+<br  />
+⑵<br  />
+线程的priority等变量必须初始化，创建的线程也必须插入kernel-&gt;scheduler-&gt;allThreadsList链表中，应当选择一个合适的时机进行这个操作。这个操作看起来可以在Thread::Thread构造函数中执行，实际上是不行的，因为Kernel::Initialize先创建main线程然后才会创建scheduler，所以这两个操作应当写在Thread::Fork中；那样又有一个问题，就是main线程是没有调用Fork的，main函数的初始化操作就由Kernel::Initialize负责。<br  />
+<font  size="2"><font color="#0000ff">void</font><br  />
+Thread<font color="#ff0000">::</font>Fork<font color="#ff0000">(</font>VoidFunctionPtr func<font color="#ff0000">,</font> <font color="#0000ff">void</font> <font color="#ff0000">*</font>arg<font color="#ff0000">)</font><br  />
+<font color="#ff0000">{</font><br  />
+&nbsp;&nbsp;&nbsp; Interrupt <font color="#ff0000">*</font>interrupt <font color="#ff0000">=</font> kernel<font color="#ff0000">-&gt;</font>interrupt<font color="#ff0000">;</font><br  />
+&nbsp;&nbsp;&nbsp; Scheduler<font color="#ff0000"> *</font>scheduler <font color="#ff0000">=</font> kernel<font color="#ff0000">-&gt;</font>scheduler<font color="#ff0000">;</font><br  />
+&nbsp;&nbsp;&nbsp; IntStatus oldLevel<font color="#ff0000">;</font><br  />
+&nbsp;&nbsp;&nbsp; DEBUG<font color="#ff0000">(</font>dbgThread<font color="#ff0000">, </font><font color="#0000ff">&quot;Forking thread: &quot;</font> <font color="#ff0000">&lt;&lt;</font> name <font color="#ff0000">&lt;&lt;</font> <font color="#0000ff">&quot; f(a): &quot;</font> <font color="#ff0000">&lt;&lt;</font> <font color="#ff0000">(</font><font color="#0000ff">int</font><font color="#ff0000">)</font> func <font color="#ff0000">&lt;&lt;</font> <font color="#0000ff">&quot; &quot;</font> <font color="#ff0000">&lt;&lt;</font> arg<font color="#ff0000">);</font><br  />
+&nbsp;&nbsp;&nbsp; StackAllocate<font color="#ff0000">(</font>func<font color="#ff0000">,</font> arg<font color="#ff0000">);</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#6aa84f">#ifdef PRIORITY_SCHED</font><br  />
+&nbsp;&nbsp;&nbsp; kernel<font color="#ff0000">-&gt;</font>scheduler<font color="#ff0000">-&gt;</font>allThreadsList<font color="#ff0000">-&gt;</font>Append<font color="#ff0000">(</font><font color="#0000ff">this</font><font color="#ff0000">);</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#0000ff">this</font><font color="#ff0000">-&gt;</font>priority<font color="#ff0000">=</font>128<font color="#ff0000">;</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#6aa84f">#endif</font><br  />
+&nbsp;&nbsp;&nbsp; oldLevel <font color="#ff0000">=</font> interrupt<font color="#ff0000">-&gt;</font>SetLevel<font color="#ff0000">(</font>IntOff<font color="#ff0000">);</font><br  />
+&nbsp;&nbsp;&nbsp; scheduler<font color="#ff0000">-&gt;</font>ReadyToRun<font color="#ff0000">(</font>this<font color="#ff0000">);</font>&nbsp;&nbsp;&nbsp; <font color="#666666">// ReadyToRun assumes that interrupts are disabled!</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#ff0000">(</font><font color="#0000ff">void</font><font color="#ff0000">)</font> interrupt<font color="#ff0000">-&gt;</font>SetLevel<font color="#ff0000">(</font>oldLevel<font color="#ff0000">);<br  />
+}</font></font><br  />
+<br  />
+<font  size="2"><font color="#0000ff">void</font><br  />
+Kernel<font color="#ff0000">::</font>Initialize<font color="#ff0000">()</font><br  />
+<font color="#ff0000">{</font><br  />
+<font color="#666666">//some code omitted here</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#6aa84f">#ifdef PRIORITY_SCHED</font><br  />
+&nbsp;&nbsp;&nbsp; currentThread<font color="#ff0000">-&gt;</font>priority<font color="#ff0000">=</font><font color="#ff00ff">128</font><font color="#ff0000">;</font><br  />
+&nbsp;&nbsp;&nbsp; kernel<font color="#ff0000">-&gt;</font>scheduler<font color="#ff0000">-&gt;</font>allThreadsList<font color="#ff0000">-&gt;</font>Append<font color="#ff0000">(</font>currentThread<font color="#ff0000">);</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#6aa84f">#endif</font><br  />
+&nbsp;&nbsp;&nbsp; interrupt<font color="#ff0000">-&gt;</font>Enable<font color="#ff0000">();</font><br  />
+<font color="#ff0000">}</font></font><br  />
+<br  />
+⑶<br  />
+Scheduler类新增的几个成员变量，在Scheduler::Scheduler构造函数中初始化，在Scheduler::~Scheduler析构函数中删除。<br  />
+值得一提的是Scheduler::Scheduler对readyList的初始化：<br  />
+<font  size="2">Scheduler<font color="#ff0000">::</font>Scheduler<font color="#ff0000">()</font><br  />
+<font color="#ff0000">{</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#6aa84f">#ifndef PRIORITY_SCHED</font><br  />
+&nbsp;&nbsp;&nbsp; readyList <font color="#ff0000">=</font> <font color="#0000ff">new</font> List<font color="#ff0000">&lt;</font>Thread <font color="#ff0000">*&gt;;</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#6aa84f">#endif</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#6aa84f">#ifdef PRIORITY_SCHED</font><br  />
+&nbsp;&nbsp;&nbsp; this<font color="#ff0000">-&gt;</font>readyList<font color="#ff0000">=</font><font color="#0000ff">new</font> SortedList<font color="#ff0000">&lt;</font>Thread <font color="#ff0000">*&gt;(</font>ThreadPriorityCompare<font color="#ff0000">);</font><br  />
+&nbsp;&nbsp;&nbsp; this<font color="#ff0000">-&gt;</font>allThreadsList <font color="#ff0000">=</font> <font color="#0000ff">new</font> List<font color="#ff0000">&lt;</font>Thread<font color="#ff0000"> *&gt;;</font><br  />
+&nbsp;&nbsp;&nbsp; this<font color="#ff0000">-&gt;</font>schedulerRoundRobin<font color="#ff0000">=</font><font color="#0000ff">new</font> SchedulerRoundRobin<font color="#ff0000">();</font><br  />
+&nbsp;&nbsp;&nbsp; this<font color="#ff0000">-&gt;</font>timerRoundRobin<font color="#ff0000">=</font><font color="#0000ff">new</font> Timer<font color="#ff0000">(</font><font color="#0000ff">false</font><font color="#ff0000">,</font><font color="#0000ff">this</font><font color="#ff0000">-&gt;</font>schedulerRoundRobin<font color="#ff0000">);</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#6aa84f">#endif</font><br  />
+&nbsp;&nbsp;&nbsp; toBeDestroyed <font color="#ff0000">=</font> NULL<font color="#ff0000">;</font><br  />
+<font color="#ff0000">}</font></font><br  />
+SortedList构造函数的参数是用于比较的回调函数，根据这里的需要，应该使优先级高（priority小）的线程排在前面，比较函数为：<br  />
+<font  size="2"><font color="#0000ff">static int</font> ThreadPriorityCompare<font color="#ff0000">(</font>Thread<font color="#ff0000">*</font> x<font color="#ff0000">,</font>Thread<font color="#ff0000">*</font> y<font color="#ff0000">) {</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#0000ff">return</font> <font color="#ff0000">(</font>x<font color="#ff0000">-&gt;</font>priority<font color="#ff0000">) - (</font>y<font color="#ff0000">-&gt;</font>priority<font color="#ff0000">);</font><br  />
+<font color="#ff0000">}</font></font><br  />
+写得很简洁，只需要做个减法，x优先级高是就返回小于0的值了。<br  />
+<br  />
+⑷<br  />
+定时器回调，这个比较复杂，下面详细介绍：<br  />
+<font  size="2"><font color="#0000ff">class</font> SchedulerRoundRobin <font color="#ff0000">:</font> <font color="#0000ff">public</font> CallBackObj <font color="#ff0000">{</font><br  />
+&nbsp; <font color="#0000ff">public</font><font color="#ff0000">:</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#0000ff">void</font> CallBack<font color="#ff0000">();</font><br  />
+&nbsp; <font color="#0000ff">private</font><font color="#ff0000">:</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#0000ff">int</font> counter<font color="#ff0000">;</font><br  />
+<font color="#ff0000">};</font><br  />
+<font color="#0000ff">void</font> SchedulerRoundRobin<font color="#ff0000">::</font>CallBack<font color="#ff0000">() {</font><br  />
+</font>如果当前处于空闲状态，什么也不做；本来要输出调试信息的，但是这个信息在所有用户线程退出、只剩postal worker时不断出现，所以注释掉了<br  />
+<font  size="2">&nbsp;&nbsp;&nbsp; <font color="#0000ff">if</font> <font color="#ff0000">(</font>kernel<font color="#ff0000">-&gt;</font>interrupt<font color="#ff0000">-&gt;</font>getStatus<font color="#ff0000">()==</font>IdleMode<font color="#ff0000">) {</font><br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#666666">//DEBUG(dbgThread,&quot;Machine is IDLE now, SchdulerRoundRobin do nothing.&quot;);</font><br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000ff">return</font><font color="#ff0000">;</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br  />
+</font>默认情况下，Timer中断的频率较高，导致线程切换过于频繁；设置一个计数器，把频率降低20倍<br  />
+<font  size="2">&nbsp;&nbsp;&nbsp; <font color="#ff0000">++</font><font color="#0000ff">this</font><font color="#ff0000">-&gt;</font>counter<font color="#ff0000">;</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#0000ff">if</font> <font color="#ff0000">(</font><font color="#0000ff">this</font><font color="#ff0000">-&gt;</font>counter<font color="#ff0000">&gt;=</font><font color="#ff00ff">20</font><font color="#ff0000">)</font> <font color="#0000ff">this</font><font color="#ff0000">-&gt;</font>counter<font color="#ff0000">=</font><font color="#ff00ff">0</font><font color="#ff0000">;</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#0000ff">else return</font><font color="#ff0000">;</font><font color="#666666">//don't do round-robin every time</font><br  />
+</font>当前线程没有执行满一整个时间片，再给一个时间片<br  />
+<font  size="2">&nbsp;&nbsp;&nbsp; <font color="#0000ff">if</font> <font color="#ff0000">(</font>kernel<font color="#ff0000">-&gt;</font>currentThread<font color="#ff0000">-&gt;</font>just_run<font color="#ff0000">) {</font><font color="#666666">//current thread just run</font><br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kernel<font color="#ff0000">-&gt;</font>currentThread<font color="#ff0000">-&gt;</font>just_run<font color="#ff0000">=</font><font color="#0000ff">false</font><font color="#ff0000">;</font><font color="#666666">//not just run next time</font><br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEBUG<font color="#ff0000">(</font>dbgThread<font color="#ff0000">,</font><font color="#0000ff">&quot;Thread &quot;</font><font color="#ff0000">&lt;&lt;</font>kernel<font color="#ff0000">-&gt;</font>currentThread<font color="#ff0000">-&gt;</font>getName<font color="#ff0000">()&lt;&lt;</font><font color="#0000ff">&quot; just run, no round-robin&quot;</font><font color="#ff0000">);</font><br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000ff">return</font><font color="#ff0000">;</font><font color="#666666">//give it a chance</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br  />
+</font>当前线程用完了时间片，需要增大priority<br  />
+为了防止溢出，在priority已经达到255时，把所有线程的priority都乘以0.75<br  />
+<font  size="2">&nbsp;&nbsp;&nbsp; <font color="#0000ff">if</font> <font color="#ff0000">(</font>kernel<font color="#ff0000">-&gt;</font>currentThread<font color="#ff0000">-&gt;</font>priority<font color="#ff0000">&gt;=</font><font color="#ff00ff">255</font><font color="#ff0000">) {</font><font color="#666666">//fade all priority numbers to avoid overflow</font><br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kernel<font color="#ff0000">-&gt;</font>scheduler<font color="#ff0000">-&gt;</font>allThreadsList<font color="#ff0000">-&gt;</font>Apply<font color="#ff0000">(</font>ThreadPriorityFade<font color="#ff0000">);</font><br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEBUG<font color="#ff0000">(</font>dbgThread<font color="#ff0000">,</font><font color="#0000ff">&quot;Priority reach 255, fade to 3/4 of original&quot;</font><font color="#ff0000">);</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br  />
+</font>现在增加priority值，即降低优先级<br  />
+<font  size="2">&nbsp;&nbsp;&nbsp; <font color="#ff0000">++</font>kernel<font color="#ff0000">-&gt;</font>currentThread<font color="#ff0000">-&gt;</font>priority<font color="#ff0000">;</font><font color="#666666">//current thread used up its time</font><br  />
+&nbsp;&nbsp;&nbsp; DEBUG<font color="#ff0000">(</font>dbgThread<font color="#ff0000">,</font><font color="#0000ff">&quot;Thread &quot;</font><font color="#ff0000">&lt;&lt;</font>kernel<font color="#ff0000">-&gt;</font>currentThread<font color="#ff0000">-&gt;</font>getName<font color="#ff0000">()&lt;&lt;</font><font color="#0000ff">&quot; used up its time, inc priority to &quot;</font><font color="#ff0000">&lt;&lt;</font>kernel<font color="#ff0000">-&gt;</font>currentThread<font color="#ff0000">-&gt;</font>priority<font color="#ff0000">);</font><br  />
+</font>判断是否其他线程优先级都低于当前线程<br  />
+<font  size="2">&nbsp;&nbsp;&nbsp; <font color="#0000ff">if</font> <font color="#ff0000">(</font>kernel<font color="#ff0000">-&gt;</font>currentThread<font color="#ff0000">-&gt;</font>priority <font color="#ff0000">&lt;</font> kernel<font color="#ff0000">-&gt;</font>scheduler<font color="#ff0000">-&gt;</font>readyList<font color="#ff0000">-&gt;</font>Front<font color="#ff0000">()-&gt;</font>priority<font color="#ff0000">) {</font><br  />
+</font>其他线程优先级仍然都低于当前线程，让当前线程继续执行<br  />
+<font  size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEBUG<font color="#ff0000">(</font>dbgThread<font color="#ff0000">,</font><font color="#0000ff">&quot;Current thread has highest priority, go on.&quot;</font><font color="#ff0000">);</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font> <font color="#0000ff">else</font> <font color="#ff0000">{</font><br  />
+</font>出现了优先级较高或相等的其他线程，剥夺CPU<br  />
+<font  size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEBUG<font color="#ff0000">(</font>dbgThread<font color="#ff0000">,</font><font color="#0000ff">&quot;Current thread does not have highest priority, yield.&quot;</font><font color="#ff0000">);</font><br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kernel<font color="#ff0000">-&gt;</font>interrupt<font color="#ff0000">-&gt;</font>YieldOnReturn<font color="#ff0000">();</font><font color="#666666">//pass chance to another thread</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br  />
+<font color="#ff0000">}</font></font><br  />
+<br  />
+⑸<br  />
+Scheduler::ReadyToRun中readyList-&gt;Append改为readyList-&gt;Insert，因为SortedList::Append是私有的。<br  />
+ReadyToRun在插入后还需检查新加入线程的优先级是否高于当前线程，如果新线程优先级高，马上Yield当前线程。<br  />
+<br  />
+⑹<br  />
+Scheduler::Run中，在每次开始运行一个线程时，置just_run为true<br  />
+<br  />
+⑺<br  />
+更新Scheduler::Print，打印线程表时要打印readyList和allThreadsList，并需要打印出priority，以便调试用。<br  />
+<h3  style="TEXT-ALIGN:center">
+  ㈤正确性验证</h3>
+在现在看，由于还没有有效的创建新线程的手段，算法的正确性只能停留在理论上。<br  />
+<h2>
+  五、增加系统调用</h2>
+可以用nachos -x xxx.noff启动noff程序，但是noff程序（test/目录内）是不能直接调用nachos内核的函数的。如果需要调用nachos内核提供的功能，唯一的办法是产生MIPS CPU异常，异常被nachos捕获加以处理。产生异常的代码在test/start.s内，给$2置系统调用号然后syscall即可；捕获异常后执行userprog/exception.cc中的ExceptionHandler函数。<br  />
+<h3  style="TEXT-ALIGN:center">
+  ㈠设计系统调用类型</h3>
+在userprog/syscall.h里声明了若干种系统调用，本来只实现了SC_Halt和SC_Add两个。我选择实现了以下几种，就足够用以测试优先调度器：<br  />
+<ol>
+  <li>
+    <font color="#ff9900">SC_Exit</font>：退出程序，终止nachos  </li>
+  <li>
+    <font color="#ff9900">SC_Exec</font>：创建用户态<font color="#9900ff">进程</font>，在新的地址空间中运行（测试发现AddrSpace功能不足，此系统调用会破坏现有MIPS虚拟机内存，<font color="#9900ff">无法正常工作</font>）  </li>
+  <li>
+    <font color="#ff9900">SC_ThreadFork</font>：创建线程，在同一个地址空间运行  </li>
+  <li>
+    <font color="#ff9900">SC_ThreadYield</font>：主动放弃CPU  </li>
+  <li>
+    <font color="#ff9900">SC_ThreadExit</font>：终止线程  </li>
+  <li>
+    <font color="#ff9900">SC_Clock</font>：取得当前系统时钟tick值  </li>
+  <li>
+    <font color="#ff9900">SC_SetPriority</font>：（这是新增的）直接设置当前线程的priority值  </li>
+</ol>
+下面详细介绍两个系统调用的实现，其他的没有太多看点，不做介绍。<br  />
+<h3  style="TEXT-ALIGN:center">
+  ㈡SC_Exec的实现</h3>
+SpaceId Exec<font color="#ff0000">(</font><font color="#0000ff">char</font><font color="#ff0000">*</font> exec_name<font color="#ff0000">);</font><br  />
+SC_Exec的难点在于如何取得要调用的noff文件名，它是一个字符串类型的参数。<br  />
+很容易看到已经实现的SC_Add中获取参数的方法：<br  />
+<font  size="2">&nbsp;&nbsp;&nbsp; result </font><font color="#ff0000"  size="2">=</font><font  size="2"> SysAdd</font><font color="#0000ff"  size="2"><font color="#ff0000">((</font>int</font><font color="#ff0000"  size="2">)</font><font  size="2">kernel</font><font color="#ff0000"  size="2">-&gt;</font><font  size="2">machine</font><font color="#ff0000"  size="2">-&gt;</font><font  size="2">ReadRegister</font><font color="#ff0000"  size="2">(</font><font color="#ff00ff"  size="2">4</font><font color="#ff0000"  size="2">),(</font><font color="#0000ff"  size="2">int</font><font color="#ff0000"  size="2">)</font><font  size="2">kernel</font><font color="#ff0000"  size="2">-&gt;</font><font  size="2">machine</font><font color="#ff0000"  size="2">-&gt;</font><font  size="2">ReadRegister</font><font color="#ff0000"  size="2">(</font><font color="#ff00ff"  size="2">5</font><font color="#ff0000"  size="2">));</font><font  size="2"><br  />
+</font>直观的反应是用<font color="#ff0000">(</font><font color="#0000ff">char</font><font color="#ff0000">*)</font>kernel<font color="#ff0000">-&gt;</font>machine<font color="#ff0000">-&gt;</font>ReadRegister<font color="#ff0000">(</font><font color="#ff00ff">4</font><font color="#ff0000">)</font>就可以取得这个exec_name字符串参数，这样做的结果就是报Segment fault错误，然后nachos的Linux进程骤然而止。<br  />
+什么原因呢？$4寄存器里确实存有指向exec_name的指针，也就是字符串的内存地址；但是，这个<font color="#9900ff">内存地址是MIPS虚拟机里的</font>，而不是Linux进程的地址空间！因此，直接转换为char*类型，不可能指向正确的内存地址。<br  />
+解决方法是：用kernel-&gt;machine-&gt;ReadMem函数逐字节读出内容虚拟机内存中的字符串，直到遇到\0为止。<br  />
+<font  size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000ff">int</font> SC_Exec_name_addr<font color="#ff0000">=(</font><font color="#0000ff">int</font><font color="#ff0000">)</font>kernel<font color="#ff0000">-&gt;</font>machine<font color="#ff0000">-&gt;</font>ReadRegister<font color="#ff0000">(</font><font color="#ff00ff">4</font><font color="#ff0000">);</font>//exec_name<br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#666666">//note: exec_name is stored in MIPS mem, not host mem, must copy from MIPS to host</font><br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000ff">char</font><font color="#ff0000">*</font> SC_Exec_name<font color="#ff0000">=</font><font color="#0000ff">new char</font><font color="#ff0000">[</font><font color="#ff00ff">256</font><font color="#ff0000">];</font><br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000ff">int</font> SC_Exec_ch<font color="#ff0000">=</font><font color="#ff00ff">-1</font><font color="#ff9900">;</font><br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000ff">int</font> SC_Exec_name_i<font color="#ff0000">;</font><br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000ff">for</font> <font color="#ff0000">(</font>SC_Exec_name_i<font color="#ff0000">=</font><font color="#ff00ff">0</font><font color="#ff0000">;</font>SC_Exec_ch<font color="#ff0000">!=</font><font color="#ff00ff">0</font><font color="#ff0000">&amp;&amp;</font>SC_Exec_name_i<font color="#ff0000">&lt;</font><font color="#ff00ff">256</font><font color="#ff0000">;++</font>SC_Exec_name_i<font color="#ff0000">) {</font><br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kernel<font color="#ff0000">-&gt;</font>machine<font color="#ff0000">-&gt;</font>ReadMem<font color="#ff0000">(</font>SC_Exec_name_addr<font color="#ff0000">+</font>SC_Exec_name_i<font color="#ff0000">,</font><font color="#ff00ff">1</font><font color="#ff0000">,&amp;</font>SC_Exec_ch<font color="#ff0000">);</font><br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SC_Exec_name<font color="#ff0000">[</font>SC_Exec_name_i<font color="#ff0000">]=(</font><font color="#0000ff">char</font><font color="#ff0000">)</font>SC_Exec_ch<font color="#ff0000">;</font><br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br  />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSERT<font color="#ff0000">(</font>SC_Exec_name_i<font color="#ff0000">&lt;</font><font color="#ff00ff">256</font><font color="#ff0000">);</font><font color="#666666">//exec_name should be less than 256 chars</font></font><br  />
+这个系统调用由于AddrSpace类的问题没能正常工作，所以其他细节就不再讲述了。<br  />
+<h3  style="TEXT-ALIGN:center">
+  ㈢SC_ThreadFork的实现</h3>
+nachos的Thread::Fork接受的两个参数是一个Linux函数和给它的参数，并不能直接调用noff中的函数，所以必须用一个Linux函数来启动noff函数：<br  />
+<font  size="2"><font color="#6aa84f">#ifdef PATCH_SYSCALLS1</font><br  />
+<font color="#0000ff">void</font> NoffThread<font color="#ff0000">(</font><font color="#0000ff">int</font> func<font color="#ff0000">)</font><br  />
+<font color="#ff0000">{</font><br  />
+&nbsp;&nbsp;&nbsp; DEBUG<font color="#ff0000">(</font>dbgThread</font><font color="#ff0000" size="2">,</font><font color="#0000ff"  size="2">&quot;NoffThread &quot;</font><font color="#ff0000" size="2">&lt;&lt;</font><font  size="2">kernel</font><font color="#ff0000" size="2">-&gt;</font><font  size="2">currentThread</font><font color="#ff0000" size="2">-&gt;</font><font  size="2">getName</font><font color="#ff0000" size="2">()</font><font color="#ff0000" size="2">&lt;&lt;</font><font  size="2"><font color="#0000ff">&quot; start at &quot;</font><font color="#ff0000">&lt;&lt;</font>func<font color="#ff0000">);</font><br  />
+&nbsp;&nbsp;&nbsp; kernel<font color="#ff0000">-&gt;</font>machine<font color="#ff0000">-&gt;</font>WriteRegister<font color="#ff0000">(</font>PrevPCReg</font><font color="#ff0000" size="2">,</font><font  size="2">func-4<font color="#ff0000">);</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; kernel<font color="#ff0000">-&gt;</font>machine<font color="#ff0000">-&gt;</font>WriteRegister<font color="#ff0000">(</font></font><font  size="2">PCReg<font color="#ff0000">,</font>func<font color="#ff0000">);</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; kernel<font color="#ff0000">-&gt;</font>machine<font color="#ff0000">-&gt;</font>WriteRegister<font color="#ff0000">(</font></font><font  size="2">NextPCReg</font><font color="#ff0000" size="2">,</font><font  size="2">func+4<font color="#ff0000">);</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; kernel<font color="#ff0000">-&gt;</font>machine<font color="#ff0000">-&gt;</font></font><font  size="2">Run<font color="#ff0000">();</font><br  />
+<font color="#ff0000">}</font><br  />
+<font color="#6aa84f">#endif</font></font><br  />
+SC_ThreadFork就是创建一个新Thread（名称是原Thread名称连接上起始地址），然后用上述函数调用Fork。<br  />
+<h2>
+  六、程序运行结果</h2>
+现在我们已经有了一个抢占式优先级调度器，也有了可以创建线程、修改优先级的系统调用，可以测试这个程序了。<br  />
+<h3  style="TEXT-ALIGN:center">
+  ㈠测试用例：sunny.c</h3>
+一个没有实际意义(dummy)的小程序，总共会有4个线程，还有很多纯粹浪费(消耗)时间的for循环。<br  />
+<font  size="2"><font color="#6aa84f">#include &quot;syscall.h&quot;</font><br  />
+<br  />
+<font color="#0000ff">void</font> t3<font color="#ff0000">() {</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#0000ff">int</font> i<font color="#ff0000">;</font><br  />
+&nbsp;&nbsp;&nbsp; SetPriority<font color="#ff0000">(</font><font color="#ff00ff">60</font><font color="#ff0000">);</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#0000ff">for</font> <font color="#ff0000">(</font>i<font color="#ff0000">=</font><font color="#ff00ff">0</font><font color="#ff0000">;</font>i<font color="#ff0000">&lt;</font><font color="#ff00ff">3000</font><font color="#ff0000">;++</font>i<font color="#ff0000">);</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; SetPriority<font color="#ff0000">(</font><font color="#ff00ff">200</font><font color="#ff0000">);</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; <font color="#0000ff">for</font> <font color="#ff0000">(</font>i<font color="#ff0000">=</font><font color="#ff00ff">0</font><font color="#ff0000">;</font>i<font color="#ff0000">&lt;</font><font color="#ff00ff">3000</font><font color="#ff0000">;++</font>i<font color="#ff0000">);</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; ThreadExit<font color="#ff0000">(</font><font color="#ff00ff">233</font><font color="#ff0000">);</font><br  />
+<font color="#ff0000">}</font><br  />
+<br  />
+</font><font  size="2"><font color="#0000ff">void</font> t1<font color="#ff0000">() {</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#0000ff">int</font> i<font color="#ff0000">;</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; ThreadFork<font color="#ff0000">((</font><font color="#0000ff">void</font><font color="#ff0000">*)</font>t3<font color="#ff0000">);</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; <font color="#0000ff">for</font> <font color="#ff0000">(</font>i<font color="#ff0000">=</font><font color="#ff00ff">0</font><font color="#ff0000">;</font>i<font color="#ff0000">&lt;</font><font color="#ff00ff">600</font><font color="#ff0000">;++</font>i<font color="#ff0000">)</font></font><font color="#ff0000" size="2"> {</font><font  size="2"><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000ff">if</font> <font color="#ff0000">(</font>i<font color="#ff0000">%</font><font color="#ff00ff">50</font><font color="#ff0000">==</font><font color="#ff00ff">0</font><font color="#ff0000">)</font> ThreadYield<font color="#ff0000">();</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; ThreadExit<font color="#ff0000">(</font><font color="#ff00ff">111</font><font color="#ff0000">);</font><br  />
+<font color="#ff0000">}</font><br  />
+<br  />
+</font><font  size="2"><font color="#0000ff">void</font> t2<font color="#ff0000">() {</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#0000ff">int</font> i<font color="#ff0000">;</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; <font color="#0000ff">for</font> <font color="#ff0000">(</font>i<font color="#ff0000">=</font><font color="#ff00ff">0</font><font color="#ff0000">;</font>i<font color="#ff0000">&lt;</font><font color="#ff00ff">800</font><font color="#ff0000">;++</font>i<font color="#ff0000">)</font></font> <font  size="2"><font color="#0000ff">if</font> <font color="#ff0000">(</font>i<font color="#ff0000">%</font><font color="#ff00ff">100</font><font color="#ff0000">==</font><font color="#ff00ff">0</font><font color="#ff0000">)</font> Clock<font color="#ff0000">();</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; ThreadExit<font color="#ff0000">(</font><font color="#ff00ff">22</font><font color="#ff0000">);</font><br  />
+<font color="#ff0000">}</font><br  />
+<br  />
+</font><font  size="2"><font color="#0000ff">void</font> last<font color="#ff0000">() {</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#0000ff">int</font> i<font color="#ff0000">;</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; SetPriority<font color="#ff0000">(</font><font color="#ff00ff">255</font><font color="#ff0000">);</font><br  />
+&nbsp;&nbsp;&nbsp; ThreadYield<font color="#ff0000">();</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; <font color="#0000ff">for</font> <font color="#ff0000">(</font>i<font color="#ff0000">=</font><font color="#ff00ff">0</font><font color="#ff0000">;</font>i<font color="#ff0000">&lt;</font><font color="#ff00ff">10000</font><font color="#ff0000">;++</font>i<font color="#ff0000">)</font></font><font color="#ff0000" size="2">;</font><font  size="2"><br  />
+&nbsp;&nbsp;&nbsp; Halt<font color="#ff0000">();</font><br  />
+</font><font  size="2"><font color="#ff0000">}</font><br  />
+<br  />
+</font><font  size="2"><font color="#0000ff">void</font> main<font color="#ff0000">() {</font><br  />
+&nbsp;&nbsp;&nbsp; <font color="#0000ff">int</font> i<font color="#ff0000">;</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; ThreadFork<font color="#ff0000">((</font><font color="#0000ff">void</font><font color="#ff0000">*)</font>last<font color="#ff0000">);</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; <font color="#0000ff">for</font> <font color="#ff0000">(</font>i<font color="#ff0000">=</font><font color="#ff00ff">0</font><font color="#ff0000">;</font>i<font color="#ff0000">&lt;</font><font color="#ff00ff">1000</font><font color="#ff0000">;++</font>i<font color="#ff0000">)</font></font><font color="#ff0000" size="2">;</font><font  size="2"><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; ThreadFork<font color="#ff0000">((</font><font color="#0000ff">void</font><font color="#ff0000">*)</font>t1<font color="#ff0000">);</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; <font color="#0000ff">for</font> <font color="#ff0000">(</font>i<font color="#ff0000">=</font><font color="#ff00ff">0</font><font color="#ff0000">;</font>i<font color="#ff0000">&lt;</font><font color="#ff00ff">1000</font><font color="#ff0000">;++</font>i<font color="#ff0000">)</font></font><font color="#ff0000" size="2">;</font><font  size="2"><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; ThreadFork<font color="#ff0000">((</font><font color="#0000ff">void</font><font color="#ff0000">*)</font>t2<font color="#ff0000">);</font><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; <font color="#0000ff">for</font> <font color="#ff0000">(</font>i<font color="#ff0000">=</font><font color="#ff00ff">0</font><font color="#ff0000">;</font>i<font color="#ff0000">&lt;</font><font color="#ff00ff">100</font><font color="#ff0000">;++</font>i<font color="#ff0000">)</font></font><font color="#ff0000" size="2">;</font><font  size="2"><br  />
+</font><font  size="2">&nbsp;&nbsp;&nbsp; ThreadExit<font color="#ff0000">(</font><font color="#ff00ff">64</font><font color="#ff0000">);</font><br  />
+<font color="#ff0000">}</font></font><br  />
+为了能看到sunny.c对应的汇编指令，还在test/Makefile中增加了一条规则：<br  />
+<font  size="2"><font color="#ff0000">sunny.a:</font> sunny.c<br  />
+&nbsp;&nbsp;&nbsp; <font color="#0000ff">$(CC)</font> -S -c <font color="#0000ff">$(INCDIR)</font> -c $&lt; -o $@</font><br  />
+这样只需执行make sunny.a就可以在sunny.a文件中看到汇编指令了，调试时可以作参考。<br  />
+<h3  style="TEXT-ALIGN:center">
+  ㈡执行测试用例</h3>
+为了方便的编译和执行测试用例，创建了几个shell脚本。<br  />
+工作时只需先cd到test/目录，然后：<br  />
+<ul>
+  <li>
+    ./build，这个脚本会cd到build.linux目录，执行make，然后cd回来  </li>
+  <li>
+    ./run，这个脚本根据预设参数执行sunny.noff  </li>
+  <li>
+    ./runlog，这个脚本根据预设参数执行sunny.noff，把stdout和stderr重定向到output.txt文件里  </li>
+  <li>
+    make，是一个标准命令，编译测试用例<br  />
+  </li>
+</ul>
+其中runlog的代码如下：<br  />
+<font  size="2">../build.linux/nachos -d tu -x sunny.noff &gt; output.txt 2&gt;&amp;1</font><br  />
+这是以带调试信息的方式启动nachos并执行sunny.noff测试用例，调试信息选择dbgThread和dbgSys两种<br  />
+执行一次./runlog，就可以获得输出结果了！<br  />
+<h3  style="TEXT-ALIGN:center">
+  ㈢结果分析</h3>
+查看output.txt中的输出，真的非常……长……长……长啊（请读者注意看我标了颜色的部分，其他一扫而过）：<br  />
+<br  />
+<font  size="2">Entering main<br  />
+<br  />
+<br  />
+tests summary: ok:0<br  />
+Forking thread: postal worker f(a): 134617820 0x8070690<br  />
+Putting thread on ready list: postal worker priority=128<br  />
+########################################<br  />
+Scheduler readyList contents:<br  />
+Thread postal worker priority=128 status=READY<br  />
+Scheduler allThreadsList contents:<br  />
+Thread postal worker priority=128 status=READY<br  />
+########################################<br  />
+</font><font color="#0000ff">Received Exception 1 type: 12<br  />
+<br  />
+Thread main fork 748<br  />
+</font><font color="#ff9900">main函数正在fork线程t1，线程名称是main748<br  />
+</font>Forking thread: main748 f(a): 134596188 0x2ec<br  />
+<font color="#0000ff">Putting thread on ready list: main748 priority=128<br  />
+</font><font color="#ff9900">新线程的优先级总是128<br  />
+</font>########################################<br  />
+Scheduler readyList contents:<br  />
+Thread postal worker priority=128 status=READY<br  />
+Thread main748 priority=128 status=READY<br  />
+Scheduler allThreadsList contents:<br  />
+Thread postal worker priority=128 status=READY<br  />
+Thread main priority=128 status=RUNNING<br  />
+Thread main748 priority=128 status=READY<br  />
+########################################<br  />
+<font color="#0000ff">Thread main used up its time, inc priority to 129<br  />
+</font><font color="#ff9900">线程main在循环中用完了它的时间片，优先级降低了<br  />
+</font><font color="#0000ff">Current thread does not have highest priority, yield.<br  />
+</font><font color="#ff9900">现在main的优先级129低于main748的优先级128，所以main被剥夺<br  />
+</font>Yielding thread: main<br  />
+<font  size="2">Putting thread on ready list: main priority=129<br  />
+########################################<br  />
+Scheduler readyList contents:<br  />
+Thread main748 priority=128 status=READY<br  />
+Thread main priority=129 status=READY<br  />
+Scheduler allThreadsList contents:<br  />
+Thread postal worker priority=128 status=READY<br  />
+Thread main priority=129 status=READY<br  />
+Thread main748 priority=128 status=READY<br  />
+########################################<br  />
+</font>Switching from: main to: postal worker<br  />
+Beginning thread: postal worker<br  />
+<font color="#0000ff">Sleeping thread: postal worker<br  />
+</font><font color="#ff9900">线程被阻塞，优先级不会改变<br  />
+</font>Switching from: postal worker to: main748<br  />
+Beginning thread: main748<br  />
+NoffThread main748 start at 748<br  />
+<font color="#0000ff">Received Exception 1 type: 51<br  />
+<br  />
+main748 sets its priority from 128 to 255, takes effect on next scheduler operation<br  />
+</font><font color="#ff9900">main748使用SC_SetPriority系统调用调整了自己的优先级<br  />
+</font><font color="#0000ff">Received Exception 1 type: 13<br  />
+<br  />
+Thread main748 yield<br  />
+Yielding thread: main748<br  />
+Putting thread on ready list: main748 priority=255<br  />
+</font><font color="#ff9900">main748使用SC_ThreadYield主动放弃CPU，优先级不变（仍然是它自己设定的255，没有增加）<br  />
+</font> <font  size="2">########################################<br  />
+Scheduler readyList contents:<br  />
+Thread main748 priority=255 status=READY<br  />
+Scheduler allThreadsList contents:<br  />
+Thread postal worker priority=128 status=BLOCKED<br  />
+Thread main priority=129 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+########################################<br  />
+Switching from: main748 to: main<br  />
+Now in thread: main<br  />
+</font>Received Exception 1 type: 12<br  />
+<br  />
+Thread main fork 480<br  />
+Forking thread: main480 f(a): 134596188 0x1e0<br  />
+Putting thread on ready list: main480 priority=128<br  />
+<font color="#0000ff">Newly-ready thread main480(priority128) &lt; running thread main(129), yield and switch<br  />
+</font><font color="#ff9900">创建的新线程main480优先级128，高于当前main线程优先级129，立即执行调度<br  />
+</font>Yielding thread: main<br  />
+<font color="#0000ff">Putting thread on ready list: main priority=129<br  />
+########################################<br  />
+Scheduler readyList contents:<br  />
+Thread main priority=129 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+</font><font color="#ff9900">把main（优先级129）放入readyList列表时，总是排在优先级最低的main748之前<br  />
+</font>Scheduler allThreadsList contents:<br  />
+Thread postal worker priority=128 status=BLOCKED<br  />
+Thread main priority=129 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+Thread main480 priority=128 status=READY<br  />
+########################################<br  />
+Switching from: main to: main480<br  />
+Beginning thread: main480<br  />
+<font color="#0000ff">NoffThread main480 start at 480<br  />
+</font><font color="#ff9900">NoffThread就是用Linux函数启动MIPS线程<br  />
+</font>Received Exception 1 type: 12<br  />
+<br  />
+Thread main480 fork 400<br  />
+Forking thread: main480400 f(a): 134596188 0x190<br  />
+<font color="#0000ff">Putting thread on ready list: main480400 priority=128<br  />
+</font><font color="#ff9900">当前线程main480的优先级128与新线程main480400的优先级128相同，所以继续执行当前线程<br  />
+</font><font  size="2">########################################<br  />
+Scheduler readyList contents:<br  />
+Thread main480400 priority=128 status=READY<br  />
+Thread main priority=129 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+Scheduler allThreadsList contents:<br  />
+Thread postal worker priority=128 status=BLOCKED<br  />
+Thread main priority=129 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+Thread main480 priority=128 status=RUNNING<br  />
+Thread main480400 priority=128 status=READY<br  />
+########################################<br  />
+Received Exception 1 type: 13<br  />
+<br  />
+Thread main480 yield<br  />
+Yielding thread: main480<br  />
+Putting thread on ready list: main480 priority=128<br  />
+########################################<br  />
+Scheduler readyList contents:<br  />
+Thread main480 priority=128 status=READY<br  />
+Thread main priority=129 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+Scheduler allThreadsList contents:<br  />
+Thread postal worker priority=128 status=BLOCKED<br  />
+Thread main priority=129 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+Thread main480 priority=128 status=READY<br  />
+Thread main480400 priority=128 status=READY<br  />
+########################################<br  />
+Switching from: main480 to: main480400<br  />
+Beginning thread: main480400<br  />
+NoffThread main480400 start at 400<br  />
+</font>Received Exception 1 type: 51<br  />
+<br  />
+main480400 sets its priority from 128 to 60, takes effect on next scheduler operation<br  />
+<font color="#0000ff">Thread main480400 just run, no round-robin<br  />
+</font><font color="#ff9900">刚刚开始执行，可能没有用完一整个时间片，所以继续执行<br  />
+</font><font color="#0000ff">Thread main480400 used up its time, inc priority to 61<br  />
+Current thread has highest priority, go on.<br  />
+</font><font color="#ff9900">时间片用完了，降低优先级；但是优先级仍然是最高的，所以继续执行<br  />
+</font> Thread main480400 used up its time, inc priority to 62<br  />
+Current thread has highest priority, go on.<br  />
+Received Exception 1 type: 51<br  />
+<br  />
+main480400 sets its priority from 62 to 200, takes effect on next scheduler operation<br  />
+Thread main480400 used up its time, inc priority to 201<br  />
+Current thread does not have highest priority, yield.<br  />
+Yielding thread: main480400<br  />
+Putting thread on ready list: main480400 priority=201<br  />
+########################################<br  />
+Scheduler readyList contents:<br  />
+Thread main priority=129 status=READY<br  />
+Thread main480400 priority=201 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+Scheduler allThreadsList contents:<br  />
+Thread postal worker priority=128 status=BLOCKED<br  />
+Thread main priority=129 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+Thread main480 priority=128 status=READY<br  />
+Thread main480400 priority=201 status=READY<br  />
+########################################<br  />
+Switching from: main480400 to: main480<br  />
+Now in thread: main480<br  />
+<font color="#0000ff">Received Exception 1 type: 15<br  />
+<br  />
+Thread main480 exit with code 233<br  />
+Finishing thread: main480<br  />
+Sleeping thread: main480<br  />
+Switching from: main480 to: main<br  />
+Now in thread: main<br  />
+Deleting thread: main480<br  />
+</font><font color="#ff9900">main480执行完毕了（通过SC_ThreadExit系统调用退出），被删除，bye-bye &amp; wave<br  />
+</font><font  size="2">########################################<br  />
+Scheduler readyList contents:<br  />
+Thread main480400 priority=201 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+Scheduler allThreadsList contents:<br  />
+Thread postal worker priority=128 status=BLOCKED<br  />
+Thread main priority=129 status=RUNNING<br  />
+Thread main748 priority=255 status=READY<br  />
+Thread main480400 priority=201 status=READY<br  />
+########################################<br  />
+########################################<br  />
+Scheduler readyList contents:<br  />
+Thread main480400 priority=201 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+Scheduler allThreadsList contents:<br  />
+Thread postal worker priority=128 status=BLOCKED<br  />
+Thread main priority=129 status=RUNNING<br  />
+Thread main748 priority=255 status=READY<br  />
+Thread main480400 priority=201 status=READY<br  />
+########################################<br  />
+Thread main just run, no round-robin<br  />
+Received Exception 1 type: 12<br  />
+<br  />
+Thread main fork 620<br  />
+</font>Forking thread: main620 f(a): 134596188 0x26c<br  />
+Putting thread on ready list: main620 priority=128<br  />
+<font color="#0000ff">Newly-ready thread main620(priority128) &lt; running thread main(129), yield and switch<br  />
+</font><font color="#ff9900">这部分和刚才一样的<br  />
+</font>Yielding thread: main<br  />
+Putting thread on ready list: main priority=129<br  />
+########################################<br  />
+<font color="#0000ff">Scheduler readyList contents:<br  />
+Thread main priority=129 status=READY<br  />
+Thread main480400 priority=201 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+</font><font color="#ff9900">为什么没有后面执行的main620？因为已经被FindNextToRun取走了<br  />
+</font><font  size="2">Scheduler allThreadsList contents:<br  />
+Thread postal worker priority=128 status=BLOCKED<br  />
+Thread main priority=129 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+Thread main480400 priority=201 status=READY<br  />
+Thread main620 priority=128 status=READY<br  />
+########################################<br  />
+Switching from: main to: main620<br  />
+</font>Beginning thread: main620<br  />
+NoffThread main620 start at 620<br  />
+<font color="#0000ff">Received Exception 1 type: 20<br  />
+<br  />
+main620 asks current clock 12066<br  />
+</font><font color="#ff9900">询问时钟的系统调用<br  />
+</font><font  size="2">Received Exception 1 type: 20<br  />
+<br  />
+main620 asks current clock 13572<br  />
+Thread main620 just run, no round-robin<br  />
+Received Exception 1 type: 20<br  />
+<br  />
+main620 asks current clock 15078<br  />
+Thread main620 used up its time, inc priority to 129<br  />
+Current thread does not have highest priority, yield.<br  />
+Yielding thread: main620<br  />
+Putting thread on ready list: main620 priority=129<br  />
+########################################<br  />
+Scheduler readyList contents:<br  />
+Thread main620 priority=129 status=READY<br  />
+Thread main480400 priority=201 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+Scheduler allThreadsList contents:<br  />
+Thread postal worker priority=128 status=BLOCKED<br  />
+Thread main priority=129 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+Thread main480400 priority=201 status=READY<br  />
+Thread main620 priority=129 status=READY<br  />
+########################################<br  />
+Switching from: main620 to: main<br  />
+Now in thread: main<br  />
+########################################<br  />
+Scheduler readyList contents:<br  />
+Thread main620 priority=129 status=READY<br  />
+Thread main480400 priority=201 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+Scheduler allThreadsList contents:<br  />
+Thread postal worker priority=128 status=BLOCKED<br  />
+Thread main priority=129 status=RUNNING<br  />
+Thread main748 priority=255 status=READY<br  />
+Thread main480400 priority=201 status=READY<br  />
+Thread main620 priority=129 status=READY<br  />
+########################################<br  />
+</font><font color="#0000ff">Received Exception 1 type: 15<br  />
+<br  />
+Thread main exit with code 64<br  />
+Finishing thread: main<br  />
+Sleeping thread: main<br  />
+Switching from: main to: main620<br  />
+Now in thread: main620<br  />
+Deleting thread: main<br  />
+</font><font color="#ff9900">又一位朋友离开了我们，wave~<br  />
+</font><font  size="2">########################################<br  />
+Scheduler readyList contents:<br  />
+Thread main480400 priority=201 status=READY<br  />
+Thread main748 priority=255 status=READY<br  />
+Scheduler allThreadsList contents:<br  />
+Thread postal worker priority=128 status=BLOCKED<br  />
+Thread main748 priority=255 status=READY<br  />
+Thread main480400 priority=201 status=READY<br  />
+Thread main620 priority=129 status=RUNNING<br  />
+########################################<br  />
+Received Exception 1 type: 15<br  />
+<br  />
+Thread main620 exit with code 64<br  />
+Finishing thread: main620<br  />
+Sleeping thread: main620<br  />
+Switching from: main620 to: main480400<br  />
+Now in thread: main480400<br  />
+Deleting thread: main620<br  />
+########################################<br  />
+Scheduler readyList contents:<br  />
+Thread main748 priority=255 status=READY<br  />
+Scheduler allThreadsList contents:<br  />
+Thread postal worker priority=128 status=BLOCKED<br  />
+Thread main748 priority=255 status=READY<br  />
+Thread main480400 priority=201 status=RUNNING<br  />
+########################################<br  />
+Received Exception 1 type: 15<br  />
+<br  />
+Thread main480400 exit with code 64<br  />
+Finishing thread: main480400<br  />
+Sleeping thread: main480400<br  />
+Switching from: main480400 to: main748<br  />
+Now in thread: main748<br  />
+Deleting thread: main480400<br  />
+</font>########################################<br  />
+Scheduler readyList contents:<br  />
+Scheduler allThreadsList contents:<br  />
+Thread postal worker priority=128 status=BLOCKED<br  />
+Thread main748 priority=255 status=RUNNING<br  />
+########################################<br  />
+<font color="#0000ff">Received Exception 1 type: 1<br  />
+<br  />
+Thread main748 call Exit with code 0<br  />
+Machine halting!<br  />
+</font><font color="#ff9900">main748线程要求关闭整个nachos，曲终人尽，see you next time!<br  />
+</font><font color="#0000ff">Ticks: total 16258, idle 0, system 150, user 16108<br  />
+</font><font color="#ff9900">nachos的统计信息，据说system ticks不准的<br  />
+</font>Disk I/O: reads 0, writes 0<br  />
+Console I/O: reads 0, writes 0<br  />
+Paging: faults 0<br  />
+Network I/O: packets received 0, sent 0<br  />
+<br  />
+上述测试用例的输出结果展现了大部分设计的功能，输出及注释已经明确的体现了本实验设计的正确性。<br  />
+本测试用例及输出没能体现的特性有：<br  />
+<ol>
+  <li>
+    某个priority达到255并需继续增加时，所有线程的priority乘以0.75  </li>
+  <li>
+    有大量线程时调度器的时间效率  </li>
+  <li>
+    调度器的空间效率<br  />
+  </li>
+</ol>
+<h2>
+  七、开发小结</h2>
+<ul>
+  <li>
+    nachos是一个简单的“虚拟机+操作系统”，虽然实质上它并不是操作系统，但是很多原理都是相通的  </li>
+  <li>
+    nachos设计时间较早，有一些兼容性问题，但是很容易解决，也不需要特意去弄什么RedHat9（据说里面的GEdit没有代码高亮~）或gcc2.95  </li>
+  <li>
+    网上的中文文档很少，基本上是看英文的，事实上英文文档质量远好于中文文档。认真读读<a href="http://www.cs.duke.edu/%7Enarten/110/nachos/main/main.html"  title="Roadmap">Roadmap</a>和<a href="http://people.cs.uchicago.edu/%7Eodonnell/OData/Courses/CS230/NACHOS/reading-code.html"  title="Guide to reading the NACHOS source">Guide to reading the NACHOS source</a>，然后认真阅读源码（Code::Blocks的搜索功能很有用），从main开始一路跟踪进去，理解了就容易做了<br  />
+  </li>
+</ul>
+<h2>
+  八、参考资料</h2>
+<ol>
+  <li>
+    <a href="http://www.cs.duke.edu/%7Enarten/110/nachos/main/main.html"  title="A Road Map Through Nachos">A Road Map Through Nachos</a>&nbsp;概要性介绍了Nachos源码的各个部分：机器、线程、用户进程、文件系统……  </li>
+  <li>
+    <a href="http://people.cs.uchicago.edu/%7Eodonnell/OData/Courses/CS230/NACHOS/reading-code.html"  title="Guide to reading the NACHOS source">Guide to reading the NACHOS source</a> 深入阅读线程调度与启动、系统调用、地址转换、用户态地址空间部分源码  </li>
+</ol>

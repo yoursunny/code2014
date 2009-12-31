@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>你的阳光 yoursunny.com</title>
+<link rel="alternate" type="application/atom+xml" href="http://feed.feedsky.com/sunnyboy" />
+<meta name="description" content="阳光男孩个人网站，把阳光的温暖分享给你 || 阳光男孩精神：乐观 正直 善良 大度 勤劳 勇敢" />
+<link rel="stylesheet" type="text/css" href="/images/9/" />
+<script type="text/javascript" src="/lib/9.js"></script>
+<style type="text/css">/*<![CDATA[*/
+#fresh { line-height:150%; }
+#fresh .cate,#fresh a { font-weight:bold; }
+#share { font-size:90%; }
+#fresh .desc,#fresh .date,#fav .desc,#fav .cate,#jiwai .date,#jiwai .device { font-size:80%; }
+#fav .cate { color:#f63; }
+#jiwai .date { color:#390; }
+#jiwai .device { color:#066; }
+#profile dd { display:inline; font-size:97%; }
+/*]]>*/</style>
+</head><body>
+
+<div class="header">
+<h2><a href="http://yoursunny.com/">你的阳光</a></h2>
+<ul>
+<li><a href="http://m.yoursunny.com/"><span>个人</span></a></li>
+<li><a href="http://study.yoursunny.com/"><span>学习</span></a></li>
+<li><a href="http://www.65536.cn/"><span>技术</span></a></li>
+<li><a href="http://www.65536.cn/work/"><span>作品</span></a></li>
+</ul>
+<ol>
+<li><a href="/">你的阳光</a></li>
+<li><span>首页</span></li>
+</ol>
+</div>
+
+<div class="content"><div class="main">
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">你的阳光 yoursunny.com</h1>
+<div class="p-body">
+<ul id="fresh" class="anu">
+<!-- FRESH --></ul>
+</div></div></div>
+
+<div class="p"><div class="p-wrap">
+<h2 class="tit">收藏 &amp; 分享</h2>
+<div id="share" class="p-body anu">
+</div></div></div>
+
+</div><div class="sidebar">
+
+<div class="p"><div class="p-wrap">
+<h3 class="tit">阳光男孩</h3>
+<div id="profile" class="p-body anu">
+<div class="center"><a href="http://m.yoursunny.com/" rel="me"><img src="images/photo.jpg" width="180" height="122" alt="阳光男孩的照片" class="border"/></a></div>
+<ul>
+<li><dl><dt>阳光男孩精神</dt> <dd>乐观</dd> <dd>正直</dd> <dd>善良</dd> <dd>大度</dd> <dd>勤劳</dd> <dd>勇敢</dd></dl></li>
+<li><dl><dt>我的其他据点</dt>
+<dd><a href="http://blog.yoursunny.com/" rel="me external">博客</a></dd>
+<dd><a href="http://xiaonei.com/profile.do?id=200037590" rel="me external" onclick="c('/m/my.xiaonei')">校内</a></dd>
+<dd><a href="http://www.hainei.com/account?a=urlreg&amp;r=H5c7QIV1XtrDr0IHhFc_nA" rel="me external" onclick="c('/m/my.hainei')">海内</a></dd>
+<dd><a href="http://jiwai.de/sunnyboy/" rel="me external" onclick="c('/m/my.jiwai')">叽歪</a></dd>
+<dd><a href="http://www.facebook.com/profile.php?id=721293826" rel="me external" onclick="c('/m/my.facebook')">Facebook</a></dd>
+</dl></li>
+</ul>
+</div></div></div>
+
+<div class="p"><div class="p-wrap">
+<h3 class="tit">友情链接</h3>
+<div class="p-body">
+<ul>
+<li><a href="http://www.mcgeek.cn/" rel="friend colleague external" onclick="c('/m/friend.mcgeek')">MC Geek's Blog</a></li>
+<li><a href="http://cnm.sjtu.edu.cn/forum/?fromuid=157" rel="nofollow" onclick="c('/m/friend.cnmforum')">CNM在线</a></li>
+</ul>
+</div></div></div>
+
+<div class="ad-sidebar"></div>
+
+</div></div>
+
+<div class="footer">
+<p class="copyright">&copy;2006-2009 yoursunny.com, All Rights Reserved</p>
+<ul class="links">
+<li><a href="/m/about.htm">关于本站</a></li>
+<li><a href="/m/contact.htm">联系方式</a></li>
+<li><a href="/m/sitemap.htm">网站地图</a></li>
+<li><a href="http://www.91index.com/" rel="external">网站管家</a></li>
+<li><a href="http://www.miibeian.gov.cn/" rel="external nofollow">沪ICP备05055172号</a></li>
+</ul>
+</div>
+
+<script type="text/javascript">//<![CDATA[
+WebSite.bannerAd=false;
+Event.onReady(function(){
+	WebSite.loadJS('fav','/?a=fav','null',null);
+	WebSite.loadJS('jiwai','http://api.jiwai.de/statuses/user_timeline/27561.json?count=3&callback=jiwai_show','null',null);
+});
+function jiwai_show(o) {
+	var parse_date=function(d) {//解析形如Thu Nov 27 20:10:53 +0800 2008的日期
+		var m=/^\w+\s(\w+)\s(\d+)\s(\d+):(\d+):(\d+)\s[+\-]\d+\s(\d+)$/.exec(d);
+		return new Date(m[6],['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].indexOf(m[1].capitalize()),m[2],m[3],m[4],m[5]);
+	};
+	$('share').insert({top:'<ul id="jiwai">'+o.collect(function(i){
+		var date=parse_date(i.created_at);
+		return '<li><span class="date">%2-%3 %4:%5</span> <span class="text">%1</span> <span class="device">via %6</span></li>'.format(i.text,(date.getMonth()+1).toPaddedString(2),date.getDate().toPaddedString(2),date.getHours().toPaddedString(2),date.getMinutes().toPaddedString(2),i.device);
+	}).join('')+'</ul>'});
+}
+//]]></script>
+</body></html>

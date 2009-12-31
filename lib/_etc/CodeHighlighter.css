@@ -1,0 +1,19 @@
+.CodeHighlighter.javascript .comment{color:green;}
+.CodeHighlighter.javascript .string{color:teal;}
+.CodeHighlighter.javascript .keywords{color:navy;}
+.CodeHighlighter.javascript .global{color:blue;}
+.CodeHighlighter.javascript .brackets{color:navy;}
+.CodeHighlighter.css .comment{color:gray;}
+.CodeHighlighter.css .properties{color:navy;}
+.CodeHighlighter.css .selectors{color:maroon;font-weight:bold;}
+.CodeHighlighter.css .units{color:red;}
+.CodeHighlighter.css .urls{color:green;}
+.CodeHighlighter.html .tag{color:purple;}
+.CodeHighlighter.html .comment{color:gray;font-style:italic;}
+.CodeHighlighter.html .string{color:navy;}
+.CodeHighlighter.html .doctype{color:teal;}
+.CodeHighlighter.php .inlinetags {color:navy;font-weight:bold;}
+.CodeHighlighter.php .string {color:seagreen;}
+.CodeHighlighter.php .comment {color:darkorange;}
+.CodeHighlighter.php .var {color:royalblue;font-style:italic;}
+.CodeHighlighter.php .reserved {color:purple;}

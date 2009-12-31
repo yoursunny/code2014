@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Windows Live Messenger</title>
+<script type="text/javascript" src="/lib/9.js?no-web,jquery"></script>
+<script type="text/javascript">//<![CDATA[
+(function($){
+
+var init_params={};
+for (var init_param=location.hash.substr(1).split('&'),i=0;i<init_param.length;++i) {
+	var p=init_param[i].split('=',2);
+	init_params[p[0]]=decodeURIComponent(p[1]);
+}
+function invoke() {//call a method inside signin iframe
+	var p=$.makeArray(arguments),func=p.shift();
+	var f=$('#signin').get(0).contentWindow.talk;
+	return f[func].apply(f,p);
+};
+window.talk={
+	onIframeReady:function() {
+		invoke('CreateSignInControl');
+	},
+	onSignIn:function() {
+		$('#register').hide();
+		$('#status').val(invoke('GetMyPresence').Status);
+		for (var uid in Friends) {
+			var d=Friends[uid];
+			if (d.u==Me.u || !d.u) continue;
+			invoke('AddContactIfNotExist',d.u,'来自'+init_params.appname+'的'+Me.nick+'想与你聊天');
+		}
+		invoke('SetMyDisplayName',Me.nick);
+	},
+	onSignOut:function() {
+		$('#status').val('offline');
+		$('#contacts').empty();
+	},
+	onContactInit:function(a) {
+		ContactNames={};
+		var ul=$('<ul/>');
+		$.each(a,function(){
+			var n=this;
+			var c=invoke('GetContact',n);
+			var li=$('<li/>').text(c.DisplayName)
+				.attr('title',c.Status+' '+n)
+				.data('contact-name',n).data('contact',c);
+			ContactNames[n]=li;
+			ul.append(li);
+		});
+		$('#contacts').empty().append(ul);
+	},
+	onContactOnline:function(a) {
+		$.each(a,function(){talk.onContactChanged(this);});
+	},
+	onContactOffline:function(a) {
+		$.each(a,function(){talk.onContactChanged(this);});
+	},
+	onContactPending:function(address) {
+		for (var uid in Friends) {
+			if (Friends[uid].u==address) invoke('ProcessPendingContact',address,'accept');
+		}
+	},
+	onContactChanged:function(n) {
+		var c=invoke('GetContact',n);
+		var li=ContactNames[n];
+		if (!li) ContactNames[n]=li=$('<li/>').appendTo('#contacts ul');
+		li.text(c.DisplayName).attr('title',c.Status+' '+n)
+			.data('contact-name',n).data('contact',c);
+	},
+	QuickRegister:function() {
+		$('#register').html('正在注册帐号，请稍候...');
+		$.getJSON(init_params.api+'?cb=?',{a:'create'},function(o){
+			var password='';
+			for (var i=0;i<8;++i) password+='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(Math.floor(Math.random()*26));
+			$.getJSON(o.register+'?cb=?',{u:o.u,p:password,v:o.v},function(r){
+				if (r=='OK') {
+					$('#register').html('注册完成，请在上面登录<br/>帐号：<br/>'+o.u+'<br/>初始密码：'+password);
+					Me.u=o.u;
+					$.getJSON(init_params.api+'?cb=?',{a:'bind',u:o.u},function(r){});
+				} else $('#register').html('快速注册失败');
+			})
+		});
+	},
+	ChangeStatus:function() {
+		var v=$('#status').val();
+		if (v=='offline') invoke('SignOut');
+		else invoke('SetMyStatus',v);
+	}
+};
+var ContactNames={};
+var Me={};
+var Friends={};
+$.getJSON(init_params.api+'?cb=?',{a:'me'},function(o){
+	Me=o;
+	if (!Me.uid) return;
+	if (Me.u==null) {
+		$('#register').html('你可以在上面登录已有的Windows Live ID作为你在'+init_params.appname+'的聊天帐号，或者<input type="button" value="快速注册新帐号" onclick="talk.QuickRegister()"/>');
+	} else {
+		$('#register').html('请登录聊天帐号：<br/>'+Me.u+'<br/>如已登录其他帐号，请“退出”后点击“帮助-更改帐号”并重新登录');
+	}
+	$.getJSON(init_params.api+'?cb=?',{a:'friends'},function(o){
+		Friends=o;
+	});
+
+});
+
+})(jQuery);
+//]]></script>
+<style type="text/css">/*<![CDATA[*/
+body { margin:0; padding:0; font-size:14px; line-height:18px; }
+#status { width:240px; }
+/*]]>*/</style>
+</head><body>
+<select id="status" onchange="talk.ChangeStatus()">
+<option value="online">联机</option>
+<option value="busy">忙碌</option>
+<option value="idle">空闲</option>
+<option value="beRightBack">马上回来</option>
+<option value="away">离开</option>
+<option value="inACall">通话中</option>
+<option value="outToLunch">外出就餐</option>
+<option value="appearOffline">隐身</option>
+<option value="offline" selected="selected">注销</option>
+</select>
+<iframe id="signin" src="signin.htm" width="240" height="100" frameborder="0" scrolling="no"></iframe>
+<div id="register"></div>
+<div id="contacts"></div>
+</body></html>

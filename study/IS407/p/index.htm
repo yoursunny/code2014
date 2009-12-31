@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE>现代密码学 样卷</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.0  (Win32)">
+	<META NAME="AUTHOR" CONTENT="sunny boy">
+	<META NAME="CREATED" CONTENT="20081107;10005800">
+	<META NAME="CHANGEDBY" CONTENT="sunny boy">
+	<META NAME="CHANGED" CONTENT="20081118;22020200">
+	<META NAME="Info 1" CONTENT="">
+	<META NAME="Info 2" CONTENT="">
+	<META NAME="Info 3" CONTENT="">
+	<META NAME="Info 4" CONTENT="">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 2cm }
+		P { margin-bottom: 0.21cm }
+		H2 { margin-bottom: 0.21cm }
+		H2.western { font-family: "Arial", sans-serif; font-size: 16pt }
+		H2.cjk { font-family: "宋体"; font-size: 16pt }
+		H2.ctl { font-family: "Tahoma"; font-size: 16pt }
+		A:link { so-language: zxx }
+	-->
+	</STYLE>
+<script type="text/javascript" src="/lib/9.js"></script>
+</HEAD>
+<BODY LANG="zh-CN" DIR="LTR">
+<P>
+<A HREF="http://yoursunny.com/study/IS407/">现代密码学</A> 样卷——可打印版本
+<A HREF="http://bbs.sjtu.edu.cn/file/IS/1227017173105680.odt">OpenOffice格式</A>
+<A HREF="http://bbs.sjtu.edu.cn/file/IS/1227017180112771.pdf">PDF格式</A>
+，
+<A HREF="http://bbs.sjtu.edu.cn/file/IS/1226131695311913.htm">恺撒密码加解密程序</A>
+<A HREF="http://bbs.sjtu.edu.cn/file/IS/1226220302111582.htm">Hill密码加解密程序</A>
+</P>
+<H1 STYLE="margin-bottom: 0cm"><FONT SIZE=6 STYLE="font-size: 26pt">现代密码学
+样卷</FONT></H1>
+<P STYLE="margin-bottom: 0cm">著作权所有，你的阳光学习频道
+<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><A HREF="http://study.yoursunny.com/">http://study.yoursunny.com</A>
+</SPAN></FONT>，保留所有权利</P>
+<P STYLE="margin-bottom: 0cm">允许转载，允许打印、复印，必须保留著作权声明</P>
+<P STYLE="margin-bottom: 0cm">如你发现技术错误，请联系作者，联系方式
+<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><A HREF="http://m.yoursunny.com/">http://m.yoursunny.com</A>
+</SPAN></FONT>
+</P>
+<P STYLE="margin-bottom: 0cm">题目中数值均为随机产生<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><A HREF="http://bbs.sjtu.edu.cn/bbscon?board=IS&amp;file=M.1225633522.A">http://bbs.sjtu.edu.cn/bbscon?board=IS&amp;file=M.1225633522.A</A></SPAN></FONT></P>
+<H2 CLASS="cjk">Ⅰ安全威胁与防护措施</H2>
+<P STYLE="margin-bottom: 0cm">⒈对安全的攻击，从信息流的角度可以分为<U>中断</U>、<U>截获</U>、<U>篡改</U>、<U>伪造</U>。</P>
+<P STYLE="margin-bottom: 0cm">⒉篡改攻击是一种<U>主动攻击</U>。</P>
+<H2 CLASS="cjk">Ⅱ古典加密</H2>
+<P STYLE="margin-bottom: 0cm">⒈用恺撒密码加密<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">the
+quick brown fox jumps over the lazy dog</SPAN></FONT>，密钥为<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">6</SPAN></FONT>。</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">znk
+waoiq hxuct lud pasvy ubkx znk rgfe jum</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0cm">⒉恺撒密码可以扩充为单字母随机替换，用于<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">26</SPAN></FONT>个英文字母时密钥空间是多大？</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">密钥空间是<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">26!</SPAN></FONT>。</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">a</SPAN></FONT>可以选择<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">26</SPAN></FONT>个字母的任何一个，<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">b</SPAN></FONT>在剩下<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">25</SPAN></FONT>个字母中选择……</P>
+<P STYLE="margin-bottom: 0cm">⒊为什么恺撒密码不安全？</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">密钥空间太小。</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">密文显示了明文的统计规律；例如已知明文为英语，密文足够长时，出现最多的密文字母一定是<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">e</SPAN></FONT>。</P>
+<P STYLE="margin-bottom: 0cm">⒋用<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">Hill</SPAN></FONT>密码加密<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">yoursunny</SPAN></FONT>，密钥为<IMG SRC="2b8fd195.gif" NAME="Object1" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=126 HEIGHT=63></P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">sgotjiqxo</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0cm">⒌用<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">Hill</SPAN></FONT>密码解密<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">idzugi</SPAN></FONT>，密钥为<IMG SRC="2b8fd195.gif" NAME="Object2" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=126 HEIGHT=63></P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">首先求出逆矩阵<IMG SRC="m7a9bc947.gif" NAME="Object3" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=138 HEIGHT=63>（从<IMG SRC="m1161d93e.gif" NAME="Object4" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=169 HEIGHT=63>起，作初等变换成<IMG SRC="3ed53ca2.gif" NAME="Object5" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=169 HEIGHT=63>）</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">然后解密得<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">sjtuis</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0cm">⒍分组长度为<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">3</SPAN></FONT>的<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">Hill</SPAN></FONT>密码，已知明文<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">bbssjtucn</SPAN></FONT>对应的密文是<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">ofwfmbwbb</SPAN></FONT>，破解密钥？</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">bbssjtucn=[1,1,18,18,9,19,20,2,13]</SPAN></FONT></P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">ofwfmbwbb=[14,5,22,5,12,1,22,1,1]</SPAN></FONT></P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">列出线性方程组<IMG SRC="9012ff7.gif" NAME="Object6" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=167 HEIGHT=187>，解得<IMG SRC="4d96f2ec.gif" NAME="Object7" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=119 HEIGHT=63></P>
+<H2 CLASS="cjk">Ⅲ分组加密</H2>
+<P STYLE="margin-bottom: 0cm">⒈解密密钥可以从加密密钥直接推出的密码算法是<U>对称密码算法</U>。</P>
+<P STYLE="margin-bottom: 0cm">⒉<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">Fiestel</SPAN></FONT>结构有<U>扩散</U>和<U>扰乱</U>的作用，为<U>统计分析</U>制造障碍</P>
+<P STYLE="margin-bottom: 0cm">⒊根据如图的<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">Fiestel</SPAN></FONT>结构解密框图，画出加密框图<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><BR><IMG SRC="2aba854c.png" NAME="graphics1" WIDTH=275 HEIGHT=230 BORDER=0></SPAN></FONT></P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm"><U>加密框图是<IMG SRC="599618cb.png" NAME="graphics2" ALIGN=BOTTOM WIDTH=266 HEIGHT=230 BORDER=0></U></P>
+<P STYLE="margin-bottom: 0cm">⒋求<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">P</SPAN></FONT>盒<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">[1
+7 5 2 4 3 6 9 10 8]</SPAN></FONT>的逆</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">[1
+4 6 5 3 7 2 10 8 9]</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0cm">⒌用<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">S-DES</SPAN></FONT>加密……，密钥为……，根据框图加密</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">略</P>
+<H2 CLASS="cjk">Ⅳ对称加密算法</H2>
+<P STYLE="margin-bottom: 0cm">⒈<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">DES</SPAN></FONT>算法的分组长度<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><U>64bit</U></SPAN></FONT>，密钥长度<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><U>56bit</U></SPAN></FONT>，分为<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><U>16</U></SPAN></FONT>轮；<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">IDEA</SPAN></FONT>算法的分组长度<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><U>64bit</U></SPAN></FONT>，密钥长度<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">128<U>bit</U></SPAN></FONT>，分为<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><U>8</U></SPAN></FONT>轮</P>
+<P STYLE="margin-bottom: 0cm">⒉如图的工作模式加密框图，画出对应的解密框图<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><BR></SPAN></FONT><BR>
+</P>
+<P STYLE="margin-bottom: 0cm"><IMG SRC="m398aec37.png" NAME="graphics3" ALIGN=BOTTOM WIDTH=478 HEIGHT=266 BORDER=0></P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">答案略</P>
+<P STYLE="margin-bottom: 0cm">⒊<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">IDEA<FONT COLOR="#ff0000">⊙</FONT></SPAN></FONT>运算的快速运算表示为<IMG SRC="41959c6e.gif" NAME="Object8" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=191 HEIGHT=43>，其中的<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">C<SUB>L</SUB></SPAN></FONT>、<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">C<SUB>H</SUB></SPAN></FONT>、<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">C<SUB>0</SUB></SPAN></FONT>是什么？</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm"><IMG SRC="175cb72f.png" NAME="graphics4" ALIGN=BOTTOM WIDTH=382 HEIGHT=125 BORDER=0><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><BR><A HREF="http://ieeexplore.ieee.org/iel5/6910/18613/00858836.pdf?arnumber=858836">http://ieeexplore.ieee.org/iel5/6910/18613/00858836.pdf?arnumber=858836</A></SPAN></FONT></P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm"><IMG SRC="m5cad4ab.png" NAME="graphics5" ALIGN=BOTTOM WIDTH=517 HEIGHT=111 BORDER=0><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><SPAN LANG="en-US"><BR></SPAN><A HREF="http://www.cqvip.com/QK/98180A/2006002/21840184.html">http://www.cqvip.com/QK/98180A/2006002/21840184.html</A></SPAN></FONT></P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><SPAN LANG="en-US">C</SPAN><SUB><SPAN LANG="en-US">L</SPAN></SUB><SPAN LANG="en-US">=ab
+mod 2</SPAN><SUP><SPAN LANG="en-US">n</SPAN></SUP></SPAN></FONT>，<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><SPAN LANG="en-US">C</SPAN><SUB><SPAN LANG="en-US">H</SPAN></SUB><SPAN LANG="en-US">=ab
+/ 2</SPAN><SUP><SPAN LANG="en-US">n</SPAN></SUP></SPAN></FONT>，<IMG SRC="6983321d.gif" NAME="Object9" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=150 HEIGHT=74></P>
+<P STYLE="margin-bottom: 0cm">⒋<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">AES</SPAN></FONT>，对<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">state</SPAN></FONT>矩阵的一列<IMG SRC="m42f2a7cf.gif" NAME="Object10" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=39 HEIGHT=80>作列混淆运算，<IMG SRC="m56143c85.gif" NAME="Object11" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=157 HEIGHT=20>，系数矩阵为<IMG SRC="51d70a65.gif" NAME="Object12" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=130 HEIGHT=84></P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">将这一列与系数矩阵在有限域上相乘，<IMG SRC="m28903a9f.gif" NAME="Object25" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=204 HEIGHT=84>（使用有限域上的加法）</P>
+<H2 CLASS="cjk">Ⅴ保密通讯</H2>
+<P STYLE="margin-bottom: 0cm">⒈链路加密的缺点是<U>报文多次加解密造成时延</U>，<U>交换机上出现明文</U>，<U>用户无法控制报文安全性</U>……</P>
+<P STYLE="margin-bottom: 0cm">⒉端到端加密的缺点是<U>不能隐藏通信流量</U>……</P>
+<H2 CLASS="cjk">Ⅵ公钥密码</H2>
+<P STYLE="margin-bottom: 0cm">⒈公钥密码比传统密码更安全，正确吗？</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">错误。任何加密算法的安全性依赖于密钥的长度和破译密文所需要的计算量。从抗密码分析的角度看，原则上不能说传统密码优于公钥密码，也不能说公钥密码优于传统密码。</P>
+<P STYLE="margin-bottom: 0cm">⒉公钥密码是一种通用的方法，传统密码已经过时，正确吗？</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">现有的公钥密码方法所需的计算量大，所以取代传统密码似乎不太可能。</P>
+<P STYLE="margin-bottom: 0cm">⒊什么是“陷门单向函数”？</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">满足下列<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">3</SPAN></FONT>个条件的函数<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">f</SPAN></FONT>，称为“陷门单向函数”：</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">⑴给定<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">x</SPAN></FONT>，容易计算<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">y=f(x)</SPAN></FONT></P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">⑵给定<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">y</SPAN></FONT>，计算<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">x</SPAN></FONT>使得<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">y=f(x)</SPAN></FONT>很困难</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">⑶存在“陷门信息”<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">δ</SPAN></FONT>；已知<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">δ</SPAN></FONT>时，给定<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">y</SPAN></FONT>，若对应的<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">x</SPAN></FONT>存在，容易计算<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">x</SPAN></FONT>使得<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">y=f(x)</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0cm">⒋多项式广义欧几里德除法，欧拉定理：略</P>
+<H2 CLASS="cjk">Ⅶ<FONT FACE="Arial, sans-serif"><SPAN LANG="en-US">RSA</SPAN></FONT>算法</H2>
+<P STYLE="margin-bottom: 0cm">⒈已知<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">RSA</SPAN></FONT>加密算法和解密算法，为什么解密结果等于明文？</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm"><IMG SRC="14abd344.gif" NAME="Object14" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=519 HEIGHT=62></P>
+<P STYLE="margin-bottom: 0cm">⒉给定<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">RSA</SPAN></FONT>的密钥参数<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">p=7,q=13,e=5</SPAN></FONT>，求公钥和私钥</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">n=pq=91</SPAN></FONT></P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">φ(n)=(p-1)(q-1)=72</SPAN></FONT></P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">d=e<SUP>-1</SUP>
+mod φ(n)=29</SPAN></FONT></P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">公钥为<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">{e=5,n=91}</SPAN></FONT>，私钥为<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">{d=29,n=91}</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0cm">⒊给定<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">RSA</SPAN></FONT>公钥<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">{e=5,n=91}</SPAN></FONT>，加密<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">M=62</SPAN></FONT></P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">模重复平方计算法计算<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">62<SUP>5</SUP>=69
+mod 91</SPAN></FONT>，密文<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">D=69</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0cm">⒋<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">RSA-OAEP</SPAN></FONT>对<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">RSA</SPAN></FONT>的改进是<U>从确定性算法变为概率性算法从而抵抗适应性选择密文攻击</U>，其代价是<U>密文扩张为明文的两倍长度</U>。</P>
+<H2 CLASS="cjk">Ⅷ<FONT FACE="Arial, sans-serif"><SPAN LANG="en-US">ECC</SPAN></FONT></H2>
+<P STYLE="margin-bottom: 0cm"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">F<SUB>q</SUB></SPAN></FONT>上<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">ECC</SPAN></FONT>曲线方程<IMG SRC="71a8e10f.gif" NAME="Object15" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=208 HEIGHT=22></P>
+<P STYLE="margin-bottom: 0cm">椭圆曲线方程<IMG SRC="26b4f46f.gif" NAME="Object19" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=243 HEIGHT=22>上，平常点<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">A(x,y)</SPAN></FONT>的切线的斜率<IMG SRC="fc9085c.gif" NAME="Object18" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=278 HEIGHT=22><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><A HREF="http://tech.csai.cn/web/200604021704531906.htm">http://tech.csai.cn/web/200604021704531906.htm</A></SPAN></FONT></P>
+<P STYLE="margin-bottom: 0cm">⒈<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">q=23,a=1,b=1</SPAN></FONT>，<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">P(17,20)</SPAN></FONT>、<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">Q(7,12)</SPAN></FONT>，求<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">-P</SPAN></FONT>、<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">P+Q</SPAN></FONT>、<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">2P</SPAN></FONT></P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">⑴<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">-P=(17,-20)=(17,3)</SPAN></FONT></P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">⑵设过<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">P</SPAN></FONT>、<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">Q</SPAN></FONT>的直线为<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">y=kx+c</SPAN></FONT>，解得<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">k=10</SPAN></FONT>、<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">c=11</SPAN></FONT>；根据根与系数关系有<IMG SRC="9ed4aef.gif" NAME="Object16" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=104 HEIGHT=22>，解得<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">x<SUB>3</SUB>=7</SPAN></FONT>；<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">-(P+Q)=(7,12)</SPAN></FONT>，<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">P+Q=(7,-12)=(7,11)<BR></SPAN></FONT>注意：<IMG SRC="9ed4aef.gif" NAME="Object17" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=104 HEIGHT=22>这个要记住；使用有限域运算；最后不要忘了取负</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">⑶设过<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">P</SPAN></FONT>的切线为<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">y=kx+c</SPAN></FONT>，根据公式求得<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">k=(3×17<SUP>2</SUP>+1)/(2×20)=17/17=1</SPAN></FONT>、<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">c=3</SPAN></FONT>；根据根与系数关系有<IMG SRC="9ed4aef.gif" NAME="Object20" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=104 HEIGHT=22>，解得<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">x<SUB>3</SUB>=13</SPAN></FONT>；<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">-(2P)=(13,1)</SPAN></FONT>，<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">2P=(13,-1)=(13,22)</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0cm">⒉<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">ECC</SPAN></FONT>算法的密钥生成方法：选定<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">Ep(a,b)</SPAN></FONT>、<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">K=kG</SPAN></FONT>，公钥为<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">{Ep,K,G}</SPAN></FONT>、私钥为<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">{Ep,k}</SPAN></FONT>；加密算法：明文编码到点<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">M</SPAN></FONT>，产生随机整数<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">r</SPAN></FONT>，计算<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">C1=M+rK</SPAN></FONT>、<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">C2=rG</SPAN></FONT>，密文为<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">{C1,C2}</SPAN></FONT>。问，解密算法是什么？</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">M=C1-kC2</SPAN></FONT></P>
+<H2 CLASS="cjk">Ⅸ散列函数</H2>
+<P STYLE="margin-bottom: 0cm">⒈什么是散列函数的单向性？</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">给定<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">x</SPAN></FONT>，计算<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">y=H(x)</SPAN></FONT>容易；给定<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">y</SPAN></FONT>，求<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">x</SPAN></FONT>使<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">y=H(x)</SPAN></FONT>困难</P>
+<P STYLE="margin-bottom: 0cm">⒉什么是散列函数的弱抗攻击性？</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">给定<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">x</SPAN></FONT>，求<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">y≠x</SPAN></FONT>使得<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">H(x)=H(y)</SPAN></FONT>困难</P>
+<P STYLE="margin-bottom: 0cm">⒊什么是散列函数的强抗攻击性？</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">寻找任何<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">(x,y)</SPAN></FONT>使得<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">H(x)=H(y)</SPAN></FONT>困难</P>
+<P STYLE="margin-bottom: 0cm">⒋<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">MD5</SPAN></FONT>算法分组长度<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><U>512bit</U></SPAN></FONT>，输出长度<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><U>128bit</U></SPAN></FONT>；<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">SHA1</SPAN></FONT>算法分组长度<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><U>512bit</U></SPAN></FONT>，输出长度<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><U>160bit</U></SPAN></FONT></P>
+<H2 CLASS="cjk">Ⅹ数字签名</H2>
+<P STYLE="margin-bottom: 0cm"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">RSA</SPAN></FONT>签名方案是<IMG SRC="4daa92dc.gif" NAME="Object21" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=173 HEIGHT=23></P>
+<P STYLE="margin-bottom: 0cm">⒈如何验证一个<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">RSA</SPAN></FONT>签名？</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">若<IMG SRC="m11d79997.gif" NAME="Object22" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=174 HEIGHT=21>，则报文未被篡改</P>
+<P STYLE="margin-bottom: 0cm">⒉为什么要对<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">H(Message)</SPAN></FONT>签名、而不是<IMG SRC="m5b4eb573.gif" NAME="Object23" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=145 HEIGHT=23>？</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">⑴当<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">Message</SPAN></FONT>很长，运算量太大</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">⑵已知<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">Message</SPAN></FONT>的签名是<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">S</SPAN></FONT>，那么任何人都可以计算<IMG SRC="m74ba5b8e.gif" NAME="Object24" ALIGN=ABSMIDDLE HSPACE=8 WIDTH=79 HEIGHT=23>的签名是<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">S<SUP>2</SUP></SPAN></FONT>，无法达到来源认证</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">⑶对<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">M<SUP>e</SUP></SPAN></FONT>签名，将导致报文被解密</P>
+<H2 CLASS="cjk">Ⅺ密钥管理</H2>
+<P STYLE="margin-bottom: 0cm">⒈证书至少应包含哪些字段？</P>
+<P STYLE="margin-left: 1.25cm; margin-bottom: 0cm">所有者的用户名，公钥，证书颁发者对<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">{</SPAN></FONT>用户名<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">,</SPAN></FONT>公钥<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">}</SPAN></FONT>的签名</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<DIV TYPE=FOOTER>
+	<P STYLE="margin-top: 0.5cm; margin-bottom: 0cm">现代密码学 样卷
+	<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US">http://study.yoursunny.com
+	</SPAN></FONT>你的阳光学习频道</P>
+</DIV>
+</BODY>
+</HTML>

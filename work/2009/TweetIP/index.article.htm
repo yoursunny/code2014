@@ -1,0 +1,51 @@
+IP留念
+PHP
+
+
+
+<p>
+要毕业了，给你的校园网IP地址留个纪念。<br/>
+去上班了，给你的办公室IP地址留个纪念。<br/>
+又出差了，给你的出差地IP地址留个纪念。<br/>
+</p>
+<p>欢迎使用IP留念服务，用你的IP地址更新Twitter、饭否、叽歪、嘀咕的个人状态。</p>
+<form action="tweet.php" method="post" onsubmit="return SendTweet(this);"><div>
+<blockquote id="msg_preview"></blockquote>
+<input type="hidden" id="msg_value" name="msg" value=""/>
+<p>
+<select name="site">
+<option value="twitter">Twitter</option>
+<option value="fanfou">饭否</option>
+<option value="jiwai">叽歪</option>
+<option value="digu">嘀咕</option>
+</select>
+<input type="text" name="u" value="username" onfocus="if(this.value==this.defaultValue)this.value=''"/>
+<input type="password" name="p" value="password" onfocus="if(this.value==this.defaultValue)this.value=''"/>
+</p>
+<p>
+<input type="radio" name="lang" value="zh" checked="checked" onclick="ChooseLang('zh')"/>中文
+<input type="radio" name="lang" value="en" onclick="ChooseLang('en')"/>English
+<input type="submit" value="更新状态"/>
+</p>
+</div></form>
+<script type="text/javascript" src="http://app.yoursunny.com/lib/IP.js"></script>
+<script type="text/javascript">//<![CDATA[
+function BuildMsg(lang) {
+	switch (lang) {
+		case 'zh':
+			return '我的IP地址留念：'+clientIP;
+		case 'en':
+			return 'My IP address is '+clientIP;
+	}
+}
+function ChooseLang(lang) {
+	var m=BuildMsg(lang);
+	$('msg_value').value=m;
+	$('msg_preview').update(m);
+}
+function SendTweet(f) {
+	$(f).request({onComplete:function(o){alert(o.responseText);}});
+	return false;
+}
+ChooseLang('zh');
+//]]></script>

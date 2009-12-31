@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>饭否备份工具 (JavaScript+Python) - 你的阳光技术频道 www.65536.cn</title>
+<link rel="stylesheet" type="text/css" href="/images/9/" />
+<script type="text/javascript" src="/lib/9.js"></script>
+<style type="text/css">/*<![CDATA[*/
+#app { border:dotted 3px #090; margin:10px; padding:10px; }
+/*]]>*/</style>
+</head><body>
+
+<div class="header">
+<h2><a href="http://yoursunny.com/">你的阳光</a></h2>
+<ul>
+<li><a href="http://m.yoursunny.com/"><span>个人</span></a></li>
+<li><a href="http://study.yoursunny.com/"><span>学习</span></a></li>
+<li><a href="http://www.65536.cn/"><span>技术</span></a></li>
+<li><a href="http://www.65536.cn/work/"><span>作品</span></a></li>
+</ul>
+<ol>
+<li><a href="http://yoursunny.com/">你的阳光</a></li>
+<li><a href="/">技术频道</a></li>
+<li><a href="../../">作品</a></li>
+<li><span>饭否备份工具</span></li>
+</ol>
+</div>
+
+<div class="content"><div class="main">
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">饭否备份工具</h1>
+<div class="p-body headers">
+
+<p>你的阳光技术频道2009新年礼物：<a href="http://fanfou.com">饭否</a>备份工具</p>
+<div id="app">
+<p>你的饭否用户名<input type="text" id="txt_uid" value="sunnyboy"/>
+<input type="button" id="btn_start" value="开始备份" onclick="start()"/></p>
+<p id="progress" style="display:none;">备份进度：<span id="status"></span></p>
+<form action="export.php" method="post" id="export" style="display:none;"><input type="hidden" name="u" id="export_uid"/><input type="hidden" name="j" id="data_json"/><input type="submit" value="导出成XHTML文件"/></form>
+</div>
+<div id="stream" style="display:none;"></div>
+<script type="text/javascript">//<![CDATA[
+function start() {
+	uid=$F('txt_uid');
+	if (uid.blank()) return alert('未输入用户名');
+	$('btn_start').disable();
+	$('export').hide();
+	$('progress').show();
+	data=[];
+	page=1;
+	fetch();
+}
+var uid;
+var data;
+var page;
+function fetch() {
+	$('status').update('正在获取第'+page+'页');
+	var s=document.createElement('script');
+	s.type='text/javascript';
+	s.src='http://yoursunny-app.appspot.com/work/2009/fanfou/fetch?'+$H({u:uid,p:page,cb:'callback'}).toQueryString();
+	$$('head')[0].appendChild(s);
+}
+function callback(o) {
+	$('status').update('正在分析第'+page+'页');
+	$('stream').update(o);
+	parse.defer();
+}
+function parse() {
+	$$('#stream li .content a').each(function(a){
+		a.update(a.href);
+	});
+	var ul=$$('#stream li');
+	ul.each(function(l){
+		var o={};
+		var time=l.select('.time')[0];
+		o.created_at=time.title;
+		var href=time.href;
+		o.id=href.substr(href.indexOf('/status')+10);
+		o.text=l.select('.content')[0].innerHTML.stripTags().unescapeHTML();
+		o.source=l.select('.method')[0].innerHTML.stripTags().replace('通过','').strip();
+		data.push(o);
+	});
+	if (ul.length>0) fetch(++page);
+	else finish();
+}
+function finish() {
+	$('status').update('完成，'+data.length+'条记录');
+	$('btn_start').enable();
+	$('export_uid').value=uid;
+	$('data_json').value=Object.toJSON(data);
+	$('export').show();
+}
+//]]></script>
+</div></div></div>
+
+</div><div class="sidebar">
+
+<div class="ad-sidebar"></div>
+
+</div></div>
+
+<div class="footer">
+<p class="copyright">&copy;2006-2009 yoursunny.com, CreativeCommons BY-NC 3.0</p>
+<ul class="links">
+<li><a href="http://yoursunny.com/m/about.htm">关于本站</a></li>
+<li><a href="http://yoursunny.com/m/contact.htm">联系方式</a></li>
+<li><a href="http://yoursunny.com/m/sitemap.htm">网站地图</a></li>
+</ul>
+</div>
+
+</body></html>

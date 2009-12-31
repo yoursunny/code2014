@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>hProxyN样例配置文件 - 你的阳光技术频道 www.65536.cn</title>
+<meta name="keywords" content="HTTP proxy,代理服务器,HTTP代理,配置文件,配置向导,config"/>
+<link rel="stylesheet" type="text/css" href="/images/9/" />
+<script type="text/javascript" src="/lib/9.js?prettify"></script>
+</head><body>
+
+<div class="header">
+<h2><a href="http://yoursunny.com/">你的阳光</a></h2>
+<ul>
+<li><a href="http://m.yoursunny.com/"><span>个人</span></a></li>
+<li><a href="http://study.yoursunny.com/"><span>学习</span></a></li>
+<li><a href="http://www.65536.cn/"><span>技术</span></a></li>
+<li><a href="http://www.65536.cn/work/"><span>作品</span></a></li>
+</ul>
+<ol>
+<li><a href="http://yoursunny.com/">你的阳光</a></li>
+<li><a href="/">技术频道</a></li>
+<li><a href="../../">作品</a></li>
+<li><a href="./">hProxyN 精巧型HTTP代理服务器</a></li>
+<li><span>hProxyN样例配置文件</span></li>
+</ol>
+</div>
+
+<div class="content">
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">hProxyN样例配置文件</h1>
+<div class="p-body headers">
+
+<p><a href="conf.htm">配置文件是hProxyN的金钥匙</a>，但是从头编写一个配置文件并不容易。<br/>
+我推荐的方法是：下载一个样例配置文件，然后根据<a href="reference.htm">参考文档</a>修改它。</p>
+<p>下面给出几个样例配置文件，已经添加中文注释：</p>
+<ul>
+<li><a href="javascript:load('proxy');">基本代理服务器</a></li>
+<li><a href="javascript:load('proxy-auth');">带身份认证的代理服务器</a></li>
+<li><a href="javascript:load('proxy-gateway');">代理服务器的InboundGateway设置功能</a></li>
+<li><a href="javascript:load('proxy-gapp');">GAppProxy代理服务器</a></li>
+</ul>
+<div id="x" style="font-size:80%;margin-top:20px;"></div>
+<div id="cmd" style="display:none;"></div>
+<script type="text/javascript">//<![CDATA[
+var cache=$H();
+function load(f) {
+	var t=cache.get(f);
+	if (t) {
+		show(f,t);
+	} else {
+		c('conf-sample/'+f+'.config');
+		new Ajax.Request('conf-sample/',{method:'get',parameters:{f:f},onComplete:got.curry(f)});
+	}
+}
+function got(f,resp) {
+	var t=resp.responseText;
+	cache.set(f,t);
+	show(f,t);
+}
+function show(f,t) {
+	$('cmd').update('<a href="javascript:download(\''+f+'\');">下载：'+f+'.config</a>').show();
+	$('x').update('<pre class="prettyprint lang-xml" style="height:460px;overflow:auto;">'+prettyPrintOne(t.escapeHTML(),'xml')+'</pre>').scrollTo();
+}
+function download(f) {
+	c('conf-sample/'+f+'.config?download');
+	location='conf-sample/?f='+f;
+}
+//]]></script>
+</div></div></div>
+
+</div>
+
+<div class="footer">
+<p class="copyright">&copy;2006-2009 yoursunny.com, CreativeCommons BY-NC 3.0</p>
+<ul class="links">
+<li><a href="http://yoursunny.com/m/about.htm">关于本站</a></li>
+<li><a href="http://yoursunny.com/m/contact.htm">联系方式</a></li>
+<li><a href="http://yoursunny.com/m/sitemap.htm">网站地图</a></li>
+</ul>
+</div>
+
+</body></html>

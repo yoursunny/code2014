@@ -1,0 +1,447 @@
+编译原理
+编译原理提纲
+正规式,正规文法,词法分析,NFA,DFA,自动机,有限自动机,语法分析,语义分析,LR分析方法,活前缀
+transitional
+<p>你的阳光学习频道 <a title="http://study.yoursunny.com/" href="http://study.yoursunny.com/">http://study.yoursunny.com/</a> 倾情奉献<br /> 阳光男孩著作权所有，转载请保留以上信息；本文只供在线阅读，请勿打印<br /> <br /> 声明：<br /> 本文只作为参考资料，&ldquo;this article is provided as-is&rdquo;；<br /> 本文作者阳光男孩不对本文内容的正确性及与考试的关联程度作出任何明示或默示的担保，只希望它对你有用。<br /> @后是阳光男孩添加的注释，不是课程内容</p>
+<h2>第一章 引言</h2>
+<ul>
+<li>编译程序是一种特定的翻译程序：编译程序将源程序(高级语言，如C++、VB、Pascal)<b>等价</b>(功能上等价)翻译成目标程序(汇编或机器语言，与具体机器有关)
+<ul>
+<li>翻译方式：<b>编译方式</b>（编译阶段&rarr;汇编阶段&rarr;运行阶段 或 编译阶段&rarr;运行阶段）、<b>解释方式</b>（源程序和初始数据同时输入解释程序，逐句解释，易查错、但效率低），根本区别在于是否生成目标代码 @可能考填空题 </li>
+</ul>
+</li>
+<li>编译程序的结构
+<ul>
+<li>编译程序的前端
+<ul>
+<li><b>词法分析</b>：识别&ldquo;符号串&rdquo;(&ldquo;int a=1;++a;&rdquo;)为&ldquo;单词流&rdquo;(&ldquo;int&rdquo;&ldquo;a&rdquo;&ldquo;=&rdquo;&ldquo;1&rdquo;&ldquo;;&rdquo;&ldquo;++&rdquo;&ldquo;a&rdquo;&ldquo;;&rdquo;) </li>
+<li><b>语法分析</b>：分析&ldquo;单词流&rdquo;为&ldquo;语法单位&rdquo;(&ldquo;int a=1;&rdquo;&ldquo;++a;&rdquo;)</li>
+<li><b>语义分析和中间代码生成</b>：根据语义规则检查&ldquo;语法单位&rdquo;生成&ldquo;中间代码&rdquo;(&ldquo;a&larr;1&rdquo;&ldquo;a&larr;a+1&rdquo;)</li>
+<li><b>代码优化</b>：根据等价变换规则，尽量压缩目标程序的运行时间和占用空间(&ldquo;a&larr;2&rdquo;)</li>
+</ul>
+</li>
+<li>编译程序的后端
+<ul>
+<li><b>目标代码生成</b>：将&ldquo;中间代码&rdquo;根据机器特点变换成&ldquo;目标代码&rdquo;(&ldquo;MOV AX,2&rdquo;)</li>
+</ul>
+</li>
+<li>编译程序的其他部分
+<ul>
+<li><b>表格处理</b>：管理&ldquo;符号表&rdquo;，符号表登记了源程序中出现的数据对象的信息和程序的信息</li>
+<li><b>出错处理</b>：向用户报告发现的语法错误和静态语义错误；动态语义错误只有运行时才能发现、编译时无法报告</li>
+</ul>
+</li>
+<li>@了解：为什么要把编译程序分成前端和后端？可能考简答题</li>
+<li>编译程序的逻辑结构：<b>遍</b></li>
+</ul>
+</li>
+</ul>
+<p>
+</p>
+<h2>第二章 文法和语言</h2>
+<ul>
+<li>形式语言：对程序语言的形式化描述；产生语言的规则成为文法，识别语言的装置称为自动机
+<ul>
+<li>字母表&Sigma;：符号的非空有穷集合；每个元素称为一个符号；闭包（0个或多个符号连接成的字符串集合），正闭包（1个或多个符号连接成的字符串集合）</li>
+<li>字符串/符号串：字符组成的有穷序列；空串&epsilon;，字符串的长度，字符串的连接，字符串的方幂（X<sup>n</sup>=n个X依次连接），前缀和后缀，子串，真子串</li>
+<li>语言L：&Sigma;上任意字符集合；每个元素称为一个句子；有穷语言，无穷语言</li>
+</ul>
+</li>
+<li>文法<b>G=(</b>终结符号非空有限集<b>V</b><sub><b>T</b></sub>,非终结符号非空有限集<b>V</b><sub><b>N</b></sub>,文法开始符<b>S</b>[S&isin;V<sub>N</sub>],产生式非空有限集<b>P)</b>
+<ul>
+<li>直接推导、直接归约：若A&rarr;&delta;&isin;P，则&alpha;A&beta;&rarr;&alpha;&delta;&beta;，称&alpha;A&beta;可以直接推导出&alpha;&delta;&beta;，&alpha;&delta;&beta;可以直接归约到&alpha;A&beta;</li>
+<li>句型、句子：S经0步或多步可推导出&alpha;，则&alpha;是G的一个句型；只含终结符的句型称为句子</li>
+<li>文法产生的语言：G的句子的集合</li>
+<li>文法的等价：产生语言相等的两个文法等价</li>
+</ul>
+</li>
+<li>归约与句柄
+<ul>
+<li>规范推导：每一步推导都是将句型中的最右非终结符替换成相应产生式右部，称为规范推导/最右推导；相反方向成为规范归约</li>
+<li>短语、直接短语：&alpha;&beta;&delta;和&alpha;A&delta;都是句型，A经1步或多步可推导出&beta;，则&beta;是&alpha;&beta;&delta;关于A的短语；若A可以直接推导出&beta;，则&beta;是&alpha;&beta;&delta;关于A的直接短语/简单短语</li>
+<li>句柄：句型的最左直接短语</li>
+<li>素短语：含终结符的短语，且它不存在也有这种性质的真子串</li>
+</ul>
+</li>
+<li>分析树：根节点是S，每个父节点可以直接推导出它的子节点序列
+<ul>
+<li>分析树的内部节点A及其所有后裔，称为A子树</li>
+<li>用<span style="font-weight: bold;">分析树</span>判断短语、直接短语、句柄、素短语 @比用定义判断方便，推荐<br /> 
+<ul>
+<li>短语：A子树对应的符号串就是关于A的短语</li>
+<li>直接短语：短语是2代子树</li>
+<li>句柄：最左的2代子树</li>
+<li>素短语：子树对应的字符串含终结符，且该子树不再包含有终结符的子树</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>二义性：一个句子能找到两种不同的规范推导/两颗不同的分析树，这个句子是二义性的；包含二义性句子的文法是二义性的
+<ul>
+<li>文法是二义性的，但是该文法描述的语言有可能找到一个非二义的文法来描述</li>
+<li>二义性不可判定 @对于问文法是否二义的题目，注意题目中出现的句子，设法想出它的两颗分析树</li>
+</ul>
+</li>
+<li>文法的分类</li>
+</ul>
+<table id="jb55" style="width: 100%;" border="1" cellspacing="0" cellpadding="3">
+<tbody>
+<tr>
+<td valign="top"><b>文法类别、产生的语言类别<br /> </b></td>
+<td valign="top"><b>产生式要求<br /> </b></td>
+<td valign="top"><b>语言识别装置<br /> </b></td>
+</tr>
+<tr>
+<td width="25%">0型 短语文法/语言<br /></td>
+<td width="25%">产生式右部至少有一个非终结符<br /></td>
+<td width="25%">图灵机<br /></td>
+</tr>
+<tr>
+<td width="25%">1型 上下文有关文法/语言<br /></td>
+<td width="25%">产生式右部不比左部短，或右部是&epsilon;<br /></td>
+<td width="25%">不确定的线性界限自动机<br /></td>
+</tr>
+<tr>
+<td width="25%">2型 上下文无关文法/语言<br /></td>
+<td width="25%">产生式左部是一个非终结符<br /></td>
+<td width="25%">非确定的下推自动机<br /></td>
+</tr>
+<tr>
+<td width="25%">3型 正规文法 左/右线性语言<br /></td>
+<td width="25%">产生式全部为A&rarr;&alpha;或A&rarr;B&alpha;(左线性语言)，<br /> 或产生式全部为A&rarr;&alpha;或A&rarr;&alpha;B(右线性语言)</td>
+<td width="25%">有穷自动机<br /></td>
+</tr>
+</tbody>
+</table>
+<p>你的阳光学习频道 <a title="http://study.yoursunny.com/" href="http://study.yoursunny.com/">http://study.yoursunny.com/</a> 倾情奉献<br /> 阳光男孩著作权所有，转载请保留以上信息；本文只供在线阅读，请勿打印</p>
+<h2>第三章 词法分析</h2>
+<ul>
+<li>词法分析器：从输入串识别单词。词法分析器设计过程：
+<ul>
+<li>自然语言直接构造NFA 或 正规文法根据转换规则转换成NFA 或 正规表达式根据转换规则转换成NFA</li>
+<li>用子集法将NFA确定化为成DFA</li>
+<li>用分离法将DFA简化为归约的DFA</li>
+<li>写出程序流程，编写词法分析器</li>
+<li>也可以用Lex工具自动设计词法分析器</li>
+</ul>
+</li>
+<li>词法分析所用的&ldquo;语言&rdquo;，字母表是源程序的字母表、如{a,b,c,&hellip;&hellip;,0,1,&hellip;&hellip;,=,+,-,*,/,&hellip;&hellip;}，句子是单词、如var </li>
+<li>词法的表达方式<br /> 
+<ul>
+<li>状态转换图：有限的有向图，节点表示状态，有向边表示输入这条边上标注的字符后状态的变化，到达某个终态就识别出一个单词 </li>
+<li><span style="font-weight: bold;">正规式</span>/正规表达式：精确定义单词符号集的一种表示法，每个正规式都对应表示一个正规集 @具体定义略</li>
+<li>正规文法 </li>
+<li>有限自动机FA：更一般化的状态转换图
+<ul>
+<li>非确定有限自动机NFA M<sub>n</sub>=(字母表&Sigma;,状态集S,初态集s<sub>0</sub>,终态集F,&delta;)；&delta;(S<sub>i</sub>,a)={s<sub>1</sub>,s<sub>2</sub>,&hellip;&hellip;}表示状态S<sub>i</sub>时遇到输入符号a可以转换到{s<sub>1</sub>,s<sub>2</sub>,&hellip;&hellip;}这些状态之一、但不确定到底转换到那个状态；NFA识别慢、占用空间小</li>
+<li>确定有限自动机DFA M<sub>d</sub>=(字母表&Sigma;,状态集S,一个初态s<sub>0</sub>,终态集F,&delta;)；&delta;(S<sub>i</sub>,a)={s<sub>j</sub>}表示状态S<sub>i</sub>时遇到输入符号a应该转换到状态s<sub>j</sub>(只有惟一的这个状态)；DFA识别快、易于实现</li>
+<li>FA可以用状态转换图、状态转换矩阵表示</li>
+<li>FA M识别的语言：初态到终态的一条通路上各有向边标注的字符依次连接得到的句子是FA M所接受的句子，这种句子的集合是FA M识别的语言，记作L(M)；若某个初态是终态，则句子&epsilon;能被FA M接受</li>
+</ul>
+</li>
+<li>正规式、正规文法、NFA、DFA是等价的&mdash;&mdash;他们具有相同的描述能力</li>
+</ul>
+</li>
+<li><span style="font-weight: bold;">NFA的确定化</span>：子集法
+<ul>
+<li>空闭包&epsilon;-closure(I)：状态子集I的所有状态、从&epsilon;-closure(I)的任意状态出发经过&epsilon;通路可到达的所有状态，都属于&epsilon;-closure(I)</li>
+<li>a弧转换move(I,a)：从I的每个状态经过1条标注有符号a的有向边能到达的状态集合</li>
+<li>I<sub>a</sub>子集I<sub>a</sub>=&epsilon;-closure(move(I,a))：从I的每个状态出发，经过0或多条&epsilon;有向边、1条a有向边、0或多条&epsilon;有向边，可以到达的状态的集合</li>
+<li>确定化算法
+<ul>
+<li>从&epsilon;-closure(s<sub>0</sub>)开始，求出此状态子集对所有符号的I<sub>a</sub>子集</li>
+<li>对求出状态子集重复这个过程，直到不再出现新的状态子集</li>
+<li>每个处理过的空闭包都成为所求DFA的一个状态</li>
+<li>初态是包含原初态的状态子集，终态是包含原终态的状态子集</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span style="font-weight: bold;">DFA的简化</span>：分离法
+<ul>
+<li>等价状态：触发条件和下一条件都相同的状态</li>
+<li>无关状态：从初态起，任何输入序列都无法到达的状态</li>
+<li>简化算法
+<ul>
+<li>删除所有无关状态</li>
+<li>将所有状态放在一个集合里</li>
+<li>每次将一个状态集划分成互不相交的两个子集，使它们可区分；如对{1,2,3}，1<sub>a</sub>&ne;2<sub>a</sub>=3<sub>a</sub>，则{1}与{2,3}可区分</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>由正规式构造等价的NFA
+<ul>
+<li>最初的NFA
+<div id="cwps" style="padding: 1i 0pt; text-align: left;"><img style="width: 120px; height: 48px;" src="http://docs.google.com/File?id=dc67cnjv_208dq4fmfdc" alt="" /></div>
+</li>
+<li>将正规式按下列三条规则进行分解，直到各有向边上只有&epsilon;和&Sigma;的字母为止
+<div id="w6-c" style="padding: 1i 0pt; text-align: left;"><img style="width: 485px; height: 208px;" src="http://docs.google.com/File?id=dc67cnjv_209hd32txhh" alt="" /></div>
+</li>
+</ul>
+</li>
+<li>@本章肯定会考一道大题 </li>
+</ul>
+<h2>第四章 语法分析</h2>
+<ul>
+<li>语法分析器：从终结符号串识别程序语句。
+<ul>
+<li>基本分析方法：自顶向下分析（递归下降，预测分析表），自底向上分析（算符优先，LR）</li>
+</ul>
+</li>
+<li>语法分析所用的&ldquo;语言&rdquo;，字母表是终结符集合、如{int,char,double,<i>变量名</i>,=,+,-,*,/,<i>常数</i>,<i>字符常量</i>,&hellip;&hellip;}，句子是程序语句</li>
+<li>递归下降分析器
+<ul>
+<li>对文法要求1：无公共左因子
+<ul>
+<li>提取左因子的方法：<br /> A&rarr;&alpha;&beta;<sub>1</sub>|&alpha;&beta;<sub>2</sub>|&hellip;&hellip;|&alpha;&beta;<sub>n</sub>|&delta;<sub>1</sub>|&delta;<sub>2</sub>|&hellip;&hellip;|&delta;<sub>m</sub> (其中&delta;<sub>i</sub>不以&alpha;为前缀)<br /> 改为 A&rarr;&alpha;A'|&delta;<sub>1</sub>|&delta;<sub>2</sub>|&hellip;&hellip;|&delta;<sub>m</sub> A'&rarr;&beta;<sub>1</sub>|&beta;<sub>2</sub>|&hellip;&hellip;|&beta;<sub>n</sub></li>
+</ul>
+</li>
+<li>对文法要求2：无左递归
+<ul>
+<li>消除左递归的方法：<br /> A&rarr;A&alpha;<sub>1</sub>|A&alpha;<sub>2</sub>|&hellip;&hellip;|A&alpha;<sub>n</sub>|&beta;<sub>1</sub>|&beta;<sub>2</sub>|&hellip;&hellip;|&beta;<sub>m</sub><br /> 改为 A&rarr;&beta;<sub>1</sub>A'|&beta;<sub>2</sub>A'|&hellip;&hellip;|&beta;<sub>n</sub>A' A'&rarr;&alpha;<sub>1</sub>A'|&alpha;<sub>2</sub>A'|&hellip;&hellip;|&alpha;<sub>n</sub>A'|&epsilon;</li>
+</ul>
+</li>
+<li>对文法要求3：无间接左递归；消除算法为对非终结符排序，只允许小号依赖大号、否则代入，就可全部转换成直接左递归、予以消除</li>
+<li>分析器实现：根据产生式，为每个非终结符写一个递归过程 </li>
+</ul>
+</li>
+<li>非递归的表驱动预测分析器
+<ul>
+<li>对文法要求：LL(1)文法
+<ul>
+<li>LL(n)文法：上下文无关文法G，面对某个非终结符，需要预取后续的n个输入符号，可以惟一决定使用那个产生式进行匹配</li>
+</ul>
+</li>
+<li>分析器的组成部分：分析表、分析栈、控制程序</li>
+<li>分析栈：开始时，栈底有结束标志$、文法开始符；输入串的最后也添加一个结束标志$</li>
+<li>预测分析表：二维数组M[A,a]，遇到非终结符A、预取符号a，应该使用M[A,a]表示的产生式进行推导。
+<ul>
+<li>FIRST集：若&alpha;是终结符，FIRST(&alpha;)={&alpha;}。若&alpha;是非终结符，FIRST(&alpha;)是&alpha;能够推导出的所有句子的第一个符号组成的集合；句子是由终结符组成的，这些符号必是终结符；若&alpha;能够推导出&epsilon;，则&epsilon;&isin;FIRST(&alpha;)</li>
+<li>FOLLOW集：FOLLOW(A)是从语言的所有句型中，直接跟在非终结符A后面的所有终结符组成的集合；还有，$&isin;FOLLOW(A)</li>
+<li>预测分析表的构造：<br /> 对每个a&isin;FIRST(&alpha;)，令M[A,a]=A&rarr;&alpha;<br /> 若&epsilon;&isin;FIRST(&alpha;)，则对每个b&isin;FOLLOW(A)，令M[A,b]=A&rarr;&alpha;<br /> 其他未定义的M[A,a]全部记错误标志</li>
+</ul>
+</li>
+<li>控制程序 @略</li>
+<li>错误处理 可能发生的错误：栈顶终结符与输入字符不同，M[栈顶非终结符,输入字符]记有错误标志</li>
+</ul>
+</li>
+<li>算符优先分析法
+<ul>
+<li>对文法要求：算符优先文法；这个要求对文法限制较多，导致算符优先分析法应用不广泛
+<ul>
+<li>算符文法：上下文无关文法G，产生式右部不是&epsilon;、不含相连的非终结符</li>
+<li>优先关系：算符文法G的任意两个终结符a和b，定义它们之间的优先关系&mdash;&mdash;
+<ul>
+<li>a&middot;=b，若P&rarr;&hellip;ab&hellip;或P&rarr;&hellip;aQb&hellip;</li>
+<li>a&lt;&middot;b，若P&rarr;&hellip;aQ&hellip;、Q可推导出b&hellip;或Rb&hellip;</li>
+<li>a&middot;&gt;b，若P&rarr;&hellip;Qb&hellip;、Q可推导出&hellip;a或&hellip;aR</li>
+<li>$&lt;&middot;任何符号，任何符号&middot;&gt;$，$&middot;=$</li>
+<li>以下推断不成立：a&middot;=a，a&lt;&middot;b则b&middot;&gt;a，a与b间优先关系存在/惟一</li>
+</ul>
+</li>
+<li>算符优先文法：任意两个终结符之间优先关系至多只有一种的算符文法 </li>
+</ul>
+</li>
+<li>分析器的组成部分：分析表，分析栈，控制程序</li>
+<li>分析表：优先关系表，记录了所有终结符间的优先关系
+<ul>
+<li>FIRSTVT集：FIRSTVT(P)是P可以推出的符号串的第一个终结符组成的集合</li>
+<li>LASTVT集：LASTVT(P)是P可以推出的符号串的最后一个终结符组成的集合</li>
+<li>优先关系表的构造：<br /> Q&rarr;&hellip;aP&hellip;，则对每个b&isin;FIRSTVT(P)，有a&lt;&middot;b<br /> Q&rarr;&hellip;Pb&hellip;，则对每个a&isin;LASTVT(P)，有a&middot;&gt;b<br /> Q&rarr;&hellip;ab&hellip;或Q&rarr;&hellip;aPb&hellip;，则a&middot;=b </li>
+</ul>
+</li>
+<li>分析栈：已经移进的符号串</li>
+<li>控制程序：当a&middot;&gt;b时归约、a&middot;=b或a&lt;&middot;b时移进；归约时，向栈底查找，直到栈内终结符&lt;&middot;栈顶终结符，依此选择产生式</li>
+<li>错误处理 可能发生的错误：栈顶终结符与输入符之间无优先关系，应归约时无产生式匹配</li>
+</ul>
+</li>
+<li>LR分析方法：自底向上，对文法限制最少、效率同样很高
+<ul>
+<li>分析器的组成部分
+<ul>
+<li>分析表&mdash;&mdash;action表：action[s<sub>i</sub>,a]表示在状态s<sub>i</sub>下、输入终结符a时应采取的动作<br /> s<sub>j</sub>：移进，将状态s<sub>j</sub>与符号a推入栈顶<br /> r<sub>j</sub>：归约，将栈顶按第j个产生式归约<br /> acc：分析成功，输入串被接受<br /> (空白)：出错</li>
+<li>分析表&mdash;&mdash;goto表：goto[s<sub>i</sub>,A]表示在状态s<sub>i</sub>下，对非终结符A的下一个状态</li>
+<li>分析栈：已识别的符号串</li>
+<li>控制程序 @略</li>
+</ul>
+</li>
+<li>@LR分析方法的关键在于分析表的构造，下面介绍的都是分析表构造的方法&mdash;&mdash;<br /> @这些步骤是循序渐进的，请读者不要试图跳过任何一个步骤，否则将无法理解后面的步骤 </li>
+<li>活前缀：规范句型的一个前缀，它不含句柄之后的任何符号（即：规范句型的[句柄之前部分和句柄]的前缀）<br /> S可规范推导出&delta;A&omega;，可继续规范推导出&delta;&alpha;&beta;&omega;，则&alpha;&beta;是&delta;&alpha;&beta;&omega;的句柄，&delta;&alpha;&beta;的任何前缀都是&delta;&alpha;&beta;&omega;的活前缀
+<ul>
+<li>@ 为什么要识别活前缀？&mdash;&mdash;句柄是活前缀的后缀，识别活前缀就可以找到句柄；找到了句柄，就可以对句柄归约。 </li>
+</ul>
+<ul>
+<li>项目：用圆点.表示识别位置，E&rarr;E+T有以下项目<br /> E&rarr;.E+T&nbsp;E&rarr;E+.T &mdash;&mdash;待约项目，圆点后是非终结符，等待这个非终结符的归约<br /> E&rarr;E.+T &mdash;&mdash;移进项目，圆点后是终结符，应该移进<br /> E&rarr;E+T. &mdash;&mdash;归约项目，产生式右部全部在分析栈顶，应该归约 </li>
+<li>拓广的文法：文法中，增加一条产生式S'&rarr;S，其中S是原来的文法开始符；这个拓广的文法与原文法等价</li>
+<li>构造识别活前缀的DFA方法：使用LR(0)项目集规范族构造</li>
+</ul>
+</li>
+<li>LR(0)项目集规范族C
+<ul>
+<li>项目对活前缀有效：S可规范推导出&delta;A&omega;，可继续规范推导出&delta;&alpha;&beta;&omega;，则项目A&rarr;&alpha;.&beta;对活前缀&delta;&alpha;有效</li>
+<li>活前缀的有效项目集：对这个活前缀有效的项目组成的集合</li>
+<li>文法G的LR(0)项目集规范族C：有效项目集的集合</li>
+<li>closure(I)项目集：包含I的所有项目；还包含closure(I)中的每个待约项目中圆点后面那个非终结符对应的每个产生式的一个形如B&rarr;.&eta;的项目（即A&rarr;&alpha;.B&beta; B&rarr;&eta;则包含B&rarr;.&eta;）</li>
+<li>go(I,X)=closure(J)，其中J是I的各待约项目、移进项目圆点右移一位形成的项目（即把A&rarr;&alpha;.X&beta;变成A&rarr;&alpha;X.&beta;）组成的集合。go(I,X)的含义：若I是&delta;&alpha;的有效项目集，则go(I,X)是&delta;&alpha;X的有效项目集</li>
+<li>文法G的LR(0)项目集规范族C的构造：<br /> 刚开始时，C={ closure({[S'&rarr;.S]}) }。<br /> 对C的每个项目I，对每个终结符和非终结符X，若go(I,X)不为空，则将它加入C。<br /> 重复上个步骤，直到C不再增大。</li>
+<li>用LR(0)项目集规范族C可以构造识别活前缀的DFA，每个有效项目集是一个状态，closure({[S'&rarr;.S]})是初态，所有状态都是终态，X是状态间转换的条件</li>
+<li>LR(0)项目集规范族C可能带来的冲突情况
+<ul>
+<li>移进-归约冲突：E&rarr;E+T. T&rarr;T.*F</li>
+<li>归约-归约冲突：A&rarr;&alpha;. B&rarr;&alpha;.</li>
+<li>不存在&ldquo;移进-移进冲突&rdquo;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>SLR分析表
+<ul>
+<li>项目集I={X&rarr;&alpha;.b&beta;,A&rarr;&alpha;.,B&rarr;&alpha;.}，若{b}与FOLLOW(A)与FOLLOW(B)两两不交，移进或归约动作便可唯一确定</li>
+<li>SLR分析表的构造算法
+<ul>
+<li>构造文法的LR(0)项目集规范族C={I<sub>0</sub>,I<sub>1</sub>,I<sub>2</sub>,&hellip;&hellip;,I<sub>n</sub>}，I<sub>i</sub>对应状态i,I<sub>0</sub>是closure({[S'&rarr;.S]})</li>
+<li>对每个I<sub>i</sub>&mdash;&mdash;<br /> 若A&rarr;&alpha;.a&beta;&isin;I<sub>i</sub>、go(I<sub>i</sub>,a)=I<sub>j</sub>，则action[i,a]=S<sub>j</sub><br /> 若A&rarr;&alpha;.&isin;I<sub>i</sub>、A&rarr;&alpha;是第j个产生式，则action[i,a]=r<sub>j</sub><br /> 若[S'&rarr;S.]&isin;I<sub>i</sub>，则action[i,a]=acc</li>
+<li>若go(I<sub>i</sub>,a)=I<sub>j</sub>、A&isin;V<sub>N</sub>、，则goto[i,A]=j</li>
+<li>剩下的项，计入出错标志<sub><br /> </sub></li>
+</ul>
+</li>
+<li>上述算法构造的分析表，如果不含多重定义，就是文法G的SLR分析表，G是SLR(1)文法；SLR(1)文法是一个较高的要求；而多重定义就是冲突情况的表现</li>
+</ul>
+</li>
+<li>LR(k)分析表
+<ul>
+<li>项目表示为{A&rarr;&alpha;.,a<sub>1</sub>&hellip;&hellip;a<sub>k</sub>}；只当后续的k个输入恰为a<sub>1</sub>&hellip;&hellip;a<sub>k</sub>时才能将&alpha;归约为A；归约项目才需要a<sub>1</sub>&hellip;&hellip;a<sub>k</sub>，待约、移进项目不需要</li>
+<li>@只考上述搜索符含义，构造方法等不考，略</li>
+</ul>
+</li>
+<li>LALR(k)分析表：合并LR(k)分析表的状态，减少状态数 @不考</li>
+</ul>
+</li>
+<li>二义文法的应用：二义文法不可能是LR文法，SLR和LR(k)不能解决移进-归约冲突；分析二义文法时，一般不是把它改写成等价的非二义文法，而是采取结合性、优先级等附加规则来避免多重定义项</li>
+<li>用YACC工具可以自动设计LALR分析器</li>
+</ul>
+<p>
+</p>
+<h2>第五章 语法制导翻译和中间代码生成</h2>
+<ul>
+<li>翻译：对语法分析树进行语义分析、检查，生成中间代码
+<ul>
+<li>静态语义检查：类型检查，控制流检查，名字匹配检查，一致性检查</li>
+<li>语法制导翻译：为每条产生式写相应的翻译子程序，LR分析中按句柄归约时调用这个子程序</li>
+</ul>
+</li>
+<li>中间语言
+<ul>
+<li>设计原则：在逻辑运算层次上，与机器特性无关</li>
+<li>特定：只包含基本运算结构，只包含基本控制结构</li>
+<li>表示方式
+<ul>
+<li>后缀式/逆波兰式</li>
+<li>语法树</li>
+<li>dag无环有向图</li>
+<li>三地址码（三地址码的存储：四元式 三元式 间接三元式）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>说明语句的翻译：不生成中间代码，只登记名字、类型、地址到符号表</li>
+<li>赋值语句的翻译：查出左值的地址p；求出右值到临时变量t；生成中间代码p:=t</li>
+<li>控制流语句的翻译
+<ul>
+<li>布尔表达式的翻译方法
+<ul>
+<li>数据表示法 0=false,1=true</li>
+<li>解释法<br /> A or B &nbsp; &nbsp;if A then true else B<br /> A and B &nbsp; if A then B else false<br /> not A &nbsp; &nbsp; if A then false else true</li>
+</ul>
+</li>
+<li>控制流语句中的布尔表达式E的翻译：翻译成一系列条件转移/无条件转移，转向真出口E.true或假出口E.false</li>
+<li>回填技术：翻译时遇到未确定出口地址的转移语句，在地址处填上0，并用一个链表跟踪所有转到同一出口地址的转移语句；待地址确定，沿链表回填这些转移语句的出口地址</li>
+</ul>
+</li>
+</ul>
+<p>你的阳光学习频道 <a title="http://study.yoursunny.com/" href="http://study.yoursunny.com/">http://study.yoursunny.com/</a> 倾情奉献<br /> 阳光男孩著作权所有，转载请保留以上信息；本文只供在线阅读，请勿打印</p>
+<h2>第六章 运行时存储空间管理</h2>
+<ul>
+<li>存储空间
+<ul>
+<li>用途：代码空间，数据空间</li>
+<li>两级地址：物理地址，逻辑地址</li>
+</ul>
+</li>
+<li>变量的存储分配：静态变量（全局变量），半静态变量（局部变量），半动态变量（调用函数时可确定的变量），动态变量（malloc） </li>
+<li>活动记录：活动记录中存储了程序单元(函数)每次激活的信息，包括返回指针、参数、局部变量等
+<ul>
+<li>静态分配：每个函数在编译时创建一个活动记录；要求无递归调用、无动态数组、无动态类型</li>
+<li>栈式分配：函数激活时创建活动记录，局部变量相对活动记录开头有一个常数偏移；要求后进先出、静态嵌套、静态作用域</li>
+<li>堆分配：随机malloc和free；<br /> 运行时要管理堆区，malloc(n字节)（首次拟合法 最优满足法 最差满足法）、free（合并连续的空闲快）</li>
+</ul>
+</li>
+<li>参数传递：数据参数（引用调用 值调用(传值 结果调用 传值的结果)），过程参数，类型参数</li>
+<li>(编译过程中的)符号表：记录用户定义的identifier、类型、地址，常用线性表或散列表实现</li>
+<li>(程序模块的)符号表：记录了[模块中引用的、但未定义的符号]，[模块中定义的、对外公开的符号]
+<ul>
+<li>连接程序link检查各程序模块的符号表，确保不存在未定义的符号</li>
+</ul>
+</li>
+<li>内存管理的安全分配：缓冲区溢出原理和防范</li>
+</ul>
+<h2>第七章 代码优化</h2>
+<ul>
+<li>优化：一种等价、有效的程序变换</li>
+<li>局部优化：对&ldquo;基本块&rdquo;(顺序执行、单一入口、单一出口的最长语句序列)进行优化
+<ul>
+<li>优化技术：合并已知量，删除公共子表达式，删除死代码</li>
+<li>构造dag进行局部优化，构造方法：<br /> 对于语句(x := y op z)
+<ul>
+<li>在已有dag中寻找或创建y、z当前值结点<br /> （例如对y，若存在一个结点表示y的当前值，在此结点上增加标注y，否则创建一个结点值为y的当前值、标注y）</li>
+<li>若y、z都是常数，计算y op z，寻找或创建(y op z)结点，若y、z是当前语句建立的、则删除；<br /> 若y、z不都是常数，寻找或创建这个结点：标注op、左子结点是y、右子结点是z</li>
+<li>在上一步求得的(y op z)或op结点上标注x；<br /> 若另一个结点上标注有x，则移除那个标注</li>
+<li>处理下一个语句直到结束</li>
+</ul>
+</li>
+<li>注意：数组、指针等会导致变量内容间接改变</li>
+</ul>
+</li>
+<li>循环优化
+<ul>
+<li>程序流图：每个结点代表一个基本块，有向边代表基本块间的转移 </li>
+</ul>
+<ul>
+<li>代码外提：将循环不变运算提到循环入口结点前计算
+<ul>
+<li>循环不变运算：各操作数都是&mdash;&mdash;常量/循环外定值的变量/另一个循环不变运算结果</li>
+<li>等价性保证：该运算一定会执行(不处于分支中)、执行前未引用、只有一个定值点、循环体至少执行一次，才可外提该运算</li>
+</ul>
+</li>
+<li>强度削弱：for(i=0;i&lt;L;++i){j=K*i+B;&hellip;&hellip;}改成for(i=0,j=B;i&lt;L;++i,j+=K){&hellip;&hellip;}，乘法变成较快的加法</li>
+<li>删除归纳变量：for(i=0;i&lt;L;++i){j=K*i+B;&hellip;&hellip;}在循环体内无其他对i的引用，就改成for(j=B;j&lt;K*L+B;j+=K){&hellip;&hellip;}，删除了i</li>
+</ul>
+</li>
+<li>窥孔优化：在目标代码生成阶段进行</li>
+</ul>
+<h2>第八章 代码生成</h2>
+<ul>
+<li>代码生成器：从中间代码生成<span style="font-weight: bold;">等价有效</span>的目标代码
+<ul>
+<li>输入：中间代码+符号表</li>
+<li>输出：绝对机器语言代码(直接执行) 或 可重定位的机器语言(需要link) 或 汇编代码</li>
+<li>代码生成器知道：CPU运行模式，指令系统，寻址方式，寄存器数量和类型&hellip;&hellip;</li>
+</ul>
+</li>
+<li>寄存器分配
+<ul>
+<li>要引用的变量尽可能保存在寄存器；不再引用的变量所占寄存器尽早释放；到达基本块出口时释放所有寄存器；寄存器不够时释放引用点最远的变量所占寄存器</li>
+<li>循环结构的寄存器分配：循环中最频繁使用的变量可以固定分配寄存器</li>
+</ul>
+</li>
+<li>窥孔优化：删除多余存取指令，删除死代码，控制流优化，强度削弱，利用机器特点</li>
+<li>由dag生成代码
+<ul>
+<li>计算次序：使运算紧跟它的左操作数的运算，dag为树时的计算次序是&ldquo;前序左深度优先遍历的反序&rdquo;</li>
+<li>label(n)=在不让中间结果进入主存的条件下，计算结点n所需的最少寄存器数；可以自下而上计算label(n)</li>
+<li>自顶向下递归[处理子树，生成当前节点代码]；用(编译程序的)栈保存可用的寄存器；子树生成完毕后，根结果在栈顶寄存器；寄存器不够时用临时变量补充</li>
+</ul>
+</li>
+</ul>
+<p>@2008-01-22 19:45，写完了！阳光男孩希望这篇文章对你有用</p>

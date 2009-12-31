@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用JavaScript检测浏览器是否打开图像显示-改进load事件法</title>
+<script type="text/javascript" src="/lib/9.js"></script>
+<script type="text/javascript">//<![CDATA[
+WebSite.cauto='js-img.demo3';
+//]]></script>
+</head><body>
+
+<script type="text/javascript">//<![CDATA[
+//当“显示图像”打开时，回调cb函数
+window.ImageSupport=function(cb) {
+        //第一次调用，插入检测用图像
+        var m=new Image();
+        m.src=(location.protocol=='https:'?'https://ssl':'http://www')
+                +'.google-analytics.com/__utm.gif';
+        m.onload=function() {
+                //检测成功
+                var f;
+                //执行队列中的回调函数
+                while (f=window.ImageSupport.queue.shift()) f();
+                //以后直接执行
+                window.ImageSupport=function(cb) { cb(); };
+                //删除检测用图像
+                document.body.removeChild(this);
+        };
+        m.onerror=function() {
+                //图像未打开(不保证发生error事件)
+                window.ImageSupport=function() { };
+        };
+        m.style.position='absolute';
+        m.style.visibility='hidden';
+        m.style.zIndex='-1';
+        document.body.appendChild(m);
+        window.ImageSupport=function(cb) {
+                //后续调用、但无检测结果，排入队列
+                window.ImageSupport.queue.push(cb);
+        };
+        //第一个回调函数排入队列
+        window.ImageSupport.queue=[cb];
+};
+//]]></script>
+
+<p><input type="button" value="ImageSupport(function(){alert(1);});" onclick="ImageSupport(function(){alert(1);});"/><br/>
+<input type="button" value="ImageSupport(function(){alert(2);});ImageSupport(function(){alert(3);});" onclick="ImageSupport(function(){alert(2);});ImageSupport(function(){alert(3);});"/>
+<br/><a href="http://www.65536.cn/t/2009/js-img.htm">用JavaScript检测浏览器是否打开图像显示</a></p>
+
+</body></html>

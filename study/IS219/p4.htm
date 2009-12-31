@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>组策略，安全配置与分析，安全审核，公钥基础结构 习题 - Windows安全原理与技术 - 你的阳光学习频道 study.yoursunny.com</title>
+<link rel="stylesheet" type="text/css" href="/images/9/" />
+<link rel="stylesheet" type="text/css" href="../9.css" />
+<script type="text/javascript" src="/lib/9.js"></script>
+<style type="text/css">/*<![CDATA[*/
+/*]]>*/</style>
+</head><body>
+
+<div class="header">
+<h2><a href="http://yoursunny.com/">你的阳光</a></h2>
+<ul>
+<li><a href="http://m.yoursunny.com/"><span>个人</span></a></li>
+<li><a href="http://study.yoursunny.com/"><span>学习</span></a></li>
+<li><a href="http://www.65536.cn/"><span>技术</span></a></li>
+<li><a href="http://www.65536.cn/work/"><span>作品</span></a></li>
+</ul>
+<ol>
+<li><a href="/">你的阳光</a></li>
+<li><a href="../">学习频道</a></li>
+<li><a href="./">Windows安全原理与技术</a></li>
+<li><span>组策略，安全配置与分析，安全审核，公钥基础结构 习题</span></li>
+</ol>
+</div>
+
+<div class="content"><script type="text/javascript">WebSite.writeAd('study');</script>
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">组策略，安全配置与分析，安全审核，公钥基础结构 习题</h1>
+<div class="p-body headers">
+
+<script type="text/javascript" src="../question.js"></script>
+
+<div class="q choice">
+<p>站点IDC中的计算机CN=opsmgr,OU=Servers,OU=Computers,DC=shenzhen,DC=contoso,DC=com，以什么样的顺序应用组策略？</p>
+<ul>
+<li><ul><li>IDC</li><li>contoso.com</li><li>shenzhen.contoso.com</li><li>Computers</li><li>Servers</li><li>本地策略</li></ul></li>
+<li class="y"><ul><li>本地策略</li><li>IDC</li><li>contoso.com</li><li>shenzhen.contoso.com</li><li>Computers</li><li>Servers</li></ul></li>
+<li><ul><li>本地策略</li><li>contoso.com</li><li>shenzhen.contoso.com</li><li>Servers</li><li>Computers</li><li>IDC</li></ul></li>
+</ul>
+</div>
+
+<div class="q yesno">
+<p class="n">在组织单元Servers上设置了“阻止策略继承”，同时在域shenzhen.contoso.com的组策略对象链接上设置了“禁止替代”，此时站点IDC中的计算机CN=opsmgr,OU=Servers,OU=Computers,DC=shenzhen,DC=contoso,DC=com不会应用组织单元Servers链接的组策略对象。</p>
+</div>
+
+<div class="q yesno">
+<p class="y">Windows XP 家庭版 不处理组策略。</p>
+</div>
+
+<div class="q choice">
+<p>安全配置工具集中，“安全域控制器”安全模板的文件名是：</p>
+<ul>
+<li>securews.inf</li>
+<li>securews.sdb</li>
+<li class="y">securedc.inf</li>
+<li>securedc.sdb</li>
+<li>hisecws.inf</li>
+<li>hisecws.sdb</li>
+<li>hisecdc.inf</li>
+<li>hisecdc.sdb</li>
+</ul>
+</div>
+
+<div class="q yesno">
+<p class="n">[安全配置和分析]管理单元可以将安全模板直接应用于本地计算机</p>
+</div>
+
+<div class="q choice">
+<p>默认情况下，Windows 2000不存在下列哪种事件日志</p>
+<ul>
+<li>Application</li>
+<li>Security</li>
+<li>System</li>
+<li class="y">Internet Explorer</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>“网卡与网络连接”事件记录在哪类事件日志中</p>
+<ul>
+<li>Application</li>
+<li>Security</li>
+<li class="y">System</li>
+<li>Internet Explorer</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>Windows 2000中不存在下列哪种事件类型</p>
+<ul>
+<li>错误</li>
+<li>成功审核</li>
+<li class="y">登录</li>
+<li>警告</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>日志保留方式设置为“按需要改写”。在没有清除日志权限的情况下，攻击者应该采取何种方式避免自己的攻击日志被发现？</p>
+<ul>
+<li>在攻击前产生大量无用日志</li>
+<li class="y">在攻击后产生大量无用日志</li>
+</ul>
+</div>
+
+<div class="q answer">
+<p>企业CA与独立CA的区别</p>
+<table class="a" border="1">
+<tr><th>企业CA</th><th>独立CA</th></tr>
+<tr><td>需要活动目录</td><td>不需要活动目录</td></tr>
+<tr><td>数据库和配置自动发布到活动目录</td><td>安装时指定数据库和配置存储位置</td></tr>
+<tr><td>可以使用证书申请向导申请证书</td><td>只能通过证书服务Web申请证书</td></tr>
+<tr><td>证书请求立即自动处理</td><td>等待管理员处理证书请求</td></tr>
+<tr><td></td><td></td></tr>
+</table>
+</div>
+
+<a href="javascript:;" onclick="q_reset()">清除所有答题记录</a>
+
+</div></div></div>
+
+</div>
+
+<div class="footer">
+<p class="copyright">&copy;2006-2009 yoursunny.com, CreativeCommons BY-NC 3.0</p>
+<ul class="links">
+<li><a href="/m/about.htm">关于本站</a></li>
+<li><a href="/m/contact.htm">联系方式</a></li>
+<li><a href="/m/sitemap.htm">网站地图</a></li>
+</ul>
+</div>
+
+<script type="text/javascript">//<![CDATA[
+WebSite.bannerAd=false;
+//]]></script>
+</body></html>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml">
+<wml>
+<card title="阳光GPA计算器">
+<p><big>阳光GPA计算器</big></p>
+<p>
+jAccount帐号：<input name="u"/>
+<br/>
+jAccount密码：<input name="p" type="password"/>
+</p>
+<do type="accept" label="计算GPA">
+<go href="http://yoursunny-app.appspot.com/study/GPA/wap" method="post">
+<postfield name="u" value="$u"/>
+<postfield name="p" value="$p"/>
+</go>
+</do>
+<p><small>每次计算需要30秒左右，请耐心等待。<br/>如果提交后又返回本页，请检查帐号密码是否正确，或稍候再试。<br/>【阳光GPA计算器】不会记录你的帐号、密码、成绩、GPA，请放心使用。但是，本站非jAccount授权应用，你要自行承担密码泄露的风险。</small></p>
+</card>
+</wml>

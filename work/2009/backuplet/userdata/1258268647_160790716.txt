@@ -1,0 +1,13 @@
+u=http%3A%2F%2Ft.coolxll.cn%2Fstatus%2F5730683828&dt=1258267391.122&t=%40terryxxy+I+wrote+a+script+to+send+my+tweets+on+digu+to+club.msn.cn&via=yoursunny
+u=http%3A%2F%2Ft.coolxll.cn%2Fstatus%2F5674964612&dt=1258101720&t=Only+who+follow+both+you+and+I+can+see+your+reply+to+me+in+her%2Fhis+friends'+timeline.+RT+%40shanjianchen%3A+%40yoursunny++hi&via=yoursunny
+u=http%3A%2F%2Ft.coolxll.cn%2Fstatus%2F5674811396&dt=1258101000&t=Listening+to+a+lecture+about+Twitter+and+other+microblogging+services+by+%40shanjianchen+.&via=yoursunny
+u=http%3A%2F%2Ft.coolxll.cn%2Fstatus%2F5666239692&dt=1258074900&t=%40mcgeek11204+When+I+see+a+'public'+mailbox%2C+I+would+change+its+password+to+warn+the+creator+about+the+risk.&via=yoursunny
+u=http%3A%2F%2Ft.coolxll.cn%2Fstatus%2F5649556716&dt=1258034700&t=%40shanjianchen+%23dabr+still+doesn't+support+Chinese+hash+tags.+So+write+the+hash+tag+in+English.&via=yoursunny
+u=http%3A%2F%2Ft.coolxll.cn%2Fstatus%2F5649438550&dt=1258034400&t=%40coolxll+It's+not+possible+to+revert+this.+Look+at+another+PC+and+set+manually+to+similar+attributes.&via=yoursunny
+u=http%3A%2F%2Ft.coolxll.cn%2Fstatus%2F5649362259&dt=1258034160&t=%40perfectworks+This+can+protect+your+computer+from+being+stolen.&via=yoursunny
+u=http%3A%2F%2Ft.coolxll.cn%2Fstatus%2F5635652863&dt=1257988020&t=%40coolxll+I+think+there+is+an+option+to+disable+it.+But+it's+a+best+practice+to+avoid+using+iPhone+on+bed%2C+for+the+sake+of+health.&via=yoursunny
+u=http%3A%2F%2Ft.coolxll.cn%2Fstatus%2F5631790031&dt=1257979440&t=%40xiaobaiwcc+I+am+still+in+bed.+That+meeting+occured+in+yesterday+afternoon.&via=yoursunny
+u=http%3A%2F%2Ft.coolxll.cn%2Fstatus%2F5630452075&dt=1257976320&t=Attended+a+meeting+of+the+design+of+a+server+product.+I+found+hProxyN+which+I+wrote+last+year+has+already+applied+some+advanced+techniques.&via=yoursunny
+u=http%3A%2F%2Ft.coolxll.cn%2Fstatus%2F5604957816&dt=1257900360&t=11-11+today.+%40mcgeek11204+announced+his+love+with+%40JessieHan%2C+who+is+a+girl+aboard.+This+will+be+a+hard+relationship%2C+even+under+the+cloud.&via=yoursunny
+u=http%3A%2F%2Ft.coolxll.cn%2Fstatus%2F5590684891&dt=1257865860&t=%40watsonxu+This+is+powered+by+Google+Voice.+I+had+this+idea+weeks+ago+but+thought+this+would+abuse+Google+Voice.&via=yoursunny
+u=http%3A%2F%2Ft.coolxll.cn%2Fstatus%2F5559013300&dt=1257775140&t=%23SinaAppEngine+lacks+the+ability+to+debug+on+localhost%2C+lacks+HTTP+POST+in+fetch_url%2C+lacks+DOMDocument+class+for+XML+processing.&via=yoursunny

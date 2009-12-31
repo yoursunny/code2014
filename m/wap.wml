@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml">
+<wml>
+
+<card id="index" title="你的阳光">
+<p>
+<a href="#m">阳光男孩的网上名片</a><br/>
+<a href="http://m.huotu.com/sunnyboy">阳光男孩@火兔</a><br/>
+<a href="http://m.twitter.com/yoursunny">阳光男孩@Twitter</a><br/>
+<a href="http://wap.feedsky.com/sunnyPower">阳光力量博客</a>(摘要)<br/>
+<a href="http://wap.feedsky.com/threads">好帖、热帖、强帖、牛帖</a><br/>
+</p>
+<p>
+<a href="http://yoursunny.com/study/GPA/">阳光GPA计算器</a><br/>
+<a href="http://www.65536.cn/work/2009/sjtu-classroom/q/">上海交通大学教室查询系统</a><br/>
+</p>
+</card>
+
+<card id="m" title="阳光男孩的网上名片">
+<p><img src="/m/wap-photo.jpg" alt="阳光男孩的照片"/></p>
+<p>手机：<a href="wtai://wp/mc;15900941215">15900941215</a><br/>
+语音信箱：+1(804)457-8669<br/>
+飞信：661134847<br/>
+Email：<img src="/m/wap-email.gif" alt="电子邮件地址"/><br/>
+MSN：<img src="/m/wap-msn.gif" alt="MSN帐号"/>
+</p>
+<p><a href="#index">返回首页</a></p>
+</card>
+
+</wml>

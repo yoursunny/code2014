@@ -1,0 +1,68 @@
+饭否备份工具
+JavaScript+Python
+
+
+
+<style>
+#app { border:dotted 3px #090; margin:10px; padding:10px; }
+</style>
+<p>你的阳光技术频道2009新年礼物：<a href="http://fanfou.com">饭否</a>备份工具</p>
+<div id="app">
+<p>你的饭否用户名<input type="text" id="txt_uid" value="sunnyboy"/>
+<input type="button" id="btn_start" value="开始备份" onclick="start()"/></p>
+<p id="progress" style="display:none;">备份进度：<span id="status"></span></p>
+<form action="export.php" method="post" id="export" style="display:none;"><input type="hidden" name="u" id="export_uid"/><input type="hidden" name="j" id="data_json"/><input type="submit" value="导出成XHTML文件"/></form>
+</div>
+<div id="stream" style="display:none;"></div>
+<script type="text/javascript">//<![CDATA[
+function start() {
+	uid=$F('txt_uid');
+	if (uid.blank()) return alert('未输入用户名');
+	$('btn_start').disable();
+	$('export').hide();
+	$('progress').show();
+	data=[];
+	page=1;
+	fetch();
+}
+var uid;
+var data;
+var page;
+function fetch() {
+	$('status').update('正在获取第'+page+'页');
+	var s=document.createElement('script');
+	s.type='text/javascript';
+	s.src='http://yoursunny-app.appspot.com/work/2009/fanfou/fetch?'+$H({u:uid,p:page,cb:'callback'}).toQueryString();
+	$$('head')[0].appendChild(s);
+}
+function callback(o) {
+	$('status').update('正在分析第'+page+'页');
+	$('stream').update(o);
+	parse.defer();
+}
+function parse() {
+	$$('#stream li .content a').each(function(a){
+		a.update(a.href);
+	});
+	var ul=$$('#stream li');
+	ul.each(function(l){
+		var o={};
+		var time=l.select('.time')[0];
+		o.created_at=time.title;
+		var href=time.href;
+		o.id=href.substr(href.indexOf('/status')+10);
+		o.text=l.select('.content')[0].innerHTML.stripTags().unescapeHTML();
+		o.source=l.select('.method')[0].innerHTML.stripTags().replace('通过','').strip();
+		data.push(o);
+	});
+	if (ul.length>0) fetch(++page);
+	else finish();
+}
+function finish() {
+	$('status').update('完成，'+data.length+'条记录');
+	$('btn_start').enable();
+	$('export_uid').value=uid;
+	$('data_json').value=Object.toJSON(data);
+	$('export').show();
+}
+//]]></script>

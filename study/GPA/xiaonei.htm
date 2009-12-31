@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>阳光GPA计算器 - 你的阳光学习频道 study.yoursunny.com | 上海交通大学本科生GPA计算器,阳光男孩的GPA计算器</title>
+<meta name="robots" content="noindex"/>
+<link rel="stylesheet" type="text/css" href="/images/9/" />
+<script type="text/javascript" src="/lib/9.js?cdn"></script>
+<style type="text/css">/*<![CDATA[*/
+html { min-width:720px; padding:10px; }
+.content,.p,.p-wrap { padding:0; border-style:none; background-image:none; }
+#app_title { height:40px; margin:0 40px; }
+.p .tit { float:left; width:30%; }
+#intro_steps { color:#f63; float:right; width:60%; }
+#browser_warning { margin:20px 0; color:#f06; }
+#app { width:720px; min-height:300px; margin:20px auto; overflow:auto; }
+#app table { margin:12px; border-left:solid 1px #9cf; border-top:solid 1px #9cf; }
+#app th,#app td { padding:4px; border-right:solid 1px #9cf; border-bottom:solid 1px #9cf; }
+#calc_result { z-index:1; padding:5px 9px 5px 9px; background:#393; right:0; bottom:0; color:#fff; position:fixed; }
+#app textarea { width:710px; height:300px; }
+#algorithm_view table { width:300px; }
+/*]]>*/</style>
+</head><body>
+
+<div class="content">
+
+<div class="p"><div class="p-wrap">
+<div id="app_title">
+<h1 class="tit">阳光GPA计算器</h1>
+<p id="intro_steps">阳光GPA计算器使用步骤：选择输入方式 &raquo; 输入课程信息 &raquo; 选择算法 &raquo; 计算GPA
+&nbsp;&nbsp; <a href="javascript:;" onclick="GPA.Restart();">重新开始</a></p>
+</div>
+<div class="p-body headers f-clear">
+<noscript><p>GPA计算器需要调用JavaScript脚本语言。如果你没有开启JavaScript，将无法使用GPA计算器。</p></noscript>
+<div id="browser_warning" style="display:none;"></div>
+<div id="app">
+<div id="step_input_choose" class="step">
+<div id="app_ad" class="ad-post"></div>
+<h2>选择输入方式</h2>
+<ul>
+<li><a href="javascript:GPA.Input('Table');">表格录入</a>，手工录入学分、成绩等</li>
+<li><a href="javascript:GPA.Input('CSV');">CSV/TXT文件上传</a>，上传使用表格软件（如EXCEL）编辑好的课程信息</li>
+<li><a href="javascript:GPA.Input('XHTML');">XHTML文件上传</a>，上传您上次使用阳光GPA计算器时保存的XHTML数据文件</li>
+<li><a href="javascript:GPA.Input('JSON');">JSON导入</a>，粘贴您上次使用阳光GPA计算器时保存的JSON数据</li>
+<li><a href="javascript:GPA.Input('SJTU');">上海交大修业查询</a>，粘贴教务处修业查询报表，适用于上海交通大学本科生</li>
+<li id="input_jAccount"><a href="javascript:GPA.Input('jAccount');">上海交大jAccount</a>，输入jAccount帐号密码、自动提取成绩单，适用于上海交通大学本科生</li>
+</ul>
+<p>yoursunny.com承诺不保存您的课程成绩。少部分需要提交成绩数据的功能有明确提示。</p>
+</div>
+<div id="step_input" class="step"></div>
+<div id="step_algorithm" class="step"></div>
+<div id="step_calc" class="step"></div>
+<div id="step_export" class="step"></div>
+</div>
+</div></div></div>
+
+</div>
+
+<script type="text/javascript">//<![CDATA[
+WebSite.bannerAd=false;
+WebSite.cauto='xiaonei.htm';
+Event.onReady(function(){
+	//$('app_ad').update('<iframe src="'+(WebSite.isTest?'about:blank':'alimama-xiaonei.htm')+'" width="728" height="90" scrolling="no" frameborder="0" marginheight="0" marginwidth="0" border="0"></iframe>');
+	GPA.CheckUA();
+	GPA.xiaonei_app=true;
+});
+//]]></script>
+<script type="text/javascript" src="component.php?core,input"></script>
+</body></html>

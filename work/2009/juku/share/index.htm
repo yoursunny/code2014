@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>分享到聚酷</title>
+<style type="text/css">/*<![CDATA[*/
+* { margin:0; padding:0; }
+h1 { font-size:14px; }
+/*]]>*/</style>
+</head><body>
+
+<h1>分享到聚酷</h1>
+<p>标题：<input type="text" id="i_title" size="80"/></p>
+<p>网址：<input type="text" id="i_url" size="80"/></p>
+<p>评论：<input type="text" id="i_note" size="80"/></p>
+<p><input type="button" value="分享" onclick="share_submit()"/></p>
+<p>提示：请在操作本功能前确保已经<a href="http://club.msn.cn" target="_blank">登录聚酷</a>。点击“分享后”下面出现“[]”表示分享失败，请重新登录后再试；出现“responses_seen”表示分享成功，请<a href="javascript:;" id="a_back">返回原网页</a>。</p>
+<iframe src="about:blank" id="f_target" name="f_target" width="300" height="50" scrolling="no"></iframe>
+
+<form id="share_form" method="post" target="f_target">
+<input type="hidden" name="qualifier" value="shares"/>
+<input type="hidden" name="content" id="f_content"/>
+<input type="hidden" name="friend" value=""/>
+<input type="hidden" name="group" value=""/>
+</form>
+
+<script type="text/javascript">//<![CDATA[
+var E=function(id){return document.getElementById(id)};
+(function(){
+	var s=decodeURIComponent(location.search.substr(1));
+	var pos=s.indexOf('|');
+	if (pos<0) return;
+	E('a_back').href=E('i_url').value=s.substr(0,pos);
+	E('i_title').value=s.substr(pos+1);
+})();
+function share_submit() {
+	E('f_content').value=E('i_url').value+' ('+E('i_title').value.replace(/\(/g,'（').replace(/\)/g,'）')+') '+E('i_note').value;
+	var f=E('share_form');
+	f.action='http://club.msn.cn/Ajax/AddWall.aspx?v='+Math.random();
+	f.submit();
+}
+//]]></script>
+</body></html>

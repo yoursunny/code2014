@@ -1,0 +1,200 @@
+<!--#PAGE list-->
+练习题
+Internet安全协议与标准,上海交通大学,考试范围,考试要点,练习题
+<style type="text/css">
+.pmsg ul li { font-size:12pt; line-height:25pt; }
+.pmsg ul a,.pmsg ul span { margin-left:2ex; }
+</style>
+<p>声明：练习题不是历年真题，而是根据考试范围猜测的，仅供参考</p>
+<ul>
+<li><b>概论</b>
+<a href="?question=intro">概论</a>
+<a href="?question=sp">安全协议</a>
+</li>
+<li><b>协议</b>
+<a href="?question=SET">SET</a>
+<a href="?question=Kerberos">Kerberos</a>
+<a href="?question=IPSec">IPSec</a>
+<a href="?question=SSL">SSL</a>
+<a href="?question=PGP">PGP</a>
+<a href="?question=CSP">CSP</a>
+</li>
+<li><b>分析</b>
+<a href="?question=BAN">推理结构性方法：BAN逻辑</a>
+<a href="?question=SVO">推理结构性方法：SVO逻辑</a>
+<br/>
+<a href="?question=CSPa">攻击结构性方法：通信顺序进程CSP</a>
+<a href="?question=strand">证明结构性方法：串空间</a>
+</li>
+</ul>
+<!--#PAGE intro-->
+概论
+信息安全,信息系统
+<p class="q">信息系统安全范围<br/>
+<span class="key">物理安全，计算机安全，网络安全</span></p>
+<p class="q">网络安全需求有哪些？<br/>
+<span class="key">身份鉴别，访问控制，数据机密性，数据完整性，抗否认，可用性</span></p>
+<p class="q">名词解释：抗否认<br/>
+<span class="key">一旦事务结束，有关各方都不能否认自己参与过这次事务。</span></p>
+<p class="q">名词解释：HASH函数<br/>
+<span class="key">一个函数H，它接受一可变长输入m，返回一固定长度串h。h称为m的HASH值。HASH函数起到可靠校验和的作用。</span></p>
+<p class="q">名词解释：数字签名<br/>
+<span class="key">使用公开密钥加密系统来保证消息的完整性和对发送者身份的确认。由签名和校验两部分组成。</span></p>
+<p class="q">数字签名的安全属性<br/>
+<span class="key">不可抵赖性，不可否认性，发生争执时可由第三方仲裁</span></p>
+<!--#PAGE sp-->
+安全协议
+协议,安全协议,安全协议的设计准则,安全协议的缺陷
+<p class="q">名词解释：协议<br/>
+<span class="key">两个或两个以上参与者采取一系列的步骤，以完成某项特定的任务。</span></p>
+<p class="q">名词解释：安全协议<br/>
+<span class="key">基于密码体制，在分布式系统、<a href="../IS204/">通信网</a>中，实现密钥分配、身份认证、信息保密、电子商务等目标。</span></p>
+<p class="q">安全协议的类型<br/>
+<span class="key">密钥交换协议，认证协议，认证和密钥交换协议，电子商务</span></p>
+<p class="q">安全协议的安全属性<br/>
+<span class="key">认证性，保密性，完整性，抗否认性</span></p>
+<p class="q">安全协议的设计准则<br/>
+<span class="key">消息前提正确（消息能独立验证完整性），主体身份标识（能识别发送、接收者是谁），签名，随机数（通过序列号满足时序要求），时戳（满足时序要求、需要时钟同步）</span></p>
+<p class="q">安全协议的缺陷<br/>
+<span class="key">基本协议缺陷（无法完整基本功能），陈旧消息（重放攻击引发非正常协议状态），并行会话（A-B的会话与C-D的会话互相干扰）</span></p>
+<p class="q">名词解释：安全协议的形式化分析<br/>
+<span class="key">正规、标准的方法对协议进行分析，以检查协议是否满足其安全目标。有助于：边界界定，行为描述，特性定义，安全性分析</span></p>
+<!--#PAGE SET-->
+SET协议
+SET协议,电子商务,Secure Eletronic Transaction,双重签名,Dual Signatures
+<p class="q">名词解释：SET<br/>
+<span class="key">SET协议的全称是Secure Eletronic Transaction，SET协议是使用信用卡交易的官方规范；SET协议仅仅关心支付问题</span></p>
+<p class="q">SET支付模式<br/>
+<span class="key"><img src="SET.png" width="358" height="167" alt="SET框图"/></span></p>
+<p class="q">简答：SET协议的目标<br/>
+<span class="key">信息传输不能被窃听或篡改，妥善保护用户资料（商家不能看到账户信息），持卡人和商家相互认证，兼容性和互操作性</span></p>
+<p class="q">简答：电子支付的流程<br/>
+<span class="key">客户在发卡行开户并获得X.509证书，商家持有两个X.509证书（一个用于签名、一个用于密钥交换），客户向商家发订单，商家出示证书，客户发送订单和支付信息给商家，商家向支付网关请求支付授权，商家确认客户订单，发货，商家向支付网关请求支付</span></p>
+<p class="q">名词解释：双重数字签名 Dual Signatures<br/>
+<span class="key">将两个信息链接在一起，这两个信息面向的对象不同（订单信息给商家、支付信息给银行），保护客户隐私、防止信息非法使用。<br/>Dual Signature = E<sub>KRC</sub>[H( H(PI)||H(OI) )]<br/>
+双重签名的用途：校验订单信息，校验支付信息，证明订单信息与支付信息的关联</span></p>
+<p class="q">简答：绘制PReq消息的校验流程<br/><img src="PReq.png" width="407" height="602" alt="SET协议的PReq消息"/><br/>
+<span class="key"><img src="PReq-verify.png" width="476" height="561" alt="SET协议的PReq消息校验流程"/></span></p>
+<!--#PAGE Kerberos-->
+Kerberos协议
+Kerberos,RFC 1510,Kerberos V5,KDC,Authenticator
+<p class="q">名词解释：KDC<br/>
+<span class="key">Key Distribution Center密钥分发中心，是一个网络服务，提供Ticket和临时会话密钥。</span></p>
+<p class="q">名词解释：Ticket<br/>
+<span class="key">一个记录，客户用它向服务器证明自己的身份。包含客户标识、会话密钥、时戳等，用服务器的密钥加密。</span></p>
+<p class="q">名词解释：Authenticator<br/>
+<span class="key">一个记录，包含一些新近产生的信息。用客户与服务器的共享密钥产生Authenticator。</span></p>
+<p class="q">名词解释：Crendentials<br/>
+<span class="key">Ticket + 秘密的会话密钥</span></p>
+<p class="q">简答：Kerberos工作流程<br/>
+<span class="key"><img src="Kerberos.png" width="778" height="617" alt="Kerberos工作流程"/><br/>Authentication Server提供认证服务，Ticket Granting Server提供授权和访问控制服务</span></p>
+<p class="q">Kerberos的优点<br/>
+<span class="key">密码不易被窃听，密码不在网上传输，密码猜测更困难，Single Sign-On，Ticket被盗后难以使用（需要配合Authenticator使用）</span></p>
+<!--#PAGE IPSec-->
+IPSec协议
+IPSec,SA,SPD,AH,ESP,隧道模式,传输模式
+<p class="q">名词解释：IPSec<br/>
+<span class="key">IP Security，一个框架、一套协议和标准，支撑IP层的安全。IPSec工作在IP协议与传输层协议之间。IPSec可提供对发送者的认证、可提供payload的完整性和保密性。</span></p>
+<p class="q">名词解释：SA，Security Associations<br/>
+<span class="key">安全参数+目标地址。SA是单向的，一个连接需要两个SA分别用于出站和入站通信。<br/>安全参数：认证算法和模式，加密算法和模式，密钥，密钥生命周期，SA生命周期，源地址，敏感水平</span></p>
+<p class="q">名词解释：SPD，Security Policy Data<br/>
+<span class="key">用户定义的策略：每个报文的安全服务及其水平</span></p>
+<p class="q">名词解释：AH，Authencication Header<br/>
+<span class="key">提供完整性（包括IP头）、认证、防止重放服务的协议。</span></p>
+<p class="q">简答：AH模式的出站（发送）处理<br/>
+<span class="key">查找SA，生成序列号，计算ICV（完整性+认证），填充，分段</span></p>
+<p class="q">简答：AH模式的入站（接收）处理<br/>
+<span class="key">装配（连接各分段、去除填充），查找SA，校验序列号，校验ICV</span></p>
+<p class="q">名词解释：ESP，Encapsulting Security Payload<br/>
+<span class="key">提供完整性（不含IP头）、认证、加密、防止重放服务的协议。</span></p>
+<p class="q">简答：ESP模式的出站（发送）处理<br/>
+<span class="key">查找SA，生成序列号，加密，计算ICV（完整性+认证），填充，分段</span></p>
+<p class="q">简答：ESP模式的入站（接收）处理<br/>
+<span class="key">装配（连接各分段、去除填充），查找SA，校验序列号，校验ICV，解密</span></p>
+<p class="q">名词解释：隧道模式 Tunnel Mode<br/>
+<span class="key">IPSec协议添加新的IP头，原IP头和数据作为payload</span></p>
+<p class="q">名词解释：传输模式 Transport Mode<br/>
+<span class="key">IPSec协议不添加新IP头，而是修改原IP头的协议字段；AH在传输模式下，不能穿越NAT</span></p>
+<!--#PAGE SSL-->
+SSL协议
+SSL,RFC 2246,TLS
+<p class="q">名词解释：SSL/TLS协议<br/>
+<span class="key">安全套接层（Secure Sockets Layer，SSL）及其继任者传输层安全（Transport Layer Security，TLS）是在互联网上提供安全保密的通讯协议，为诸如网站、电子邮件、网上传真等等数据传输进行保密。SSL 3.0和TLS 1.0有轻微差别，但两种规范其实大致相同。TLS利用密钥算法在互联网上提供端点身份认证与通讯保密，其基础是公钥基础设施（PKI）。协议的设计在某种程度上能够使客户端/服务器应用程序通讯本身预防窃听、干扰（Tampering）、和消息伪造。<a href="http://zh.wikipedia.org/wiki/%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8">via:wikipedia,根据GFDL授权</a></span></p>
+<p class="q">简答：SSL/TLS握手过程<br/>
+<span class="key"><img src="SSL-handshake.png" width="700" height="620" alt="SSL handshake with two way authentication with certificates"/><br/><a href="http://zh.wikipedia.org/wiki/Image:Ssl_handshake_with_two_way_authentication_with_certificates.png">by:Christian Friedrich</a></span></p>
+<!--#PAGE PGP-->
+OpenPGP协议
+PGP,GPG,GnuPG,OpenPGP,RFC 4880,Web of trust,公钥环,私钥环
+<p class="q">名词解释：PGP<br/>
+<span class="key">Pretty Good Privacy(PGP)是一个提供加密和认证的计算机程序。PGP经常被用于签名、加密和解密电子邮件，以增加电子邮件通信的安全性。商业软件PGP和开源软件GnuPG(GPG)根据OpenPGP(RFC 4880)协议加密和解密数据。<a href="http://en.wikipedia.org/wiki/Pretty_Good_Privacy">翻译自wikipedia,原文根据GFDL授权</a></span></p>
+<p class="q">名词解释：公钥环、私钥环<br/>
+<span class="key">密钥以加密形式存储在磁盘上。PGP将密钥存储在你硬盘上的两个文件；一个存储公钥、一个存储私钥。这两个文件称为keyring。当你使用PGP时，你通常将你的收件人的公钥加入公钥环public keyring。你的私钥存储在私钥环private keyring里。如果你丢失了你的私钥环，你将无法解密任何用这个私钥环中的密钥加密的信息。<a href="http://www.pgpi.org/doc/pgpintro/">via</a></span></p>
+<p class="q">简答：OpenPGP的信任问题 &amp; 名词解释：Web of trust<br/>
+<span class="key">当加密消息、验证签名时，确认一个公钥确实属于对方是非常重要的。简单的从某处下载一个公钥，不能抵抗故意或者意外的渗透攻击。从PGP最初的版本开始，用户就可以在证书中分发他的公钥，对证书的任何篡改都可以被发现；但是仅仅制作一个无法被篡改而不被发现的证书是不够的，因为这只能避免的证书制作之后的篡改。用户还必须通过某种手段确认，证书中包含的那个公钥，确实属于它声称的那个人；从PGP最初的版本开始，就包含一个“证书审查机制”以帮助实现这一点：这就是Web of trust。<b>一个公钥（确切的说，用户名-公钥的绑定）可以被第三方用户签名，以证实某人（一个用户名）与这个公钥的关联。</b><a href="http://en.wikipedia.org/wiki/Pretty_Good_Privacy">翻译自wikipedia,原文根据GFDL授权</a></span></p>
+<p class="q">简答：根据PGP发送过程绘制接收验证过程<br/><img src="PGP-sender.png" width="600" alt="384" alt="PGP发送过程"/><br/>
+<span class="key"><img src="PGP-receiver.png" width="638" height="355" alt="PGP接收验证过程"/><br/>阳光男孩原创作品，<a href="PGP-receiver.dia">dia源文件</a>，Creative Commons BY-NC-SA 3.0</span></p>
+<!--#PAGE CSP-->
+Contract Signing Protocols
+CSP协议,电子合同签订,TTP,Abuse-Free
+<p class="q">简答：CSP的目的和作用<br/>
+<span class="key">双方签订协议；合同对于双方已知，不进行协商（对“拍卖”不适用）；攻击者可以是第三方、或签订合同的对方。<br/>公平交易：双方都想签订协议，但是都不想先签名；协议要保证同时成功、或同时失败。</span></p>
+<p class="q">名词解释：TTP<br/>
+<span class="key">TTP=Trusted Third Party<br/>It is impossible to solve strong fair exchange without a trusted third party. The proof is by relating strong fair exchange to the problem of consensus and adapting the impossibility result of Fischer, Lynch and Paterson. <a href="http://theory.stanford.edu/~jcm/slides/tecs-05/05-Contract-Signing%20Protocols.ppt">via</a></span></p>
+<p class="q">Asokan-Shoup-Waidner乐观协议<br/>
+<span class="key"><img src="Asokan-Shoup-Waidner.png" width="553" height="326" alt="Asokan-Shoup-Waidner协议"/><a href="http://theory.stanford.edu/~jcm/slides/tecs-05/05-Contract-Signing%20Protocols.ppt">via</a></span></p>
+<p class="q">Garay-Jakobsson-MacKenzie Abuse-Free协议<br/>
+<span class="key"><img src="Garay-Jakobsson-MacKenzie.png" width="553" height="327" alt="Garay-Jakobsson-MacKenzie协议"/><a href="http://theory.stanford.edu/~jcm/slides/tecs-05/05-Contract-Signing%20Protocols.ppt">via</a></span></p>
+<!--#PAGE BAN-->
+推理结构性方法：BAN逻辑
+BAN
+<p class="q">分析：请用文字解释下列公理的意义<br/>bel(P,<sup>K</sup>→Q) , sees(P,{X}<sub>K<sup>-1</sup></sub>) =&gt; bel( P, said(Q,X) )<br/>
+<span class="key">P相信，K是Q的公钥；P收到了用Q的私钥签名的消息X。那么，P可以相信，Q发送了消息X。</span></p>
+<p class="q">分析：请用文字解释下列公理的意义<br/>bel(P,cont(Q,X)) , bel(P,bel(Q,X)) =&gt; bel(P,X)<br/>
+<span class="key">P相信，消息X是由Q控制的(比如它是Q产生的，别人不能产生)；P也相信，Q认可X。那么，P就可以相信消息X。</span></p>
+<p class="q">简答：BAN逻辑分析过程<br/>
+<span class="key">理想化协议，对初始状态作出假设，将协议用BAN逻辑的符号表示，用推理规则得出协议试图达到的信念</span></p>
+<!--#PAGE SVO-->
+推理结构性方法：SVO逻辑
+SVO
+<p class="q">分析：请用文字解释下列公理的意义<br/>┐bel(P,φ) =&gt; bel( P , ┐bel(P,φ) )<br/>
+<span class="key">P不相信命题φ。所以，P相信：“P不相信命题φ”。</span></p>
+<p class="q">分析：请用文字解释下列公理的意义<br/>sees( P , {X}<sub>K<sup>+</sup></sub> ) , has(P,K<sup>-</sup>) =&gt; sees(P,X)<br/>
+<span class="key">P收到用公钥K加密的消息X，而且P持有对应的私钥K。那么，P可以解密并看到消息X。</span></p>
+<p class="q">简答：SVO逻辑分析过程<br/>
+<span class="key">对初始状态作出假设，将协议用SVO逻辑的符号表示，假设理解了收到的消息，假设解释了理解的消息，用推理规则得出协议试图达到的信念</span></p>
+<!--#PAGE CSPa-->
+攻击结构性方法：通信顺序进程CSP
+CSP,Communicating Sequential Processes
+<p class="q">名词解释：CSP<br/>
+<span class="key">Communicating Sequential Processes通信顺序进程，是一个专为描述并发系统中通过消息交换进行交互的通信实体行为而设计的一种抽象语言，它可用于网络安全协议的描述与分析。</span></p>
+<p class="q">名词解释：事件<br/>
+<span class="key">协议系统通过其执行的一系列事件加以描述。一个典型的CSP事件记作c,i,j,m，包括信道c、消息源i、目的地j、消息m。</span></p>
+<p class="q">名词解释：进程<br/>
+<span class="key">进程是系统的组成部分。CSP用进程可能涉及的事件来描述进程。</span></p>
+<p class="q">名词解释：STOP进程<br/>
+<span class="key">不包含任何事件，等价于死锁</span></p>
+<p class="q">名词解释：c!v→P进程<br/>
+<span class="key">在信道c上输出消息v，然后表现得像P</span></p>
+<p class="q">名词解释：c?x:T→P(x)进程<br/>
+<span class="key">在信道c上输入类型为T的任意消息x，然后表现得像P(x)</span></p>
+<p class="q">名词解释：P□Q进程<br/>
+<span class="key">表现得或像P、或像Q</span></p>
+<p class="q">名词解释：P[D]|Q进程<br/>
+<span class="key">如果集合D中的事件发生，则P、Q同步执行；否则，P、Q分别执行</span></p>
+<p class="q">名词解释：P=a→b→P进程<br/>
+<span class="key">递归。进行P交替执行事件a和事件b</span></p>
+<p class="q">名词解释：路径trace<br/>
+<span class="key">进程P可能执行的事件的序列，记作(trace(P))。例如P=a→b→P进程的一个可能的路径是&lt;a,b,a&gt;</span></p>
+<!--#PAGE strand-->
+证明结构性方法：串空间
+串,串空间,bundle
+<p class="q">名词解释：串<br/>
+<span class="key">一个事件的序列</span></p>
+<p class="q">名词解释：串空间<br/>
+<span class="key">串的集合，通过因果关系彼此关联</span></p>
+<p class="q">分析：找出下列串空间中两个bundle<br/><img src="bundle.png" width="312" height="256" alt="串空间,bundle"/><br/>
+<span class="key"><img src="bundle2.png" width="312" height="256" alt="串空间,bundle"/></span></p>
+<p><a href="strand-space-bundle.txt">串空间bundle求解方法</a></p>
+<!--#PAGE NOP-->
+
+

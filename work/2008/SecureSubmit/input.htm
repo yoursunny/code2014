@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SecureSubmit demo</title>
+<!-- prototype-tiny.js is part of Prototype.js 1.6.0.2 which is needed by SecureSubmit. If you have prototype.js included, you don't need prototype-tiny.js -->
+<script type="text/javascript" src="prototype-tiny.js"></script>
+<script type="text/javascript" src="BigInt.js"></script>
+<script type="text/javascript" src="DES.js"></script>
+<script type="text/javascript" src="SecureSubmit.js"></script>
+</head>
+
+<body>
+input:
+<input type="text" id="p" /><br/>
+<input type="button" onclick="doSubmit('handler.aspx')" value="Submit to C# handler"/>
+<input type="button" onclick="doSubmit('handler.php')" value="Submit to PHP handler"/><br/>
+show:
+<a href="handler.aspx?a=show">C# handler</a>
+<a href="handler.php?a=show">PHP handler</a>
+<br/>
+<div id="status"></div>
+<script type="text/javascript">
+//Prototype.js functions to support the UI code
+var $ = function(t) {
+	var d = (typeof t == 'object') ? t : document.getElementById(t);
+	d.update = function(h) { d.innerHTML = h; }
+	d.insert = function(h) { d.innerHTML += h; }
+	return d;
+}
+String.prototype.times = function(count) {
+	return count < 1 ? '' : new Array(count + 1).join(this);
+};
+Number.prototype.toPaddedString = function(length, radix) {
+	var string = this.toString(radix || 10);
+	return '0'.times(length - string.length) + string;
+};
+</script>
+<script type="text/javascript">
+function doSubmit(handler) {
+	var now=function(){var d=new Date();return d.getHours().toPaddedString(2)+':'+d.getMinutes().toPaddedString(2)+':'+d.getSeconds().toPaddedString(2)+'.'+d.getMilliseconds().toPaddedString(3);}
+	var password=$('p').value;
+	var u=new SecureSubmit(handler);
+	$('status').update(now()+' generating DES key');
+	u.prepare(function(){
+		$('status').insert('<br/>'+now()+' submitting password');
+		u.save(password,function(){
+			$('status').insert('<br/>'+now()+' done');
+		});
+	});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+PhoneParser电话号码解析器
+JavaScript
+
+
+prettify
+<style type="text/css">
+#l_demos li { text-decoration:underline; color:#0000CC; cursor:pointer; }
+</style>
+<script type="text/javascript" src="phone_parser.js"></script>
+
+<p>一个JavaScript类库，用于解析电话号码的类型、所属通信公司等<br />
+<a href="PhoneParser.zip" onclick="PhoneParser.zip')">下载PhoneParser</a><br />
+注意：号码解析功能只适用于上海</p>
+<h3>PhoneParser效果演示</h3>
+<div>
+<script type="text/javascript">//<![CDATA[
+function run_demo(number)
+{
+	$('demo_input').value=number;
+	var pp=new PhoneParser(number);
+	var b='<table border="1">';
+	b+='<tr><td colspan="4">var pp=new PhoneParser(\''+number.escapeHTML()+'\');</td></tr>';
+	b+='<tr><th>说明</th><th>变量名</th><th>变量值</th><th>备注</th></tr>';
+	b+='<tr><td>原始输入的号码</td><td>pp.number</td><td>'+pp.number.escapeHTML()+'</td><td>&nbsp;</td></tr>';
+	b+='<tr><td>号码是否有效</td><td>pp.valid</td><td>'+pp.valid+'</td><td>&nbsp;</td></tr>';
+	b+='<tr><td>号码类型</td><td>pp.type</td><td>'+pp.type+'</td><td>PhoneParser.Unknown:0 未知<br/>PhoneParser.Fixed:1 固定电话<br/>PhoneParser.Mobile:2 移动电话(包括上海小灵通)<br/>PhoneParser.Urgent:3 紧急电话<br/>PhoneParser.Service:4 服务电话</td></tr>';
+	b+='<tr><td>号码所属通讯公司</td><td>pp.company</td><td>'+pp.company+'</td><td>PhoneParser.Unknown:0 未知<br/>PhoneParser.Telecom:1 电信<br/>PhoneParser.CMCC:4 移动<br/>PhoneParser.Unicom:5 联通<br/>PhoneParser.Satcom:6 卫通</td></tr>';
+	b+='<tr><td>移动电话网络类型</td><td>pp.network</td><td>'+pp.network+'</td><td>PhoneParser.Unknown:0 未知<br/>PhoneParser.GSM:1<br/>PhoneParser.CDMA:2<br/>PhoneParser.PHS:3<br/>PhoneParser.Satellite:4 卫星网络<br/>PhoneParser.TDSCDMA:5 TD-SCDMA</td></tr>';
+	b+='<tr><td>是否本地</td><td>pp.local</td><td>'+pp.local+'</td><td>PhoneParser.NeedQuery:-1 需要服务端查询<br/>PhoneParser.Unknown:0 未知<br/>PhoneParser.Local:1 本地<br/>PhoneParser.NotLocal:2 外地</td></tr>';
+	b+='<tr><td>号码归属地</td><td>pp.location</td><td>'+pp.location+'</td><td>&nbsp;</td></tr>';
+	b+='<tr><td>是否本国</td><td>pp.domestic</td><td>'+pp.domestic+'</td><td>&nbsp;</td></tr>';
+	b+='<tr><td>国家代码</td><td>pp.country</td><td>'+pp.country+'</td><td>&nbsp;</td></tr>';
+	b+='<tr><td>地区代码</td><td>pp.area</td><td>'+pp.area+'</td><td>&nbsp;</td></tr>';
+	b+='<tr><td>本地号码</td><td>pp.num</td><td>'+pp.num+'</td><td>&nbsp;</td></tr>';
+	b+='</table>';
+	$('demo_output').update(b);
+}
+//]]></script>
+<input id="demo_input" type="text" value="021-54740000" /><input type="button" value="解析" onclick="run_demo($F('demo_input'))" />
+<div id="demo_output"></div>
+</div>
+<h3>PhoneParser调用代码</h3>
+<pre><code class="prettyprint lang-html">&lt;head&gt;
+&lt;!--电话号码解析器要求使用Prototype类库--&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.3/prototype.js&quot;&gt; &lt;/script&gt;
+&lt;!--导入电话号码解析器的JS文件--&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;phone_parser.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;</code><code class="prettyprint lang-js">//&lt;[CDATA[
+//创建对象，以电话号码作为参数
+var pp=new PhoneParser('021-54740000');
+//读取对象的各个属性，就可以获得电话号码的相关信息
+//]]&gt;</code><code class="prettyprint lang-html">&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+<p>注：当前服务端脚本尚未开发，因此无法判断移动电话的归属地</p>
+<!-- sidebar -->
+<p>当前版本号：<br />
+<script type="text/javascript">document.write(PhoneParser.version);</script></p>
+<p>支持下列写法的电话号码<br />涵盖用户可能输入的各种情况</p>
+<ul id="l_demos">
+<li onclick="run_demo('54740000')">54740000</li>
+<li onclick="run_demo('(021) 5474-0000')">(021) 5474-0000</li>
+<li onclick="run_demo('021-54740000')">021-54740000</li>
+<li onclick="run_demo('+86(21)54740000')">+86(21)54740000</li>
+<li onclick="run_demo('010-110')">010-110</li>
+<li onclick="run_demo('1-800-WWW-DELL')">1-800-WWW-DELL</li>
+<li onclick="run_demo('1890-00-10000')">1890-00-10000</li>
+<li onclick="run_demo('95533')">95533</li>
+<li onclick="run_demo('13800138000')">13800138000</li>
+<li onclick="run_demo('10086')">10086</li>
+<li onclick="run_demo('0086-13800138000')">0086-13800138000</li>
+<li onclick="run_demo('01087654321')">01087654321</li>
+<li onclick="run_demo('053387654321')">053387654321</li>
+<li onclick="run_demo('021 28001234')">021 28001234</li>
+<li onclick="run_demo('15702108888')">15702108888</li>
+</ul>
+<hr/>
+<p>
+通讯市场千变万化，无力维护，因此PhoneParser自2008-10-08起暂停更新。
+我正在考虑完全改变电话号码解析组件的架构，以适应新的需求。
+</p>

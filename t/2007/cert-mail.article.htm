@@ -1,0 +1,45 @@
+发送数字证书加密和签名的电子邮件(带视频)
+
+
+阳光男孩 发表于 2007-10-09 || 《信息安全综合实践》小作业
+
+<h2>操作视频</h2>
+<p><a href="http://www.tudou.com/programs/view/YnoJVUbtlBg/" rel="external" onclick="c('cert-mail.player')">低清版在线播放</a>
+<a href="http://fs1.bay.cech.com.cn/download/file_share_15049251.html" rel="external" onclick="c('cert-mail.download')">高清版点击下载</a><!-- 2008-10-29更新视频链接 --></p>
+视频内容：
+<ol>
+<li>申请证书</li>
+<li>导出私钥、导出公钥</li>
+<li>使用Foxmail发送签名、加密的邮件</li>
+</ol>
+
+<h2>数字证书申请地址</h2>
+<ul>
+<li><a href="http://ca.foxmail.com.cn" rel="external">http://ca.foxmail.com.cn</a> 接收邮件获取下载码，进入后安装证书</li>
+<li><a href="http://www.ca365.com" rel="external">http://www.ca365.com</a> “免费证书”，选择“电子邮件保护证书”，申请成功后即时安装证书</li>
+<li><a href="http://www.thawte.com" rel="external">http://www.thawte.com</a> 选Personal Email可以申请成功，但是操作很麻烦；好处是它的根证书是系统自带的，权威性较高；但是证书的名字只能是thawte freemail member，想写自己名字得去找5个工作人员出示身份证</li>
+</ul>
+建议使用IE浏览器申请；thawte可以用Firefox，其他不行<br />
+还可以自己建立CA，不过我在Win2003中没有安装成功，说是网络路径找不到，不玩了
+
+<h2>加密、签名邮件发送方法</h2>
+<ol>
+<li>把收件人的证书导入系统（双击，按提示导入“其他人”存储区即可）</li>
+<li>申请一个支持SMTP的邮箱，比如新浪，或者用学校的信箱、自建服务器</li>
+<li>安装好Foxmail6，下载地址 http://fox.foxmail.com.cn</li>
+<li>添加上此信箱，确认能够发送和接收普通的邮件</li>
+<li>撰写邮件时，在工具菜单勾选“数字签名”和“加密”</li>
+<li>点击“发送”时，会让你选择自己的私钥以及收件人的证书，正确选择即可</li>
+</ol>
+(当然，你也可以选用其他客户端软件发送)
+
+<h2>常用POP3/SMTP设置</h2>
+<ul>
+<li>交大邮箱 pop3.sjtu.edu.cn smtp.sjtu.edu.cn</li>
+<li>新浪邮箱 pop.sina.com smtp.sina.com</li>
+<li>Gmail 默认不支持，即使设置里开启了，速度也很慢</li>
+<li>163/126/sohu/sogou 新申请的账号不支持POP3/SMTP</li>
+<li>Yahoo/hotmail 不支持，也无法开启；<a href="http://livesino.net/archives/400.live" rel="external">据livesino.net报道</a>，hotmail几个月后将支持</li>
+</ul>
+
+本帖原发表于<a href="http://bbs.sjtu.edu.cn/bbscon,board,IS,file,M.1191656871.A.html" rel="external">饮水思源BBS站IS板</a>

@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>活动目录，身份验证，访问控制 习题 - Windows安全原理与技术 - 你的阳光学习频道 study.yoursunny.com</title>
+<link rel="stylesheet" type="text/css" href="/images/9/" />
+<link rel="stylesheet" type="text/css" href="../9.css" />
+<script type="text/javascript" src="/lib/9.js"></script>
+<style type="text/css">/*<![CDATA[*/
+/*]]>*/</style>
+</head><body>
+
+<div class="header">
+<h2><a href="http://yoursunny.com/">你的阳光</a></h2>
+<ul>
+<li><a href="http://m.yoursunny.com/"><span>个人</span></a></li>
+<li><a href="http://study.yoursunny.com/"><span>学习</span></a></li>
+<li><a href="http://www.65536.cn/"><span>技术</span></a></li>
+<li><a href="http://www.65536.cn/work/"><span>作品</span></a></li>
+</ul>
+<ol>
+<li><a href="/">你的阳光</a></li>
+<li><a href="../">学习频道</a></li>
+<li><a href="./">Windows安全原理与技术</a></li>
+<li><span>活动目录，身份验证，访问控制 习题</span></li>
+</ol>
+</div>
+
+<div class="content"><script type="text/javascript">WebSite.writeAd('study');</script>
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">活动目录，身份验证，访问控制 习题</h1>
+<div class="p-body headers">
+
+<script type="text/javascript" src="../question.js"></script>
+
+<div class="q choice">
+<p>目录服务的特性不包括</p>
+<ul>
+<li>单一视图</li>
+<li>多主复制</li>
+<li class="y">静态绑定</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>以下对象属于叶对象的是</p>
+<ul>
+<li>contoso.com域</li>
+<li class="y">opsmgr.contoso.com计算机</li>
+<li>Domain Guests组</li>
+</ul>
+</div>
+
+<div class="q multi">
+<p>架构定义了每一种对象类的</p>
+<ul>
+<li class="y">必须具有的属性</li>
+<li class="y">可以具有的额外属性</li>
+<li class="y">可以成为其父类的对象类</li>
+</ul>
+</div>
+
+<div class="q yesno">
+<p class="n">活动目录对象“MicrosoftDNS”不是任何对象类的实例。</p>
+</div>
+
+<div class="q choice">
+<p>活动目录对象可以不具有下列哪个属性</p>
+<ul>
+<li>GUID</li>
+<li class="y">DisplayName</li>
+<li>安全主体名称</li>
+<li>LDAP专用名称</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>contoso.com域的servers组织单元内有一台计算机opsmgr，那么它的LDAP DN是</p>
+<ul>
+<li>contoso.com\servers\opsmgr</li>
+<li>opsmgr.servers.contoso.com</li>
+<li class="y">CN=opsmgr, OU=servers, DC=contoso, DC=com</li>
+<li>CN=opsmgr, OU=servers, DC=contoso.com</li>
+</ul>
+</div>
+
+<div class="q yesno">
+<p class="y">将活动目录对象移到另一个域中，其GUID不会改变。</p>
+</div>
+
+<div class="q choice">
+<p>以下哪个属于活动目录的物理结构组件？</p>
+<ul>
+<li>Domain</li>
+<li>OU</li>
+<li class="y">Site</li>
+<li>Forest</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>活动目录复制的基本单元是</p>
+<ul>
+<li class="y">Domain</li>
+<li>OU</li>
+<li>Site</li>
+<li>Forest</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>应用组策略对象的最小单元是</p>
+<ul>
+<li>Domain</li>
+<li class="y">OU</li>
+<li>Site</li>
+<li>Forest</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>至少需要多少台域控制器？</p>
+<ul>
+<li class="y">每个域1台域控制器</li>
+<li>每个域1台主域控制器，1台备份域控制器</li>
+<li>每个站点1台域控制器</li>
+<li>每个站点1台主域控制器，1台备份域控制器</li>
+<li>每个森林1台域控制器</li>
+<li>每个森林1台主域控制器，1台备份域控制器</li>
+</ul>
+</div>
+
+<div class="q yesno">
+<p class="n">域grandchild.contoso.com是域child.contoso.com的子域。</p>
+</div>
+
+<div class="q yesno">
+<p class="y">将域级别从Windows 2000 Mixed提升到Windows Server 2003后，无法再将域级别设置成Windows 2000 Native。</p>
+</div>
+
+<div class="q choice">
+<p>至少需要多少台全局编录域控制器？</p>
+<ul>
+<li>每个域1台全局编录服务器</li>
+<li>每个站点1台全局编录服务器</li>
+<li class="y">每个森林1台全局编录服务器</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>交互式登录时，哪个组件负责注册Secure Attention Sequence？</p>
+<ul>
+<li class="y">winlogon</li>
+<li>gina</li>
+<li>Kerberos身份验证程序包</li>
+<li>MSV身份验证程序包</li>
+</ul>
+</div>
+
+<div class="q answer">
+<p>NTLM与Kerberos的区别</p>
+<table class="a" border="1">
+<tr><th>NTLM</th><th>Kerberos</th></tr>
+<tr><td>厂商专有协议</td><td>开放的工业标准：RFC1510</td></tr>
+<tr><td>服务器认证客户</td><td>双向认证</td></tr>
+<tr><td>Windows NT支持</td><td>Windows NT不支持</td></tr>
+<tr><td>本地登录时使用</td><td>只用于域登录</td></tr>
+</table>
+</div>
+
+<div class="q multi">
+<p>Kerberos票据中，以下哪些部分被加密？</p>
+<ul>
+<li class="y">客户所在域的名称</li>
+<li class="n">发布票据域的名称</li>
+<li class="y">会话密钥</li>
+<li class="y">票据有效时间</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>系统使用主体的____与客体安全描述的____进行比较，来执行访问控制。</p>
+<ul>
+<li>令牌;系统访问控制列表</li>
+<li class="y">令牌;自由访问控制列表</li>
+<li>用户名;系统访问控制列表</li>
+<li>用户名;自由访问控制列表</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>令牌的内容不包括</p>
+<ul>
+<li>用户帐号的SID</li>
+<li>请求创建令牌的进程</li>
+<li class="y">远程登录的IP地址</li>
+<li>特权列表</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>某对象的DACL为空，那么</p>
+<ul>
+<li class="y">任何用户都不能访问该对象</li>
+<li>任何用户都可以访问该对象</li>
+<li>任何访问都会记录审核日志</li>
+<li>任何访问都不记录审核日志</li>
+</ul>
+</div>
+
+<div class="q choice">
+<p>帐号operator属于Users组，先运行下列命令(假设目录、文件都存在)：
+<br/><code>
+cacls D:\ /g operator:R<br/>
+cacls D:\file2.txt /d Users<br/>
+cacls D:\file2.txt /g operator:F
+</code><br/>
+那么operator可以读取file2.txt吗？</p>
+<ul>
+<li>可以</li>
+<li class="y">不可以</li>
+</ul>
+</div>
+
+<div class="q yesno">
+<p class="n">eric@shanghai.contoso.com和luth@paris.contoso.com可以加入全局组Developers。</p>
+</div>
+
+<div class="q yesno">
+<p class="y">eric@shanghai.contoso.com和luth@paris.contoso.com可以加入域本地组Friends。</p>
+</div>
+
+<a href="javascript:;" onclick="q_reset()">清除所有答题记录</a>
+
+</div></div></div>
+
+</div>
+
+<div class="footer">
+<p class="copyright">&copy;2006-2009 yoursunny.com, CreativeCommons BY-NC 3.0</p>
+<ul class="links">
+<li><a href="/m/about.htm">关于本站</a></li>
+<li><a href="/m/contact.htm">联系方式</a></li>
+<li><a href="/m/sitemap.htm">网站地图</a></li>
+</ul>
+</div>
+
+<script type="text/javascript">//<![CDATA[
+WebSite.bannerAd=false;
+//]]></script>
+</body></html>

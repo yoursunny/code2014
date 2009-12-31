@@ -1,0 +1,21 @@
+FtpFeed
+PHP
+FTP,FTP列目录,FTP目录列表,RSS,Feed,聚合源
+
+prettify
+<p>把FTP目录列表转换为RSS聚合源。一个PHP脚本，需使用ftp_*系列函数。<br/>
+<a href="FtpFeed.php">演示</a>
+<a href="FtpFeed.zip" onclick="c('FtpFeed.zip')">下载FtpFeed</a></p>
+<h3>配置代码</h3>
+<pre class="prettyprint lang-php">$server='202.120.2.2';
+$user='kchen';
+$pass='public';
+$path='upload/';
+$title='下一代网络与软交换';
+$description='陈凯FTP上传目录';
+$linkbase='ftp://kchen:public@202.120.2.2/upload/';</pre>
+<p>如果FTP路径包含中文，则$linkbase中的中文部分可能需要转换为gbk字符集然后进行urlencode。如果发现链接地址不对，请自行修改。</p>
+<p>警告：请不要轻易修改成允许转换任何FTP服务器，以免被攻击者利用作为FTP密码破解的跳板。</p>
+<!-- sidebar -->
+<p>当前版本号：<br />
+2008-06-12</p>

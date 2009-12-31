@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无闪烁、SEO友好的完美图像替换（pFIR_improved） - 你的阳光技术频道 www.65536.cn</title>
+<link rel="alternate" type="application/atom+xml" href="http://feed.feedsky.com/65536" />
+<link rel="stylesheet" type="text/css" href="/images/9/" />
+<script type="text/javascript" src="/lib/9.js?prettify"></script>
+</head><body>
+
+<div class="header">
+<h2><a href="http://yoursunny.com/">你的阳光</a></h2>
+<ul>
+<li><a href="http://m.yoursunny.com/"><span>个人</span></a></li>
+<li><a href="http://study.yoursunny.com/"><span>学习</span></a></li>
+<li><a href="http://www.65536.cn/"><span>技术</span></a></li>
+<li><a href="http://www.65536.cn/work/"><span>作品</span></a></li>
+</ul>
+<ol>
+<li><a href="http://yoursunny.com/">你的阳光</a></li>
+<li><a href="/">技术频道</a></li>
+<li><a href="../">文章</a></li>
+<li><span>无闪烁、SEO友好的完美图像替换（pFIR_improved）</span></li>
+</ol>
+</div>
+
+<div class="content">
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">无闪烁、SEO友好的完美图像替换（pFIR_improved）</h1>
+<div id="posts" class="p-body headers">
+
+<p class="byline">阳光男孩 发表于 2009-01-05</p>
+
+
+<p class="indent">图像替换是网站前端设计中经常使用的技巧之一。本文在<a href="http://perfectworks.info/pfir" rel="external" onclick="c('pfir-improved.pw_pfir')">pFIR</a>图像替换技术的基础上，提出了一个改进版本。</p>
+<blockquote>
+<p>什么是图像替换（FIR）？</p>
+<p>考虑这样一种情况：<code class="prettyprint lang-html">&lt;h4&gt;Image Replacement&lt;/h4&gt;</code>，效果：</p>
+<h4>Image Replacement</h4>
+<p>现在希望用一张图片替换掉文字内容，使得网页更加丰富多彩（很多情况下是为了表现出特殊字体效果）。做到这种效果：</p>
+<h4><img src="pFIR-improved_imagereplacement.png" width="234" height="27" alt="Image Replacement"/></h4>
+</blockquote>
+
+<p class="indent"><i>PerfectWorks</i>大牛的blog介绍了常见的几种FIR技术：
+<a href="http://perfectworks.info/image-replacement" rel="external" onclick="c('pfir-improved.pw_image-replacement')">谈谈CSS图像替换技术（FIR）</a>
+<a href="http://perfectworks.info/fir" rel="external" onclick="c('pfir-improved.pw_fir')">常用FIR技术特性对比</a>。</p>
+<p class="indent"><i>PerfectWorks</i>认为，图像替换技术中最难解决的问题是有些用户关闭了图像显示、而浏览器支持CSS——某些FIR解决方案在这种情况下会造成图片不显示、而原来的文字也不见了。</p>
+
+<h2>pFIR的缺陷</h2>
+<p class="indent"><i>PerfectWorks</i>也提出了他自己的一种图像替换技术：<a href="http://perfectworks.info/pfir" rel="external" onclick="c('pfir-improved.pw_pfir')">用JavaScript实现完美图像替换（pFIR）</a></p>
+<p class="indent">但是，pFIR有几个缺陷：</p>
+<ul>
+<li>不支持IE5.5：document.getElementsByTagName('*')返回空数组</li>
+<li>不支持Opera：关闭图片显示时，IMG的load事件仍然会发生，造成误判</li>
+<li>在各版本IE工作不稳定：bug重现方法——<ul>
+<li>IE的图像显示功能处于默认的打开状态</li>
+<li>访问<a href="http://perfectworks.info/wp-content/uploads/2009/01/example2.html">example2.html</a>。现在可以观察到图像替换正常工作。</li>
+<li>鼠标点击地址栏，然后按ENTER键(注意不能刷新)。此时图像替换不再工作。</li>
+</ul></li>
+<li>比较慢的网络环境下会造成闪烁：背景图片尚未下载完毕，文字已经弹开；并且，默认情况下浏览器会在稍后背景图片、而先下载IMG标签引用的图片，这更会加剧这个问题</li>
+</ul>
+
+<h2>pFIR的改进 pFIR_improved</h2>
+<ul>
+<li>支持IE5.5：当document.getElementsByTagName('*')返回空数组时，对各个HTML 4.01定义的标签名称依次调用getElementsByTagName并处理</li>
+<li>支持Opera：在Opera中使用宽度判断</li>
+<li>解决IE不刷新bug：该bug的原因是IE对从缓存中读取的图片，不会触发load事件；此时只能判断宽度（已更新<a href="js-img.htm">ImageSupport函数</a>）</li>
+<li>比较慢的网络环境下减少闪烁：遍历CSS规则表，对可能相关的规则中background-image引用的图片进行预载入</li>
+</ul>
+<pre class="prettyprint lang-js">
+function pFIR_improved(className,className2) {
+ImageSupport(function(){//仅当打开图像显示时执行图像替换
+  var d=null;
+  var z=0;//尚未完成预载入的图片数量
+  var done=false;
+  var g=function() {
+    if (--z>0) return;//又载入了一幅图片，全部载入了吗？
+    if (done) return; done=true;
+    if (d) document.body.removeChild(d);
+    var c1=' '+className+' ',c2=' '+className2;
+    var r=function(E) {
+      for (var i=0,ilen=E.length;i&lt;ilen;++i) {
+        var e=E[i];
+        if ((' '+e.className+' ').indexOf(c1)>=0) {
+          e.className+=c2;//执行图像替换
+        }
+      }
+    }
+    var E=document.getElementsByTagName('*');
+    if (!E || E.length&lt;1) {
+      var HTML=['A','ABBR','ACRONYM','ADDRESS','APPLET','AREA','B','BASE','BASEFONT','BDO',
+                'BIG','BLOCKQUOTE','BODY','BR','BUTTON','CAPTION','CENTER','CITE','CODE','COL',
+                'COLGROUP','DD','DEL','DFN','DIR','DIV','DL','DT','EM','FIELDSET','FONT','FORM',
+                'FRAME','FRAMESET','H1','H2','H3','H4','H5','H6','HEAD','HR','HTML','I','IFRAME',
+                'IMG','INPUT','INS','ISINDEX','KBD','LABEL','LEGEND','LI','MAP','MENU','META',
+                'NOFRAMES','NOSCRIPT','OBJECT','OL','OPTGROUP','OPTION','P','PARAM','PRE','Q','S',
+                'SAMP','SELECT','SMALL','SPAN','STRIKE','STRONG','SUB','SUP','TABLE','TBODY','TD',
+                'TEXTAREA','TFOOT','TH','THEAD','TITLE','TR','TT','U','UL',
+                'VAR'];//HTML 4.01 elements except LINK,SCRIPT,STYLE
+      for (var i=0,ilen=HTML.length;i&lt;ilen;++i) r(document.getElementsByTagName(HTML[i]));
+    } else {
+      r(E);
+    }
+  };
+  try{
+    d=document.createElement('div');//包含预载入图片的容器
+    d.style.position='absolute';
+    d.style.visibility='hidden';
+    d.style.zIndex='-1';
+    var P={};
+    var STYLE=document.styleSheets;
+    var c2='.'+className2;
+    for (var i=0,ilen=STYLE.length;i&lt;ilen;++i) {//遍历所有样式表
+      var style=STYLE[i];
+      var R=style.cssRules;
+      if (!R) R=style.rules;
+      for (var j=0,jlen=R.length;j&lt;jlen;++j) {//遍历所有样式规则
+        var r=R[j];
+        var bg=r.style.backgroundImage;
+        if ((r.selectorText).indexOf(c2)&lt;0 || !bg || bg=='') continue;
+        //找到selector包含className2、并定义了background-image属性的样式规则
+        var m=bg.match(/url\(["']?([^\("'\)]+)["']?\)/);//取出background-image属性中的URL地址
+        if (!m) continue;
+        var im=m[1];
+        if (im.substr(0,5)=='data:') continue;
+        if (P[im]) continue;//已经开始预载入了
+        P[im]=true;
+        var img=document.createElement('img');//预载入图片
+        img.src=m[1];
+        if (img.width&lt;20) {
+          img.onload=g;
+          ++z;
+        }//已缓存时能马上取得width，未缓存时width为0
+        d.appendChild(img);
+      }
+    }
+    document.body.appendChild(d);
+    if (z&lt;=0) g();//没有图像需要预载入，直接执行替换
+    else setTimeout(function(){z=-4;g();},4000);//如果4秒仍未完成预载入，仍然执行图像替换
+  }catch(ex){
+    d=null;
+    g();//出现错误(可能是不支持样式表遍历)，直接执行替换
+  }
+}); }
+</pre>
+<p><a href="pFIR-improved_1.htm" class="newwin">演示：无闪烁、SEO友好的完美图像替换</a></p>
+<p>以上代码兼容的浏览器：Firefox3，Firefox2，Opera9，Chrome，IE8，IE7，IE5.5</p>
+<h3>pFIR_improved的局限性</h3>
+<ul>
+<li>由于预载入需要时间，使图像替换得较晚，用户会看到未替换的原始文字。</li>
+<li>如果预载入超时(4秒仍未完成)，还是会有闪烁现象。</li>
+<li>代码经JSMin处理后长达2.6k，是pFIR的四倍；去掉HTML标签列表(不支持IE5.5)也达到pFIR的三倍。</li>
+</ul>
+
+</div></div></div>
+
+</div>
+
+<div class="footer">
+<p class="copyright">&copy;2006-2009 yoursunny.com, CreativeCommons BY-NC 3.0</p>
+<ul class="links">
+<li><a href="http://yoursunny.com/m/about.htm">关于本站</a></li>
+<li><a href="http://yoursunny.com/m/contact.htm">联系方式</a></li>
+<li><a href="http://yoursunny.com/m/sitemap.htm">网站地图</a></li>
+</ul>
+</div>
+
+</body></html>

@@ -1,0 +1,21 @@
+FlashCopy
+ActionScript
+FlashCopy,yoursunnyFlashCopy,Flash复制到剪贴板,clipboard
+
+prettify
+<script type="text/javascript" src="yoursunnyFlashCopy.js"></script>
+<p><b>FlashCopy</b>是一个跨浏览器的“复制到剪贴板”解决方案。只需一个函数调用，就可创建一个“复制”按钮；点击此按钮，就可将指定内容复制到剪贴板。</p>
+<pre class="prettyprint lang-js">
+yoursunnyFlashCopy(
+	'hello FlashCopy',//要复制的字符串
+	document.getElementById('FlashCopy-container'),//按钮容器
+	'copy-icon.jpg',//按钮图标
+	48,//按钮宽度
+	48,//按钮高度
+	function(){alert('复制成功');}//复制完毕回调函数
+);
+</pre>
+<div id="FlashCopy-container" style="padding:">
+<input type="button" value="运行演示代码" onclick="yoursunnyFlashCopy('hello FlashCopy',document.getElementById('FlashCopy-container'),'copy-icon.jpg',48,48,function(){alert('复制成功');});"/>
+</div>
+<p></p>

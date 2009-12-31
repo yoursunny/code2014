@@ -1,0 +1,41 @@
+hProxyN 精巧型HTTP代理服务器-|-hProxyN样例配置文件
+C#
+HTTP proxy,代理服务器,HTTP代理,配置文件,配置向导,config
+
+prettify no-sidebar
+<p><a href="conf.htm">配置文件是hProxyN的金钥匙</a>，但是从头编写一个配置文件并不容易。<br/>
+我推荐的方法是：下载一个样例配置文件，然后根据<a href="reference.htm">参考文档</a>修改它。</p>
+<p>下面给出几个样例配置文件，已经添加中文注释：</p>
+<ul>
+<li><a href="javascript:load('proxy');">基本代理服务器</a></li>
+<li><a href="javascript:load('proxy-auth');">带身份认证的代理服务器</a></li>
+<li><a href="javascript:load('proxy-gateway');">代理服务器的InboundGateway设置功能</a></li>
+<li><a href="javascript:load('proxy-gapp');">GAppProxy代理服务器</a></li>
+</ul>
+<div id="x" style="font-size:80%;margin-top:20px;"></div>
+<div id="cmd" style="display:none;"></div>
+<script type="text/javascript">//<![CDATA[
+var cache=$H();
+function load(f) {
+	var t=cache.get(f);
+	if (t) {
+		show(f,t);
+	} else {
+		c('conf-sample/'+f+'.config');
+		new Ajax.Request('conf-sample/',{method:'get',parameters:{f:f},onComplete:got.curry(f)});
+	}
+}
+function got(f,resp) {
+	var t=resp.responseText;
+	cache.set(f,t);
+	show(f,t);
+}
+function show(f,t) {
+	$('cmd').update('<a href="javascript:download(\''+f+'\');">下载：'+f+'.config</a>').show();
+	$('x').update('<pre class="prettyprint lang-xml" style="height:460px;overflow:auto;">'+prettyPrintOne(t.escapeHTML(),'xml')+'</pre>').scrollTo();
+}
+function download(f) {
+	c('conf-sample/'+f+'.config?download');
+	location='conf-sample/?f='+f;
+}
+//]]></script>

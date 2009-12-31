@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无闪烁、SEO友好的完美图像替换</title>
+<script type="text/javascript" src="/lib/9.js"></script>
+<script type="text/javascript">//<![CDATA[
+WebSite.cauto='pFIR-improved.demo1';//for analytics only
+//]]></script>
+<style type="text/css">/*<![CDATA[*/
+#test { background-color:black; color:white; height:300px; padding:20px; }
+#title1.FIRed{
+  background-image:url(pFIR-improved_pw.gif.php/pw.gif);
+  background-position:left bottom;
+  background-repeat:no-repeat;
+  text-indent:-9999em;
+  width:142px;
+}
+#title2.FIRed{
+  background-image:url(pFIR-improved_pw.gif.php/pw.gif);
+  background-position:-142px bottom;
+  background-repeat:no-repeat;
+  text-indent:-9999em;
+  width:119px;
+}
+/*]]>*/</style>
+<link rel="stylesheet" type="text/css" href="pFIR-improved.css.php"/>
+</head><body>
+<div id="test">
+	<h1 id="title1" class="FIR">Perfect</h1>
+	<h1 id="title2" class="FIR">Works</h1>
+</div>
+
+<script type="text/javascript">//<![CDATA[
+//原始pFIR，http://perfectworks.info/pfir
+function addEvent(obj,evt,fn){if(obj.addEventListener)
+obj.addEventListener(evt,fn,false);else if(obj.attachEvent)
+obj.attachEvent('on'+evt,fn);};function getElementsByClassName(className){var elems=document.body.getElementsByTagName("*");var result=[];for(i=0;j=elems[i];i++){if((" "+j.className+" ").indexOf(" "+className+" ")!=-1){result.push(j);}}
+return result;};function pFIR(className,className2){var $image=document.createElement("img");$image.setAttribute('src','http://www.google-analytics.com/__utm.gif');$image.style.position='absolute';$image.style.visibility='hidden';addEvent($image,'load',function(e){if($image.width>0)
+imageReplacement(className,className2);});document.body.appendChild($image);};function imageReplacement(className,className2){objs=getElementsByClassName(className);len=objs.length;for(i=0;i<len;i++){objs[i].className+=' '+className2;}}
+
+
+//ImageSupport(cb)当图像打开时回调cb函数，http://www.65536.cn/t/2009/js-img.htm
+window.ImageSupport=function(cb){var m=new Image();m.src='http://www.google.cn/intl/zh-CN/images/logo_cn.gif';var width=200;var rt=0;var r=function(){clearTimeout(rt);if(m.width<width){window.ImageSupport=function(){};return;}
+var f;while(f=window.ImageSupport.queue.shift())f();window.ImageSupport=function(cb){cb();};document.body.removeChild(m);};m.onload=r;m.onerror=function(){window.ImageSupport=function(){};};m.style.position='absolute';m.style.visibility='hidden';m.style.zIndex='-1';document.body.appendChild(m);window.ImageSupport=function(cb){window.ImageSupport.queue.push(cb);};window.ImageSupport.queue=[cb];rt=setTimeout(function(){if(m.width>=width)r();},200);};
+
+function pFIR_improved(className,className2) {
+ImageSupport(function(){//仅当打开图像显示时执行图像替换
+	var d=null;
+	var z=0;//尚未完成预载入的图片数量
+	var done=false;
+	var g=function() {
+		if (--z>0) return;//又载入了一幅图片，全部载入了吗？
+		if (done) return; done=true;
+		if (d) document.body.removeChild(d);
+		var c1=' '+className+' ',c2=' '+className2;
+		var r=function(E) {
+			for (var i=0,ilen=E.length;i<ilen;++i) {
+				var e=E[i];
+				if ((' '+e.className+' ').indexOf(c1)>=0) {
+					e.className+=c2;//执行图像替换
+				}
+			}
+		}
+		var E=document.getElementsByTagName('*');
+		if (!E || E.length<1) {
+			var HTML=['A','ABBR','ACRONYM','ADDRESS','APPLET','AREA','B','BASE','BASEFONT','BDO','BIG','BLOCKQUOTE','BODY','BR','BUTTON','CAPTION','CENTER','CITE','CODE','COL','COLGROUP','DD','DEL','DFN','DIR','DIV','DL','DT','EM','FIELDSET','FONT','FORM','FRAME','FRAMESET','H1','H2','H3','H4','H5','H6','HEAD','HR','HTML','I','IFRAME','IMG','INPUT','INS','ISINDEX','KBD','LABEL','LEGEND','LI','MAP','MENU','META','NOFRAMES','NOSCRIPT','OBJECT','OL','OPTGROUP','OPTION','P','PARAM','PRE','Q','S','SAMP','SELECT','SMALL','SPAN','STRIKE','STRONG','SUB','SUP','TABLE','TBODY','TD','TEXTAREA','TFOOT','TH','THEAD','TITLE','TR','TT','U','UL','VAR'];//HTML 4.01 elements except LINK,SCRIPT,STYLE
+			for (var i=0,ilen=HTML.length;i<ilen;++i) r(document.getElementsByTagName(HTML[i]));
+		} else {
+			r(E);
+		}
+	};
+	try{
+		d=document.createElement('div');//包含预载入图片的容器
+		d.style.position='absolute';
+		d.style.visibility='hidden';
+		d.style.zIndex='-1';
+		var P={};
+		var STYLE=document.styleSheets;
+		var c2='.'+className2;
+		for (var i=0,ilen=STYLE.length;i<ilen;++i) {//遍历所有样式表
+			var style=STYLE[i];
+			var R=style.cssRules;
+			if (!R) R=style.rules;
+			for (var j=0,jlen=R.length;j<jlen;++j) {//遍历所有样式规则
+				var r=R[j];
+				var bg=r.style.backgroundImage;
+				if ((r.selectorText).indexOf(c2)<0 || !bg || bg=='') continue;
+				//找到selector包含className2、并定义了background-image属性的样式规则
+				var m=bg.match(/url\(["']?([^\("'\)]+)["']?\)/);//取出background-image属性中的URL地址
+				if (!m) continue;
+				var im=m[1];
+				if (im.substr(0,5)=='data:') continue;
+				if (P[im]) continue;//已经开始预载入了
+				P[im]=true;
+				var img=document.createElement('img');//预载入图片
+				img.src=m[1];
+				if (img.width<20) {
+					img.onload=g;
+					++z;
+				}//已缓存时能马上取得width，未缓存时width为0
+				d.appendChild(img);
+			}
+		}
+		document.body.appendChild(d);
+		if (z<=0) g();//没有图像需要预载入，直接执行替换
+		else setTimeout(function(){z=-4;g();},4000);//如果4秒仍未完成预载入，仍然执行图像替换
+	}catch(ex){
+		d=null;
+		g();//出现错误(可能是不支持样式表遍历)，直接执行替换
+	}
+}); }
+//]]></script>
+
+<p>
+原始pFIR：<input type="button" value="pFIR('FIR','FIRed')" onclick="pFIR('FIR','FIRed')"/>
+<input type="button" value="FIR3 图像下载延迟3秒" onclick="pFIR('FIR','FIR3')"/>
+<input type="button" value="FIR6 图像下载延迟6秒" onclick="pFIR('FIR','FIR6')"/><br/>
+pFIR_improved：<input type="button" value="pFIR_improved('FIR','FIRed')" onclick="pFIR_improved('FIR','FIRed')"/>
+<input type="button" value="FIR3 图像下载延迟3秒" onclick="pFIR_improved('FIR','FIR3')"/>
+<input type="button" value="FIR6 图像下载延迟6秒" onclick="pFIR_improved('FIR','FIR6')"/><br/>
+<br/><a href="http://www.65536.cn/t/2009/pFIR-improved.htm">无闪烁、SEO友好的完美图像替换</a>
+</p>
+
+</body></html>

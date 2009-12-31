@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<works>
+	<category title="Web开发编程支持库">
+		<work year="2006" key="dbMySQL" home-sort="60" language="PHP" description="PHP-MySQL数据库安全连接库"/>
+		<work year="2007" key="PhoneParser" language="JavaScript" description="电话号码格式解析"/>
+		<work year="2007" key="AlbumPlayer" language="JavaScript" description="支持多种转场效果的相册播放器"/>
+		<work year="2008" key="SecureSubmit" link="http://www.codeplex.com/SecureSubmit" language="JavaScript PHP ASP.NET" description="登录密码安全提交"/>
+		<work year="2008" key="MobileIPquery" home-sort="40" language="PHP" title="手机号码IP地址归属地查询" description="自动提取移动、联通、电信官方数据"/>
+	</category>
+	<category title="实用工具">
+		<work year="2009" key="sjtu-classroom" language="PHP" description="上海交通大学教室查询系统手机版"/>
+		<work year="2009" key="backuplet" home-sort="12" language="JS" title="backuplet书签式网站导出/备份工具" description="导出/备份人人、Twitter、开心网等网站的微博客、日志、留言本等"/>
+		<work year="2009" key="fanfou" language="JS+Python" title="饭否备份工具" description="将fanfou.com上某用户的所有消息导出成一个HTML文件"/>
+		<work year="2008" key="hProxyN" home-sort="21" language="C#" description="精巧型HTTP代理服务器"/>
+		<work year="2008" key="WebTar" home-sort="30" language="PHP" title="WebTar网站打包器" description="将整个网站打包成方便上传的单一PHP文件"/>
+		<work year="2007" key="ImageResizer" language="C#" description="JPG图片批量缩小尺寸"/>
+		<!--work year="2008" key="IISlog" home-sort="30" language="PowerShell" title="IISlog_parse" description="IIS日志分析"/>
+		<work year="2008" key="treediff" home-sort="31" language="PowerShell" description="文件比对"/-->
+		<work year="2008" key="GPA" link="http://yoursunny.com/study/GPA/" language="JavaScript" title="阳光GPA计算器" description="最方便的GPA计算工具"/>
+		<work year="2006" key="FileChecker" language="C#" description="网站文件变动检查器，及时发现挂马"/>
+	</category>
+	<category title="小玩具">
+		<work year="2009" key="XmppProxy" home-sort="23" language="Python C#" description="用XMPP协议传输的代理服务器"/>
+		<work year="2007" key="ATM" home-sort="90" language="8086汇编" title="银行自动柜员机ATM模拟器" description="学习汇编的作品"/>
+		<work year="2008" key="FtpFeed" language="PHP" description="把FTP目录列表转换为RSS聚合源"/>
+		<!--work year="2008" key="PhoneBook" language="JavaScript PHP" description="个人电话本"/-->
+		<work year="2008" key="VirusScanner" language="C" description="基于SMA二叉树的多模式匹配查毒工具"/>
+		<!--work year="2008" key="WebFileSystem" language="ASP.NET" description="虚拟文件系统"/-->
+	</category>
+</works>

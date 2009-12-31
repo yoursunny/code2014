@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GPA计算器 课程名称 谷歌翻译</title>
+<meta name="robots" content="noindex"/>
+<script type="text/javascript">//<![CDATA[
+var GPA=parent.GPA;
+if (!GPA) location.replace('./');
+//]]></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">//<![CDATA[
+google.load("language", "1");
+//]]></script>
+<script type="text/javascript">//<![CDATA[
+GPA.Translator.addMethods({
+	_GoogleTranslate:function(name) {
+		var _this=this;
+		google.language.translate(name,'zh-CN','en',function(result) {
+			if (!result.error) {
+				_this.GoogleTranslateCallback(name,result.translation);
+			}
+		});
+	}
+});
+//]]></script>
+</head><body>
+</body></html>

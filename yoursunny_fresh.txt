@@ -1,0 +1,12 @@
+﻿
+20091008	作品	http://www.65536.cn/work/2009/XmppProxy/	XmppProxy	用XMPP协议传输的代理服务器
+20090910	作品	http://www.65536.cn/work/2009/backuplet/	backuplet微博客备份工具
+20090823	技术	http://www.65536.cn/t/2009/PHP-decode-2.htm	又一个加密PHP脚本的解码方法
+20090802	技术	http://www.65536.cn/t/2009/PHP-decode.htm	base64加密PHP脚本的解码方法
+20090414	作品	http://www.65536.cn/work/2009/sjtu-classroom/	上海交通大学教室查询系统手机版
+20090223	技术	http://www.65536.cn/t/2009/GAppProxy-protocol.htm	GAppProxy架构及协议分析	分析GAppProxy代理服务器的fetchServer和负载平衡协议
+20090223	作品	http://www.65536.cn/work/2008/hProxyN/	hProxyN精巧型代理服务器	20090223版增加GAppProxy协议支持
+20090108	技术	http://www.65536.cn/t/2009/VoIP-yate2-SIP.htm	用yate2实现软VoIP语音通话(SIP协议)
+20090102	技术	http://www.65536.cn/t/2009/js-img.htm	用JavaScript检测浏览器是否打开图像显示
+20090101	新年礼物	/z/2009/sjtu-feeds/	上海交通大学RSS聚合源	订阅交大首页、CNM网络传媒、教务处等学校网站的全文RSS
+20081203	工具	/study/GPA/	阳光GPA计算器	最方便快捷的GPA计算工具

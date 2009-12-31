@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>你的阳光技术频道</title>
+	<subtitle>阳光男孩的原创网络技术文章</subtitle>
+	<updated>2009-08-23T00:00:00Z</updated>
+	<link rel="alternate" type="text/html" href="http://www.65536.cn/"/>
+	<id>http://www.65536.cn/t/feed.xml</id>
+	<rights>CreativeCommons BY-NC 3.0</rights>
+	<generator>我不用CMS——手工打造的HTML和Atom feed！</generator>
+	<entry>
+		<id>http://www.65536.cn/t/2009/PHP-decode-2.htm</id>
+		<title>又一个加密PHP脚本的解码方法</title>
+		<updated>2009-08-23T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2009/PHP-decode-2.htm"/>
+		<summary>PHP是一个自由、开源的世界，将代码弄成这样，影响执行效率、不便于修改，何必呢？</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2009/PHP-decode.htm</id>
+		<title>base64加密PHP脚本的解码方法</title>
+		<updated>2009-08-02T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2009/PHP-decode.htm"/>
+		<summary>一种对含有eval和base64_decode的、被加密的PHP的解码方法</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2009/checklist.htm</id>
+		<title>Web应用的评测清单</title>
+		<updated>2009-04-28T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2009/checklist.htm"/>
+		<summary>制作一个网站必须关注的质量问题：功能，内容；用户体验，可用性；安全性；性能；外观；搜索引擎收录</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2009/my-webdev-timeline.htm</id>
+		<title>我的Web开发学习之路</title>
+		<updated>2009-03-22T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2009/my-webdev-timeline.htm"/>
+		<summary>回顾我学习Web开发的历程</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2009/GAppProxy-protocol.htm</id>
+		<title>GAppProxy架构及协议分析</title>
+		<updated>2009-02-23T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2009/GAppProxy-protocol.htm"/>
+		<summary>说明GAppProxy代理服务器解决方案的架构，分析fetchServer和负载平衡器采用的协议。</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2009/VoIP-yate2-SIP.htm</id>
+		<title>用yate2实现软VoIP语音通话(SIP协议)</title>
+		<updated>2009-01-08T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2009/VoIP-yate2-SIP.htm"/>
+		<summary>网络电话是下一代网络(NGN)的重要应用之一。本文介绍了如何使用开源网络电话软件yate2搭建VoIP服务器，并实现PC-to-PC的免费语音通话。yate2也支持两个客户端通过IP地址直接连接。本文还用Wireshark抓包简单分析了SIP协议流程。</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2009/pFIR-improved.htm</id>
+		<title>无闪烁、SEO友好的完美图像替换（pFIR_improved）</title>
+		<updated>2009-01-05T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2009/pFIR-improved.htm"/>
+		<summary>图像替换是网站前端设计中经常使用的技巧之一，对pFIR图像替换技术提出了一个改进版本</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2009/js-img.htm</id>
+		<title>用JavaScript检测浏览器是否打开图像显示</title>
+		<updated>2009-01-02T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2009/js-img.htm"/>
+		<summary>检测“显示图像”功能开关状态</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2009/HttpWebRequest-IP.htm</id>
+		<title>How to specify server IP in HttpWebRequest</title>
+		<updated>2009-01-01T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2009/HttpWebRequest-IP.htm"/>
+		<summary>make HttpWebRequest send its request to a custom IP address, but leave the Request-Line as "GET / HTTP/1.1"</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2008/SID.htm</id>
+		<title>实验：自定义Windows帐号的RID值</title>
+		<updated>2008-12-25T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2008/SID.htm"/>
+		<summary>Windows以SID区分帐号，而“自动产生”的SID竟是可以自定义的！</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2008/spring-pic.htm</id>
+		<title>批处理下载全校毕业照</title>
+		<updated>2008-12-25T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2008/spring-pic.htm"/>
+		<summary>Windows批处理实现批量下载有规律命名的网络文件</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2008/Wireshark-Lua-dissector.htm</id>
+		<title>用Lua语言编写Wireshark dissector插件</title>
+		<updated>2008-12-15T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2008/Wireshark-Lua-dissector.htm"/>
+		<summary>用Lua脚本语言让Wireshark识别你发明的网络协议！结合ScoreBoard协议实例讲解</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2008/UAC.htm</id>
+		<title>守株待兔骗过UAC</title>
+		<updated>2008-12-15T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2008/UAC.htm"/>
+		<summary>用社会工程学对Windows Vista的User Account Control展开欺骗攻击——偷梁换柱替换Command Prompt.lnk，守株待兔等待特权令牌</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2008/tinyget-vote.htm</id>
+		<title>用TinyGet刷票</title>
+		<updated>2008-12-08T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2008/tinyget-vote.htm"/>
+		<summary>原来刷票就这么简单！用Fiddler2截取HTTP请求报文，复制到记事本，一条命令调用TinyGet.exe</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2008/CS-BS.htm</id>
+		<title>信息系统计算模型：从C/S、B/S到云计算</title>
+		<updated>2008-07-02T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2008/CS-BS.htm"/>
+		<summary>详细介绍信息系统的发展过程，C/S和B/S软件的差别，促进B/S发展的新技术，展望未来</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2007/Net-intro.htm</id>
+		<title>.Net介绍 &amp; Visual Studio 2008 下载地址</title>
+		<updated>2007-12-11T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2007/Net-intro.htm"/>
+		<summary>简略介绍.Net Framework的框架、语言、集成开发环境Visual Studio 2008等。</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2007/selfssl.htm</id>
+		<title>使用SelfSSL创建自签名的IIS证书</title>
+		<updated>2007-11-09T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2007/selfssl.htm"/>
+		<summary>1分钟内搭建一个测试用途的HTTP站点——使用SelfSSL.exe</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2007/cert-mail.htm</id>
+		<title>发送数字证书加密和签名的电子邮件(带视频)</title>
+		<updated>2007-10-09T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2007/cert-mail.htm"/>
+		<summary>向CA365申请免费数字证书，然后使用Foxmail发送含有带有数字签名并用别人证书加密的电子邮件。</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2007/pki-encrypt.htm</id>
+		<title>公钥密码加密和鉴别过程（PKI体系）</title>
+		<updated>2007-10-09T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2007/pki-encrypt.htm"/>
+		<summary>介绍了PKI体系的加密和鉴别过程；以及应用举例：Windows Live ID单点登录服务</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2007/webdesign.htm</id>
+		<title>Web设计的核心准则</title>
+		<updated>2007-09-02T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2007/webdesign.htm"/>
+		<summary>《Web设计大全》一书的精华部分，阳光男孩录入。不涉及具体技术，只谈设计准则，值得参考。想做一个优秀的网站，就一定要认真看一遍、并且认真实践！</summary>
+	</entry>
+	<entry>
+		<id>http://www.65536.cn/t/2007/google-ad.htm</id>
+		<title>从谷歌谈网络广告媒体</title>
+		<updated>2007-07-02T00:00:00Z</updated>
+		<link rel="alternate" type="text/html" href="http://www.65536.cn/t/2007/google-ad.htm"/>
+		<summary>从谷歌出发，讨论了网络广告媒体的工作方式、特点、优点，介绍了网络广告媒体的新形式。</summary>
+	</entry>
+</feed>

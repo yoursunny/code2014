@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SecureSubmit演示</title>
+<script type="text/javascript" src="/lib/9.js"></script>
+<script type="text/javascript">WebSite.cauto=false;</script>
+<script type="text/javascript" src="BigInt.js"></script>
+<script type="text/javascript" src="DES.js"></script>
+<script type="text/javascript" src="SecureSubmit.js"></script>
+</head>
+
+<body>
+演示：
+<input type="text" id="p" />
+<input type="button" onclick="doSubmit();c('demo-run')" value="提交密码"/>
+<br/>提交密码过程中欢迎抓包<br/>
+<div id="status"></div>
+<script type="text/javascript">
+function doSubmit() {
+	var now=function(){var d=new Date();return d.getHours().toPaddedString(2)+':'+d.getMinutes().toPaddedString(2)+':'+d.getSeconds().toPaddedString(2)+'.'+d.getMilliseconds().toPaddedString(3);}
+	var password=$('p').value;
+	var u=new SecureSubmit('handler.asp');
+	$('status').update(now()+' 正在协商密钥');
+	u.prepare(function(){
+		$('status').insert('<br/>'+now()+' 协商完毕，正在提交');
+		u.save(password,function(){
+			$('status').insert('<br/>'+now()+' 提交成功，<a href="handler.asp?a=show" target="_blank" onclick="c(\'demo-show\')">显示提交的密码</a>');
+		});
+	});
+}
+</script>
+</body>
+</html>

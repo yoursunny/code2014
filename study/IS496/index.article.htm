@@ -1,0 +1,280 @@
+信息安全科技创新
+计算机网络安全访问控制系统的实现
+
+transitional,no-ads
+<style type="text/css">
+.code{font-size:9pt;font-family:"Courier New",Courier,monospace;background-color:#ff9;}
+.code b{font-size:11pt;line-height:14pt;color:#10541C;font-weight:normal;}
+</style>
+<h2>网络拓扑</h2>
+<p><img src="http://i3.6.cn/cvbnm/dd/4b/5d/e34e3e30ced31f74ed4d40edd7c0f7d8.jpg" alt="网络拓扑图" width="551" height="264" /></p>
+<table style="font-size: 10pt; width: 690px;" border="1" cellspacing="5" cellpadding="0">
+<tbody>
+<tr>
+<td>外网网段202.120.36.0/24<br /> 防火墙eth0接口202.120.36.180</td>
+<td>内网网段192.168.33.0/24<br /> 防火墙eth1接口192.168.33.254</td>
+<td>DMZ区网段192.168.1.0/24<br /> 防火墙eth2接口192.168.1.1</td>
+</tr>
+<tr>
+<td>DNS服务器202.120.2.101</td>
+<td>主机A192.168.33.40<br /> 主机A公网地址202.120.36.100<br /> 主机B192.168.33.41<br /> 主机B公网地址202.120.36.101</td>
+<td>Web服务器192.168.1.2<br /> 邮件服务器192.168.1.40</td>
+</tr>
+</tbody>
+</table>
+<h2>网络拓扑的脚本定义</h2>
+<table class="code" style="width: 700px;" border="1">
+<tbody>
+<tr>
+<td>Internal="192.168.33.0/24"<br /> DNSServer="202.120.2.101"<br /> WWWServer="202.120.2.102"<br /> GlobalA="202.120.36.100"<br /> HostA="192.168.33.40"<br /> GlobalB="202.120.36.101"<br /> HostB="192.168.33.41"<br /> MailServer="192.168.1.40"<br /> FireWall="202.120.36.180"<br /> HttpsServer="216.239.63.83"<br /> FtpServer="202.38.97.230"<br /> TelnetServer="202.120.3.1"<br /> <br /> <br /> #!/bin/sh<br /> #Copyright 2007 http://yoursunny.com/ CreativeCommons BY-NC <br /> ###########################################################################<br /> #<br /> # 1. Configuration options.<br /> #<br /> <br /> #<br /> # 1.1 Internet Configuration.<br /> #<br /> <strong>INET_IP=$Firewall<br /> INET_IP_RANGE="202.120.36.0/24"<br /> INET_IFACE="eth0"<br /> INET_BROADCAST="202.120.36.255"<br /> INET_DNS_IP=$DNSServer</strong><br /> #<br /> # 1.1.1 DHCP<br /> #<br /> <br /> #<br /> # 1.1.2 PPPoE<br /> #<br /> <br /> #<br /> # 1.2 Local Area Network configuration.<br /> #<br /> # your LAN's IP range and localhost IP. /24 means to only use the first 24<br /> # bits of the 32 bit IP address. the same as netmask 255.255.255.0<br /> #<br /> <strong>LAN_IP="192.168.33.254"<br /> LAN_IP_RANGE=$Internal<br /> LAN_IFACE="eth1"</strong><br /> <br /> #<br /> # 1.3 DMZ Configuration.<br /> #<br /> <strong>DMZ_HTTP_IP="192.168.1.2"<br /> DMZ_MAIL_IP=$MailServer<br /> DMZ_IP="192.168.1.1"<br /> DMZ_IP_RANGE="192.168.1.0/24" <br /> DMZ_IFACE="eth2"</strong><br /> <br /> #<br /> # 1.4 Localhost Configuration.<br /> #<br /> <br /> #<br /> # 1.5 IPTables Configuration.<br /> #<br /> <strong>IPTABLES="/usr/sbin/iptables"</strong><br /> <br /> #<br /> # 1.6 Other Configuration.<br /> #<br /> <br /> ###########################################################################<br /> #<br /> # 2. Module loading.<br /> #<br /> <br /> #<br /> # Needed to initially load modules<br /> #<br /> /sbin/depmod -a<br /> <br /> #<br /> # 2.1 Required modules<br /> #<br /> /sbin/modprobe ip_tables<br /> /sbin/modprobe ip_conntrack<br /> /sbin/modprobe iptable_filter<br /> /sbin/modprobe iptable_mangle<br /> /sbin/modprobe iptable_nat<br /> /sbin/modprobe ipt_LOG<br /> /sbin/modprobe ipt_limit<br /> /sbin/modprobe ipt_state<br /> <br /> #<br /> # 2.2 Non-Required modules<br /> #<br /> #/sbin/modprobe ipt_owner<br /> #/sbin/modprobe ipt_REJECT<br /> #/sbin/modprobe ipt_MASQUERADE<br /> #/sbin/modprobe ip_conntrack_ftp<br /> #/sbin/modprobe ip_conntrack_irc<br /> #/sbin/modprobe ip_nat_ftp<br /> #/sbin/modprobe ip_nat_irc<br /> <br /> ###########################################################################<br /> #<br /> # 3. /proc set up.<br /> #<br /> <br /> #<br /> # 3.1 Required proc configuration<br /> #<strong><br /> echo "1" &gt; /proc/sys/net/ipv4/ip_forward</strong><br /> <br /> #<br /> # 3.2 Non-Required proc configuration<br /> #<br /> #echo "1" &gt; /proc/sys/net/ipv4/conf/all/rp_filter<br /> #echo "1" &gt; /proc/sys/net/ipv4/conf/all/proxy_arp<br /> #echo "1" &gt; /proc/sys/net/ipv4/ip_dynaddr<br /></td>
+</tr>
+</tbody>
+</table>
+<h2>策略实现</h2>
+<ol>
+<li>DMZ区的邮件服务器对内、对外提供服务<br /> 内网、外网对防火墙pop2 pop3 smtp imap2 imap3访问的重定向<br /> 该主机对外smtp访问</li>
+<li>DMZ区的Web服务器对内、对外提供服务<br /> 内网、外网对该主机http访问<br /> 该主机对外http访问(以便调用XML Web Service)</li>
+<li>域名解析<br /> 内网、DMZ区对外DNS访问</li>
+<li>telnet主机A<br /> 外网对防火墙telnet访问的重定向</li>
+<li>允许内网使用http https ftp(port) telnet<br /> 内网对外http https ftp-control telnet访问<br /> 外网对内ftp-data访问</li>
+<li>给内部主机配置全局地址<br /> 内网对外访问时SNAT及返回时DNAT </li>
+</ol>
+<h2>用iptables实现策略</h2>
+<table class="code" style="width: 700px;" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td>###########################################################################<br /> #<br /> # 4. rules set up.<br /> #<br /> <br /> ######<br /> # 4.1 Filter table<br /> #<br /> <br /> #<br /> # 4.1.1 Set policies<br /> #<br /> <strong>$IPTABLES -P INPUT DROP<br /> $IPTABLES -P OUTPUT DROP<br /> $IPTABLES -P FORWARD DROP</strong><br /> <br /> #<br /> # 4.1.2 Create userspecified chains<br /> #<br /> <br /> # Create chain for bad tcp packets<br /> $IPTABLES -N bad_tcp_packets<br /> <br /> #<br /> # 4.1.3 Create content in userspecified chains<br /> #<br /> <br /> # bad_tcp_packets chain<br /> $IPTABLES -A bad_tcp_packets -p tcp --tcp-flags SYN,ACK SYN,ACK \<br /> -m state --state NEW -j REJECT --reject-with tcp-reset <br /> $IPTABLES -A bad_tcp_packets -p tcp ! --syn -m state --state NEW -j LOG \<br /> --log-prefix "New not syn:"<br /> $IPTABLES -A bad_tcp_packets -p tcp ! --syn -m state --state NEW -j DROP<br /> <br />#<br /> # 4.1.4 INPUT chain<br /> #<br /> <br /> # Bad TCP packets we don't want.<br /> $IPTABLES -A INPUT -p tcp -j bad_tcp_packets<br /> <br />#<br /> # Rules for incoming packets from the internet.<br /> #<br /> <br /> # Log weird packets that don't match the above.<br /> $IPTABLES -A INPUT -m limit --limit 3/minute --limit-burst 3 -j LOG \<br /> --log-level DEBUG --log-prefix "IPT INPUT packet died: "<br /> <br /> #<br /> # 4.1.5 FORWARD chain<br /> #<br /> <br /> # Bad TCP packets we don't want<br /> $IPTABLES -A FORWARD -p tcp -j bad_tcp_packets<br /> <br /> #<br /> # Accept the packets we actually want to forward<br /> #<br /> <br /> <strong># Already Connected<br /> $IPTABLES -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT<br /> # Mail<br /> $IPTABLES -A FORWARD -d $DMZ_MAIL_IP -p tcp -m multiport \<br /> --destination-port smtp,pop2,pop3,imap2,imap3 -j ACCEPT<br /> $IPTABLES -A FORWARD -s $DMZ_MAIL_IP -p tcp --dport smtp -j ACCEPT <br /> # Web<br /> $IPTABLES -A FORWARD -d $DMZ_HTTP_IP -p tcp --dport www -j ACCEPT<br /> $IPTABLES -A FORWARD -s $DMZ_HTTP_IP -p tcp --dport www -j ACCEPT<br /> # DNS<br /> $IPTABLES -A FORWARD -d $INET_DNS_IP -p udp --dport domain -j ACCEPT<br /> # Telnet<br /> $IPTABLES -A FORWARD -d $HostA -p tcp --dport telnet -j ACCEPT <br /> # Allow http,https,ftp(port),telnet from internal<br /> $IPTABLES -A FORWARD -i $LAN_IFACE -p tcp -m multiport \<br /> --destination-port http,https,ftp,telnet -j ACCEPT<br /> $IPTABLES -A FORWARD -o $LAN_IFACE -p tcp --dport ftp-data \<br /> -m state --state RELATED  -j ACCEPT<br /> # Global addresses for internal</strong><br /> <br /> # Log weird packets that don't match the above.<br /> $IPTABLES -A FORWARD -m limit --limit 3/minute --limit-burst 3 -j LOG \<br /> --log-level DEBUG --log-prefix "IPT FORWARD packet died: "<br /> <br /> #<br /> # 4.1.6 OUTPUT chain<br /> #<br /> <br /> # Bad TCP packets we don't want.<br /> $IPTABLES -A OUTPUT -p tcp -j bad_tcp_packets<br /> <br /> # Log weird packets that don't match the above.<br /> $IPTABLES -A OUTPUT -m limit --limit 3/minute --limit-burst 3 -j LOG \<br /> --log-level DEBUG --log-prefix "IPT OUTPUT packet died: "<br /> <br /> ######<br /> # 4.2 nat table<br /> #<br /> <br /> #<br /> # 4.2.1 Set policies<br /> # <br /> <br /> #<br /> # 4.2.2 Create user specified chains<br /> #<br /> <br /> #<br /> # 4.2.3 Create content in user specified chains<br /> #<br /> <br /> #<br /> # 4.2.4 PREROUTING chain<br /> #<br /> <br /> <strong># Mail<br /> $IPTABLES -t nat -A PREROUTING -i $INET_IFACE -d $INET_IP \<br /> -p tcp -m multiport --destination-port smtp,pop2,pop3,imap2,imap3 \<br /> -j DNAT --to-destination $DMZ_MAIL_IP<br /> $IPTABLES -t nat -A PREROUTING -i $LAN_IFACE -d $LAN_IP \<br /> -p tcp -m multiport --destination-port smtp,pop2,pop3,imap2,imap3 \<br /> -j DNAT --to-destination $DMZ_MAIL_IP<br /> # Web<br /> $IPTABLES -t nat -A PREROUTING -i $INET_IFACE -d $INET_IP -p tcp \<br /> --dport www -j DNAT --to-destination $DMZ_HTTP_IP<br /> $IPTABLES -t nat -A PREROUTING -i $LAN_IFACE -d $LAN_IP -p tcp \<br /> --dport www -j DNAT --to-destination $DMZ_HTTP_IP<br /> # DNS<br /> $IPTABLES -t nat -A PREROUTING -i $LAN_IFACE -d $LAN_IP -p udp \<br /> --dport domain -j DNAT --to-destination $INET_DNS_IP<br /> $IPTABLES -t nat -A PREROUTING -i $DMZ_IFACE -d $DMZ_IP -p udp \<br /> --dport domain -j DNAT --to-destination $INET_DNS_IP <br /> # Telnet<br /> $IPTABLES -t nat -A PREROUTING -i $INET_IFACE -d $INET_IP -p tcp \<br /> --dport telnet -j DNAT --to-destination $HostA <br /> # Allow http,https,ftp(port),telnet from internal<br /> # Global addresses for internal<br /> $IPTABLES -t nat -A PREROUTING -i $INET_IFACE -d $GlobalA \<br /> -j DNAT --to-destination $HostA<br /> $IPTABLES -t nat -A PREROUTING -i $INET_IFACE -d $GlobalB \<br /> -j DNAT --to-destination $HostB </strong><br /> <br /> #<br /> # 4.2.5 POSTROUTING chain<br /> #<br /> <br /> <strong># Mail<br /> $IPTABLES -t nat -A POSTROUTING -o $INET_IFACE -s $DMZ_MAIL_IP \<br /> -p tcp --dport smtp -j SNAT --to-source $INET_IP<br /> # Web<br /> $IPTABLES -t nat -A POSTROUTING -o $INET_IFACE -s $DMZ_HTTP_IP \<br /> -p tcp --sport www -j SNAT --to-source $INET_IP<br /> $IPTABLES -t nat -A POSTROUTING -o $LAN_IFACE -s $DMZ_HTTP_IP \<br /> -p tcp --sport www -j SNAT --to-source $LAN_IP<br /> $IPTABLES -t nat -A POSTROUTING -o $INET_IFACE -s $DMZ_HTTP_IP \<br /> -p tcp --dport www -j SNAT --to-source $INET_IP<br /> # DNS<br /> $IPTABLES -t nat -A POSTROUTING -o $LAN_IFACE -s $INET_DNS_IP \<br /> -p udp --sport domain -j SNAT --to-source $INET_DNS_IP<br /> $IPTABLES -t nat -A POSTROUTING -o $DMZ_IFACE -s $INET_DNS_IP \<br /> -p udp --sport domain -j SNAT --to-source $INET_DNS_IP <br /> # Telnet<br /> $IPTABLES -t nat -A POSTROUTING -o $INET_IFACE -s $HostA \<br /> -p tcp --sport telnet -j SNAT --to-source $INET_IP<br /> # Allow http,https,ftp(port),telnet from internal <br /> # Global addresses for internal<br /> $IPTABLES -t nat -A POSTROUTING -o $INET_IFACE -s $HostA \<br /> -j SNAT --to-source $GlobalA<br /> $IPTABLES -t nat -A POSTROUTING -o $INET_IFACE -s $HostB \<br /> -j DNAT --to-source $GlobalB</strong><br /> <br /> #<br /> # 4.2.6 OUTPUT chain<br /> #<br /> <br /> ######<br /> # 4.3 mangle table<br /> #<br /> <br /> #<br /> # 4.3.1 Set policies<br /> #<br /> <br /> #<br /> # 4.3.2 Create user specified chains<br /> #<br /> <br /> #<br /> # 4.3.3 Create content in user specified chains<br /> #<br /> <br /> #<br /> # 4.3.4 PREROUTING chain<br /> #<br /> <br /> #<br /> # 4.3.5 INPUT chain<br /> #<br /> <br /> #<br /> # 4.3.6 FORWARD chain<br /> #<br /> <br /> #<br /> # 4.3.7 OUTPUT chain<br /> #<br /> <br /> #<br /> # 4.3.8 POSTROUTING chain<br /> #</td>
+</tr>
+</tbody>
+</table>
+<h2>包过滤防火墙规则</h2>
+<table style="font-size: 10pt; width: 700px;" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<th height="20">序号</th> <th>源IP</th> <th>源端口</th> <th>目的IP</th> <th>目的端口</th> <th>协议</th> <th>方向</th> <th>动作</th>
+</tr>
+<tr>
+<td height="20">1</td>
+<td>192.168.33.40</td>
+<td>任意</td>
+<td>远程</td>
+<td>任意</td>
+<td>任意</td>
+<td>内-外</td>
+<td>SNAT从202.120.36.100</td>
+</tr>
+<tr>
+<td height="20">2</td>
+<td>远程</td>
+<td>任意</td>
+<td>192.168.33.40</td>
+<td>任意</td>
+<td>任意</td>
+<td>外-内</td>
+<td>DNAT转发202.120.36.100</td>
+</tr>
+<tr>
+<td height="20">3</td>
+<td>192.168.33.41</td>
+<td>任意</td>
+<td>远程</td>
+<td>任意</td>
+<td>任意</td>
+<td>内-外</td>
+<td>SNAT从202.120.36.101</td>
+</tr>
+<tr>
+<td height="20">4</td>
+<td>远程</td>
+<td>任意</td>
+<td>192.168.33.41</td>
+<td>任意</td>
+<td>任意</td>
+<td>外-内</td>
+<td>DNAT转发202.120.36.101</td>
+</tr>
+<tr>
+<td height="20">5</td>
+<td>远程</td>
+<td>任意</td>
+<td>202.120.36.180</td>
+<td>25</td>
+<td>TCP</td>
+<td>外-墙</td>
+<td>DNAT转发192.168.1.40，放行</td>
+</tr>
+<tr>
+<td height="20">6</td>
+<td>远程</td>
+<td>任意</td>
+<td>202.120.36.180</td>
+<td>109</td>
+<td>TCP</td>
+<td>外-墙</td>
+<td>DNAT转发192.168.1.40，放行</td>
+</tr>
+<tr>
+<td height="20">7</td>
+<td>远程</td>
+<td>任意</td>
+<td>202.120.36.180</td>
+<td>110</td>
+<td>TCP</td>
+<td>外-墙</td>
+<td>DNAT转发192.168.1.40，放行</td>
+</tr>
+<tr>
+<td height="20">8</td>
+<td>远程</td>
+<td>任意</td>
+<td>202.120.36.180</td>
+<td>143</td>
+<td>TCP</td>
+<td>外-墙</td>
+<td>DNAT转发192.168.1.40，放行</td>
+</tr>
+<tr>
+<td height="20">9</td>
+<td>远程</td>
+<td>任意</td>
+<td>202.120.36.180</td>
+<td>220</td>
+<td>TCP</td>
+<td>外-墙</td>
+<td>DNAT转发192.168.1.40，放行</td>
+</tr>
+<tr>
+<td height="20">10</td>
+<td>远程</td>
+<td>任意</td>
+<td>202.120.36.180</td>
+<td>80</td>
+<td>TCP</td>
+<td>外-墙</td>
+<td>DNAT转发192.168.1.2，放行</td>
+</tr>
+<tr>
+<td height="20">11</td>
+<td>192.168.1.2</td>
+<td>任意</td>
+<td>远程</td>
+<td>80</td>
+<td>TCP</td>
+<td>DMZ-外</td>
+<td>SNAT从202.120.36.180，放行</td>
+</tr>
+<tr>
+<td height="20">12</td>
+<td>192.168.33.0/24</td>
+<td>任意</td>
+<td>202.120.2.101</td>
+<td>53</td>
+<td>UDP</td>
+<td>内-外</td>
+<td>放行</td>
+</tr>
+<tr>
+<td height="20">13</td>
+<td>192.168.1.0/24</td>
+<td>任意</td>
+<td>202.120.2.101</td>
+<td>53</td>
+<td>UDP</td>
+<td>DMZ-外</td>
+<td>放行</td>
+</tr>
+<tr>
+<td height="20">14</td>
+<td>192.168.33.0/24</td>
+<td>任意</td>
+<td>192.168.33.254</td>
+<td>53</td>
+<td>UDP</td>
+<td>内-墙</td>
+<td>DNAT转发202.120.2.101，放行</td>
+</tr>
+<tr>
+<td height="20">15</td>
+<td>192.168.1.0/24</td>
+<td>任意</td>
+<td>192.168.1.1</td>
+<td>53</td>
+<td>UDP</td>
+<td>DMZ-墙</td>
+<td>DNAT转发202.120.2.101，放行</td>
+</tr>
+<tr>
+<td height="20">16</td>
+<td>远程</td>
+<td>任意</td>
+<td>202.120.36.180</td>
+<td>23</td>
+<td>TCP</td>
+<td>外-墙</td>
+<td>DNAT转发192.168.33.40，放行</td>
+</tr>
+<tr>
+<td height="20">17</td>
+<td>192.168.33.0/24</td>
+<td>任意</td>
+<td>远程</td>
+<td>80</td>
+<td>TCP</td>
+<td>内-外</td>
+<td>放行</td>
+</tr>
+<tr>
+<td height="20">18</td>
+<td>192.168.33.0/24</td>
+<td>任意</td>
+<td>远程</td>
+<td>443</td>
+<td>TCP</td>
+<td>内-外</td>
+<td>放行</td>
+</tr>
+<tr>
+<td height="20">19</td>
+<td>192.168.33.0/24</td>
+<td>任意</td>
+<td>远程</td>
+<td>21</td>
+<td>TCP</td>
+<td>内-外</td>
+<td>放行</td>
+</tr>
+<tr>
+<td height="20">20</td>
+<td>192.168.33.0/24</td>
+<td>任意</td>
+<td>远程</td>
+<td>23</td>
+<td>TCP</td>
+<td>内-外</td>
+<td>放行</td>
+</tr>
+<tr>
+<td height="20">21</td>
+<td>远程</td>
+<td>20</td>
+<td>192.168.33.0/24</td>
+<td>任意</td>
+<td>TCP</td>
+<td>外-内</td>
+<td>放行</td>
+</tr>
+<tr>
+<td height="20">22</td>
+<td>任意</td>
+<td>任意</td>
+<td>任意</td>
+<td>任意</td>
+<td>任意</td>
+<td>任意</td>
+<td>丢弃</td>
+</tr>
+</tbody>
+</table>
+<p><span style="font-size:9pt">局限性：PORT FTP必须允许20端口对内连接，从20端口可攻击内网；在包过滤层(不使用状态机制)无法解决</span></p>
+<h2>对《信息安全科技创新》课程的建议</h2>
+<p style="font-size:10pt;">这门课可以说是本专业同学接触的第一门专业课，内容比较实用。讲课应增加一些网络基础知识，特别是TCP/IP、HTTP、FTP等常用协议(甚至可以讲协议的具体内容，比如GET/POST、200/403/404状态、PORT/PASV等等)，而不是在短短几分钟一笔带过。实验时间太短，根本没看清是怎么回事，实验就莫名其妙做完了，也来不及进行更加详尽的测试；可以考虑把FireBox接在公网上并告诉大家读密码(不公开写密码，即设置成与实验时不同)，以便大家自己连接上去看清楚管理软件的各项功能，在实验室时可以把事先做好的配置文件带来写入，并给大家更长的实验时间(每组40-60分钟)。</p>

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>FlashCopy (ActionScript) - 你的阳光技术频道 www.65536.cn</title>
+<meta name="keywords" content="FlashCopy,yoursunnyFlashCopy,Flash复制到剪贴板,clipboard"/>
+<link rel="stylesheet" type="text/css" href="/images/9/" />
+<script type="text/javascript" src="/lib/9.js?prettify"></script>
+</head><body>
+
+<div class="header">
+<h2><a href="http://yoursunny.com/">你的阳光</a></h2>
+<ul>
+<li><a href="http://m.yoursunny.com/"><span>个人</span></a></li>
+<li><a href="http://study.yoursunny.com/"><span>学习</span></a></li>
+<li><a href="http://www.65536.cn/"><span>技术</span></a></li>
+<li><a href="http://www.65536.cn/work/"><span>作品</span></a></li>
+</ul>
+<ol>
+<li><a href="http://yoursunny.com/">你的阳光</a></li>
+<li><a href="/">技术频道</a></li>
+<li><a href="../../">作品</a></li>
+<li><span>FlashCopy</span></li>
+</ol>
+</div>
+
+<div class="content"><div class="main">
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">FlashCopy</h1>
+<div class="p-body headers">
+
+<script type="text/javascript" src="yoursunnyFlashCopy.js"></script>
+<p><b>FlashCopy</b>是一个跨浏览器的“复制到剪贴板”解决方案。只需一个函数调用，就可创建一个“复制”按钮；点击此按钮，就可将指定内容复制到剪贴板。</p>
+<pre class="prettyprint lang-js">
+yoursunnyFlashCopy(
+	'hello FlashCopy',//要复制的字符串
+	document.getElementById('FlashCopy-container'),//按钮容器
+	'copy-icon.jpg',//按钮图标
+	48,//按钮宽度
+	48,//按钮高度
+	function(){alert('复制成功');}//复制完毕回调函数
+);
+</pre>
+<div id="FlashCopy-container" style="padding:">
+<input type="button" value="运行演示代码" onclick="yoursunnyFlashCopy('hello FlashCopy',document.getElementById('FlashCopy-container'),'copy-icon.jpg',48,48,function(){alert('复制成功');});"/>
+</div>
+<p></p>
+</div></div></div>
+
+</div><div class="sidebar">
+
+<div class="ad-sidebar"></div>
+
+</div></div>
+
+<div class="footer">
+<p class="copyright">&copy;2006-2009 yoursunny.com, CreativeCommons BY-NC 3.0</p>
+<ul class="links">
+<li><a href="http://yoursunny.com/m/about.htm">关于本站</a></li>
+<li><a href="http://yoursunny.com/m/contact.htm">联系方式</a></li>
+<li><a href="http://yoursunny.com/m/sitemap.htm">网站地图</a></li>
+</ul>
+</div>
+
+</body></html>

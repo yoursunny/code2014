@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<course>
+
+<title>化学</title>
+<teacher>戴珊玲</teacher>
+
+<topic t="redirect" url="./?nb=01">
+<homelink>阳光男孩的<a>高中化学笔记本</a></homelink>
+</topic>
+
+<topic t="redirect" url="./?organic-experiment=index">
+<homelink>阳光男孩的<a>高中《有机化学实验》会考复习课件</a></homelink>
+</topic>
+
+</course>

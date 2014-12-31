@@ -1,0 +1,26 @@
+从IP判断地理位置：GeoIP服务
+prettyprint
+<p>通过Maxmind提供的GeoIP服务，可以通过网页嵌入代码免费获得当前访问者IP地址对应的国家、城市、经纬度。</p>
+<pre class="prettyprint lang-html">&lt;script type="text/javascript" src="http://j.maxmind.com/app/geoip.js"&gt;&lt;/script&gt;</pre>
+<p>脚本中含有一系列函数调用，而没有write，需要自己处理。<br />
+<script type="text/javascript" src="http://j.maxmind.com/app/geoip.js"></script>
+<script type="text/javascript">//<![CDATA[
+document.write('国家代码：'+geoip_country_code()+'<br/>国家名称：'+geoip_country_name()+'<br/>城市：'+geoip_city()+'<br/>经纬度：('+geoip_latitude()+','+geoip_longitude()+')');
+//]]></script></p>
+<p>全世界的数据都有。免费服务只能获得国家、城市、经纬度，而不能获得网络类型(电信/网通)等；而且只能获得当前访问者信息，而不能够查询任意IP地址。</p>
+
+<h3>显示地图</h3>
+<p style="clear:both;">由于GeoIP的服务包含了城市经纬度，你甚至可以用Bing显示当前城市地图：</p>
+<div id="vemap1_container" style="float:left;margin-right:30px;position:relative;width:300px;height:300px;"></div>
+<div id="vemap2_container" style="float:left;position:relative;width:300px;height:300px;"></div>
+<p style="clear:both;">看到你现在身处的位置了吗？</p>
+<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2&amp;mkt=en-us"></script>
+<script type="text/javascript">//<![CDATA[
+var map1=new VEMap('vemap1_container');
+map1.LoadMap(new VELatLong(geoip_latitude(),geoip_longitude()),8);
+map1.HideDashboard();map1.HideScalebar();
+var map2=new VEMap('vemap2_container');
+map2.LoadMap(new VELatLong(geoip_latitude(),geoip_longitude()),8);
+map2.SetMapStyle(VEMapStyle.Aerial);
+map2.HideDashboard();map2.HideScalebar();
+//]]></script>

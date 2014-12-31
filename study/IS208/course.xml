@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<course>
+
+<title>数字系统设计</title>
+<code>IS208</code>
+<code>IS209</code>
+<teacher>宦飞</teacher>
+
+<download>
+00数字系统设计概述.pdf
+01 SoC(SoPC)设计基础.pdf
+02 Verilog的基本概念.pdf
+03 Verilog的语言基础.pdf
+03supp 用ModelSim仿真.pdf
+04门级建模.pdf
+05数据流建模.pdf
+06行为建模.pdf
+07任务和函数.pdf
+08用户定义原语(UDP).pdf
+10组合逻辑设计.pdf
+11时序电路设计.pdf
+12supp FPGA技术、器件和工具.pdf
+12使用VerilogHDL进行综合.pdf
+IEEE 1364-2005 Verilog Hardware Description Language.pdf
+IEEE 1364-2001 Verilog Hardware Description Language.pdf
+作业.pdf
+作业参考模板.pdf
+作业辅助材料.pdf
+参考答案.zip
+</download>
+
+<topic t="redirect" url="./?w=0">
+<homelink>阳光男孩的<a>作业答案+实验报告</a></homelink>
+</topic>
+
+</course>

@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数字系统设计 作业 13</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<img src="13q.png" width="459" height="172" alt="十进制计数器"/>
+<hr/>
+
+<h1>一 Verilog设计文件</h1>
+<h2>计数器 dec_counter.v</h2>
+<pre>module dec_counter(output reg [3:0] count,input clk,input reset);
+    always @(posedge clk)
+    begin
+        if (!reset)
+            count&lt;=4'b0000;
+        else
+            if (count==4'b1001)
+                count&lt;=4'b0000;
+            else
+                count&lt;=count+4'b0001;
+    end
+endmodule</pre>
+<hr/>
+<h2>测试平台</h2>
+<pre>`include "dec_counter.v"
+module tb_dec_counter;
+    wire [3:0] count;
+    reg clk;
+    reg reset;
+    dec_counter n(count,clk,reset);
+    initial
+    begin
+        clk=1'b0;
+        reset=1'b0;
+    end
+    always
+        #2 clk=~clk;
+    initial
+    begin
+        #5   reset=1'b1;
+        #95  reset=1'b0;
+        #10  reset=1'b1;
+    end
+endmodule</pre>
+<hr/>
+
+<h1>二 仿真分析图</h1>
+<img src="13w.png" width="672" height="146" alt="波形"/>
+<hr/>
+
+<h1>三 仿真监控结果</h1>
+<hr/>
+
+<h1>四 结果分析</h1>
+<ul>
+<li>开始时，必须对计数器RESET使之正常工作</li>
+<li>第二次RESET信号处展示了清零为同步清零</li>
+</ul>
+<hr/>
+
+</body>
+</html>

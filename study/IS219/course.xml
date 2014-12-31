@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<course>
+
+<title>Windows安全原理与技术</title>
+<code>IS219</code>
+<teacher>王轶骏</teacher>
+
+<download>
+01Windows系统安全概述.pdf
+02WindowsNT安全.pdf
+03Windows2000安全基础.pdf
+04活动目录.pdf
+05身份验证.pdf
+06访问控制.pdf
+07文件系统安全.pdf
+08网络传输安全.pdf
+09应用服务安全.pdf
+10组策略.pdf
+11安全配置与分析.pdf
+12安全审核.pdf
+13公钥基础结构.pdf
+2008小论文.doc
+Windows远程控制、Rootkit及检测分析.pdf
+网络协议基础及安全性分析.pdf
+《Windows安全原理与技术》薛质 王轶骏 李建华.7z
+</download>
+
+<topic t="a9single" q="p" v="1">
+<homelink>Windows NT安全基础，Windows 2000安全基础 习题</homelink>
+</topic>
+<topic t="a9single" q="p" v="2">
+<homelink>活动目录，身份验证，访问控制 习题</homelink>
+</topic>
+<topic t="a9single" q="p" v="3">
+<homelink>文件系统安全，网络传输安全，应用服务安全 习题</homelink>
+</topic>
+<topic t="a9single" q="p" v="4">
+<homelink>组策略，安全配置与分析，安全审核，公钥基础结构 习题</homelink>
+</topic>
+
+</course>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<course>
+
+<title>计算机组成与体系结构</title>
+<code>EI209</code>
+<teacher>陆海宁</teacher>
+
+<download>
+01简介.ppt
+02 Enigma.ppt
+02计算机的演变和性能.ppt
+03系统总线.ppt
+04Cache.ppt
+05内部存储器.ppt
+06外部存储器.ppt
+07输入输出.ppt
+09计算机算术.ppt
+10指令集 特征和功能.ppt
+11指令集. 寻址方式和指令格式.ppt
+12 CPU结构和功能.ppt
+13 RISC.ppt
+14指令级并行性和超标量处理器.ppt
+16控制器操作.ppt
+17微程序式控制.ppt
+18并行处理.ppt
+计算机组织与体系结构.性能设计第六版.pdf
+</download>
+
+<topic t="a9multi" q="topic" v="index" f="topic.htm">
+<byline><![CDATA[
+<a href="?topic=index">返回目录</a>
+]]></byline>
+<homelink>阳光男孩的<a>计算机组成与体系结构 知识要点</a></homelink>
+</topic>
+
+</course>

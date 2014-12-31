@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<course>
+
+<title>中外艺术歌曲欣赏</title>
+<code>MU019</code>
+<teacher>罗依琪</teacher>
+
+<download>
+60523_课堂录音.wav
+中国艺术歌曲_课堂录音.wav
+小夜曲_课堂录音1.wav
+小夜曲_课堂录音2.wav
+小夜曲、听听云雀、菩提树_课堂录音.wav
+摇篮曲_课堂录音1.wav
+摇篮曲_课堂录音2.wav
+渴望春天.mid
+渴望春天.rm
+渴望春天_课堂录音.wav
+花非花_课堂录音.wav
+鳟鱼_课堂录音.wav
+</download>
+
+<topic t="a9multi" q="p" v="index" f="luo.htm">
+<basestyle><![CDATA[
+a.booklink { font-size:12px; color:#990; }
+.questions { margin:1em; padding:1em; border:dotted 3px #99f; }
+.appreclation { margin:1em; padding:1em; border:dotted 3px #9f9; }
+blockquote { margin:0 2em; }
+]]></basestyle>
+<byline><![CDATA[
+<p>返回<a href="?p=index">中外艺术歌曲欣赏</a>教案目录</p>
+]]></byline>
+<homelink>罗依琪老师<a>《中外艺术歌曲欣赏》教案</a></homelink>
+</topic>
+
+</course>

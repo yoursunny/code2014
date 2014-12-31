@@ -1,0 +1,865 @@
+base64加密PHP脚本的解码方法
+PHP解密,PHP解码,PHP混淆,base64,base64_decode,eval,echo
+prettify no-sidebar
+阳光男孩 发表于 2009-08-02
+
+<p>PHP是网站服务端最流行的编程语言之一。PHP运行环境本身是开源的，服务器不加载插件时PHP脚本也无法加密。但是，总有人因为商业上的考虑，而将PHP程序通过各种方法进行混淆，使读者很难看到清晰易懂的代码。</p>
+<p>然而，PHP运行环境的本质决定了，被混淆、编码的PHP脚本总是有办法恢复成可读的代码的。本文介绍了一种对含有eval和base64_decode的、被加密的PHP的解码方法。</p>
+<p>在使用这种方法之前，你应该准备好：</p>
+<ul>
+<li>能运行PHP的Web服务器，例如 Apache 或 IIS</li>
+<li>wget.exe命令行客户端 或 浏览器</li>
+<li>具备PHP语法高亮功能的文本编辑器，例如 Notepad2</li>
+</ul>
+<p><a href="javascript:tech_download('PHP-decode.zip')">下载每一步的源代码</a></p>
+<p>待解密的PHP代码来自某WordPress模板，<a href="http://zhidao.baidu.com/question/89605169.html">来源</a></p>
+<pre class="prettyprint lang-php break-line">
+//0.php
+&lt;?php
+/* WARNING: This file is protected by copyright law. To reverse engineer or decode this file is strictly prohibited. */
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+eval(base64_decode("JGxsbD0wO2V2YWwoYmFzZTY0X2RlY29kZSgiSkd4c2JHeHNiR3hzYkd4c1BTZGlZWE5sTmpSZlpHVmpiMlJsSnpzPSIpKTskbGw9MDtldmFsKCRsbGxsbGxsbGxsbCgiSkd4c2JHeHNiR3hzYkd3OUoyOXlaQ2M3IikpOyRsbGxsPTA7JGxsbGxsPTM7ZXZhbCgkbGxsbGxsbGxsbGwoIkpHdzlKR3hzYkd4c2JHeHNiR3hzS0NSdktUcz0iKSk7JGxsbGxsbGw9MDskbGxsbGxsPSgkbGxsbGxsbGxsbCgkbFsxXSk8PDgpKyRsbGxsbGxsbGxsKCRsWzJdKTtldmFsKCRsbGxsbGxsbGxsbCgiSkd4c2JHeHNiR3hzYkd4c2JHdzlKM04wY214bGJpYzciKSk7JGxsbGxsbGxsbD0xNjskbGxsbGxsbGw9IiI7Zm9yKDskbGxsbGw8JGxsbGxsbGxsbGxsbGwoJGwpOyl7aWYoJGxsbGxsbGxsbD09MCl7JGxsbGxsbD0oJGxsbGxsbGxsbGwoJGxbJGxsbGxsKytdKTw8OCk7JGxsbGxsbCs9JGxsbGxsbGxsbGwoJGxbJGxsbGxsKytdKTskbGxsbGxsbGxsPTE2O31pZigkbGxsbGxsJjB4ODAwMCl7JGxsbD0oJGxsbGxsbGxsbGwoJGxbJGxsbGxsKytdKTw8NCk7JGxsbCs9KCRsbGxsbGxsbGxsKCRsWyRsbGxsbF0pPj40KTtpZigkbGxsKXskbGw9KCRsbGxsbGxsbGxsKCRsWyRsbGxsbCsrXSkmMHgwZikrMztmb3IoJGxsbGw9MDskbGxsbDwkbGw7JGxsbGwrKykkbGxsbGxsbGxbJGxsbGxsbGwrJGxsbGxdPSRsbGxsbGxsbFskbGxsbGxsbC0kbGxsKyRsbGxsXTskbGxsbGxsbCs9JGxsO31lbHNleyRsbD0oJGxsbGxsbGxsbGwoJGxbJGxsbGxsKytdKTw8OCk7JGxsKz0kbGxsbGxsbGxsbCgkbFskbGxsbGwrK10pKzE2O2ZvcigkbGxsbD0wOyRsbGxsPCRsbDskbGxsbGxsbGxbJGxsbGxsbGwrJGxsbGwrK109JGxsbGxsbGxsbGwoJGxbJGxsbGxsXSkpOyRsbGxsbCsrOyRsbGxsbGxsKz0kbGw7fX1lbHNlJGxsbGxsbGxsWyRsbGxsbGxsKytdPSRsbGxsbGxsbGxsKCRsWyRsbGxsbCsrXSk7JGxsbGxsbDw8PTE7JGxsbGxsbGxsbC0tO31ldmFsKCRsbGxsbGxsbGxsbCgiSkd4c2JHeHNiR3hzYkd4c2JEMG5ZMmh5SnpzPSIpKTskbGxsbGw9MDtldmFsKCRsbGxsbGxsbGxsbCgiSkd4c2JHeHNiR3hzYkQwaVB5SXVKR3hzYkd4c2JHeHNiR3hzYkNnMk1pazciKSk7JGxsbGxsbGxsbGw9IiI7Zm9yKDskbGxsbGw8JGxsbGxsbGw7KXskbGxsbGxsbGxsbC49JGxsbGxsbGxsbGxsbCgkbGxsbGxsbGxbJGxsbGxsKytdXjB4MDcpO31ldmFsKCRsbGxsbGxsbGxsbCgiSkd4c2JHeHNiR3hzYkM0OUpHeHNiR3hzYkd4c2JHd3VKR3hzYkd4c2JHeHNiR3hzYkNnMk1Da3VJajhpT3c9PSIpKTtldmFsKCRsbGxsbGxsbGwpOw=="));
+return;
+?&gt;
+</pre>
+<p>代码中只有一个eval，先把这个eval替换为echo。</p>
+<pre class="prettyprint lang-php break-line">
+//1.php
+&lt;?php
+/* WARNING: This file is protected by copyright law. To reverse engineer or decode this file is strictly prohibited. */
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+echo(base64_decode("JGxsbD0wO2V2YWwoYmFzZTY0X2RlY29kZSgiSkd4c2JHeHNiR3hzYkd4c1BTZGlZWE5sTmpSZlpHVmpiMlJsSnpzPSIpKTskbGw9MDtldmFsKCRsbGxsbGxsbGxsbCgiSkd4c2JHeHNiR3hzYkd3OUoyOXlaQ2M3IikpOyRsbGxsPTA7JGxsbGxsPTM7ZXZhbCgkbGxsbGxsbGxsbGwoIkpHdzlKR3hzYkd4c2JHeHNiR3hzS0NSdktUcz0iKSk7JGxsbGxsbGw9MDskbGxsbGxsPSgkbGxsbGxsbGxsbCgkbFsxXSk8PDgpKyRsbGxsbGxsbGxsKCRsWzJdKTtldmFsKCRsbGxsbGxsbGxsbCgiSkd4c2JHeHNiR3hzYkd4c2JHdzlKM04wY214bGJpYzciKSk7JGxsbGxsbGxsbD0xNjskbGxsbGxsbGw9IiI7Zm9yKDskbGxsbGw8JGxsbGxsbGxsbGxsbGwoJGwpOyl7aWYoJGxsbGxsbGxsbD09MCl7JGxsbGxsbD0oJGxsbGxsbGxsbGwoJGxbJGxsbGxsKytdKTw8OCk7JGxsbGxsbCs9JGxsbGxsbGxsbGwoJGxbJGxsbGxsKytdKTskbGxsbGxsbGxsPTE2O31pZigkbGxsbGxsJjB4ODAwMCl7JGxsbD0oJGxsbGxsbGxsbGwoJGxbJGxsbGxsKytdKTw8NCk7JGxsbCs9KCRsbGxsbGxsbGxsKCRsWyRsbGxsbF0pPj40KTtpZigkbGxsKXskbGw9KCRsbGxsbGxsbGxsKCRsWyRsbGxsbCsrXSkmMHgwZikrMztmb3IoJGxsbGw9MDskbGxsbDwkbGw7JGxsbGwrKykkbGxsbGxsbGxbJGxsbGxsbGwrJGxsbGxdPSRsbGxsbGxsbFskbGxsbGxsbC0kbGxsKyRsbGxsXTskbGxsbGxsbCs9JGxsO31lbHNleyRsbD0oJGxsbGxsbGxsbGwoJGxbJGxsbGxsKytdKTw8OCk7JGxsKz0kbGxsbGxsbGxsbCgkbFskbGxsbGwrK10pKzE2O2ZvcigkbGxsbD0wOyRsbGxsPCRsbDskbGxsbGxsbGxbJGxsbGxsbGwrJGxsbGwrK109JGxsbGxsbGxsbGwoJGxbJGxsbGxsXSkpOyRsbGxsbCsrOyRsbGxsbGxsKz0kbGw7fX1lbHNlJGxsbGxsbGxsWyRsbGxsbGxsKytdPSRsbGxsbGxsbGxsKCRsWyRsbGxsbCsrXSk7JGxsbGxsbDw8PTE7JGxsbGxsbGxsbC0tO31ldmFsKCRsbGxsbGxsbGxsbCgiSkd4c2JHeHNiR3hzYkd4c2JEMG5ZMmh5SnpzPSIpKTskbGxsbGw9MDtldmFsKCRsbGxsbGxsbGxsbCgiSkd4c2JHeHNiR3hzYkQwaVB5SXVKR3hzYkd4c2JHeHNiR3hzYkNnMk1pazciKSk7JGxsbGxsbGxsbGw9IiI7Zm9yKDskbGxsbGw8JGxsbGxsbGw7KXskbGxsbGxsbGxsbC49JGxsbGxsbGxsbGxsbCgkbGxsbGxsbGxbJGxsbGxsKytdXjB4MDcpO31ldmFsKCRsbGxsbGxsbGxsbCgiSkd4c2JHeHNiR3hzYkM0OUpHeHNiR3hzYkd4c2JHd3VKR3hzYkd4c2JHeHNiR3hzYkNnMk1Da3VJajhpT3c9PSIpKTtldmFsKCRsbGxsbGxsbGwpOw=="));
+return;
+?&gt;
+</pre>
+<p>运行上述代码。运行的方法是：将代码粘贴到一个PHP文件里，用浏览器访问并查看源代码，或者用wget下载。运行结果是：</p>
+<pre class="prettyprint lang-php break-line">
+//1.txt
+$lll=0;eval(base64_decode("JGxsbGxsbGxsbGxsPSdiYXNlNjRfZGVjb2RlJzs="));$ll=0;eval($lllllllllll("JGxsbGxsbGxsbGw9J29yZCc7"));$llll=0;$lllll=3;eval($lllllllllll("JGw9JGxsbGxsbGxsbGxsKCRvKTs="));$lllllll=0;$llllll=($llllllllll($l[1])&lt;&lt;8)+$llllllllll($l[2]);eval($lllllllllll("JGxsbGxsbGxsbGxsbGw9J3N0cmxlbic7"));$lllllllll=16;$llllllll="";for(;$lllll&lt;$lllllllllllll($l);){if($lllllllll==0){$llllll=($llllllllll($l[$lllll++])&lt;&lt;8);$llllll+=$llllllllll($l[$lllll++]);$lllllllll=16;}if($llllll&amp;0x8000){$lll=($llllllllll($l[$lllll++])&lt;&lt;4);$lll+=($llllllllll($l[$lllll])&gt;&gt;4);if($lll){$ll=($llllllllll($l[$lllll++])&amp;0x0f)+3;for($llll=0;$llll&lt;$ll;$llll++)$llllllll[$lllllll+$llll]=$llllllll[$lllllll-$lll+$llll];$lllllll+=$ll;}else{$ll=($llllllllll($l[$lllll++])&lt;&lt;8);$ll+=$llllllllll($l[$lllll++])+16;for($llll=0;$llll&lt;$ll;$llllllll[$lllllll+$llll++]=$llllllllll($l[$lllll]));$lllll++;$lllllll+=$ll;}}else$llllllll[$lllllll++]=$llllllllll($l[$lllll++]);$llllll&lt;&lt;=1;$lllllllll--;}eval($lllllllllll("JGxsbGxsbGxsbGxsbD0nY2hyJzs="));$lllll=0;eval($lllllllllll("JGxsbGxsbGxsbD0iPyIuJGxsbGxsbGxsbGxsbCg2Mik7"));$llllllllll="";for(;$lllll&lt;$lllllll;){$llllllllll.=$llllllllllll($llllllll[$lllll++]^0x07);}eval($lllllllllll("JGxsbGxsbGxsbC49JGxsbGxsbGxsbGwuJGxsbGxsbGxsbGxsbCg2MCkuIj8iOw=="));eval($lllllllll);
+</pre>
+<p>前后加上 &lt;?php 和 ?&gt; ，加进来原来$o的定义，并将代码稍稍排版一下，可得：</p>
+<pre class="prettyprint lang-php break-line">
+//1r.php
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+eval(base64_decode("JGxsbGxsbGxsbGxsPSdiYXNlNjRfZGVjb2RlJzs="));
+$ll=0;
+eval($lllllllllll("JGxsbGxsbGxsbGw9J29yZCc7"));
+$llll=0;
+$lllll=3;
+eval($lllllllllll("JGw9JGxsbGxsbGxsbGxsKCRvKTs="));
+$lllllll=0;
+$llllll=($llllllllll($l[1])&lt;&lt;8)+$llllllllll($l[2]);
+eval($lllllllllll("JGxsbGxsbGxsbGxsbGw9J3N0cmxlbic7"));
+$lllllllll=16;
+$llllllll="";
+for(;$lllll&lt;$lllllllllllll($l);){
+	if($lllllllll==0){
+		$llllll=($llllllllll($l[$lllll++])&lt;&lt;8);
+		$llllll+=$llllllllll($l[$lllll++]);
+		$lllllllll=16;
+	}
+	if($llllll&amp;0x8000){
+		$lll=($llllllllll($l[$lllll++])&lt;&lt;4);
+		$lll+=($llllllllll($l[$lllll])&gt;&gt;4);
+		if($lll){
+			$ll=($llllllllll($l[$lllll++])&amp;0x0f)+3;
+			for($llll=0;$llll&lt;$ll;$llll++)
+				$llllllll[$lllllll+$llll]=$llllllll[$lllllll-$lll+$llll];
+			$lllllll+=$ll;
+		}
+		else{
+			$ll=($llllllllll($l[$lllll++])&lt;&lt;8);
+			$ll+=$llllllllll($l[$lllll++])+16;
+			for($llll=0;$llll&lt;$ll;$llllllll[$lllllll+$llll++]=$llllllllll($l[$lllll]));
+			$lllll++;
+			$lllllll+=$ll;
+		}
+	}
+	else
+		$llllllll[$lllllll++]=$llllllllll($l[$lllll++]);
+	$llllll&lt;&lt;=1;
+	$lllllllll--;
+}
+eval($lllllllllll("JGxsbGxsbGxsbGxsbD0nY2hyJzs="));
+$lllll=0;
+eval($lllllllllll("JGxsbGxsbGxsbD0iPyIuJGxsbGxsbGxsbGxsbCg2Mik7"));
+$llllllllll="";
+for(;$lllll&lt;$lllllll;){$llllllllll.=$llllllllllll($llllllll[$lllll++]^0x07);}
+eval($lllllllllll("JGxsbGxsbGxsbC49JGxsbGxsbGxsbGwuJGxsbGxsbGxsbGxsbCg2MCkuIj8iOw=="));
+eval($lllllllll);
+?&gt;
+</pre>
+<p>将代码中的第一个eval改成echo，后面的语句删除：</p>
+<pre class="prettyprint lang-php break-line">
+//2.php
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+echo(base64_decode("JGxsbGxsbGxsbGxsPSdiYXNlNjRfZGVjb2RlJzs="));
+?&gt;
+</pre>
+<p>运行结果：</p>
+<pre class="prettyprint lang-php break-line">
+//2.txt
+$lllllllllll='base64_decode';
+</pre>
+<p>将运行结果替换掉echo(base64_decode(...))部分，后面的语句粘贴回来：</p>
+<pre class="prettyprint lang-php break-line">
+//2r.php
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+$lllllllllll='base64_decode';
+$ll=0;
+eval($lllllllllll("JGxsbGxsbGxsbGw9J29yZCc7"));
+$llll=0;
+$lllll=3;
+eval($lllllllllll("JGw9JGxsbGxsbGxsbGxsKCRvKTs="));
+$lllllll=0;
+$llllll=($llllllllll($l[1])&lt;&lt;8)+$llllllllll($l[2]);
+eval($lllllllllll("JGxsbGxsbGxsbGxsbGw9J3N0cmxlbic7"));
+$lllllllll=16;
+$llllllll="";
+for(;$lllll&lt;$lllllllllllll($l);){
+	if($lllllllll==0){
+		$llllll=($llllllllll($l[$lllll++])&lt;&lt;8);
+		$llllll+=$llllllllll($l[$lllll++]);
+		$lllllllll=16;
+	}
+	if($llllll&amp;0x8000){
+		$lll=($llllllllll($l[$lllll++])&lt;&lt;4);
+		$lll+=($llllllllll($l[$lllll])&gt;&gt;4);
+		if($lll){
+			$ll=($llllllllll($l[$lllll++])&amp;0x0f)+3;
+			for($llll=0;$llll&lt;$ll;$llll++)
+				$llllllll[$lllllll+$llll]=$llllllll[$lllllll-$lll+$llll];
+			$lllllll+=$ll;
+		}
+		else{
+			$ll=($llllllllll($l[$lllll++])&lt;&lt;8);
+			$ll+=$llllllllll($l[$lllll++])+16;
+			for($llll=0;$llll&lt;$ll;$llllllll[$lllllll+$llll++]=$llllllllll($l[$lllll]));
+			$lllll++;
+			$lllllll+=$ll;
+		}
+	}
+	else
+		$llllllll[$lllllll++]=$llllllllll($l[$lllll++]);
+	$llllll&lt;&lt;=1;
+	$lllllllll--;
+}
+eval($lllllllllll("JGxsbGxsbGxsbGxsbD0nY2hyJzs="));
+$lllll=0;
+eval($lllllllllll("JGxsbGxsbGxsbD0iPyIuJGxsbGxsbGxsbGxsbCg2Mik7"));
+$llllllllll="";
+for(;$lllll&lt;$lllllll;){$llllllllll.=$llllllllllll($llllllll[$lllll++]^0x07);}
+eval($lllllllllll("JGxsbGxsbGxsbC49JGxsbGxsbGxsbGwuJGxsbGxsbGxsbGxsbCg2MCkuIj8iOw=="));
+eval($lllllllll);
+?&gt;
+</pre>
+<p>类似的，反复进行三步操作：</p>
+<ol>
+<li>将eval替换成echo，删除后面的语句</li>
+<li>运行</li>
+<li>用运行结果替换eval语句，恢复后面的语句</li>
+</ol>
+<p>直到代码中不再出现eval。</p>
+<pre class="prettyprint lang-php break-line">
+//3.php
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+$lllllllllll='base64_decode';
+$ll=0;
+echo($lllllllllll("JGxsbGxsbGxsbGw9J29yZCc7"));
+?&gt;
+</pre>
+<pre class="prettyprint lang-php break-line">
+//3.txt
+$llllllllll='ord';
+</pre>
+<pre class="prettyprint lang-php break-line">
+//3r.php
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+$lllllllllll='base64_decode';
+$ll=0;
+$llllllllll='ord';
+$llll=0;
+$lllll=3;
+eval($lllllllllll("JGw9JGxsbGxsbGxsbGxsKCRvKTs="));
+$lllllll=0;
+$llllll=($llllllllll($l[1])&lt;&lt;8)+$llllllllll($l[2]);
+eval($lllllllllll("JGxsbGxsbGxsbGxsbGw9J3N0cmxlbic7"));
+$lllllllll=16;
+$llllllll="";
+for(;$lllll&lt;$lllllllllllll($l);){
+	if($lllllllll==0){
+		$llllll=($llllllllll($l[$lllll++])&lt;&lt;8);
+		$llllll+=$llllllllll($l[$lllll++]);
+		$lllllllll=16;
+	}
+	if($llllll&amp;0x8000){
+		$lll=($llllllllll($l[$lllll++])&lt;&lt;4);
+		$lll+=($llllllllll($l[$lllll])&gt;&gt;4);
+		if($lll){
+			$ll=($llllllllll($l[$lllll++])&amp;0x0f)+3;
+			for($llll=0;$llll&lt;$ll;$llll++)
+				$llllllll[$lllllll+$llll]=$llllllll[$lllllll-$lll+$llll];
+			$lllllll+=$ll;
+		}
+		else{
+			$ll=($llllllllll($l[$lllll++])&lt;&lt;8);
+			$ll+=$llllllllll($l[$lllll++])+16;
+			for($llll=0;$llll&lt;$ll;$llllllll[$lllllll+$llll++]=$llllllllll($l[$lllll]));
+			$lllll++;
+			$lllllll+=$ll;
+		}
+	}
+	else
+		$llllllll[$lllllll++]=$llllllllll($l[$lllll++]);
+	$llllll&lt;&lt;=1;
+	$lllllllll--;
+}
+eval($lllllllllll("JGxsbGxsbGxsbGxsbD0nY2hyJzs="));
+$lllll=0;
+eval($lllllllllll("JGxsbGxsbGxsbD0iPyIuJGxsbGxsbGxsbGxsbCg2Mik7"));
+$llllllllll="";
+for(;$lllll&lt;$lllllll;){$llllllllll.=$llllllllllll($llllllll[$lllll++]^0x07);}
+eval($lllllllllll("JGxsbGxsbGxsbC49JGxsbGxsbGxsbGwuJGxsbGxsbGxsbGxsbCg2MCkuIj8iOw=="));
+eval($lllllllll);
+?&gt;
+</pre>
+<p>仍有eval，继续……<p>
+<pre class="prettyprint lang-php break-line">
+//4.php
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+$lllllllllll='base64_decode';
+$ll=0;
+$llllllllll='ord';
+$llll=0;
+$lllll=3;
+echo($lllllllllll("JGw9JGxsbGxsbGxsbGxsKCRvKTs="));
+?&gt;
+</pre>
+<pre class="prettyprint lang-php break-line">
+//4.txt
+$l=$lllllllllll($o);
+</pre>
+<pre class="prettyprint lang-php break-line">
+//4r.php
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+$lllllllllll='base64_decode';
+$ll=0;
+$llllllllll='ord';
+$llll=0;
+$lllll=3;
+$l=$lllllllllll($o);
+$lllllll=0;
+$llllll=($llllllllll($l[1])&lt;&lt;8)+$llllllllll($l[2]);
+eval($lllllllllll("JGxsbGxsbGxsbGxsbGw9J3N0cmxlbic7"));
+$lllllllll=16;
+$llllllll="";
+for(;$lllll&lt;$lllllllllllll($l);){
+	if($lllllllll==0){
+		$llllll=($llllllllll($l[$lllll++])&lt;&lt;8);
+		$llllll+=$llllllllll($l[$lllll++]);
+		$lllllllll=16;
+	}
+	if($llllll&amp;0x8000){
+		$lll=($llllllllll($l[$lllll++])&lt;&lt;4);
+		$lll+=($llllllllll($l[$lllll])&gt;&gt;4);
+		if($lll){
+			$ll=($llllllllll($l[$lllll++])&amp;0x0f)+3;
+			for($llll=0;$llll&lt;$ll;$llll++)
+				$llllllll[$lllllll+$llll]=$llllllll[$lllllll-$lll+$llll];
+			$lllllll+=$ll;
+		}
+		else{
+			$ll=($llllllllll($l[$lllll++])&lt;&lt;8);
+			$ll+=$llllllllll($l[$lllll++])+16;
+			for($llll=0;$llll&lt;$ll;$llllllll[$lllllll+$llll++]=$llllllllll($l[$lllll]));
+			$lllll++;
+			$lllllll+=$ll;
+		}
+	}
+	else
+		$llllllll[$lllllll++]=$llllllllll($l[$lllll++]);
+	$llllll&lt;&lt;=1;
+	$lllllllll--;
+}
+eval($lllllllllll("JGxsbGxsbGxsbGxsbD0nY2hyJzs="));
+$lllll=0;
+eval($lllllllllll("JGxsbGxsbGxsbD0iPyIuJGxsbGxsbGxsbGxsbCg2Mik7"));
+$llllllllll="";
+for(;$lllll&lt;$lllllll;){$llllllllll.=$llllllllllll($llllllll[$lllll++]^0x07);}
+eval($lllllllllll("JGxsbGxsbGxsbC49JGxsbGxsbGxsbGwuJGxsbGxsbGxsbGxsbCg2MCkuIj8iOw=="));
+eval($lllllllll);
+?&gt;
+</pre>
+<p>仍有eval，继续……<p>
+<pre class="prettyprint lang-php break-line">
+//5.php
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+$lllllllllll='base64_decode';
+$ll=0;
+$llllllllll='ord';
+$llll=0;
+$lllll=3;
+$l=$lllllllllll($o);
+$lllllll=0;
+$llllll=($llllllllll($l[1])&lt;&lt;8)+$llllllllll($l[2]);
+echo($lllllllllll("JGxsbGxsbGxsbGxsbGw9J3N0cmxlbic7"));
+?&gt;
+</pre>
+<pre class="prettyprint lang-php break-line">
+//5.txt
+$lllllllllllll='strlen';
+</pre>
+<pre class="prettyprint lang-php break-line">
+//5r.php
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+$lllllllllll='base64_decode';
+$ll=0;
+$llllllllll='ord';
+$llll=0;
+$lllll=3;
+$l=$lllllllllll($o);
+$lllllll=0;
+$llllll=($llllllllll($l[1])&lt;&lt;8)+$llllllllll($l[2]);
+$lllllllllllll='strlen';
+$lllllllll=16;
+$llllllll="";
+for(;$lllll&lt;$lllllllllllll($l);){
+	if($lllllllll==0){
+		$llllll=($llllllllll($l[$lllll++])&lt;&lt;8);
+		$llllll+=$llllllllll($l[$lllll++]);
+		$lllllllll=16;
+	}
+	if($llllll&amp;0x8000){
+		$lll=($llllllllll($l[$lllll++])&lt;&lt;4);
+		$lll+=($llllllllll($l[$lllll])&gt;&gt;4);
+		if($lll){
+			$ll=($llllllllll($l[$lllll++])&amp;0x0f)+3;
+			for($llll=0;$llll&lt;$ll;$llll++)
+				$llllllll[$lllllll+$llll]=$llllllll[$lllllll-$lll+$llll];
+			$lllllll+=$ll;
+		}
+		else{
+			$ll=($llllllllll($l[$lllll++])&lt;&lt;8);
+			$ll+=$llllllllll($l[$lllll++])+16;
+			for($llll=0;$llll&lt;$ll;$llllllll[$lllllll+$llll++]=$llllllllll($l[$lllll]));
+			$lllll++;
+			$lllllll+=$ll;
+		}
+	}
+	else
+		$llllllll[$lllllll++]=$llllllllll($l[$lllll++]);
+	$llllll&lt;&lt;=1;
+	$lllllllll--;
+}
+eval($lllllllllll("JGxsbGxsbGxsbGxsbD0nY2hyJzs="));
+$lllll=0;
+eval($lllllllllll("JGxsbGxsbGxsbD0iPyIuJGxsbGxsbGxsbGxsbCg2Mik7"));
+$llllllllll="";
+for(;$lllll&lt;$lllllll;){$llllllllll.=$llllllllllll($llllllll[$lllll++]^0x07);}
+eval($lllllllllll("JGxsbGxsbGxsbC49JGxsbGxsbGxsbGwuJGxsbGxsbGxsbGxsbCg2MCkuIj8iOw=="));
+eval($lllllllll);
+?&gt;
+</pre>
+<p>仍有eval，继续……<p>
+<pre class="prettyprint lang-php break-line">
+//6.php
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+$lllllllllll='base64_decode';
+$ll=0;
+$llllllllll='ord';
+$llll=0;
+$lllll=3;
+$l=$lllllllllll($o);
+$lllllll=0;
+$llllll=($llllllllll($l[1])&lt;&lt;8)+$llllllllll($l[2]);
+$lllllllllllll='strlen';
+$lllllllll=16;
+$llllllll="";
+for(;$lllll&lt;$lllllllllllll($l);){
+	if($lllllllll==0){
+		$llllll=($llllllllll($l[$lllll++])&lt;&lt;8);
+		$llllll+=$llllllllll($l[$lllll++]);
+		$lllllllll=16;
+	}
+	if($llllll&amp;0x8000){
+		$lll=($llllllllll($l[$lllll++])&lt;&lt;4);
+		$lll+=($llllllllll($l[$lllll])&gt;&gt;4);
+		if($lll){
+			$ll=($llllllllll($l[$lllll++])&amp;0x0f)+3;
+			for($llll=0;$llll&lt;$ll;$llll++)
+				$llllllll[$lllllll+$llll]=$llllllll[$lllllll-$lll+$llll];
+			$lllllll+=$ll;
+		}
+		else{
+			$ll=($llllllllll($l[$lllll++])&lt;&lt;8);
+			$ll+=$llllllllll($l[$lllll++])+16;
+			for($llll=0;$llll&lt;$ll;$llllllll[$lllllll+$llll++]=$llllllllll($l[$lllll]));
+			$lllll++;
+			$lllllll+=$ll;
+		}
+	}
+	else
+		$llllllll[$lllllll++]=$llllllllll($l[$lllll++]);
+	$llllll&lt;&lt;=1;
+	$lllllllll--;
+}
+echo($lllllllllll("JGxsbGxsbGxsbGxsbD0nY2hyJzs="));
+?&gt;
+</pre>
+<pre class="prettyprint lang-php break-line">
+//6.txt
+$llllllllllll='chr';
+</pre>
+<pre class="prettyprint lang-php break-line">
+//6r.php
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+$lllllllllll='base64_decode';
+$ll=0;
+$llllllllll='ord';
+$llll=0;
+$lllll=3;
+$l=$lllllllllll($o);
+$lllllll=0;
+$llllll=($llllllllll($l[1])&lt;&lt;8)+$llllllllll($l[2]);
+$lllllllllllll='strlen';
+$lllllllll=16;
+$llllllll="";
+for(;$lllll&lt;$lllllllllllll($l);){
+	if($lllllllll==0){
+		$llllll=($llllllllll($l[$lllll++])&lt;&lt;8);
+		$llllll+=$llllllllll($l[$lllll++]);
+		$lllllllll=16;
+	}
+	if($llllll&amp;0x8000){
+		$lll=($llllllllll($l[$lllll++])&lt;&lt;4);
+		$lll+=($llllllllll($l[$lllll])&gt;&gt;4);
+		if($lll){
+			$ll=($llllllllll($l[$lllll++])&amp;0x0f)+3;
+			for($llll=0;$llll&lt;$ll;$llll++)
+				$llllllll[$lllllll+$llll]=$llllllll[$lllllll-$lll+$llll];
+			$lllllll+=$ll;
+		}
+		else{
+			$ll=($llllllllll($l[$lllll++])&lt;&lt;8);
+			$ll+=$llllllllll($l[$lllll++])+16;
+			for($llll=0;$llll&lt;$ll;$llllllll[$lllllll+$llll++]=$llllllllll($l[$lllll]));
+			$lllll++;
+			$lllllll+=$ll;
+		}
+	}
+	else
+		$llllllll[$lllllll++]=$llllllllll($l[$lllll++]);
+	$llllll&lt;&lt;=1;
+	$lllllllll--;
+}
+$llllllllllll='chr';
+$lllll=0;
+eval($lllllllllll("JGxsbGxsbGxsbD0iPyIuJGxsbGxsbGxsbGxsbCg2Mik7"));
+$llllllllll="";
+for(;$lllll&lt;$lllllll;){$llllllllll.=$llllllllllll($llllllll[$lllll++]^0x07);}
+eval($lllllllllll("JGxsbGxsbGxsbC49JGxsbGxsbGxsbGwuJGxsbGxsbGxsbGxsbCg2MCkuIj8iOw=="));
+eval($lllllllll);
+?&gt;
+</pre>
+<p>仍有eval，继续……<p>
+<pre class="prettyprint lang-php break-line">
+//7.php
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+$lllllllllll='base64_decode';
+$ll=0;
+$llllllllll='ord';
+$llll=0;
+$lllll=3;
+$l=$lllllllllll($o);
+$lllllll=0;
+$llllll=($llllllllll($l[1])&lt;&lt;8)+$llllllllll($l[2]);
+$lllllllllllll='strlen';
+$lllllllll=16;
+$llllllll="";
+for(;$lllll&lt;$lllllllllllll($l);){
+	if($lllllllll==0){
+		$llllll=($llllllllll($l[$lllll++])&lt;&lt;8);
+		$llllll+=$llllllllll($l[$lllll++]);
+		$lllllllll=16;
+	}
+	if($llllll&amp;0x8000){
+		$lll=($llllllllll($l[$lllll++])&lt;&lt;4);
+		$lll+=($llllllllll($l[$lllll])&gt;&gt;4);
+		if($lll){
+			$ll=($llllllllll($l[$lllll++])&amp;0x0f)+3;
+			for($llll=0;$llll&lt;$ll;$llll++)
+				$llllllll[$lllllll+$llll]=$llllllll[$lllllll-$lll+$llll];
+			$lllllll+=$ll;
+		}
+		else{
+			$ll=($llllllllll($l[$lllll++])&lt;&lt;8);
+			$ll+=$llllllllll($l[$lllll++])+16;
+			for($llll=0;$llll&lt;$ll;$llllllll[$lllllll+$llll++]=$llllllllll($l[$lllll]));
+			$lllll++;
+			$lllllll+=$ll;
+		}
+	}
+	else
+		$llllllll[$lllllll++]=$llllllllll($l[$lllll++]);
+	$llllll&lt;&lt;=1;
+	$lllllllll--;
+}
+$llllllllllll='chr';
+$lllll=0;
+echo($lllllllllll("JGxsbGxsbGxsbD0iPyIuJGxsbGxsbGxsbGxsbCg2Mik7"));
+?&gt;
+</pre>
+<pre class="prettyprint lang-php break-line">
+//7.txt
+$lllllllll="?".$llllllllllll(62);
+</pre>
+<pre class="prettyprint lang-php break-line">
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+$lllllllllll='base64_decode';
+$ll=0;
+$llllllllll='ord';
+$llll=0;
+$lllll=3;
+$l=$lllllllllll($o);
+$lllllll=0;
+$llllll=($llllllllll($l[1])&lt;&lt;8)+$llllllllll($l[2]);
+$lllllllllllll='strlen';
+$lllllllll=16;
+$llllllll="";
+for(;$lllll&lt;$lllllllllllll($l);){
+	if($lllllllll==0){
+		$llllll=($llllllllll($l[$lllll++])&lt;&lt;8);
+		$llllll+=$llllllllll($l[$lllll++]);
+		$lllllllll=16;
+	}
+	if($llllll&amp;0x8000){
+		$lll=($llllllllll($l[$lllll++])&lt;&lt;4);
+		$lll+=($llllllllll($l[$lllll])&gt;&gt;4);
+		if($lll){
+			$ll=($llllllllll($l[$lllll++])&amp;0x0f)+3;
+			for($llll=0;$llll&lt;$ll;$llll++)
+				$llllllll[$lllllll+$llll]=$llllllll[$lllllll-$lll+$llll];
+			$lllllll+=$ll;
+		}
+		else{
+			$ll=($llllllllll($l[$lllll++])&lt;&lt;8);
+			$ll+=$llllllllll($l[$lllll++])+16;
+			for($llll=0;$llll&lt;$ll;$llllllll[$lllllll+$llll++]=$llllllllll($l[$lllll]));
+			$lllll++;
+			$lllllll+=$ll;
+		}
+	}
+	else
+		$llllllll[$lllllll++]=$llllllllll($l[$lllll++]);
+	$llllll&lt;&lt;=1;
+	$lllllllll--;
+}
+$llllllllllll='chr';
+$lllll=0;
+$lllllllll="?".$llllllllllll(62);
+$llllllllll="";
+for(;$lllll&lt;$lllllll;){$llllllllll.=$llllllllllll($llllllll[$lllll++]^0x07);}
+eval($lllllllllll("JGxsbGxsbGxsbC49JGxsbGxsbGxsbGwuJGxsbGxsbGxsbGxsbCg2MCkuIj8iOw=="));
+eval($lllllllll);
+?&gt;
+</pre>
+<p>仍有eval，继续……<p>
+<pre class="prettyprint lang-php break-line">
+//8.php
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+$lllllllllll='base64_decode';
+$ll=0;
+$llllllllll='ord';
+$llll=0;
+$lllll=3;
+$l=$lllllllllll($o);
+$lllllll=0;
+$llllll=($llllllllll($l[1])&lt;&lt;8)+$llllllllll($l[2]);
+$lllllllllllll='strlen';
+$lllllllll=16;
+$llllllll="";
+for(;$lllll&lt;$lllllllllllll($l);){
+	if($lllllllll==0){
+		$llllll=($llllllllll($l[$lllll++])&lt;&lt;8);
+		$llllll+=$llllllllll($l[$lllll++]);
+		$lllllllll=16;
+	}
+	if($llllll&amp;0x8000){
+		$lll=($llllllllll($l[$lllll++])&lt;&lt;4);
+		$lll+=($llllllllll($l[$lllll])&gt;&gt;4);
+		if($lll){
+			$ll=($llllllllll($l[$lllll++])&amp;0x0f)+3;
+			for($llll=0;$llll&lt;$ll;$llll++)
+				$llllllll[$lllllll+$llll]=$llllllll[$lllllll-$lll+$llll];
+			$lllllll+=$ll;
+		}
+		else{
+			$ll=($llllllllll($l[$lllll++])&lt;&lt;8);
+			$ll+=$llllllllll($l[$lllll++])+16;
+			for($llll=0;$llll&lt;$ll;$llllllll[$lllllll+$llll++]=$llllllllll($l[$lllll]));
+			$lllll++;
+			$lllllll+=$ll;
+		}
+	}
+	else
+		$llllllll[$lllllll++]=$llllllllll($l[$lllll++]);
+	$llllll&lt;&lt;=1;
+	$lllllllll--;
+}
+$llllllllllll='chr';
+$lllll=0;
+$lllllllll="?".$llllllllllll(62);
+$llllllllll="";
+for(;$lllll&lt;$lllllll;){$llllllllll.=$llllllllllll($llllllll[$lllll++]^0x07);}
+echo($lllllllllll("JGxsbGxsbGxsbC49JGxsbGxsbGxsbGwuJGxsbGxsbGxsbGxsbCg2MCkuIj8iOw=="));
+?&gt;
+</pre>
+<pre class="prettyprint lang-php break-line">
+//8.txt
+$lllllllll.=$llllllllll.$llllllllllll(60)."?";
+</pre>
+<pre class="prettyprint lang-php break-line">
+//8r.php
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+$lllllllllll='base64_decode';
+$ll=0;
+$llllllllll='ord';
+$llll=0;
+$lllll=3;
+$l=$lllllllllll($o);
+$lllllll=0;
+$llllll=($llllllllll($l[1])&lt;&lt;8)+$llllllllll($l[2]);
+$lllllllllllll='strlen';
+$lllllllll=16;
+$llllllll="";
+for(;$lllll&lt;$lllllllllllll($l);){
+	if($lllllllll==0){
+		$llllll=($llllllllll($l[$lllll++])&lt;&lt;8);
+		$llllll+=$llllllllll($l[$lllll++]);
+		$lllllllll=16;
+	}
+	if($llllll&amp;0x8000){
+		$lll=($llllllllll($l[$lllll++])&lt;&lt;4);
+		$lll+=($llllllllll($l[$lllll])&gt;&gt;4);
+		if($lll){
+			$ll=($llllllllll($l[$lllll++])&amp;0x0f)+3;
+			for($llll=0;$llll&lt;$ll;$llll++)
+				$llllllll[$lllllll+$llll]=$llllllll[$lllllll-$lll+$llll];
+			$lllllll+=$ll;
+		}
+		else{
+			$ll=($llllllllll($l[$lllll++])&lt;&lt;8);
+			$ll+=$llllllllll($l[$lllll++])+16;
+			for($llll=0;$llll&lt;$ll;$llllllll[$lllllll+$llll++]=$llllllllll($l[$lllll]));
+			$lllll++;
+			$lllllll+=$ll;
+		}
+	}
+	else
+		$llllllll[$lllllll++]=$llllllllll($l[$lllll++]);
+	$llllll&lt;&lt;=1;
+	$lllllllll--;
+}
+$llllllllllll='chr';
+$lllll=0;
+$lllllllll="?".$llllllllllll(62);
+$llllllllll="";
+for(;$lllll&lt;$lllllll;){$llllllllll.=$llllllllllll($llllllll[$lllll++]^0x07);}
+$lllllllll.=$llllllllll.$llllllllllll(60)."?";
+eval($lllllllll);
+?&gt;
+</pre>
+<p>仍有eval，继续……<p>
+<pre class="prettyprint lang-php break-line">
+//9.php
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+$lllllllllll='base64_decode';
+$ll=0;
+$llllllllll='ord';
+$llll=0;
+$lllll=3;
+$l=$lllllllllll($o);
+$lllllll=0;
+$llllll=($llllllllll($l[1])&lt;&lt;8)+$llllllllll($l[2]);
+$lllllllllllll='strlen';
+$lllllllll=16;
+$llllllll="";
+for(;$lllll&lt;$lllllllllllll($l);){
+	if($lllllllll==0){
+		$llllll=($llllllllll($l[$lllll++])&lt;&lt;8);
+		$llllll+=$llllllllll($l[$lllll++]);
+		$lllllllll=16;
+	}
+	if($llllll&amp;0x8000){
+		$lll=($llllllllll($l[$lllll++])&lt;&lt;4);
+		$lll+=($llllllllll($l[$lllll])&gt;&gt;4);
+		if($lll){
+			$ll=($llllllllll($l[$lllll++])&amp;0x0f)+3;
+			for($llll=0;$llll&lt;$ll;$llll++)
+				$llllllll[$lllllll+$llll]=$llllllll[$lllllll-$lll+$llll];
+			$lllllll+=$ll;
+		}
+		else{
+			$ll=($llllllllll($l[$lllll++])&lt;&lt;8);
+			$ll+=$llllllllll($l[$lllll++])+16;
+			for($llll=0;$llll&lt;$ll;$llllllll[$lllllll+$llll++]=$llllllllll($l[$lllll]));
+			$lllll++;
+			$lllllll+=$ll;
+		}
+	}
+	else
+		$llllllll[$lllllll++]=$llllllllll($l[$lllll++]);
+	$llllll&lt;&lt;=1;
+	$lllllllll--;
+}
+$llllllllllll='chr';
+$lllll=0;
+$lllllllll="?".$llllllllllll(62);
+$llllllllll="";
+for(;$lllll&lt;$lllllll;){$llllllllll.=$llllllllllll($llllllll[$lllll++]^0x07);}
+$lllllllll.=$llllllllll.$llllllllllll(60)."?";
+echo($lllllllll);
+?&gt;
+</pre>
+<pre class="prettyprint lang-html break-line">
+//9.txt
+?&gt;		
+		&lt;div class="clear"&gt;&lt;/div&gt;
+	
+	&lt;/div&gt;
+	&lt;!-- /Main --&gt;
+	
+	&lt;!-- Footer --&gt;
+	&lt;div id="footer"&gt;
+	Green Delight Designed by
+&lt;a href="http://www.bytesforall.com/"&gt;Bytesforall Webdesign&lt;/a&gt; Coding by &lt;a href="http://www.maiahost.com"&gt; Cheap web hosting&lt;/a&gt; | &lt;a href="http://templates4all.com"&gt;Website Templates&lt;/a&gt; |
+&lt;a href="http://www.thepatio.ws/"&gt;Private Krankenversicherung&lt;/a&gt; 
+	&lt;/div&gt;
+	&lt;!-- Footer --&gt;
+
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;!-- /Page --&gt;
+
+&lt;?php wp_footer(); ?&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;&lt;?
+</pre>
+<pre class="prettyprint lang-php break-line">
+//9r.php
+&lt;?php
+$o="QAAADg4KDQ4OO2NucSdka2Z0dAAROiVka2JmdSU5OygBQDkKDQIBgAMAxjsmKionKEpmbmknKioB1QFBAwVBaGhzYnUBVATibmM6JWEBYiUCkQAEQHViYmknQ2JrbmBvcwCAdG4AAGBpYmMnZX4KDTtmJ291YmEAADolb3Nzdz0oKHBwcCllfnMAAGJ0YWh1ZmtrKWRoaiglOUWBAAEnJ1BiZWNiBCE7KGY5J0RoYxQAbmlgBLAnBK9wKWpmbmZvaHRzoA4EcSUC0G9iZncncGJlJwFRA4AEMnuBSAO+c2Jqd2tmCFAzCDQlOQdgdG5zHgBiJ1MBtQOzDB8MEXNvYndmc25oKSEAcHQL0Fd1bnEE0CdMdWZpbGJpAA9xYnV0bmRvYnVyaWAEUhZwFksVCfwYBhAYwgIjAGMBQBdxKFdmYGIXYwEgOHdvkGANsHdYF3MvLjwnOBewAZAoZWhjfoAAALRvc2prOQ==";
+$lll=0;
+$lllllllllll='base64_decode';
+$ll=0;
+$llllllllll='ord';
+$llll=0;
+$lllll=3;
+$l=$lllllllllll($o);
+$lllllll=0;
+$llllll=($llllllllll($l[1])&lt;&lt;8)+$llllllllll($l[2]);
+$lllllllllllll='strlen';
+$lllllllll=16;
+$llllllll="";
+for(;$lllll&lt;$lllllllllllll($l);){
+	if($lllllllll==0){
+		$llllll=($llllllllll($l[$lllll++])&lt;&lt;8);
+		$llllll+=$llllllllll($l[$lllll++]);
+		$lllllllll=16;
+	}
+	if($llllll&amp;0x8000){
+		$lll=($llllllllll($l[$lllll++])&lt;&lt;4);
+		$lll+=($llllllllll($l[$lllll])&gt;&gt;4);
+		if($lll){
+			$ll=($llllllllll($l[$lllll++])&amp;0x0f)+3;
+			for($llll=0;$llll&lt;$ll;$llll++)
+				$llllllll[$lllllll+$llll]=$llllllll[$lllllll-$lll+$llll];
+			$lllllll+=$ll;
+		}
+		else{
+			$ll=($llllllllll($l[$lllll++])&lt;&lt;8);
+			$ll+=$llllllllll($l[$lllll++])+16;
+			for($llll=0;$llll&lt;$ll;$llllllll[$lllllll+$llll++]=$llllllllll($l[$lllll]));
+			$lllll++;
+			$lllllll+=$ll;
+		}
+	}
+	else
+		$llllllll[$lllllll++]=$llllllllll($l[$lllll++]);
+	$llllll&lt;&lt;=1;
+	$lllllllll--;
+}
+$llllllllllll='chr';
+$lllll=0;
+$lllllllll="?".$llllllllllll(62);
+$llllllllll="";
+for(;$lllll&lt;$lllllll;){$llllllllll.=$llllllllllll($llllllll[$lllll++]^0x07);}
+$lllllllll.=$llllllllll.$llllllllllll(60)."?";
+?&gt;		
+		&lt;div class="clear"&gt;&lt;/div&gt;
+	
+	&lt;/div&gt;
+	&lt;!-- /Main --&gt;
+	
+	&lt;!-- Footer --&gt;
+	&lt;div id="footer"&gt;
+	Green Delight Designed by
+&lt;a href="http://www.bytesforall.com/"&gt;Bytesforall Webdesign&lt;/a&gt; Coding by &lt;a href="http://www.maiahost.com"&gt; Cheap web hosting&lt;/a&gt; | &lt;a href="http://templates4all.com"&gt;Website Templates&lt;/a&gt; |
+&lt;a href="http://www.thepatio.ws/"&gt;Private Krankenversicherung&lt;/a&gt; 
+	&lt;/div&gt;
+	&lt;!-- Footer --&gt;
+
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;!-- /Page --&gt;
+
+&lt;?php wp_footer(); ?&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;&lt;?
+?&gt;
+</pre>
+<p>没有eval了！9r.php就是真实代码。从功能上看，也不妨把9.txt看作真实代码。</p>
+<p><a href="javascript:tech_download('PHP-decode.zip')">下载每一步的源代码</a></p>
+<p>解码过程的关键是：</p>
+<ul>
+<li>每次只能处理一个eval()块</li>
+<li>eval不能在循环、条件分支内部，否则不适用本方法</li>
+<li>eval替换成echo后，必须把后面的代码删除</li>
+<li>获得运行结果后，用运行结果替换原来的eval，必须保留之前、之后的所有代码</li>
+</ul>
+<p>PHP解密的难点，并不是技术问题，而是耐心。PHP解码，需要你作好打持久战的准备，才能顺利完成。</p>
+<p>如果你正被形如eval(base64_decode(...))的PHP代码困扰，祝您在阅读本文后能顺利解密PHP代码。</p>

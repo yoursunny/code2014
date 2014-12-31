@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<course>
+
+<title>数字电子技术</title>
+<code>EI205</code>
+<teacher>Li Ping</teacher>
+
+<download>
+01数字概念简介.ppt
+02数字系统、运算和编码.ppt
+03逻辑门.ppt
+04布尔代数和逻辑简化.ppt
+05组合逻辑.ppt
+06组合逻辑电路函数.7z.001
+06组合逻辑电路函数.7z.002
+07可编程逻辑器件.ppt
+08触发器以及相关设备.ppt
+09计数器.ppt
+10移位寄存器.ppt
+12内存和外存.7z.001
+12内存和外存.7z.002
+13数模转换.ppt
+15a集成芯片技术.ppt
+15b集成芯片技术.ppt
+考试复习题.7z
+</download>
+
+</course>

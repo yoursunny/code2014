@@ -1,0 +1,45 @@
+10分钟为网站添加聊天室功能
+阳光男孩 发表于2011-03-20
+prettyprint
+<p>如果你正在运营一家新闻/小说/视频类网站，每时每刻都有大量用户访问同一个页面，那么你可以在网页上添加一个“聊天室”，让同时访问同一网页的用户互相交流。</p>
+<p>根据本文介绍的方法，你可以在10分钟为网站添加聊天室功能，而且不占用任何服务器资源。</p>
+
+<h2>第一步：应用注册（3分钟）</h2>
+<p>本文介绍的“聊天室”功能由Windows Live Messenger Connect提供，需要使用一个Windows Live ID来管理。如果你的网站不是个人网站，建议你<a href="https://signup.msn.cn/" target="_blank" onclick="W.trackout(this.href)">新注册一个Windows Live ID</a>作为开发者帐号，以便在必要时与其他网站管理者共同使用该帐号。注意密码必须足够复杂，否则是无法作为开发者帐号使用的。</p>
+<p>访问 <a href="https://manage.dev.live.com/" target="_blank" onclick="W.trackout(this.href)">https://manage.dev.live.com/</a> ，用刚才注册的Windows Live ID登录。</p>
+<p><img src="AddApplication.png" alt="应用注册界面"><br>
+请在此页面的Application name文本框内填写网站名称（必须是英文、没有英文名称就填域名），Application type选择Web application，Domain文本框内填写网站域名（不带http），填写完毕单击I accept。</p>
+<p><img src="AddAppConfirmation.png" alt="应用注册成功"><br>
+来到此界面后，请记录其中的Client ID以备后用。</p>
+
+<h2>第二步：添加聊天室代码（7分钟）</h2>
+<p>打开要添加代码的页面或模板，找到顶层的&lt;html&gt;标签，添加xmlns:wl属性，修改后形如：<br>
+<code class="prettyprint lang-html">&lt;html xmlns:wl="http://apis.live.net/js/2010" lang="zh-cn"&gt;</code>
+</p>
+<p>找到&lt;/head&gt;标签，在它之前添加：<br>
+<code class="prettyprint lang-html">&lt;script src="http://js.live.net/4.1/loader.js"&gt;&lt;/script&gt;</code>
+</p>
+<p>找到页面内要添加聊天室的位置，添加如下代码：</p>
+<pre class="prettyprint lang-html">
+&lt;wl:chat-frame
+  event-name="event-name"
+  client-id="000000004004EF08"
+  width="300"
+  height="450"
+  theme="light"&gt;
+&lt;/wl:chat-frame&gt;
+</pre>
+<ul>
+<li>event-name属性应当填写文章/视频的数字或字符串ID，每一个不同的event-name代表一个独立的聊天室，而相同的event-name就会看到相同的聊天内容。</li>
+<li>client-id属性应当填写应用注册时获得的Client ID。</li>
+<li>width、height属性是控件的尺寸，最小尺寸是250x250。</li>
+<li>theme是控件的样式主题，有light浅色、dark深色两套可选。</li>
+</ul>
+
+<h2>效果演示</h2>
+<iframe src="demo.htm" width="550" height="350" frameborder="0" scrolling="no"></iframe>
+
+<h2>更多功能</h2>
+<p>MSDN链接 <a href="http://msdn.microsoft.com/en-us/library/ff750122.aspx" target="_blank" onclick="W.trackout(this.href)">http://msdn.microsoft.com/en-us/library/ff750122.aspx</a></p>
+<p>删帖：此聊天室组件支持“先发后审”。如果站长发现聊天室内有不当言论或不受欢迎的人，可以删除消息、封禁用户。<br><img src="Moderating.png" alt="审查功能"></p>
+

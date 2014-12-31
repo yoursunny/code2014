@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<course>
+
+<title>信息安全管理体系及技术</title>
+<code>IS220</code>
+<teacher>张少俊</teacher>
+
+<recommend>
+<p>引用小磊的口头禅：<b>没有我你就挂了</b>～enjoy</p>
+</recommend>
+
+<topic t="a9single" q="p" v="1">
+<homelink>信息安全管理体系 习题</homelink>
+</topic>
+<topic t="a9single" q="p" v="2">
+<homelink>网络安全管理协议 习题</homelink>
+</topic>
+<topic t="a9single" q="p" v="3">
+<homelink>网络安全事件管理 习题</homelink>
+</topic>
+<topic t="a9single" q="p" v="4">
+<homelink>网络安全策略管理 习题</homelink>
+</topic>
+
+</course>

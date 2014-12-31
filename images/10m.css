@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* 10m.css for 2010 */
+
+body { font:small Tahoma,Helvetica,Arial,"\5b8b\4f53",sans-serif; }
+a { text-decoration:none; }
+
+.mnav { }
+.mnav a { color:#417800; }
+.mnav a.current { color:#b87822; }
+.tit,.tit a { font-size:large; color:#f00; margin-top:12px; }
+.footer { margin-top:12px; }
+
+
+/* /m/ */
+#m_vcard div.vcard { display:none; }

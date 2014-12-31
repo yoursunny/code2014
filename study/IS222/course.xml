@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<course>
+
+<title>嵌入式系统原理与应用</title>
+<code>IS222</code>
+<teacher>刘海涛</teacher>
+
+<download>
+00说明.ppt
+01嵌入式系统概述.ppt
+01嵌入式系统硬件.ppt
+01嵌入式系统软件.ppt
+02嵌入式处理器ARM.ppt
+02嵌入式系统Bootloader.ppt
+03系统级设计.ppt
+03软硬件协同划分技术.ppt
+03软硬件协同设计技术.ppt
+04 Linux嵌入式系统设计.ppt
+04 Linux嵌入式系统设计_开发环境搭建.ppt
+05 MP3播放器设计.ppt
+05其他系统.ppt
+05工程机械智能监控器设计.ppt
+05网络存储.ppt
+</download>
+
+<topic t="a9single" q="p" v="outline">
+<homelink>复习提纲</homelink>
+</topic>
+<topic t="redirect" url="http://kankan.baihui.com/docs/h1bcbn">
+<homelink>作业一：<a>嵌入式系统市场 之 家用游戏主机</a></homelink>
+</topic>
+<topic t="a9single" q="p" v="linux-arm">
+<homelink>作业二：<a>Linux@ARM</a></homelink>
+</topic>
+
+</course>

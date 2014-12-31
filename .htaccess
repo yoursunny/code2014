@@ -1,0 +1,22 @@
+
+php_flag magic_quotes_gpc Off
+php_flag register_long_arrays Off
+php_flag short_open_tag Off
+
+ErrorDocument 401 "HTTP 401"
+ErrorDocument 403 "HTTP 403"
+ErrorDocument 404 "HTTP 404"
+ErrorDocument 500 "HTTP 500"
+
+
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{HTTP_HOST} !=yoursunny.com
+RewriteCond %{REQUEST_URI} !=/
+RewriteCond %{REQUEST_URI} !=/m/
+RewriteCond %{REQUEST_URI} !^\/images\/
+RewriteCond %{REQUEST_URI} !^\/lib\/
+RewriteRule (.*) http://yoursunny.com/$1 [R=301,L]
+
+

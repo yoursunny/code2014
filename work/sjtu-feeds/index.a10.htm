@@ -1,0 +1,64 @@
+
+
+<style>
+.a-site { border-top:dashed 2px #6c6; margin:10px 0; padding:10px 0; font-size:18px; }
+.a-site p { font-size:85%; }
+.a-site h3 { font-size:140%; font-weight:bold; }
+.a-site h3 a { color:#600; }
+.a-site li { font-size:82%; }
+.a-site li a { color:#c60; font-size:115%; }
+.a-site .sub { font-size:78%; }
+.a-site .sub a { color:#009; }
+</style>
+<p>上海交通大学部分公开网站的(非官方)RSS聚合源，尽可能全文输出，欢迎订阅。</p>
+<p>想一次性全部订阅？<a href="?a=opml" onclick="c('OPML')">下载OPML文件</a>，然后导入你的RSS阅读器。</p>
+
+<div class="a-site">
+<h3><a href="http://www.sjtu.edu.cn" target="_blank">交大首页</a></h3>
+<ul>
+<li><a href="http://feeds.feedburner.com/wwwSJTU">新闻网</a> </li>
+<li><a href="http://feeds.feedburner.com/calendar">校历-学校通告</a> </li>
+</ul>
+</div>
+
+<div class="a-site">
+<h3><a href="http://cnm.sjtu.edu.cn" target="_blank">大学生传媒中心</a></h3>
+<p>CNM网络传媒，交大人自己的网络广播电台。广播节目的feed均为播客RSS，可以直接在支持enclosure标签的RSS阅读器内收听。</p>
+
+<ul>
+<li><a href="http://feeds.feedburner.com/800H">800号印象</a> </li>
+<li><a href="http://feeds.feedburner.com/BubbleStar">Bubble Star</a> </li>
+<li><a href="http://feeds.feedburner.com/WesternCalling">Western Calling</a> </li>
+<li><a href="http://feeds.feedburner.com/CNMmusic">华语音乐</a> </li>
+<li><a href="http://feeds.feedburner.com/TingMeiJu">听美剧</a> </li>
+<li><a href="http://feeds.feedburner.com/FunFactory">开心工厂</a> </li>
+
+<li><a href="http://feeds.feedburner.com/CNMmovie">影音童话</a> </li>
+</ul>
+</div>
+
+<div class="a-site">
+<h3><a href="http://jwc.sjtu.edu.cn" target="_blank">教务处</a></h3>
+<ul>
+<li><a href="http://feeds.feedburner.com/SJTUJWC">教务处</a>  本科教学服务网+本科生选课系统</li>
+</ul>
+</div>
+
+
+<hr>
+<p>由于技术限制和历史原因，许多学校网站并未提供RSS输出，或者提供的RSS输出不包含全文。阳光男孩制作推出了上海交通大学RSS聚合源，方便同学们订阅学校网站的内容。</p>
+<p>什么是RSS？RSS是一种简单的信息发布和传递方式。你关注10个网站时，可以每天打开它们、看看有什么更新；当你要关注100个网站时，一个个打开这些网站将会花费你太多的时间。这时，你应该使用一个RSS阅读器，<i>订阅</i>这些网站；一旦某个网站有更新，你可以直接从RSS阅读器中看到网站更新的具体内容。</p>
+<script type="text/javascript">//<![CDATA[
+W.load_jquery(function(){
+	$('div.a-site').each(function(){
+		var d=$(this);
+		d.find('li').each(function(){
+			var li=$(this),a=li.find('a'),name=a.text(),url=a.attr('href');
+			li.append(' <span class="sub"><a href="'+url.replace('http:','feed:')+'">直接订阅</a><br>用阅读器订阅：'+$.map([['抓虾','http://www.zhuaxia.com/add_channel.php?url=$url'],['鲜果','http://www.xianguo.com/subscribe.php?url=$url'],['Google Reader','http://www.google.com/ig/add?feedurl=$url']],function(p){
+				return '<a href="'+p[1].replace('$url',url)+'">'+p[0]+'</a>';
+			}).join(' | '));
+		});
+		d.find('a').attr('target','_blank');
+	});
+});
+//]]></script>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<course>
+
+<title>信息安全工程原理</title>
+<code>IS221</code>
+<teacher>周宁</teacher>
+
+<download>
+01绪论a信息安全基本概念.pdf
+01绪论b信息安全的现状.pdf
+01绪论c什么是信息安全工程.pdf
+02a系统工程.pdf
+02b信息安全系统工程.pdf
+03a CMM.pdf
+03b SSE-CMM概述.pdf
+03c SSE-CMM的过程域.pdf
+03d SSE-CMM的能力级别.pdf
+04a风险管理.pdf
+04b风险评估.pdf
+05共同准则CC与信息安全工程.pdf
+信息安全工程原理 作业说明.pdf
+课程复习要点.ppt
+</download>
+
+<topic t="a9multi" q="topic" v="index" f="topic.htm">
+<basestyle>
+.q { font-family:"楷体_GB2312"; font-size:11pt; }
+.q .key { color:#006600; }
+.q .hidekey { color:#3366FF; cursor:pointer; }
+</basestyle>
+<byline><![CDATA[
+<a href="?topic=index">返回目录</a>
+<script type="text/javascript">//<![CDATA[
+W.load_jquery();
+W.ready(function(){
+	var keys=$('.q .key');
+	if (keys.length>0) {
+		keys.each(function(){
+			var d=$(this).addClass('hidekey').one('click',function(){
+				d.removeClass('hidekey').html(d.data('key'));
+			});
+			d.data('key',d.html()).text('显示答案');
+		});
+	}
+});
+//]] ></script>
+]]></byline>
+<homelink>阳光男孩的<a>信息安全工程原理 知识要点</a></homelink>
+</topic>
+
+</course>

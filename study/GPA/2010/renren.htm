@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>阳光GPA计算器(人人网)</title>
+<link rel="stylesheet" type="text/css" href="/images/10.css">
+<link rel="stylesheet" type="text/css" href="GPA.css">
+<meta name="robots" content="noindex,follow">
+<script type="text/javascript" src="/lib/10.js"></script>
+</head>
+<body id="p_gpa_renren">
+
+<div class="cblock" id="app">
+<h1 class="tit">阳光GPA计算器</h1>
+
+<div id="welcome">
+<p>阳光GPA计算器——最方便快捷的GPA绩点计算工具，自动导入各类表格，立即获得GPA计算结果。</p>
+<p>阳光GPA计算器 2010版功能介绍：</p>
+<ul>
+<li>导入包含课程名称、学分、成绩的纯文本、EXCEL表格；导入上海交通大学教务处修业查询报表</li>
+<li>提供多种GPA算法：上海交通大学GPA算法，北京大学GPA算法，美国GPA算法(3种)，新加坡GPA算法…… 还支持创建自定义GPA算法、或修改现有的学积点算法</li>
+<li>保存为网页、EXCEL格式；报表通过电子邮件发送到你的信箱</li>
+<li>课程名称翻译成英文、德语、法语、意大利语、日语，方便制作外文成绩单</li>
+</ul>
+<p id="loading">&nbsp;</p>
+</div>
+
+<div id="menus">
+<ul id="menubar">
+<li id="menubar_input">导入</li>
+<li id="menubar_save">保存</li>
+<li id="menubar_alg">算法</li>
+<li id="menubar_myalg">我的算法</li>
+<li id="menubar_tools">工具</li>
+<li id="menubar_help">帮助</li>
+</ul>
+<ul id="menu_input" class="menu" style="display:none;">
+<li id="menu_input_file" class="enable">从文件导入</li>
+<li id="menu_input_json" class="enable">从JSON代码导入</li>
+<li id="menu_input_sjtujwb" class="enable">通过上海交通大学修业查询导入</li>
+</ul>
+<ul id="menu_save" class="menu" style="display:none;">
+<li id="menu_save_file" class="disable">保存为文件</li>
+<li id="menu_save_json" class="disable">导出为JSON代码</li>
+<li id="menu_save_email" class="disable">发送电子邮件</li>
+</ul>
+<ul id="menu_alg" class="menu" style="display:none;">
+<li id="menu_alg_all" class="enable">查看全部GPA算法</li>
+<li id="menu_alg_sep1" class="seperator"></li>
+</ul>
+<ul id="menu_myalg" class="menu" style="display:none;">
+<!--<li id="menu_myalg_install" class="disable">安装新算法</li>-->
+<li id="menu_myalg_create" class="enable">创建自定义算法</li>
+<li id="menu_myalg_manage" class="enable">管理我的算法</li>
+<li id="menu_myalg_sep1" class="seperator"></li>
+</ul>
+<ul id="menu_tools" class="menu" style="display:none;">
+<li id="menu_tools_translate" class="disable">翻译课程名称</li>
+<li id="menu_tools_chart" class="disable">绘制绩点分布图</li>
+<li id="menu_tools_bygroup" class="enable">查看分组统计结果</li>
+</ul>
+<ul id="menu_help" class="menu" style="display:none;">
+<li id="menu_help_welcome" class="enable">欢迎使用</li>
+<li id="menu_help_about" class="enable">关于 阳光GPA计算器</li>
+<li id="menu_help_2009" class="enable">进入旧版</li>
+</ul>
+</div>
+
+<div id="algs">
+<h2>常用GPA算法</h2>
+<dl><dt>中国</dt>
+<dd><a href="javascript:;" class="alg" data-alg="predefined:SJTU">上海交通大学本科生GPA算法</a></dd>
+<dd><a href="javascript:;" class="alg" data-alg="predefined:SJTUg">上海交通大学研究生GPA算法</a></dd>
+<dd><a href="javascript:;" class="alg" data-alg="predefined:PKU6">北京大学GPA算法(2006级以前)</a></dd>
+<dd><a href="javascript:;" class="alg" data-alg="predefined:PKU7">北京大学GPA算法(2007级以后)</a></dd>
+<dd><a href="javascript:;" class="alg" data-alg="predefined:USTC">中科大GPA算法</a></dd>
+<dd><a href="javascript:;" class="alg" data-alg="predefined:ZJU">浙江大学GPA算法</a></dd>
+<dd><a href="javascript:;" class="alg" data-alg="predefined:FUDAN">复旦大学GPA算法</a></dd>
+<dd><a href="javascript:;" class="alg" data-alg="predefined:SHU">上海大学GPA算法</a></dd>
+<dd><a href="javascript:;" class="alg" data-alg="predefined:HongKong">香港GPA算法</a></dd>
+</dl>
+<dl><dt>北美</dt>
+<dd><a href="javascript:;" class="alg" data-alg="predefined:US_3">美国4.0 GPA算法(±0.3)</a></dd>
+<dd><a href="javascript:;" class="alg" data-alg="predefined:US_5">美国4.0 GPA算法(±0.5)</a></dd>
+<dd><a href="javascript:;" class="alg" data-alg="predefined:US_10">美国4.0 GPA算法(四级)</a></dd>
+<dd><a href="javascript:;" class="alg" data-alg="predefined:Canada">加拿大GPA算法</a></dd>
+</dl>
+<dl><dt>亚洲</dt>
+<dd><a href="javascript:;" class="alg" data-alg="predefined:SouthKorea">韩国GPA算法</a></dd>
+<dd><a href="javascript:;" class="alg" data-alg="predefined:Singapore">新加坡Polytechnic GPA算法</a></dd>
+</dl>
+<dl><dt>其他</dt>
+<dd><a href="javascript:;" class="alg" data-alg="predefined:avg">加权平均成绩</a></dd>
+</dl>
+<p>你还可以在“我的算法”菜单创建自定义算法。</p>
+</div>
+
+<div id="alg">
+<p>GPA算法：<span id="alg_name">&nbsp;</span> <a href="javascript:;" id="alg_change">更换</a> <a href="javascript:;" id="alg_view">查看</a> <a href="javascript:;" id="alg_edit">编辑</a></p>
+<p id="alg_note"></p>
+</div>
+
+<div id="courses_wrap">
+<table id="courses_table">
+<thead>
+<tr><th>&nbsp;</th><th>课程名称</th><th>学分</th><th>成绩</th><th>等第</th><th>绩点</th><th>学分×绩点</th><th>分组</th><th><a id="C_all_delete" href="javascript:;">全删</a></th></tr>
+</thead>
+<tbody id="courses">
+<tr id="course_template" style="display:none;"><td><input type="checkbox" id="C_i_selected"></td><td><input type="text" id="C_i_name" class="C_name"></td><td><input type="text" id="C_i_credit" class="C_credit"></td><td><input type="text" id="C_i_grade" class="C_grade"></td><td id="C_i_level">&nbsp;</td><td id="C_i_point">&nbsp;</td><td id="C_i_cp">&nbsp;</td><td><input type="text" id="C_i_groups" class="C_groups"></td><td><a href="javascript:;" id="C_i_delete">删除</a></td></tr>
+</tbody>
+<tfoot>
+<tr><td colspan="2">计算结果</td><td id="result_credit_total">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td id="result_gpa">&nbsp;</td><td id="result_cp_total">&nbsp;</td><td><a id="result_bygroup" href="javascript:;">查看</a></td><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td><td colspan="7"><a href="javascript:;" id="course_add">增加更多课程</a></td><td>&nbsp;</td></tr>
+</tfoot>
+</table>
+<div id="course_invalid_tip" style="display:none;">填写学分、成绩后才能参加计算</div>
+</div>
+
+<p id="autosave"></p>
+
+<div id="calc_result_float">欢迎使用阳光GPA计算器！</div>
+
+<script type="text/javascript">
+W.disable_relatedlinks=W.disable_jiathis=true;
+document.getElementById('loading').innerHTML='正在启动，请稍候...';
+W.load_jquery(function(){
+	W.loadjs('jquery-plugins.js',function(){
+		W.loadjs('GPA.js',function(){
+			$(GPA.init);
+		});
+	});
+});
+</script>
+
+</div>
+
+<iframe id="hiddenframe" name="hiddenframe" width="1" height="1" src="about:blank" style="display:none;"></iframe>
+<div id="app_popup_root" style="display:none;"><div id="app_popup_overlay"></div><div id="app_popup_wrap"><div id="app_popup_title"></div><div id="app_popup"></div></div></div>
+
+<p>&copy;2006-2010 yoursunny.com
+<script type="text/javascript" src="/lib/10/track.js"></script>
+</p>
+</body>
+</html>

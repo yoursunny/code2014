@@ -1,0 +1,427 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数据库应用系统设计作业：数码商品进销存管理</title>
+<link rel="stylesheet" type="text/css" href="/images/10.css"/>
+<style type="text/css">
+body { font-size:14px; line-height:1.5; padding:20px; }
+h1 { font-size:20px; margin:20px 0; }
+h2 { font-size:17px; margin:15px 0; }
+p { margin:5px 0; }
+</style>
+<script type="text/javascript" src="/lib/10.js"></script>
+</head>
+
+<body onload="W.prettify()">
+<h1 align="center">数据库应用系统设计作业：数码商品进销存管理</h1>
+<p><a href="./">你的阳光学习频道 &raquo; 数据库原理</a></p>
+<p>上海交通大学信息安全工程学院，F0503602，石君霄，5050369043<br />
+文章及程序实现均采用CreativeCommons BY-NC 3.0协议授权</p>
+<hr />
+<h2>需求分析</h2>
+<p>说明：本设计的适用对象是区域-门店级别的数码商品经销企业，类似于“永乐”上海总部以及其下属的全部门店这样的规模。总部及各门店全部使用VPN网络高速接入同一个平台。</p>
+<p>对一家假想的数码商品经销企业进行简单的业务流程分析后画出以下数据流图。</p>
+<img src="digi_dataflow.gif" width="490" height="397" alt="数据流图"/>
+<ol>
+<li><b>购物</b>：顾客进入公司下属的一家门店在促销员的帮助下选购商品，选定后促销员打印出购物单；顾客持购物单收银台处通过现金或银行卡完成支付、如果持有会员卡可以累计积分并根据积分打折；如果需要开发票，顾客将已交款的购物单交给促销员，促销员去服务台开具发票；促销员将商品交给顾客</li>
+<li><b>办理会员卡</b>：顾客不论是否购物，都可以直接到服务台办理会员卡</li>
+<li><b>寄送广告</b>：广告部根据会员卡信息，定期给顾客寄送广告</li>
+<li><b>进货</b>：采购主管向供应商进货，由供应商送到仓库(包括总公司仓库和门店附属仓库)，由仓储物流主管收货</li>
+<li><b>调拨</b>：仓储物流主管根据各门店存货情况，将商品从一个仓库运送到另一个仓库</li>
+<li>本设计不涉及人事管理、财务管理——这对于企业是重要的、不可忽视的，但是本设计不包含这方面内容</li>
+<li>本设计不区分用户，只关注操作的结果，而不关注谁在操作、是否有权限操作；实际系统，必须有严格的权限管理和操作日志记录功能</li>
+</ol>
+<p>根据上述数据流图，数码商品进销存管理涉及的表格大致如下：</p>
+<ol>
+<li><b>商品分类表</b>：将商品多级别分类，方便顾客查询商品；以树状结构表示</li>
+<li><b>商品表</b>：存储各种商品信息；包括：条码号、商品名称、分类、品牌、型号</li>
+<li><b>相关商品表</b>：用于推荐相关的商品（例如对数码相机推荐其配套的皮套）；包括：条码号、相关商品条码号</li>
+<li><b>报价表</b>：存储商品的报价信息；包括：报价条目编号、条码号、门店编号、所需积分、价格、获取积分、开始日期、结束日期；在这个门店、积分达到这个数值以上的顾客，在开始结束日期之间(用于表达优惠期间)，享受这个价格，且获取相应积分</li>
+<li><b>门店表</b>：表示公司下属的所有门店；包括：门店编号、名称、地址、电话</li>
+<li><b>仓库表</b>：表示公司下属的所有仓库；包括：仓库编号、名称、地址、对应门店编号(总公司仓库写NULL)</li>
+<li><b>会员卡表</b>：存储所有会员卡信息；包括：卡号、开卡门店、积分值、姓名、出生日期、电话、信箱、地址、邮编</li>
+<li><b>存货表</b>：存储商品库存信息；包括：条码号、仓库编号、库存数量</li>
+<li><b>购物单表</b>：表示当前已开具但未取货的购物单；包括：购物单编号、门店编号、日期时间、条码号、商品名称、对应发票号(未交款写NULL)、是否已开发票；未交款的购物单在一定时间内没有完成交款，则视为放弃、需要删除，否则商品长时间被置为不能提货会影响销售</li>
+<li><b>销售表</b>：存储销售记录；包括：发票编号、条码号、门店编号、会员卡号(无卡顾客购买时写NULL)、购买价格、积分变化；由于价格经常变化，所以要在表格中记录价格</li>
+<li><b>供应商表</b>：存储有合作关系的所有供应商；包括：供应商编号、名称、供应商主管姓名、电话</li>
+<li><b>进货表</b>：存储进货记录；包括：供应商编号、条码号、仓库编号、日期时间、单价、数量、是否已收货</li>
+<li><b>调拨表</b>：存储调拨记录；包括：条码号、调出仓库编号、调入仓库编号、数量、是否已收货</li>
+<li><b>会员关注表</b>：视图；用于查询购买过某类别商品、某年龄层的会员信息，以便寄送相关广告</li>
+<li><b>可提货商品表</b>：视图；用于查询某种商品在当前门店是否有货可以提取；已经开具购物单的商品是不可提取的</li>
+<li><b>销量统计表</b>：视图；用于查询某种商品在某个门店一段时间内的销量</li>
+<li><b>需补充商品表</b>：视图；用于查询某个门店有哪些商品销售较多而存货已较少，需要补充</li>
+<li><b>可调出商品表</b>：视图；用于查询某种商品在哪个仓库存货较多(如果是门店附属仓库还要求销售较少)，可以调出</li>
+</ol>
+<p>数码商品进销存管理涉及的处理要求大致如下：</p>
+<ol>
+<li><b>查询商品</b>：根据分类翻阅商品表，了解商品信息</li>
+<li><b>开具购物单</b>：先查询商品在当前门店是否有货可以提取，如果有货，向购物单表插入记录，并打印购物单</li>
+<li><b>付款</b>：先确定购物单尚未付款，根据会员卡积分(如果有会员卡)查询顾客可享受的最低价格，接受现金或银行卡付款，将购物单设为已付款，向销售表插入记录，更新会员卡表的积分</li>
+<li><b>开发票</b>：先确定购物单已付款且未开过发票，开具发票，将购物单设为已开发票</li>
+<li><b>发货</b>：先确定购物单已付款，发货给顾客，删除购物单记录，在存货表减少数量</li>
+<li><b>每5分钟清除过期购物单</b>：删除购物单表30分钟之前生成的、未付款的购物单记录</li>
+<li><b>办理会员卡</b>：向会员卡表插入记录</li>
+<li><b>寄送广告</b>：从会员关注表查询本次广告需寄送的关注人群，寄送广告</li>
+<li><b>进货</b>：如果供应商不存在则先新建供应商即插入供应商表，在进货表插入记录</li>
+<li><b>调拨</b>：查询需补充商品表确定需要调拨什么商品，查询可调出商品表决定从哪个仓库调出(如不能调出就要考虑进货了)，在调拨表插入记录，在存货表减少数量</li>
+<li><b>收货</b>：查询进货表或调拨表验证货物正确，将进货或调拨记录设为已收货，在存货表更新已有记录或插入新记录</li>
+<li><b>清点货物</b>：查询存货表的某个仓库，打印查询结果，用于清点仓库存货量是否正确</li>
+<li><b>寻找物流遗失</b>：查询已发货而未收货的进货记录，以及已调出而未收货的调拨记录</li>
+</ol>
+<h2>概念设计</h2>
+<p>根据需求分析的结果，得到的用ER图表示的概念设计结果如图所示。为了清楚起见，只给出了主码属性，其他所有属性均被省略。</p>
+<img src="digi_er.gif" width="637" height="450" alt="ER图"/>
+<h2>逻辑和物理设计</h2>
+<p>由上一步概念设计得到14个基本表：商品类别、商品、商品分类、相关商品、报价、门店、存货、购物单、销售记录、会员卡、仓库、调拨、供应商、进货，得到5个视图表：会员关注表、可提货商品表、销量统计表、需补充商品表、可调出商品表。下面用SQL语言给出它们的结构定义。</p>
+<pre class="prettyprint lang-sql">
+#商品分类表 
+CREATE table category
+    ( 
+        ID int primary key, 
+        title nvarchar(20) not null, 
+        parentID int null references category(ID) 
+    ) 
+    ; 
+
+#商品表 
+CREATE table product
+    ( 
+        ID char(13) primary key, 
+        pName nvarchar(20) not null, 
+        cat int not null references category(ID), 
+        brandName nvarchar(20) null, 
+        model nvarchar(20) null 
+    ) 
+    ; 
+
+#相关商品表 
+CREATE table pSuggest
+    ( 
+        pID char(13) references product(ID), 
+        suggestID char(13) references product(ID), 
+        primary key(pID, suggestID) 
+    ) 
+    ; 
+
+#门店表 
+CREATE table shop
+    ( 
+        ID int primary key, 
+        sName nvarchar(20) not null, 
+        address nvarchar(50) not null, 
+        phone nvarchar(30) not null 
+    ) 
+    ; 
+
+#仓库表 
+CREATE table warehouse
+    ( 
+        ID int primary key, 
+        wName nvarchar(20) not null, 
+        address nvarchar(50) not null, 
+        shopID int null references shop(ID) 
+    ) 
+    ; 
+
+#报价表 
+CREATE table pPrice
+    ( 
+        ID int primary key auto_increment, 
+        pID char(13) not null references product(ID), 
+        shopID int not null references shop(ID), 
+        creditReq decimal(8, 2) default 0 check(creditReq&gt;=0), 
+        price decimal(8, 2) not null check(price&gt;0), 
+        creditGet decimal(8, 2) default 0 check(creditGet&gt;=0), 
+        startDate datetime default '1000-01-01 00:00:00', 
+        endDate datetime default '9999-12-31 23:59:59', 
+        check(startDate&lt;endDate) 
+    ) 
+    ; 
+
+#存货表 
+CREATE table stor
+    ( 
+        pID char(13) references product(ID), 
+        wID int references warehouse(ID), 
+        quantity int not null check(quantity&gt;=0), 
+        primary key(pID, wID) 
+    ) 
+    ; 
+
+#购物单表 
+CREATE table bill
+    ( 
+        ID int primary key auto_increment, 
+        shopID int not null references shop(ID), 
+        t datetime not null, 
+        pID char(13) not null references product(ID), 
+        salesID int null references sales(ID), 
+        receiptPrinted tinyint default 0 check(receiptPrinted=0 OR receiptPrinted=1) 
+    ) 
+    ; 
+
+#会员卡表 
+CREATE table member
+    ( 
+        ID int primary key auto_increment, 
+        shopID int not null references shop(ID), 
+        credit decimal(12, 2) default 0, 
+        pname nvarchar(20) not null, 
+        birthday date null, 
+        phone nvarchar(30) null, 
+        email nvarchar(100) null, 
+        address nvarchar(50) null, 
+        postal char(6) null 
+    ) 
+    ; 
+
+#销售表 
+CREATE table sales
+    ( 
+        receiptID int primary key auto_increment, 
+        pID char(13) not null references product(ID), 
+        shopID int not null references shop(ID), 
+        t datetime not null, 
+        memberID int null references member(ID), 
+        price decimal(8, 2) not null, 
+        credit decimal(8, 2) default 0 
+    ) 
+    ; 
+
+#调拨表 
+CREATE table flitting
+    ( 
+        ID int primary key auto_increment, 
+        pID char(13) not null references product(ID), 
+        wFrom int not null references warehouse(ID), 
+        wInto int not null references warehouse(ID), 
+        t datetime not null, 
+        quantity int not null check(quantity&gt;0), 
+        isReceived tinyint default 0 check(isReceived=0 OR isReceived=1) 
+    ) 
+    ; 
+
+#供应商表 
+CREATE table supplier
+    ( 
+        ID int primary key auto_increment, 
+        sName nvarchar(30) not null unique, 
+        sManager nvarchar(20) not null, 
+        phone nvarchar(20) not null 
+    ) 
+    ; 
+
+#进货表 
+CREATE table stock
+    ( 
+        ID int primary key auto_increment, 
+        supID int not null references supplier(ID), 
+        pID char(13) not null references product(ID), 
+        wInto int not null references warehouse(ID), 
+        t datetime not null, 
+        price decimal(8, 2) not null check(price&gt;=0), 
+        quantity int not null check(quantity&gt;0), 
+        isReceived tinyint default 0 check(isReceived=0 OR isReceived=1) 
+    ) 
+    ; 
+
+#会员关注表，只能查到商品所属的最底层类别 
+CREATE view interest as 
+SELECT member.*, category.ID as catID, category.title as catTitle, count(sales.receiptID) as n 
+FROM member 
+INNER JOIN sales 
+ON  member.ID=sales.memberID 
+INNER JOIN product 
+ON  sales.pID=product.ID 
+INNER JOIN category 
+ON  product.cat=category.ID 
+GROUP BY member.ID, category.ID 
+ORDER BY count(sales.receiptID) desc; 
+
+#可提货商品表 
+CREATE view pAvailable as 
+SELECT product.ID as pID, product.pName as pName, category.ID as catID, category.title as catTitle, 
+    product.brandName as brandName, product.model as model, shop.ID as shopID, shop.sName as sName, 
+    warehouse.ID as wID, warehouse.wName as wName, stor.quantity- 
+    (SELECT count(ID) 
+    FROM bill 
+    WHERE bill.shopID=shop.ID AND bill.pID=product.ID 
+    ) as n, 
+    (SELECT price 
+    FROM pPrice 
+    WHERE pPrice.pID=product.ID AND pPrice.shopID=shop.ID AND pPrice.startDate&lt;=NOW() AND pPrice.endDate&gt;=NOW() 
+    AND pPrice.creditReq=0 LIMIT 0, 1 
+    ) as price 
+FROM category 
+RIGHT JOIN product 
+ON  category.ID=product.cat 
+INNER JOIN stor 
+ON  product.ID=stor.pID 
+INNER JOIN warehouse 
+ON  stor.wID=warehouse.ID 
+LEFT JOIN shop 
+ON  warehouse.shopID=shop.ID 
+WHERE stor.quantity-
+    (SELECT count(ID) 
+    FROM bill 
+    WHERE bill.shopID=shop.ID AND bill.pID=product.ID
+    )
+    &gt;0 
+ORDER BY pID;  
+
+#销量统计表 
+CREATE view salesCount as 
+SELECT product.ID as pID, product.pName as pName, product.brandName as brandName, product.model as model, 
+    shop.ID as shopID, shop.sName as sName, cast(sales.t as date) as t, count(sales.receiptID) as n 
+FROM product 
+LEFT JOIN sales 
+ON  product.ID=sales.pID 
+INNER JOIN shop 
+ON  sales.shopID=shop.ID 
+GROUP BY product.ID, shop.ID, cast(sales.t as date) 
+ORDER BY shopID, pID; 
+
+#需补充商品表，最近5天销量大于库存的商品 
+CREATE view pNeed as 
+SELECT product.ID as pID, product.pName as pName, product.brandName as brandName, product.model as model, 
+    salesCount.shopID as shopID, salesCount.sName as sName, sum(salesCount.n) as sold, 
+    warehouse.ID as wID, warehouse.wName as wName, stor.quantity as remain, 
+    sum(salesCount.n)-stor.quantity as need 
+FROM product 
+INNER JOIN salesCount 
+ON  product.ID=salesCount.pID 
+INNER JOIN warehouse 
+ON  salesCount.shopID=warehouse.shopID 
+INNER JOIN stor 
+ON  product.ID=stor.pID AND warehouse.ID=stor.wID 
+WHERE curdate()&gt;=salesCount.t AND curdate()-interval 5 day&lt;salesCount.t 
+GROUP BY product.ID, warehouse.shopID 
+HAVING sum(salesCount.n)&gt;2*stor.quantity 
+ORDER BY wID, pID; 
+
+#可调出商品表，门店附属仓库中最近15天销量小于库存的商品，非门店附属仓库中的全部商品 
+CREATE view pExtra as 
+    (SELECT product.ID as pID, product.pName as pName, product.brandName as brandName, product.model as model, 
+        warehouse.ID as wID, warehouse.wName as wName, 
+        stor.quantity as remain, stor.quantity-sum(salesCount.n) as extra 
+    FROM product 
+    INNER JOIN salesCount 
+    ON  product.ID=salesCount.pID 
+    INNER JOIN warehouse 
+    ON  salesCount.shopID=warehouse.shopID 
+    INNER JOIN stor 
+    ON  product.ID=stor.pID AND warehouse.ID=stor.wID 
+    WHERE curdate()&gt;=salesCount.t AND curdate()-interval 15 day&lt;salesCount.t 
+    GROUP BY product.ID, warehouse.shopID 
+    HAVING sum(salesCount.n)&lt;stor.quantity 
+    ) 
+UNION 
+    (SELECT product.ID as pID, product.pName as pName, product.brandName as brandName, product.model as model, 
+        warehouse.ID as wID, warehouse.wName as wName, stor.quantity as remain, stor.quantity as extra 
+    FROM product 
+    INNER JOIN stor 
+    ON  product.ID=stor.pID 
+    INNER JOIN warehouse 
+    ON  stor.wID=warehouse.ID 
+    WHERE warehouse.shopID is null 
+    GROUP BY product.ID, warehouse.shopID 
+    ) 
+ORDER BY wID, pID;  
+</pre>
+<h2>机器实现</h2>
+<p>机器实现的任务：首先把逻辑阶段设计的结果，即数据库的逻辑模式（它包括基本表和视图的定义）在具体的计算机系统中建立起来，然后安装需求分析对数据库的各种处理要求给出相应的实现方法。我选择了MySQL这款高性能的开源DBMS，并且用AJAX+PHP实现Browser/Server架构的数据库应用系统。</p>
+<p>机器实现中用到的数据操纵和查询语句的实现方法，分别如下所示。</p>
+<ol>
+<li><b>查询商品</b><br />
+先查询要顶级分类列表<br />
+<code class="prettyprint lang-sql">SELECT ID, title FROM category WHERE parentID is null;</code><br />
+逐次查询本分类及下1级分类的商品、本分类的子分类<br />
+<code class="prettyprint lang-sql">SELECT * FROM  product WHERE cat=?1catID UNION SELECT product.* FROM  product INNER JOIN category ON product.cat=category.ID WHERE category.parentID=?1catID; <br />
+SELECT ID, title FROM  category WHERE parentID=?1catID;</code><br />
+或者按商品名称查询<br />
+<code class="prettyprint lang-sql">SELECT * FROM product WHERE pName LIKE CONCAT('%',?pName,'%');</code></li>
+<li><b>开具购物单</b><br />
+先查询商品在当前门店是否有货可以提取<br />
+<code class="prettyprint lang-sql">SELECT n FROM  pAvailable WHERE shopID=?1shopID AND pID=?pID;</code><br />
+如果有货（显示出非0值），向购物单表插入记录<br />
+<code class="prettyprint lang-sql">INSERT INTO bill(shopID, t, pID, receiptPrinted) VALUES(?1shopID, NOW(), ?pID, 0) ;</code></li>
+<li><b>付款</b><br />
+先查出购物单信息，并确定购物单尚未付款<br />
+<code class="prettyprint lang-sql">SELECT shopID, pID FROM  bill WHERE ID=?billID AND salesID is null;</code><br />
+如果没查到，则购物单无效或已付款，终止操作<br />
+对会员先查出积分置入?1credit，否则置0
+<br />
+<code class="prettyprint lang-sql">SELECT credit FROM  member WHERE ID=?1memberID; </code><br />
+根据会员卡积分(如果有)查询顾客可享受的最低价格<br />
+<code class="prettyprint lang-sql">SELECT price, creditGet FROM  pPrice WHERE shopID=?1shopID AND pID=?pID AND startDate&lt;=NOW() AND endDate&gt;=NOW() AND creditReq&lt;=?1credit ORDER BY price desc limit 0, 1;</code><br />
+接受现金或银行卡付款，对购物单记录发票号，向销售表插入记录，(如果有会员卡)更新会员卡表的积分<br />
+<code class="prettyprint lang-sql">INSERT INTO sales(pID, shopID, t, memberID, price, credit) VALUES(?pID, ?1shopID, NOW(), ?1memberID, ?1price, ?1credit) ;<br />
+UPDATE bill SET salesID=LAST_INSERT_ID() WHERE ID=?1billID;<br />
+UPDATE member SET credit=credit+?1credit WHERE ID=?1memberID;</code></li>
+<li><b>开发票</b><br />
+先查出购物单对应的发票，并确定购物单已付款且未开过发票<br />
+<code class="prettyprint lang-sql">SELECT * FROM  sales WHERE salesID=(SELECT salesID FROM  bill WHERE ID=?1billID AND salesID is not null AND receiptPrinted=0) ; </code><br />
+如果没查到，则购物单无效或未付款或已开发票，终止操作<br />
+查出发票信息，打印发票，将购物单设为已开发票<br />
+<code class="prettyprint lang-sql">UPDATE bill SET receiptPrinted=1 WHERE ID=?1billID;</code><br />
+</li>
+<li><b>发货</b><br />
+先查出购物单信息，并确定购物单已付款<br />
+<code class="prettyprint lang-sql">SELECT * FROM  bill WHERE ID=?1billID AND salesID is not null;</code><br />
+如果没查到，则购物单无效或未付款或已发货，终止操作<br />
+若发票未打印则提醒顾客一旦发货将无法再打印发票，发货给顾客<br />
+删除购物单记录，在存货表减少数量<br />
+<code class="prettyprint lang-sql">UPDATE stor SET quantity=quantity-1 WHERE pID=?pID AND wID=(SELECT ID FROM  warehouse WHERE shopID=?1shopID) ; <br />
+DELETE FROM  bill WHERE ID=?1billID;</code></li>
+<li><b>每5分钟清除过期购物单</b><br />
+删除购物单表30分钟之前生成的、未付款的购物单记录<br />
+<code class="prettyprint lang-sql">DELETE FROM  bill WHERE salesID is null AND t&lt;NOW()-interval 30 minute;</code></li>
+<li><b>办理会员卡</b><br />
+向会员卡表插入记录<br />
+<code class="prettyprint lang-sql">INSERT INTO member(shopID, credit, pName, birthday, phone, email, address, postal) VALUES(?1shopID, 0, ?pName, ?birthday, ?phone, ?email, ?address, ?postal) ; </code></li>
+<li><b>寄送广告</b><br />
+从会员关注表查询本次广告需寄送的关注人群，寄送广告<br />
+<code class="prettyprint lang-sql">SELECT * FROM  interest WHERE catID=?1catID;</code></li>
+<li><b>进货</b><br />
+查询供应商编号<br />
+<code class="prettyprint lang-sql">SELECT * FROM  supplier WHERE sName=?sName;</code><br />
+如果供应商不存在则先新建供应商即插入供应商表<br />
+<code class="prettyprint lang-sql">INSERT INTO supplier(sName, sManager, phone) VALUES(?sName, ?sManager, ?phone) ;</code><br />
+如果供应商信息需要修正则更新供应商表<br />
+<code class="prettyprint lang-sql">UPDATE supplier SET sName=?sName, sManager=?sManager, phone=?phone WHERE ID=?1supID;</code><br />
+查询商品编号<br />
+<code class="prettyprint lang-sql">SELECT * FROM product WHERE pName=?pName </code><br />
+如果商品不存在则新建商品即插入商品表，并且创建相应的报价条目<br />
+<code class="prettyprint lang-sql">INSERT INTO product(ID, pName, cat, brandName, model) VALUES(?pID, ?pName, ?1cat, ?brandName, ?model) <br />
+INSERT INTO pPrice(pID, shopID, creditReq, price, creditGet, startDate, endDate) VALUES(?pID, ?1shopID, ?1creditReq, ?1price, ?1creditGet, ?startDate, ?endDate) </code><br />
+在进货表插入记录<br />
+<code class="prettyprint lang-sql">INSERT INTO stock(supID, pID, wInto, t, price, quantity, isReceived) VALUES(?1supID, ?pID, ?1wInto, NOW(), ?1price, ?1quantity, 0) ; </code></li>
+<li><b>调拨</b><br />
+查询需补充商品表确定需要调拨什么商品<br />
+<code class="prettyprint lang-sql">SELECT * FROM  pNeed;</code><br />
+查询可调出商品表决定从哪个仓库调出(如不能调出就要考虑进货了)<br />
+<code class="prettyprint lang-sql">SELECT * FROM  pExtra WHERE pID=?pID;</code><br />
+在调拨表插入记录，在存货表减少数量<br />
+<code class="prettyprint lang-sql">INSERT INTO flitting(pID, wFrom, wInto, t, quantity, isReceived) VALUES(?pID, ?1wFrom, ?1wInto, NOW(), ?1quantity, 0) ;</code></li>
+<li><b>收货</b><br />
+查询进货表或调拨表验证货物正确<br />
+<code class="prettyprint lang-sql">SELECT * FROM  stock INNER JOIN product ON stock.pID=product.ID WHERE stock.ID=?1stockID AND stock.isReceived=0;  <br />
+SELECT * FROM  flitting INNER JOIN product ON flitting.pID=product.ID WHERE flitting.ID=?1flittingID AND flitting.isReceived=0;  </code><br />
+将进货或调拨记录设为已收货<br />
+<code class="prettyprint lang-sql">UPDATE stock SET isReceived=1 WHERE ID=?1stockID;<br />
+UPDATE flitting SET isReceived=1 WHERE ID=?1flittingID; </code><br />
+在存货表更新已有记录<br />
+<code class="prettyprint lang-sql">UPDATE stor SET quantity=quantity+?1quantity WHERE pID=?pID AND wID=?1wID;</code><br />
+检查mysql_affected_rows()，如果为0，则插入新记录<br />
+<code class="prettyprint lang-sql">INSERT INTO stor(pID, wID, quantity) VALUES(?pID, ?1wID, ?1quantity) ;</code></li>
+<li><b>清点货物</b>：查询存货表的某个仓库，打印查询结果，用于清点仓库存货量是否正确<br />
+<code class="prettyprint lang-sql">SELECT product.pID, product.pName, stor.quantity FROM  product INNER JOIN stor ON product.ID=stor.pID WHERE stor.wID=?1wID AND stor.quantity&gt;0; </code></li>
+<li><b>寻找物流遗失</b>：查询已发货而未收货的进货记录，以及已调出而未收货的调拨记录<br />
+<code class="prettyprint lang-sql">SELECT * FROM  stock WHERE isReceived=0;<br />
+SELECT * FROM  flitting WHERE isReceived=0;</code></li>
+</ol>
+<p>&nbsp;</p>
+<script type="text/javascript" src="/lib/10/track.js"></script>
+</body>
+</html>

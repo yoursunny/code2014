@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数字系统设计 作业 17</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<img src="17q.png" width="626" height="193" alt="序列检测"/>
+<hr/>
+
+<h1>自动机设计</h1>
+<!--p><a href="17.mdl">查看下列状态图的Rational Rose源文件</a></p-->
+<h2>非确定有限自动机NFA</h2>
+<img src="17nfa.png" width="656" height="316" alt="NFA"/>
+<h2>确定化过程</h2>
+<table border="1">
+<tr><th>终态</th><th>新状态名</th><th>I</th><th>I<sub>0</sub></th><th>I<sub>1</sub></th></tr>
+<tr><td>&nbsp;</td><td>s1</td><td>{s1}</td><td>{s1,s6}</td><td>{s1,s2}</td></tr>
+<tr><td>&nbsp;</td><td>s10</td><td>{s1,s6}</td><td>{s1,s6}</td><td>{s1,s2,s7}</td></tr>
+<tr><td>&nbsp;</td><td>s11</td><td>{s1,s2}</td><td>{s1,s6}</td><td>{s1,s2,s3}</td></tr>
+<tr><td>&nbsp;</td><td>s12</td><td>{s1,s2,s7}</td><td>{s1,s6}</td><td>{}</td></tr>
+<tr><td>&nbsp;</td><td>s13</td><td>{s1,s2,s3}</td><td>{s1,s4,s6}</td><td>{s1,s2,s3}</td></tr>
+<tr><td>&nbsp;</td><td>s14</td><td>{s1,s3,s8}</td><td>{s1,s4,s6,s9}</td><td>{s1,s2,s3}</td></tr>
+<tr><td>&nbsp;</td><td>s15</td><td>{s1,s4,s6}</td><td>{s1,s6}</td><td>{s1,s2,s5,s7}</td></tr>
+<tr><td>*</td><td>s16</td><td>{s1,s4,s6,s9}</td><td>{s1,s6}</td><td>{s1,s2,s5,s7}</td></tr>
+<tr><td>*</td><td>s17</td><td>{s1,s2,s5,s7}</td><td>{s1,s6}</td><td>{s1,s2,s3,s8}</td></tr>
+<tr><td>&nbsp;</td><td>s18</td><td>{s1,s2,s3,s8}</td><td>{s1,s4,s6,s9}</td><td>{s1,s2,s3}</td></tr>
+</table>
+<h2>确定有限自动机DFA</h2>
+<img src="17dfa1.png" width="729" height="351" alt="DFA"/>
+<h2>规约确定有限自动机DFA</h2>
+<p>{s14,s18}合并为s19；s16,s17为终态，分别表示识别出1101,0110模式</p>
+<img src="17dfa.png" width="650" height="317" alt="规约DFA"/>
+<hr/>
+
+<h1>一 Verilog设计文件</h1>
+<h2>序列检测 seq_detect.v</h2>
+<pre>module seq_detect(output reg flag,input din,input clk);
+    reg [8:0] state;
+    parameter  s1=9'b000000001;
+    parameter s10=9'b000000010;
+    parameter s11=9'b000000100;
+    parameter s12=9'b000001000;
+    parameter s13=9'b000010000;
+    parameter s15=9'b000100000;
+    parameter s16=9'b001000000;
+    parameter s17=9'b010000000;
+    parameter s19=9'b100000000;
+    always @(negedge clk)
+    begin
+        case (state)
+            s1 :begin
+                if (din) begin state&lt;=s11; flag&lt;=1'b0; end
+                else     begin state&lt;=s10; flag&lt;=1'b0; end
+            end
+            s10:begin
+                if (din) begin state&lt;=s12; flag&lt;=1'b0; end
+                else     begin state&lt;=s10; flag&lt;=1'b0; end
+            end
+            s11:begin
+                if (din) begin state&lt;=s13; flag&lt;=1'b0; end
+                else     begin state&lt;=s10; flag&lt;=1'b0; end
+            end
+            s12:begin
+                if (din) begin state&lt;=s19; flag&lt;=1'b0; end
+                else     begin state&lt;=s10; flag&lt;=1'b0; end
+            end
+            s13:begin
+                if (din) begin state&lt;=s13; flag&lt;=1'b0; end
+                else     begin state&lt;=s15; flag&lt;=1'b0; end
+            end
+            s15:begin
+                if (din) begin state&lt;=s17; flag&lt;=1'b1; end
+                else     begin state&lt;=s10; flag&lt;=1'b0; end
+            end
+            s16:begin
+                if (din) begin state&lt;=s17; flag&lt;=1'b1; end
+                else     begin state&lt;=s10; flag&lt;=1'b0; end
+            end
+            s17:begin
+                if (din) begin state&lt;=s19; flag&lt;=1'b0; end
+                else     begin state&lt;=s10; flag&lt;=1'b0; end
+            end
+            s19:begin
+                if (din) begin state&lt;=s13; flag&lt;=1'b0; end
+                else     begin state&lt;=s16; flag&lt;=1'b1; end
+            end
+            default:
+                begin state&lt;=s1; flag&lt;=1'b0; end
+        endcase
+    end
+endmodule</pre>
+<hr/>
+<h2>测试平台</h2>
+<pre>`include "seq_detect.v"
+module tb_seq_detect;
+    wire flag;
+    reg din;
+    reg clk;
+    seq_detect seq(flag,din,clk);
+    initial
+    begin
+        p(0'b0);
+        p(0'b1);
+        p(0'b1);
+        p(0'b1);
+        p(0'b0);
+        p(0'b0);
+        p(0'b1);
+        p(0'b1);
+        p(0'b0);
+        p(0'b1);
+        p(0'b1);
+        p(0'b0);
+        p(0'b0);
+        p(0'b1);
+        p(0'b1);
+        p(0'b1);
+        p(0'b0);
+        p(0'b1);
+        p(0'b0);
+        p(0'b0);
+        p(0'b0);
+        p(0'b0);
+        p(0'b1);
+        p(0'b1);
+        p(0'b0);
+        p(0'b0);
+        p(0'b0);
+        p(0'b1);
+        p(0'b1);
+        p(0'b0);
+    end
+    task p(input digit);
+    begin
+        din=digit;
+        #1 clk=0'b1;
+        #1 clk=0'b0;
+    end
+    endtask
+endmodule</pre>
+<hr/>
+
+<h1>二 仿真分析图</h1>
+<img src="17w.png" width="435" height="147" alt="波形"/>
+<hr/>
+
+<h1>三 仿真监控结果</h1>
+<hr/>
+
+<h1>四 结果分析</h1>
+<hr/>
+
+</body>
+</html>

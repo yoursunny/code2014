@@ -1,0 +1,133 @@
+用JavaScript检测浏览器是否打开图像显示
+JavaScript,图像显示,图片显示,开启图像,显示图像,检测图像
+prettify
+阳光男孩 发表于 2009-01-02 || <a href="http://bbs.sjtu.edu.cn/bbscon?board=WebDevelop&amp;file=M.1230715868.A">本文原发布于饮水思源WebDevelop板</a>
+
+<p class="indent">JavaScript能不能检测<b>浏览器是否打开图像显示</b>？看似一个非常简单的问题，但是网上却很难查到相关资料。大部分用户不会关闭图像显示，但是仍有少数非宽带用户关掉了图像。为了使网站变得更加人性化、具有更好的可用性，Web前端工程师有时需要通过JavaScript检测“显示图像”功能是否打开。</p>
+
+<h3>方法一：图像尺寸法</h3>
+<p>未指定width、height属性的&lt;img&gt;标签，在图片成功下载的情况下能从width、height属性中取得图片的真实尺寸，而图片功能未开启时则是一个固定的、比较小的尺寸(相当于那个“红叉”)。为此，可以插入一张尺寸较大的图片，然后读取width属性，如果尺寸与原图不符说明图片显示没有开启。</p>
+<pre class="prettyprint">
+&lt;!-- 插入Google的logo，图片宽度应为168px --&gt;
+&lt;img id="__ImageSupport" src="http://www.google.cn/images/nav_logo4.png"
+  style="position:absolute;visibility:hidden;z-index:-1;" alt=""/&gt;
+&lt;script type="text/javascript"&gt;//&lt;![CDATA[
+function ImageSupport() {
+  var m=document.getElementById('__ImageSupport');
+  if (m &amp;&amp; m.width &gt; 100) return true;
+  else return false;
+}
+//]]&gt;&lt;/script&gt;
+</pre>
+<p><a href="1.htm" target="_blank">演示：图像尺寸法 检测浏览器是否打开图像显示</a></p>
+
+<h3>方法二：load事件法</h3>
+<p>&lt;img&gt;标签在成功载入图片时会触发load事件，而图像显示关闭、或图片载入失败时不会触发load事件。</p>
+<pre class="prettyprint">
+&lt;script type="text/javascript"&gt;//&lt;![CDATA[
+window.ImageSupport=function() { return false; }
+//]]&gt;&lt;/script&gt;
+&lt;img src="http://www.google-analytics.com/__utm.gif" alt=""
+  style="position:absolute;visibility:hidden;z-index:-1;"
+  onload="window.ImageSupport=function(){return true;}"/&gt;
+</pre>
+<p><a href="2.htm" target="_blank">演示：load事件法 检测浏览器是否打开图像显示</a></p>
+
+<h3>几个提示</h3>
+<ul>
+<li>&lt;img&gt;标签的CSS设置成<code class="prettyprint lang-css">position:absolute; visibility:hidden; z-index:-1;</code>，这样就不会显示出来、也不影响页面布局。请不要设置<code class="prettyprint lang-css">display:none;</code>，否则可能导致浏览器不下载该图像。</li>
+<li>ImageSupport函数必须在页面全部加载完成后(触发window.onload以后)，才能获得准确的结果。</li>
+<li>上面的举例中，引用了第三方站点的图像。为了稳妥起见，建议开发者使用自己站点上的图像，以免第三方站点的修改造成代码失效。</li>
+<li>如果你的网站使用SSL加密，请尽量引用SSL加密服务器上的图像，否则浏览器会弹出警告。</li>
+<li>IE：如果图片是从缓存中读取，是不会触发load事件的；__utm.gif是不会进入缓存的，换成其他图片就会出问题</li>
+<li>Opera：即使图片关闭，也会触发load事件；此时图片的宽度不正确</li>
+</ul>
+
+<h3>改进：load事件法</h3>
+<p>上面几种方法都需要在HTML中嵌入&lt;img&gt;标签、而且必须在window.onload以后才能获得准确的结果，使用起来不够方便。下面提供一种纯JS代码的改进实现：</p>
+<pre class="prettyprint lang-js">
+//当“显示图像”打开时，回调cb函数
+window.ImageSupport=function(cb) {
+  //第一次调用，插入检测用图像
+  var m=new Image();
+  m.src=(location.protocol=='https:'?'https://ssl':'http://www')
+    +'.google-analytics.com/__utm.gif';
+  m.onload=function() {
+    //检测成功
+    var f;
+    //执行队列中的回调函数
+    while (f=window.ImageSupport.queue.shift()) f();
+    //以后直接执行
+    window.ImageSupport=function(cb) { cb(); };
+    //删除检测用图像
+    document.body.removeChild(this);
+  };
+  m.onerror=function() {
+    //图像未打开(不保证发生error事件)
+    window.ImageSupport=function() { };
+  };
+  m.style.position='absolute';
+  m.style.visibility='hidden';
+  m.style.zIndex='-1';
+  document.body.appendChild(m);
+  window.ImageSupport=function(cb) {
+    //后续调用、但无检测结果，排入队列
+    window.ImageSupport.queue.push(cb);
+  };
+  //第一个回调函数排入队列
+  window.ImageSupport.queue=[cb];
+};
+</pre>
+<p>这个方法仍然存在IE+缓存、Opera两个不兼容情况。</p>
+<p><a href="3.htm" target="_blank">演示：改进load事件法 检测浏览器是否打开图像显示</a></p>
+
+<h3>结合：图片宽度+load事件法</h3>
+<pre class="prettyprint lang-js">
+//当“显示图像”打开时，回调cb函数
+window.ImageSupport=function(cb) {
+  //第一次调用，插入检测用图像
+  var m=new Image();
+  m.src='http://www.google.cn/intl/zh-CN/images/logo_cn.gif';
+  var width=200;//小于图片实际宽度，大于占位符宽度
+  var rt=0;
+  var r=function() {
+    clearTimeout(rt);
+    if (m.width&lt;width) {//宽度不对
+      window.ImageSupport=function() { };
+      return;
+    }
+    //检测成功
+    var f;
+    //执行队列中的回调函数
+    while (f=window.ImageSupport.queue.shift()) f();
+    //以后直接执行
+    window.ImageSupport=function(cb) { cb(); };
+    //删除检测用图像
+    document.body.removeChild(m);
+  };
+  m.onload=r;
+  m.onerror=function() {
+    //图像未打开(不保证发生error事件)
+    window.ImageSupport=function() { };
+  };
+  m.style.position='absolute';
+  m.style.visibility='hidden';
+  m.style.zIndex='-1';
+  document.body.appendChild(m);
+  window.ImageSupport=function(cb) {
+    //后续调用、但无检测结果，排入队列
+    window.ImageSupport.queue.push(cb);
+  };
+  //第一个回调函数排入队列
+  window.ImageSupport.queue=[cb];
+  rt=setTimeout(function(){if(m.width&gt;=width) r();},200);//缓存图像
+};
+</pre>
+<p><a href="4.htm" target="_blank">演示：图片宽度+load事件法 检测浏览器是否打开图像显示</a></p>
+
+<!-- sidebar -->
+<h3>相关技术</h3>
+<ul>
+<li><a href="http://perfectworks.info/pfir" rel="external">完美图像替换（pFIR）</a></li>
+<li><a href="/t/2009/pFIR-improved/">pFIR_improved</a></li>
+</ul>

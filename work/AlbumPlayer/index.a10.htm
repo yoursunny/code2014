@@ -1,0 +1,57 @@
+
+prettyprint
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.1.0/prototype.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.1/scriptaculous.js?load=builder,effects"></script>
+<script type="text/javascript" src="album_player.js"></script>
+</head>
+<p>一个JavaScript类库，用于动态显示相册，支持多种转场效果<br />
+<a href="javascript:work_download('20071202.zip')">下载AlbumPlayer</a></p>
+<h3>AlbumPlayer效果演示</h3>
+<div id="album"></div>
+<script type="text/javascript">//<![CDATA[
+var my_player=new AlbumPlayer('album',500,375,'#FFFFFF');
+my_player.add('http://tu.6.cn/img/id/83b46b8d5a40e7795a9fc9a8d81e5e86',640,480,3000,'fade');
+my_player.add('http://tu.6.cn/img/id/37a92ef45a1b5971b4868e5ba5226245',640,480,1100,'dropout');
+my_player.add('http://tu.6.cn/img/id/43b6c5d31d589e3c036493db2be0adb8',500,375,1600,'shrink');
+my_player.add('http://tu.6.cn/img/id/077d4c40d58b8bda74f920e76732bb00',480,640,500,'appear');
+my_player.add('http://tu.6.cn/img/id/c0f1cab958fb3dbc68284637d4849a30',1024,768,2100,'blindup');
+my_player.add('http://tu.6.cn/img/id/56eb1382393cc6b4115df56e1b7497a4',400,300,4000,'slidedown');
+my_player.start();
+//]]></script>
+<h3>AlbumPlayer调用代码：</h3>
+<pre>
+<code class="prettyprint lang-html">&lt;head&gt;
+&lt;!--相册播放器要求使用Prototype和Script.aculo.us两个类库--&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;prototype.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; 
+  src=&quot;scriptaculous.js?load=builder,effects&quot;&gt;&lt;/script&gt;
+&lt;!--导入相册播放器的JS文件--&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;album_player.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;!--这个div是相册的容器--&gt;
+&lt;div id=&quot;album&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;</code><code class="prettyprint lang-js">//&lt;[CDATA[
+//创建对象，四个参数依次为：相册容器id，宽度，高度，背景色
+var my_player=new AlbumPlayer('album',500,375,'#FFFFFF');
+//添加照片，五个参数依次为：照片URI，宽度，高度，显示时间(毫秒)，转场效果
+//大照片会缩小，小照片不会放大
+my_player.add('photo1.jpg',640,480,3000,'fade');
+my_player.add('photo2.jpg',640,480,1100,'dropout');
+my_player.add('photo3.jpg',500,375,1600,'shrink');
+my_player.add('photo4.jpg',480,640,500,'appear');
+my_player.add('photo5.jpg',1024,768,2100,'blindup');
+my_player.add('photo6.jpg',400,300,4000,'slidedown');
+//启动相册播放，不要漏掉这行
+my_player.start();
+//]]&gt;</code><code class="prettyprint lang-html">&lt;/script&gt;
+&lt;/body&gt;</code>
+</pre>
+<hr/>
+<p>当前版本号：<br />
+<script type="text/javascript">document.write(AlbumPlayer.version);</script></p>
+<p>支持的转场效果：</p>
+<script type="text/javascript">//<![CDATA[
+document.write('<ul><li>'+AlbumPlayer.effects.join('</li><li>')+'</li></ul>');
+//]]></script>

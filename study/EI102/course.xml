@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<course>
+
+<title>数据结构与算法</title>
+<code>EI102</code>
+<teacher>窦延平</teacher>
+
+<download>
+1_绪论.ppt
+2_线形表.ppt
+3_栈和队列.ppt
+4_串.ppt
+5_树及二叉树.ppt
+6_查找.ppt
+7_图.ppt
+8_排序.ppt
+主讲教师答疑表.doc
+习题课-线性结构.ppt
+习题课_树.ppt
+助教值班表.doc
+图习题课.ppt
+实验指导书.doc
+查找习题课讲稿.ppt
+课程说明.ppt
+</download>
+
+</course>

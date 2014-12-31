@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<course>
+
+<title>微机原理与接口技术</title>
+<code>EE305</code>
+<teacher>翁正新</teacher>
+
+<download>
+01概论.pdf
+02 8086系统结构.pdf
+03 8086 8088的指令系统.pdf
+04汇编语言程序设计.pdf
+05存储器.pdf
+06 IO接口和总线.ppt
+07中断系统.pdf
+08可编程计数器定时器8253及其应用.pdf
+09可编程外围接口芯片8255A及其应用.pdf
+10串行通信及其接口芯片8251A.pdf
+11模数和数模转换.pdf
+14 MCS-51单片机.pdf
+复习提纲.ppt
+</download>
+
+<topic t="redirect" url="http://www.65536.cn/work/2007/ATM/">
+<homelink>阳光男孩的作品：<a>银行自动柜员机ATM模拟器</a>，用8086汇编语言编写。</homelink>
+</topic>
+
+</course>

@@ -1,0 +1,25 @@
+body {
+	margin:0 auto;
+	padding:76px 0 0 0;
+	width:760px;
+	background:#ffffff url(header.png) no-repeat top center;
+}
+
+hr {
+	height:37px;
+	background:url(line.gif) no-repeat top right;
+	border:none;
+}
+
+h1 {
+	font-size:1em;
+}
+
+h2 {
+	font-size:1em;
+}
+
+pre {
+	font-size:1em;
+	font-family:"Courier New", Courier, monospace;
+}

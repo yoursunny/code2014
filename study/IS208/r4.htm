@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>FPGA应用实验 作业 04</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<h1>2008《FPGA应用实验》实验报告</h1>
+<dl class="lab_info">
+<dt class="lab_number">实验编号：</dt>
+<dd class="lab_number">04</dd>
+<dt class="lab_date">实验时间：</dt>
+<dd class="lab_date">2008-09-23</dd>
+<dt class="lab_name">实验名称：</dt>
+<dd class="lab_name">发光二极管（LED）的编码控制开关电路设计</dd>
+<dt class="lab_sclass">班级：</dt>
+<dd class="lab_sclass">F0503602</dd>
+<dt class="lab_sid">学号：</dt>
+<dd class="lab_sid">5050369043</dd>
+<dt class="lab_sname">姓名：</dt>
+<dd class="lab_sname">石君霄</dd>
+</dl>
+
+<h2>⒈实验设计要求</h2>
+<p>利用按键进行编码输入，对LED发光与熄灭进行控制。</p>
+<ol>
+<li>开始时电路为复位状态，所有LED不发光，编码寄存器初始值为3'b000</li>
+<li>按下KEY4，编码指示灯PWM1点亮，进入编码状态</li>
+<li>编码状态按下KEY3、KEY2、KEY1，对应的编码位在0、1间翻转变化</li>
+<li>再次按下KEY4，编码指示灯PWM1熄灭，对应LED状态改变</li>
+<li>任何时候按下KEY5，电路回到复位状态</li>
+</ol>
+
+<h2>⒉实验原理</h2>
+
+<h2>⒊实验平台</h2>
+<p>FPGA的开发环境为Xilinx公司的Foundation ISE 8.1i，使用DP-FPGA实验仪，目标FPGA芯片为XC2S100-PQ208。</p>
+
+<h2>⒋模块设计框图</h2>
+<img src="04.gif" width="500" height="400" alt="电路图" />
+
+<h2>⒌Verilog模块设计</h2>
+<h3>顶层 b.v</h3>
+<pre>
+module b(LED, PWM1, KEY, CLK);
+    output [7:0] LED;
+    output PWM1;
+    input [5:1] KEY;
+    input CLK;
+    wire CLK_100Hz;
+    wire [5:1] PB;
+    wire K_ENABLE,K_RESET;
+    reg isEdit=1'b0;
+    div_100Hz u1(CLK_100Hz,CLK);
+    debounce u2_1(PB[1],KEY[1],CLK_100Hz);
+    debounce u2_2(PB[2],KEY[2],CLK_100Hz);
+    debounce u2_3(PB[3],KEY[3],CLK_100Hz);
+    debounce u2_4(PB[4],KEY[4],CLK_100Hz);
+    debounce u2_5(PB[5],KEY[5],CLK_100Hz);
+    editor u3(LED, isEdit, K_RESET, PB[3:1]);
+    assign K_ENABLE=PB[4];
+    assign K_RESET=PB[5];
+    assign PWM1=~isEdit;
+    always @(negedge K_ENABLE,negedge K_RESET)
+        if (!K_RESET) isEdit&lt;=1'b0;
+        else isEdit&lt;=~isEdit;
+endmodule
+</pre>
+<h3>编辑器 editor.v</h3>
+<pre>
+module editor(LED, enable, reset, KEY);
+    output reg [7:0] LED=8'b11111111;
+    input enable;
+    input reset;
+    input [3:1] KEY;
+    reg [2:0] code=3'b0;
+    always @(negedge KEY[1],negedge reset) begin
+        if (!reset) code[0] &lt;= 1'b0;
+        else if (enable) code[0] &lt;= ~code[0];
+    end
+    always @(negedge KEY[2],negedge reset) begin
+        if (!reset) code[1] &lt;= 1'b0;
+        else if (enable) code[1] &lt;= ~code[1];
+    end
+    always @(negedge KEY[3],negedge reset) begin
+        if (!reset) code[2] &lt;= 1'b0;
+        else if (enable) code[2] &lt;= ~code[2];
+    end
+    always @(negedge reset,negedge enable) begin
+        if (!reset) LED &lt;= 8'b11111111;
+        else
+            case (code)
+                3'h0: LED[0] &lt;= ~LED[0];
+                3'h1: LED[1] &lt;= ~LED[1];
+                3'h2: LED[2] &lt;= ~LED[2];
+                3'h3: LED[3] &lt;= ~LED[3];
+                3'h4: LED[4] &lt;= ~LED[4];
+                3'h5: LED[5] &lt;= ~LED[5];
+                3'h6: LED[6] &lt;= ~LED[6];
+                3'h7: LED[7] &lt;= ~LED[7];
+            endcase
+    end
+endmodule
+</pre>
+<h3>消除键盘回跳振荡脉冲 debounce.v</h3>
+<pre>
+module debounce(PB, KEY, CLK);
+    output PB;
+    input KEY;
+    input CLK;//100Hz
+    reg [3:0] h = 4'b0;
+    always @(posedge CLK)
+    begin
+        h[2:0]&lt;=h[3:1];
+        h[3]&lt;=KEY;
+    end
+    assign PB = |h;
+endmodule
+</pre>
+<h3>32MHz到100Hz分频器 div_100Hz.v</h3>
+<pre>
+module div_100Hz(CLK_100Hz, CLK_32M);
+    output CLK_100Hz;
+    input CLK_32M;
+    reg [18:0] counter;
+    always @(posedge CLK_32M)
+        if (counter &lt; 19'd320000) counter &lt;= counter+19'b1;
+        else counter &lt;= 19'b0;
+    assign CLK_100Hz = counter[18];
+endmodule
+</pre>
+
+
+<h2>⒍实验结果分析</h2>
+<img src="04.jpg" width="320" height="240" alt="照片"/>
+
+</body>
+</html>

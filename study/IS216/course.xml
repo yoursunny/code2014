@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<course>
+
+<title>Internet安全协议与标准</title>
+<code>IS216</code>
+<teacher>张保稳</teacher>
+
+<download>
+概论_概论.ppt
+概论_安全协议.ppt
+协议_CSP.ppt
+协议_CSP_stanford.ppt
+协议_IPSec.ppt
+协议_IPSec_学生讲稿.ppt
+协议_Kerberos.ppt
+协议_PGP.ppt
+协议_SET.ppt
+协议_SSL.ppt
+协议_SSL_学生讲稿.ppt
+分析_BAN.pdf
+分析_BAN.ppt
+分析_CSP.ppt
+分析_FDR.pdf
+分析_SVO.ppt
+分析_串空间.pdf
+分析_串空间.ppt
+安全协议理论与方法_范红_冯登国_2003.pdf
+课程总结.ppt
+</download>
+
+<topic t="a9multi" q="question" v="list" f="topic.htm">
+<basestyle>
+.q { font-size:11pt; }
+.q .key { color:#006600; }
+.q .hidekey { color:#3366FF; cursor:pointer; }
+</basestyle>
+<byline><![CDATA[
+<a id="byline_link" href="?question=list">返回目录</a>
+<script type="text/javascript">//<![CDATA[
+W.load_jquery();
+W.ready(function(){
+	var keys=$('.q .key');
+	if (keys.length>0) {
+		keys.each(function(){
+			var d=$(this).addClass('hidekey').one('click',function(){
+				d.removeClass('hidekey').html(d.data('key'));
+			});
+			d.data('key',d.html()).text('显示答案');
+		});
+		$('<a href="javascript:;">&nbsp;&nbsp;&nbsp;显示所有答案</a>').click(function(){
+			$(this).remove();
+			$('.q .hidekey').each(function(){
+				var d=$(this).removeClass('hidekey');
+				d.html(d.data('key'));
+			})
+		}).insertAfter('#byline_link');
+	}
+});
+//]] ></script>
+]]></byline>
+<homelink>阳光男孩的<a>Internet安全协议与标准 练习题</a></homelink>
+</topic>
+
+</course>

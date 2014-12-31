@@ -1,0 +1,48 @@
+实验：自定义Windows帐号的RID值
+Windows,Windows Server,帐号,SID,RID,EFS
+no-sidebar
+阳光男孩 发表于 2008-12-25
+
+<p>Windows帐号的SID由“S”、SID版本号、颁发机构、子颁发机构、RID组成，本文讨论的是最后一段RID的自定义。</p>
+<p><a href="/study/IS219/">Windows安全原理与技术</a>老师给我推荐了一篇文章：《<a href="http://blogs.itecn.net/blogs/ahpeng/archive/2007/06/11/2173.aspx" rel="external">EFS加密的一线生机－加密帐户被删的补救方法</a>》，文中介绍了在Windows中创建指定RID值帐号的方法。10月14日，我对文中的方法作了验证。现在我将发给老师的电子邮件整理成这篇文章。</p>
+<p>实验环境：Windows Server 2003 SP2 en-us @ VMware Server</p>
+
+<h4>RID的自定义</h4>
+<p>《EFS加密的一线生机》提到的修改RID方法是：在Windows中，下一个新建帐户所分配的RID是由HKEY_LOCAL_MACHINE\SAM\SAM\Domains\Account注册表项的F键值所确定的。F键值是二进制类型的数据，在偏移量0048处的四个字节，定义下一个帐户的RID。</p>
+<ol>
+<li>管理员：net user eric eric /add</li>
+<li>用eric登录：创建C:\eric目录，设置完全控制权限</li>
+<li>管理员：net user eric /del</li>
+<li>管理员：根据文章修改F值，然后net user eric2 eric /add，发现SID不同——修改F值后必须重新启动计算机</li>
+<li>管理员：net user eric /del，根据文章修改F值，重启，net user eric2 eric /add——eric2的SID与先前eric的SID相同，而且C:\eric目录的权限项、所有者均显示为eric2</li>
+</ol>
+
+<h4>EFS加密恢复</h4>
+<ol>
+<li>管理员：net user eric eric /add</li>
+<li>用eric登录，加密C:\eric目录，在里面创建hello.txt写入内容</li>
+<li>管理员：备份C:\Documents and Settings\eric，net user eric /del，根据文章修改F值，重启，net user eric eric /add</li>
+<li>用eric登录一次，（不需要加密任何文件），然后注销——《EFS加密的一线生机》提到需要“随便加密一个文件”，我实验发现并不需要</li>
+<li>管理员：还原C:\Documents and Settings\eric</li>
+<li>用eric登录，能打开C:\eric\hello.txt</li>
+</ol>
+
+<h4>让Windows无法再创建帐号</h4>
+<ol>
+<li>管理员：把F的0x0048位置改为00 01 00 00，重启，net user eric eric /add——获得RID为256</li>
+<li>管理员：又把F的0x0048位置改为00 01 00 00，重启——此时，通过NET USER命令、或“计算机管理”，都无法再创建帐号，而提示“The user already belongs to this group.”错误</li>
+</ol>
+<p>使得Windows不能创建新帐号的方法：令下一个RID是一个已经存在的RID。</p>
+
+<h4>如果有了四亿帐号会发生什么？</h4>
+<p>RID值是32位整数，最多只能有2<sup>32</sup>≈四亿个不同的RID。那么，如果某台机器有了四亿帐号，会发生什么？</p>
+<ol>
+<li>下一个RID设置为0xFFFFFFFF，重启</li>
+<li>创建4个帐号：<ul>
+<li>foo RID=0xFFFFFFFF——可以正常登录</li>
+<li>bar RID=0x00000000——不能登录，出现“The system cannot log you on due to the following error: The system cannot find message text for message number 0x%1 in the message file for %2.”错误</li>
+<li>u1 RID=0x00000001——可以正常登录</li>
+<li>u2 RID=0x00000002——可以正常登录</li>
+</ul></li>
+</ol>
+<p>结论：如果真的有了四亿帐号（也就是用完了所有RID取值），RID为0x00000000的帐号无法登录，而RID用到0x000001F3以后，就无法再创建帐号（下一个1F4与Administrator重合、就会发生The user already belongs to this group.）</p>

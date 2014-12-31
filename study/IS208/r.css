@@ -1,0 +1,11 @@
+@charset utf-8
+body { margin:0 auto; width:760px; font-family:"宋体"; }
+h1 { text-align:center; font-size:1.8em; font-family:"黑体"; }
+.lab_info { font-size:1.2em; line-height:1.5em; font-family:"楷体_GB2312"; }
+.lab_info dd { text-decoration:underline; margin:0; }
+.lab_number, dt.lab_date, dt.lab_name, .lab_sclass, .lab_sid, dt.lab_sname { float:left; }
+dt.lab_date, dt.lab_sid, dt.lab_sname { margin-left:5em; }
+dd.lab_name { font-family:"黑体"; }
+h2 { font-size:1.4em; font-family:"黑体"; color:#996600; }
+h3 { font-size:1.1em; color:#336633; }
+pre { font-size:0.9em; font-family:"Courier New", Courier, monospace; }

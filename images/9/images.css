@@ -1,0 +1,9 @@
+/* this User-Agent does not support data: url */
+.header { background-image:url(header.jpg); }
+.header h2 { background-image:url(logo.gif); }
+.header h2 a:hover { background-image:url(logo-home.gif); }
+.header ul a,.header ul a span { background-image:url(nav.png); }
+.header ol li,.p ul li { background-image:url(li.gif); }
+.p { background-image:url(post-top.jpg); }
+.p-wrap { background-image:url(post-end.jpg); }
+.p blockquote { background-image:url(quote.gif); }

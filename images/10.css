@@ -1,0 +1,162 @@
+@charset "utf-8";
+/* 10.css for 2010 */
+
+/* Eric Meyer Reset Reloaded */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td { margin:0; padding:0; border:0; outline:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertical-align:baseline; }
+:focus { outline:0; }
+body { line-height:1; color:black; background:white; }
+ol,ul { list-style:none; }
+table { border-collapse:separate; border-spacing:0; }
+caption,th,td { text-align:left; font-weight:normal; }
+blockquote:before,blockquote:after,q:before,q:after { content:""; }
+blockquote,q { quotes:"" ""; }
+
+
+/* ---- common style ---- */
+body { font:12px/1 Tahoma,Helvetica,Arial,"\5b8b\4f53",sans-serif; }
+body.mobile { font-size:small; }
+.header,.contents,.footer { width:900px; margin:0 auto; clear:both; }
+.mobile .header,.mobile .contents,.mobile .footer { width:auto; }
+a { text-decoration:none; }
+sup { font-size:85%; vertical-align:super; }
+sub { font-size:85%; vertical-align:sub; }
+code,pre { font-family:monospace; }
+
+/* header part */
+.container { background:#fff url(10/header.jpg) repeat-x; }
+.mobile .container { background:none; }
+.header { height:45px; margin-bottom:20px; }
+.header .logo { display:block; height:35px; margin:5px 0; padding-left:45px; background:url(10/logo.gif) no-repeat; font-size:24px; float:left; color:#000; }
+.nav { float:left; margin-left:50px; }
+.nav li { width:70px; float:left; margin:8px 20px 0 0; }
+.nav a { display:block; background-color:#639a00; height:20px; padding:3px 0 1px; text-align:center; font-size:14px; color:#fff; border:solid 1px #74ab11; }
+.nav a:hover { background-color:#74ab11; }
+.nav li.current a,.nav li.current a:hover { background-color:#b87822; border-color:#c98933; }
+.mnav { }
+.mnav a { color:#417800; }
+.mnav a.current { color:#b87822; }
+.header-searchbox { float:left; margin:10px 0 0 40px; }
+
+/* contents part */
+.contents_maincol { width:692px; float:left; }
+.contents_maincol .cblock { width:650px; background-color:#f7f7ef; border:solid 1px #e7e3ce; padding:16px 20px 25px 20px; margin-bottom:16px; }
+.contents_maincol .tit { font-size:24px; line-height:30px; color:#369; }
+.contents_sidebar { width:202px; float:right; }
+.contents_sidebar .cblock { width:180px; background-color:#f7f7ef; border:solid 1px #e7e3ce; padding:6px 10px 15px 10px; margin-bottom:16px; }
+.contents_sidebar .tit { font-size:20px; line-height:25px; color:#369; }
+.contents_fullwidth .cblock { width:858px; background-color:#f7f7ef; border:solid 1px #e7e3ce; padding:16px 20px 25px 20px; margin-bottom:16px; }
+.contents_fullwidth .tit { font-size:24px; line-height:30px; color:#369; }
+.mobile .tit,.mobile .tit a { font-size:large; color:#f00; margin-top:12px; }
+
+/* footer part */
+.footer { }
+.mobile .footer { margin-top:12px; }
+
+/* article */
+.a10 { line-height:1.5; }
+.a10 ol li { list-style:decimal inside; }
+.a10 ul li { list-style:square inside; padding-left:0; }
+.a10 ul ul li { list-style:disc; margin-left:30px; }
+.a10 ul ul ul li { list-style-type:circle; }
+.a10 ul ul ul ul li { list-style-type:square; }
+.a10 h1 { font-size:200%; }
+.a10 h2 { font-size:160%; }
+.a10 h3 { font-size:140%; }
+.a10 h4 { font-size:120%; }
+.a10 h5 { font-size:110%; }
+.a10 h1,.a10 h2,.a10 h3,.a10 h4,.a10 h5 { font-weight:bold; margin-top:10px; margin-bottom:5px; }
+.a10 table { border-left:solid 1px #060; border-top:solid 1px #060; }
+.a10 th,.a10 td { border-right:solid 1px #060; border-bottom:solid 1px #060; padding:6px; }
+
+/* google-code-prettify */
+.prettyprint .str { color:#080; }
+.prettyprint .kwd { color:#008; }
+.prettyprint .com { color:#800; }
+.prettyprint .typ { color:#606; }
+.prettyprint .lit { color:#066; }
+.prettyprint .pun { color:#660; }
+.prettyprint .pln { color:#000; }
+.prettyprint .tag { color:#008; }
+.prettyprint .atn { color:#606; }
+.prettyprint .atv { color:#080; }
+.prettyprint .dec { color:#606; }
+pre.prettyprint { padding:2px; border:1px solid #888; }
+
+/* google-related-links */
+#relatedlinks_container_div .relatedlinks-div-title { border-style:solid; border-color:#e7e3c3; border-width:1px 1px 0 1px; height:20px; line-height:20px; text-align:center; }
+#relatedlinks_container_div .relatedlinks-div-links { border-style:solid; border-color:#e7e3c3; border-width:0 1px 1px 1px; padding:6px 0; }
+#relatedlinks_container_div .relatedlinks-a-links { margin:0 10px; }
+
+/* jiathis */
+a.jiathis { display:block; float:right; }
+
+
+/* ---- page-specific style ---- */
+
+/* home page */
+#p_home #mainlist a:hover { text-decoration:underline; }
+#p_home #mainlist li { font-size:15px; line-height:1.8; font-weight:bold; }
+#p_home #mainlist li .d { font-size:12px; font-weight:normal; }
+
+#p_home #agglist li { padding-left:20px; background:no-repeat; line-height:1.5; }
+#p_home #agglist .srcicon { display:none; }
+#p_home #agglist .dt,#m_home #agglist .dt { color:#390; }
+#p_home #agglist li.digu { background-image:url(10/digu.png); }
+#p_home #agglist li.digu-checkin { background-image:url(10/digu-checkin.png); }
+#p_home #agglist li.twitter { background-image:url(10/twitter.png); }
+#p_home #agglist li.twitter-retweet { background-image:url(10/twitter-retweet.png); }
+#p_home #agglist li.greader { background-image:url(10/greader.png); }
+#p_home #agglist li.delicious { background-image:url(10/delicious.png); }
+#p_home #agglist li.jiepn { background-image:url(10/jiepn.png); }
+#p_home #agglist li.fanfou { background-image:url(10/fanfou.png); }
+
+#p_home #aboutauthor p { line-height:1.2; }
+
+/* vcard page */
+#p_vcard #mainbox ul { margin:20px 0; }
+#p_vcard #mainbox li { font-size:15px; line-height:1.8; }
+#p_vcard #mainbox p { font-size:12px; line-height:1.6; }
+#p_vcard #permalink { color:#000; font-weight:bold; }
+#p_vcard .im_status { vertical-align:middle; }
+#p_vcard div.vcard { display:none; }
+#p_vcard #about_yoursunny { font-size:12px; line-height:1.6; }
+#p_vcard #about_yoursunny li { list-style:square inside; }
+#p_vcard #tags li { font-size:14px; line-height:1.6; }
+
+/* study homepage */
+#p_studyh #courselist h3 { font-size:20px; margin:25px 0 10px; color:#d20; font-weight:bold; }
+#p_studyh #courselist li { font-size:16px; line-height:1.4; list-style:square inside; }
+#p_studyh .contents_sidebar .tit { color:#d20; font-weight:bold; }
+#p_studyh .contents_sidebar li { font-size:16px; line-height:1.4; list-style:square inside; }
+
+/* study course page */
+#p_course #recommend { font-size:14px; line-height:1.3; margin:20px 0 30px; }
+#p_course #topic_list { margin:15px 0 20px; font-size:12px; line-height:1.2; list-style:square inside; }
+#p_course #download_list { line-height:1.4; }
+#p_course #download_link { font-size:20px; line-height:1.5; text-align:center; margin:5px 0; }
+
+/* study article page */
+#p_studya #course_link { font-size:16px; margin:15px 0 30px; }
+#p_studya #course_meta dl { clear:both; }
+#p_studya #course_meta dt { float:left; width:40px; }
+#p_studya #course_meta dd { float:left; }
+
+/* work homepage */
+#p_workh #worklist h3 { font-size:20px; margin:25px 0 10px; color:#d20; font-weight:bold; }
+#p_workh #worklist li { font-size:16px; line-height:1.4; list-style:square inside; }
+
+/* tech homepage */
+#p_techh #alist h3 { font-size:14px; line-height:1.3; margin:8px 0 2px 0; color:#02d; }
+#p_techh #alist p { font-size:12px; line-height:1.3; }
+
+/* login page */
+#p_login { font-size:14px; padding:10px; }
+#p_login h1 { font-weight:bold; }
+#p_login p { font-size:90%; margin:3px 0; }
+#p_login #f_openid { margin:6px 0; }
+#p_login.ie6 #f_openid { margin-left:-18px; }
+#p_login #i_openid_identity { background:url(10/login/openid.gif) no-repeat; text-indent:18px; border:solid 1px #cfc; width:170px; }
+#p_login #btn_openid { background:#cfc; border:none; width:40px; }
+#p_login li { margin-top:3px; }
+#p_login li img { vertical-align:middle; }
+#p_login li a { color:#060; }

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数字系统设计 作业 12</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<img src="12q.png" width="626" height="400" alt="8位双向循环计数器"/>
+<hr/>
+
+<h1>一 Verilog设计文件</h1>
+<h2>计数器 counter8b_updown.v</h2>
+<pre>module counter8b_updown(output reg [7:0] count,input clk,input reset,input dir);
+    always @(posedge clk,reset)
+    begin
+        if (reset)
+            count&lt;=8'b00000000;
+        else
+            if (dir)
+                count&lt;=count+8'b00000001;
+            else
+                count&lt;=count-8'b00000001;
+    end
+endmodule</pre>
+<hr/>
+<h2>测试平台</h2>
+<pre>`include "counter8b_updown.v"
+module tb_counter8b_updown;
+    wire [7:0] count;
+    reg clk;
+    reg reset;
+    reg dir;
+    counter8b_updown n(count,clk,reset,dir);
+    initial
+    begin
+        clk=0'b0;
+        reset=0'b1;
+        dir=0'b1;
+    end
+    always
+        #1 clk=~clk;
+    initial
+    begin
+        #10  reset=0'b0;
+        #591 reset=0'b1;
+        #2   reset=0'b0;
+        #7   dir=0'b0;
+    end
+endmodule</pre>
+<hr/>
+
+<h1>二 仿真分析图</h1>
+<img src="12w1.png" width="916" height="144" alt="波形"/><br/>
+<img src="12w2.png" width="840" height="147" alt="波形"/><br/>
+<img src="12w3.png" width="905" height="145" alt="波形"/><br/>
+<hr/>
+
+<h1>三 仿真监控结果</h1>
+<hr/>
+
+<h1>四 结果分析</h1>
+<ul>
+<li>第一图展示计数器的启动，注意必须对其RESET使之正常工作</li>
+<li>第二图为清零和换向操作</li>
+<li>第三图为循环计数</li>
+</ul>
+<hr/>
+
+</body>
+</html>

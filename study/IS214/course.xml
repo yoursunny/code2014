@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<course>
+
+<title>数据库原理</title>
+<code>IS214</code>
+<teacher>马进</teacher>
+
+<download>
+01数据库系统概论.pdf
+02关系模型和关系运算.pdf
+03关系规范化基础.pdf
+04结构化查询语言SQL.pdf
+05数据库应用系统设计.pdf
+06数据库安全性.pdf
+数码商品进销存管理 演示程序.zip
+</download>
+
+<topic t="redirect" url="digi.htm">
+<homelink>阳光男孩的作品：<a>数码商品进销存管理</a></homelink>
+</topic>
+
+</course>

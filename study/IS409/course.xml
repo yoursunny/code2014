@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<course>
+
+<title>下一代网络及软交换原理</title>
+<code>IS409</code>
+<teacher>陈凯</teacher>
+
+<download>
+1 语音网络.ppt
+2 数据网络.ppt
+3 NGN体系结构.ppt
+4 NGN协议.ppt
+5 NGN高级话题.ppt
+课程安排.ppt
+</download>
+
+<topic t="redirect" url="ScoreBoard.htm">
+<homelink><a>ScoreBoard</a>：基于UDP的“比分牌”协议</homelink>
+</topic>
+<topic t="redirect" url="/t/2008/Wireshark-Lua-dissector/">
+<homelink>用Lua语言编写Wireshark dissector插件</homelink>
+</topic>
+<topic t="redirect" url="/t/2009/VoIP-yate2-SIP/">
+<homelink>用yate2实现软VoIP语音通话(SIP协议)</homelink>
+</topic>
+
+</course>

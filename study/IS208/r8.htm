@@ -1,0 +1,258 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>FPGA应用实验 作业 08</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<h1>2008《FPGA应用实验》实验报告</h1>
+<dl class="lab_info">
+<dt class="lab_number">实验编号：</dt>
+<dd class="lab_number">08</dd>
+<dt class="lab_date">实验时间：</dt>
+<dd class="lab_date">2008-10-21</dd>
+<dt class="lab_name">实验名称：</dt>
+<dd class="lab_name">设计一个十字路&#21475;交通信号灯控制器</dd>
+<dt class="lab_sclass">班级：</dt>
+<dd class="lab_sclass">F0503602</dd>
+<dt class="lab_sid">学号：</dt>
+<dd class="lab_sid">5050369043</dd>
+<dt class="lab_sname">姓名：</dt>
+<dd class="lab_sname">石君霄</dd>
+</dl>
+
+<h2>⒈实验设计要求</h2>
+<p>设计一个交通信号灯控制器。</p>
+<ol>
+<li value="0">初始状态所有显示熄灭</li>
+<li>按下KEY1启动；进入绿灯状态，LED8~LED1全部点亮，数码管显示为A-39,……,A-10,A- 9,……,A- 0</li>
+<li>进入黄灯状态，LED4~LED1点亮，数码管显示为B- 5,……,B- 0</li>
+<li>进入红灯状态，PWM1点亮，数码管显示为C-29,……,C-10,C- 9,……,C- 0；然后回到绿灯状态</li>
+<li>红灯状态下按下KEY1回到初始状态</li>
+</ol>
+
+<h2>⒉实验原理</h2>
+
+<h2>⒊实验平台</h2>
+<p>FPGA的开发环境为Xilinx公司的Foundation ISE 8.1i，使用DP-FPGA实验仪，目标FPGA芯片为XC2S100-PQ208。</p>
+
+<h2>⒋模块设计框图</h2>
+<img src="08.gif" width="500" height="400" alt="电路图" />
+
+<h2>⒌Verilog模块设计</h2>
+<h3>顶层 b.v</h3>
+<pre>
+module b(SL, LED, PWM1, KEY1, CLK);
+    output [12:1] SL;
+    output [8:1] LED;
+    output PWM1;
+    input KEY1;
+    input CLK;
+    //main clock
+    wire CLK_1Hz; div_1Hz u1(CLK_1Hz, CLK);
+    //key
+    wire CLK_100Hz; div_100Hz u2_1(CLK_100Hz, CLK);
+    wire K1; debounce u2_2(K1, KEY1, CLK_100Hz);
+    //display
+    wire [18:0] D;
+    wire [15:0] numbers; assign numbers=D[15:0];
+    wire [3:0] blanks; assign blanks=4'b0;
+    wire [3:0] dots; assign dots=4'b0;
+    assign LED[8:5]={4{~D[17]}};
+    assign LED[4:1]={4{~D[16]}};
+    assign PWM1=~D[18];
+    digits u3(SL, numbers, blanks, dots, CLK);
+    //controller
+    reg running=1'b0;
+    reg [6:0] counter=7'b0;
+    always @(posedge CLK_1Hz) begin
+        if (running) begin
+            if (counter&gt;=7'd76) counter&lt;=7'd1;
+            else counter&lt;=counter+7'd1;
+        end
+        else counter&lt;=7'd0;
+    end
+    always @(negedge K1) begin
+        if (~running) running&lt;=1'b1;
+        else if (counter&gt;=7'd46) running&lt;=1'b0;
+    end
+    //output
+    assign D=
+        (counter==7'd0) ? 19'h0EEEE : (
+        (counter==7'd1) ? 19'h3AF39 : (
+        (counter==7'd2) ? 19'h3AF38 : (
+        (counter==7'd3) ? 19'h3AF37 : (
+        (counter==7'd4) ? 19'h3AF36 : (
+        (counter==7'd5) ? 19'h3AF35 : (
+        (counter==7'd6) ? 19'h3AF34 : (
+        (counter==7'd7) ? 19'h3AF33 : (
+        (counter==7'd8) ? 19'h3AF32 : (
+        (counter==7'd9) ? 19'h3AF31 : (
+        (counter==7'd10) ? 19'h3AF30 : (
+        (counter==7'd11) ? 19'h3AF29 : (
+        (counter==7'd12) ? 19'h3AF28 : (
+        (counter==7'd13) ? 19'h3AF27 : (
+        (counter==7'd14) ? 19'h3AF26 : (
+        (counter==7'd15) ? 19'h3AF25 : (
+        (counter==7'd16) ? 19'h3AF24 : (
+        (counter==7'd17) ? 19'h3AF23 : (
+        (counter==7'd18) ? 19'h3AF22 : (
+        (counter==7'd19) ? 19'h3AF21 : (
+        (counter==7'd20) ? 19'h3AF20 : (
+        (counter==7'd21) ? 19'h3AF19 : (
+        (counter==7'd22) ? 19'h3AF18 : (
+        (counter==7'd23) ? 19'h3AF17 : (
+        (counter==7'd24) ? 19'h3AF16 : (
+        (counter==7'd25) ? 19'h3AF15 : (
+        (counter==7'd26) ? 19'h3AF14 : (
+        (counter==7'd27) ? 19'h3AF13 : (
+        (counter==7'd28) ? 19'h3AF12 : (
+        (counter==7'd29) ? 19'h3AF11 : (
+        (counter==7'd30) ? 19'h3AF10 : (
+        (counter==7'd31) ? 19'h3AFE9 : (
+        (counter==7'd32) ? 19'h3AFE8 : (
+        (counter==7'd33) ? 19'h3AFE7 : (
+        (counter==7'd34) ? 19'h3AFE6 : (
+        (counter==7'd35) ? 19'h3AFE5 : (
+        (counter==7'd36) ? 19'h3AFE4 : (
+        (counter==7'd37) ? 19'h3AFE3 : (
+        (counter==7'd38) ? 19'h3AFE2 : (
+        (counter==7'd39) ? 19'h3AFE1 : (
+        (counter==7'd40) ? 19'h3AFE0 : (
+        (counter==7'd41) ? 19'h1BFE5 : (
+        (counter==7'd42) ? 19'h1BFE4 : (
+        (counter==7'd43) ? 19'h1BFE3 : (
+        (counter==7'd44) ? 19'h1BFE2 : (
+        (counter==7'd45) ? 19'h1BFE1 : (
+        (counter==7'd46) ? 19'h1BFE0 : (
+        (counter==7'd47) ? 19'h4CF29 : (
+        (counter==7'd48) ? 19'h4CF28 : (
+        (counter==7'd49) ? 19'h4CF27 : (
+        (counter==7'd50) ? 19'h4CF26 : (
+        (counter==7'd51) ? 19'h4CF25 : (
+        (counter==7'd52) ? 19'h4CF24 : (
+        (counter==7'd53) ? 19'h4CF23 : (
+        (counter==7'd54) ? 19'h4CF22 : (
+        (counter==7'd55) ? 19'h4CF21 : (
+        (counter==7'd56) ? 19'h4CF20 : (
+        (counter==7'd57) ? 19'h4CF19 : (
+        (counter==7'd58) ? 19'h4CF18 : (
+        (counter==7'd59) ? 19'h4CF17 : (
+        (counter==7'd60) ? 19'h4CF16 : (
+        (counter==7'd61) ? 19'h4CF15 : (
+        (counter==7'd62) ? 19'h4CF14 : (
+        (counter==7'd63) ? 19'h4CF13 : (
+        (counter==7'd64) ? 19'h4CF12 : (
+        (counter==7'd65) ? 19'h4CF11 : (
+        (counter==7'd66) ? 19'h4CF10 : (
+        (counter==7'd67) ? 19'h4CFE9 : (
+        (counter==7'd68) ? 19'h4CFE8 : (
+        (counter==7'd69) ? 19'h4CFE7 : (
+        (counter==7'd70) ? 19'h4CFE6 : (
+        (counter==7'd71) ? 19'h4CFE5 : (
+        (counter==7'd72) ? 19'h4CFE4 : (
+        (counter==7'd73) ? 19'h4CFE3 : (
+        (counter==7'd74) ? 19'h4CFE2 : (
+        (counter==7'd75) ? 19'h4CFE1 : (
+        (counter==7'd76) ? 19'h4CFE0 : (
+        19'h0EEEE )))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))));
+endmodule
+</pre>
+<h3>特别定制的数码管显示 digits.v</h3>
+<pre>
+module digits(SL, numbers, blanks, dots, CLK_32M);
+// this is a modified version of digits.v
+// this module would display F as "-", E as blank
+    output [12:1] SL;//{SLA,SLB,SLC,SLD,SLE,SLF,SLG,SLH,SL1,SL2,SL3,SL4}
+    input [15:0] numbers;
+    input [3:0] blanks;
+    input [3:0] dots;
+    input CLK_32M;
+    // ######## select digit
+    reg [7:0] counter=8'b0;
+    always @(posedge CLK_32M) counter &lt;= counter+8'b1;
+    wire [1:0] pos;
+    assign pos=counter[7:6];
+    wire [3:0] this_number;
+    assign this_number=
+        (pos==2'h0) ? numbers[15:12] : (
+        (pos==2'h1) ? numbers[11:8] : (
+        (pos==2'h2) ? numbers[7:4] : (
+        numbers[3:0] )));
+    wire this_blank;
+    assign this_blank=
+        (pos==2'h0) ? blanks[3] : (
+        (pos==2'h1) ? blanks[2] : (
+        (pos==2'h2) ? blanks[1] : (
+        blanks[0] )));
+    wire this_dot;
+    assign this_dot=
+        (pos==2'h0) ? dots[3] : (
+        (pos==2'h1) ? dots[2] : (
+        (pos==2'h2) ? dots[1] : (
+        dots[0] )));
+    // ######## show dot
+    wire dot_seg;
+    assign dot_seg=~this_dot;
+    // ######## show digit
+    wire [6:0] digit_seg;
+    assign digit_seg=
+        (this_number==4'h0) ? 7'b0000001 : (
+        (this_number==4'h1) ? 7'b1001111 : (
+        (this_number==4'h2) ? 7'b0010010 : (
+        (this_number==4'h3) ? 7'b0000110 : (
+        (this_number==4'h4) ? 7'b1001100 : (
+        (this_number==4'h5) ? 7'b0100100 : (
+        (this_number==4'h6) ? 7'b0100000 : (
+        (this_number==4'h7) ? 7'b0001111 : (
+        (this_number==4'h8) ? 7'b0000000 : (
+        (this_number==4'h9) ? 7'b0000100 : (
+        (this_number==4'ha) ? 7'b0001000 : (
+        (this_number==4'hb) ? 7'b1100000 : (
+        (this_number==4'hc) ? 7'b0110001 : (
+        (this_number==4'hd) ? 7'b1000010 : (
+        (this_number==4'he) ? 7'b1111111 : (
+        (this_number==4'hf) ? 7'b1111110 : (
+        7'b1111111 ))))))))))))))));
+    // ######## refresh
+    wire digit_refresh;
+    assign digit_refresh=(counter[5]==counter[4]);
+    assign SL[12:6]=((digit_refresh|this_blank) ? 7'b1111111 : digit_seg);
+    assign SL[5]=(digit_refresh ? 1'b1 : dot_seg);
+    assign SL[4:1]=(digit_refresh ? 4'b1111 :
+        (pos==2'h0) ? 4'b0111 : (
+        (pos==2'h1) ? 4'b1011 : (
+        (pos==2'h2) ? 4'b1101 : (
+        4'b1110 ))) );
+endmodule
+</pre>
+<h3>消除回跳振荡 debounce.v</h3>
+h的初值与以前版本不同
+<pre>
+module debounce(PB, KEY, CLK);
+    output PB;
+    input KEY;
+    input CLK;//100Hz
+    reg [3:0] h = 4'b1111;
+    always @(posedge CLK)
+    begin
+        h[2:0]&lt;=h[3:1];
+        h[3]&lt;=KEY;
+    end
+    assign PB = |h;
+endmodule
+</pre>
+<h3>其他组件</h3>
+<p>本设计中还使用了1Hz分频div_1Hz.v、100Hz分频div_100Hz.v组件，与实验06完全相同，代码不再列出。</p>
+
+<h2>⒍实验结果分析</h2>
+<img src="08a.jpg" width="267" height="200" alt="照片"/>
+<img src="08b.jpg" width="267" height="200" alt="照片"/>
+<img src="08c.jpg" width="267" height="200" alt="照片"/>
+<h3>b.v模块的RTL分析</h3>
+<img src="08b.png" width="784" height="231" alt="RTL分析"/>
+
+</body>
+</html>

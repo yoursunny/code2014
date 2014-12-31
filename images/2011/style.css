@@ -1,0 +1,71 @@
+@charset "utf-8";
+/* 2011 style.css */
+
+/* Eric Meyer Reset Reloaded */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td { margin:0; padding:0; border:0; outline:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertical-align:baseline; }
+:focus { outline:0; }
+body { line-height:1; color:black; background:white; }
+ol,ul { list-style:none; }
+table { border-collapse:separate; border-spacing:0; }
+caption,th,td { text-align:left; font-weight:normal; }
+blockquote:before,blockquote:after,q:before,q:after { content:""; }
+blockquote,q { quotes:"" ""; }
+
+/* ---- common style ---- */
+body { font:14px/1 Tahoma,Helvetica,Arial,"\5b8b\4f53",sans-serif; }
+a { text-decoration:none; }
+sup { font-size:85%; vertical-align:super; }
+sub { font-size:85%; vertical-align:sub; }
+code,pre { font-family:monospace; }
+h1 { font-size:200%; }
+h2 { font-size:180%; }
+h3 { font-size:160%; }
+h4 { font-size:140%; }
+h5 { font-size:120%; }
+h6 { font-size:110%; }
+h1,h2,h3,h4,h5,h6 { font-weight:bold; line-height:200%; }
+p,li,dt,dd { line-height:150%; }
+
+.W_header,.W_contents,.W_footer { width:1000px; margin:0 auto; clear:both; }
+body { background:url(header.jpg) repeat-x; }
+.W_header { height:45px; margin-bottom:20px; }
+.W_logo { display:block; height:35px; margin:5px 0; padding-left:45px; background:url(logo.gif) no-repeat; font-size:24px; float:left; color:#000; }
+.W_nav { float:left; margin-left:50px; }
+.W_nav li { width:70px; float:left; margin:8px 20px 0 0; }
+.W_nav a { display:block; background-color:#639a00; height:20px; padding:3px 0 1px; text-align:center; font-size:14px; color:#fff; border:solid 1px #74ab11; }
+.W_nav a:hover { background-color:#74ab11; }
+.W_nav li.W_on a,.W_nav li.W_on a:hover { background-color:#b87822; border-color:#c98933; }
+.W_contents { margin-bottom:20px; min-height:50px; overflow:hidden; }
+.W_column_full { width:1000px; }
+.W_column_main { width:750px; }
+.W_column_side { width:225px; }
+.W_contents_mainside .W_column_main,.W_contents_sidemain .W_column_side { float:left; }
+.W_contents_mainside .W_column_side,.W_contents_sidemain .W_column_main { float:right; }
+.W_footer { }
+
+ul.list li { list-style:square outside; margin-left:2em; }
+ol.list li { list-style:decimal outside; margin-left:2em; }
+table.tbl { border-left:solid 1px #090; border-top:solid 1px #090; }
+table.tbl th,table.tbl td { border-right:solid 1px #090; border-bottom:solid 1px #090; padding:4px; }
+table.tbl th { font-weight:bold; }
+
+.markdown p { margin:1ex 0; }
+.markdown strong { font-weight:bold; }
+.markdown em { font-style:italic; }
+.markdown ul li { list-style:square outside; margin-left:2em; }
+.markdown ol li { list-style:decimal outside; margin-left:2em; }
+.markdown h1,.markdown h2,.markdown h3,.markdown h4,.markdown h5,.markdown h6 { color:#600; }
+.markdown img { padding:5px; }
+
+/* ---- deprecated common style ---- */
+.header,.contents,.footer { width:1000px; margin:0 auto; clear:both; }
+.contents_main { width:750px; float:left; }
+.contents_main .section { }
+.contents_side { width:225px; float:right; }
+.contents_side .section { }
+
+
+
+
+/* ---- page-specific style ---- */
+

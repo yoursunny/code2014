@@ -1,0 +1,51 @@
+在服务器上用Fiddler抓取HTTPS流量
+阳光男孩 发表于2011-03-19
+prettyprint
+<p>开发互联网应用的过程中，常常会设立或利用网络接口。为了调试对网络接口的使用，往往需要查看流入和流出网络接口的网络流量或数据包。“抓包工具”就是一类用于记录通过网络接口的数据的工具。</p>
+<p>我们知道，网络协议是分层设计的，OSI模型将网络协议分为了7个层次。不同的抓包工具，可以在网络协议的不同层次上工作。常用的Wireshark就是一种在网络层上工作的抓包工具，不仅自带大量的协议分析器，而且可以通过<a href="/t/2008/Wireshark-Lua-dissector/">编写Wireshark插件</a>来识别自定义的协议。虽然Wireshark功能强大，但是却并不能解决所有的抓包问题，其原因在于：</p>
+<ul>
+<li>Wireshark工作在网络层；如果计算机配置了IPSec传输层加密，则在网络层的流量都已经被加密，什么也看不到。</li>
+<li>当今大量网络接口使用HTTPS加密，Wireshark不能抓取到HTTPS流量的明文内容。</li>
+</ul>
+<p>那么，如何抓取到HTTPS请求的明文内容呢？使用Fiddler就可以办到。</p>
+<p><a href="http://www.fiddler2.com" rel="external" target="_blank">Fiddler</a>是Eric Lawrence编写的HTTP抓包软件。Fiddler工作在应用层上，作为其他程序的HTTP代理服务器。它可以直接抓取并分析HTTP流量，也可以作为“中间人”抓取并分析HTTPS流量。</p>
+
+<h2>Fiddler抓取HTTPS流量的原理</h2>
+<p>TLS是一种端到端的传输层加密协议，是HTTPS协议的一个组成部分。访问HTTPS站点时，HTTP请求、响应都通过TLS协议在浏览器和服务器之间加密传输，并且通过数字证书技术保证数据的保密性和完整性；任何“中间人”、包括代理服务器都只能转发数据，而无法窃听或者篡改数据。</p>
+<p>要抓取HTTPS流量的明文内容，Fiddler必须解密HTTPS流量。但是，浏览器将会检查数字证书，并发现会话遭到窃听。为了骗过浏览器，Fiddler通过使用另一个数字证书重新加密HTTPS流量。Fiddler被配置为解密HTTPS流量后，会自动生成一个名为DO_NOT_TRUST_FiddlerRoot的CA证书，并使用该CA颁发每个域名的TLS证书。若DO_NOT_TRUST_FiddlerRoot证书被列入浏览器或其他软件的信任CA名单内，则浏览器或其他软件就会认为HTTPS会话是可信任的、而不会再弹出“证书错误”警告。</p>
+<p>开启HTTPS流量解密功能后，Fiddler将会提示用户将DO_NOT_TRUST_FiddlerRoot证书列入IE浏览器的信任CA名单。用于调试客户端时，这已经足够了；Firefox用户也可以很方便的手动导入DO_NOT_TRUST_FiddlerRoot证书。但是，若要在服务器上抓取ASP.Net发出的HTTPS请求，这是不够的——你必须将DO_NOT_TRUST_FiddlerRoot证书导入“机器帐号”的信任CA名单。</p>
+
+<h2>操作录像</h2>
+<p>该录像演示了下列操作：</p>
+<ol>
+<li>开启Fiddler的HTTPS流量解密功能</li>
+<li>将DO_NOT_TRUST_FiddlerRoot证书导入“机器帐号”的信任CA名单</li>
+<li>将PHP脚本的代理服务器设置为127.0.0.1:8888，并抓取HTTPS请求</li>
+</ol>
+<object type="application/x-shockwave-flash" data="FiddlerHTTPS.swf" width="660" height="495">
+<param name="movie" value="FiddlerHTTPS.swf" />
+<param name="quality" value="best" />
+</object>
+
+<h2>主要网络开发框架的抓包配置</h2>
+<p>Fiddler的工作方式是代理服务器（端口号8888）。只要开发框架支持设置HTTP代理服务器，都可以使用Fiddler。</p>
+<pre class="prettyprint lang-php">
+#PHP curl
+$ch=curl_init('https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1.min.js');
+curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+curl_setopt($ch,CURLOPT_PROXY,'127.0.0.1:8888');//设置代理服务器
+curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,0);//若PHP编译时不带openssl则需要此行
+$resp=curl_exec($ch);
+curl_close($ch);
+</pre>
+<pre class="prettyprint lang-xml">
+&lt;!-- ASP.Net web.config --&gt;
+&lt;configuration&gt;
+  &lt;system.net&gt;
+    &lt;defaultProxy enabled="false"&gt;
+      &lt;proxy proxyaddress="http://127.0.0.1:8888/"/&gt;
+    &lt;/defaultProxy&gt;
+  &lt;/system.net&gt;
+&lt;/configuration&gt;
+</pre>
+<p>如果你使用linux服务器，请将Fiddler安装在一台Windows计算机上并在Tools - Fiddler Options - Connections勾选Allow remote computers to connect，并手动将FiddlerRoot.cer导入linux服务器的信任CA名单，最后将代理服务器设置成Fiddler所在IP的8888端口。</p>

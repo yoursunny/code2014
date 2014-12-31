@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>阳光GPA计算器2009版 - 你的阳光 yoursunny.com</title>
+<meta name="robots" content="noindex"/>
+<link rel="stylesheet" type="text/css" href="/images/9/"/>
+<script type="text/javascript" src="/lib/10.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.1.0/prototype.js"></script>
+<style type="text/css">/*<![CDATA[*/
+html { min-width:970px; }
+#browser_warning { margin:20px 0; color:#f06; }
+#update_history .more-history { display:none; }
+#intro_steps { color:#f63; text-align:center; }
+#app { width:820px; min-height:420px; margin:20px auto; padding:10px; border:dotted 3px #090; overflow:auto; }
+#app table { margin:12px; border-left:solid 1px #9cf; border-top:solid 1px #9cf; }
+#app th,#app td { padding:4px; border-right:solid 1px #9cf; border-bottom:solid 1px #9cf; }
+#calc_result { z-index:1; padding:5px 9px 5px 9px; background:#393; right:0; bottom:0; color:#fff; position:fixed; }
+#app textarea { width:800px; height:300px; }
+#algorithm_view { width:310px; }
+#algorithm_view table { width:300px; }
+/*]]>*/</style>
+</head><body>
+
+<div class="header noBannerAd">
+<h2><a href="http://yoursunny.com/">你的阳光</a></h2>
+<ul>
+<li><a href="/m/"><span>个人</span></a></li>
+<li><a href="/study/"><span>学习</span></a></li>
+<li><a href="/t/"><span>技术</span></a></li>
+<li><a href="/work/"><span>作品</span></a></li>
+</ul>
+<ol>
+<li><a href="/">你的阳光</a></li>
+<li><a href="../">学习频道</a></li>
+<li><span>阳光GPA计算器</span></li>
+</ol>
+</div>
+
+<div class="content">
+
+<div class="p"><div class="p-wrap">
+<h1 class="tit">阳光GPA计算器</h1>
+<div class="p-body headers">
+<p><a href="http://yoursunny.com/study/GPA/">阳光GPA计算器</a>已经推出2010版，立即进入<a href="../">阳光GPA计算器2010版</a>。</p><p>&nbsp;</p>
+<p>最方便快捷的GPA计算工具，无需手工录入，自动导入各类报表、轻轻一点即可获得GPA计算结果。计算结果仅供参考。</p>
+<noscript><p>GPA计算器需要调用JavaScript脚本语言。如果你没有开启JavaScript，将无法使用GPA计算器。</p></noscript>
+<p id="intro_steps">阳光GPA计算器使用步骤：选择输入方式 &raquo; 输入课程信息 &raquo; 选择算法 &raquo; 计算GPA
+&nbsp;&nbsp; <a href="javascript:;" onclick="GPA.Restart();">重新开始</a></p>
+<div id="browser_warning" style="display:none;"></div>
+<div id="app">
+<div id="step_input_choose" class="step">
+<div id="app_ad"></div>
+<p><a href="http://yoursunny.com/study/GPA/">阳光GPA计算器</a>已经推出2010版，立即进入<a href="../">阳光GPA计算器2010版</a>。</p>
+<h2>选择输入方式</h2>
+<ul>
+<li><a href="javascript:GPA.Input('Table');">表格录入</a>，手工录入学分、成绩等</li>
+<li><a href="javascript:GPA.Input('CSV');">CSV/TXT文件上传</a>，上传使用表格软件（如EXCEL）编辑好的课程信息</li>
+<li><a href="javascript:GPA.Input('XHTML');">XHTML文件上传</a>，上传您上次使用阳光GPA计算器时保存的XHTML数据文件</li>
+<li><a href="javascript:GPA.Input('JSON');">JSON导入</a>，粘贴您上次使用阳光GPA计算器时保存的JSON数据</li>
+<li style="display:none;"><a href="javascript:GPA.Input('SJTU');">上海交大修业查询</a>，粘贴教务处修业查询报表，适用于上海交通大学本科生</li>
+<li style="display:none;" id="input_jAccount"><a href="javascript:GPA.Input('jAccount');">上海交大jAccount</a>，输入jAccount帐号密码、自动提取成绩单，适用于上海交通大学本科生</li>
+<li>由于技术限制，上海交大修业查询输入方式只在2010版提供，<br/>请进入<a href="../">阳光GPA计算器2010版</a>选择“导入”菜单“通过上海交通大学修业查询导入”命令。</li>
+</ul>
+</div>
+<div id="step_input" class="step"></div>
+<div id="step_algorithm" class="step"></div>
+<div id="step_calc" class="step"></div>
+<div id="step_export" class="step"></div>
+</div>
+</div>
+
+</div></div></div>
+
+<div class="footer">
+<p class="copyright">&copy;2006-2009 yoursunny.com, All Rights Reserved</p>
+<script type="text/javascript" src="/lib/10/track.js"></script>
+<!--<ul class="links">
+<li><a href="/m/about.htm">关于本站</a></li>
+<li><a href="/m/contact.htm">联系方式</a></li>
+<li><a href="/m/sitemap.htm">网站地图</a></li>
+</ul>-->
+</div>
+
+<script type="text/javascript">//<![CDATA[
+W.disable_relatedlinks=W.disable_searchbox=true;
+var WebSite={
+	showLoading:function(){},
+	hideLoading:function(){}
+};
+var Cookie={set:function(C,D,B){var A="";if(B!=undefined){var E=new Date();E.setTime(E.getTime()+(86400000*parseFloat(B)));A="; expires="+E.toGMTString()}return(document.cookie=escape(C)+"="+escape(D||"")+A)},get:function(A){var B=document.cookie.match(new RegExp("(^|;)\\s*"+escape(A)+"=([^;\\s]*)"));return(B?unescape(B[2]):null)},erase:function(A){var B=Cookie.get(A)||true;Cookie.set(A,"",-1);return B}}
+Event.onReady=function(f){document.observe('dom:loaded',function(){f();});};
+String.prototype.format=function() {
+	var a=arguments;
+	var p=new RegExp('%([1-'+a.length+'])','g');
+	return this.replace(p,function(match,i){return a[i-1];});
+};
+String.prototype.encodeHTML=function() {
+	return this.gsub('&','&amp;').gsub('<','&lt;').gsub('>','&gt;').gsub('"','&quot;').gsub("'",'&apos;');
+};
+Date.prototype.format=function(fmt) {
+	return fmt.gsub('Y',this.getFullYear().toPaddedString(4)).gsub('m',(this.getMonth()+1).toPaddedString(2)).gsub('d',this.getDate().toPaddedString(2)).gsub('H',this.getHours().toPaddedString(2)).gsub('i',this.getMinutes().toPaddedString(2)).gsub('s',this.getSeconds().toPaddedString(2));
+};
+
+Event.onReady(function(){
+	//$('app_ad').update('<iframe src="'+(WebSite.isTest?'about:blank':'alimama.htm')+'" width="800" height="90" scrolling="no" frameborder="0" marginheight="0" marginwidth="0" border="0"></iframe>');
+	GPA.CheckUA();
+});
+//]]></script>
+<script type="text/javascript" src="GPA.js"></script>
+</body></html>

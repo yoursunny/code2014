@@ -1,0 +1,244 @@
+用Lua语言编写Wireshark dissector插件
+Wireshark,网络协议分析,Wireshark插件,Wireshark dissector,Lua,如何编写Wireshark插件,dissector,编译Wireshark
+prettify no-sidebar
+阳光男孩 发表于 2008-12-15
+
+<p class="indent"><a href="http://www.wireshark.org/">Wireshark</a>是一款著名的网络协议分析工具，基于GPLv2协议开源，支持Linux、Windows、MacOS等多个操作系统。</p>
+<blockquote>
+<p class="indent">Wireshark is the world's foremost network protocol analyzer, and is the de facto (and often de jure) standard across many industries and educational institutions.</p>
+<p class="indent">Wireshark development thrives thanks to the contributions of networking experts across the globe. It is the continuation of a project that started in 1998.[<a href="http://www.wireshark.org/about.html" rel="external">via</a>]</p>
+</blockquote>
+<p class="indent">Wireshark已经支持数千种协议，对新协议的支持还在不断增加。<b>今天，你发明了一个新的网络协议，也想让Wireshark识别，你该怎么办呢？</b>你有两个选择：</p>
+<ol>
+<li>发布你的网络协议，等到有1,000,000人每天使用你的协议时，Wireshark就会支持你的协议</li>
+<li><b>编写一个Wireshark插件</b>，自己动手、丰衣足食</li>
+</ol>
+<p class="indent">如果你选择了前者，请按下CTRL+D，然后在你改变主意的时候再回来。</p>
+
+<h3>Wireshark和Wireshark dissector</h3>
+<p class="indent">如果你还没有安装Wireshark，请<a href="http://www.wireshark.org/download.html" rel="external">下载并安装Wireshark</a>。</p>
+<p class="indent">从功能看，Wireshark可以分为以下几个模块：</p>
+<ul>
+<li>核心</li>
+<li>用户界面</li>
+<li>抓包：调用libpcap或winpcap实现</li>
+<li>协议分析：支持的数千种协议，都有相应的分析组件，称为dissector</li>
+<li>保存/读取文件</li>
+<li>……</li>
+</ul>
+<p class="indent">要让Wireshark识别你发明的协议，应该从“协议分析”部分入手，也就是编写一个<b>Wireshark dissector</b>。</p>
+<p class="indent">Wireshark本身是用C语言编写的，用C语言编写dissector是很自然的选择。但是，C语言并不简单，在Windows下编译C语言的代码也并不容易。浏览一遍Wireshark User Guide的目录，你会看到一章<a href="http://www.wireshark.org/docs/wsug_html_chunked/wsluarm.html">Lua Support in Wireshark</a>，这就是编写Wireshark dissector插件的另一种选择。</p>
+
+<h3>Lua脚本语言</h3>
+<p class="indent"><b>Lua是一种功能强大的、快速的、轻量的、嵌入式的脚本语言</b>。<i>Lua</i>在葡萄牙语里是“月亮”的意思，它不是一个缩写因此不能写成“LUA”。</p>
+<blockquote>
+<p class="indent">Lua is a powerful, fast, light-weight, embeddable scripting language.</p>
+<p class="indent">Lua combines simple procedural syntax with powerful data description constructs based on associative arrays and extensible semantics. Lua is dynamically typed, runs by interpreting bytecode for a register-based virtual machine, and has automatic memory management with incremental garbage collection, making it ideal for configuration, scripting, and rapid prototyping.[<a href="http://www.lua.org/about.html" rel="external">via</a>]</p>
+</blockquote>
+<p class="indent">Lua是一种嵌入式脚本语言，<b>Wireshark嵌入了Lua脚本引擎</b>，因此我们可以<b>使用Lua脚本语言扩展Wireshark</b>。</p>
+
+<h3>初识Lua编写的Wireshark dissector</h3>
+<p class="indent">Wireshark User Guide, <a href="http://www.wireshark.org/docs/wsug_html_chunked/wslua_dissector_example.html" rel="external">Example of Dissector written in Lua</a>已经给出了一段Wireshark插件代码，先解读一下：</p>
+<pre class="prettyprint lang-lua">
+--这个dissector只是把几个协议组合起来而已，并不是识别一种新的协议
+do --do...end是Lua语言的语句块关键字，相当于C#语言的{..}
+    --创建一个Proto类的对象，表示一种协议
+    local p_multi = Proto("multi","MultiProto");
+
+    local vs_protos = {
+        [2] = "mtp2",
+        [3] = "mtp3",
+        [4] = "alcap",
+        [5] = "h248",
+        [6] = "ranap",
+        [7] = "rnsap",
+        [8] = "nbap"
+    }
+
+    --创建几个ProtoField对象，就是主界面中部Packet Details窗格中能显示的那些属性
+    local f_proto = ProtoField.uint8("multi.protocol","Protocol",base.DEC,vs_protos)
+    local f_dir = ProtoField.uint8("multi.direction","Direction",base.DEC,{ [1] = "incoming", [0] = "outgoing"})
+    local f_text = ProtoField.string("multi.text","Text")
+
+	--把ProtoField对象加到Proto对象上
+	p_multi.fields = { f_proto, f_dir, f_text }
+
+    --用Dissector.get函数可以获得另外一个协议的解析组件
+    local data_dis = Dissector.get("data")
+
+    local protos = {
+        [2] = Dissector.get("mtp2"),
+        [3] = Dissector.get("mtp3"),
+        [4] = Dissector.get("alcap"),
+        [5] = Dissector.get("h248"),
+        [6] = Dissector.get("ranap"),
+        [7] = Dissector.get("rnsap"),
+        [8] = Dissector.get("nbap"),
+        [9] = Dissector.get("rrc"),
+        [10] = DissectorTable.get("sctp.ppi"):get_dissector(3), -- m3ua
+        [11] = DissectorTable.get("ip.proto"):get_dissector(132), -- sctp
+    }
+
+    --为Proto对象添加一个名为dissector的函数，
+    --Wireshark会对每个“相关”数据包调用这个函数
+    function p_multi.dissector(buf,pkt,root) 
+
+        --root:add会在Packet Details窗格中增加一行协议
+        local t = root:add(p_multi,buf(0,2))
+        --t:add，在Packet Details窗格中增加一行属性，
+        --并指定要鼠标点击该属性时Packet Bytes窗格中会选中哪些字节
+        t:add(f_proto,buf(0,1))
+        t:add(f_dir,buf(1,1))
+
+        --这句是将数据的第一个字节转换成无符号整数
+        local proto_id = buf(0,1):uint()
+
+        local dissector = protos[proto_id]
+
+        if dissector ~= nil then
+            dissector:call(buf(2):tvb(),pkt,root)
+        elseif proto_id &lt; 2 then
+            t:add(f_text,buf(2))
+            -- pkt.cols.info:set(buf(2,buf:len() - 3):string())
+        else
+            --调用另外一个dissector
+            data_dis:call(buf(2):tvb(),pkt,root)
+        end 
+
+    end
+
+    --所有的dissector都是以“table”的形式组织的，table表示上级协议
+    local wtap_encap_table = DissectorTable.get("wtap_encap")
+    --这个是获得udp协议的DissectorTable，并且以端口号排列
+    local udp_encap_table = DissectorTable.get("udp.port")
+
+    wtap_encap_table:add(wtap.USER15,p_multi)
+    wtap_encap_table:add(wtap.USER12,p_multi)
+    --为UDP的7555端口注册这个Proto对象，
+    --当遇到源或目的为UDP7555的数据包，就会调用上面的p_multi.dissector函数
+    udp_encap_table:add(7555,p_multi)
+end
+</pre>
+<p class="indent">Wireshark虽然嵌入了Lua解释器，但是默认情况下并没有打开。<b>安装Lua插件的方法</b>是：</p>
+<ol>
+<li>打开Wireshark安装目录的<i>init.lua</i>文件，搜索<i>disable_lua</i>(找到<code class="prettyprint lang-lua">disable_lua = true; do return end;</code>)，在这一行的开头添加<code class="prettyprint lang-lua">--</code>符号。</li>
+<li>将Lua插件复制到Wireshark安装目录内</li>
+<li>在init.lua的最后调用你的Lua插件：<code class="prettyprint lang-lua">dofile('<i>文件名</i>.lua');</code></li>
+</ol>
+
+<h3>一个实用的Wireshark dissector</h3>
+<p class="indent">为了演示如何用Lua脚本语言编写一个实用的Wireshark dissector插件，我设计了一个简单的网络协议——<a href="/study/IS409/ScoreBoard.htm">ScoreBoard</a>。</p>
+<p>ScoreBoard协议用于更新比分牌的数值和背景颜色。服务端监听UDP1127端口，客户端端口任意。</p>
+<h4>报文格式</h4>
+<p>每个报文的前16字节是固定的识别符identifier：<br/>
+<code>e2 cb b5 80 cb 09 4e ba a3 6b f6 07 ce 95 3f 2b</code>
+</p>
+<p>第17字节表示报文类型operator：</p>
+<ul>
+<li>00 get-value  获取比分数值</li>
+<li>01 set-value  设置比分数值</li>
+<li>80 resp-value 应答比分数值</li>
+<li>10 get-color  获取背景色</li>
+<li>11 set-color  设置背景色</li>
+<li>90 resp-color 应答背景色</li>
+</ul>
+<p>数据部分：</p>
+<ul>
+<li>00、80类型的报文<ul>
+<li>第18~21字节为左边的比分数值(32位无符号整数，big endian)</li>
+<li>第22~25字节为右边的比分数值(32位无符号整数，big endian)</li>
+</ul></li>
+<li>10、90类型的报文<ul>
+<li>第18字节为红色分量</li>
+<li>第19字节为绿色分量</li>
+<li>第20字节为蓝色分量</li>
+</ul></li>
+</ul>
+<h4>交互流程</h4>
+<ul>
+<li>客户端使用00、01类型的报文请求服务端，服务端应当回复80类型的报文</li>
+<li>客户端使用10、11类型的报文请求服务端，服务端应当回复90类型的报文</li>
+</ul>
+<h4>识别ScoreBoard协议的Wireshark插件</h4>
+<pre class="prettyprint lang-lua">
+do
+    --协议名称为ScoreBoard，在Packet Details窗格显示为yoursunny.P2008.IS409 ScoreBoard
+    local p_ScoreBoard = Proto("ScoreBoard","yoursunny.P2008.IS409 ScoreBoard")
+    --协议的各个字段
+    local f_identifier = ProtoField.bytes("ScoreBoard.identifier","Identifier")
+    local f_operator = ProtoField.uint8("ScoreBoard.operator","Operator",base.HEX,
+        --这个字段的数字值都有相应的含义，可以自动对应成字符串
+        { [0] = "get-value", [1] = "set-value", [128] = "resp-value",
+        [16] = "get-color", [17] = "set-color", [144] = "resp-color"})
+    --所有可能的字段都要定义，到时没有t:add就不会显示
+    local f_left = ProtoField.uint32("ScoreBoard.left","Value Left",base.DEC)
+    local f_right = ProtoField.uint32("ScoreBoard.right","Value Right",base.DEC)
+    local f_red = ProtoField.uint8("ScoreBoard.red","Color Red",base.DEC)
+    local f_green = ProtoField.uint8("ScoreBoard.green","Color Green",base.DEC)
+    local f_blue = ProtoField.uint8("ScoreBoard.blue","Color Blue",base.DEC)
+    p_ScoreBoard.fields = { f_identifier, f_operator, f_left, f_right, f_red, f_green, f_blue }
+    
+    local data_dis = Dissector.get("data")
+    
+    local function ScoreBoard_dissector(buf,pkt,root)
+        local buf_len = buf:len();
+        --先检查报文长度，太短的不是我的协议
+        if buf_len &lt; 17 then return false end
+        --取得前16字节identifier字段的值
+        local v_identifier = buf(0,16)
+        --验证identifier是否正确
+        if ((buf(0,1):uint()~=226) or (buf(1,1):uint()~=203) or (buf(2,1):uint()~=181)
+            or (buf(3,1):uint()~=128) or (buf(4,1):uint()~=203) or (buf(5,1):uint()~=9)
+            or (buf(6,1):uint()~=78) or (buf(7,1):uint()~=186) or (buf(8,1):uint()~=163)
+            or (buf(9,1):uint()~=107) or (buf(10,1):uint()~=246) or (buf(11,1):uint()~=7)
+            or (buf(12,1):uint()~=206) or (buf(13,1):uint()~=149) or (buf(14,1):uint()~=63)
+            or (buf(15,1):uint()~=43))
+            --不正确就不是我的协议
+            then return false end
+        --取得operator的值
+        local v_operator = buf(16,1)
+        local i_operator = v_operator:uint()
+        
+        --现在知道是我的协议了，放心大胆添加Packet Details
+        local t = root:add(p_ScoreBoard,buf)
+        --在Packet List窗格的Protocol列也可以“做个小广告”
+        pkt.cols.protocol = "ScoreBoard"
+        t:add(f_identifier,v_identifier)
+        t:add(f_operator,v_operator)
+        
+        if ((i_operator == 1) or (i_operator == 128)) and (buf_len >= 25) then
+            --把存在的字段逐个添加进去
+            t:add(f_left,buf(17,4))
+            t:add(f_right,buf(21,4))
+        elseif ((i_operator == 17) or (i_operator == 144)) and (buf_len >= 20) then
+            t:add(f_red,buf(17,1))
+            t:add(f_green,buf(18,1))
+            t:add(f_blue,buf(19,1))
+        end
+        return true
+    end
+    
+    function p_ScoreBoard.dissector(buf,pkt,root) 
+        if ScoreBoard_dissector(buf,pkt,root) then
+            --valid ScoreBoard diagram
+        else
+            --data这个dissector几乎是必不可少的；当发现不是我的协议时，就应该调用data
+            data_dis:call(buf,pkt,root)
+        end
+    end
+    
+    local udp_encap_table = DissectorTable.get("udp.port")
+    --只需要处理UDP1127端口就可以了
+    udp_encap_table:add(1127,p_ScoreBoard)
+end
+</pre>
+<p class="indent">查看<a href="http://yoursunny.com/study/IS409/ScoreBoard.htm" rel="external">ScoreBoard协议的Wireshark插件效果演示</a>，下载<a href="javascript:tech_download('Wireshark-Lua-dissector.zip')">ScoreBoard协议的样例客户端脚本、服务端程序、pcap抓包、Lua插件源码</a></p>
+
+<h3>插件的调试</h3>
+<p class="indent">我没有找到非常有效的插件调试方法。当Lua脚本中有语法错误时，Wireshark会在启动时弹出提示框；有调用错误时，会在相关数据包的Packet Details窗格中以红色显示。</p>
+<p class="indent">你可以把捕获的数据包保存为.pcap文件，每次修改Lua脚本后双击.pcap文件打开Wireshark即可。不必每次都进行Live Capture。</p>
+
+<h3>小结</h3>
+<p class="indent">Wireshark有了Lua支持后，如虎添翼，大大方便了插件的开发。当你发明了一个网络协议，要让Wireshark支持它的最佳办法就是动手用Lua语言写一个dissector。只要你<b>充分理解自己设计的网络协议</b>，结合<a href="http://www.lua.org/manual/5.1/" rel="external">Lua语言参考</a>和<a href="http://www.wireshark.org/docs/wsug_html_chunked/wsluarm_modules.html" rel="external">Wireshark文档</a>(不过有些函数名不够准确、请参考Wireshark源码)，写出一个Wireshark插件还是挺容易的。</p>
+
+

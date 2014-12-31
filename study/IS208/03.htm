@@ -1,0 +1,577 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数字系统设计 作业 03</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<img src="03q.png" width="394" height="33" alt="4位全加器"/>
+<hr/>
+
+<h1>一 Verilog设计文件</h1>
+<h2>4位超前进位全加器 fulladder4b.v</h2>
+<pre>module fulladder4b(output [3:0] sum, output c_out, input [3:0] a, input [3:0] b, input cin);
+    wire [3:0] g;
+    wire [3:0] p;
+    wire [3:-1] c;
+    wire [3:0] s;
+    assign g=a&b;
+    assign p=a^b;
+    assign c[-1]=cin;
+    assign s[3:0]=p[3:0]^c[2:-1];
+    assign c[0]=g[0]|(p[0]&c[-1]);
+    assign c[1]=g[1]|(p[1]&g[0])|(p[1]&p[0]&c[-1]);
+    assign c[2]=g[2]|(p[2]&g[1])|(p[2]&p[1]&g[0])|(p[2]&p[1]&p[0]&c[-1]);
+    assign c[3]=g[3]|(p[3]&g[2])|(p[3]&p[2]&g[1])|(p[3]&p[2]&p[1]&g[0])|(p[3]&p[2]&p[1]&p[0]&c[-1]);
+    assign sum=s;
+    assign c_out=c[3];
+endmodule</pre>
+<hr/>
+<h2>测试平台</h2>
+<pre>`include "fulladder4b.v"
+module tb_fulladder4b;
+    reg [3:0] a;
+    reg [3:0] b;
+    reg cin;
+    wire [3:0] sum;
+    wire c_out;
+    integer i;
+    initial
+    begin
+        {a,b,cin}=9'b0000000000;
+        for (i=0;i&lt;512;i=i+1)
+        begin
+            #1 {a,b,cin} &lt;= {a,b,cin}+1;
+            $display("a=%b b=%b cin=%b sum=%b c_out=%b",a,b,cin,sum,c_out);
+        end
+    end
+    fulladder4b fa(sum,c_out,a,b,cin);
+endmodule</pre>
+<hr/>
+
+<h1>二 仿真分析图</h1>
+<img src="03w.png" width="844" height="99" alt="波形"/>
+<hr/>
+
+<h1>三 仿真监控结果</h1>
+<pre># a=0000 b=0000 cin=0 sum=0000 c_out=0
+# a=0000 b=0000 cin=1 sum=0001 c_out=0
+# a=0000 b=0001 cin=0 sum=0001 c_out=0
+# a=0000 b=0001 cin=1 sum=0010 c_out=0
+# a=0000 b=0010 cin=0 sum=0010 c_out=0
+# a=0000 b=0010 cin=1 sum=0011 c_out=0
+# a=0000 b=0011 cin=0 sum=0011 c_out=0
+# a=0000 b=0011 cin=1 sum=0100 c_out=0
+# a=0000 b=0100 cin=0 sum=0100 c_out=0
+# a=0000 b=0100 cin=1 sum=0101 c_out=0
+# a=0000 b=0101 cin=0 sum=0101 c_out=0
+# a=0000 b=0101 cin=1 sum=0110 c_out=0
+# a=0000 b=0110 cin=0 sum=0110 c_out=0
+# a=0000 b=0110 cin=1 sum=0111 c_out=0
+# a=0000 b=0111 cin=0 sum=0111 c_out=0
+# a=0000 b=0111 cin=1 sum=1000 c_out=0
+# a=0000 b=1000 cin=0 sum=1000 c_out=0
+# a=0000 b=1000 cin=1 sum=1001 c_out=0
+# a=0000 b=1001 cin=0 sum=1001 c_out=0
+# a=0000 b=1001 cin=1 sum=1010 c_out=0
+# a=0000 b=1010 cin=0 sum=1010 c_out=0
+# a=0000 b=1010 cin=1 sum=1011 c_out=0
+# a=0000 b=1011 cin=0 sum=1011 c_out=0
+# a=0000 b=1011 cin=1 sum=1100 c_out=0
+# a=0000 b=1100 cin=0 sum=1100 c_out=0
+# a=0000 b=1100 cin=1 sum=1101 c_out=0
+# a=0000 b=1101 cin=0 sum=1101 c_out=0
+# a=0000 b=1101 cin=1 sum=1110 c_out=0
+# a=0000 b=1110 cin=0 sum=1110 c_out=0
+# a=0000 b=1110 cin=1 sum=1111 c_out=0
+# a=0000 b=1111 cin=0 sum=1111 c_out=0
+# a=0000 b=1111 cin=1 sum=0000 c_out=1
+# a=0001 b=0000 cin=0 sum=0001 c_out=0
+# a=0001 b=0000 cin=1 sum=0010 c_out=0
+# a=0001 b=0001 cin=0 sum=0010 c_out=0
+# a=0001 b=0001 cin=1 sum=0011 c_out=0
+# a=0001 b=0010 cin=0 sum=0011 c_out=0
+# a=0001 b=0010 cin=1 sum=0100 c_out=0
+# a=0001 b=0011 cin=0 sum=0100 c_out=0
+# a=0001 b=0011 cin=1 sum=0101 c_out=0
+# a=0001 b=0100 cin=0 sum=0101 c_out=0
+# a=0001 b=0100 cin=1 sum=0110 c_out=0
+# a=0001 b=0101 cin=0 sum=0110 c_out=0
+# a=0001 b=0101 cin=1 sum=0111 c_out=0
+# a=0001 b=0110 cin=0 sum=0111 c_out=0
+# a=0001 b=0110 cin=1 sum=1000 c_out=0
+# a=0001 b=0111 cin=0 sum=1000 c_out=0
+# a=0001 b=0111 cin=1 sum=1001 c_out=0
+# a=0001 b=1000 cin=0 sum=1001 c_out=0
+# a=0001 b=1000 cin=1 sum=1010 c_out=0
+# a=0001 b=1001 cin=0 sum=1010 c_out=0
+# a=0001 b=1001 cin=1 sum=1011 c_out=0
+# a=0001 b=1010 cin=0 sum=1011 c_out=0
+# a=0001 b=1010 cin=1 sum=1100 c_out=0
+# a=0001 b=1011 cin=0 sum=1100 c_out=0
+# a=0001 b=1011 cin=1 sum=1101 c_out=0
+# a=0001 b=1100 cin=0 sum=1101 c_out=0
+# a=0001 b=1100 cin=1 sum=1110 c_out=0
+# a=0001 b=1101 cin=0 sum=1110 c_out=0
+# a=0001 b=1101 cin=1 sum=1111 c_out=0
+# a=0001 b=1110 cin=0 sum=1111 c_out=0
+# a=0001 b=1110 cin=1 sum=0000 c_out=1
+# a=0001 b=1111 cin=0 sum=0000 c_out=1
+# a=0001 b=1111 cin=1 sum=0001 c_out=1
+# a=0010 b=0000 cin=0 sum=0010 c_out=0
+# a=0010 b=0000 cin=1 sum=0011 c_out=0
+# a=0010 b=0001 cin=0 sum=0011 c_out=0
+# a=0010 b=0001 cin=1 sum=0100 c_out=0
+# a=0010 b=0010 cin=0 sum=0100 c_out=0
+# a=0010 b=0010 cin=1 sum=0101 c_out=0
+# a=0010 b=0011 cin=0 sum=0101 c_out=0
+# a=0010 b=0011 cin=1 sum=0110 c_out=0
+# a=0010 b=0100 cin=0 sum=0110 c_out=0
+# a=0010 b=0100 cin=1 sum=0111 c_out=0
+# a=0010 b=0101 cin=0 sum=0111 c_out=0
+# a=0010 b=0101 cin=1 sum=1000 c_out=0
+# a=0010 b=0110 cin=0 sum=1000 c_out=0
+# a=0010 b=0110 cin=1 sum=1001 c_out=0
+# a=0010 b=0111 cin=0 sum=1001 c_out=0
+# a=0010 b=0111 cin=1 sum=1010 c_out=0
+# a=0010 b=1000 cin=0 sum=1010 c_out=0
+# a=0010 b=1000 cin=1 sum=1011 c_out=0
+# a=0010 b=1001 cin=0 sum=1011 c_out=0
+# a=0010 b=1001 cin=1 sum=1100 c_out=0
+# a=0010 b=1010 cin=0 sum=1100 c_out=0
+# a=0010 b=1010 cin=1 sum=1101 c_out=0
+# a=0010 b=1011 cin=0 sum=1101 c_out=0
+# a=0010 b=1011 cin=1 sum=1110 c_out=0
+# a=0010 b=1100 cin=0 sum=1110 c_out=0
+# a=0010 b=1100 cin=1 sum=1111 c_out=0
+# a=0010 b=1101 cin=0 sum=1111 c_out=0
+# a=0010 b=1101 cin=1 sum=0000 c_out=1
+# a=0010 b=1110 cin=0 sum=0000 c_out=1
+# a=0010 b=1110 cin=1 sum=0001 c_out=1
+# a=0010 b=1111 cin=0 sum=0001 c_out=1
+# a=0010 b=1111 cin=1 sum=0010 c_out=1
+# a=0011 b=0000 cin=0 sum=0011 c_out=0
+# a=0011 b=0000 cin=1 sum=0100 c_out=0
+# a=0011 b=0001 cin=0 sum=0100 c_out=0
+# a=0011 b=0001 cin=1 sum=0101 c_out=0
+# a=0011 b=0010 cin=0 sum=0101 c_out=0
+# a=0011 b=0010 cin=1 sum=0110 c_out=0
+# a=0011 b=0011 cin=0 sum=0110 c_out=0
+# a=0011 b=0011 cin=1 sum=0111 c_out=0
+# a=0011 b=0100 cin=0 sum=0111 c_out=0
+# a=0011 b=0100 cin=1 sum=1000 c_out=0
+# a=0011 b=0101 cin=0 sum=1000 c_out=0
+# a=0011 b=0101 cin=1 sum=1001 c_out=0
+# a=0011 b=0110 cin=0 sum=1001 c_out=0
+# a=0011 b=0110 cin=1 sum=1010 c_out=0
+# a=0011 b=0111 cin=0 sum=1010 c_out=0
+# a=0011 b=0111 cin=1 sum=1011 c_out=0
+# a=0011 b=1000 cin=0 sum=1011 c_out=0
+# a=0011 b=1000 cin=1 sum=1100 c_out=0
+# a=0011 b=1001 cin=0 sum=1100 c_out=0
+# a=0011 b=1001 cin=1 sum=1101 c_out=0
+# a=0011 b=1010 cin=0 sum=1101 c_out=0
+# a=0011 b=1010 cin=1 sum=1110 c_out=0
+# a=0011 b=1011 cin=0 sum=1110 c_out=0
+# a=0011 b=1011 cin=1 sum=1111 c_out=0
+# a=0011 b=1100 cin=0 sum=1111 c_out=0
+# a=0011 b=1100 cin=1 sum=0000 c_out=1
+# a=0011 b=1101 cin=0 sum=0000 c_out=1
+# a=0011 b=1101 cin=1 sum=0001 c_out=1
+# a=0011 b=1110 cin=0 sum=0001 c_out=1
+# a=0011 b=1110 cin=1 sum=0010 c_out=1
+# a=0011 b=1111 cin=0 sum=0010 c_out=1
+# a=0011 b=1111 cin=1 sum=0011 c_out=1
+# a=0100 b=0000 cin=0 sum=0100 c_out=0
+# a=0100 b=0000 cin=1 sum=0101 c_out=0
+# a=0100 b=0001 cin=0 sum=0101 c_out=0
+# a=0100 b=0001 cin=1 sum=0110 c_out=0
+# a=0100 b=0010 cin=0 sum=0110 c_out=0
+# a=0100 b=0010 cin=1 sum=0111 c_out=0
+# a=0100 b=0011 cin=0 sum=0111 c_out=0
+# a=0100 b=0011 cin=1 sum=1000 c_out=0
+# a=0100 b=0100 cin=0 sum=1000 c_out=0
+# a=0100 b=0100 cin=1 sum=1001 c_out=0
+# a=0100 b=0101 cin=0 sum=1001 c_out=0
+# a=0100 b=0101 cin=1 sum=1010 c_out=0
+# a=0100 b=0110 cin=0 sum=1010 c_out=0
+# a=0100 b=0110 cin=1 sum=1011 c_out=0
+# a=0100 b=0111 cin=0 sum=1011 c_out=0
+# a=0100 b=0111 cin=1 sum=1100 c_out=0
+# a=0100 b=1000 cin=0 sum=1100 c_out=0
+# a=0100 b=1000 cin=1 sum=1101 c_out=0
+# a=0100 b=1001 cin=0 sum=1101 c_out=0
+# a=0100 b=1001 cin=1 sum=1110 c_out=0
+# a=0100 b=1010 cin=0 sum=1110 c_out=0
+# a=0100 b=1010 cin=1 sum=1111 c_out=0
+# a=0100 b=1011 cin=0 sum=1111 c_out=0
+# a=0100 b=1011 cin=1 sum=0000 c_out=1
+# a=0100 b=1100 cin=0 sum=0000 c_out=1
+# a=0100 b=1100 cin=1 sum=0001 c_out=1
+# a=0100 b=1101 cin=0 sum=0001 c_out=1
+# a=0100 b=1101 cin=1 sum=0010 c_out=1
+# a=0100 b=1110 cin=0 sum=0010 c_out=1
+# a=0100 b=1110 cin=1 sum=0011 c_out=1
+# a=0100 b=1111 cin=0 sum=0011 c_out=1
+# a=0100 b=1111 cin=1 sum=0100 c_out=1
+# a=0101 b=0000 cin=0 sum=0101 c_out=0
+# a=0101 b=0000 cin=1 sum=0110 c_out=0
+# a=0101 b=0001 cin=0 sum=0110 c_out=0
+# a=0101 b=0001 cin=1 sum=0111 c_out=0
+# a=0101 b=0010 cin=0 sum=0111 c_out=0
+# a=0101 b=0010 cin=1 sum=1000 c_out=0
+# a=0101 b=0011 cin=0 sum=1000 c_out=0
+# a=0101 b=0011 cin=1 sum=1001 c_out=0
+# a=0101 b=0100 cin=0 sum=1001 c_out=0
+# a=0101 b=0100 cin=1 sum=1010 c_out=0
+# a=0101 b=0101 cin=0 sum=1010 c_out=0
+# a=0101 b=0101 cin=1 sum=1011 c_out=0
+# a=0101 b=0110 cin=0 sum=1011 c_out=0
+# a=0101 b=0110 cin=1 sum=1100 c_out=0
+# a=0101 b=0111 cin=0 sum=1100 c_out=0
+# a=0101 b=0111 cin=1 sum=1101 c_out=0
+# a=0101 b=1000 cin=0 sum=1101 c_out=0
+# a=0101 b=1000 cin=1 sum=1110 c_out=0
+# a=0101 b=1001 cin=0 sum=1110 c_out=0
+# a=0101 b=1001 cin=1 sum=1111 c_out=0
+# a=0101 b=1010 cin=0 sum=1111 c_out=0
+# a=0101 b=1010 cin=1 sum=0000 c_out=1
+# a=0101 b=1011 cin=0 sum=0000 c_out=1
+# a=0101 b=1011 cin=1 sum=0001 c_out=1
+# a=0101 b=1100 cin=0 sum=0001 c_out=1
+# a=0101 b=1100 cin=1 sum=0010 c_out=1
+# a=0101 b=1101 cin=0 sum=0010 c_out=1
+# a=0101 b=1101 cin=1 sum=0011 c_out=1
+# a=0101 b=1110 cin=0 sum=0011 c_out=1
+# a=0101 b=1110 cin=1 sum=0100 c_out=1
+# a=0101 b=1111 cin=0 sum=0100 c_out=1
+# a=0101 b=1111 cin=1 sum=0101 c_out=1
+# a=0110 b=0000 cin=0 sum=0110 c_out=0
+# a=0110 b=0000 cin=1 sum=0111 c_out=0
+# a=0110 b=0001 cin=0 sum=0111 c_out=0
+# a=0110 b=0001 cin=1 sum=1000 c_out=0
+# a=0110 b=0010 cin=0 sum=1000 c_out=0
+# a=0110 b=0010 cin=1 sum=1001 c_out=0
+# a=0110 b=0011 cin=0 sum=1001 c_out=0
+# a=0110 b=0011 cin=1 sum=1010 c_out=0
+# a=0110 b=0100 cin=0 sum=1010 c_out=0
+# a=0110 b=0100 cin=1 sum=1011 c_out=0
+# a=0110 b=0101 cin=0 sum=1011 c_out=0
+# a=0110 b=0101 cin=1 sum=1100 c_out=0
+# a=0110 b=0110 cin=0 sum=1100 c_out=0
+# a=0110 b=0110 cin=1 sum=1101 c_out=0
+# a=0110 b=0111 cin=0 sum=1101 c_out=0
+# a=0110 b=0111 cin=1 sum=1110 c_out=0
+# a=0110 b=1000 cin=0 sum=1110 c_out=0
+# a=0110 b=1000 cin=1 sum=1111 c_out=0
+# a=0110 b=1001 cin=0 sum=1111 c_out=0
+# a=0110 b=1001 cin=1 sum=0000 c_out=1
+# a=0110 b=1010 cin=0 sum=0000 c_out=1
+# a=0110 b=1010 cin=1 sum=0001 c_out=1
+# a=0110 b=1011 cin=0 sum=0001 c_out=1
+# a=0110 b=1011 cin=1 sum=0010 c_out=1
+# a=0110 b=1100 cin=0 sum=0010 c_out=1
+# a=0110 b=1100 cin=1 sum=0011 c_out=1
+# a=0110 b=1101 cin=0 sum=0011 c_out=1
+# a=0110 b=1101 cin=1 sum=0100 c_out=1
+# a=0110 b=1110 cin=0 sum=0100 c_out=1
+# a=0110 b=1110 cin=1 sum=0101 c_out=1
+# a=0110 b=1111 cin=0 sum=0101 c_out=1
+# a=0110 b=1111 cin=1 sum=0110 c_out=1
+# a=0111 b=0000 cin=0 sum=0111 c_out=0
+# a=0111 b=0000 cin=1 sum=1000 c_out=0
+# a=0111 b=0001 cin=0 sum=1000 c_out=0
+# a=0111 b=0001 cin=1 sum=1001 c_out=0
+# a=0111 b=0010 cin=0 sum=1001 c_out=0
+# a=0111 b=0010 cin=1 sum=1010 c_out=0
+# a=0111 b=0011 cin=0 sum=1010 c_out=0
+# a=0111 b=0011 cin=1 sum=1011 c_out=0
+# a=0111 b=0100 cin=0 sum=1011 c_out=0
+# a=0111 b=0100 cin=1 sum=1100 c_out=0
+# a=0111 b=0101 cin=0 sum=1100 c_out=0
+# a=0111 b=0101 cin=1 sum=1101 c_out=0
+# a=0111 b=0110 cin=0 sum=1101 c_out=0
+# a=0111 b=0110 cin=1 sum=1110 c_out=0
+# a=0111 b=0111 cin=0 sum=1110 c_out=0
+# a=0111 b=0111 cin=1 sum=1111 c_out=0
+# a=0111 b=1000 cin=0 sum=1111 c_out=0
+# a=0111 b=1000 cin=1 sum=0000 c_out=1
+# a=0111 b=1001 cin=0 sum=0000 c_out=1
+# a=0111 b=1001 cin=1 sum=0001 c_out=1
+# a=0111 b=1010 cin=0 sum=0001 c_out=1
+# a=0111 b=1010 cin=1 sum=0010 c_out=1
+# a=0111 b=1011 cin=0 sum=0010 c_out=1
+# a=0111 b=1011 cin=1 sum=0011 c_out=1
+# a=0111 b=1100 cin=0 sum=0011 c_out=1
+# a=0111 b=1100 cin=1 sum=0100 c_out=1
+# a=0111 b=1101 cin=0 sum=0100 c_out=1
+# a=0111 b=1101 cin=1 sum=0101 c_out=1
+# a=0111 b=1110 cin=0 sum=0101 c_out=1
+# a=0111 b=1110 cin=1 sum=0110 c_out=1
+# a=0111 b=1111 cin=0 sum=0110 c_out=1
+# a=0111 b=1111 cin=1 sum=0111 c_out=1
+# a=1000 b=0000 cin=0 sum=1000 c_out=0
+# a=1000 b=0000 cin=1 sum=1001 c_out=0
+# a=1000 b=0001 cin=0 sum=1001 c_out=0
+# a=1000 b=0001 cin=1 sum=1010 c_out=0
+# a=1000 b=0010 cin=0 sum=1010 c_out=0
+# a=1000 b=0010 cin=1 sum=1011 c_out=0
+# a=1000 b=0011 cin=0 sum=1011 c_out=0
+# a=1000 b=0011 cin=1 sum=1100 c_out=0
+# a=1000 b=0100 cin=0 sum=1100 c_out=0
+# a=1000 b=0100 cin=1 sum=1101 c_out=0
+# a=1000 b=0101 cin=0 sum=1101 c_out=0
+# a=1000 b=0101 cin=1 sum=1110 c_out=0
+# a=1000 b=0110 cin=0 sum=1110 c_out=0
+# a=1000 b=0110 cin=1 sum=1111 c_out=0
+# a=1000 b=0111 cin=0 sum=1111 c_out=0
+# a=1000 b=0111 cin=1 sum=0000 c_out=1
+# a=1000 b=1000 cin=0 sum=0000 c_out=1
+# a=1000 b=1000 cin=1 sum=0001 c_out=1
+# a=1000 b=1001 cin=0 sum=0001 c_out=1
+# a=1000 b=1001 cin=1 sum=0010 c_out=1
+# a=1000 b=1010 cin=0 sum=0010 c_out=1
+# a=1000 b=1010 cin=1 sum=0011 c_out=1
+# a=1000 b=1011 cin=0 sum=0011 c_out=1
+# a=1000 b=1011 cin=1 sum=0100 c_out=1
+# a=1000 b=1100 cin=0 sum=0100 c_out=1
+# a=1000 b=1100 cin=1 sum=0101 c_out=1
+# a=1000 b=1101 cin=0 sum=0101 c_out=1
+# a=1000 b=1101 cin=1 sum=0110 c_out=1
+# a=1000 b=1110 cin=0 sum=0110 c_out=1
+# a=1000 b=1110 cin=1 sum=0111 c_out=1
+# a=1000 b=1111 cin=0 sum=0111 c_out=1
+# a=1000 b=1111 cin=1 sum=1000 c_out=1
+# a=1001 b=0000 cin=0 sum=1001 c_out=0
+# a=1001 b=0000 cin=1 sum=1010 c_out=0
+# a=1001 b=0001 cin=0 sum=1010 c_out=0
+# a=1001 b=0001 cin=1 sum=1011 c_out=0
+# a=1001 b=0010 cin=0 sum=1011 c_out=0
+# a=1001 b=0010 cin=1 sum=1100 c_out=0
+# a=1001 b=0011 cin=0 sum=1100 c_out=0
+# a=1001 b=0011 cin=1 sum=1101 c_out=0
+# a=1001 b=0100 cin=0 sum=1101 c_out=0
+# a=1001 b=0100 cin=1 sum=1110 c_out=0
+# a=1001 b=0101 cin=0 sum=1110 c_out=0
+# a=1001 b=0101 cin=1 sum=1111 c_out=0
+# a=1001 b=0110 cin=0 sum=1111 c_out=0
+# a=1001 b=0110 cin=1 sum=0000 c_out=1
+# a=1001 b=0111 cin=0 sum=0000 c_out=1
+# a=1001 b=0111 cin=1 sum=0001 c_out=1
+# a=1001 b=1000 cin=0 sum=0001 c_out=1
+# a=1001 b=1000 cin=1 sum=0010 c_out=1
+# a=1001 b=1001 cin=0 sum=0010 c_out=1
+# a=1001 b=1001 cin=1 sum=0011 c_out=1
+# a=1001 b=1010 cin=0 sum=0011 c_out=1
+# a=1001 b=1010 cin=1 sum=0100 c_out=1
+# a=1001 b=1011 cin=0 sum=0100 c_out=1
+# a=1001 b=1011 cin=1 sum=0101 c_out=1
+# a=1001 b=1100 cin=0 sum=0101 c_out=1
+# a=1001 b=1100 cin=1 sum=0110 c_out=1
+# a=1001 b=1101 cin=0 sum=0110 c_out=1
+# a=1001 b=1101 cin=1 sum=0111 c_out=1
+# a=1001 b=1110 cin=0 sum=0111 c_out=1
+# a=1001 b=1110 cin=1 sum=1000 c_out=1
+# a=1001 b=1111 cin=0 sum=1000 c_out=1
+# a=1001 b=1111 cin=1 sum=1001 c_out=1
+# a=1010 b=0000 cin=0 sum=1010 c_out=0
+# a=1010 b=0000 cin=1 sum=1011 c_out=0
+# a=1010 b=0001 cin=0 sum=1011 c_out=0
+# a=1010 b=0001 cin=1 sum=1100 c_out=0
+# a=1010 b=0010 cin=0 sum=1100 c_out=0
+# a=1010 b=0010 cin=1 sum=1101 c_out=0
+# a=1010 b=0011 cin=0 sum=1101 c_out=0
+# a=1010 b=0011 cin=1 sum=1110 c_out=0
+# a=1010 b=0100 cin=0 sum=1110 c_out=0
+# a=1010 b=0100 cin=1 sum=1111 c_out=0
+# a=1010 b=0101 cin=0 sum=1111 c_out=0
+# a=1010 b=0101 cin=1 sum=0000 c_out=1
+# a=1010 b=0110 cin=0 sum=0000 c_out=1
+# a=1010 b=0110 cin=1 sum=0001 c_out=1
+# a=1010 b=0111 cin=0 sum=0001 c_out=1
+# a=1010 b=0111 cin=1 sum=0010 c_out=1
+# a=1010 b=1000 cin=0 sum=0010 c_out=1
+# a=1010 b=1000 cin=1 sum=0011 c_out=1
+# a=1010 b=1001 cin=0 sum=0011 c_out=1
+# a=1010 b=1001 cin=1 sum=0100 c_out=1
+# a=1010 b=1010 cin=0 sum=0100 c_out=1
+# a=1010 b=1010 cin=1 sum=0101 c_out=1
+# a=1010 b=1011 cin=0 sum=0101 c_out=1
+# a=1010 b=1011 cin=1 sum=0110 c_out=1
+# a=1010 b=1100 cin=0 sum=0110 c_out=1
+# a=1010 b=1100 cin=1 sum=0111 c_out=1
+# a=1010 b=1101 cin=0 sum=0111 c_out=1
+# a=1010 b=1101 cin=1 sum=1000 c_out=1
+# a=1010 b=1110 cin=0 sum=1000 c_out=1
+# a=1010 b=1110 cin=1 sum=1001 c_out=1
+# a=1010 b=1111 cin=0 sum=1001 c_out=1
+# a=1010 b=1111 cin=1 sum=1010 c_out=1
+# a=1011 b=0000 cin=0 sum=1011 c_out=0
+# a=1011 b=0000 cin=1 sum=1100 c_out=0
+# a=1011 b=0001 cin=0 sum=1100 c_out=0
+# a=1011 b=0001 cin=1 sum=1101 c_out=0
+# a=1011 b=0010 cin=0 sum=1101 c_out=0
+# a=1011 b=0010 cin=1 sum=1110 c_out=0
+# a=1011 b=0011 cin=0 sum=1110 c_out=0
+# a=1011 b=0011 cin=1 sum=1111 c_out=0
+# a=1011 b=0100 cin=0 sum=1111 c_out=0
+# a=1011 b=0100 cin=1 sum=0000 c_out=1
+# a=1011 b=0101 cin=0 sum=0000 c_out=1
+# a=1011 b=0101 cin=1 sum=0001 c_out=1
+# a=1011 b=0110 cin=0 sum=0001 c_out=1
+# a=1011 b=0110 cin=1 sum=0010 c_out=1
+# a=1011 b=0111 cin=0 sum=0010 c_out=1
+# a=1011 b=0111 cin=1 sum=0011 c_out=1
+# a=1011 b=1000 cin=0 sum=0011 c_out=1
+# a=1011 b=1000 cin=1 sum=0100 c_out=1
+# a=1011 b=1001 cin=0 sum=0100 c_out=1
+# a=1011 b=1001 cin=1 sum=0101 c_out=1
+# a=1011 b=1010 cin=0 sum=0101 c_out=1
+# a=1011 b=1010 cin=1 sum=0110 c_out=1
+# a=1011 b=1011 cin=0 sum=0110 c_out=1
+# a=1011 b=1011 cin=1 sum=0111 c_out=1
+# a=1011 b=1100 cin=0 sum=0111 c_out=1
+# a=1011 b=1100 cin=1 sum=1000 c_out=1
+# a=1011 b=1101 cin=0 sum=1000 c_out=1
+# a=1011 b=1101 cin=1 sum=1001 c_out=1
+# a=1011 b=1110 cin=0 sum=1001 c_out=1
+# a=1011 b=1110 cin=1 sum=1010 c_out=1
+# a=1011 b=1111 cin=0 sum=1010 c_out=1
+# a=1011 b=1111 cin=1 sum=1011 c_out=1
+# a=1100 b=0000 cin=0 sum=1100 c_out=0
+# a=1100 b=0000 cin=1 sum=1101 c_out=0
+# a=1100 b=0001 cin=0 sum=1101 c_out=0
+# a=1100 b=0001 cin=1 sum=1110 c_out=0
+# a=1100 b=0010 cin=0 sum=1110 c_out=0
+# a=1100 b=0010 cin=1 sum=1111 c_out=0
+# a=1100 b=0011 cin=0 sum=1111 c_out=0
+# a=1100 b=0011 cin=1 sum=0000 c_out=1
+# a=1100 b=0100 cin=0 sum=0000 c_out=1
+# a=1100 b=0100 cin=1 sum=0001 c_out=1
+# a=1100 b=0101 cin=0 sum=0001 c_out=1
+# a=1100 b=0101 cin=1 sum=0010 c_out=1
+# a=1100 b=0110 cin=0 sum=0010 c_out=1
+# a=1100 b=0110 cin=1 sum=0011 c_out=1
+# a=1100 b=0111 cin=0 sum=0011 c_out=1
+# a=1100 b=0111 cin=1 sum=0100 c_out=1
+# a=1100 b=1000 cin=0 sum=0100 c_out=1
+# a=1100 b=1000 cin=1 sum=0101 c_out=1
+# a=1100 b=1001 cin=0 sum=0101 c_out=1
+# a=1100 b=1001 cin=1 sum=0110 c_out=1
+# a=1100 b=1010 cin=0 sum=0110 c_out=1
+# a=1100 b=1010 cin=1 sum=0111 c_out=1
+# a=1100 b=1011 cin=0 sum=0111 c_out=1
+# a=1100 b=1011 cin=1 sum=1000 c_out=1
+# a=1100 b=1100 cin=0 sum=1000 c_out=1
+# a=1100 b=1100 cin=1 sum=1001 c_out=1
+# a=1100 b=1101 cin=0 sum=1001 c_out=1
+# a=1100 b=1101 cin=1 sum=1010 c_out=1
+# a=1100 b=1110 cin=0 sum=1010 c_out=1
+# a=1100 b=1110 cin=1 sum=1011 c_out=1
+# a=1100 b=1111 cin=0 sum=1011 c_out=1
+# a=1100 b=1111 cin=1 sum=1100 c_out=1
+# a=1101 b=0000 cin=0 sum=1101 c_out=0
+# a=1101 b=0000 cin=1 sum=1110 c_out=0
+# a=1101 b=0001 cin=0 sum=1110 c_out=0
+# a=1101 b=0001 cin=1 sum=1111 c_out=0
+# a=1101 b=0010 cin=0 sum=1111 c_out=0
+# a=1101 b=0010 cin=1 sum=0000 c_out=1
+# a=1101 b=0011 cin=0 sum=0000 c_out=1
+# a=1101 b=0011 cin=1 sum=0001 c_out=1
+# a=1101 b=0100 cin=0 sum=0001 c_out=1
+# a=1101 b=0100 cin=1 sum=0010 c_out=1
+# a=1101 b=0101 cin=0 sum=0010 c_out=1
+# a=1101 b=0101 cin=1 sum=0011 c_out=1
+# a=1101 b=0110 cin=0 sum=0011 c_out=1
+# a=1101 b=0110 cin=1 sum=0100 c_out=1
+# a=1101 b=0111 cin=0 sum=0100 c_out=1
+# a=1101 b=0111 cin=1 sum=0101 c_out=1
+# a=1101 b=1000 cin=0 sum=0101 c_out=1
+# a=1101 b=1000 cin=1 sum=0110 c_out=1
+# a=1101 b=1001 cin=0 sum=0110 c_out=1
+# a=1101 b=1001 cin=1 sum=0111 c_out=1
+# a=1101 b=1010 cin=0 sum=0111 c_out=1
+# a=1101 b=1010 cin=1 sum=1000 c_out=1
+# a=1101 b=1011 cin=0 sum=1000 c_out=1
+# a=1101 b=1011 cin=1 sum=1001 c_out=1
+# a=1101 b=1100 cin=0 sum=1001 c_out=1
+# a=1101 b=1100 cin=1 sum=1010 c_out=1
+# a=1101 b=1101 cin=0 sum=1010 c_out=1
+# a=1101 b=1101 cin=1 sum=1011 c_out=1
+# a=1101 b=1110 cin=0 sum=1011 c_out=1
+# a=1101 b=1110 cin=1 sum=1100 c_out=1
+# a=1101 b=1111 cin=0 sum=1100 c_out=1
+# a=1101 b=1111 cin=1 sum=1101 c_out=1
+# a=1110 b=0000 cin=0 sum=1110 c_out=0
+# a=1110 b=0000 cin=1 sum=1111 c_out=0
+# a=1110 b=0001 cin=0 sum=1111 c_out=0
+# a=1110 b=0001 cin=1 sum=0000 c_out=1
+# a=1110 b=0010 cin=0 sum=0000 c_out=1
+# a=1110 b=0010 cin=1 sum=0001 c_out=1
+# a=1110 b=0011 cin=0 sum=0001 c_out=1
+# a=1110 b=0011 cin=1 sum=0010 c_out=1
+# a=1110 b=0100 cin=0 sum=0010 c_out=1
+# a=1110 b=0100 cin=1 sum=0011 c_out=1
+# a=1110 b=0101 cin=0 sum=0011 c_out=1
+# a=1110 b=0101 cin=1 sum=0100 c_out=1
+# a=1110 b=0110 cin=0 sum=0100 c_out=1
+# a=1110 b=0110 cin=1 sum=0101 c_out=1
+# a=1110 b=0111 cin=0 sum=0101 c_out=1
+# a=1110 b=0111 cin=1 sum=0110 c_out=1
+# a=1110 b=1000 cin=0 sum=0110 c_out=1
+# a=1110 b=1000 cin=1 sum=0111 c_out=1
+# a=1110 b=1001 cin=0 sum=0111 c_out=1
+# a=1110 b=1001 cin=1 sum=1000 c_out=1
+# a=1110 b=1010 cin=0 sum=1000 c_out=1
+# a=1110 b=1010 cin=1 sum=1001 c_out=1
+# a=1110 b=1011 cin=0 sum=1001 c_out=1
+# a=1110 b=1011 cin=1 sum=1010 c_out=1
+# a=1110 b=1100 cin=0 sum=1010 c_out=1
+# a=1110 b=1100 cin=1 sum=1011 c_out=1
+# a=1110 b=1101 cin=0 sum=1011 c_out=1
+# a=1110 b=1101 cin=1 sum=1100 c_out=1
+# a=1110 b=1110 cin=0 sum=1100 c_out=1
+# a=1110 b=1110 cin=1 sum=1101 c_out=1
+# a=1110 b=1111 cin=0 sum=1101 c_out=1
+# a=1110 b=1111 cin=1 sum=1110 c_out=1
+# a=1111 b=0000 cin=0 sum=1111 c_out=0
+# a=1111 b=0000 cin=1 sum=0000 c_out=1
+# a=1111 b=0001 cin=0 sum=0000 c_out=1
+# a=1111 b=0001 cin=1 sum=0001 c_out=1
+# a=1111 b=0010 cin=0 sum=0001 c_out=1
+# a=1111 b=0010 cin=1 sum=0010 c_out=1
+# a=1111 b=0011 cin=0 sum=0010 c_out=1
+# a=1111 b=0011 cin=1 sum=0011 c_out=1
+# a=1111 b=0100 cin=0 sum=0011 c_out=1
+# a=1111 b=0100 cin=1 sum=0100 c_out=1
+# a=1111 b=0101 cin=0 sum=0100 c_out=1
+# a=1111 b=0101 cin=1 sum=0101 c_out=1
+# a=1111 b=0110 cin=0 sum=0101 c_out=1
+# a=1111 b=0110 cin=1 sum=0110 c_out=1
+# a=1111 b=0111 cin=0 sum=0110 c_out=1
+# a=1111 b=0111 cin=1 sum=0111 c_out=1
+# a=1111 b=1000 cin=0 sum=0111 c_out=1
+# a=1111 b=1000 cin=1 sum=1000 c_out=1
+# a=1111 b=1001 cin=0 sum=1000 c_out=1
+# a=1111 b=1001 cin=1 sum=1001 c_out=1
+# a=1111 b=1010 cin=0 sum=1001 c_out=1
+# a=1111 b=1010 cin=1 sum=1010 c_out=1
+# a=1111 b=1011 cin=0 sum=1010 c_out=1
+# a=1111 b=1011 cin=1 sum=1011 c_out=1
+# a=1111 b=1100 cin=0 sum=1011 c_out=1
+# a=1111 b=1100 cin=1 sum=1100 c_out=1
+# a=1111 b=1101 cin=0 sum=1100 c_out=1
+# a=1111 b=1101 cin=1 sum=1101 c_out=1
+# a=1111 b=1110 cin=0 sum=1101 c_out=1
+# a=1111 b=1110 cin=1 sum=1110 c_out=1
+# a=1111 b=1111 cin=0 sum=1110 c_out=1
+# a=1111 b=1111 cin=1 sum=1111 c_out=1</pre>
+<hr/>
+
+<h1>四 结果分析</h1>
+<hr/>
+
+</body>
+</html>

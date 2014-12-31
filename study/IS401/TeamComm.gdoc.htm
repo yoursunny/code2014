@@ -1,0 +1,557 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html >
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+
+
+/* default css */
+
+table {
+  font-size: 1em;
+  line-height: inherit;
+}
+
+
+div, address, ol, ul, li, option, select { 
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+p {
+  margin: 0px;
+}
+
+body {
+  margin: 6px;
+  padding: 0px;
+  font-family: Verdana, sans-serif;
+  font-size: 10pt;
+  background-color: #ffffff;
+}
+
+
+@media screen {
+  html.pageview {
+    background-color: #f3f3f3 !important;
+  }
+
+  
+    
+  body { 
+    min-height: 1100px; 
+  }
+  * html body { 
+    height: 1100px; 
+  }
+  .pageview body {
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 2px solid #bbb;
+    border-bottom: 2px solid #bbb;
+    width: 648px !important;
+    margin: 15px auto 25px !important;
+    padding: 40px 50px; 
+  }
+  /* IE6 */
+  * html.pageview body {
+    overflow-x: auto;
+  }
+  
+  
+}
+
+
+h6 { font-size: 10pt }
+h5 { font-size: 11pt }
+h4 { font-size: 12pt }
+h3 { font-size: 13pt }
+h2 { font-size: 14pt }
+h1 { font-size: 16pt }
+
+blockquote {padding: 10px; border: 1px #DDD dashed }
+
+a img {border: 0}
+
+.pb {height: 1px}
+
+div.google_header, div.google_footer {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+
+/* Table of contents */
+.editor div.writely-toc {
+  background-color: #f3f3f3;
+  border: 1px solid #ccc;
+}
+.writely-toc > ol {
+  padding-left: 1.5em;
+  font-weight: bold;
+}
+ol.writely-toc-subheading {
+  padding-left: 1em;
+  font-weight: normal;
+}
+.writely-toc-none {
+  list-style-type: none;
+}
+.writely-toc-decimal {
+  list-style-type: decimal;
+}
+.writely-toc-upper-alpha {
+  list-style-type: upper-alpha;
+}
+.writely-toc-lower-alpha {
+  list-style-type: lower-alpha;
+}
+.writely-toc-upper-roman {
+  list-style-type: upper-roman;
+}
+.writely-toc-lower-roman {
+  list-style-type: lower-roman;
+}
+.writely-toc-disc {
+  list-style-type: disc;
+}
+
+/* end default css */
+
+
+  /* default print css */
+  
+  @media print {
+    body { 
+      padding: 0; 
+      margin: 0; 
+    }
+
+    div.google_header, div.google_footer {
+      display: block;
+      min-height: 0;
+      border: none;
+    }
+
+    div.google_header {
+      flow: static(header);
+    }
+
+    /* used to insert page numbers */
+    div.google_header::before, div.google_footer::before {
+      position: absolute;
+      top: 0;
+    }
+
+    div.google_footer {
+      flow: static(footer);
+    }
+
+    /* always consider this element at the start of the doc */
+    div#google_footer {
+      flow: static(footer, start);
+    }
+
+    span.google_pagenumber {
+      content: counter(page);
+    }
+
+    span.google_pagecount {
+      content: counter(pages);
+    }
+
+    /* Table of contents */
+    #WritelyTableOfContents a::after {
+      content: leader('.') target-counter(attr(href), page);
+      font-style: normal;
+    }
+  }
+
+  @page {
+    @top {
+      content: flow(header);
+    }
+    @bottom {
+      content: flow(footer);
+    }
+  }
+  /* end default print css */
+ 
+
+/* custom css */
+
+
+/* end custom css */
+
+
+
+  /* ui edited css */
+  
+  body {
+    font-family: Courier New;
+    
+    font-size: 12.0pt;
+    line-height: normal;
+    background-color: #ffffff;
+  }
+  /* end ui edited css */
+
+
+
+/* editor CSS */
+.editor a:visited {color: #551A8B}
+.editor table.zeroBorder {border: 1px dotted gray}
+.editor table.zeroBorder td {border: 1px dotted gray}
+.editor table.zeroBorder th {border: 1px dotted gray}
+
+
+.editor div.google_header, .editor div.google_footer {
+  border: 2px #DDDDDD dashed;
+  position: static;
+  width: 100%;
+  min-height: 2em;
+}
+
+.editor .misspell {background-color: yellow}
+
+
+.editor .pb {
+  border-top: 1px dashed #C0C0C0; 
+  border-bottom: 1px dashed #C0C0C0
+}
+.editor .writely-comment {
+  font-size: 9pt; 
+  line-height: 1.4; 
+  padding: 1px; 
+  border: 1px dashed #C0C0C0
+}
+/* end editor CSS */
+</style>
+
+
+<base target="_top">
+
+</head>
+
+<body
+    
+    revision="dc67cnjv_366gv7zhkfw:120">
+
+    
+    
+<h1 id=ylul>
+  团队通信系统：用ad hoc和TD-SCDMA实现
+</h1>
+F0503602 石君霄 5050369043<br id=f85k>
+<h2 id=f85k0>
+  一、需求说明<br id=f85k1>
+</h2>
+<ul id=nh0h>
+  <li id=nh0h0>
+    使用对象：一个工作团队，通常在客户单位的办公楼内工作，有时需要个人或集体外出工作。
+  </li>
+  <li id=nh0h1>
+    每位成员可以在任何时候、任何地点，找到任何一位成员，能提供话音、短信、视频、数据等各种业务；同时能提供互联网和公用电话网的接入。
+  </li>
+  <li id=nh0h2>
+    尽可能降低话费。
+  </li>
+  <li id=nh0h3>
+    在外出时终端是使用电池供电，需要节约电量。
+  </li>
+  <li id=nh0h4>
+    保证通信安全：不被窃听，非团队成员无法接入。<br id=nh0h5>
+  </li>
+</ul>
+<h2 id=s149>
+  二、系统结构
+</h2>
+我选择使用ad hoc和TD-SCDMA结合的方式实现这个团队通信系统。<br id=s1490>
+<ol id=ymsy>
+  <li id=ymsy0>
+    主要工作地点是“客户单位的办公楼”，在每一家客户单位安装基础设施相当麻烦，因此选择以ad
+    hoc为主的网络方案，不需要安装固定的基础设置，就可以自动组成网络
+  </li>
+  <li id=ymsy0>
+    “需要个人或集体外出工作”，为了保证外出后能继续通信，需要通过公用移动通信网络；为了确保较高的速率，我选择TD-SCDMA通信网络。<br id=n155>
+  </li>
+</ol>
+<div id=juwt style="PADDING:1em 0pt; TEXT-ALIGN:left">
+  <img id=veaz src=dc67cnjv_367g7vgqhf6_b.gif style="WIDTH:451px; HEIGHT:689px">
+</div>
+<ul id=djvn>
+  <li id=djvn0>
+    在办公楼内时，自动组建ad hoc网络。
+  </li>
+  <li id=djvn1>
+    ad hoc网络中有一个或多个网关设备：
+  </li>
+  <ul id=goh0>
+    <li id=djvn1>
+      可以提供公用电话网、互联网接入；整个系统中至少有一个公用电话网接入网关、一个互联网接入网关。
+    </li>
+    <li id=djvn1>
+      网关本身作为一个ad hoc节点来转发分组，而不受电池电量限制。
+    </li>
+  </ul>
+  <li id=djvn1>
+    成员集体外出时，至少一位成员接入TD-SCDMA网络，各成员间组成ad hoc网络。
+  </li>
+  <li id=djvn1>
+    成员单独外出时，接入TD-SCDMA网络。<br id=bc-5>
+  </li>
+</ul>
+<h2 id=ed-n>
+  三、数据链路层
+</h2>
+<div id=wq34 style="PADDING:1em 0pt; TEXT-ALIGN:left">
+  <img id=j33e src=dc67cnjv_368czg22bdc_b.gif style="WIDTH:388px; HEIGHT:324px">
+</div>
+数据链路层的功能：单跳的单播或广播，带有发送者身份认证，不保证可靠、不确保机密性。<br id=vylu>
+<h3 id=a-qq>
+  ㈠设备的编址
+</h3>
+传统网络上，IPv6地址属于网络层范畴；但是，在这个无线环境上，必须在数据链路层就指定IPv6地址，从而省去IP-MAC的转换。<br id=g13.>
+<ul id=bi1c0>
+  <li id=bi1c1>
+    每一台移动终端拥有：
+  </li>
+  <ul id=bi1c2>
+    <li id=bi1c3>
+      一个IPv6地址
+    </li>
+    <li id=bi1c4>
+      一个分机号码
+    </li>
+    <li id=bi1c5>
+      一个TD-SCDMA电话号码
+    </li>
+    <li id=bi1c5>
+      一组公钥、私钥<br id=rkgb>
+    </li>
+  </ul>
+  <li id=bi1c6>
+    每一台网关拥有
+  </li>
+  <ul id=bi1c7>
+    <li id=bi1c8>
+      一个IPv6地址
+    </li>
+    <li id=bi1c8>
+      (接入PSTN的网关)至少一个PSTN电话号码
+    </li>
+    <li id=bi1c8>
+      (接入互联网的网关)至少一个互联网IPv4或IPv6地址<br id=tiaq>
+    </li>
+    <li id=bi1c8>
+      一组公钥、私钥<br id=rkgb0>
+    </li>
+  </ul>
+</ul>
+任一设备知道所有设备的地址-分机号码-TD号码-公钥对应关系，也可以通过高层协议维护这个对应关系。<br id=rkgb1>
+<h3 id=asy->
+  ㈡数字签名
+</h3>
+为了防止攻击者接入网络，本系统在数据链路层实施了数字签名，并丢弃所有不带有有效签名的报文。<br id=aklg>
+<h3 id=qc5c>
+  ㈢VPN组件
+</h3>
+功能：负责建立和拆除基于TD-SCDMA网络的VPN连接<br id=qc5c0>
+<div id=ho-l style="PADDING:1em 0pt; TEXT-ALIGN:left">
+  <img id=payv src=dc67cnjv_372z3hzvtf4_b.gif style="WIDTH:589px; HEIGHT:328px">
+</div>
+<br id=w:5l>
+<h2 id=w:5l0>
+  四、网络层
+</h2>
+网络层的功能：无连接的、不可靠的单播数据传送，确保机密性。<br id=h3f6>
+网络层功能由3个实体完成：<br id=h3f60>
+<ul id=h3f61>
+  <li id=h3f62>
+    发送组件：负责源路由建立和分组的发送
+  </li>
+  <li id=h3f63>
+    接收组件：负责接收和转发分组
+  </li>
+  <li id=h3f64>
+    路由表管理组件：负责管理路由表
+  </li>
+</ul>
+<h3 id=asy->
+  ㈠发送组件
+</h3>
+<div id=rcmt style="PADDING:1em 0pt; TEXT-ALIGN:left">
+  <div id=xsax style="PADDING:1em 0pt; TEXT-ALIGN:left">
+    <img id=lvar src=dc67cnjv_373gmrpmqgc_b.gif style="WIDTH:447px; HEIGHT:574px">
+  </div>
+  通常，团队通信系统是突发使用、而不会持续使用。因此，为了节省电池电量，平时不对路由表进行维护，仅当需要传送分组时才建立路由（DSR）。<br id=pxy_0>
+</div>
+<ol id=s:p2>
+  <li id=s:p20>
+    要发送分组时，如果不存在一个有效的路由表项，则首先发出Route-Discovery分组，开始路由建立过程。
+  </li>
+  <li id=s:p21>
+    如果周围节点没有迅速响应ACK，则判定为单独外出，建立VPN连接，重新开始Route-Discovery。
+  </li>
+  <li id=s:p22>
+    收到Route-Reply后就路由表管理组件会生成路由项，即可开始发送数据。
+  </li>
+  <li id=s:p23>
+    超时没有路由项，如尚未建立VPN连接，判定为本方可能参与集体外出，建立VPN连接，重新开始Route-Discovery。
+  </li>
+  <li id=s:p23>
+    超时没有路由项，判定为对方外出且尚未建立VPN连接，给对方打电话通知其登录VPN。
+  </li>
+  <li id=s:p23>
+    对方登录VPN后会主动对本机发出Route-Discovery，路由表管理组件会生成路由项，即可开始发送数据。
+  </li>
+  <li id=s:p23>
+    超时没有路由项，报告连接失败。
+  </li>
+  <li id=s:p23>
+    对数据加密后发送，并通知路由表管理组件。
+  </li>
+  <li id=s:p23>
+    数据发送完毕后恢复空闲状态。<br id=s_fz>
+  </li>
+</ol>
+<h3 id=asy->
+  ㈡接收组件
+</h3>
+<div id=datf style="PADDING:1em 0pt; TEXT-ALIGN:left">
+  <img id=s:dk src=dc67cnjv_374hf9chdgr_b.gif style="WIDTH:491px; HEIGHT:339px">
+</div>
+<br id=ed-n0>
+<ol id=zv-t>
+  <li id=zv-t0>
+    有分组到达时，如果收到的是ACK、Route-Discovery、Route-Reply、Route-Failure，直接转发给路由表管理组件。
+  </li>
+  <li id=zv-t0>
+    如果收到数据分组，先发回ACK。
+  </li>
+  <li id=zv-t0>
+    如果数据分组发给本节点，解密并提交到高层。
+  </li>
+  <li id=zv-t0>
+    如果数据分组发给其他节点，转发给下一跳，并通知路由表管理组件。<br id=t0_n>
+  </li>
+</ol>
+<h3 id=zfuu>
+  ㈢路由表管理组件
+</h3>
+<div id=mpl8 style="PADDING:1em 0pt; TEXT-ALIGN:left">
+  <div id=sqm9 style="PADDING:1em 0pt; TEXT-ALIGN:left">
+    <img id=r3y7 src=dc67cnjv_376d79zgcgc_b.gif style="WIDTH:711px; HEIGHT:528px">
+  </div>
+</div>
+<ul id=v1xw1>
+  <li id=v1xw2>
+    收到Route-Discovery分组：
+  </li>
+  <ol id=xz0g>
+    <li id=v1xw2>
+      如果已经收到过相同ID的，判定这个分组非最佳路由，丢弃。
+    </li>
+    <li id=v1xw2>
+      如果目标是本节点，当前路径最先到达、是最佳路径，发送Route-Reply分组，并记录反方向的路由项。
+    </li>
+    <li id=v1xw2>
+      如果目标不是本节点，根据本节点的电池电量作一定延迟，然后广播Route-Discovery分组到周围节点。
+    </li>
+  </ol>
+  <li id=v1xw2>
+    收到Route-Reply分组：
+  </li>
+  <ul id=ku:k>
+    <li id=v1xw2>
+      这个分组是本节点发起的源路由选择获得了回应。
+    </li>
+    <li id=v1xw2>
+      只需记录分组内记载的路由项。
+    </li>
+  </ul>
+  <li id=v1xw2>
+    路由项超时处理：
+  </li>
+  <ul id=dq2d>
+    <li id=v1xw2>
+      对每个路由项设置active标注。
+    </li>
+    <li id=v1xw2>
+      每当收到一个ACK，相应的路由项继续有效，增加active标注。
+    </li>
+    <li id=v1xw2>
+      定期(T1)删除未标注active的过期路由项，并清空标注。
+    </li>
+  </ul>
+  <li id=v1xw2>
+    下游节点移走处理：
+  </li>
+  <ul id=xvwl>
+    <li id=v1xw2>
+      对每个发出或转发的分组，等待其ACK。
+    </li>
+    <li id=v1xw2>
+      如果ACK超时，判定下游节点已经移动至不可达，发出Route-Failure分组，并删除路由项。
+    </li>
+    <li id=v1xw2>
+      收到Route-Failure分组，向上游转发，并删除路由项。<br id=wr0c>
+    </li>
+  </ul>
+</ul>
+<h2 id=diea>
+  五、网关
+</h2>
+<h3 id=dgn.>
+  ㈠标准节点功能
+</h3>
+<div id=diea5>
+  网关本身是一个节点，它应当拥有节点的功能，例如转发。<br id=diea6>
+  <h3 id=qhnn>
+    ㈡VPN服务器<br id=qhnn0>
+  </h3>
+  拥有互联网接入的网关可作为VPN服务器使用，外出的成员可以通过TD-SCDMA网络接入此VPN。<br id=w0_.>
+  <ul id=ig1b>
+    <li id=ig1b0>
+      收到Route-Discovery分组时，如果分组的目标是已经拨入VPN的成员、或者分组的目标刚才通过拨入VPN的成员发来过数据(集体外出但未直接接入的成员)，网关应将此Route-Discovery分组通过VPN发送。
+    </li>
+    <li id=ig1b0>
+      对于一个成员既位于本地ad hoc网络、又接入了VPN的情况，由于VPN的延迟总是大于本地ad hoc，分组将从ad hoc传送。<br id=cij5>
+    </li>
+  </ul>
+  <h3 id=rd8s>
+    ㈢防火墙和NAT
+  </h3>
+  拥有互联网接入的网关可允许有互联网访问权限的成员经防火墙和NAT接入互联网。<br id=rtr9>
+  <h3 id=rtr90>
+    ㈣移动IP
+  </h3>
+  拥有互联网接入的网关可作为移动IP的家乡路由器，拦截发送给有移动IP权限的成员的报文，在ad hoc或VPN上转发给成员。<br id=rtr91>
+  <h3 id=th..>
+    ㈤PSTN呼出
+  </h3>
+  拥有PSTN接入的网关可允许有PSTN呼出权限的成员拨打普通电话。<br id=th..0>
+  <ul id=th..1>
+    <li id=th..2>
+      成员将信令和语音封装成数据分组，发送到PSTN网关。
+    </li>
+    <li id=th..3>
+      网关负责拨打电话并发送和接收信令和语音。
+    </li>
+  </ul>
+  注：发送数据前的建立路由，不使用PSTN网关，而是使用TD-SCDMA的电话功能、且只作通知而不会接通电话。成员间的语音通信是通过数据分组完成的，而不使用PSTN或TD-SCDMA的电话功能。<br id=j6hy>
+  <h3 id=yg86>
+    ㈥PSTN呼入
+  </h3>
+  拥有PSTN接入的网关可作为团队电话总机，将电话分机转接到成员的移动终端上。<br id=th..6>
+  <h2 id=mjps>
+    六、总结
+  </h2>
+  通过设计一个简单的团队通信系统，可以更深入理解无线网络的相关概念。当然，上面只是一个理论设计，离实现还是有相当距离的。如果需要实现这样的系统，必须进一步证明流程的正确性、解决各类细节问题，并考虑各国法规的某些限制。
+</div></body>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<course>
+
+<title>信息论与编码</title>
+<code>IS205</code>
+<teacher>齐开悦</teacher>
+
+<download>
+01绪论.ppt
+02信源及信源熵.ppt
+03无失真信源编码.ppt
+04限失真信源编码.ppt
+05信道编码a.ppt
+05信道编码b分组码.ppt
+05信道编码c循环码.ppt
+</download>
+
+</course>

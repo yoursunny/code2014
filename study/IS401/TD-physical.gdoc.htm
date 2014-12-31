@@ -1,0 +1,928 @@
+
+
+<html xmlns:gdoc="">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+
+
+/* default css */
+
+table {
+  font-size: 1em;
+  line-height: inherit;
+}
+
+
+div, address, ol, ul, li, option, select { 
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+p {
+  margin: 0px;
+}
+
+body {
+  margin: 6px;
+  padding: 0px;
+  font-family: Verdana, sans-serif;
+  font-size: 10pt;
+  background-color: #ffffff;
+}
+
+
+
+h6 { font-size: 10pt }
+h5 { font-size: 11pt }
+h4 { font-size: 12pt }
+h3 { font-size: 13pt }
+h2 { font-size: 14pt }
+h1 { font-size: 16pt }
+
+blockquote {padding: 10px; border: 1px #DDD dashed }
+
+a img {border: 0}
+
+div.google_header, div.google_footer {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+/* end default css */
+
+
+  /* default print css */
+  
+  @media print {
+    body { 
+      padding: 0; 
+      margin: 0; 
+    }
+
+    div.google_header, div.google_footer {
+      display: block;
+      min-height: 0;
+      border: none;
+    }
+
+    div.google_header {
+      flow: static(header);
+    }
+
+    /* used to insert page numbers */
+    div.google_header::before, div.google_footer::before {
+      position: absolute;
+      top: 0;
+    }
+
+    div.google_footer {
+      flow: static(footer);
+    }
+
+    /* always consider this element at the start of the doc */
+    div#google_footer {
+      flow: static(footer, start);
+    }
+
+    span.google_pagenumber {
+      content: counter(page);
+    }
+
+    span.google_pagecount {
+      content: counter(pages);
+    }
+  }
+
+  @page {
+    @top {
+      content: flow(header);
+    }
+    @bottom {
+      content: flow(footer);
+    }
+  }
+  /* end default print css */
+ 
+
+/* custom css */
+
+
+/* end custom css */
+
+
+
+  /* ui edited css */
+  
+  body {
+    font-family: Courier New;
+    
+    font-size: 12.0pt;
+    line-height: normal;
+    background-color: #ffffff;
+  }
+  /* end ui edited css */
+
+
+
+
+</style>
+
+
+</head>
+
+<body
+    
+    revision="dc67cnjv_357c4775pgz:273">
+
+    
+    
+<p id=rqjh0 style=TEXT-ALIGN:center>
+  <font id=s8ai0 size=6><span id=s8ai1 style="FONT-FAMILY:Arial Black">TD-SCDMA
+  Physical Layer Design Overview</span></font><br id=zmre1>
+</p>
+<div id=ayms0>
+  <br id=g5w_0>
+  <div id=g5w_1 style=TEXT-ALIGN:center>
+    <span id=mfhx0 style="FONT-FAMILY:Comic Sans MS">Author
+    Information</span><br id=ayms1 style="FONT-FAMILY:Comic Sans MS">
+    <span id=mfhx1 style="FONT-FAMILY:Comic Sans MS">College: Information
+    Security Engineering
+    College</span><br id=ayms2 style="FONT-FAMILY:Comic Sans MS">
+    <span id=mfhx2 style="FONT-FAMILY:Comic Sans MS">Class:
+    F0503602</span><br id=ayms3 style="FONT-FAMILY:Comic Sans MS">
+    <span id=mfhx3 style="FONT-FAMILY:Comic Sans MS">Name: SHI
+    Junxiao</span><br id=ayms4 style="FONT-FAMILY:Comic Sans MS">
+    <span id=mfhx4 style="FONT-FAMILY:Comic Sans MS">Instructor: WU
+    Yue</span><br id=a55w0 style="FONT-FAMILY:Comic Sans MS">
+    <span id=mfhx5 style="FONT-FAMILY:Comic Sans MS">Instructor's college:
+    Information Security Engineering College</span><br id=zmre2>
+  </div>
+</div>
+<br id=s8ai2>
+<div id=mfhx6 style=TEXT-ALIGN:center>
+  <span id=cm.20 style="FONT-FAMILY:Arial Black">ABSTRACT</span><br id=mfhx7>
+</div>
+&nbsp;&nbsp;&nbsp;&nbsp;TD-SCDMA is the first 3G mobile network launched in
+China. This paper takes a look at the specification of TD-SCDMA, and focuses at
+the physical layer design.<br id=cm.21>
+<span id=oi0u0 style="FONT-FAMILY:Arial Black">KEYWORDS</span>&nbsp; TD-SCDMA,
+3G, mobile, physical layer<br id=cm.23>
+<h1 id=atzc0>
+  1 Overview
+</h1>
+<h2 id=w2t90>
+  1.1 Current Status
+</h2>
+&nbsp;&nbsp;&nbsp;&nbsp;Time Division-Synchronous Code Division Multiple Access,
+or TD-SCDMA, is a 3G mobile telecommunication standard, being persued in the
+People's Republic of China, in an attempt not to be "dependant on Western
+technology". "Commercial trials" across eight cities was launched on April 1,
+2008 and will eventually include 60,000 users.<br id=mfhx10>
+&nbsp;&nbsp;&nbsp; As I read in cnBeta.com, the results were unsatisfactory.
+Many users reported that the signal is not as good as the 2G networks, GSM or
+CDMA. There are only a small number of TD-SCDMA users, so users don't know who
+they can make Video-Call to. More Internet cards were sold than cell phones.<br id=on.j0>
+<h2 id=j:y20>
+  1.2 Value of my Topic
+</h2>
+&nbsp;&nbsp;&nbsp; TD-SCDMA standard has been adopted by 3GPP since Rel-4, and
+offered as air interfaces for the UMTS-TDD system.<br id=y9nm0>
+&nbsp;&nbsp;&nbsp; It's interesting and useful to know something deep of this
+blooming 3G network.<br id=mfhx12>
+<h2 id=jcqr0>
+  1.3 Purpose and Scope<br id=jcqr1>
+</h2>
+&nbsp;&nbsp;&nbsp; I am writing this paper to share my findings when I'm reading
+a part of TD-SCDMA Technical Specification.<br id=sp1l0>
+&nbsp;&nbsp;&nbsp; I will focus on the overall architecture and the physical
+layer, only a little of other parts will be mentioned. I will try to find out
+<span id=w7.t0><i id=dpsj0>why</i></span> they design the physical layer like
+that.<br id=s8ai4>
+<br id=ek9c0>
+<h1 id=exjr0>
+  2 Radio Interface Protocol Architecture
+</h1>
+&nbsp;&nbsp;&nbsp; TD-SCDMA is assumed to use an architecture of User Equipment
+(UE), RAN, and Core Network. Radio interface acts as the Access Stratum of
+TD-SCDMA.<br id=gi6o0>
+&nbsp;&nbsp;&nbsp; The radio interface is divided into three protocol layers:<br id=gi6o1>
+<ul id=gi6o2>
+  <li id=gi6o3>
+    L3, network layer (RRC)<br id=gefi0>
+  </li>
+  <li id=gi6o4>
+    L2, data link layer
+  </li>
+  <ul id=gi6o5>
+    <li id=gi6o6>
+      RLC, Radio Link Control sublayer<br id=z-5i0>
+    </li>
+    <li id=gi6o6>
+      MAC, Medium Access Control sublayer
+    </li>
+  </ul>
+  <li id=gi6o8>
+    L1, physical layer
+  </li>
+</ul>
+<div id=xdp9 style="PADDING:1em 0pt; TEXT-ALIGN:left">
+  <img id=y7j_0 src=dc67cnjv_358fwmhcff7_b.png style="WIDTH:679px; HEIGHT:442px">
+</div>
+&nbsp;&nbsp;&nbsp; It's obvious that these three layers are taken from the
+famous OSI 7-layer model. Define the protocol in each layer, define the
+interface on each SAP, then a change in any layer won't affect other layers.<br id=qkor0>
+&nbsp;&nbsp;&nbsp; The future of communication is All-IP (everything will be
+packed in IPv6 packets). As a 3G standard, using the OSI 7-layer model is
+appropriate.<br id=zs:g0>
+&nbsp;&nbsp;&nbsp; Radio interface protocol includes only the lowest three
+layers of the OSI model, because this standard defines only the access stratum.
+It's enough to use only those three layers to provide a QoS-aware end-to-end
+data transfering and necessary controling &amp; charging functions.<br id=gi6o10>
+<h2 id=wi1q0>
+  2.1 Physical Layer<br id=wi1q1>
+</h2>
+&nbsp;&nbsp;&nbsp; The physical layer offers information transfer services to
+MAC layer. L1 should know how to transfer those data over the radio interface.<br id=sf970>
+<br id=xz150>
+&nbsp;&nbsp;&nbsp; It provides two types of transport channels:<br id=exet0>
+<ul id=exet1>
+  <li id=exet2>
+    common transport channels: there is a need for in-band identification of the
+    UEs, by using addresses<br id=exet3>
+  </li>
+  <li id=exet4>
+    dedicated transport channels: UEs are identified by the physical channel
+  </li>
+</ul>
+<br id=dzwc0>
+&nbsp;&nbsp;&nbsp; Major functions:<br id=dzwc1>
+<ul id=dzwc2>
+  <li id=dzwc3>
+    error detection, FEC encoding/decoding
+  </li>
+  <li id=dzwc3>
+    rate matching
+  </li>
+  <li id=dzwc3>
+    mapping transport channels to physical channels (code, time slot, frequency)
+  </li>
+  <li id=dzwc3>
+    power control
+  </li>
+  <li id=dzwc3>
+    synchronization control
+  </li>
+  <li id=dzwc3>
+    beamforming for uplink &amp; downlink
+  </li>
+  <li id=dzwc3>
+    user positioning<br id=j8:80>
+  </li>
+</ul>
+<br id=xz151>
+&nbsp;&nbsp;&nbsp; More about the physical layer will be discussed in chapter 3.<br id=s8ai6>
+<h2 id=c4990>
+  2.2 MAC Layer
+</h2>
+&nbsp;&nbsp;&nbsp; The MAC sublayer provides:<br id=c4991>
+<ul id=c1.m0>
+  <li id=c1.m1>
+    unacknowledged data transfer: send SDUs to another MAC entity. But no ACK is
+    provided, so there is no guaranteeing. This service does not provide any
+    data segmentation, either.<br id=rmc:0>
+  </li>
+  <li id=c1.m2>
+    reallocation of radio resources and MAC parameters
+  </li>
+  <li id=c1.m2>
+    reporting of measurements: This can be used for charging.<br id=rrou0>
+  </li>
+</ul>
+<br id=u2-w0>
+&nbsp;&nbsp;&nbsp; Major MAC functions:<br id=c9nc0>
+<ul id=c9nc1>
+  <li id=c9nc2>
+    mapping logical channels to transport channels<br id=lsd20>
+  </li>
+  <li id=c9nc2>
+    selection of "Transport Format" or "Transport Format Set" depending on
+    instantaneous source rate.<br id=xz152>
+    This is one of the technical highlights in TD-SCDMA: supporting dynamic
+    bit-rate, and even different downlink / uplink rates.<br id=pyet0>
+  </li>
+  <li id=c9nc2>
+    priority handling between data flows of one UE, or between UEs
+  </li>
+  <li id=c9nc2>
+    identification of UEs on common transport channels
+  </li>
+</ul>
+<br id=v7y-0>
+&nbsp;&nbsp;&nbsp; This MAC sublayer is similar to the one in TCP/IP. Unlike the
+wired computer network, its bit-rate is changing instantaneously, and it should
+use precious transport resources efficiently.<br id=v7y-2>
+<h2 id=gycf0>
+  2.3 RLC Layer
+</h2>
+&nbsp;&nbsp;&nbsp; The RLC sublayer provides:<br id=gycf1>
+<ul id=gycf2>
+  <li id=gycf3>
+    RLC connection
+  </li>
+  <li id=gycf3>
+    data transfer
+  </li>
+  <ul id=o-vk0>
+    <li id=gycf3>
+      transparent data transfer: without adding RLC header<br id=o-vk1>
+    </li>
+    <li id=gycf3>
+      unacknowledged data transfer: no guaranteeing, out-of-sequence; assures
+      error-free, unique, immediate
+    </li>
+    <li id=gycf3>
+      acknowledged data transfer: guaranteeing (maybe by ARQ); assures
+      error-free, unique; can be in-sequence or out-of-sequence
+    </li>
+  </ul>
+  <li id=gycf3>
+    QoS setting
+  </li>
+</ul>
+<br id=bjk80>
+&nbsp;&nbsp;&nbsp; It seems that RLC can provide some services like UDP and TCP,
+but this is in the data link layer! I'll explain this later.<br id=bjk81>
+<br id=gycf5>
+&nbsp;&nbsp;&nbsp; Major RLC functions:<br id=gycf6>
+<ul id=ckgm0>
+  <li id=ckgm1>
+    connection control
+  </li>
+  <li id=ckgm1>
+    segmentation, compression, concatenation, padding
+  </li>
+  <li id=ckgm1>
+    transfer of user data, error correction, in-sequence delivery, duplicate
+    detection
+  </li>
+  <li id=ckgm1>
+    flow control
+  </li>
+</ul>
+<h2 id=gefi1>
+  2.4 RRC Layer
+</h2>
+&nbsp;&nbsp;&nbsp; The RRC layer provides:<br id=so800>
+<ul id=so801>
+  <li id=so802>
+    general control
+  </li>
+  <li id=so803>
+    notification
+  </li>
+  <li id=so804>
+    dedicated control<br id=so805>
+  </li>
+</ul>
+<br id=cgau0>
+&nbsp;&nbsp;&nbsp; RRC is focusing on "control". In fact, RRC &amp; RLC are
+divided into Control-plane and User-plane.<br id=gycf8>
+<h2 id=hln:0>
+  2.5 Why is "UDP &amp; TCP" appearing in RLC?<br id=hln:1>
+</h2>
+&nbsp;&nbsp;&nbsp; As I mentioned above, three types of data transfer services
+is provided in the RLC sublayer. Unacknowledged data transfer looks like UDP
+(however UDP does not ensure unique), and acknowledged data transfer looks like
+TCP.<br id=bqhl0>
+&nbsp;&nbsp;&nbsp; In computer network, UDP and TCP are on transport layer
+(layer 4). But they are here on the data link layer, why?<br id=s8ai8>
+&nbsp;&nbsp;&nbsp; Let take a look at layer 2-4 in TCP/IP.<br id=q8xh0>
+<div id=e5tp0>
+  <table border=1 cellpadding=3 cellspacing=0 id=o3.j width=100%>
+    <tbody id=e5tp1>
+    <tr id=e5tp2>
+      <td id=e5tp3 style=FONT-FAMILY:Verdana>
+        <b id=dpsj1>LAYER<br id=e5tp4>
+        </b>
+      </td>
+      <td id=e5tp5 style=FONT-FAMILY:Verdana>
+        <b id=dpsj2>MAJOR PROTOCOLS<br id=e5tp6>
+        </b>
+      </td>
+      <td id=e5tp7 style=FONT-FAMILY:Verdana>
+        <b id=dpsj3>MAJOR SERVICES &amp; FUNCTIONS<br id=e5tp8>
+        </b>
+      </td>
+      <td id=e5tp9 style=FONT-FAMILY:Verdana>
+        <b id=dpsj4>TD-SCDMA equivalent<br id=e5tp10>
+        </b>
+      </td>
+    </tr>
+    <tr id=e5tp47>
+      <td id=e5tp48>
+        L2 data link<br id=e5tp49>
+      </td>
+      <td id=e5tp50>
+        802.3 Ethernet, 802.11 wireless<br id=e5tp51>
+      </td>
+      <td id=e5tp52>
+        unacknowledged peer-to-peer data transfer, identification of stations
+        with MAC addresses<br id=e5tp53>
+      </td>
+      <td id=e5tp54>
+        MAC sublayer<br id=e5tp55>
+      </td>
+    </tr>
+    <tr id=e5tp56>
+      <td id=e5tp57>
+        L3 network<br id=e5tp58>
+      </td>
+      <td id=e5tp59>
+        IP<br id=e5tp60>
+      </td>
+      <td id=e5tp61>
+        routing with IP addresses<br id=e5tp62>
+      </td>
+      <td id=e5tp63>
+        none<br id=e5tp64>
+      </td>
+    </tr>
+    <tr id=e5tp65>
+      <td id=e5tp66>
+        L4 transport<br id=e5tp67>
+      </td>
+      <td id=e5tp68>
+        TCP UDP<br id=e5tp69>
+      </td>
+      <td id=e5tp70>
+        unacknowledged / acknowledged end-to-end data transfer, flow control,
+        (TCP)Automatic Repeat reQuest<br id=e5tp71>
+      </td>
+      <td id=e5tp72>
+        RLC sublayer<br id=e5tp73>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+&nbsp;&nbsp;&nbsp; Now it's clear that "UDP &amp; TCP" are moved into the data
+link layer because of the absence of "IP" routing requirements. TD-SCDMA's MAC
+layer do have routing function, but that's the routing of signalling.<br id=cy-y0>
+&nbsp;&nbsp;&nbsp; In mobile communication systems, radio interface is between
+Mobile Station (UE in TD-SCDMA) and Base Station, and controlling is mostly done
+by Mobile Switching Center rather than data stations themselves. Routing of user
+data is not necessary in radio interface, so "UDP &amp; TCP" can be moved down
+to RLC sublayer on L2.<br id=hln:3>
+<h1 id=gl6o0>
+  3 Details about the Physical Layer
+</h1>
+<h2 id=gl6o1>
+  3.1 Transport Channels<br id=gl6o2>
+</h2>
+&nbsp;&nbsp;&nbsp; There are two types of transport channels: common channels,
+where there is a need for in-band identification; dedicated channels, where UEs
+are identified by physical channels.<br id=gl6o3>
+&nbsp;&nbsp;&nbsp; Transport channels and mapping to physical channels:
+(optional channels are omitted)<br id=p5:l0>
+<div id=b1:d0>
+  <table border=1 cellpadding=3 cellspacing=0 id=e7qe width=100%>
+    <tbody id=b1:d1>
+    <tr id=b1:d2>
+      <td id=s9810 style=FONT-FAMILY:Verdana>
+        <b id=rnh70>PHY<br id=s9811>
+        </b>
+      </td>
+      <td id=v37z0 style=FONT-FAMILY:Verdana>
+        <b id=rnh71>PHYSICAL CHANNEL</b>
+      </td>
+      <td id=sbg:0 style=FONT-FAMILY:Verdana>
+        <b id=rnh72>TIME SLOT / CODE<br id=sbg:1>
+        </b>
+      </td>
+      <td id=nztv0 style=FONT-FAMILY:Verdana>
+        <b id=rnh73>L1<br id=nztv1>
+        </b>
+      </td>
+      <td id=b1:d5 style=FONT-FAMILY:Verdana>
+        <b id=rnh74>TRANSPORT CHANNEL<br id=b1:d6>
+        </b>
+      </td>
+      <td id=b1:d7 style=FONT-FAMILY:Verdana>
+        <b id=rnh75>TYPE<br id=b1:d8>
+        </b>
+      </td>
+      <td id=b1:d9 style=FONT-FAMILY:Verdana>
+        <b id=rnh76>UP/DOWN<br id=b1:d10>
+        </b>
+      </td>
+      <td id=cls.0 style=FONT-FAMILY:Verdana>
+        <font id=z7vr0><b id=rnh77>CONTENT</b></font><br id=cls.1>
+      </td>
+    </tr>
+    <tr id=b1:d13>
+      <td id=s9812>
+        PRACH<br id=s9813>
+      </td>
+      <td id=v37z3>
+        Physical Random Access Channel<br id=v37z4>
+      </td>
+      <td id=sbg:2>
+        Tu0, code 0/1/2/3<br id=sbg:3>
+      </td>
+      <td id=nztv2>
+        RACH<br id=nztv3>
+      </td>
+      <td id=b1:d16>
+        Random Access Channel<br id=b1:d17>
+      </td>
+      <td id=b1:d18>
+        common<br id=b1:d19>
+      </td>
+      <td id=b1:d20>
+        uplink<br id=b1:d21>
+      </td>
+      <td id=cls.2>
+        initial access, non-realtime dedicated control / traffic<br id=cls.3>
+      </td>
+    </tr>
+    <tr id=b1:d24>
+      <td id=s9814>
+        CCPCH<br id=s9815>
+      </td>
+      <td id=v37z7>
+        Common Control Physical Channel
+      </td>
+      <td id=sbg:4>
+        Td1/Td0, code C/D/E/F<br id=sbg:5>
+      </td>
+      <td id=nztv4>
+        FACH<br id=nztv5>
+      </td>
+      <td id=b1:d27>
+        Forward Access Channel<br id=b1:d28>
+      </td>
+      <td id=b1:d29>
+        common<br id=b1:d30>
+      </td>
+      <td id=b1:d31>
+        downlink<br id=b1:d32>
+      </td>
+      <td id=cls.4>
+        small amount of data<br id=cls.5>
+      </td>
+    </tr>
+    <tr id=b1:d35>
+      <td id=s9816>
+        DPCH
+      </td>
+      <td id=v37z11>
+        Dedicated Physical Channel
+      </td>
+      <td id=sbg:6>
+        <br id=sbg:7>
+      </td>
+      <td id=nztv6>
+        DSCH<br id=nztv7>
+      </td>
+      <td id=b1:d38>
+        Downlink Shared Channel<br id=b1:d39>
+      </td>
+      <td id=b1:d40>
+        common
+      </td>
+      <td id=b1:d42>
+        downlink<br id=b1:d43>
+      </td>
+      <td id=cls.6>
+        (several UEs) dedicated control / traffic<br id=cls.7>
+      </td>
+    </tr>
+    <tr id=b1:d46>
+      <td id=s9818>
+        DPCH
+      </td>
+      <td id=v37z15>
+        Dedicated Physical Channel
+      </td>
+      <td id=sbg:8>
+        <br id=sbg:9>
+      </td>
+      <td id=nztv8>
+        USCH<br id=nztv9>
+      </td>
+      <td id=b1:d49>
+        Uplink Shared Channel<br id=b1:d50>
+      </td>
+      <td id=b1:d51>
+        common
+      </td>
+      <td id=b1:d53>
+        uplink<br id=b1:d54>
+      </td>
+      <td id=cls.8>
+        (several UEs) dedicated control / traffic
+      </td>
+    </tr>
+    <tr id=b1:d57>
+      <td id=s98110>
+        CCPCH<br id=s98111>
+      </td>
+      <td id=v37z19>
+        Common Control Physical Channel<br id=v37z20>
+      </td>
+      <td id=sbg:10>
+        Td0, code 0/1<br id=sbg:11>
+      </td>
+      <td id=nztv10>
+        BCH<br id=nztv11>
+      </td>
+      <td id=b1:d60>
+        Boardcast Channel<br id=b1:d61>
+      </td>
+      <td id=b1:d62>
+        common
+      </td>
+      <td id=b1:d64>
+        downlink<br id=b1:d65>
+      </td>
+      <td id=cls.10>
+        system information (into entire cell)<br id=cls.11>
+      </td>
+    </tr>
+    <tr id=nztv12>
+      <td id=s98112>
+        PSCH<br id=s98113>
+      </td>
+      <td id=nztv13>
+        Physical Synchronization Channel<br id=nztv14>
+      </td>
+      <td id=sbg:12>
+        <br id=sbg:13>
+      </td>
+      <td id=nztv15>
+        SCH<br id=nztv16>
+      </td>
+      <td id=nztv17>
+        Synchronization Channel<br id=nztv18>
+      </td>
+      <td id=nztv19>
+        common
+      </td>
+      <td id=nztv21>
+        downlink<br id=nztv22>
+      </td>
+      <td id=nztv25>
+        synchronization information (into entire cell)<br id=nztv26>
+      </td>
+    </tr>
+    <tr id=nztv27>
+      <td id=s98114>
+        CCPCH<br id=s98115>
+      </td>
+      <td id=nztv28>
+        Common Control Physical Channel
+      </td>
+      <td id=sbg:14>
+        Td0, code 0/1
+      </td>
+      <td id=nztv30>
+        PCH<br id=nztv31>
+      </td>
+      <td id=nztv32>
+        Paging Channel<br id=nztv33>
+      </td>
+      <td id=nztv34>
+        common<br id=veoe0>
+      </td>
+      <td id=nztv36>
+        downlink<br id=nztv37>
+      </td>
+      <td id=nztv40>
+        paging &amp; notification (for UE idle mode procedures)<br id=nztv41>
+      </td>
+    </tr>
+    <tr id=cgw70>
+      <td id=s98116>
+        DPCH<br id=s98117>
+      </td>
+      <td id=cgw71>
+        Dedicated Physical Channel<br id=cgw72>
+      </td>
+      <td id=sbg:16>
+        one or more (TS,code)
+      </td>
+      <td id=cgw73>
+        DCH<br id=cgw74>
+      </td>
+      <td id=cgw75>
+        Dedicated Channel<br id=cgw76>
+      </td>
+      <td id=cgw77>
+        dedicated
+      </td>
+      <td id=cgw79>
+        up &amp; down<br id=cgw710>
+      </td>
+      <td id=cgw713>
+        <br id=cgw714>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<br id=j97o0>
+&nbsp;&nbsp;&nbsp; TD-SCDMA is designed to use two types of transport channels.<br id=gl6o4>
+<ul id=y55v0>
+  <li id=y55v1>
+    boardcast on common channels, because they should be received by all UEs
+  </li>
+  <li id=y55v2>
+    initial access on common channels, because there is no way for a "new" UE to
+    know its dedicated channel
+  </li>
+  <li id=y55v2>
+    large amount of (realtime) data (control information or user data) on
+    dedicated channels, because doing CSMA/CD on common channels may delay the
+    transmit and can't ensure realtime<br id=sq400>
+  </li>
+  <li id=y55v2>
+    small amount of (non-realtime) data on common channels, because CSMA/CD
+    won't delay this little piece so much<br id=sq401>
+  </li>
+</ul>
+<br id=f-lw0>
+&nbsp;&nbsp;&nbsp; Mobile communication systems should be designed to save
+bandwidth / channels, so TD-SCDMA is designed like that.<br id=gl6o7>
+<h2 id=tqrw0>
+  3.2 Physical Channels
+</h2>
+&nbsp;&nbsp;&nbsp; Every signal is eventually transmitted on a physical channel.
+Physical channels are identified by code, time slot, frequency.<br id=w8q90>
+&nbsp;&nbsp;&nbsp; TD-SCDMA's physical channels take a four-layer structure:<br id=n36l0>
+<div id=x0m_ style="PADDING:1em 0pt; TEXT-ALIGN:left">
+  <img id=n36l1 src=dc67cnjv_359z3ms55mc_b.png style="WIDTH:540px; HEIGHT:213px">
+</div>
+<ul id=gesf1>
+  <li id=gesf2>
+    superframe, 720ms; contains 72 radio frames<br id=gesf3>
+  </li>
+  <li id=gesf4>
+    radio frame, 10ms; contains 2 subframes<br id=gesf5>
+  </li>
+  <li id=gesf6>
+    subframe, 5ms, 1.28Mchip/s; contains 7 main time slots and 3 special time
+    slots
+  </li>
+  <ul id=p58o0>
+    <li id=gesf6>
+      7 main time slots can be used as downlink or uplink. 1 downlink &amp; 6
+      uplink, or 1 uplink &amp; 1 downlink are both allowed, it's not required
+      to have down/uplinks in pair. This design make TD-SCDMA fit the need where
+      "down rate != up rate"
+    </li>
+    <li id=gesf6>
+      downlink slots come first, followed by DwPTS &amp; G &amp; UpPTS (used for
+      synchronization), uplink slots appear last<br id=ob:r0>
+    </li>
+  </ul>
+  <li id=gesf6>
+    time slots
+  </li>
+  <ul id=jcds0>
+    <li id=gesf6>
+      main time slot (TS), 675μs
+    </li>
+    <li id=gesf6>
+      Downlink Pilot Time Slot (DwPTS), 75μs
+    </li>
+    <li id=gesf6>
+      Uplink Pilot Time Slot (UpPTS), 125μs
+    </li>
+    <li id=gesf6>
+      Guard Period (G), 75μs; indicates the switching point from downlink to
+      uplink
+    </li>
+  </ul>
+</ul>
+<br id=z8ro0>
+&nbsp;&nbsp;&nbsp; Dedicated physical channels are located in main time slots.
+With spreading codes, up to 16 users' bursts can be transmitted within one TS.
+Each burst contains 704 chips for transmitting data. If there are 16 users in
+this TS, these 704 chips can transmit 22 symbols(bits) of each user; if there
+are only 4, 88 symbols are transmitted.<br id=gesf8>
+<div id=j.g0 style="PADDING:1em 0pt; TEXT-ALIGN:left">
+  <img id=dmoa0 src=dc67cnjv_360t9fmz8w_b.png style="WIDTH:544px; HEIGHT:69px">
+</div>
+&nbsp;&nbsp;&nbsp; "Data symbols" are used to transmit user data from the data
+link layer. But when there is need to transmit L1 control data (eg. CRC), the
+physical layer may "steal" several symbols.<br id=gl6o8>
+<h2 id=kokp0>
+  3.3 Multiplexing and Channel Coding
+</h2>
+&nbsp;&nbsp;&nbsp; Data stream from/to MAC is encoded/decoded to offer transport
+services. Channel coding scheme includes error detection, error correcting,
+interleaving and mapping transport channels onto physical channels (one data
+stream mapped onto one or several physical channels).<br id=gl6o9>
+<div id=henn style="PADDING:1em 0pt; TEXT-ALIGN:left">
+  <img id=i1gt0 src=dc67cnjv_361g64fbqdp_b.png style="WIDTH:477px; HEIGHT:853px">
+</div>
+<ol id=u.sk0>
+  <li id=uhut1>
+    error detection: provided through CRC. Higher layers should tell L1 to use
+    24,16,8 or 0 bits of CRC
+  </li>
+  <li id=uhut1>
+    transport block concatenatation / segmentation
+  </li>
+  <li id=uhut1>
+    channel coding: convolutional code or turbo code may be applied, chosen by
+    higher layers.
+  </li>
+  <li id=uhut1>
+    radio frame size equalisation: pad the input to ensure the output can be
+    segmented in several segments of same size
+  </li>
+  <li id=uhut1>
+    1st interleaving: to avoid interfere<br id=tucj0>
+  </li>
+  <li id=uhut1>
+    radio frame segmentation
+  </li>
+  <li id=uhut1>
+    rate matching: bits are repeated for slow rate
+  </li>
+  <li id=uhut1>
+    TrCH multiplexing
+  </li>
+  <li id=uhut1>
+    physical channel segmentation
+  </li>
+  <li id=uhut1>
+    2nd interleaving: to avoid interfere
+  </li>
+  <li id=uhut1>
+    physical channel mapping
+  </li>
+  <li id=uhut1>
+    multiplexing &amp; mapping to CCTrCH
+  </li>
+  <li id=uhut1>
+    transport format detection<br id=xlo:0>
+  </li>
+</ol>
+<h2 id=mlw20>
+  3.4 Spreading and Modulation
+</h2>
+<div id=xzjx style="PADDING:1em 0pt; TEXT-ALIGN:left">
+  <img id=f5ei0 src=dc67cnjv_363htjpv86k_b.png style="WIDTH:400px; HEIGHT:232px">
+</div>
+<ul id=wq871>
+  <li id=wq872>
+    1G: only FDMA is used, only a very small number of users are supported.
+  </li>
+  <li id=wq872>
+    GSM: FDMA &amp; TDMA are used, supports several thousand users. When there
+    is more, "CMCC" disappears from UEs' screen.
+  </li>
+  <li id=wq872>
+    W-CDMA: FDMA &amp; CDMA is used, supports "unlimited" users. When an
+    implementation wants to support so many users, multiuser detection and
+    beamforming schemes are too complex.
+  </li>
+  <li id=wq872>
+    TD-SCDMA: using a combination of FDMA, TDMA &amp; CDMA, supports "unlimited"
+    users. Usage of TDMA reduces the number of users in each time slot (and
+    improves the orthogonality between the codes), so multiuser detection and
+    beamforming become easier, but the non-continuous transmission may reduce
+    coverage &amp; mobility.<br id=j2hp0>
+  </li>
+</ul>
+<h1 id=vbxt1>
+  4 Conclusion
+</h1>
+&nbsp;&nbsp;&nbsp; TD-SCDMA is one of 3G radio interface standards. Its
+highlights are:<br id=np:i0>
+<ul id=np:i1>
+  <li id=np:i2>
+    combination of FDMA, TDMA, CDMA: multiuser detection becomes simple
+  </li>
+  <li id=np:i2>
+    TDD: downlinks &amp; uplinks do not need to be in pair, accommodating
+    asymmetric traffic with dynamic rates<br id=ls120>
+  </li>
+</ul>
+<br id=zmre4>
+<span id=pl6w0 style="FONT-FAMILY:Arial Black">REFERENCE</span><br id=pl6w1>
+<ol id=pl6w2>
+  <li id=pl6w3>
+    TD-SCDMA Technical Specification, China Wireless Telecommunication Standard
+    (CWTS) Working Group 1 (WG1),
+    http://www.tdscdma-forum.org/EN/resources/see.asp?id=75
+  </li>
+  <li id=pl6w3>
+    TD-SCDMA - Wikipedia, http://en.wikipedia.org/wiki/TD-SCDMA
+  </li>
+</ol></body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数字系统设计 作业 06</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<img src="06q.png" width="606" height="284" alt="BCD-余3转码"/>
+<hr/>
+
+<h1>一 Verilog设计文件</h1>
+<h2>BCD-余3转码 BCD2Excess3.v</h2>
+<pre>module BCD2Excess3(output reg [3:0] dat_out, input [3:0] dat_in);
+    always @*
+    if ((dat_in&gt;=4'b0000) &amp; (dat_in&lt;=4'b1001))
+        dat_out = dat_in + 4'b0011;
+    else
+        dat_out = 4'bxxxx;
+endmodule</pre>
+<hr/>
+<h2>测试平台</h2>
+<pre>`include "BCD2Excess3.v"
+module tb_BCD2Excess3;
+    reg [3:0] dat_in;
+    wire [3:0] dat_out;
+    BCD2Excess3 be(dat_out,dat_in);
+    initial
+    begin
+        dat_in=4'b0000;
+        $monitor("decimal=","%d",dat_in," BCD=","%b",dat_in," Excess3=","%b",dat_out);
+    end
+    always
+        #1 dat_in=dat_in+4'b0001;
+endmodule</pre>
+<hr/>
+
+<h1>二 仿真分析图</h1>
+<img src="06w.png" width="840" height="38" alt="波形"/>
+<hr/>
+
+<h1>三 仿真监控结果</h1>
+<pre># decimal= 0 BCD=0000 Excess3=0011
+# decimal= 1 BCD=0001 Excess3=0100
+# decimal= 2 BCD=0010 Excess3=0101
+# decimal= 3 BCD=0011 Excess3=0110
+# decimal= 4 BCD=0100 Excess3=0111
+# decimal= 5 BCD=0101 Excess3=1000
+# decimal= 6 BCD=0110 Excess3=1001
+# decimal= 7 BCD=0111 Excess3=1010
+# decimal= 8 BCD=1000 Excess3=1011
+# decimal= 9 BCD=1001 Excess3=1100
+# decimal=10 BCD=1010 Excess3=xxxx
+# decimal=11 BCD=1011 Excess3=xxxx
+# decimal=12 BCD=1100 Excess3=xxxx
+# decimal=13 BCD=1101 Excess3=xxxx
+# decimal=14 BCD=1110 Excess3=xxxx
+# decimal=15 BCD=1111 Excess3=xxxx</pre>
+<hr/>
+
+<h1>四 结果分析</h1>
+<p>原先在$monitor内写有汉字，在Transcript中会显示为问号。</p>
+<hr/>
+
+</body>
+</html>

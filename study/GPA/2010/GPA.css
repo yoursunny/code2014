@@ -1,0 +1,85 @@
+@charset "utf-8";
+
+#app { min-height:300px; }
+#app .tit { text-indent:120px; height:55px; background:url(sunnyGPA.png) no-repeat; }
+
+#app_popup_root { width:100%; height:100%; left:0; top:0; position:absolute; }
+#app_popup_overlay { z-index:20; width:100%; height:100%; left:0; top:0; position:absolute; background:#fff; }
+#app_popup_wrap { z-index:21; position:absolute; left:50%; top:50%; background:#fff; border:solid 2px #f60; }
+#app_popup_title { position:absolute; left:0; top:0; height:20px; line-height:20px; background:#f60; color:#fff; text-align:center; }
+#app_popup_close { display:block; position:absolute; top:0; width:16px; height:16px; background:#ccc; color:#000; font-size:16px; line-height:16px; cursor:default; border-style:solid; border-width:2px; border-color:#eee #aaa #aaa #eee; }
+#app_popup { position:absolute; left:0; top:20px; padding:20px; overflow:auto; }
+#app_popup ul li { list-style:disc inside; }
+
+#welcome { margin:20px; padding:30px; border:double 5px #fc0; font-size:14px; line-height:1.5; clear:both; }
+#welcome li { margin-left:20px; list-style:circle; }
+#loading { margin-top:20px; }
+
+#menus { clear:both; }
+#menubar li { float:left; padding:0 10px; height:20px; margin-right:10px; text-align:center; line-height:20px; background:#cfc; cursor:default; margin-bottom:20px; }
+.menu { position:absolute; background:#cfc; width:200px; }
+.menu li { padding:5px; cursor:default; }
+.menu li.disable { color:#999; }
+.menu li.enable:hover,.menu li.hover { background:#fcc; }
+.menu li.seperator { width:200px; height:2px; font-size:2px; padding:0; background:#ccc; }
+
+
+#import_csv_preview table { border:solid 2px #009; }
+#import_csv_preview th,#import_csv_preview td { padding:2px; }
+#import_csv_preview td { border-left:solid 1px #999; }
+#import_csv_preview thead td { border-bottom:solid 1px #999; background:#ccc; text-align:center; }
+
+#import_json_input { width:400px; height:70px; }
+
+#import_sjtujwb_input { width:400px; height:200px; }
+
+#save_file_form th { padding:3px 8px 3px 3px; font-weight:bold; }
+#save_file_form td { padding:3px; }
+
+#save_json_code { width:380px; height:150px; }
+
+#translate_form p { line-height:1.4; }
+#translate_progress { width:400px; height:10px; background:#ccf; }
+#translate_progress1 { height:10px; background:#66f; }
+
+#report_bygroup { border-left:solid 1px #009; border-top:solid 1px #009; }
+#report_bygroup th,#report_bygroup td { padding:4px; border-right:solid 1px #009; border-bottom:solid 1px #009; }
+
+#alg { clear:both; margin:10px 0 40px; }
+#alg_detail li { list-style:square inside; }
+#alg_note { margin:4px 0 8px; line-height:1.2; color:#900; font-size:13px; }
+
+#algs { clear:both; padding:20px; line-height:1.6; border-top:dotted 2px #f00; border-bottom:dotted 2px #f00; }
+#algs h2 { font-size:20px; }
+#algs dl { clear:both; }
+#algs dt { clear:both; font-size:16px; }
+#algs dd { float:left; font-size:14px; padding-left:20px; white-space:nowrap; }
+#algs p { clear:both; }
+
+#algedit_form table {  border-left:solid 1px #e70; border-top:solid 1px #e70;}
+#algedit_form td { border-right:solid 1px #e70; border-bottom:solid 1px #e70; padding:4px; }
+#algedit_form .algedit_t { width:40px; }
+
+#courses_wrap table { border-left:solid 1px #090; border-top:solid 1px #090; }
+#courses_wrap th,#courses_wrap td { border-right:solid 1px #090; border-bottom:solid 1px #090; padding:4px; }
+#courses tr.NaN { background:#fcc; }
+#courses input.C_name { width:180px; border:solid 1px #ccf; }
+#courses input.C_credit { width:60px; border:solid 1px #ccf; }
+#courses input.C_grade { width:60px; border:solid 1px #ccf; }
+#courses span.C_translation { display:block; width:200px; font-size:11px; }
+#courses input.C_groups { width:40px; border:solid 1px #ccf; }
+#course_invalid_tip { padding:5px; background:#ff9; border:solid 1px #f00; position:absolute; width:200px; height:20px; }
+
+#calc_result_float { z-index:1; padding:5px 9px 5px 9px; font-size:17px; background:#393; right:0; bottom:0; color:#fff; position:fixed; }
+#calc_result_float.NaN { background:#f66; }
+
+
+#tips h3 { font-weight:bold; margin:6px 0 4px; }
+#tips ul li { list-style:disc inside; line-height:1.2; }
+
+#ad_g { }
+#ad_alimama { width:728px; height:90px; margin:5px 0 15px; }
+
+#p_gpa_renren { background-color:#f7f7ef; width:780px; padding:0; }
+#p_gpa_renren #app { width:650px; padding:16px 20px 25px 20px; margin:0 auto; }
+#p_gpa_renren #app .tit { font-size:24px; line-height:30px; color:#369; }

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>恺撒密码</title>
+<script type="text/javascript">//<![CDATA[
+function R(m,k){
+  var A='abcdefghijklmnopqrstuvwxyz';
+  var Alen=A.length;
+  var b='';
+  var len=m.length;
+  for (var i=0;i<len;++i) {
+    var ch=m.substr(i,1);
+    var p=A.indexOf(ch);
+    if (p<0) b+=ch;
+    else {
+      p=(p+k+Alen)%Alen;
+      b+=A.substr(p,1);
+    }
+  }
+  return b;
+}
+function $(id){
+  return document.getElementById(id);
+}
+function E(){
+  $('TC').value=R($('TM').value,parseInt($('TK').value,10))
+}
+function D(){
+  $('TM').value=R($('TC').value,-parseInt($('TK').value,10))
+}
+//]]></script>
+</head>
+<body>
+<a href="http://yoursunny.com/study/IS407/">你的阳光-现代密码学</a> 恺撒密码加解密程序<br/>
+M=<input type="text" id="TM"/>（小写字母）<br/>
+K=<input type="text" id="TK" value="3"/><br/>
+C=<input type="text" id="TC"/><br/>
+<input type="button" value="encrypt" onclick="E()"/>
+<input type="button" value="decrypt" onclick="D()"/>
+<script type="text/javascript" src="/lib/10/track.js"></script>
+</body>
+</html>

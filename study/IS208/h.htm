@@ -1,0 +1,17 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>htmlencode</title>
+		<script>
+			function e(){
+				var a=document.getElementById('a');
+				a.value=a.value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+			}
+		</script>
+	</head>
+	<body>
+		<textarea id="a" rows="10" cols="80"></textarea>
+		<input type="button" value="htmlencode" onclick="e()"/>
+	</body>
+</html>

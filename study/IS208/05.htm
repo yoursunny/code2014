@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数字系统设计 作业 05</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<img src="05q.png" width="626" height="462" alt="组合逻辑门电路"/>
+<hr/>
+
+<h1>一 Verilog设计文件</h1>
+<h2>门原语设计 comb_str.v</h2>
+<p>wire对应的电路位置是<br/><img src="05i1.png" width="598" height="145" alt="wire定义"/></p>
+<pre>module comb_str(output Y,input A,input B,input C,input D);
+    wire w1;
+    wire w2;
+    wire w3;
+    wire w4;
+    or(w1,A,D);
+    not(w2,w1);
+    not(w3,D);
+    and(w4,B,C,w3);
+    and(Y,w2,w4);
+endmodule</pre>
+<hr/>
+<h2>数据流设计 comb_dataflow.v</h2>
+<pre>module comb_dataflow(output Y,input A,input B,input C,input D);
+    wire w1;
+    wire w2;
+    wire w3;
+    wire w4;
+    assign w1=A|D;
+    assign w2=~w1;
+    assign w3=~D;
+    assign w4=B&C&w3;
+    assign Y=w2&w4;
+endmodule</pre>
+<hr/>
+<h2>行为和算法设计 comb_behavior.v</h2>
+<pre>module comb_behavior(output reg Y,input A,input B,input C,input D);
+    reg w1;
+    reg w2;
+    reg w3;
+    reg w4;
+    always @*
+        w1=A|D;
+    always @*
+        w2=~w1;
+    always @*
+        w3=~D;
+    always @*
+        w4=B&C&w3;
+    always @*
+        Y=w2&w4;
+endmodule</pre>
+<hr/>
+<h2>UDP真值表设计 comb_prim.v</h2>
+<pre>primitive comb_prim(output Y,input A,input B,input C,input D);
+    table
+        0 0 0 0 : 0;
+        0 0 0 1 : 0;
+        0 0 1 0 : 0;
+        0 0 1 1 : 0;
+        0 1 0 0 : 0;
+        0 1 0 1 : 0;
+        0 1 1 0 : 1;
+        0 1 1 1 : 0;
+        1 0 0 0 : 0;
+        1 0 0 1 : 0;
+        1 0 1 0 : 0;
+        1 0 1 1 : 0;
+        1 1 0 0 : 0;
+        1 1 0 1 : 0;
+        1 1 1 0 : 0;
+        1 1 1 1 : 0;
+    endtable
+endprimitive</pre>
+<hr/>
+<h2>测试平台</h2>
+<p>注：测试不同实现模块时，两处comb_str要替换成相应的模块名</p>
+<pre>`include "comb_str.v"
+module testbench_comb;
+    reg A;
+    reg B;
+    reg C;
+    reg D;
+    wire Y;
+    comb_str c(Y,A,B,C,D);
+    initial
+        {A,B,C,D}=4'b0000;
+        $monitor("A=",A," B=",B," C=",C," D=",D," Y=",Y);
+    always
+        #1 {A,B,C,D}={A,B,C,D}+4'b0001;
+endmodule</pre>
+<hr/>
+
+<h1>二 仿真分析图</h1>
+<p>门原语设计<br/><img src="05w1.png" width="473" height="217" alt="波形"/></p>
+<p>数据流设计<br/><img src="05w2.png" width="455" height="215" alt="波形"/></p>
+<p>行为和算法设计<br/><img src="05w3.png" width="469" height="161" alt="波形"/></p>
+<p>UDP真值表设计<br/><img src="05w4.png" width="451" height="148" alt="波形"/></p>
+<hr/>
+
+<h1>三 仿真监控结果</h1>
+<h2>门原语设计</h2>
+<pre># A=0 B=0 C=0 D=0 Y=0
+# A=0 B=0 C=0 D=1 Y=0
+# A=0 B=0 C=1 D=0 Y=0
+# A=0 B=0 C=1 D=1 Y=0
+# A=0 B=1 C=0 D=0 Y=0
+# A=0 B=1 C=0 D=1 Y=0
+# A=0 B=1 C=1 D=0 Y=1
+# A=0 B=1 C=1 D=1 Y=0
+# A=1 B=0 C=0 D=0 Y=0
+# A=1 B=0 C=0 D=1 Y=0
+# A=1 B=0 C=1 D=0 Y=0
+# A=1 B=0 C=1 D=1 Y=0
+# A=1 B=1 C=0 D=0 Y=0
+# A=1 B=1 C=0 D=1 Y=0
+# A=1 B=1 C=1 D=0 Y=0
+# A=1 B=1 C=1 D=1 Y=0</pre>
+<hr/>
+<h2>数据流设计</h2>
+<pre># A=0 B=0 C=0 D=0 Y=0
+# A=0 B=0 C=0 D=1 Y=0
+# A=0 B=0 C=1 D=0 Y=0
+# A=0 B=0 C=1 D=1 Y=0
+# A=0 B=1 C=0 D=0 Y=0
+# A=0 B=1 C=0 D=1 Y=0
+# A=0 B=1 C=1 D=0 Y=1
+# A=0 B=1 C=1 D=1 Y=0
+# A=1 B=0 C=0 D=0 Y=0
+# A=1 B=0 C=0 D=1 Y=0
+# A=1 B=0 C=1 D=0 Y=0
+# A=1 B=0 C=1 D=1 Y=0
+# A=1 B=1 C=0 D=0 Y=0
+# A=1 B=1 C=0 D=1 Y=0
+# A=1 B=1 C=1 D=0 Y=0
+# A=1 B=1 C=1 D=1 Y=0</pre>
+<hr/>
+<h2>行为和算法设计</h2>
+<pre># A=0 B=0 C=0 D=0 Y=0
+# A=0 B=0 C=0 D=1 Y=0
+# A=0 B=0 C=1 D=0 Y=0
+# A=0 B=0 C=1 D=1 Y=0
+# A=0 B=1 C=0 D=0 Y=0
+# A=0 B=1 C=0 D=1 Y=0
+# A=0 B=1 C=1 D=0 Y=1
+# A=0 B=1 C=1 D=1 Y=0
+# A=1 B=0 C=0 D=0 Y=0
+# A=1 B=0 C=0 D=1 Y=0
+# A=1 B=0 C=1 D=0 Y=0
+# A=1 B=0 C=1 D=1 Y=0
+# A=1 B=1 C=0 D=0 Y=0
+# A=1 B=1 C=0 D=1 Y=0
+# A=1 B=1 C=1 D=0 Y=0
+# A=1 B=1 C=1 D=1 Y=0</pre>
+<hr/>
+<h2>UDP真值表设计</h2>
+<pre># A=0 B=0 C=0 D=0 Y=0
+# A=0 B=0 C=0 D=1 Y=0
+# A=0 B=0 C=1 D=0 Y=0
+# A=0 B=0 C=1 D=1 Y=0
+# A=0 B=1 C=0 D=0 Y=0
+# A=0 B=1 C=0 D=1 Y=0
+# A=0 B=1 C=1 D=0 Y=1
+# A=0 B=1 C=1 D=1 Y=0
+# A=1 B=0 C=0 D=0 Y=0
+# A=1 B=0 C=0 D=1 Y=0
+# A=1 B=0 C=1 D=0 Y=0
+# A=1 B=0 C=1 D=1 Y=0
+# A=1 B=1 C=0 D=0 Y=0
+# A=1 B=1 C=0 D=1 Y=0
+# A=1 B=1 C=1 D=0 Y=0
+# A=1 B=1 C=1 D=1 Y=0</pre>
+<hr/>
+
+<h1>四 结果分析</h1>
+<p>本题使用了四种不同的设计方法，但是结果是完全一致的。个人认为数据流设计方法较为便捷，既可(像本题一样)直接用类似基本门级别的表达式写出，又能写较为复杂的表达式。</p>
+<hr/>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数字系统设计 作业 07</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<img src="07q.png" width="625" height="253" alt="组合逻辑-布尔方程"/>
+<hr/>
+
+<h1>一 Verilog设计文件</h1>
+<h2>comb_Y1.v</h2>
+<pre>module comb_Y1(output Y,input A,input B,input C);
+    wire [2:0] I;
+    assign I={A,B,C};
+    assign Y=|{I==1,I==2,I==4};
+endmodule</pre>
+<hr/>
+<h2>测试平台</h2>
+<pre>`include "comb_Y1.v"
+module tb_comb_Y1;
+    reg A;
+    reg B;
+    reg C;
+    wire Y;
+    comb_Y1 c(Y,A,B,C);
+    initial
+    begin
+        {A,B,C}=3'b000;
+        $monitor("A=",A," B=",B," C=",C," Y=",Y);
+    end
+    always
+        #1 {A,B,C}={A,B,C}+3'b001;
+endmodule</pre>
+<hr/>
+<h2>comb_Y2.v</h2>
+<pre>module comb_Y2(output Y,input A,input B,input C,input D);
+    wire [3:0] I;
+    assign I={A,B,C,D};
+    assign Y=|{I==4,I==5,I==6,I==7,I==11,I==12,I==13};
+endmodule</pre>
+<hr/>
+<h2>测试平台</h2>
+<pre>`include "comb_Y2.v"
+module tb_comb_Y2;
+    reg A;
+    reg B;
+    reg C;
+    reg D;
+    wire Y;
+    comb_Y2 c(Y,A,B,C,D);
+    initial
+    begin
+        {A,B,C,D}=4'b0000;
+        $monitor("A=",A," B=",B," C=",C," D=",D," Y=",Y);
+    end
+    always
+        #1 {A,B,C,D}={A,B,C,D}+4'b0001;
+endmodule</pre>
+<hr/>
+
+<h1>二 仿真分析图</h1>
+<p>Y1<br/>
+<img src="07w1.png" width="437" height="73" alt="波形"/></p>
+<p>Y2<br/>
+<img src="07w2.png" width="441" height="93" alt="波形"/></p>
+<hr/>
+
+<h1>三 仿真监控结果</h1>
+<h2>Y1</h2>
+<pre># A=0 B=0 C=0 Y=0
+# A=0 B=0 C=1 Y=1
+# A=0 B=1 C=0 Y=1
+# A=0 B=1 C=1 Y=0
+# A=1 B=0 C=0 Y=1
+# A=1 B=0 C=1 Y=0
+# A=1 B=1 C=0 Y=0
+# A=1 B=1 C=1 Y=0</pre>
+<hr/>
+<h2>Y2</h2>
+<pre># A=0 B=0 C=0 D=0 Y=0
+# A=0 B=0 C=0 D=1 Y=0
+# A=0 B=0 C=1 D=0 Y=0
+# A=0 B=0 C=1 D=1 Y=0
+# A=0 B=1 C=0 D=0 Y=1
+# A=0 B=1 C=0 D=1 Y=1
+# A=0 B=1 C=1 D=0 Y=1
+# A=0 B=1 C=1 D=1 Y=1
+# A=1 B=0 C=0 D=0 Y=0
+# A=1 B=0 C=0 D=1 Y=0
+# A=1 B=0 C=1 D=0 Y=0
+# A=1 B=0 C=1 D=1 Y=1
+# A=1 B=1 C=0 D=0 Y=1
+# A=1 B=1 C=0 D=1 Y=1
+# A=1 B=1 C=1 D=0 Y=0
+# A=1 B=1 C=1 D=1 Y=0</pre>
+<hr/>
+
+<h1>四 结果分析</h1>
+<hr/>
+
+</body>
+</html>

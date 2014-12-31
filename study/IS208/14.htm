@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数字系统设计 作业 14</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<img src="14q.png" width="625" height="411" alt="算术逻辑单元"/>
+<hr/>
+
+<h1>一 Verilog设计文件</h1>
+<h2>算术逻辑单元 ALU.v</h2>
+<pre>module ALU(output reg c_out,output reg [7:0] sum,input [2:0] oper,input [7:0] a,input [7:0] b,input c_in);
+    parameter oper_and=3'b000;
+    parameter oper_subtract=3'b001;
+    parameter oper_subtract_a=3'b010;
+    parameter oper_or_ab=3'b011;
+    parameter oper_and_ab=3'b100;
+    parameter oper_not_ab=3'b101;
+    parameter oper_exor=3'b110;
+    parameter oper_exnor=3'b111;
+    always @*
+    begin
+        case (oper)
+            oper_and:
+                {c_out,sum}=a+b+c_in;
+            oper_subtract:
+                {c_out,sum}=a+~b+~c_in;
+            oper_subtract_a:
+                {c_out,sum}=b+~a+~c_in;
+            oper_or_ab:
+                {c_out,sum}={1'b0,a|b};
+            oper_and_ab:
+                {c_out,sum}={1'b0,a&b};
+            oper_not_ab:
+                {c_out,sum}={1'b0,(~a)&b};
+            oper_exor:
+                {c_out,sum}={1'b0,a^b};
+            oper_exnor:
+                {c_out,sum}={1'b0,a~^b};
+        endcase
+    end
+endmodule</pre>
+<hr/>
+<h2>测试平台</h2>
+<pre>`include "ALU.v"
+module tb_ALU;
+    parameter oper_and=3'b000;
+    parameter oper_subtract=3'b001;
+    parameter oper_subtract_a=3'b010;
+    parameter oper_or_ab=3'b01;
+    parameter oper_and_ab=3'b100;
+    parameter oper_not_ab=3'b101;
+    parameter oper_exor=3'b110;
+    parameter oper_exnor=3'b111;
+    wire c_out;
+    wire [7:0] sum;
+    reg [2:0] oper;
+    reg [7:0] a;
+    reg [7:0] b;
+    reg c_in;
+    ALU alu(c_out,sum,oper,a,b,c_in);
+    integer fp;
+    initial
+    begin
+        {oper,a,b,c_in}=20'b00000000000000000000;
+        fp=$fopen("E:/home/study/IS208/14/output.txt");
+    end
+    always
+    begin
+        case (oper)
+            oper_and:
+                $fdisplay(fp,"oper=and,a=%h,b=%h,c_in=%b,sum=%h,c_out=%b",a,b,c_in,sum,c_out);
+            oper_subtract:
+                $fdisplay(fp,"oper=subtract,a=%h,b=%h,c_in=%b,sum=%h,c_out=%b",a,b,c_in,sum,c_out);
+            oper_subtract_a:
+                $fdisplay(fp,"oper=subtract_a,a=%h,b=%h,c_in=%b,sum=%h,c_out=%b",a,b,c_in,sum,c_out);
+            oper_or_ab:
+                $fdisplay(fp,"oper=or_ab,a=%h,b=%h,c_in=%b,sum=%h,c_out=%b",a,b,c_in,sum,c_out);
+            oper_and_ab:
+                $fdisplay(fp,"oper=and_ab,a=%h,b=%h,c_in=%b,sum=%h,c_out=%b",a,b,c_in,sum,c_out);
+            oper_not_ab:
+                $fdisplay(fp,"oper=not_ab,a=%h,b=%h,c_in=%b,sum=%h,c_out=%b",a,b,c_in,sum,c_out);
+            oper_exor:
+                $fdisplay(fp,"oper=exor,a=%h,b=%h,c_in=%b,sum=%h,c_out=%b",a,b,c_in,sum,c_out);
+            oper_exnor:
+                $fdisplay(fp,"oper=exnor,a=%h,b=%h,c_in=%b,sum=%h,c_out=%b",a,b,c_in,sum,c_out);
+        endcase
+        #1 {oper,a,b,c_in}={oper,a,b,c_in}+20'b00000000000000000001;
+    end
+endmodule</pre>
+<hr/>
+
+<h1>二 仿真分析图</h1>
+<img src="14w.png" width="801" height="147" alt="波形"/>
+<hr/>
+
+<h1>三 仿真监控结果</h1>
+<!--a href="14.7z">输出内容很多(39.3MB)，请查看附件</a-->略
+<hr/>
+
+<h1>四 结果分析</h1>
+<hr/>
+
+</body>
+</html>

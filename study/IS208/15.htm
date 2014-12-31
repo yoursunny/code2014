@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数字系统设计 作业 15</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<img src="15q.png" width="581" height="381" alt="特殊计数器"/>
+<hr/>
+
+<h1>一 Verilog设计文件</h1>
+<h2>计数器 shift_counter.v</h2>
+<p>主要设计思想：使用内部状态位区分相同输出对应对应的不同状态</p>
+<pre>module shift_counter(output [7:0] count,input clk,input reset);
+    reg [10:0] state;
+    parameter stateA=11'b00000001000;
+    parameter stateB=11'b00000001100;
+    parameter stateC=11'b00000001110;
+    parameter stateD=11'b00000001010;
+    parameter stateE=11'b00000010010;
+    parameter stateF=11'b00000100010;
+    parameter stateG=11'b00001000010;
+    parameter stateH=11'b00010000010;
+    parameter stateI=11'b00100000010;
+    parameter stateJ=11'b01000000010;
+    parameter stateK=11'b10000000011;
+    parameter stateL=11'b01000000001;
+    parameter stateM=11'b00100000001;
+    parameter stateN=11'b00010000001;
+    parameter stateO=11'b00001000001;
+    parameter stateP=11'b00000100001;
+    parameter stateQ=11'b00000010001;
+    parameter stateR=11'b00000001001;
+    always @(posedge clk)
+    begin
+        if (~reset)
+            state&lt;=stateA;
+        else
+            case (state)
+                stateA:state&lt;=stateB;
+                stateB:state&lt;=stateC;
+                stateC:state&lt;=stateD;
+                stateD:state&lt;=stateE;
+                stateE:state&lt;=stateF;
+                stateF:state&lt;=stateG;
+                stateG:state&lt;=stateH;
+                stateH:state&lt;=stateI;
+                stateI:state&lt;=stateJ;
+                stateJ:state&lt;=stateK;
+                stateK:state&lt;=stateL;
+                stateL:state&lt;=stateM;
+                stateM:state&lt;=stateN;
+                stateN:state&lt;=stateO;
+                stateO:state&lt;=stateP;
+                stateP:state&lt;=stateQ;
+                stateQ:state&lt;=stateA;
+                default:state&lt;=stateA;
+            endcase
+    end
+    assign count=state[10-:8];
+endmodule</pre>
+<hr/>
+<h2>测试平台</h2>
+<pre>`include "shift_counter.v"
+module tb_shift_counter;
+    wire [7:0] count;
+    reg clk;
+    reg reset;
+    shift_counter n(count,clk,reset);
+    initial
+    begin
+        clk=1'b0;
+        reset=1'b1;
+    end
+    always
+        #1 clk=~clk;
+    initial
+    begin
+        #98 reset=1'b0;
+        #2  reset=1'b1;
+    end
+endmodule</pre>
+<hr/>
+
+<h1>二 仿真分析图</h1>
+<img src="15w.png" width="779" height="394" alt="波形"/>
+<hr/>
+
+<h1>三 仿真监控结果</h1>
+<hr/>
+
+<h1>四 结果分析</h1>
+<hr/>
+
+</body>
+</html>

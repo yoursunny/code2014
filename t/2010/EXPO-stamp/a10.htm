@@ -1,0 +1,97 @@
+用XSLT欣赏所有世博印章
+阳光男孩 发表于2010-07-13 修订于2010-10-09
+prettyprint
+<p>中国2010年上海世博会吸引了众人的关注，五彩缤纷的“世博印章”更是令人趋之若鹜。作为2010年世博会的两大创新项目之一的<a href="http://www.expo.cn" target="_blank">网上世博会</a>的“我的护照”栏目，可以看到大部分场馆的世博印章图片。那么，能否一次性看到所有的世博印章呢？</p>
+<p>用<a href="http://www.fiddler2.com" target="_blank">Fiddler</a>观察网络流量可以得知：每个片区有一个xml配置文件包含了片区内各场馆的名称和代码。例如，A片区的xml配置文件是：</p>
+<pre class="prettyprint lang-xml">
+&lt;!-- http://www.expo.cn/configs/tencent/azone.xml --&gt;
+&lt;root&gt;
+&lt;err&gt;0&lt;/err&gt;
+&lt;p&gt;
+    &lt;pid&gt;11100001&lt;/pid&gt;
+    &lt;dis&gt;A片区&lt;/dis&gt;
+    &lt;cnname&gt;中国国家馆&lt;/cnname&gt;
+    &lt;code&gt;z0001&lt;/code&gt;
+    &lt;type&gt;体验馆&lt;/type&gt;
+    &lt;name&gt;China Pavilion&lt;/name&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    &lt;pid&gt;11200011&lt;/pid&gt;
+    &lt;dis&gt;A片区&lt;/dis&gt;
+    &lt;cnname&gt;哈萨克斯坦馆&lt;/cnname&gt;
+    &lt;code&gt;c1050&lt;/code&gt;
+    &lt;type&gt;浏览馆&lt;/type&gt;
+    &lt;name&gt;Kazakhstan Pavilion&lt;/name&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    &lt;pid&gt;11200013&lt;/pid&gt;
+    &lt;dis&gt;A片区&lt;/dis&gt;
+    &lt;cnname&gt;沙特馆&lt;/cnname&gt;
+    &lt;code&gt;c1086&lt;/code&gt;
+    &lt;type&gt;体验馆&lt;/type&gt;
+    &lt;name&gt;Saudi Arabia Pavilion&lt;/name&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    &lt;pid&gt;11200025&lt;/pid&gt;
+    &lt;dis&gt;A片区&lt;/dis&gt;
+    &lt;cnname&gt;印度馆&lt;/cnname&gt;
+    &lt;code&gt;c1018&lt;/code&gt;
+    &lt;type&gt;浏览馆&lt;/type&gt;
+    &lt;name&gt;India Pavilion&lt;/name&gt;
+&lt;/p&gt;
+&lt;!-- 以下省略 --&gt;
+&lt;/root&gt;</pre>
+<p>而世博印章的图片URI，可以根据pid字段构造。例如，中国国家馆的印章URI是：http://www.expo.cn/images/HZ/11100001.png。</p>
+<p>程序处理xml有很多种方法，其中一种好用的方法是XSLT。XSLT是一种声明性的、基于XML的语言，用于将一个或多个xml文档转换成另一些xml文档。XSLT经常被用于将xml数据转换成可以作为网页显示的html或xhtml文档。</p>
+<p>因此，我们要做的是：编写一个xslt文件，将网上世博会某一片区的xml配置文件，转换成能显示出该片区所有场馆“世博印章”的html文档。</p>
+
+<pre class="prettyprint lang-xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+ xmlns="http://www.w3.org/1999/xhtml"&gt;
+
+&lt;xsl:output method="html" indent="yes" encoding="UTF-8"/&gt;
+
+&lt;xsl:template match="/root"&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv="content-type" content="text/html;charset=utf-8"/&gt;
+&lt;title&gt;世博印章&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;世博印章&lt;/h1&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;td&gt;pid&lt;/td&gt;&lt;td&gt;中文名称&lt;/td&gt;&lt;td&gt;英文名称&lt;/td&gt;&lt;td&gt;世博印章&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;xsl:apply-templates select="p"/&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template match="p"&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;xsl:value-of select="pid"/&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a&gt;&lt;xsl:attribute name="href"&gt;http://www.expo.cn/pavilion/&lt;xsl:value-of
+ select="pid"/&gt;.html?l=cn&lt;/xsl:attribute&gt;&lt;xsl:value-of select="cnname"/&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a&gt;&lt;xsl:attribute name="href"&gt;http://www.expo.cn/pavilion/&lt;xsl:value-of
+ select="pid"/&gt;.html?l=en&lt;/xsl:attribute&gt;&lt;xsl:value-of select="name"/&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img&gt;&lt;xsl:attribute name="src"&gt;http://www.expo.cn/images/HZ/&lt;xsl:value-of
+ select="pid"/&gt;.png&lt;/xsl:attribute&gt;&lt;xsl:attribute name="alt"&gt;&lt;xsl:value-of
+ select="cnname"/&gt; 世博印章&lt;/xsl:attribute&gt;&lt;/img&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</pre>
+
+<h3>欣赏各场馆所有世博印章的方法</h3>
+<ol>
+<li>下载片区的xml配置文件： <a href="http://www.expo.cn/configs/tencent/azone.xml" target="_blank">A片区</a> <a href="http://www.expo.cn/configs/tencent/bzone.xml" target="_blank">B片区</a> <a href="http://www.expo.cn/configs/tencent/czone.xml" target="_blank">C片区</a> <a href="http://www.expo.cn/configs/tencent/dzone.xml" target="_blank">D片区</a> <a href="http://www.expo.cn/configs/tencent/ezone.xml" target="_blank">E片区</a></li>
+<li>将上述xslt文件保存为expo.xsl，请用utf-8编码保存。</li>
+<li>用记事本编辑xml配置文件，在开头加上一行：<br><code class="prettyprint lang-xml">&lt;?xml-stylesheet href="expo.xsl" type="text/xsl"?&gt;</code></li>
+<li>用浏览器打开xml配置文件，即可看到转换后的html文档，欣赏该片区所有场馆的世博印章；有些世博印章无法显示（或显示为红叉），说明该场馆没有印章。</li>
+</ol>
+
+<p>声明：本文只作技术讨论，不提供任何形式的世博印章打包下载。你用上述方法看到的世博印章，其著作权属于2010年上海世博会的组织者和参展方，因此不允许随意传播。</p>

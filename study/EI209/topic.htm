@@ -1,0 +1,927 @@
+<!--#PAGE index-->
+知识要点
+计算机组成与体系结构,上海交通大学,考试范围,考试要点
+<style type="text/css">
+.pmsg ul li { font-size:12pt; line-height:25pt; }
+.pmsg ul a,.pmsg ul span { margin-left:2ex; }
+</style>
+<ul>
+<li><b>01章</b>
+<a href="?topic=OrgArch">计算机组织vs计算机体系结构</a>
+<a href="?topic=structure">计算机结构</a>
+<a href="?topic=CPUstructure">CPU结构</a>
+</li>
+<li><b>02章</b>
+<a href="?topic=VonNouma">冯诺依曼体系</a>
+<a href="?topic=moore">摩尔定律</a>
+<a href="?topic=balance">性能平衡</a>
+</li>
+<li><b>03章</b>
+<a href="?topic=INT">中断</a>
+<a href="?topic=bus">总线</a>
+</li>
+<li><b>04章</b>
+<a href="?topic=locality">局部性原理</a>
+<a href="?topic=memory">存储器分层</a>
+<a href="?topic=cache">直接映射/全关联映射/组关联映射、命中率计算(程序)</a>
+</li>
+<li><b>05章</b>
+<a href="?topic=RAM">RAM/ROM/EEPROM</a>
+<a href="?topic=RAMext">存储器扩展</a>
+</li>
+<li><b>06章</b>
+<a href="?topic=HDD">温彻斯特硬盘</a>
+<a href="?topic=RAID">RAID5(绘图程序)</a>
+</li>
+<li><b>07章</b>
+<a href="?topic=IO">I/O模块</a>
+<a href="?topic=IOmethod">编程IO/中断驱动IO/DMA/IO通道</a>
+<span>DMA效率计算</span>
+</li>
+<li><b>09章</b>
+<a href="?topic=complement">补码(转换程序)</a>
+<a href="?topic=integer">整数加减法</a>
+<a href="?topic=Booth">整数乘法——Booth算法(程序)</a>
+<a href="?topic=float">浮点数规格化</a>
+</li>
+<li><b>10章</b>
+<a href="?topic=OP">指令格式</a>
+<span>堆栈</span>
+<span>endian</span>
+</li>
+<li><b>11章</b>
+<a href="?topic=address">立即寻址/直接寻址/间接寻址</a>
+</li>
+<li><b>12章</b>
+<a href="?topic=pipeline">流水线</a>
+<a href="?topic=RISCpipeline">RISC流水线</a>
+</li>
+<li><b>13章</b>
+<a href="?topic=RISC">RISC大寄存器组</a>
+<a href="?topic=graph">着&#33394;图寄存器优化</a>
+</li>
+<li><b>14章</b>
+<a href="?topic=superscale">超标量</a>
+<a href="?topic=dependency">相关性</a>
+<a href="?topic=out-of-order">乱序执行(例题)</a>
+</li>
+<li><b>16章</b>
+<a href="?topic=uOP">微操作</a>
+<a href="?topic=uOProutine">各周期的微操作</a>
+</li>
+<li><b>17章</b>
+<a href="?topic=MI">微指令</a>
+<a href="?topic=MIformat">微指令格式</a>
+</li>
+<li><b>18章</b>
+<a href="?topic=SISD">SISD/SIMD/MIMD</a>
+<a href="?topic=MIMD">SMP/NUMA/cluster</a>
+<a href="?topic=MESI">MESI缓存一致性协议</a>
+</li>
+</ul>
+<p>撰写日期：2008-06-28～2008-06-29</p>
+<!--#PAGE OrgArch-->
+计算机组织、计算机系统结构的区别
+计算机组织,计算机系统结构,区别,程序员,控制
+<h2>计算机体系结构</h2>
+<p>对程序员可见。包括：指令集，数据字长，输入输出机制</p>
+<h2>计算机组织</h2>
+<p>实现体系结构的单位及其互连，对程序员透明。包括：控制信号，外设接口，存储器技术</p>
+<!--#PAGE structure-->
+计算机结构
+计算机,结构,顶层
+<ul>
+<li>Central Processing Unit,中央处理器</li>
+<li>Main Memory,主存</li>
+<li>Input Output,输入、输出</li>
+<li>System Interconnection,系统互联</li>
+</ul>
+<!--#PAGE CPUstructure-->
+CPU结构
+计算机,结构,CPU,控制器
+<h2>CPU结构</h2>
+<ul>
+<li>Register,寄存器</li>
+<li>Arithmetic and Logic Unit,算术逻辑单元ALU</li>
+<li>Control Unit,控制器</li>
+<li>Internal CPU Interconnection,内部互联</li>
+</ul>
+<h2>控制器结构</h2>
+<ul>
+<li>Sequencing Logic,顺序逻辑</li>
+<li>Control Unit Registers and Decoders,控制寄存器、译码器</li>
+<li>Control Memory,控制存储器</li>
+</ul>
+<!--#PAGE VonNouma-->
+冯诺依曼体系
+冯诺依曼体系,冯诺依曼结构,冯诺依曼机
+<p>最早的计算机是ENIAC。ENIAC的特点：十进制，硬件连线表示程序。</p>
+<h2>冯诺依曼机</h2>
+<img src="VonNouma.png" width="376" height="288" alt="冯诺依曼结构"/>
+<ol>
+<li>数据和指令存储在单一的“读写存储器”中</li>
+<li>存储器的内容通过位置寻址，而不考虑它容纳的数据是什么</li>
+<li>以顺序的形式从一条指令执行到下一条指令，除非有明确的修改</li>
+</ol>
+<!--#PAGE moore-->
+摩尔定律
+Gordon Moore,集成电路,大规模集成电路
+<ol>
+<li>集成电路芯片上所集成的电路的数目，每隔18个月就翻一番。</li>
+<li>微处理器的性能每隔18个月提高一倍，而价格下降一倍。</li>
+<li>用一个美元所能买到的电脑性能，每隔18个月翻两番。</li>
+</ol>
+<p>集成度增加的意义：高速、小体积、低能耗、低冷却需求、高可靠性。</p>
+<!--#PAGE balance-->
+性能平衡
+CPU,存储器,速度匹配,速度不平衡,妥协
+<dl>
+<dt>处理器与主存储器速度不匹配</dt>
+<dd>增加位宽</dd>
+<dd>改进DRAM接口——使用cache</dd>
+<dd>减少存储器访问频度——更高效的cache</dd>
+<dd>提高互连带宽——更高的总线频率</dd>
+<dt>处理器与外设速度不匹配</dt>
+<dd>caching</dd>
+<dd>buffering</dd>
+<dd>……</dd>
+</dl>
+<h2>妥协与平衡</h2>
+<p>性能提升时，要控制成本。使CPU、主存、I/O、互连设备平衡，在通用性、价格、效率之间妥协。</p>
+<!--#PAGE INT-->
+中断
+什么是中断,CPU中断,中断周期,中断处理,CPU处理中断
+<h2>什么是中断？</h2>
+<p>一些其他模块可以中断正常处理器执行顺序的机制。中断原因：程序中断，定时器中断，I/O中断，硬件故障。</p>
+<h2>CPU处理中断</h2>
+<img src="INT.png" width="700" height="267" alt="带中断的指令周期状态图"/>
+<p>CPU在一条<b>指令执行完毕</b>后，进入中断周期：检查是否中断打开且发生中断<br/>
+⒈没有中断：进入取值周期；<br/>
+⒉发生中断：将PC寄存器压栈，PC设为中断处理程序入口，进入中断处理程序，返回后恢复原PC。</p>
+<!--#PAGE bus-->
+总线
+系统互连方式,什么是总线,数据总线,地址总线,控制总线,物理地址空间,多总线,总线仲裁
+<p>总线是系统互连方式的一种。</p>
+<h2>什么是总线？</h2>
+<ul>
+<li>连接两个或多个设备的通信信道</li>
+<li>通常是广播的</li>
+<li>通常由多条线路组成</li>
+</ul>
+<h2>总线上的信号</h2>
+<dl>
+<dt>数据总线</dt>
+<dd>传输数据、指令——在总线层面上，数据、指令是没有区别的</dd>
+<dd>数据总线的宽度是系统性能的决定因素之一</dd>
+<dt>地址总线</dt>
+<dd>确定数据的源或目标</dd>
+<dd>地址总线的宽度决定了系统可寻址的物理地址空间。物理地址空间大小是由地址总线决定的，而不是CPU的位数；16位的8086，通过使用段寄存器，就可以寻址2<sup>20</sup>=1MB的物理地址空间。</dd>
+<dt>控制总线</dt>
+<dd>读/写，中断，时钟……</dd>
+<dt>电源、地线等</dt>
+</dl>
+<h2>多总线层次</h2>
+<p>总线上连接太多的设备，将导致传输延迟、带宽瓶颈。不同速率的设备接在同一总线上，只能降低高速设备的性能、或者令低速设备丢失数据，不可取。</p>
+<p>一条总线上只能连接<b>速率差不多</b>的几个设备，而低速设备所在总线通过<i>桥</i>与高速总线连接。</p>
+<h2>总线仲裁</h2>
+<p>CPU、DMA控制器等模块都可以控制总线，需要通过集中式或分布式仲裁，使得同一时刻只有一个模块控制总线。</p>
+<!--#PAGE locality-->
+局部性原理
+局部性,时间局部性,空间局部性
+<h2>cache的理论基础</h2>
+<p>程序执行过程中，处理器对存储器中指令和数据倾向于集“簇”访问。</p>
+<pre>
+M    ADD AX,DX[BX]
+     DEC BX
+     JNZ M
+</pre>
+<p>这是一个循环，CPU在一段时间中将反复执行这三行指令——时间局部性。并且，CPU在执行这个循环的过程中只访问数据区中DX地址附近的那些数据——空间局部性。</p>
+<!--#PAGE memory-->
+存储器分层
+存储器速度,存储器成本
+<p>存储器的<b>容量越大、速度越慢、成本越低</b><br/>
+存储器的容量越小、速度越快、成本越高<br/>
+需要<a href="?topic=balance">妥协</a>！！！</p>
+<h2>存储器分层</h2>
+<ol>
+<li>寄存器</li>
+<li>cache</li>
+<li>主存</li>
+<li>硬盘</li>
+<li>光盘</li>
+<li>磁带</li>
+</ol>
+<h2>多级cache</h2>
+<p>cache通常也分为多级。L1 cache在CPU芯片内部，而L2 cache在主板上。为了支持<a href="?topic=pipeline">指令流水</a>，L1 cache将指令、数据分开；L2则是指令、数据存储在一起的。</p>
+<!--#PAGE cache-->
+cache映射功能、命中率计算
+cache映射,直接关联,全关联,组关联,cache命中率,cache命中率计算,cache命中率计算程序
+<h2>cache映射功能</h2>
+<p>设：cache有m=v×k行，每行可存储z字节数据（z通常是8～128），并附加一个tag表示它保存了主存中的哪块；主存有n块，每块z字节。</p>
+<dl>
+<dt>直接关联映射</dt>
+<dd>将主存第i块固定映射为第i%m行，tag内容为i/m</dd>
+<dd>电路简单、成本低，但是程序碰巧访问对应同一行的两块主存就会发生竞争、此时性能很低</dd>
+<dt>全关联映射</dt>
+<dd>主存第i块可以映射为任意一行，tag内容为i</dd>
+<dd>电路非常复杂！</dd>
+<dt>组关联映射</dt>
+<dd>主存第i块固定映射到第i%v组，可以使用该组k行的任意一行，tag内容为i/v</dd>
+<dd>这是直接关联映射与全关联映射之间的<a href="?topic=balance">妥协</a></dd>
+<dd>k通常是4～8</dd>
+</dl>
+<p>cache映射功能、替换策略等，都必须是<b>硬件实现</b>。</p>
+<h2>cache命中率计算</h2>
+主存每块/cache每行字节数 <input id="cachehit_z" type="text" size="4" value="16"/><br/>
+访问顺序 <input id="cachehit_seq" type="text" size="100"/><br/>
+<b>直接关联映射</b>
+cache行数 <input id="cachehit_m" type="text" size="4" value="4"/>
+<input type="button" value="计算命中率" onclick="cachehit.direct()"/><br/>
+<b>全关联映射</b> 请使用下面组关联映射计算，设置为1组即可<br/>
+<b>组关联映射</b>(LRU)
+cache组数 <input id="cachehit_v" type="text" size="4" value="2"/>
+每组行数 <input id="cachehit_k" type="text" size="4" value="2"/>
+<input type="button" value="计算命中率" onclick="cachehit.group()"/><br/>
+<div id="cachehit_o"></div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.1.0/prototype.js"></script>
+<script type="text/javascript">//<![CDATA[
+$('cachehit_seq').value=$A($R(63,70)).join(',')+(','+$A($R(15,32)).join(',')+','+$A($R(80,95)).join(',')).times(10);
+var cachehit={
+	direct:function() {
+		this.z=parseInt($F('cachehit_z'),10);
+		this.m=parseInt($F('cachehit_m'),10);
+		if (this.z<1 || this.m<1) return alert('参数必须是正整数');
+		this.h=this.direct_h;
+		this.go();
+	},
+	group:function() {
+		this.z=parseInt($F('cachehit_z'),10);
+		this.v=parseInt($F('cachehit_v'),10);
+		this.k=parseInt($F('cachehit_k'),10);
+		if (this.z<1 || this.v<1 || this.k<1) return alert('参数必须是正整数');
+		this.m=this.v*this.k;
+		this.h=this.group_h;
+		this.go();
+	},
+	go:function() {
+		this.cache=[];
+		this.hit=0;
+		this.total=0;
+		for (var i=0;i<this.m;++i) this.cache.push(-1);
+		this.b='';
+		this.r=$F('cachehit_seq').split(',');
+		var len=this.r.length;
+		for (var i=0;i<len;++i) {
+			var addr=parseInt(this.r[i],10);
+			if (isNaN(addr)) this.b+='地址'+this.r[i].escapeHTML()+'无效\n';
+			else {
+				var block=Math.floor(addr/this.z);
+				var oldhit=this.hit;
+				var h_r=this.h(block);
+				this.b+='地址'+addr+'，块'+block+'，'+h_r+(this.hit>oldhit?'命中':'未命中')+'<br/>\n';
+				++this.total;
+			}
+		}
+		this.b+='命中'+this.hit+'次，未命中'+(this.total-this.hit)+'次，命中率'+(this.hit/this.total);
+		$('cachehit_o').update(this.b);
+	},
+	incache:function(block,start,len) {//使指定块进入cache部分行内，返回是否命中
+		var end=start+len;
+		for (var i=start;i<end;++i) {
+			if (this.cache[i]==block) {
+				for (var j=i+1;j<end;++j) {
+					this.cache[j-1]=this.cache[j];
+				}
+				this.cache[end-1]=block;
+				return true;
+			}
+		}
+		for (var j=start+1;j<end;++j) {
+			this.cache[j-1]=this.cache[j];
+		}
+		this.cache[end-1]=block;
+		return false;
+	},
+	direct_h:function(block) {
+		var line=block%this.m;
+		if (this.incache(block,line,1)) ++this.hit;
+		return '';
+	},
+	group_h:function(block) {
+		var group=block%this.v;
+		if (this.incache(block,group*this.k,this.k)) ++this.hit;
+		return '组'+group+'，';
+	}
+};
+//]]></script>
+<!--#PAGE RAM-->
+内部存储器
+RAM,ROM,EEPROM
+<img src="RAM.png" width="519" height="263" alt="半导体存储器类型"/>
+<!--#PAGE RAMext-->
+存储器扩展
+位扩展,字扩展
+<h2>位扩展</h2>
+<p>8个1位存储器组合成1个8位存储器：所有地址线接到8个1位存储器上，从8个存储器各引出1条数据线集束作为8位数据线。</p>
+<h2>字扩展</h2>
+<p>16个1MB、8位存储器组合成1个16MB、8位存储器：最高4根地址线接一个译码器，译码器的2<sup>4</sup>=16根输出线分别接16个1MB存储器的片选；其余地址线接到所有1MB存储器上，将所有8位数据线并联在一起。</p>
+<!--#PAGE HDD-->
+温彻斯特硬盘
+温彻斯特硬盘,空气动压气隙
+<p>磁头越窄，数据密度越高，同时也要求磁头越接近盘片。磁盘旋转所产生的气压使磁头升高。磁头更贴近磁盘，可以使用更窄的磁头，数据密度更高</p>
+<!--#PAGE RAID-->
+RAID5数据条带分布图
+RAID,RAID5
+<style type="text/css">
+#raid5_o td { width:40px; height:20px; }
+#raid5_o .data { background:#ffff00; }
+#raid5_o .checksum { background:#33cc33; }
+</style>
+硬盘数量 <input id="raid5_n" type="text" value="4"/>个<br/>
+硬盘大小 <input id="raid5_l" type="text" value="30"/>块<br/>
+<input type="button" value="绘制" onclick="raid5.draw()"/>
+<div id="raid5_o"></div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.1.0/prototype.js"></script>
+<script type="text/javascript">//<![CDATA[
+var raid5={
+	draw:function() {
+		this.n=parseInt($F('raid5_n'),10);
+		this.l=parseInt($F('raid5_l'),10);
+		if (this.n<1 || this.l<1) return alert('参数必须是正整数');
+		if (this.n<3) return alert('RAID5至少需要3个硬盘');
+		var b='<table>\n<tr>';
+		for (var j=0;j<this.n;++j)
+			b+='<th>HDD '+j+'</th>';
+		b+='</tr>\n';
+		var c=0; var d=0;
+		for (var i=0;i<this.l;++i) {
+			if (c<=0) c=this.n; --c;
+			b+='<tr>';
+			for (var j=0;j<this.n;++j)
+				b+='<td class="'+(j==c?'checksum':'data')+'">'+(j==c?'checksum':'data '+(d++))+'</td>';
+			b+='</tr>\n';
+		}
+		b+='</table>';
+		$('raid5_o').update(b);
+	}
+};
+//]]></script>
+<!--#PAGE IO-->
+I/O模块
+外设,输入输出
+<p>I/O模块是控制外设的芯片</p>
+<h2>为什么需要I/O模块？</h2>
+<ul>
+<li>外设使用不同的操作逻辑</li>
+<li>外设使用不同的数据格式、字长</li>
+<li>外设比总线慢得多</li>
+</ul>
+<h2>I/O模块的功能</h2>
+<ul>
+<li>控制和定时</li>
+<li>处理器通信</li>
+<li>设备通信</li>
+<li>数据缓冲</li>
+<li>检错</li>
+</ul>
+<!--#PAGE IOmethod-->
+I/O技术
+编程IO,中断驱动IO,DMA,IO通道
+<h2>编程IO</h2>
+<pre>
+CPU说: 请读取一个字节
+CPU说: 你读完了吗
+I/O说: 还没
+CPU说: 你读完了吗
+I/O说: 还没
+CPU说: 你读完了吗
+I/O说: 还没
+CPU说: 你读完了吗
+I/O说: 还没
+CPU说: 你读完了吗
+I/O说: 还没
+CPU说: 你读完了吗
+I/O说: 读完了
+CPU说: 你读到了什么
+I/O说: 0x35
+</pre>
+<h2>中断驱动IO</h2>
+<pre>
+CPU说: 请读取一个字节，读完告诉我
+CPU干别的事去了
+……
+过了若干时间——
+I/O说: 我读完了
+CPU说: 你读到了什么
+I/O说: 0x35
+</pre>
+<h2>DMA</h2>
+<pre>
+CPU说: 请读取100个字节，读完存入主存0x0010ed3f位置，然后告诉我
+CPU干别的事去了
+I/O说: 我要使用总线，CPU你让一下
+I/O说: 我要使用总线，CPU你让一下
+I/O说: 我要使用总线，CPU你让一下
+……
+过了若干时间——
+I/O说: 我读完了，已经存好了
+CPU可以从主存中读取数据了
+</pre>
+<h2>IO通道</h2>
+<pre>
+CPU说: 请到主存0x00c014d0位置读取我给你的任务，做完告诉我
+CPU干别的事去了
+I/O说: 我要使用总线，CPU你让一下
+I/O说: 我要使用总线，CPU你让一下
+I/O说: 我要使用总线，CPU你让一下
+……
+过了若干时间——
+I/O说: 我干完了
+</pre>
+<a href="http://bbs.sjtu.edu.cn/bbstcon?board=joke&reid=1214812913">饮水思源BBS站 关于此文的讨论</a>
+<!--#PAGE complement-->
+补码
+二进制,有符号数
+<h2>补码计算</h2>
+<ul>
+<li>正整数的补码等于其原码</li>
+<li>负整数的补码：对其绝对值的原码按位取反，然后加1</li>
+</ul>
+要转换的十进制数 <input id="complement_n" type="text" value="-50" onkeyup="complement.convert()"/>
+转换成8位2进制数 <input id="complement_o" type="text" value="10110001"/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.1.0/prototype.js"></script>
+<script type="text/javascript">//<![CDATA[
+var complement={
+	convert:function() {
+		var n=parseInt($F('complement_n'),10);
+		if (isNaN(n) || n<-128 || n>127) {
+			return $('complement_o').value='输入超出范围';
+		}
+		var b=(n>=0)?'0':'1';
+		if (n<0) n=-n-1;
+		for (var d=64;d>=1;d/=2) {
+			if (n>=d) {
+				b+='1';
+				n-=d;
+			}
+			else b+='0';
+		}
+		$('complement_o').value=b;
+	}
+};
+//]]></script>
+<h2>补码的优势</h2>
+<p>0只有唯一的表示。<a href="?topic=integer">算术运算</a>变得简单。</p>
+<!--#PAGE integer-->
+整数加减法
+ALU,整数,加法,减法,硬件实现
+<img src="integer.png" width="428" height="485" alt="整数加减法硬件框图"/>
+<!--#PAGE Booth-->
+Booth算法
+ALU,整数乘法,布思算法,Booth乘法,布思乘法
+<h2>Booth算法的硬件实现</h2>
+<h3>Booth.v</h3>
+<pre>
+//整数乘法Booth算法
+//start&lt;=posedge时读取因数；M&lt;=被乘数，Qin&lt;=乘数
+//start&lt;=0，送若干个时钟信号供计算用
+//done&lt;=1时计算完毕；{A,Q}&lt;=乘积
+module Booth(A,Q,Qi,M,start,done,clk);
+    parameter n=6;
+    parameter width_count=3;
+    output reg [n-1:0] A;
+    output reg [n-1:0] Q;
+    input [n-1:0] Qi;
+    reg Q1;
+    input [n-1:0] M;
+    reg [width_count-1:0] count;
+    input start;
+    output reg done;
+    input clk;
+    reg clks;
+    always @(posedge clk,posedge start)
+    if (start) begin
+        A&lt;=0;
+        Q1&lt;=0;
+        Q&lt;=Qi;
+        count&lt;=n;
+        done&lt;=1'b0;
+        clks&lt;=1'b1;
+    end
+    else if (~done) begin
+        clks&lt;=~clks;
+        if (clks) begin
+            if (count&gt;0)
+                case ({Q[0],Q1})
+                    2'b10: A&lt;=A-M;
+                    2'b01: A&lt;=A+M;
+                endcase
+        end
+        else begin
+            count&lt;=count-1;
+            if (count&gt;0)
+                {A,Q,Q1}&lt;={A[n-1],A,Q};
+            else
+                done&lt;=0'b1;
+        end
+    end
+endmodule
+</pre>
+<h3>tb_Booth.v</h3>
+<pre>
+`include "Booth.v"
+module tb_Booth;
+    parameter n=6;
+    wire [n-1:0] A;
+    wire [n-1:0] Q;
+    reg [n-1:0] Qi;
+    reg [n-1:0] M;
+    reg start;
+    wire done;
+    reg clk;
+    wire [2*n-1:0] result;
+    Booth booth(A,Q,Qi,M,start,done,clk);
+    initial
+    begin
+        clk=1'b1;
+        M=12;
+        Qi=-17;
+        #1 start=1;
+        #4 start=0;
+    end
+    always
+        #1 clk=~clk;
+    assign result={A,Q};
+endmodule
+</pre>
+<h3>测试结果</h3>
+测试算式是(-17)×12=-204<br/>
+<img src="Booth.png" width="778" height="252" alt="Booth算法硬件实现波形图"/>
+<!--#PAGE float-->
+浮点数表示、规格化
+IEEE754,IEEE浮点数,浮点数规格化
+<h2>±1.ssss……×2<sup>指数</sup></h2>
+<ul>
+<li>符号位：0为正，1为负</li>
+<li>阶值偏码：指数。单精度1~254对应-127~126，双精度1~2046对应-1023~1022</li>
+<li>尾数：ssss……，表示1.ssss……</li>
+</ul>
+<p>全0表示浮点数0。另外还有几种特殊情况，略。</p>
+<ul>
+<li>32位单精度浮点数：1位符号位,8位阶值偏码,23位尾数</li>
+<li>64位双精度浮点数：1位符号位,11位阶值偏码,52位尾数</li>
+</ul>
+<h2>规格化</h2>
+<p>将±0.00……001ssss……×2<sup>指数</sup>形式的浮点数，右移小数点、同时减小指数，使之变成±1.ssss……×2<sup>指数</sup>形式。</p>
+<!--#PAGE OP-->
+指令集
+机器指令,指令类型,指令格式,3地址,2地址
+<h2>机器指令的格式</h2>
+<ul>
+<li>指令的元素：操作码，源操作数，目标操作数，下一条指令</li>
+<li><a href="?topic=VonNouma">冯诺依曼体系</a>，除非有明确的修改，下一条指令的地址为当前指令地址+1</li>
+<li>指令可以是定长的或变长的</li>
+</ul>
+<h2>指令类型</h2>
+<ol>
+<li>数据处理</li>
+<li>数据存取(主存)</li>
+<li>数据移动(I/O)</li>
+<li>程序流控制</li>
+</ol>
+<h2>地址的数目</h2>
+<ul>
+<li>3地址：a=b OP c</li>
+<li>2地址：a=a OP b；但是在<a href="?topic=uOP">微操作</a>中仍然需要使用第三个寄存器暂存结果</li>
+<li>1地址：隐含了第2个地址——通常指累加器</li>
+<li>0地址：在栈顶取操作数，操作结果压入栈顶</li>
+</ul>
+<p>更多的地址：指令长，同样的程序指令总数少，CPU复杂；<br/>
+更少的地址：指令短，同样的程序指令总数多，CPU简单、取指执行快</p>
+<!--#PAGE address-->
+寻址方式
+立即寻址,直接寻址,间接寻址
+<h2>立即寻址</h2>
+<pre>
+MOV AX,50
+</pre>
+<h2>直接寻址</h2>
+<pre>
+MOV AX,MEM
+</pre>
+<h2>间接寻址</h2>
+<pre>
+MOV AX,[MEM]
+</pre>
+<p>CPU在<a href="?topic=uOProutine">间址周期</a>从MEM单元取得直接寻址的地址。</p>
+<!--#PAGE pipeline-->
+流水线
+指令流水
+<p>将指令分为多个阶段，让各个阶段并发执行，以带来加速。
+<a href="?topic=uOP">微操作</a>数是流水线级数的最大值。</p>
+<h2>流水线性能增强的限制</h2>
+<ul>
+<li>存储器访问冲突</li>
+<li>各阶段时间不一致</li>
+<li>转移指令</li>
+<li>中断</li>
+<li>其他冲突</li>
+</ul>
+<h2>条件转移处理</h2>
+<dl>
+<dt>多指令流</dt>
+<dd>出现条件转移时，在两条流水线上分别预取转移发生、转移不发生的两组指令</dd>
+<dd>前一转移未解决，可能出现新的转移，加剧对寄存器、存储器的竞争</dd>
+<dt>预取转移目标</dt>
+<dd>出现条件转移时，在两条流水线上分别预取转移发生、转移不发生的两组指令</dd>
+<dd>前一转移未解决，不理会出现的新转移</dd>
+<dt>循环缓冲器</dt>
+<dd>类似cache，保存最近取来的若干条指令</dd>
+<dt>静态转移预测</dt>
+<dd>根据操作码判断，例如：对JNZ,JB预测转移发生，对JA,JGE预测转移不发生</dd>
+<dt>动态转移预测</dt>
+<dd>在指令cache中存储“上一次这个条件转移是否发生？”开关，根据上次情况预测这次是否发生转移</dd>
+</dl>
+<p>在<a href="?topic=RISCpipeline">RISC流水线</a>中，不需要进行转移预测。</p>
+<!--#PAGE RISCpipeline-->
+RISC流水线
+指令流水,RISC
+<p>两个阶段：I取指，E执行。</p>
+<h2>延迟转移</h2>
+<pre>
+MM DEC DX
+   ADD AX,2
+   JMP MM
+   INC BX   ;此处安排一条有用的指令，而不是NOP
+</pre>
+<!--#PAGE RISC-->
+RISC大寄存器组
+RISC,精简指令集计算机,大寄存器组,寄存器窗口
+<p>RISC处理器可以装备数百个寄存器。</p>
+<h2>寄存器窗口</h2>
+<table border="1">
+<tr><th>调用深度</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th><th>R6</th><th>R7</th><th>R8</th><th>R9</th><th>R10</th><th>R11</th><th>R12</th><th>R13</th><th>R14</th><th>R15</th><th>R16</th><th>R17</th><th>R18</th></tr>
+<tr><th>0</th><td colspan="2">全局变量</td><td colspan="2">局部变量</td><td colspan="2">临时变量</td><td colspan="12">&nbsp;</td></tr>
+<tr><th>1</th><td colspan="2">全局变量</td><td colspan="2">&nbsp;</td><td colspan="2">参数和返回值</td><td colspan="2">局部变量</td><td colspan="2">临时变量</td><td colspan="8">&nbsp;</td></tr>
+<tr><th>2</th><td colspan="2">全局变量</td><td colspan="6">&nbsp;</td><td colspan="2">参数和返回值</td><td colspan="2">局部变量</td><td colspan="2">临时变量</td><td colspan="4">&nbsp;</td></tr>
+<tr><th>3</th><td colspan="2">全局变量</td><td colspan="10">&nbsp;</td><td colspan="2">参数和返回值</td><td colspan="2">局部变量</td><td colspan="2">临时变量</td></tr>
+</table>
+<p>全局变量单独存储于固定的寄存器。<br/>
+参数和返回值、局部变量、用于调用下一函数的临时变量，组成了当前函数的寄存器窗口。</p>
+<!--#PAGE graph-->
+着色圖寄存器优化
+编译器,RISC,寄存器优化
+<p>着&#33394;图寄存器优化</p>
+<ul>
+<li>每个节点代表一个符号寄存器</li>
+<li>若两个寄存器同时存活于一程序区段内，则相应的两个节点之间连一条边</li>
+<li>用n种颜色给图上色（n表示真实寄存器数）</li>
+<li>无法上色的节点就存放在存储器中</li>
+</ul>
+<!--#PAGE superscale-->
+超标量
+超标量,RISC,超级流水线,超流水
+<p>超标量：多条普通指令同时启动、独立执行。可以应用于CISC与RISC。</p>
+<h2>超标量与超级流水线的区别</h2>
+<img src="superscale.png" width="411" height="584" alt="超标量与超流水"/>
+<p>对超标量的限制：指令集并行性，或称<a href="?topic=dependency">相关性</a>。</p>
+<!--#PAGE dependency-->
+相关性
+指令集并行性,机器并行性,真实数据相关性,过程相关性,资源相关性,输出相关性,反相关性
+<dl>
+<dt>指令级并行性</dt>
+<dd>顺序中的指令是相互独立的</dd>
+<dd>执行可以重叠的</dd>
+<dd>受制于数据和过程相关性</dd>
+<dt>机器并行性</dt>
+<dd>机器发现并利用指令级并行性的能力</dd>
+<dd>并行流水线</dd>
+</dl>
+<h2>真实数据相关性</h2>
+<pre>
+ADD R1,R2
+MOV R3,R1 ;R1的值依赖于上一条指令
+</pre>
+<p>真实数据相关性又称写-读相关性。可以并行取指、译码，但不能执行。</p>
+<h2>过程相关性</h2>
+<ul>
+<li>条件转移指令：不知道转移是否发生时，后面的指令无法执行。为了防止带来新的相关性，超标量机器通常只使用<a href="?topic=pipeline">静态/动态转移预测</a>，而不作<a href="?topic=RISCpipeline">RISC的延迟转移</a>。</li>
+<li>变长指令：如果使用变长指令，译码之前无法判断下一条指令的位置。</li>
+</ul>
+<h2>资源相关性</h2>
+<pre>
+ADD R1,R2
+ADD R3,R4 ;如果只有一个加法器，就无法并行执行
+</pre>
+<p>多条指令竞争同一个资源。解决方法：资源复制，即配备多个相同的器件资源；需要结合寄存器重命名技术。</p>
+<h2>输出相关性</h2>
+<pre>
+ADD R3,R5
+XOR R4,R3
+MOV R3,R5 ;必须先写回ADD再执行此指令，否则R3值不对
+SUB R7,R3
+</pre>
+<p>输出相关性又称写-写相关性，仅出现于<a href="?topic=out-of-order">按序发射无序完成、无序发射无序完成</a>发射策略中。</p>
+<h2>反相关性</h2>
+<pre>
+ADD R4,R3 ;必须取得R3值后才能让MOV写回
+MOV R3,R5
+</pre>
+<p>反相关性又称读-写相关性，仅出现于<a href="?topic=out-of-order">无序发射无序完成</a>发射策略中。</p>
+<!--#PAGE out-of-order-->
+指令发射
+相关性,超标量,CPU,乱序执行,无序发射,无序完成
+<style type="text/css">
+.ooo th { width:80px; height:10px; }
+.ooo td { width:30px; height:10px; background:#99ff33; }
+.ooo .e { background:#ff9933; }
+.ooo .n { background:none; }
+</style>
+<p>每条指令可以分为1个取指周期，1个译码周期，0～1个间址周期，若干个执行周期，1个写回周期。</p>
+<p><b>指令发射</b>：使指令从译码阶段进入执行阶段。</p>
+<ul>
+<li>按序发射按序完成</li>
+<li>按序发射无序完成，存在<a href="?topic=dependency">输出相关性</a></li>
+<li>无序发射无序完成，存在<a href="?topic=dependency">输出相关性、反相关性</a></li>
+</ul>
+<h2>常见题型</h2>
+<table border="1">
+<caption>CPU特征</caption>
+<tr><th>器件</th><th>数量</th><th>流水级数</th></tr>
+<tr><td>f取指单元</td><td>2+先行1</td><td>1</td></tr>
+<tr><td>d译码单元</td><td>2+先行1</td><td>1</td></tr>
+<tr><td>m乘法器</td><td>1</td><td>3</td></tr>
+<tr><td>a加法器</td><td>1</td><td>2</td></tr>
+<tr><td>l逻辑单元</td><td>2</td><td>1</td></tr>
+<tr><td>r装入单元</td><td>1</td><td>1</td></tr>
+<tr><td>s写回单元</td><td>2</td><td>1</td></tr>
+</table>
+<p>考虑以下汇编程序，指出相关性、画出各种指令发射时序。</p>
+<pre>
+I1 MOV R8,(R3)
+I2 ADD R3,4
+I3 MOV R9,(R3)
+I4 AND R1,A
+I5 ADD R2,R1
+I6 NOT R6
+I7 ADD R3,R4
+I8 MUL R4,R5
+I9 MUL R6,R7
+</pre>
+<h3>存在的相关性</h3>
+<ul>
+<li>I1-I2：R3读写相关性</li>
+<li>I1-I3：装入单元资源相关性</li>
+<li>I1-I4：装入单元资源相关性</li>
+<li>I2-I3：R3写读相关性</li>
+<li>I2-I5：加法器资源相关性</li>
+<li>I2-I7：R3写读相关性、R3写写相关性、加法器资源相关性</li>
+<li>I3-I4：装入单元资源相关性</li>
+<li>I3-I7：R3读写相关性</li>
+<li>I4-I5：R1写读相关性</li>
+<li>I5-I7：加法器资源相关性</li>
+<li>I6-I9：R6写读相关性、R6读写相关性、R6写写相关性</li>
+<li>I7-I8：R4读写相关性</li>
+<li>I8-I9：乘法器资源相关性</li>
+</ul>
+<h3>按序发射按序完成</h3>
+<p>取指单元一有空就取指（指令未译码时要占用取指单元）；译码单元一有空就译码（指令未发射时要占用译码单元）；执行单元有空，上一条已发射就执行；写回单元有空，可在上一条已经写回后写回，或与上一条同时写回。</p>
+<table class="ooo">
+<tr><th>I1</th><td>f1</td><td>d1</td><td class="e">r1</td><td>s1</td><td colspan="10" class="n">&nbsp;</td></tr>
+<tr><th>I2</th><td>f2</td><td>d2</td><td class="e">a1</td><td class="e">a2</td><td>s2</td><td colspan="9" class="n">&nbsp;</td></tr>
+<tr><th>I3</th><td class="n">&nbsp;</td><td>f1</td><td>d1</td><td colspan="2" class="n">&nbsp;</td><td class="e">r1</td><td>s1</td><td colspan="7" class="n">&nbsp;</td></tr>
+<tr><th>I4</th><td class="n">&nbsp;</td><td>f2</td><td>d2</td><td colspan="3" class="n">&nbsp;</td><td class="e">r1</td><td class="e">l1</td><td>s2</td><td colspan="5" class="n">&nbsp;</td></tr>
+<tr><th>I5</th><td colspan="2" class="n">&nbsp;</td><td>f1</td><td colspan="2" class="n">&nbsp;</td><td>d1</td><td class="e">a1</td><td class="e">a2</td><td>s1</td><td colspan="5" class="n">&nbsp;</td></tr>
+<tr><th>I6</th><td colspan="2" class="n">&nbsp;</td><td>f2</td><td colspan="3" class="n">&nbsp;</td><td>d2</td><td class="n">&nbsp;</td><td class="e">l1</td><td>s2</td><td colspan="4" class="n">&nbsp;</td></tr>
+<tr><th>I7</th><td colspan="6" class="n">&nbsp;</td><td>f1</td><td>d1</td><td class="e">a1</td><td class="e">a2</td><td>s1</td><td colspan="3" class="n">&nbsp;</td></tr>
+<tr><th>I8</th><td colspan="6" class="n">&nbsp;</td><td>f2</td><td>d2</td><td class="e">m1</td><td class="e">m2</td><td class="e">m3</td><td>s2</td><td colspan="2" class="n">&nbsp;</td></tr>
+<tr><th>I9</th><td colspan="7" class="n">&nbsp;</td><td>f1</td><td>d1</td><td class="n">&nbsp;</td><td class="e">m1</td><td class="e">m2</td><td class="e">m3</td><td>s1</td></tr>
+</table>
+<h3>按序发射无序完成</h3>
+<p>取指单元一有空就取指（指令未译码时要占用取指单元）；译码单元一有空就译码（指令未发射时要占用译码单元）；执行单元有空，上一条已发射就执行；写回单元一有空就写回。</p>
+<p>发射次序正巧与“按序发射按序完成”一样。</p>
+<h3>无序发射无序完成</h3>
+<p>取指单元一有空就取指（指令未译码时要占用取指单元）；译码单元一有空就译码（指令未发射时要占用译码单元）；执行单元一有空就执行；写回单元一有空就写回。</p>
+<table class="ooo">
+<tr><th>I1</th><td>f1</td><td>d1</td><td class="e">r1</td><td>s1</td><td colspan="10" class="n">&nbsp;</td></tr>
+<tr><th>I2</th><td>f2</td><td>d2</td><td class="e">a1</td><td class="e">a2</td><td>s2</td><td colspan="9" class="n">&nbsp;</td></tr>
+<tr><th>I3</th><td>f3</td><td>d3</td><td colspan="3" class="n">&nbsp;</td><td class="e">r1</td><td>s1</td><td colspan="7" class="n">&nbsp;</td></tr>
+<tr><th>I4</th><td class="n">&nbsp;</td><td>f1</td><td>d1</td><td class="e">r1</td><td class="e">l1</td><td>s2</td><td colspan="7" class="n">&nbsp;</td></tr>
+<tr><th>I5</th><td class="n">&nbsp;</td><td>f2</td><td>d2</td><td colspan="4" class="n">&nbsp;</td><td class="e">a1</td><td class="e">a2</td><td>s1</td><td colspan="5" class="n">&nbsp;</td></tr>
+<tr><th>I6</th><td class="n">&nbsp;</td><td>f3</td><td colspan="3" class="n">&nbsp;</td><td>d3</td><td class="e">l1</td><td>s2</td><td colspan="5" class="n">&nbsp;</td></tr>
+<tr><th>I7</th><td colspan="2" class="n">&nbsp;</td><td>f1</td><td>d1</td><td class="n">&nbsp;</td><td class="e">a1</td><td class="e">a2</td><td>s1</td><td colspan="5" class="n">&nbsp;</td></tr>
+<tr><th>I8</th><td colspan="2" class="n">&nbsp;</td><td>f2</td><td colspan="4" class="n">&nbsp;</td><td>d2</td><td class="e">m1</td><td class="e">m2</td><td class="e">m3</td><td>s2</td><td colspan="2" class="n">&nbsp;</td></tr>
+<tr><th>I9</th><td colspan="5" class="n">&nbsp;</td><td>f3</td><td>d3</td><td colspan="2" class="n">&nbsp;</td><td class="e">m1</td><td class="e">m2</td><td class="e">m3</td><td>s1</td></tr>
+</table>
+<!--#PAGE uOP-->
+微操作
+微操作,指令周期
+<img src="uOP.png" width="495" height="259" alt="程序执行的组成元素"/>
+<p><a href="?topic=uOProutine">取指、间址、执行、中断周期的微操作</a></p>
+<h2>微操作的类型</h2>
+<ul>
+<li>在寄存器之间传送数据</li>
+<li>将数据由寄存器传送到外部</li>
+<li>将数据由外部传送到寄存器</li>
+<li>算术或逻辑运算</li>
+</ul>
+<!--#PAGE uOProutine-->
+各周期的微操作
+微操作,指令周期,取指,间址,执行,中断
+<h2>取指周期</h2>
+<pre>
+MAR&lt;=PC
+MBR&lt;=memory,temp&lt;=PC+1
+IR&lt;=MBR,PC&lt;=temp
+</pre>
+<h2>间址周期</h2>
+<pre>
+MAR&lt;=IR[operand]
+MBR&lt;=memory
+IR[operand]&lt;=MBR
+</pre>
+<h2>执行周期</h2>
+<p>视各指令而定</p>
+<pre>
+;ADD R1,X
+MAR&lt;=IR[operand]
+MBR&lt;=memory
+temp&lt;=R1+MBR
+R1&lt;=temp
+</pre>
+<h2>中断周期</h2>
+<pre>
+MBR&lt;=PC
+MAR&lt;=push_PC_address,PC&lt;=ISR_entry
+memory&lt;=MBR
+</pre>
+<!--#PAGE MI-->
+微指令
+控制器,微指令,微程序
+<p><b>控制器</b>有两种实现方法：硬连线实现（组合逻辑电路），微指令实现。硬连线实现的控制器非常复杂，且难以修改。</p>
+<p>微指令存储于控制器内的SRAM芯片中，由CPU设计者编写，一般程序员不编写微指令。<a href="?topic=MIformat">微指令的格式</a></p>
+<p>微程序式控制器，只需要执行微指令即可，包括产生微指令定义的控制信号、计算下一条指令的地址。</p>
+<!--#PAGE MIformat-->
+微指令格式
+控制器,微指令,微程序
+<p>微指令的格式必须相当简单，通常包括三个部分：控制信号、转移条件、转移目标。</p>
+<h2>排序技术</h2>
+<dl>
+<dt>双地址字段</dt>
+<dd>控制信号，转移条件，真目标，假目标</dd>
+<dd>微指令太长，占用SRAM多——成本高</dd>
+<dt>单地址字段</dt>
+<dd>控制信号，转移条件，真目标</dd>
+<dd>转移条件不成立时，下一条微指令就是当前地址+1</dd>
+<dd>这种格式较为常用</dd>
+<dt>可变格式</dt>
+<dd>我是控制信号，控制信号</dd>
+<dd>我是转移语句，转移条件，转移目标</dd>
+<dd>微指令短，但是转移判断需要多花一个时钟周期；然而微程序中转移相当频繁，这样就会影响效率</dd>
+</dl>
+<h2>微指令编码</h2>
+<dl>
+<dt>直接编码</dt>
+<dd>控制信号码部分经过一次译码就得到控制信号</dd>
+<dt>间接编码</dt>
+<dd>控制信号，转移条件，真目标</dd>
+<dd>控制信号码部分经过多次译码才得到控制信号</dd>
+</dl>
+<!--#PAGE SISD-->
+并行处理器的组织
+SISD,SIMD,MIMD
+<ul>
+<li>单处理器单数据流 SISD</li>
+<li>单处理器多数据流 SIMD</li>
+<li>多处理器单数据流 MISD</li>
+<li><a href="?topic=MIMD">多处理器多数据流 MIMD</a></li>
+</ul>
+<!--#PAGE MIMD-->
+多处理器多数据流并行计算
+SMP,对称多处理机,对称多处理器,cluster,机群,NUMA,非均匀存储器存取
+<p>共同特点：通用处理器，各处理器能力相似</p>
+<h2>对称多处理机 SMP</h2>
+<p>可以采用分时共享总线方式，也有其他互连方式。</p>
+<img src="SMP.png" width="402" height="307" alt="SMP"/>
+<p>每个处理器都拥有自己的cache，带来<a href="?topic=MESI">cache一致性问题</a>。</p>
+<h2>机群 cluster</h2>
+<p>多台互相独立的计算机，通过操作系统或中间件形成统一的计算资源。</p>
+<img src="cluster.png" width="473" height="196" alt="cluster"/>
+<p>程序需要较大的修改，才能用于cluster系统。</p>
+<h2>非均匀存储器存取 NUMA</h2>
+<p>所有处理器都可使用主存的任何部分；一个处理器的存储器存取时间取决于存储器区域；不同处理器的存储器存取时间取决于存储器区域。</p>
+<img src="NUMA.png" width="437" height="309" alt="NUMA"/>
+<p>程序只需要较少的修改，就可以用于NUMA系统。但是NUMA操作系统或中间件很难实现，特别是cache一致性问题。</p>
+<!--#PAGE MESI-->
+MESI缓存一致性协议
+cache,cache一致性,缓存一致性,写-无效
+<p>MESI是一种<b>写-无效监听协议</b>。</p>
+<h2>cache行的四种状态</h2>
+<ul>
+<li>修改态(Modified)：cache行已被修改，且仅位于这个cache中</li>
+<li>专有态(Exclusive)：cache行同主存，且仅位于这个cache中</li>
+<li>共享态(Shared)：cache行同主存，且位于多个cache中</li>
+<li>无效态(Invalid)：此cache行不含有效数据</li>
+</ul>
+<h2>状态的转换</h2>
+<img src="MESI.png" width="700" height="526" alt="MESI状态转换图"/>

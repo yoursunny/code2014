@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<course>
+
+<title>编译原理</title>
+<code>IS203</code>
+<teacher>张爱新</teacher>
+<teacher>訾小超</teacher>
+
+<download>
+01引言.ppt
+02文法和语言.ppt
+03词法分析.ppt
+03词法分析_习题.ppt
+04语法分析.ppt
+04语法分析_习题.ppt
+04语法分析_答案.doc
+05语法制导翻译和中间代码生成.ppt
+05语法制导翻译和中间代码生成_答案.doc
+06运行时存储空间管理.ppt
+07代码优化.ppt
+07代码优化_习题.ppt
+08代码生成.ppt
+</download>
+
+<topic t="a9single" q="p" v="outline">
+<homelink>阳光男孩的编译原理提纲</homelink>
+</topic>
+
+</course>

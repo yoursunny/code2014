@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Hill密码</title>
+<script type="text/javascript">//<![CDATA[
+function InverseMatrix(M,level,mod) {
+//http://blog.csdn.net/lsd123/archive/2008/10/13/3070788.aspx
+  var col=level+level;
+  var get=function(x,y) { return R[x+y*col]; }
+  var set=function(x,y,v) { R[x+y*col]=v; }
+  var swap=function(x1,y1,x2,y2) { var t=get(x1,y1); set(x1,y1,get(x2,y2)); set(x2,y2,t); }
+  var plus=function(x,y) { return (x+y)%mod; }
+  var minus=function(x,y) { return (x-y+mod)%mod; }
+  var multiply=function(x,y) { return x*y%mod; }
+  var div=function(x,y) { for (var k=0;k<mod;++k) if (k*y%mod==x) return k; }
+  var R=new Array();
+  for (var i=0;i<level;++i) {
+    for (var j=0;j<col;++j) {
+      if (j<level) set(i,j,M[i+j*level]);
+      else set(i,j,(j==level+i)?1:0);
+    }
+  }
+  for (var i=0,j=0;i<level&&j<level;++i,++j) {
+    if (get(i,j)==0) {
+      var m=i;
+      for (;get(m,j)==0;++m) ;
+      if (m==level) return null;
+      else {
+        for (var n=j;n<col;++n) set(i,n,plus(get(i,n),get(m,n)));
+      }
+    }
+    var x=get(i,j);
+    if (x!=1) {
+      for (var n=j;n<col;++n) set(i,n,div(get(i,n),x));
+    }
+    for (var s=level-1;s>i;--s) {
+      var x=get(s,j);
+      for (var t=j;t<col;++t) set(s,t,minus(get(s,t),multiply(get(i,t),x)));
+    }
+  }
+  for (var i=level-2;i>=0;--i) {
+    for (var j=i+1;j<level;++j) {
+      var c=get(i,j);
+      if (c!=0)
+        for (var n=j;n<col;++n) set(i,n,minus(get(i,n),multiply(c,get(j,n))));
+    }
+  }
+  var T=new Array();
+  for (var i=0;i<level;++i) {
+    for (var j=0;j<level;++j) {
+      T[i+j*level]=get(i,j+level);
+    }
+  }
+  return T;
+}
+function $(id){
+  return document.getElementById(id);
+}
+function parseK() {
+  var a=$('TK').value.split(' ');
+  if (a.length!=9) return null;
+  for (var i=0;i<9;++i) a[i]=parseInt(a[i],10);
+  return a;
+}
+var L='abcdefghijklmnopqrstuvwxyz';
+function encode(s) {
+  s=(s+'zzz').substr(0,Math.ceil(s.length/3)*3);
+  var a=[];
+  var len=s.length;
+  for (var i=0;i<len;++i) a[i]=L.indexOf(s.substr(i,1));
+  return a;
+}
+function decode(a) {
+  var s='';
+  var len=a.length;
+  for (var i=0;i<len;++i) s+=L.substr(a[i],1);
+  return s;
+}
+function matrix_mul3(M,vector) {
+  var mod=L.length;
+  var mul=function(mx,vy) { return M[mx]*vector[vy]%mod; }
+  return new Array(
+    (mul(0,0)+mul(1,1)+mul(2,2))%mod,
+    (mul(3,0)+mul(4,1)+mul(5,2))%mod,
+    (mul(6,0)+mul(7,1)+mul(8,2))%mod
+  );
+}
+function matrix_mula(M,vector) {
+  var len=vector.length;
+  for (var i=0;i<len;i+=3) {
+    var a=[vector[i],vector[i+1],vector[i+2]];
+    a=matrix_mul3(M,a);
+    vector[i]=a[0];vector[i+1]=a[1];vector[i+2]=a[2];
+  }
+  return vector;
+}
+function E(){
+  var tmc=encode($('TM').value);
+  $('TMC').value=tmc.join(' ');
+  var tcc=matrix_mula(parseK(),tmc);
+  $('TCC').value=tcc.join(' ');
+  $('TC').value=decode(tcc);
+}
+function D(){
+  var tcc=encode($('TC').value);
+  $('TCC').value=tcc.join(' ');
+  var R=InverseMatrix(parseK(),3,L.length);
+  $('TKR').value=R.join(' ');
+  var tmc=matrix_mula(R,tcc);
+  $('TMC').value=tmc.join(' ');
+  $('TM').value=decode(tmc);
+}
+//]]></script>
+</head>
+<body>
+<a href="http://yoursunny.com/study/IS407/">你的阳光-现代密码学</a> Hill密码加解密程序<br/>
+M=<input type="text" id="TM"/>（小写字母，长度不是3的倍数时后面会添加z）<br/>
+M_code=<input type="text" id="TMC"/><br/>
+K=<input type="text" id="TK" value="17 17 5 21 18 21 2 2 19"/>（3阶矩阵，依次填写k11 k12 k13 k21 k22 k23 k31 k32 k33、用空格分隔）<br/>
+K<sup>-1</sup>=<input type="text" id="TKR"/><br/>
+C_code=<input type="text" id="TCC"/><br/>
+C=<input type="text" id="TC"/><br/>
+<input type="button" value="encrypt" onclick="E()"/>
+<input type="button" value="decrypt" onclick="D()"/>
+<script type="text/javascript" src="/lib/10/track.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+用TinyGet投票
+
+no-sidebar
+阳光男孩 发表于 2008-12-08
+<p>前几天，有人托我在东方网的某个评选活动中帮他投票，票数多多益善——也就是所谓的“&#21047;票”。<br/>
+<img src="http://i29.tinypic.com/r0si1j.png" width="776" height="468" alt="投票活动页面"/></p>
+<p>打开投票页面，先手工投几票，发现这个活动的投票不需要登录，对于IP地址、投票频率都没有任何限制。</p>
+<h3>用Fiddler2截取投票HTTP报文</h3>
+<blockquote>
+<p>Fiddler is a Web Debugging Proxy which logs all HTTP(S) traffic between your computer and the Internet. Fiddler allows you to inspect all HTTP(S) traffic, set breakpoints, and "fiddle" with incoming or outgoing data. Fiddler includes a powerful event-based scripting subsystem, and can be extended using any .NET language.</p>
+<p>Fiddler is freeware and can debug traffic from virtually any application, including Internet Explorer, Mozilla Firefox, Opera, and thousands more. </p>
+</blockquote>
+<p>打开<a href="http://www.fiddler2.com/Fiddler2/version.asp" rel="external" onclick="c('tinyget-vote.Fiddler2')">Fiddler2</a>，将浏览器的代理服务器设置为Fiddler2监听的端口（默认为127.0.0.1:8888）。然后为候选人投一票，Fiddler2里有了反应：<br/>
+<img src="http://i35.tinypic.com/25an255.png" width="797" height="540" alt="投票报文"/></p>
+<h3>保存请求信息</h3>
+<p>Fiddler2右上部分的窗格内就是投票提交的HTTP请求报文，其中：</p>
+<ul>
+<li>POST是请求的方法</li>
+<li>/public/suopiao/suopiao1134/InfoSubmit_1134.asp是页面URI地址</li>
+<li>User-Agent……Content-Type这几行是头部信息</li>
+<li>Mark_Field……1134这些是请求主体数据</li>
+</ul>
+<p>现在将头部信息（不含POST那一行）和请求主体数据分别保存在两个文本文件里：<br/>
+<img src="http://i27.tinypic.com/10yguxi.png" width="738" height="297" alt="保存的报文"/></p>
+<h3>用TinyGet投一票</h3>
+<p>TinyGet是<a href="http://support.microsoft.com/kb/840671" rel="external">IIS 6.0 Resource Kit Tools</a>中的一个HTTP调试与压力测试工具。</p>
+<blockquote>
+<p>TinyGet version 5.2 is a command-line HTTP client that supports multiple threads and looping. It provides detailed output and response validation, so you can use it to test or troubleshoot HTTP client-to-server communication. With TinyGet, you can customize each test request by configuring many different factors, including the authentication method, HTTP version, and output format.</p>
+<p>You can use TinyGet as a simple stress tool to test the performance of your site under different loads.</p>
+</blockquote>
+<p>使用下列命令行调用TinyGet：<br/>
+<code>TinyGet.exe -d -j:POST -frh:headers.txt -frb:body.txt -srv:appl.eastday.com -uri:/public/suopiao/suopiao1134/InfoSubmit_1134.asp</code></p>
+<p>各参数的含义如下：</p>
+<ul>
+<li>-d 显示服务器响应内容</li>
+<li>-j:POST 用POST方法发出请求</li>
+<li>-frh:headers.txt 从headers.txt文件中读取头部信息</li>
+<li>-frb:body.txt 从body.txt文件中读取请求主体数据</li>
+<li>-srv:appl.eastday.com 指定服务器域名</li>
+<li>-uri:/public/suopiao/suopiao1134/InfoSubmit_1134.asp 指定URI</li>
+</ul>
+<p><img src="http://i32.tinypic.com/9t1mib.png" width="668" height="191" alt="TinyGet投一票"/><br/>
+从回显看，已经成功投了一票。</p>
+<h3>用TinyGet&#21047;票</h3>
+<p>刚才只投了一票，而“&#21047;票”则需要大量投票。估计现在有人会说：写个循环，调用TinyGet 1000次，就可以投1000票了！这样做是可行的，但不是效率最高的。</p>
+<p>TinyGet本身就支持多线程和每个线程内的循环，使用内置多线程和循环，比从外部循环调用，效率会高很多——省去了进程创建、命令行解析、文件读取等操作。</p>
+<p>命令行如下：<br/>
+<code>TinyGet.exe -j:POST -frh:headers.txt -frb:body.txt -srv:appl.eastday.com -uri:/public/suopiao/suopiao1134/InfoSubmit_1134.asp -x:50 -l:10</code></p>
+<p>各参数含义如下：</p>
+<ul>
+<li>-x:50 用50个线程并发请求</li>
+<li>-l:10 每个线程循环10次</li>
+</ul>
+<p>投票数量应为x和l参数的乘积，也就是50×10=500票。注意关闭-d参数，也就是不回显服务器响应。</p>
+<p>效果：<br/>
+<img src="http://i29.tinypic.com/29lyzo5.png" width="866" height="382" alt="&#21047;票效果"/></p>

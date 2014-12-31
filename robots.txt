@@ -1,0 +1,9 @@
+User-Agent: *
+Disallow: /include/
+Disallow: /lib/
+Disallow: /study/GPA/2009/
+Disallow: /study/GPA/renren.php
+
+User-Agent: MediaPartners-Google
+Allow: /study/GPA/2009/
+

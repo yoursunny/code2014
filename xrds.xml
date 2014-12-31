@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xrds:XRDS xmlns:xrds="xri://$xrds" xmlns="xri://$xrd*($v*2.0)">
+	<XRD>
+		<Service priority="1">
+			<Type>http://specs.openid.net/auth/2.0/return_to</Type>
+			<URI>http://yoursunny.com/lib/login/openid.php</URI>
+		</Service>
+		<Service priority="1">
+			<Type>http://yoursunny.com/work/PHP-decode/?ns=APIv1</Type>
+			<URI>http://pubapi1.yoursunny.com/PHP-decode/APIv1.php</URI>
+		</Service>
+		<Service priority="1">
+			<Type>http://yoursunny.com/p/qqwry/?ns=replace1</Type>
+			<URI>http://pubapi1.yoursunny.com/qqwry/replace1.php</URI>
+		</Service>
+	</XRD>
+</xrds:XRDS>

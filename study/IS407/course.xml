@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<course>
+
+<title>现代密码学</title>
+<code>IS407</code>
+<teacher>黄征</teacher>
+
+<download>
+01概述.pdf
+02古典加密.pdf
+03分组加密技术.pdf
+09保密通讯.pdf
+10公钥密码RSA.pdf
+11可证安全的公钥密码.pdf
+12公钥密码ECC.pdf
+13认证、散列函数、数字签名.pdf
+16密钥管理.pdf
+参考书 Lecture Notes on Cryptography麻省理工学院密码学讲义.pdf
+参考书 密码编码学与网络安全：原理与实践 William Stllings 刘玉珍 王丽娜 傅建明.pdf
+参考书 应用密码学 王衍波 薛通.pdf
+参考书 现代密码学理论与实践 Wenbo Mao 王继林 伍前红.pdf
+现代密码学 考试范围.txt
+相同MD5值的不同程序.7z
+</download>
+
+<topic t="redirect" url="p/">
+<homelink>现代密码学 样卷</homelink>
+</topic>
+<topic t="redirect" url="Caesar.htm">
+<homelink>古典加密-<a>恺撒密码</a>加解密程序</homelink>
+</topic>
+<topic t="redirect" url="Hill.htm">
+<homelink>古典加密-<a>Hill密码</a>加解密程序</homelink>
+</topic>
+
+</course>

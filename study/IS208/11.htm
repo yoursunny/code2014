@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数字系统设计 作业 11</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<img src="11q.png" width="625" height="317" alt="三分频"/>
+<hr/>
+
+<h1>一 Verilog设计文件</h1>
+<h2>三分频器 freq_div3.v</h2>
+<pre>module freq_div3(output reg clk_out,input clk_in,input reset);
+    reg [5:0] state;
+    parameter SL1=6'b000001;
+    parameter SL2=6'b000010;
+    parameter SL3=6'b000100;
+    parameter SH1=6'b001000;
+    parameter SH2=6'b010000;
+    parameter SH3=6'b100000;
+    always @(posedge clk_in)
+        if (!reset) begin
+            state&lt;=SL1;
+            clk_out&lt;=1'b0;
+        end
+        else
+            case (state)
+                SL2: begin
+                    state&lt;=SL3;
+                    clk_out&lt;=1'b0;
+                end
+                SH1: begin
+                    state&lt;=SH2;
+                    clk_out&lt;=1'b1;
+                end
+                SH3: begin
+                    state&lt;=SL1;
+                    clk_out&lt;=1'b1;
+                end
+                default: begin
+                    state&lt;=SL1;
+                    clk_out&lt;=1'b0;
+                end
+            endcase
+    always @(negedge clk_in)
+        case (state)
+            SL1: begin
+                state&lt;=SL2;
+                clk_out&lt;=1'b0;
+            end
+            SL3: begin
+                state&lt;=SH1;
+                clk_out&lt;=1'b0;
+            end
+            SH2: begin
+                state&lt;=SH3;
+                clk_out&lt;=1'b1;
+            end
+            default: begin
+                state&lt;=SL2;
+                clk_out&lt;=1'b0;
+            end
+        endcase
+endmodule</pre>
+<hr/>
+<h2>测试平台</h2>
+<pre>`include "freq_div3.v"
+module tb_freq_div3;
+    reg c1;
+    wire c2;
+    wire c3;
+    wire c4;
+    reg r1;
+    reg r2;
+    reg r3;
+    initial
+    begin
+        c1=1'b0;
+        {r1,r2,r3}=3'b111;
+    end
+    always
+        #1 c1=~c1;
+    freq_div3 d1(c2,c1,r1);
+    freq_div3 d2(c3,c2,r2);
+    freq_div3 d3(c4,c3,r3);
+    initial
+    begin
+        #80 r3=1'b0;
+        #10 r3=1'b1;
+        #30 r3=1'b0;
+        #10 r3=1'b1;
+    end
+endmodule</pre>
+<hr/>
+
+<h1>二 仿真分析图</h1>
+<img src="11w.png" width="609" height="176" alt="波形"/>
+<hr/>
+
+<h1>三 仿真监控结果</h1>
+<hr/>
+
+<h1>四 结果分析</h1>
+<ul>
+<li>图中c1、c2、c3、c4频率分别为500MHz、167MHz、56MHz、19MHz，依次为三分频</li>
+<li>图中第一次对d3三分频器RESET，当遇到c3上跳沿时，d3发生清零</li>
+<li>图中第二次对d3三分频器RESET，没有遇到c3上跳沿，d3未发生清零</li>
+</ul>
+<hr/>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<course>
+
+<title>网络信息安全基础</title>
+<code>IS215</code>
+<teacher>张全海</teacher>
+
+<recommend>
+网络安全入门课程
+</recommend>
+
+<download>
+01网络基础知识.ppt
+02信息安全内涵.ppt
+03网络安全威胁与攻击.ppt
+04网络安全服务.ppt
+05安全体系结构、模型.ppt
+06安全等级与标准.ppt
+07标准与评估.ppt
+08IPSec.ppt
+09密码学发展及传统加密技术.ppt
+10对称密码体系 DES IDEA.ppt
+11公钥密码体制，密钥分配与管理.ppt
+12报文鉴别，散列函数.ppt
+13数字签名，信息隐藏.ppt
+14身份认证.ppt
+15访问控制.ppt
+16公钥基础设施PKI和授权管理基础设施PMI.ppt
+17电子邮件、Web与电子商务的安全.ppt
+18防火墙和UTM.ppt
+19VPN和TPN.ppt
+20入侵检测.ppt
+21网络病毒及防范.ppt
+iatf3_1.rar
+复习.ppt
+</download>
+
+<topic t="a9single" q="p" v="outline">
+<homelink>阳光男孩的《网络信息安全基础》提纲</homelink>
+</topic>
+
+</course>

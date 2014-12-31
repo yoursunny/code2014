@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<course>
+
+<title>计算机通信网络</title>
+<code>IS204</code>
+<teacher>蒋兴浩</teacher>
+
+<download>
+《计算机通信网络》课程要求.pdf
+第1章-概述（第1讲）.pdf
+第1章-概述（第2讲）.pdf
+第2章-协议分层的基本原理.pdf
+第3章-现代通信网及其交换技术.pdf
+第4章-数据链路层.pdf
+第5章-介质接入控制.pdf
+第6章-路由选择与网络拥塞控制.pdf
+第7章-网络互联.pdf
+第8章-传输层.pdf
+第9章-计算机通信网的高层.pdf
+复习课.pdf
+</download>
+
+</course>

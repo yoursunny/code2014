@@ -1,0 +1,5 @@
+Text "FOLLOW 520bus" to 40404.
+Text your full name to 40404, and get a Twitter username.
+When you see "@520bus is now following you!" setup is done.
+
+

@@ -1,0 +1,47 @@
+How to specify server IP in HttpWebRequest
+System.Net.HttpWebRequest,ServicePoint
+prettify no-sidebar
+sunny boy, 2009-01-01
+
+<p class="indent">I was writing an <a href="/work/hProxyN/">HTTP proxy</a> during last weeks. I need to address the origin server with a custom IP address, but I should keep the "Host" header.</p>
+<p class="indent">I googled about "HttpWebRequest set server IP", "WebRequest modify Host", etc. I read through several posts, and realized:</p>
+<ul>
+<li>When HttpWebRequest is created, the "Host" header is automatically set to the "host:port" portion of the Uri.</li>
+<li>Attempt to modify HttpWebRequest.Headers["Host"] will throw an exception.</li>
+<li>The server IP address of the HTTP Request is determined by the host portion of the Uri, and is automatically resolved against the DNS server.</li>
+<li>When HttpWebRequest.Proxy is set to use a proxy, the server IP address is determined by resolving the host of Proxy property. I can set the origin server as the proxy, this is called "Proxy hack".</li>
+<li>When using a proxy, the HTTP Request-Line looks like "GET http://host/ HTTP/1.1" rather than "GET / HTTP/1.1". Every HTTP/1.1 compliant origin server should accept this, but firewalls may think it's a "proxy request" and block it, and some non-compliant servers does not accept it.</li>
+</ul>
+<h3>SOLUTION</h3>
+<p class="indent">My purpose is: <b>make HttpWebRequest send its request to a custom IP address, but leave the Request-Line as "GET / HTTP/1.1"</b>.</p>
+<p class="indent">After hours of <a href="http://www.red-gate.com/products/reflector/" rel="external">Reflector</a>, I found the solution:</p>
+<pre class="prettyprint lang-cs">
+HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://blogs.msdn.com");//url and Host header
+FieldInfo field_ServicePoint_ProxyServicePoint = (typeof(ServicePoint))
+    .GetField("m_ProxyServicePoint", BindingFlags.NonPublic | BindingFlags.Instance);
+req.Proxy = new WebProxy("www.google.com:80");//server IP and port
+field_ServicePoint_ProxyServicePoint.SetValue(req.ServicePoint, false);
+HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+</pre>
+<p class="indent">When the above code is executed, I can see the following request in Wireshark:</p>
+<pre>
+GET / HTTP/1.1
+Host: blogs.msdn.com
+Connection: Keep-Alive
+</pre>
+<p class="indent">And, the request is sent to 64.233.189.99:80, a www.google.com server.</p>
+<p><a href="javascript:tech_download('HttpWebRequest-IP.zip')">DOWNLOAD: C# code &amp; Wireshark capture</a></p>
+<h3>BEHIND THE SCENES</h3>
+<p class="indent"><i>ServicePoint</i> class provides connection management for HTTP connections. A ServicePoint instance is created for each "host:port" combination, and reused across several requests. <code class="prettyprint lang-cs">ServicePoint.m_ProxyServicePoint</code> determines whether this ServicePoint connects to a proxy. When <i>m_ProxyServicePoint</i> is set to false, HttpWebRequest don't think it's a proxy, so the Request-Line becomes "GET / HTTP/1.1".</p>
+<p class="indent">However, <i>m_ProxyServicePoint</i> is a private property of ServicePoint, so I have to use <i>Reflection</i> to change it.</p>
+<hr/>
+<h3>HttpWebRequest.Host in .Net Framework 4.0</h3>
+<p>2010-05-31 update: As of .Net Framework 4.0, you can use <a href="http://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.host.aspx" rel="external">HttpWebRequest.Host</a> property to set Host header independent from the request URI.</p>
+<pre class="prettyprint lang-cs">
+HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://www.google.com");//url path and actual server
+req.Host = "blogs.msdn.com");//Host header
+HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+</pre>
+
+<p>Author: <a href="http://www.facebook.com/profile.php?id=721293826" rel="me external">sunny boy</a></p>
+<p>Note: to help international users, this article is written in English.</p>

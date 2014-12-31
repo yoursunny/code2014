@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用JavaScript检测浏览器是否打开图像显示-load事件法</title>
+</head><body>
+
+<script type="text/javascript">//<![CDATA[
+window.ImageSupport=function() { return false; }
+//]]></script>
+<div>
+<img src="http://www.google-analytics.com/__utm.gif" alt=""
+        style="position:absolute;visibility:hidden;z-index:-1;"
+        onload="window.ImageSupport=function(){return true;}"/>
+<!-- sorry, but this page will not validate, because there is no attribute "onload" for img element -->
+</div>
+
+<p><input type="button" value="ImageSupport()" onclick="alert(ImageSupport());"/>
+<br/><a href="http://yoursunny.com/t/2009/js-img/">用JavaScript检测浏览器是否打开图像显示</a></p>
+
+</body></html>

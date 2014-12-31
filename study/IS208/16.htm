@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数字系统设计 作业 16</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<img src="16q.png" width="619" height="442" alt="8x8 SRAM"/>
+<hr/>
+
+<h1>一 Verilog设计文件</h1>
+<h2>SRAM sram.v</h2>
+<pre>module sram(output [7:0] dout,input [7:0] din,input [2:0] addr,input wr,input rd,input cs);
+    reg [63:0] ram;
+    genvar j;
+    generate for (j=0;j&lt;8;j=j+1)
+    begin
+        always @(posedge wr)
+        begin
+            if (cs &amp; addr==j)
+                ram[8*j+7:8*j]&lt;=din;
+        end
+        assign dout=(cs &amp; addr==j &amp; ~rd)?ram[8*j+7:8*j]:8'bzzzzzzzz;
+    end
+    endgenerate
+endmodule</pre>
+<hr/>
+<h2>测试平台</h2>
+<pre>`include "sram.v"
+module tb_sram;
+    wire [7:0] dout;
+    reg [7:0] din;
+    reg [2:0] addr;
+    reg wr;
+    reg rd;
+    reg cs;
+    sram r(dout,din,addr,wr,rd,cs);
+    initial
+    begin
+        {din,addr,wr,rd,cs}=14'b00000000000010;
+        write(3'o0,8'h6E);
+        read(3'o1);
+        deselect();
+        write(3'o2,8'h71);
+        write(3'o4,8'h72);
+        deselect();
+        write(3'o6,8'h75);
+        read(3'o4);
+        deselect();
+        read(3'o2);
+        write(3'o7,8'h82);
+        deselect();
+        write(3'o5,8'h81);
+        write(3'o3,8'h80);
+        deselect();
+        write(3'o1,8'h7D);
+        read(3'o0);
+        deselect();
+        read(3'o1);
+        read(3'o2);
+        read(3'o3);
+        read(3'o4);
+        deselect();
+        read(3'o5);
+        read(3'o6);
+        write(3'o6,8'h3F);
+        deselect();
+        read(3'o7);
+        read(3'o6);
+        read(3'o0);
+    end
+    task read(input [2:0] address);
+        begin
+            cs=1;
+            addr=address;
+            rd=1;
+            #1 rd=0;
+            #1 $display("R %b = %H",addr,dout);
+        end
+    endtask
+    task write(input [2:0] address,input [7:0] value);
+        begin
+            din=value;
+            cs=1;
+            rd=1;
+            #1 addr=address;
+            wr=1;
+            #1 wr=0;
+            $display("W %b = %H",addr,din);
+        end
+    endtask
+    task deselect;
+        begin
+            #1 cs=0;
+            #1 $display("DESELECT, dout=%H",dout);
+        end
+    endtask
+endmodule</pre>
+<hr/>
+
+<h1>二 仿真分析图</h1>
+<img src="16w.png" width="894" height="147" alt="波形"/>
+<hr/>
+
+<h1>三 仿真监控结果</h1>
+<pre># W 000 = 6e
+# R 001 = xx
+# DESELECT, dout=zz
+# W 010 = 71
+# W 100 = 72
+# DESELECT, dout=zz
+# W 110 = 75
+# R 100 = 72
+# DESELECT, dout=zz
+# R 010 = 71
+# W 111 = 82
+# DESELECT, dout=zz
+# W 101 = 81
+# W 011 = 80
+# DESELECT, dout=zz
+# W 001 = 7d
+# R 000 = 6e
+# DESELECT, dout=zz
+# R 001 = 7d
+# R 010 = 71
+# R 011 = 80
+# R 100 = 72
+# DESELECT, dout=zz
+# R 101 = 81
+# R 110 = 75
+# W 110 = 3f
+# DESELECT, dout=zz
+# R 111 = 82
+# R 110 = 3f
+# R 000 = 6e</pre>
+<hr/>
+
+<h1>四 结果分析</h1>
+<hr/>
+
+</body>
+</html>

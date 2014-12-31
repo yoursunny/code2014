@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>FPGA应用实验 作业 07</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<h1>2008《FPGA应用实验》实验报告</h1>
+<dl class="lab_info">
+<dt class="lab_number">实验编号：</dt>
+<dd class="lab_number">07</dd>
+<dt class="lab_date">实验时间：</dt>
+<dd class="lab_date">2008-10-14</dd>
+<dt class="lab_name">实验名称：</dt>
+<dd class="lab_name">设计一个电子时钟</dd>
+<dt class="lab_sclass">班级：</dt>
+<dd class="lab_sclass">F0503602</dd>
+<dt class="lab_sid">学号：</dt>
+<dd class="lab_sid">5050369043</dd>
+<dt class="lab_sname">姓名：</dt>
+<dd class="lab_sname">石君霄</dd>
+</dl>
+
+<h2>⒈实验设计要求</h2>
+<p>设计一个电子时钟，使用左边两个数码管显示分钟、右边两个数码管显示秒。</p>
+<ol>
+<li>初始状态所有数码管不发光</li>
+<li>按下KEY1开始计时，显示格式为00.00</li>
+<li>每秒中间的小数点及LED4、LED5闪烁一次；每分钟PWM1闪烁1秒钟</li>
+<li>59.59后1秒，回到00.00</li>
+<li>按下KEY4计时暂停，静态显示当前时间，LED4、LED5熄灭；再次按下KEY1继续计时</li>
+<li>暂停状态按下KEY8，清零并显示00.00</li>
+</ol>
+
+<h2>⒉实验原理</h2>
+
+<h2>⒊实验平台</h2>
+<p>FPGA的开发环境为Xilinx公司的Foundation ISE 8.1i，使用DP-FPGA实验仪，目标FPGA芯片为XC2S100-PQ208。</p>
+
+<h2>⒋模块设计框图</h2>
+<img src="07.gif" width="500" height="400" alt="电路图" />
+
+<h2>⒌Verilog模块设计</h2>
+<h3>顶层 b.v</h3>
+<pre>
+module b(SL, PWM1, LED, KEY_RUN, KEY_PAUSE, KEY_RESET, CLK);
+    output [12:1] SL;
+    output PWM1;
+    output [5:4] LED;
+    input KEY_RUN;
+    input KEY_PAUSE;
+    input KEY_RESET;
+    input CLK;
+    // 1Hz 50% clock
+    wire CLK_2Hz; div_2Hz u1(CLK_2Hz, CLK);
+    reg CLK_1Hz = 1'b0;
+    always @(posedge CLK_2Hz) CLK_1Hz = ~CLK_1Hz;
+    // key input
+    wire K_RUN; wire K_PAUSE; wire K_RESET;
+    wire CLK_100Hz; div_100Hz u2(CLK_100Hz, CLK);
+    debounce u3_1(K_RUN, KEY_RUN, CLK_100Hz);
+    debounce u3_2(K_PAUSE, KEY_PAUSE, CLK_100Hz);
+    debounce u3_3(K_RESET, KEY_RESET, CLK_100Hz);
+    // controller
+    reg [4:0] warmup = 5'd0;
+    always @(posedge CLK_100Hz) begin
+        if (warmup &lt; 5'd30) warmup&lt;=warmup+5'd1;
+    end//state would go directly into 2'h3 without warmup
+    reg [1:0] state = 2'h0;//0=initial,1=reset,2=paused,3=running
+    always @(K_RUN,K_PAUSE,K_RESET) begin
+        if (warmup&gt;5'd29 &amp;&amp; ~K_RUN) state&lt;=2'h3;
+        else if (state==2'h3 &amp;&amp; ~K_PAUSE) state&lt;=2'h2;
+        else if (state==2'h2 &amp;&amp; ~K_RESET) state&lt;=2'h1;
+    end
+    // counters
+    wire counter_enable; assign counter_enable=(state==2'h3);
+    wire counter_reset; assign counter_reset=(state==2'h1);
+    wire [15:0] numbers;
+    wire CLK_low; assign CLK_low = counter_enable &amp;&amp; CLK_1Hz;
+    wire CLK_high; wire Cout_high;//assign CLK_high = (numbers[7:4]==4'd0) &amp;&amp; (numbers[3:0]==4'd0);
+    counter60_inc u4(numbers[7:4], numbers[3:0], CLK_low, counter_reset, CLK_high);
+    counter60_inc u5(numbers[15:12], numbers[11:8], CLK_high, counter_reset, Cout_high);
+    // display
+    wire indi_minute; assign indi_minute=(state==2'h3)&amp;&amp;(numbers[7:4]==4'd5)&amp;&amp;(numbers[3:0]==4'd9);
+    assign PWM1=~indi_minute;
+    wire indi_second; assign indi_second=(state==2'h3);
+    assign LED=~{2{indi_second&amp;&amp;CLK_1Hz}};
+    wire [3:0] blanks; assign blanks={4{state==2'h0}};
+    wire dot;
+    assign dot=(state==2'h0)?1'b0:(
+        (state==2'h3)?CLK_1Hz:1'b1);
+    wire [3:0] dots; assign dots={1'b0,dot,2'b0};
+    digits u6(SL, numbers, blanks, dots, CLK);
+endmodule
+</pre>
+<h3>上升沿触发的60进制正向计数器 counter60_inc.v</h3>
+<pre>
+module counter60_inc(N2, N1, CLK, reset, Cout);
+    output reg [3:0] N2 = 4'd0;
+    output reg [3:0] N1 = 4'd0;
+    input CLK;
+    input reset;
+    output reg Cout = 1'b0;
+    always @(posedge CLK, posedge reset) begin
+        if (reset) N1&lt;=4'd0;
+        else if (N1==4'd9) N1&lt;=4'd0;
+        else N1&lt;=N1+4'd1;
+    end
+    wire Cout1; assign Cout1=N1==4'd0;
+    always @(posedge Cout1, posedge reset) begin
+        if (reset) N2&lt;=4'd0;
+        else if (N2==4'd5) begin N2&lt;=4'd0; Cout&lt;=1'b1; end
+        else begin N2&lt;=N2+4'd1; Cout&lt;=1'b0; end
+    end
+endmodule
+</pre>
+<h3>32MHz到2Hz分频器 div_2Hz.v</h3>
+<pre>
+module div_2Hz(CLK_2Hz, CLK_32M);
+    output CLK_2Hz;
+    input CLK_32M;
+    reg [23:0] counter;
+    always @(posedge CLK_32M)
+        if (counter &lt; 25'd16000000) counter &lt;= counter+1;
+        else counter &lt;= 24'b0;
+    assign CLK_2Hz = counter[23];
+endmodule
+</pre>
+<h3>其他组件</h3>
+<p>本设计中还使用了消除回跳振荡debounce.v、100Hz分频div_100Hz.v、四位数码管显示digits.v组件，与实验06完全相同，代码不再列出。</p>
+
+<h2>⒍实验结果分析</h2>
+<img src="07.jpg" width="267" height="200" alt="照片"/>
+<h3>counter60_inc.v（u4）模块的RTL分析</h3>
+<img src="07u4.png" width="518" height="493" alt="RTL分析"/>
+
+</body>
+</html>

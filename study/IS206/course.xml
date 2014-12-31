@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<course>
+
+<title>操作系统</title>
+<code>IS206</code>
+<teacher>李小勇</teacher>
+
+<download>
+00课程简介.ppt
+01计算机系统发展回顾.ppt
+02计算机系统概述.ppt
+03进程管理.ppt
+04进程通信.ppt
+04进程通信b.ppt
+05存储管理.ppt
+06文件系统.ppt
+07文件系统linux ext2.ppt
+08 I0系统.ppt
+Introduction to NachOS.ppt
+课本01操作系统概论.pdf
+课本02存储管理.pdf
+课本03进程管理.pdf
+课本04进程通信.pdf
+课本05设备管理.pdf
+课本06文件系统.pdf
+Operating Systems, Internals and Design Principles.zip
+nachos_cc.zip
+nachos_java.zip
+</download>
+
+<topic t="gdoc10" q="p" v="nachos-diary">
+<title>NachOS开发日记</title>
+<homelink><a>NachOS开发日记</a> 记录我在NachOS里度过的岁月</homelink>
+</topic>
+<topic t="gdoc10" q="p" v="nachos-scheduler">
+<title>Implementing Priority Scheduler with Round-Robin on Nachos</title>
+<homelink>Implementing Priority Scheduler with Round-Robin on Nachos</homelink>
+</topic>
+<topic t="gdoc10" q="p" v="nachos-vm">
+<title>Implementing Virtual Memory on Nachos</title>
+<homelink>Implementing Virtual Memory on Nachos</homelink>
+</topic>
+
+
+</course>

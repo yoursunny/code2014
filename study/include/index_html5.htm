@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title><?php echo $course_title.' '.$course_teachers; ?> - 你的阳光 yoursunny.com</title>
+<link rel="canonical" href="http://yoursunny.com/study/<?php echo $course_key; ?>/">
+<link rel="stylesheet" type="text/css" href="/images/10.css">
+<script type="text/javascript" src="/lib/10.js"></script>
+</head>
+<body id="p_course"><div class="container">
+
+<header><div class="header">
+<a href="/" class="logo">你的阳光</a>
+<nav><ul class="nav">
+<li><a href="http://yoursunny.cn/m/">个人</a></li>
+<li class="current"><a href="/study/">学习</a></li>
+<li><a href="/t/">技术</a></li>
+<li><a href="/work/">作品</a></li>
+</ul></nav>
+</div></header>
+
+<div class="contents"><div class="contents_maincol">
+
+<section><div class="cblock">
+<h1 class="tit"><?php echo $course_title; ?></h1>
+<?php if ($recommend!='') { ?>
+<div id="recommend">
+<?php echo $recommend; ?>
+</div>
+<?php } ?>
+<?php echo $topic_list; ?>
+<p><?php echo $course_title; ?> ，
+教师 <?php echo $course_teachers; ?>，
+<?php if (!isset($non_sjtu)) { ?>
+课程代码 <?php echo $course_code; ?> ，
+<a href="http://cc.sjtu.edu.cn/G2S/ShowSystem/CourseSearch.aspx?no=<?php echo $course_key; ?>" onclick="c('sjtucc')" target="_blank">上海交通大学课程中心</a></p>
+<?php } else { echo $non_sjtu; } ?>
+</div></section>
+
+<?php if ($download_list!='') { ?>
+<section><div class="cblock">
+<h2 class="tit"><?php echo $course_title; ?> 课程资源下载</h2>
+<p id="download_list">
+<?php echo $download_list; ?></p>
+<p id="download_link"><a href="http://cid-1fa4aa816e7dc9f3.skydrive.live.com/browse.aspx/yoursunny-study/<?php echo $course_key; ?>" onclick="c('skydrive')" target="_blank">进入下载区</a></p>
+<p>课程资源仅供个人学习使用，著作权归原作者所有，不得用于商业用途（包括但不限于复印出售、收费家教）。如果上述资源侵犯了你的著作权，请权利人<a href="http://yoursunny.cn/m/">通知本站</a>删除。</p>
+</div></section>
+<?php } ?>
+
+</div><div class="contents_sidebar">
+
+<aside><div class="cblock">
+<script type="text/javascript">//<![CDATA[
+google_ad_client="pub-7124114282586774";google_ad_slot="1008272640";google_ad_width=160;google_ad_height=600;
+//]]></script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div></aside>
+
+</div></div><!--/contents-->
+
+<footer><div class="footer">
+&copy;2006-2012 yoursunny.com
+<script type="text/javascript" src="/lib/10/track.js"></script>
+</div></footer>
+
+</div>
+</body>
+</html>

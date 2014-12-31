@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<opml version="2.0">
+<head>
+	<title>sjtu-feeds 上海交通大学 RSS聚合</title>
+	<dateModified>Mon, 15 Feb 2010 00:00:00 GMT</dateModified>
+	<ownerName>yoursunny.com</ownerName>
+	<ownerId>http://yoursunny.com/work/sjtu-feeds/</ownerId>
+	<docs>http://www.opml.org/spec2</docs>
+</head>
+<body>
+<outline text="sjtu-feeds" url="http://yoursunny.com/work/sjtu-feeds/">
+	<outline text="交大首页" created="Thu, 01 Jan 2009 00:00:00 GMT">
+		<outline type="link" text="交大首页" url="http://www.sjtu.edu.cn"/>
+		<outline type="rss" text="新闻网" xmlUrl="http://feeds.feedburner.com/wwwSJTU"/>
+		<outline type="rss" text="校历-学校通告" xmlUrl="http://feeds.feedburner.com/calendar"/>
+	</outline>
+	<outline text="大学生传媒中心" created="Thu, 01 Jan 2009 00:00:00 GMT">
+		<outline type="link" text="大学生传媒中心" url="http://cnm.sjtu.edu.cn" description="CNM网络传媒，交大人自己的网络广播电台。广播节目的feed均为播客RSS，可以直接在支持enclosure标签的RSS阅读器内收听。"/>
+		<outline type="rss" text="800号印象" xmlUrl="http://feeds.feedburner.com/800H"/>
+		<outline type="rss" text="Bubble Star" xmlUrl="http://feeds.feedburner.com/BubbleStar"/>
+		<outline type="rss" text="Western Calling" xmlUrl="http://feeds.feedburner.com/WesternCalling"/>
+		<outline type="rss" text="华语音乐" xmlUrl="http://feeds.feedburner.com/CNMmusic"/>
+		<outline type="rss" text="听美剧" xmlUrl="http://feeds.feedburner.com/TingMeiJu"/>
+		<outline type="rss" text="开心工厂" xmlUrl="http://feeds.feedburner.com/FunFactory"/>
+		<outline type="rss" text="影音童话" xmlUrl="http://feeds.feedburner.com/CNMmovie"/>
+		<!--outline type="rss" text="校园快讯" xmlUrl="http://feeds.feedburner.com/SJTUCNM"/-->
+	</outline>
+	<!--outline text="网络信息中心" created="Tue, 13 Jan 2009 00:00:00 GMT">
+		<outline type="link" text="网络信息中心" url="http://net.sjtu.edu.cn"/>
+		<outline type="rss" text="网络信息中心" xmlUrl="http://feeds.feedburner.com/SJTUNet" description=" 新闻动态+信息通告+电脑安全+服务指南+应用文摘"/>
+	</outline-->
+	<outline text="教务处" created="Thu, 01 Jan 2009 00:00:00 GMT">
+		<outline type="link" text="教务处" url="http://jwc.sjtu.edu.cn"/>
+		<outline type="rss" text="教务处" xmlUrl="http://feeds.feedburner.com/SJTUJWC" description=" 本科教学服务网+本科生选课系统"/>
+	</outline>
+</outline>
+</body>
+</opml>

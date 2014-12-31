@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<works>
+	<category title="Web开发编程支持库">
+		<work updated="2008-02-01" key="dbMySQL" home-sort="60" language="PHP" description="PHP-MySQL数据库安全连接库"/>
+		<work updated="2007-12-02" key="AlbumPlayer" language="JavaScript" description="支持多种转场效果的相册播放器"/>
+		<work updated="2008-09-18" key="SecureSubmit" language="JavaScript PHP ASP.NET" description="登录密码安全提交"/>
+		<work updated="2009-12-26" key="MobileIPquery" home-sort="40" language="PHP" title="手机号码IP地址归属地查询" description="自动提取移动、联通、电信官方数据"/>
+		<work updated="2010-05-06" key="PHP-decode" home-sort="80" language="PHP" title="PHP解密工具" description="解密微盾PHP脚本加密专家的加密PHP代码"/>
+	</category>
+	<category title="实用工具">
+		<work updated="2010-12-11" key="backuplet" home-sort="12" language="JS" title="backuplet书签式网站导出/备份工具" description="导出/备份饭否"/>
+		<work updated="2009-02-23" key="hProxyN" home-sort="21" language="C#" description="精巧型HTTP代理服务器"/>
+		<work updated="2008-12-12" key="WebTar" home-sort="30" language="PHP" title="WebTar网站打包器" description="将整个网站打包成方便上传的单一PHP文件"/>
+		<work updated="2007-09-28" key="ImageResizer" language="C#" description="JPG图片批量缩小尺寸"/>
+		<work updated="2009-04-16" key="GPA" link="/study/GPA/" language="JavaScript" title="阳光GPA计算器" description="最方便的GPA计算工具"/>
+		<work updated="2010-02-15" key="sjtu-feeds" title="上海交通大学RSS聚合源" description="上海交通大学部分公开网站的(非官方)RSS聚合源，尽可能全文输出"/>
+	</category>
+	<category title="小玩具">
+		<work updated="2009-10-08" key="XmppProxy" home-sort="23" language="Python C#" description="用XMPP协议传输的代理服务器"/>
+		<work updated="2007-06-11" key="ATM" home-sort="90" language="8086汇编" title="银行自动柜员机ATM模拟器" description="学习汇编的作品"/>
+	</category>
+</works>

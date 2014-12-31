@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<course>
+
+<title>数字程控交换</title>
+<code>IS406</code>
+<teacher>王盈</teacher>
+
+<!--
+<download>
+1交换概论.ppt
+2交换网络.ppt
+3程控交换.ppt
+4信令系统.ppt
+5ATM交换技术.ppt
+6IP交换技术.ppt
+8软交换与下一代网络.ppt
+交换概论补充.ppt
+交换网络补充.ppt
+程控交换补充.ppt
+</download>
+-->
+
+<topic t="gdoc10" q="p" v="outline">
+<title>数字程控交换 提纲</title>
+<homelink>阳光男孩的<a>数字程控交换 提纲</a></homelink>
+</topic>
+
+</course>

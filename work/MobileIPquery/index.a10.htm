@@ -1,0 +1,99 @@
+
+
+<style>
+#demo_output { padding:10px 30px; height:100px; }
+</style>
+<p>一个PHP脚本，用于查询手机号码、IPv4地址的归属地。<br />
+数据来源：移动、联通、电信、IP.CN，均为直接在线查询，不使用数据库。<br />
+<a href="javascript:work_download('20110405.zip')">下载手机号码IP地址归属地查询PHP脚本</a></p>
+<h3>手机号码IP地址归属地查询演示</h3>
+<div>
+手机号码/IP地址/域名：<input id="demo_input" type="text" value="yoursunny.com" /><input type="button" value="查询" onclick="c('demo-type');run_demo($('#demo_input').val())" />
+<div id="demo_output"></div>
+<p>查询举例：<br/>
+手机归属地
+<a href="javascript:click_demo('15900941215')">15900941215</a>
+<a href="javascript:click_demo('13156980000')">13156980000</a>
+<a href="javascript:click_demo('13803110000')">13803110000</a>
+<a href="javascript:click_demo('13318610000')">13318610000</a>
+<a href="javascript:click_demo('18912340000')">18912340000</a>
+<a href="javascript:click_demo('18601190000')">18601190000</a>
+<a href="javascript:click_demo('18856780000')">18856780000</a>
+<br/>
+网站域名或IP地址
+<a href="javascript:click_demo('8.8.8.8')">8.8.8.8</a>
+<a href="javascript:click_demo('59.78.20.24')">59.78.20.24</a>
+<a href="javascript:click_demo('yoursunny.com')">yoursunny.com</a>
+</p>
+</div>
+<h3>调用方法</h3>
+<p>通常使用AJAX调用<br />
+输入：query.php?q=要查询的11位手机号码或IP地址或域名<br />
+输出：JSON格式，<br />
+{<br />
+&nbsp;&nbsp;type:查询类型，mobile或ip<br />
+&nbsp;&nbsp;(手机号码)company:通讯公司，支持cmcc、unicom、telecom三家公司<br />
+&nbsp;&nbsp;(移动手机)province:省份<br />
+&nbsp;&nbsp;(移动手机)city:城市<br />
+&nbsp;&nbsp;(IP/域名)ip:IP地址<br />
+&nbsp;&nbsp;result:查询结果<br />
+}</p>
+<h3>相关技巧</h3>
+<ul>
+<li><a href="./?p=qqwry">纯真IP数据库</a></li>
+<li><a href="./?p=sms">短信查询手机归属地</a></li>
+<li><a href="./?p=geoip">从IP判断地理位置</a></li>
+</ul>
+<h3>更新记录</h3>
+<ul>
+<li>2011-04-05 HTTP请求不再使用fsockopen，改用curl扩展，能够在Sina App Engine上使用。移动手机数据从湖南移动提取。</li>
+<li>2009-12-26 增加移动188、联通186号段。移动手机数据从甘肃移动提取，联通手机数据从网上营业厅提取。</li>
+<li>2008-12-12 增加电信189号段。</li>
+<li>2008-10-09 IP归属地从IP.CN提取，CDMA手机数据从电信网站提取。</li>
+</ul>
+<p>局限性提示：本程序的查询功能是通过分析HTML流实现的，所以当移动、联通、电信、IP.CN网站改版时，就无法继续使用。我只能说，在本程序发布之时，查询功能是可以正常使用的。</p>
+<script type="text/javascript">//<![CDATA[
+W.load_jquery();
+function click_demo(q)
+{
+	c('demo-click');
+	run_demo(q);
+}
+function run_demo(q)
+{
+	$.getJSON('query.php',{q:q},show_demo);
+	$('#demo_input').val(q);
+	$('#demo_output').text('正在查询，请稍候');
+}
+function show_demo(resp)
+{
+	var d=resp;
+	var b='';
+	switch (d.type)
+	{
+		case 'mobile':
+			b+='查询类型type：手机归属地mobile<br/>';
+			switch (d.company)
+			{
+				case 'cmcc':
+					b+='通讯公司company：中国移动cmcc<br/>省份province：'+d.province+'<br/>城市city：'+d.city+'<br/>';
+					break;
+				case 'unicom':
+					b+='通讯公司company：中国联通unicom<br/>';
+					break;
+				case 'telecom':
+					b+='通讯公司company：中国电信telecom<br/>';
+					break;
+			}
+			break;
+		case 'ip':
+			b+='查询类型type：IP地址ip<br/>IP地址ip：'+d.ip+'<br/>';
+			break;
+		case 'unknown':
+			b+='查询类型type：未知unknown<br/>';
+			break;
+	}
+	b+='查询结果result：'+d.result;
+	$('#demo_output').html(b);
+}
+//]]></script>

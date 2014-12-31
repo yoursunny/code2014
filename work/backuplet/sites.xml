@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<backuplet_sites>
+	<site p="renren">
+		<name>人人网</name>
+		<domain>renren.com</domain>
+		<channel>
+			<name>日志</name>
+			<example>http://blog.renren.com/blog/200037590/friends</example>
+		</channel>
+		<channel>
+			<name>状态</name>
+			<example>http://status.renren.com/status/200037590</example>
+		</channel>
+	</site>
+	<site p="digu">
+		<name>嘀咕</name>
+		<domain>digu.com</domain>
+		<channel>
+			<name>实时更新</name>
+			<example>http://digu.com/sunnyboy</example>
+		</channel>
+	</site>
+	<site p="tqq">
+		<name>腾讯微博</name>
+		<domain>t.qq.com</domain>
+		<channel>
+			<name>广播</name>
+			<example>http://t.qq.com/t</example>
+		</channel>
+	</site>
+	<site p="twitter">
+		<name>Twitter推特</name>
+		<domain>twitter.com</domain>
+		<channel>
+			<name>tweet</name>
+			<example>http://twitter.com/yoursunny</example>
+		</channel>
+	</site>
+	<site p="kaixin001">
+		<name>开心网</name>
+		<domain>kaixin001.com</domain>
+		<channel>
+			<name>状态</name>
+			<example>http://www.kaixin001.com/home/status.php?uid=25443954</example>
+		</channel>
+		<channel>
+			<name>记录</name>
+			<example>http://www.kaixin001.com/~record/record.php?uid=298947</example>
+		</channel>
+		<channel>
+			<name>日记</name>
+			<example>http://www.kaixin001.com/diary/?uid=3230527</example>
+		</channel>
+	</site>
+	<site p="zuosa">
+		<name>做啥</name>
+		<domain>zuosa.com</domain>
+		<channel>
+			<name>推客</name>
+			<example>http://zuosa.com/zuosa</example>
+		</channel>
+	</site>
+	<site p="tsina">
+		<name>新浪微博</name>
+		<domain>t.sina.com.cn</domain>
+		<channel>
+			<name>新鲜事</name>
+			<example>http://t.sina.com.cn/lihongwen</example>
+		</channel>
+	</site>
+	<site p="jiwai">
+		<name>叽歪</name>
+		<domain>m.jiwai.de</domain>
+		<channel>
+			<name>发言</name>
+			<example>http://m.jiwai.de/sunnyboy/</example>
+		</channel>
+	</site>
+	<site p="sdo">
+		<name>盛大糖果</name>
+		<domain>t.sdo.com</domain>
+		<channel>
+			<name>推他</name>
+			<example>http://t.sdo.com/home/1247391484</example>
+		</channel>
+	</site>
+	<site p="t163">
+		<name>网易微博</name>
+		<domain>t.163.com</domain>
+		<channel>
+			<name>微博</name>
+			<example>http://t.163.com/luobenyu</example>
+		</channel>
+	</site>
+	<site p="ifeng">
+		<name>凤凰微博</name>
+		<domain>t.ifeng.com</domain>
+		<channel>
+			<name>微博</name>
+			<example>http://t.ifeng.com/stupid77</example>
+		</channel>
+	</site>
+	<site p="buzz">
+		<name>Google Buzz</name>
+		<domain>www.google.com</domain>
+		<channel>
+			<name>Buzz</name>
+			<example>http://www.google.com/profiles/areyoulookon#buzz</example>
+		</channel>
+	</site>
+	<site p="tbaidu">
+		<name>百度说吧</name>
+		<domain>t.baidu.com</domain>
+		<channel>
+			<name>说吧</name>
+			<example>http://t.baidu.com/126021</example>
+		</channel>
+	</site>
+	<site p="fanfou">
+		<name>饭否</name>
+		<domain>fanfou.com</domain>
+		<channel>
+			<name>迷你博客</name>
+			<example>http://fanfou.com/sunnyboy</example>
+		</channel>
+	</site>
+</backuplet_sites>

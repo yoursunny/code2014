@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数字系统设计 作业 10</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<img src="10q.png" width="514" height="316" alt="移位寄存器"/>
+<hr/>
+
+<h1>一 Verilog设计文件</h1>
+<h2>带异步清零端的D触发器 dff_.v</h2>
+<pre>module dff_(output reg q,input clk,input d,input r);
+    always @(posedge clk)
+        q&lt;=d;
+    always @(~r)
+        q&lt;=0;
+endmodule</pre>
+<hr/>
+<h2>D触发器组 dffn.v</h2>
+<pre>`include "dff_.v"
+module dffn(q,clk,d,r);
+    parameter bits = 1;
+    output [bits-1:0] q;
+    input clk;
+    input [bits-1:0] d;
+    input [bits-1:0] r;
+    dff_ dff[bits-1:0](q,clk,d,r);
+endmodule</pre>
+<hr/>
+<h2>移位寄存器 shift_register.v</h2>
+<pre>`include "dffn.v"
+module shift_register(output data_out,input clk,input data_in,input r);
+    parameter bits = 1;
+    wire [bits-1:0] q;
+    wire [bits-1:0] d;
+    assign d[0]=data_in;
+    assign data_out=q[bits-1];
+    genvar j;
+    generate for(j=1;j&lt;bits;j=j+1)
+    begin
+        assign d[j]=q[j-1];
+    end
+    endgenerate
+    dffn #(bits) dffn(q,clk,d,{4{r}});
+endmodule</pre>
+<hr/>
+<h2>4位移位寄存器 shift_register_4b.v</h2>
+<pre>`include "shift_register.v"
+module shift_register_4b(output data_out,input clock,input reset,input data_in);
+    shift_register #(4) s(data_out,clock,data_in,reset);
+endmodule</pre>
+<hr/>
+<h2>测试平台</h2>
+<pre>`include "shift_register_4b.v"
+module tb_shift_register_4b;
+    reg [9:0] clk;
+    wire data_out;
+    reg reset;
+    wire data_in;
+    reg [3:0] data_array;
+    reg [15:0] data_pattern;
+    assign data_in=data_array[0];
+    shift_register_4b sr(data_out,clk[2],reset,data_in);
+    initial
+    begin
+        clk=10'b0000000000;
+        data_array=4'b0001;
+        data_pattern=16'b0101110101100001;
+        reset=1'b0;
+    end
+    always
+    begin
+        #1 clk=clk+1;
+        if (clk[2:0]==3'b011)
+            data_array={2{data_array}}&gt;&gt;1;
+        if (clk[7:0]==8'b11110000)
+        begin
+            data_pattern={2{data_pattern}}&gt;&gt;4;
+            data_array=data_pattern[3:0];
+        end
+        reset=(clk==10'b0101010101 | clk==10'b0110111000)?0:1;
+    end
+endmodule</pre>
+<hr/>
+
+<h1>二 仿真分析图</h1>
+<img src="10w.png" width="929" height="147" alt="波形"/>
+<hr/>
+
+<h1>三 仿真监控结果</h1>
+<hr/>
+
+<h1>四 结果分析</h1>
+<ul>
+<li>图中红色箭头时，输入序列的模式改变</li>
+<li>从图中可看出，输出序列滞后于输入序列32ns，而移位寄存器的时钟频率是8ns</li>
+<li>图中蓝色箭头时，遇到异步清零信号</li>
+</ul>
+<hr/>
+
+</body>
+</html>

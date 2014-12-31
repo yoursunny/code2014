@@ -1,0 +1,147 @@
+双层动态图片保护Email地址
+阳光男孩 发表于 2010-06-20
+prettyprint
+<p>Email是最重要的通讯工具之一。滥发垃圾信息者会利用一切可能的通讯工具，把小广告送到你的手中。发送Email的成本极为低廉，使得Email倍受垃圾信息发送者的青睐。发送垃圾邮件的第一步，是收集足够多的有效电子邮件地址；而收集Email地址的方法，主要就是查询目录、使用网页爬虫两种。</p>
+<p>通过查询目录收集Email地址，主要是查询各类电子黄页、网站备案资料、域名WHOIS信息等。例如<a href="http://whois.domaintools.com/yoursunny.com" target="_blank">WHOIS yoursunny.com</a>，可以查询到域名注册者的Email地址（有些WHOIS结果页面会用各种方式保护Email地址，但大部分并不会进行保护）。根据规定，域名WHOIS信息必须包含有效的Email地址，因此规避这种收集的唯一方法是使用<a href="http://www.godaddy.com/gdshop/dbp/landing.asp" target="_blank">Private Domain Registration</a>服务，令WHOIS信息中包含的Email地址不断变化。</p>
+<p>使用网页爬虫收集Email地址，是指垃圾邮件发送者编写程序抓取互联网上的网页，在网页文本中提取形似Email地址的字符串。比如某网页包含了 someone@example.com 这个Email地址，爬虫程序抓取该网页时就可以用正则表达式找到这个地址。本文主要讨论针对这种收集方法的防范。</p>
+
+<h2>防范网页爬虫抓取Email地址的传统方法</h2>
+
+<h3>使用变体Email地址</h3>
+<p>很多人不在网页上直接写出Email地址，而采取一些其他字串表达Email地址。比如：</p>
+<ul>
+<li>替换符号： someone#example.com</li>
+<li>使用全角： someone＠example.com</li>
+<li>使用单词： someone AT example.com</li>
+<li>使用中文： someone在example点com</li>
+<li>文字表达： someone AT google的邮箱</li>
+</ul>
+<p>这些字符替换的手段，破坏了Email地址的可读性，经验不足的用户会产生困惑。若在后面标上“请将#换成@”，又显得拖沓。“google的邮箱”这种表述，从未用过Gmail的用户根本无法理解。</p>
+<p>另一方面，可以替换的文字也就这么几种。用的人多了，垃圾邮件发送者就会改进程序里的正则表达式，识别这些变体的Email地址。</p>
+<pre class="prettyprint lang-js">
+function findVariantEmail(str) {
+	var re=/([a-z0-9]+)(@|#|\s*AT\s*|＠|在)((?:[a-z0-9]+\.)+[a-z0-9]+)/;
+	var m=str.match(re);
+	if (m) return m[1]+'@'+m[3].replace(/点/g,'.');
+	else return null;
+}
+</pre>
+<p>我仅使用一个简单的脚本，就可以识别好几种变体：</p>
+<ul id="run1">
+<li>替换符号： someone#example.com</li>
+<li>使用全角： someone＠example.com</li>
+<li>使用单词： someone AT example.com</li>
+<li>使用中文： someone在example点com</li>
+<li>文字表达： someone AT google的邮箱</li>
+</ul>
+<script type="text/javascript">//<![CDATA[
+function findVariantEmail(str) {
+	var re=/([a-z0-9]+)\s*(@|#|AT|＠|在)\s*((?:[a-z0-9]+[\.点])+[a-z0-9]+)/;
+	var m=str.match(re);
+	if (m) return m[1]+'@'+m[3].replace(/点/g,'.');
+	else return null;
+}
+(function(){
+	var UL=document.getElementById('run1');
+	var LIs=UL.getElementsByTagName('li');
+	for (var i=0;i<LIs.length;++i) {
+		var str=LIs[i].innerHTML;
+		var eml=findVariantEmail(str);
+		if (eml) LIs[i].innerHTML+='，识别结果：'+eml;
+		else LIs[i].innerHTML+='，未能识别';
+	}
+})();
+//]]></script>
+
+<h3>制作成图片</h3>
+<p>有人将Email地址制作成图片。例如：<br>
+<img src="1.gif" alt="制作成图片的Email地址"></p>
+<p>网页HTML代码里没有包含这个Email地址，无法再使用字符串处理的方法取得这个Email地址。</p>
+<p>但是，随着计算机处理速度越来越快，垃圾邮件发送者可以在程序中加入图像识别的功能。在已知这张图片是Email地址的情况下，程序可以自动下载这张图片，然后通过光学字符识别技术识别出上面的字串。</p>
+<p>那么，下面这张图片怎么样呢？<br>
+<img src="2.gif" alt="制作成图片的艺术字体Email地址"></p>
+<p>使用了艺术字体，光学字符识别的难度增加了，可是读者要看清这个地址也会困难得多。防范垃圾邮件的同时，将正常用户拒之门外，这不是好办法。</p>
+
+<h3>JavaScript计算</h3>
+<p><a href="/m/">阳光男孩的网上名片</a>曾使用这样的方法：在页面上用JavaScript计算出Email地址。</p>
+<p>网页上包含形如 suokmjezvoqnuektjezxvaqmupkljezdvcqoum 的字串，谁也不会认为这是一个Email地址吧？</p>
+<p>只需一行JavaScript代码就可以解码成一个可读的Email地址：</p>
+<pre class="prettyprint lang-js">
+str.replace(/[ukjzvq]/g,'').replace(/t/g,'@').replace(/d/g,'.');
+</pre>
+<p>suokmjezvoqnuektjezxvaqmupkljezdvcqoum =&gt; <span id="run2">suokmjezvoqnuektjezxvaqmupkljezdvcqoum</span></p>
+<script type="text/javascript">//<![CDATA[
+(function(){
+	var SPAN=document.getElementById('run2');
+	SPAN.innerHTML=SPAN.innerHTML.replace(/[ukjzvq]/g,'').replace(/t/g,'@').replace(/d/g,'.');
+})();
+//]]></script>
+<p>这个方法我用了很长时间，一直觉得很完美——垃圾邮件发送者总不会来执行JavaScript吧？直到我在手机上用了一款软件，我才明白用JavaScript保护Email也是脆弱的。</p>
+<p>这款令我心神不宁的软件叫做Opera Mini，它的原理是在Opera公司的服务器上运行许多个Opera浏览器内核，服务器上包含HTML解析、JavaScript引擎、DOM函数等现代浏览器应有的各种功能，手机端只用于输入命令、显示服务器上的网页执行结果。也就是说，我的JavaScript代码可以在Opera Mini的服务器上完整执行；同样的，垃圾邮件发送者也可以用类似的手段在服务器上执行JavaScript、取得执行结果，并从中找到Email地址。</p>
+
+<h2>双层图片保护Email</h2>
+<p>由上面的分析可见：</p>
+<ul>
+<li>将Email地址写成变体，不利于读者的识别。采集程序可以在一定的限度内识别变体的Email地址，使得这种保护失效。</li>
+<li>将Email地址做成一张图片，可以用光学字符识别技术采集到其中的Email地址。使用艺术字体可以增加采集难度，同时也加大了读者识别的难度。</li>
+<li>用JavaScript计算生成Email地址的方法现在几乎没有保护作用，因为服务器上能够执行JavaScript。</li>
+</ul>
+<p>因此，我设计了一种更好的方法，其特点是：</p>
+<ul>
+<li>生成两张图片，分别包含Email地址的一部分。</li>
+<li>单独使用任何一张图片，都无法看到完整的Email地址。</li>
+<li>在浏览器中用CSS属性令两张图片重叠显示，叠加后能看到Email地址。</li>
+</ul>
+<script type="text/javascript">//<![CDATA[
+function run_demo() {
+	var TABLE=document.getElementById('demo_table');
+	var IMGs=TABLE.getElementsByTagName('img');
+	var u='demo.php?text='+encodeURIComponent(document.getElementById('demo_text').value)+'&l=';
+	for (var i=0;i<IMGs.length;++i) {
+		var IMG=IMGs[i],cls=IMG.className;
+		if (/l1/.test(cls)) {
+			IMG.src=u+'1';
+			if (/l0/.test(cls)) IMG.style.background='url('+u+'0)';
+		} else if (/l0/.test(cls)) {
+			IMG.src=u+'0';
+		}
+	}
+}
+//]]></script>
+<h3>演示</h3>
+<p><input type="text" id="demo_text" value="someone@example.com" size="40"><input type="button" value="生成图片" onclick="run_demo()">(仅支持英文)</p>
+<table id="demo_table">
+<tr><td>下层图片</td><td><img class="l0" src="l0.gif" alt=""></td></tr>
+<tr><td>上层图片</td><td><img class="l1" src="l1.gif" alt=""><br><img class="l1" src="l1.gif" style="background:#f00;" alt=""></tr>
+<tr><td>两张图片重叠</td><td><img class="l0l1" src="l1.gif" style="background:url(l0.gif)" alt=""></td></tr>
+</table>
+<p><a href="javascript:tech_download('EmailProtect.zip')">下载示例源代码</a></p>
+<h3>原理</h3>
+<p>图片上的字符采用了4种不同的绘制方式：</p>
+<table>
+<thead>
+<tr><td>绘制方式</td><td>下层图片绘制内容</td><td>上层图片绘制内容</td><td>效果</td></tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>浅色背景，深色字符<br><img src="t00.gif" alt=""></td><td>透明背景<br><img src="t01.gif" style="background:#f00;" alt=""></td><td><img src="t01.gif" style="background:url(t00.gif)" alt=""></td></tr>
+<tr><td>1</td><td>深色背景<br><img src="t10.gif" alt=""></td><td>浅色背景，透明字符<br><img src="t11.gif" style="background:#f00;" alt=""></td><td><img src="t11.gif" style="background:url(t10.gif)" alt=""></td></tr>
+<tr><td>2</td><td>浅色背景<br><img src="t20.gif" alt=""></td><td>透明背景，深色字符<br><img src="t21.gif" style="background:#f00;" alt=""></td><td><img src="t21.gif" style="background:url(t20.gif)" alt=""></td></tr>
+<tr><td>3</td><td>浅色背景，随机字符<br><img src="t30.gif" alt=""></td><td>浅色背景，深色字符<br><img src="t31.gif" style="background:#f00;" alt=""></td><td><img src="t31.gif" style="background:url(t30.gif)" alt=""></td></tr>
+</tbody>
+</table>
+<p>不论采取哪种绘制方式，在第一张图片上方叠加第二张图片的结果一定是浅色方块+深色字符。</p>
+<p>当然，还有一些常规的抗机器识别特征：</p>
+<ul>
+<li>“浅色”有多种随机的颜色，每个字符绘制时随机选取一种。</li>
+<li>“深色”有多种随机的颜色，每个字符绘制时随机选取一种。</li>
+<li>绘制一些随机的杂色干扰点。</li>
+</ul>
+<h3>改进方向</h3>
+<p>目前的双层图片保护Email地址方法中，使用两张图片、同一位置重叠，这是一种固定模式；采集程序可以识别这种模式，然后合并图片、运行光学字符识别。为了进一步增强双层图片保护Email地址的有效性，可以根据以下思路进行改进：</p>
+<ul>
+<li>图片的层次数：可以重叠3层、4层或更多张图片。</li>
+<li>重叠位置的变化：不在0,0位置重叠两张图片，而可以偏移一定的距离。</li>
+<li>图片切块：将某一层图片切成几块，然后用CSS拼接起来。</li>
+<li>字母切割：第一张图片绘制某字母的上半部分，第二张图片绘制下半部分。</li>
+</ul>
+

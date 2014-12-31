@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数字系统设计 作业 01</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<img src="01q.png" width="555" height="191" alt="波形发生"/>
+<hr/>
+
+<h1>一 Verilog设计文件</h1>
+<h2>波形发生模块 wavegen.v</h2>
+<pre>module wavegen(output reg d);
+    initial
+    begin
+       d &lt;= #0  1'b0;
+       d &lt;= #2  1'b1;
+       d &lt;= #3  1'b0;
+       d &lt;= #12 1'b1;
+       d &lt;= #22 1'b0;
+       d &lt;= #24 1'b1;
+       d &lt;= #27 1'b0;
+       d &lt;= #32 1'b1;
+    end
+endmodule</pre>
+<hr/>
+<h2>测试平台</h2>
+<pre>`timescale 10 ns / 1 ns
+`include "wavegen.v"
+
+module wavegen_testbench;
+    wire d;
+    wavegen w(d);
+endmodule</pre>
+<hr/>
+
+<h1>二 仿真分析图</h1>
+<img src="01w.png" width="493" height="148" alt="波形"/>
+<hr/>
+
+<h1>三 仿真监控结果</h1>
+<hr/>
+
+<h1>四 结果分析</h1>
+<hr/>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmrl xmlns:dotgo="http://dotgo.com/cmrl/1.0" account="909hw-7jlx1-ocj87-6x92r">
+	<match pattern="*">
+		<engine href="http://pvtapi1.yoursunny.com/dotgo/dotgo-engine.php"/>
+	</match>
+</cmrl>

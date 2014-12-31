@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数字系统设计 作业 18</title>
+<link rel="stylesheet" type="text/css" href="w.css" />
+</head>
+<body>
+
+<img src="18q.png" width="626" height="172" alt="地址译码"/>
+<hr/>
+
+<h1>一 Verilog设计文件</h1>
+<h2>地址译码 decoder16b.v</h2>
+<pre>module decoder16b(output [7:0] segment,input [15:0] din);
+    genvar j;
+    generate for (j=0;j&lt;8;j=j+1)
+    begin
+        assign segment[j]=(din[15-:3]==j);
+    end
+    endgenerate
+endmodule</pre>
+<hr/>
+<h2>测试平台</h2>
+<pre>`include "decoder16b.v"
+module tb_decoder16b;
+    wire [7:0] segment;
+    reg [15:0] din;
+    decoder16b d(segment,din);
+    integer fp;
+    initial
+    begin
+        din=16'h0000;
+        fp=$fopen("E:/home/study/IS208/18/output.txt");
+        $fmonitor(fp,"din=%h,segment=%b",din,segment);
+    end
+    always
+        #1 din=din+16'h0001;
+endmodule</pre>
+<hr/>
+
+<h1>二 仿真分析图</h1>
+<img src="18w.png" width="922" height="313" alt="波形"/>
+<hr/>
+
+<h1>三 仿真监控结果</h1>
+<a href="18.zip">输出内容很多(1.68MB)，请查看附件</a>
+<hr/>
+
+<h1>四 结果分析</h1>
+<hr/>
+
+</body>
+</html>

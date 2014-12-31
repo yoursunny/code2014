@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<course>
+
+<title>信息安全的数学基础</title>
+<code>IS201</code>
+<code>IS202</code>
+<teacher>邱卫东</teacher>
+<teacher>陈恭亮</teacher>
+
+<download>
+08群.pdf
+09群的结构.pdf
+10环.pdf
+10 Z nZ问题.pdf
+11域和Galois域.pdf
+12域的结构.pdf
+13椭圆曲线.pdf
+课本.pdf
+复习.pdf
+</download>
+
+<topic t="a9single" q="p" v="homework">
+<homelink>信息安全的数学基础 作业题</homelink>
+</topic>
+<topic t="a9single" q="p" v="divide_element">
+<homelink>我的作品 <a>分解质因数工具</a></homelink>
+</topic>
+<topic t="a9single" q="p" v="survey">
+<homelink>课程学习情况调查结果</homelink>
+</topic>
+
+</course>

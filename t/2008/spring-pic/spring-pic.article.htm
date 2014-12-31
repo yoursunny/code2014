@@ -1,0 +1,67 @@
+批处理下载全校毕业照
+Windows Batch,bat,批处理,cmd,瀚源数码
+prettify
+阳光男孩 发表于 2008-12-25
+
+<p>从Windows 95开始，Windows操作系统正式脱离了DOS。在图形界面以外，“MS-DOS方式”和“命令提示符”仍然是Windows用户常用的工具。命令行下的批处理，则是Windows系统中最方便的编程工具。</p>
+<p>早在Windows之前，DOS中就已经有了“批处理”这个概念，批处理文件的扩展名为bat。从Windows XP开始，command.com变成了cmd.exe，命令行解释器更是增加了大量新功能，使批处理的功能更为强大；许多外部命令(需要独立exe或com程序)变成了内部命令，使批处理的性能有所提高；批处理文件的扩展名是bat或cmd。</p>
+<p>下面，我将介绍如何用一个批处理文件下载全校的毕业照。</p>
+
+<h3>考察情况</h3>
+<p>上海交通大学F05级毕业生的毕业照由<a href="http://www.spring-pic.com/" rel="external">上海瀚源数码科技有限公司</a>负责拍摄。拍摄后3天，学生可以登录瀚源数码网站，查询与校对本人的图像信息。查询过程中，需要输入学号和身份证号码，两者匹配才能看到照片。</p>
+<p>我输入了自己的学号和身份证号码，成功看到我的照片，照片的地址是<i>http://www.spring-pic.com/Images/UpPhoto/PUTONGGAOXIAO/10248我的十位学号.jpg</i>。清空cookie，直接输入照片地址，同样可以看到我的照片；改成其他同学的学号，也可以看到相应的照片。</p>
+<p>因此：查询照片只需通过学号构造正确的图片地址，而无需其他验证。</p>
+
+<h3>准备工具</h3>
+<ul>
+<li>wget.exe，GNU标准下载工具；<a href="http://gnuwin32.sourceforge.net/packages/wget.htm" rel="external">从GnuWin32下载wget</a></li>
+<li>花名册一份，自己找，用EXCEL等保存成CSV格式；我找到的花名册格式形如：<br/>
+<samp>楼栋,房间,姓名,性别,学号,班级,备注,备注,学院<br/>
+D99,999,某人姓名,男,5aabbb9ccc,Faabbbdd,,,某个学院</samp><br/>
+其中学号在第5列，文件名为su.csv</li>
+</ul>
+
+<h3>提取学号</h3>
+<p>上海交通大学的学号为十位，形式为eaabbbfccc，各数位含义如下：</p>
+<ul>
+<li>e 学生类型，5=本科，1=硕士，0=博士</li>
+<li>aa 入学年份后2位</li>
+<li>bbb 学院代码</li>
+<li>f 入学季节，9=秋季，1=春季</li>
+<li>ccc 学生编号</li>
+</ul>
+<p>瀚源数码网站上只有F05毕业班学生的照片，因此提取学号要完成的任务就是：读取su.csv，取出第5列的学号，将505开头的学号输出到nu.csv文件中。</p>
+<pre class="prettyprint lang-cmd">
+rem requires cmd /v:ON
+echo off
+del nu.csv
+:: 跳过第1行的标题；每行以,为分隔，取出第5个符号赋给%%a变量
+for /f "skip=1 delims=, tokens=5" %%a in (su.csv) do (
+:: %%a(即学号)赋给b变量
+set b=%%a
+:: b变量的前3位赋给c变量
+set c=!b:~0,3!
+:: 如果c变量是505，那么将b变量添加到nu.csv
+if !c!==505 echo !b! &gt;&gt; nu.csv
+)
+</pre>
+<p>这里要注意的是<code class="prettyprint lang-cmd">!c!</code>这样的写法。批处理中，<b>!变量名!</b>表示“延迟环境变量扩充”。<code class="prettyprint lang-cmd">%c%</code>会在执行到for语句的一开始就被扩充(扩充成空字符串)，循环体中对它赋值就不会生效；而<code class="prettyprint lang-cmd">!c!</code>则要在执行到这一行时才被扩充(扩充成学号前3位)。</p>
+<p>默认情况下，“延迟环境变量扩充”功能并没有启用。因此，要执行上述脚本，必须用<code class="prettyprint lang-cmd">cmd /v:ON</code>命令启动命令提示符。</p>
+<p>执行完上面的批处理脚本后，nu.csv每行包含一个505开头的学号。</p>
+
+<h3>下载毕业照</h3>
+<p>有了上面的学号列表，只需对nu.csv的每一行构造出图片地址，然后调用wget下载即可。</p>
+<pre class="prettyprint lang-cmd">
+echo off
+md output
+for /f %%a in (nu.csv) do if not exist output\%%a.jpg wget http://www.spring-pic.com/Images/UpPhoto/PUTONGGAOXIAO/10248%%a.jpg -Ooutput\%%a.jpg -q
+:: -q参数使wget不要输出任何信息
+</pre>
+<p>一个小小的遗憾：如果瀚源数码网站上没有某人的照片，output目录中仍会形成一张无法打开的图片，大小为5kb以内。目前只能手工删除小于5kb的文件。</p>
+
+<h3>照片可以发给我吗？</h3>
+<p>我不提供照片的分发，也不提供任何形式的名单、学号列表，请自行下载、收集。</p>
+<p><a href="http://blog.sina.com.cn/shacker" rel="external">ellendy</a>网友提出，下载别人的照片属于“窥探个人隐私”。我认为，毕业照与身份证照片一样，不属于隐私信息。本文作为技术讨论，不传播下载的照片或用于下载照片的名单。同时，你的阳光技术频道建议各位读者，下载的照片只用于个人收藏和统计目的。</p>
+
+<hr/>
+<p>2010-06-20更新：我注意到www.spring-pic.com已经修正了这个漏洞，现在的照片文件名包含了随机的GUID，无法通过构造URI的方法批量下载。</p>

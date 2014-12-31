@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* 2011 homepage.css */
+
+#p_home { background:#f0f0e0; color:#333; font-size:15px; line-height:20px; }
+#hcontainer { width:1000px; margin:0 auto; padding:25px 0; clear:both; }
+#hside { width:225px; float:left; }
+h1 { font-size:25px; line-height:50px; font-weight:bold; height:50px; text-indent:45px; background:url(logo.gif) no-repeat 0% 50%; }
+#hrecommend { border-top:solid 1px #333; border-bottom:solid 1px #333; margin:2px 0 30px; padding:30px 0 30px 15px; line-height:30px; }
+#hauthor { text-align:center; }
+#hmain { width:750px; float:right; padding-top:50px; }
+#hagg { border-top:solid 3px #333; border-bottom:solid 3px #333; padding:30px 0; }
+#hagg .dt { color:#390; font-size:80%; }
+#hagg li { padding-left:20px; padding-bottom:7px; background:no-repeat; clear:both; overflow:hidden; }
+#hagg .twitter { background-image:url(icon/twitter.png); }
+#hagg .twitter-retweet { background-image:url(icon/twitter-retweet.png); }
+#hagg .greader { background-image:url(icon/greader.png); }
+#hagg .jiepn { background-image:url(icon/jiepn.png); }
+#hagg .fanfou { background-image:url(icon/fanfou.png); }
+#hagg .foursq { background-image:url(icon/4sq.png); }
+#hagg .photos { max-width:471px; overflow-y:auto; float:left; }
+#hagg .photos img { float:left; margin-right:7px; }
+#hagg .more { background-image:url(icon/more.gif); }
+#hcopyright { }
+
+
+#p_home.touch * { width:auto; float:none; margin:0; }

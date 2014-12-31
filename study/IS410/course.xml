@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<course>
+
+<title>路由器原理</title>
+<code>IS410</code>
+<teacher>刘军荣</teacher>
+
+<download>
+01相关网络基础知识.ppt
+02 IP寻址.ppt
+03路由器基本配置.ppt
+04静态路由.ppt
+05动态路由选择协议.ppt
+06 RIP.ppt
+07 IGRP.ppt
+08 RIPv2.ppt
+09 EIGRP.ppt
+10 OSPF.ppt
+11 IS-IS.ppt
+12路由重新分配.ppt
+13缺省路由和按需路由选择.ppt
+14路由过滤.ppt
+15路由映射.ppt
+TCP-IP卷1英文版.pdb
+实验.ppt
+</download>
+
+</course>

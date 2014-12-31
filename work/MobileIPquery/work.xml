@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<work>
+
+<title>手机号码IP地址归属地查询</title>
+<key>MobileIPquery</key>
+<updated>2011-04-05</updated>
+
+<topic t="a10" p=""/>
+<topic t="a9" p="qqwry"/>
+<topic t="a9" p="sms"/>
+<topic t="a10" p="geoip"/>
+
+<download f="20091226.zip"/>
+<download f="20110405.zip"/>
+
+</work>

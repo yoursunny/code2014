@@ -1,0 +1,58 @@
+备份完毕
+
+<style>
+a.export-link { font-size:20px; }
+#faq dd { padding-left:2em; }
+#faq { margin:3em 0; }
+</style>
+
+<p>backuplet已经完成你选择的导出/备份操作。</p>
+
+<h2>下载导出的文件</h2>
+<h3>ATOM</h3>
+<p><a href="javascript:;" class="export-link" data-export="save/atom.php?sid=*" onclick="c('save.atom')">下载ATOM文件</a></p>
+<p>ATOM是一种基于XML的feed格式，可以导入到其他能够识别该格式的应用程序。</p>
+<!--
+<h3>HTML</h3>
+<p><a href="javascript:;" class="export-link" data-export="save/xslt.php?xsl=html&amp;sid=*" onclick="c('save.html')">下载HTML文件</a>(只支持微博类)</p>
+<p>HTML是普通的网页格式，适合于离线阅读。</p>
+-->
+<h3>我已经下载完毕……</h3>
+<p><a href="javascript:;" class="export-link" data-export="save/delete.php?sid=*" onclick="c('save.delete')">删除备份会话数据</a>(本次会话的所有数据将被删除；请确认你已经下载了需要的文件)</p>
+
+<script type="text/javascript">//<![CDATA[
+var a=location.hash.substr(1).split('/');
+var sid=a[0];
+var version=a[1]?a[1]:'';
+var exportLinks=W.getTagClass('a','export-link');
+for (var i=0;i<exportLinks.length;++i) {
+	var A=exportLinks[i];
+	A.href=A.getAttribute('data-export').replace('*',sid).replace('save','save'+version);
+	A.target='_blank';
+}
+//]]></script>
+
+<script type="text/javascript">alimama_pid="mm_10110350_192293_8883533";alimama_titlecolor="0000FF";alimama_descolor ="000000";alimama_bgcolor="FFFFFF";alimama_bordercolor="E6E6E6";alimama_linkcolor="008000";alimama_bottomcolor="FFFFFF";alimama_anglesize="0";alimama_bgpic="0";alimama_icon="0";alimama_sizecode="12";alimama_width=468;alimama_height=60;alimama_type=2;</script><script src="http://a.alimama.cn/inf.js" type="text/javascript"></script>
+
+<div id="faq">
+<h2>常见问题</h2>
+<!--
+<dl>
+<dt>我应该选择哪种导出格式？</dt>
+<dd>如果你要导入到其他程序，请选择ATOM。如果你要离线阅读，请选择HTML。如果你要备份，请下载保存所有格式，以备不时之需。</dd>
+</dl>
+<dl>
+<dt>可以导出成HTML网页吗？</dt>
+<dd>目前仅支持微博类。</dd>
+</dl>
+-->
+<dl>
+<dt>为什么ATOM文件里只有一个大标题，而没有看到我的日志、微博等？</dt>
+<dd>原因一：备份开始前设置的参数中，限定了日期、内容过滤等，且没有符合条件的条目。<br/>原因二：对方网站已经升级，使backuplet脚本失效。</dd>
+</dl>
+<dl>
+<dt>备份数据会存储在网站服务器上？</dt>
+<dd>为了实现零安装就能使用，backuplet需要将你的数据暂时保存在网站服务器上。每当有人开始一个新的会话，服务器就会自动删除超过1小时的数据。2010年12月11日开始，备份会话数据只能被同一个IPv4的C类子网的客户端读写，以进一步保证安全。</dd>
+</dl>
+</div>
+<p>感谢使用backuplet。</p>

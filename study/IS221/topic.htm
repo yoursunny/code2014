@@ -1,0 +1,681 @@
+<!--#PAGE index-->
+知识要点
+信息安全工程原理,上海交通大学,考试范围,考试要点
+<style type="text/css">
+.pmsg ul li { font-size:12pt; line-height:25pt; }
+.pmsg ul a,.pmsg ul span { margin-left:2ex; }
+</style>
+<ul>
+<li><b>01</b>
+<a href="?topic=information">信息</a>
+<a href="?topic=infosec">信息安全</a>
+<a href="?topic=WPDRRC">WPDRRC</a>
+<a href="?topic=engineering">信息安全工程</a>
+</li>
+<li><b>02a</b>
+<a href="?topic=system">系统</a>
+<a href="?topic=SE">系统工程</a>
+<span>系统工程过程</span>
+</li>
+<li><b>02b</b>
+<a href="?topic=ISSE">ISSE信息安全系统工程</a>
+<a href="?topic=ISSEprocess">ISSE过程</a>
+<a href="?topic=policy">策略</a>
+</li>
+<li><b>03a</b>
+<a href="?topic=process">现代统计过程控制理论</a>
+</li>
+<li><b>03b</b>
+<a href="?topic=SSE-CMM">SSE-CMM系统安全工程能力成熟模型</a>
+<br/>
+<a href="?topic=methodology">SSE-CMM方法学</a>
+<a href="?topic=guarantee">安全保证</a>
+<a href="?topic=architecture">体系结构</a>
+<a href="?topic=application">应用</a>
+<a href="?topic=SSAM">评定方法</a>
+</li>
+<li><b>03c</b>
+<a href="?topic=BP">安全相关的基本实施、过程域(PA01~11)</a>
+项目和组织相关的基本实施(PA12~22)
+</li>
+<li><b>03d</b>
+<a href="?topic=GP">通用实施、能力级别</a>
+</li>
+<li><b>04</b>
+<a href="?topic=risk">风险</a>
+<a href="?topic=risk-management">风险管理</a>
+<a href="?topic=risk-analyze">风险评估</a>
+</li>
+<li><b>05</b>
+<a href="?topic=CC">Common Criteria</a>
+<a href="?topic=TOE-PP-ST">TOE PP ST</a>
+<a href="?topic=evaluation">TOE评估过程</a>
+<a href="?topic=class">安全功能要求 安全保证要求</a>
+</li>
+</ul>
+<p>撰写日期：2008-10-28～2008-10-30</p>
+<!--#PAGE information-->
+信息
+什么是信息,信息的属性,信息生命周期
+<h2>信息</h2>
+<p>通过在数据上施加某些约定而赋予这些数据的特殊含义。</p>
+<ul>
+<li>信息本身是无形的</li>
+<li>以多种形式存在或传播</li>
+</ul>
+<h2>信息生命周期</h2>
+<ol>
+<li>建立</li>
+<li>处理、变换</li>
+<li>存储</li>
+<li>使用</li>
+<li>传递</li>
+<li>废弃</li>
+</ol>
+<!--#PAGE infosec-->
+信息安全
+什么是安全,信息安全的保护对象,信息安全属性,通信保密,信息保障
+<h2>安全</h2>
+<ul>
+<li>安全是一种状态</li>
+<li>安全是相对的</li>
+<li>安全是信心的度量</li>
+</ul>
+<h2>信息安全的保护对象</h2>
+<ul>
+<li>信息本身</li>
+<li>信息处理过程</li>
+<li>信息处理设施</li>
+<li>信息处理人员</li>
+</ul>
+<p>注：此处的“信息处理”应当是指整个<a href="?topic=information">信息生命周期</a>的各个阶段，而不只是其中的“处理”阶段</p>
+<h2>信息安全属性</h2>
+<ul>
+<li>C 保密性</li>
+<li>I 完整性</li>
+<li>A 可用性</li>
+<li>可控性</li>
+<li>不可否认性</li>
+<li>真实性、可追究性(审计)、可靠性……</li>
+</ul>
+<p><a href="http://blueskychelsea.spaces.live.com/Blog/cns!A39811EB6EFA1560!941.entry">ON THE ROAD...</a>：“饱完渴渴不？ 真渴渴”.....<br/>
+【"饱（保密性）完（完整性）渴（可用性）渴（可靠性）不（不可抵赖性）？ 真(真实性)渴（可控性）渴（可追究性）"】 </p>
+<h2>信息安全发展过程</h2>
+<ol>
+<li>通信保密——保密</li>
+<li>信息安全——保护</li>
+<li>信息保障——保障</li>
+</ol>
+<!--#PAGE WPDRRC-->
+WPDRRC
+我国的信息安全保障
+<p>信息安全国家重点实验室给出如下定义：<br/>
+<img src="WPDRRC.png" width="463" height="284" alt="WPDRRC"/></p>
+<!--#PAGE engineering-->
+信息安全工程
+什么是信息安全工程,信息系统生命周期
+<h2>信息安全工程</h2>
+<p>信息安全工程是采用工程的概念、原理、技术和方法，来研究、开发、实施与维护信息系统安全的<b>过程</b>，是将经过时间考验是正确的<i>工程实施流程</i>、<i>管理技术</i>和当前能够得到的最好的<i>技术方法</i>相结合的过程。</p>
+<h2>信息系统生命周期</h2>
+<ol>
+<li>启动</li>
+<li>开发/采办</li>
+<li>实现</li>
+<li>运行/维护</li>
+<li>废弃</li>
+</ol>
+<h2>信息安全工程的发展</h2>
+<ul>
+<li><a href="?topic=ISSE">ISSE</a> 信息安全系统工程</li>
+<li><a href="?topic=SSE-CMM">SSE-CMM</a> 系统安全工程能力成熟模型</li>
+<li><a href="?topic=SSAM">SSAM</a> SSE-CMM评估方法</li>
+</ul>
+<!--#PAGE system-->
+系统
+系统的概念,系统的模型
+<h2>系统</h2>
+<p>系统是由相互作用和相互依赖的若干组成部分或要素结合而成的具有特定功能的有机整体。</p>
+<p>系统概念的要点：要素、要素间的联系、功能和目的</p>
+<h2>系统的模型</h2>
+<p><b>普遍模型</b>：系统由子系统组成；可以根据不同要求将系统分解为不同的子系统</p>
+<p class="q">辨析：系统可以唯一的划分为若干个子系统。
+<span class="key">错误。可以根据不同要求将系统分解为不同的子系统。</span></p>
+<p><b>边界</b>：边界之内是系统，边界之外是环境</p>
+<p><b>接口</b>：子系统之间的相互联接、相互作用称为接口，接口是子系统的边界</p>
+<!--#PAGE SE-->
+系统工程
+什么是系统工程,霍尔三维结构,调查学习模式
+<h2>系统工程</h2>
+<p>组织、管理、规划、研究、设计、制造、试验、使用<a href="?topic=system">系统</a>的科学方法，是一种对所有系统都具有普遍意义的科学方法。</p>
+<h3>系统工程的特点</h3>
+<ul>
+<li>跨学科</li>
+<li>更针对复杂系统</li>
+<li>整体最优</li>
+<li>“软硬”结合</li>
+</ul>
+<h2>系统工程方法论</h2>
+<h3>霍尔三维结构</h3>
+<ul>
+<li>专业维</li>
+<li>时间维</li>
+<li>逻辑维</li>
+</ul>
+<h3>切克兰德 调查学习模式</h3>
+<ol>
+<li>问题现状说明</li>
+<li>搞清问题的关联因素</li>
+<li>概念模型</li>
+<li>比较</li>
+<li>实施</li>
+</ol>
+<!--#PAGE ISSE-->
+ISSE信息安全系统工程
+ISSE,ISSE过程,系统工程,信息系统安全工程
+<h2>信息安全系统工程</h2>
+<p>通过实施系统工程过程来满足信息保护的需求。</p>
+<h3>系统工程与信息系统安全工程的关系</h3>
+<p>ISSE过程是SE过程的子过程</p>
+<p class="q">辨析：在系统工程完成后，才需要考虑安全工程。
+<span class="key">错误。在系统工程的相应阶段，就要同时考虑信息保护的目标、需求、功能、体系结构、设计、测试与实施，使信息保护得以优化。</span></p>
+<!--#PAGE ISSEprocess-->
+ISSE信息安全系统工程过程
+信息保护
+<script type="text/javascript">//<![CDATA[
+function ISSEprocess(n){
+	$('.ISSEprocess').hide();
+	$('#ISSEprocess'+n).show();
+}
+W.ready(function(){
+	ISSEprocess(0);
+});
+//]]></script>
+<h2><a href="javascript:ISSEprocess(1)">发掘信息保护需求</a></h2>
+<div id="ISSEprocess1" class="ISSEprocess">
+<img src="ISSEprocess1.png" width="482" height="337" alt="发掘信息保护需求过程"/>
+<dl>
+<dt>任务信息</dt>
+<dd>信息系统、信息的具体用户；用户与信息系统、信息的交互实质；用户在信息保护生命周期各阶段的角色、责任、权力。</dd>
+<dt>威胁</dt>
+<dd>可能造成某个结果的事件，或对系统造成危害的潜在事实。</dd>
+<dt>策略</dt>
+<dd>以正式形式出现的，经管理层同意和批准的，规定了组织行为方向和行为自由程度的途径。</dd>
+<dt>信息安全策略</dt>
+<dd>一组规则，这组规则描述了一个组织要实现的信息安全目标和实现这些信息安全目标的途径。</dd>
+<dd><a href="?topic=policy">信息安全策略的特点、依据、地位</a></dd>
+<dt>系统保护需求</dt>
+<dd>丧失<a href="?topic=infosec">CIAN</a>时，可能会带来哪些问题？</dd>
+</dl>
+</div>
+<h2><a href="javascript:ISSEprocess(2)">定义信息保护系统</a></h2>
+<div id="ISSEprocess2" class="ISSEprocess">
+<img src="ISSEprocess2.png" width="611" height="284" alt="定义信息保护系统过程"/>
+<ul>
+<li>信息保护系统要做什么</li>
+<li>信息保护系统执行其功能的情况如何</li>
+<li>信息保护系统的外部和内部接口。</li>
+</ul>
+</div>
+<h2><a href="javascript:ISSEprocess(3)">设计信息保护系统</a></h2>
+<div id="ISSEprocess3" class="ISSEprocess">
+<img src="ISSEprocess3.png" width="649" height="203" alt="设计信息保护系统过程"/>
+<p>构造系统的体系结构，详细说明信息保护系统的设计方案</p>
+</div>
+<h2><a href="javascript:ISSEprocess(4)">实施信息保护系统</a></h2>
+<div id="ISSEprocess4" class="ISSEprocess">
+<ol>
+<li>购买</li>
+<li>建设、集成</li>
+<li>测试、认证</li>
+</ol>
+</div>
+<h2><a href="javascript:ISSEprocess(5)">评估信息保护系统的有效性</a></h2>
+<div id="ISSEprocess5" class="ISSEprocess">
+<p class="q">辨析：评估信息保护系统的有效性过程，在信息安全系统工程的最后进行。
+<span class="key">错误。要在多项活动中评估信息保护系统的有效性，发掘、定义、设计、实施的整个过程中都要评估有效性。</span></p>
+</div>
+<!--#PAGE policy-->
+信息安全策略
+策略,信息安全策略,信息安全策略的特点,信息安全策略的依据
+<dl>
+<dt>信息安全策略</dt>
+<dd>一组规则，这组规则描述了一个组织要实现的信息安全目标和实现这些信息安全目标的途径。</dd>
+<dd>信息安全策略是一个组织关于信息安全的基本指导规则。</dd>
+<dd>信息安全策略提供：信息保护的内容和目标，信息保护的职责落实，实施信息保护的方法，事故的处理</dd>
+</dl>
+<h2>信息安全策略的特点</h2>
+<ul>
+<li>指导性</li>
+<li>原则性</li>
+<li>可审核性</li>
+<li>非技术性</li>
+<li>现实可行性</li>
+<li>动态性</li>
+<li>文档化</li>
+</ul>
+<h2>信息安全策略的依据</h2>
+<ul>
+<li>国家法律、法规、政策</li>
+<li>行业规范</li>
+<li>相关机构的约束</li>
+<li>机构自身的安全需求</li>
+</ul>
+<h2>信息安全策略的地位</h2>
+<ul>
+<li>必须有相应的措施保证信息安全策略得到强制执行</li>
+<li>管理层不得允许任何违反信息安全策略的行为存在</li>
+<li>信息安全策略必须有清晰和完全的文档描述</li>
+<li>需要根据业务情况的变化不断的修改和补充信息安全策略</li>
+</ul>
+<!--#PAGE process-->
+现代统计过程控制理论
+过程,成本效益
+<p>现代统计过程控制理论的基本观点：通过强调<b>生产过程的高质量</b>和<b>在过程中组织措施的成熟性</b>可以取得更为理想的<b>成本效益</b>。</p>
+<p><b>过程</b>：为了一个特定目的而执行的一系列活动</p>
+<!--#PAGE SSE-CMM-->
+SSE-CMM系统安全工程能力成熟模型
+什么是SSE-CMM
+<h2>什么是SSE-CMM</h2>
+<dl>
+<dt>SSE-CMM</dt>
+<dd>“系统安全工程能力成熟模型”的缩写</dd>
+<dd>描述了一个组织的安全工程过程必须包含的本质特征，这些特征是完善的安全工程保证</dd>
+<dd>汇集了工业界常见的实施方法</dd>
+<dd>安全工程实施的标准化评估准则</dd>
+<dt><a href="?topic=SSAM">SSAM</a>——SSE-CMM的评定方法</dt>
+<dd>描述了针对SSE-CMM来评价一个组织的安全工程能力的过程和工具</dd>
+</dl>
+<!--#PAGE methodology-->
+SSE-CMM方法学
+安全工程,理解
+<h2><a href="?topic=SSE-CMM">SSE-CMM</a>对<a href="?topic=engineering">安全工程</a>的理解</h2>
+<dl>
+<dt>安全工程的现状和意义</dt>
+<dd>安全工程正成为日益紧迫的领域，并将成为跨越多领域、协同工作的工程组中一个关键的部分</dd>
+<dd>安全工程将应用到系统和应用的开发、集成、操作、管理、维护、进化以及产品的开发、交付、进化中</dd>
+<dt>安全工程的一些目标</dt>
+<dd>
+<ol>
+<li>安全风险</li>
+<li>安全需求</li>
+<li>安全指南</li>
+<li>安全机制</li>
+<li>信息和保证</li>
+<li>残留的脆弱性=可接受的风险</li>
+<li>系统安全可信性的综合理解</li>
+</ol>
+</dd>
+<dt>安全工程机构</dt>
+<dd>泛指实施安全工程活动的各类机构</dd>
+<dt>安全工程与其他领域</dt>
+<dd>残留的运行安全影响的<b>保证</b>和<b>可接受性</b>是在各方之间建立的，安全工程活动必须要与其他外部实体进行<b>协调</b>。</dd>
+<dt>安全工程特点</dt>
+<dd>安全工程要与传统安全领域、新兴安全领域结合</dd>
+<dd>信息安全问题的整体性</dd>
+</dl>
+<!--#PAGE guarantee-->
+安全保证
+信任,成熟
+<dl>
+<dt>安全保证</dt>
+<dd>安全需要得到满足的<b>信任程度</b></dd>
+<dd>这种信任的基础是<b>成熟机构比不成熟机构更可能产生出重复的结果</b></dd>
+<dd>并不能添加任何额外的对安全相关风险的抗拒能力，但它能为减少预期安全风险控制提供<a href="?topic=infosec">信心</a></dd>
+<dd>也可以看作安全措施按照要求运行的信心，这种信心来自于<b>正确性和有效性</b></dd>
+<dd>通常以<b>安全论据</b>的形式出现</dd>
+</dl>
+<p class="q">辨析：安全保证使信息系统变得更加安全。<span class="key">错误。安全保证并不能添加任何额外的对安全相关风险的抗拒能力，但它能为减少预期安全风险控制提供信心。</span></p>
+<!--#PAGE architecture-->
+SSE-CMM的体系结构
+域维,基本实施,能力维,通用实施,工程实施活动
+<p>SSE-CMM方法学以<i>工程域维</i>和<i>能力维</i>来诠释信息安全工程过程。</p>
+<h2>SSE-CMM模型是两维的</h2>
+<h3><a href="?topic=BP">域维</a></h3>
+<dl>
+<dt>域维包含安全工程的基本特征</dt>
+<dd>由所有定义安全工程的工程实施活动组成</dd>
+<dt>基本实施BP</dt>
+<dd>定义了取得过程域目标的必要步骤</dd>
+<dd>本质：工程实施活动，工程中的行为活动</dd>
+<dd>与GP的区别：BP针对具体安全工作</dd>
+<dt>过程域PA</dt>
+<dd>一组相关的基本实施</dd>
+<dd>当一个过程域中的所有基本实施全部实现，就可满足过程域的要求</dd>
+<dt>过程类/过程域组</dt>
+<dd>一组过程域的集合</dd>
+</dl>
+<img src="domain-dimension.png" width="331" height="324" alt="基本实施-过程域"/>
+<p class="q">辨析：PA02包含6个BP，现在裁减掉其中2个、实现了4个，则已经满足PA02的要求。
+<span class="key">错误。基本实施是不可以裁减的，要满足过程域要求就必须实现其包含的全部BP。</span></p>
+<p class="q">辨析：风险过程域组包含PA04、PA05、PA02、PA03，可以只实现其中的PA04、PA05，而将PA02、PA03裁减掉。
+<span class="key">正确。过程域是可以裁减的。</span></p>
+<h3><a href="?topic=GP">能力维</a></h3>
+<dl>
+<dt>能力维包含管理和制度化特征</dt>
+<dd>代表机构对过程的管理和制度化能力</dd>
+<dt>通用实施GP</dt>
+<dd>针对过程的管理、测量、制度化，是应用于所有PA的活动</dd>
+<dd>本质：工程实施活动，工程中的行为活动</dd>
+<dd>与BP的区别：GP针对履行BP的安全工作时实施的通用行为</dd>
+<dt>公共特征CF</dt>
+<dd>通用实施的集合</dd>
+<dd>每个CF面向同一类过程的管理和制度化</dd>
+<dt>能力级别CL</dt>
+<dd>若干个公共特征的组合</dd>
+</dl>
+<img src="capability-dimension.png" width="327" height="391" alt="通用实施-公共特征-能力级别"/>
+<p class="q">辨析：一个非正式执行级的工程机构，通过进化，直接达到了充分定义级。
+<span class="key">错误。能力维的进化必须依次达到，从非正式执行级进化到充分定义级，不能跳过计划和跟踪级。</span></p>
+<p class="q">辨析：充分定义级包含公共特征“协调过程”，进化到量化控制级后，不再需要实现“协调过程”。
+<span class="key">错误。能力级别的进化表示依次增加的安全工程能力，高能力级别要包含低能力级别的所有公共特征。</span></p>
+<!--#PAGE application-->
+SSE-CMM应用
+过程改进,IDEAL,能力评定,获得保证
+<h2>SSE-CMM应用于过程改进</h2>
+<p><a href="?topic=process">过程</a>是产品成本、进度、质量的决定性因素之一。</p>
+<p>过程改进的IDEAL方法<br/>
+<img src="process-improvement.png" width="764" height="473" alt="IDEAL"/></p>
+<h2>SSE-CMM应用于能力评定</h2>
+<p>SSE-CMM的评定方法：<a href="?topic=SSAM">SSAM</a></p>
+<h2>SSE-CMM应用于获得保证</h2>
+<dl>
+<dt>保证目标</dt>
+<dd>提供一个测量和改进的方法，将客户安全需求转化为安全工程过程</dd>
+<dd>通过全面的评价、认证、认可，实现正式安全保证；对不需要正式安全保证的客户，提供可变化的保证</dd>
+<dt>过程证据</dt>
+<dd>表示产品或系统的生命周期遵循特定的过程</dd>
+<dd>作为支持性的、间接的角色</dd>
+<dd>要确信产品或系统可信，关键在于为产品或系统建立一个综合的证据集</dd>
+</dl>
+<!--#PAGE SSAM-->
+SSE-CMM评定方法：SSAM
+SSAM,过程序列,评分轮廓表
+<h2>SSAM目的</h2>
+<p>SSAM是组织层面、或项目层面的评定方法。</p>
+<h2>SSAM特点</h2>
+<ul>
+<li>方便由第三方实施，也可自评</li>
+<li>可被裁减</li>
+<li>采用多重数据收集方法</li>
+</ul>
+<h2>SSAM步骤</h2>
+<ol>
+<li>规划</li>
+<li>准备</li>
+<li>现场</li>
+<li>后期评定</li>
+</ol>
+<h2>SSAM评定的两个方面</h2>
+<ul>
+<li>基本实施</li>
+<li>通用实施</li>
+</ul>
+<p>SSE-CMM不是一个过程序列：过程域、基本实施，一般没有规定的次序。过程序列应根据生命周期、其他业务参数决定。</p>
+<h2>SSAM的主要工作结果</h2>
+<ul>
+<li>调查结果简报
+<ul>
+<li>评分轮廓表：表明机构（组织或项目小组）在每一个<a href="?topic=BP">过程域(PA)</a>的<a href="?topic=GP">能力级别</a></li>
+<li>调查结果表：说明机构的强项和弱项</li>
+</ul></li>
+<li>评定报告：包括每个调查结果的附加细节</li>
+</ul>
+<!--#PAGE BP-->
+SSE-CMM过程域
+风险过程,工程过程,保证过程
+<script type="text/javascript">//<![CDATA[
+function BP(n){
+	$('.BP').hide();
+	$('#BP'+n).show();
+}
+W.ready(function(){
+	BP(0);
+});
+//]]></script>
+<h2><a href="javascript:BP(1)">风险过程域组</a></h2>
+<div id="BP1" class="BP">
+<img src="risk-process.png" width="707" height="403" alt="SSE-CMM风险过程域组"/>
+<dl>
+<dt>PA04 评估威胁</dt>
+<dd>自然威胁</dd>
+<dd>人为威胁；是谁要攻击我，他有什么能力</dd>
+<dd>威胁事件发生的可能性有多大？</dd>
+<dd>在系统的生命周期中，威胁是会发生变化的</dd>
+<dt>PA05 评估脆弱性</dt>
+<dd><b>脆弱性</b>：可被利用完成不期望行为的系统的某些特征、安全弱点、漏洞或易被威胁所攻击的系统的实施缺陷</dd>
+<dd>决定如何识别脆弱性；识别脆弱性；收集相关数据</dd>
+<dd>在系统的生命周期中，脆弱性是会发生变化的</dd>
+<dt>PA02 评估影响</dt>
+<dd>系统有哪些功能？有哪些资产（资源和数据）？</dd>
+<dd>如果我的资产遭到破坏、泄露、阻断、丢失，功能遭到拦截、延迟弱化，会造成什么后果？</dd>
+<dd>包括有形的影响（例如减少财政收入、减少营业额），无形的影响（例如企业声誉损失）</dd>
+<dd>这些影响发生的可能性有多大？</dd>
+<dd>在系统的生命周期中，影响是会发生变化的</dd>
+<dt>PA03 评估安全风险</dt>
+<dd><b>暴露</b>：可能对系统造成重大伤害的威胁、脆弱性、影响的组合</dd>
+<dd>找出系统的暴露；评估与每个暴露相关的风险；排列优先次序</dd>
+<dd>在系统的生命周期中，威胁、脆弱性、影响会发生变化，因此暴露也会发生变化</dd>
+</dl>
+</div>
+<h2><a href="javascript:BP(2)">工程过程域组</a></h2>
+<div id="BP2" class="BP">
+<img src="engineering-process.png" width="684" height="375" alt="SSE-CMM工程过程域组"/>
+<dl>
+<dt>PA10 确定安全需求</dt>
+<dd>在所有团体(包括客户)之间达成对安全需求的共同认识</dd>
+<dd>对系统进行认可时，安全需要要参照系统安全基线</dd>
+<dd>客户的要求 + 法律、政策、标准 + 由用途决定的安全背景</dd>
+<dd>高层认识→高层目标→一致的声明→达成一致认识</dd>
+<dd>安全需求应与系统目标建立映射关系或发生关联，安全都应将对系统功能和性能的任何影响降到最小</dd>
+<dt>PA09 提供安全输入</dt>
+<dd>判断安全约束、安全考虑</dd>
+<dd>标识、分析、比较备选方案，包括设备选型</dd>
+<dd>向其他工程组、管理员、客户提供安全指南</dd>
+<dt>PA01 管理安全控制</dt>
+<dd>确保设计中集成的安全性能够在最终系统运行状态中实现</dd>
+<dd>建立职责；管理配置；安全意识教育和培训；定期维护管理</dd>
+<dt>PA08 监视安全态势</dt>
+<dd>分析事件记录；识别突发事件，管理响应；监视安全措施的功能、性能、安全状态</dd>
+<dd>安全突发事件响应：标识最长允许失效时间、重要功能部件，制定、测试、维护“恢复战略和计划”，</dd>
+<dt>PA07 协调安全性</dt>
+<dd>建立协调机制→用协调机制去协调有关安全的决策和建议</dd>
+</dl>
+</div>
+<h2><a href="javascript:BP(3)">保证过程域组</a></h2>
+<div id="BP3" class="BP">
+<img src="assurance-process.png" width="689" height="296" alt="SSE-CMM保证过程域组"/>
+<dl>
+<dt>PA11 验证和确认安全</dt>
+<dt>PA06 建立保证论据</dt>
+<dd>告诉客户，其安全需求已获满足</dd>
+<dd>一个保证论据是一系列清晰陈述的保证目标，每个保证目标由多个保证论据所支持</dd>
+<dd>相关主题：<a href="?topic=application">保证目标</a></dd>
+</dl>
+</div>
+<!--#PAGE GP-->
+SSE-CMM能力级别
+通用实施,GP,公共特征,CF,能力级别
+<h2>5个能力级别</h2>
+<dl>
+<dt>1 非正式执行级</dt>
+<dd><a href="?topic=BP">基本实施</a>已经得到执行</dd>
+<dd>用工作结果证实基本实施已经得到执行</dd>
+<dt>2 计划和跟踪级</dt>
+<dd>基本实施执行需要经过规划并跟踪</dd>
+<dd>执行时要依据具体的流程，并得到验证</dd>
+<dd>工作结果要符合特定的标准和需求</dd>
+<dd>与级别1的区别：过程实施被规划和管理</dd>
+<dt>3 充分定义级</dt>
+<dd>基本实施按照充分定义的过程执行</dd>
+<dd>执行过程中将使用已获批准的、经裁减的标准</dd>
+<dd>与级别2的区别：利用机构范围内的标准化过程来规划和管理安全工程过程</dd>
+<dt>4 量化控制级</dt>
+<dd>过程执行管理是客观的，工作结果质量是量化的</dd>
+<dd>形成对过程能力的量化理解，使机构有能力去预测过程的执行</dd>
+<dd>与级别3的区别：所定义的过程是可量化和理解的</dd>
+<dt>5 持续改进级</dt>
+<dd>工程过程效果和效率的量化执行目标已经基于机构的业务目标而建立</dd>
+<dd>于级别4的区别：基于对这些过程变化的量化理解，工程中既定过程和标准过程将得到不断的改进和提高</dd>
+</dl>
+<img src="GP.png" width="689" height="536" alt="能力级别-公共特征-通用实施"/>
+<h2>2条进化路径</h2>
+<ul>
+<li>执行过程→使用计划、标准和流程→使用充分定义的过程</li>
+<li>采取修正措施→使用充分定义的数据→使用过程能力</li>
+</ul>
+<p><a href="http://bbs.sjtu.edu.cn/bbstcon?board=IS&reid=1225410745">关于进化路径的更多理解</a></p>
+<!--#PAGE risk-->
+风险
+风险的定义,风险与事件的关系,威胁,脆弱性,风险的特点
+<dl>
+<dt>风险</dt>
+<dd>事件发生的概率与结果的结合</dd>
+<dd>一个指定的威胁利用一项或多项资产的脆弱性，并由此造成损害的可能性</dd>
+<dt>风险与事件的关系</dt>
+<dd><img src="risk-vs-incident.png" width="377" height="156" alt="风险-事件"/></dd>
+<dd>威胁源利用脆弱性对资产实施威胁行为，尚未造成影响称为风险，已经造成影响称为事件</dd>
+</dl>
+<h2>风险的特点</h2>
+<ul>
+<li>客观存在</li>
+<li>强调损害的潜在可能性，而不是事实的损害</li>
+<li>不能消除至尽</li>
+<li>基本要素：事件的概率，产生的后果</li>
+<li>导致风险的事件：威胁利用了资产的脆弱点</li>
+</ul>
+<!--#PAGE risk-management-->
+风险管理
+风险评估,风险处理,风险接受,残余风险
+<dl>
+<dt>风险管理</dt>
+<dd>指导和控制一个组织相关风险的活动</dd>
+<dt>风险管理的过程</dt>
+<dd><ol>
+<li>风险评估</li>
+<li>风险处理</li>
+<li>风险接受</li>
+<li>风险信息传递</li>
+</ol></dd>
+<dt>风险管理的作用和目标</dt>
+<dd>残余风险处于可接受的状态</dd>
+<dd>持续循环，不断上升</dd>
+<dt>风险管理的原则</dt>
+<dd>适度安全</dd>
+<dd>平衡成本与效益</dd>
+</dl>
+<!--#PAGE risk-analyze-->
+风险评估
+风险分析,风险计算模型,定量风险评估,ALE,EF,SLE,ARO,ROSI
+<h2>风险分析各要素的理论关系</h2>
+<img src="risk-analyze.png" width="558" height="350" alt="风险分析的理论关系"/>
+<h2>风险计算模型</h2>
+<ul>
+<li>风险=f<sub>1</sub>(I,P<sub>TV</sub>)</li>
+<li>发生可能性P<sub>TV</sub>=f<sub>2</sub>(威胁发生概率P<sub>T</sub>,脆弱点被利用概率P<sub>V</sub>)</li>
+<li>潜在损失I=f<sub>3</sub>(资产相对价值V,价值损失程度C<sub>L</sub>)</li>
+</ul>
+<h2>定量风险评估</h2>
+<script type="text/javascript">
+function A() { $('#A3').val(parseFloat($('#A1').val())*parseFloat($('#A2').val())/100); }
+function B() { $('#B3').va(parseFloat($('#B1').val())*parseFloat($('#B2').val())/100); }
+function C() { $('#C3').val(parseFloat($('#C1').va())*parseFloat($('#C2').val())); }
+function D() { $('#D4').val(parseFloat($('#D1').val())-parseFloat($('#D2').val())-parseFloat($('#D3').val())); }
+</script>
+<form action="" onsubmit="return false;">
+<p>
+威胁事件发生的概率<input type="text" id="A1" value="0" onchange="A()"/>%<br />
+×可能造成的损失<input type="text" id="A2" value="0" onchange="A()"/><br />
+＝年预期损失(ALE)<input type="text" id="A3" value="0" disabled="disabled"/>
+</p>
+<p>
+资产价值<input type="text" id="B1" value="0" onchange="B()"/> 包括直接影响、间接影响<br />
+×暴露系数(EF)<input type="text" id="B2" value="0" onchange="B()"/>% 现实的威胁对某个资产造成的损失百分比<br />
+＝单一预期损失(SLE)<input type="text" id="B3" value="0" disabled="disabled"/> 一次风险引起的收入损失总额
+</p>
+<p>
+单一预期损失(SLE)<input type="text" id="C1" value="0" onchange="C()"/><br />
+×年发生率(ARO)<input type="text" id="C2" value="0" onchange="C()"/> 一年中风险发生的次数<br />
+＝年预期损失(ALE)<input type="text" id="C3" value="0" disabled="disabled"/> 不采取任何减轻风险的措施、在一年中可能损失的总金额
+</p>
+<p>
+实施控制前的ALE<input type="text" id="D1" value="0" onchange="D()"/><br />
+－实施控制后的ALE<input type="text" id="D2" value="0" onchange="D()"/><br />
+－年控制成本<input type="text" id="D3" value="0" onchange="D()"/> 包括购买、测试、部署、操作、维护各个控制措施所需的成本<br />
+＝安全投资收益(ROSI)<input type="text" id="D4" value="0" disabled="disabled"/>
+</p>
+</form>
+<!--#PAGE CC-->
+Common Criteria
+CC标准,CC评价准则,CC共同准则,CC通用准则,ISO14508
+<p><b>Common Criteria</b>(ISO15408,共同准则,通用准则)被用于政府和其他组织去评定<i>IT产品</i>的安全和保障。CC标准提供了<b>唯一的安全需求表达方式</b>。</p>
+<h2>CC基本结构</h2>
+<dl>
+<dt>第1部分 介绍和总体模型</dt>
+<dd>定义IT安全评价</dd>
+<dd>描述模型的一般概念和原则</dd>
+<dt>第2部分 安全功能要求</dt>
+<dd>用标准化的方法对<a href="?topic=TOE-PP-ST">评估目标TOE</a>建立一个明确的安全要求的部件功能集合</dd>
+<dd>功能集合：部件-族-类</dd>
+<dd>第3部分 安全保证要求</dd>
+<dd>用标准化的方法对<a href="?topic=TOE-PP-ST">评估目标TOE</a>建立一个明确的安全要求的保证部件的集合</dd>
+<dd>对<a href="?topic=TOE-PP-ST">保护方案PP</a>和<a href="?topic=TOE-PP-ST">安全目标ST</a>进行定义，并且对<a href="?topic=TOE-PP-ST">评估目标TOE</a>提出<i>安全评价保证级别EAL</i></dd>
+<dt>配套的评估方法</dt>
+<dd>信息技术安全通用评估方法 ISO18045</dd>
+</dl>
+<!--#PAGE TOE-PP-ST-->
+CC标准：TOE、PP、ST的定义
+CC标准,评估目标,TOE,保护方案,PP,安全目标,ST
+<dl>
+<dt>评估目标 TOE</dt>
+<dd>IT产品或系统 + 相关的管理指南和用户指南文档</dd>
+<dd>TOE是<a href="?topic=CC">Common Criteria</a>评估的对象</dd>
+<dt>保护轮廓 PP</dt>
+<dd>满足特定的消费者需求的，独立于实现的一组安全要求</dd>
+<dd>PP回答“需要什么？”，而不涉及“如何实现？”</dd>
+<dt>安全目标 ST</dt>
+<dd>依赖于实现的一组安全要求和说明</dd>
+<dd>ST回答“提供什么？”、“如何实现？”</dd>
+</dl>
+<!--#PAGE evaluation-->
+TOE评估过程
+以CC为基础的信息安全测评
+<p>以<a href="?topic=CC">CC</a>为基础的信息安全测评过程：</p>
+<ol>
+<li>评估<a href="?topic=TOE-PP-ST">PP</a></li>
+<li>评估<a href="?topic=TOE-PP-ST">ST</a></li>
+<li>评估<a href="?topic=TOE-PP-ST">TOE</a>：证明ST的实现满足PP的要求<br/>
+<img src="evaluation.png" width="483" height="321" alt="TOE评估过程"/></li>
+</ol>
+<!--#PAGE class-->
+安全功能要求 安全保证要求
+安全功能类
+<h2><a href="?topic=CC">Common Criteria</a>的安全功能类</h2>
+<ul>
+<li>FAU 安全审计</li>
+<li>FCO 通信</li>
+<li>FCS 密码支持</li>
+<li>FDP 用户数据保护</li>
+<li>FIA 标识与鉴别</li>
+<li>FMT 安全管理</li>
+<li>FPR 隐秘</li>
+<li>FPT TFS保护</li>
+<li>FRU 资源利用</li>
+<li>FTA TOE访问</li>
+<li>FTP 可信信道/路径</li>
+</ul>
+<h2><a href="?topic=CC">Common Criteria</a>的安全保证要求</h2>
+<ul>
+<li>ACM 配置管理</li>
+<li>ADO 交付与运行</li>
+<li>ADV 开发文档</li>
+<li>AGD 指南文档</li>
+<li>ALC 生命周期支持</li>
+<li>ATE 测试</li>
+<li>AVA 脆弱性评估</li>
+<li>APE PP评估</li>
+<li>ASE ST评估</li>
+<li>AMA 保证的维持</li>
+</ul>
+<!--#PAGE NOP-->
+
+

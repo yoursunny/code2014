@@ -1,0 +1,7 @@
+(function($){
+
+backuplet.main=function() {
+	backuplet.fault('backuplet尚不支持当前站点的备份，或者你没有从正确的页面启动。');
+};
+
+})(jQuery);

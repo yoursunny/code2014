@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<course>
+
+<title>移动通信</title>
+<code>IS401</code>
+<teacher>吴越</teacher>
+<teacher>易平</teacher>
+
+<download>
+移动通信01 Introduction.pdf
+移动通信02 Radio Propagation for Mobile Environment.pdf
+移动通信03 Modulation.pdf
+移动通信04 Equalization Diversity Channel Coding.pdf
+移动通信05 Multiple Access.pdf
+无线网络01无线网络与移动计算概述.ppt
+无线网络02蜂窝移动通信系统.ppt
+无线网络03移动性管理.ppt
+无线网络04第三代移动通信系统.ppt
+无线网络05移动通信展望（4G）.ppt
+无线网络06移动IP.ppt
+无线网络07移动数据网络.ppt
+无线网络08无线局域网.ppt
+无线网络09移动ad hoc网络.ppt
+无线网络10无线MESH网络.ppt
+无线网络11移动ad hoc网络安全.ppt
+无线网络 无线MESH网络及研究项目简介.ppt
+</download>
+
+<topic t="gdoc10" q="p" v="TD-physical">
+<title>TD-SCDMA Physical Layer Design Overview</title>
+<homelink>TD-SCDMA Physical Layer Design Overview</homelink>
+</topic>
+<topic t="gdoc10" q="p" v="TeamComm">
+<title>团队通信系统：用ad hoc和TD-SCDMA实现</title>
+<homelink>团队通信系统：用ad hoc和TD-SCDMA实现</homelink>
+</topic>
+
+</course>

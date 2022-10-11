@@ -1,3 +1,3 @@
 # 个人电话本
 
-https://yoursunny.cn/study/IS491/
+https://yoursunny.com/study/IS491/

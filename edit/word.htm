@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Word编辑器 - %title%</title>
+<script language="javascript" type="text/javascript">
+function save(f)
+{
+	if (f.h.value.length<1)
+	{
+		f.h.focus();
+		alert('没有上传文件');
+		return false;
+	}
+	return true;
+}
+</script>
+</head>
+
+<body>
+<h1 align="center">Word编辑器 - %title%</h1>
+<form method="post" enctype="multipart/form-data" onsubmit="return save(this)">
+<ol style="font-size:10pt;line-height:3ex;">
+<li>请安装Microsoft 2007 Office System<br />
+(Word XP、Word 2003同样可用，只是操作方法有所不同)</li>
+<li>打开Word，<span id="s">新建一个文件</span>，编辑内容，允许插入图片等对象<br />
+(如果你正准备将一篇现有文章作为一个网页，通常需要删除Word文档中的文章总标题)</li>
+<li>单击Office按钮-另存为-Word文档，保存为一个<font color="#6666CC">.docx</font>文件(<font color="#6666CC">.doc .rtf .wps</font>也能上传)<br />
+在此选择这个文件
+<input type="file" name="d" id="d" />
+<br />
+(不必须，只是用于今后修改时下载，如果不上传，今后修改时必须找到原文件)</li>
+<li>单击Office按钮-另存为-其他格式，下拉“保存类型”，选择“<font color="#CC0000">筛选过的网页(*.htm *html)</font>”，保存为一个<font color="#006633">.htm</font>文件<br />
+也可以使用Word2HTML工具快速将Word文件保存为正确的类型并打包为.zip，<a href="word.zip">点击下载</a>(120kb)</li>
+<li>如果在保存位置生成<font color="#006633">文件名.files</font>文件夹，单击<font color="#006633">文件名.files</font>文件夹，然后按住CTRL键，单击<font color="#006633">文件名.htm</font>文件，右击<font color="#006633">文件名.htm</font>文件，选择发送到-ZIP文件夹，保存位置生成了一个<font color="#990099">.zip</font>文件<br />
+(如果没有生成<font color="#006633">文件名.files</font>文件夹，跳过此步；<br />
+你也可以用WinRAR等工具将<font color="#006633">.htm</font>和<font color="#006633">.files</font>一起打包为<font color="#990099">.zip</font>，不能是<font color="#666666">.rar</font>格式)</li>
+<li>在此选择<font color="#990099">.zip</font>或<font color="#006633">.htm</font>文件
+<input type="file" name="h" id="h" />
+</li>
+<li>是否启用中文GB2312编码转换？
+<input name="encoding" type="checkbox" id="encoding" value="GB2312" checked="checked" /> 
+(如果启用后是乱码，请去除对勾)</li>
+<li>点击
+<input type="submit" value="  保  存  " />
+按钮</li>
+<li>提示：不宜在同一网页添加多个Word区块，否则样式可能不准确</li>
+</ol>
+<script type="text/javascript">
+if (%saved%) document.getElementById('s').innerHTML='下载<a href="%down%">上次保存的文件</a>并打开';
+</script>
+</form>
+</body>
+</html>

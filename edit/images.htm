@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>图片集编辑器 - %title%</title>
+</head>
+
+<body background="../images/bg.gif">
+<h1 align="center">图片集编辑器 - %title%</h1>
+<form method="post" enctype="multipart/form-data" onsubmit="return save_main(this)">
+<script language="javascript" type="text/javascript">
+function save_main(f)
+{
+	if (isNaN(parseInt(f.slideTimer.value)))
+	{
+		f.slideTimer.focus();
+		alert('幻灯片切换频率必须为整数');
+		return false;
+	}
+	else f.slideTimer.value=parseInt(f.slideTimer.value);
+	if (isNaN(parseInt(f.sizeWidth.value)))
+	{
+		f.sizeWidth.focus();
+		alert('宽度必须为整数');
+		return false;
+	}
+	else f.sizeWidth.value=parseInt(f.sizeWidth.value);
+	if (isNaN(parseInt(f.sizeHeight.value)))
+	{
+		f.sizeHeight.focus();
+		alert('高度必须为整数');
+		return false;
+	}
+	else f.sizeHeight.value=parseInt(f.sizeHeight.value);
+	if (f.borderColor.value.length!=6||isNaN(parseInt(f.borderColor.value,16)))
+	{
+		f.borderColor.focus();
+		alert('边框颜色必须为6位十六进制数');
+		return false;
+	}
+	return true;
+}
+</script>
+<input name="a" type="hidden" id="a" value="main" />
+<table width="700" border="0" align="center" cellpadding="0" cellspacing="5" bgcolor="#CCCCCC">
+<tr>
+<td width="175" valign="top" bgcolor="#CCFF66"><b>显示方式</b><br />
+<input name="displayMode" type="radio" value="all" %displayMode=all% /> 
+显示全部<br />
+<input name="displayMode" type="radio" value="slide" %displayMode=slide% />
+幻灯切换
+<input name="slideTimer" type="text" id="slideTimer" value="%slideTimer%" size="4" />
+秒<br />
+<!--input name="displayMode" type="radio" value="slidethumb" %displayMode=slidethumb% />
+幻灯+缩略图<br /--></td>
+<td width="175" valign="top" bgcolor="#FFFF99"><b>图片排序</b><br />
+<input name="random" type="radio" value="1" %random=1% />
+随机顺序<br />
+<input name="random" type="radio" value="0" %random=0% />
+固定顺序</td>
+<td width="175" valign="top" bgcolor="#99FF66"><b>图片尺寸</b><br />
+<input name="sizeLimit" type="radio" value="none" %sizeLimit=none% />
+不限制<br />
+<input name="sizeLimit" type="radio" value="max" %sizeLimit=max% />
+最大(只缩小)<br />
+<input name="sizeLimit" type="radio" value="force" %sizeLimit=force% />
+强制(缩小和放大)<br />
+尺寸
+<input name="sizeWidth" type="text" id="sizeWidth" value="%sizeWidth%" size="4" />
+*
+<input name="sizeHeight" type="text" id="sizeHeight" value="%sizeHeight%" size="4" />
+px<br />
+(建议上传前处理成所需尺寸，以避免闪烁) </td>
+<td width="175" valign="top" bgcolor="#FF9933"><b>显示边框</b>
+<input name="border" type="checkbox" id="border" value="1" %border% />
+<br />
+边框颜色
+<input name="borderColor" type="text" id="borderColor" value="%borderColor%" size="10" />
+<br />
+边框样式
+<select name="borderStyle" id="borderStyle">
+<option value="solid" %borderStyle=solid%>实线</option>
+<option value="double" %borderStyle=double%>双线</option>
+<option value="dotted" %borderStyle=dotted%>点线</option>
+<option value="dashed" %borderStyle=dashed%>虚线</option>
+</select>
+<br />
+边框宽度
+<input name="borderWidth" type="text" id="borderWidth" value="%borderWidth%" size="10" />
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top" bgcolor="#FF99CC"><b>添加图片</b>(多于5张请分次上传)<br />
+<input name="u1" type="file" id="u1" /><br />
+<input name="u2" type="file" id="u2" /><br />
+<input name="u3" type="file" id="u3" /><br />
+<input name="u4" type="file" id="u4" /><br />
+<input name="u5" type="file" id="u5" />
+<br />
+(如果需要上传，请耐心等待，切勿重复提交)<br /></td>
+<td width="175" valign="top" bgcolor="#FFCC33"><b>提交修改</b><br />
+确认以上操作无误后，点击以下按钮保存<br />
+<input type="submit" value="  提 交 修 改  " /></td>
+<td width="175" valign="top" bgcolor="#FF66FF"><b>管理图片</b><br />
+使用下方的表单可以为图片添加注释、删除图片、重新排序(请尽量全部上传后再进行操作)</td>
+</tr>
+</table>
+</form>
+
+<form method="post">
+<script type="text/javascript">
+var prefix='%prefix%';
+var t=[
+%t%];
+</script>
+<input name="a" type="hidden" id="a" />
+<input name="idx" type="hidden" id="idx" />
+<input name="param" type="hidden" id="param" />
+<table width="700" border="1" cellspacing="0" cellpadding="0" align="center">
+<thead>
+<tr>
+<th width="20">#</th>
+<th width="510">图片</th>
+<th width="170">操作</th>
+</tr>
+</thead>
+<tbody>
+<script type="text/javascript">
+for (var i=0;i<t.length;++i)
+{
+	var width=t[i].width;
+	var height=t[i].height;
+	if (width>200){ height*=200/width; width=200; }
+	if (height>150){ width*=150/height; height=150; }
+	var file=t[i].file;
+	if (file.substr(0,1)=='/') file=prefix+file;
+	document.writeln('<tr><td>'+(i+1)+'</td><td>');
+	document.writeln('<img src="'+prefix+file+'" width="'+width+'" height="'+height+'" onclick="largePreview(this,'+t[i].width+','+t[i].height+');" alt="点击放大" />');
+	document.writeln('</td>');
+	document.writeln('<td>');
+	document.writeln('<input type="button" value="删除" onclick="del(this.form,'+i+')" /> <input type="button" value="↑↓" title="排序" onclick="move(this.form,'+i+')" /><br /><br />');
+	document.writeln('注释：<input type="button" value="保存" title="修改说明文字" onclick="memo(this.form,'+i+')" /><br/>');
+	document.writeln('<input name="memo'+i+'" type="text" id="memo'+i+'" value="'+t[i].memo+'" />');
+	document.writeln('</td></tr>');
+}
+</script>
+</tbody>
+</table>
+<script type="text/javascript">
+function largePreview(img,width,height)
+{
+	if (width>500){ height*=500/width; width=500; }
+	if (height>375){ width*=375/height; height=375; }
+	img.width=width;
+	img.height=height;
+}
+function del(f,idx)
+{
+	if (!confirm('真的要删除图片'+(idx+1)+'吗？')) return;
+	f.a.value='del';
+	f.idx.value=idx;
+	f.submit();
+}
+function move(f,idx)
+{
+	var newidx=parseInt(prompt('请问要将本图片移到哪一图片的后面？\n如果要移到最前，输入0'));
+	if (newidx==null || isNaN(newidx)) return;
+	f.a.value='move';
+	f.idx.value=idx;
+	f.param.value=newidx;
+	f.submit();
+}
+function memo(f,idx)
+{
+	var memo=null;
+	for (var i=0;i<f.elements.length;++i)
+		if (f.elements[i].name=='memo'+idx) memo=f.elements[i].value;
+	if (memo==null) return;
+	f.a.value='memo';
+	f.idx.value=idx;
+	f.param.value=memo;
+	f.submit();
+}
+</script>
+</form>
+</body>
+</html>

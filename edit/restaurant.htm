@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>餐馆编辑器 - %title%</title>
+<style type="text/css">
+tr{height:4ex;}
+</style>
+<script type="text/javascript">
+var D=[
+%D%];
+var baseUrl='%baseUrl%';
+function validate_tel(ipt)
+{
+	var tel=ipt.value;
+	var isValid=true;
+	for (var i=0;i<tel.length;++i)
+	{
+		if (isNaN(parseInt(tel.substr(i,1)))) isValid=false;
+	}
+	if (isValid)
+	{
+		isValid=false;
+		if (tel.length==8)
+		{
+			var s=parseInt(tel.substr(0,1));
+			if (s>=2) isValid=true;
+		}
+		else if (tel.length==11)
+		{
+			var s=parseInt(tel.substr(0,3));
+			if ((s>=130&&s<=139)||s==153||s==158||s==159) isValid=true;
+		}
+	}
+	if (!isValid) alert('电话号码可能错误，请检查');
+}
+function photo_view(i,file)
+{
+	var div=document.getElementById('photo_view'+i);
+	if (div.style.display=='inline')
+	{
+		div.style.display='block';
+		div.innerHTML='<img src="'+baseUrl+file+'" width="200" height="150" />';
+	}
+	else
+	{
+		div.style.display='inline';
+		div.innerHTML='';
+	}
+}
+</script>
+</head>
+
+<body background="../images/bg.gif">
+<h1 align="center">餐馆编辑器 - %title%</h1>
+<form method="post" enctype="multipart/form-data" name="f" id="f">
+<script type="text/javascript">
+document.writeln('<input name="count" type="hidden" id="count" value="'+D.length+'" />');
+</script>
+<table width="950" border="1" cellspacing="0" cellpadding="0">
+<thead>
+<tr bgcolor="#FF99FF">
+<th>#</th>
+<th>路段</th>
+<th>名称</th>
+<th>电话</th>
+<th>订座</th>
+<th>外卖</th>
+<th>备注</th>
+<th>照片</th>
+</tr>
+</thead>
+<tbody>
+<script type="text/javascript">
+for (var i=0;i<D.length;++i)
+{
+	document.writeln('<tr bgcolor="#'+(i%2==0?'CCCCCC':'FFFF99')+'">');
+	document.writeln('<td>'+(i+1)+'</td>');
+	document.writeln('<td><input name="road'+i+'" type="text" id="road'+i+'" size="7" value="'+D[i].road+'" /></td>');
+	document.writeln('<td><input name="name'+i+'" type="text" id="name'+i+'" size="10" value="'+D[i].name+'" /></td>');
+	document.writeln('<td><input name="tel'+i+'" type="text" id="tel'+i+'" size="11" value="'+D[i].tel+'" onchange="validate_tel(this)" /></td>');
+	document.writeln('<td><input name="telbook'+i+'" type="checkbox" id="telbook'+i+'" value="1" '+(D[i].telbook?'checked="checked"':'')+' /></td>');
+	document.writeln('<td><input name="telsend'+i+'" type="checkbox" id="telsend'+i+'" value="1" '+(D[i].telsend?'checked="checked"':'')+' /></td>');
+	document.writeln('<td><input name="memo'+i+'" type="text" id="memo'+i+'" size="40" value="'+D[i].memo+'" /></td>');
+	document.writeln('<td><input name="photo'+i+'" type="hidden" id="photo'+i+'" value="'+D[i].photo+'" />'+(D[i].photo.length>0?'<input type="button" value="查看" onclick="photo_view('+i+',\''+D[i].photo+'\')" /><input name="photoremove'+i+'" type="checkbox" id="photoremove'+i+'" value="1" />删除<div id="photo_view'+i+'" style="display:inline;"></div><br />':'')+'<input name="u'+i+'" type="file" id="u'+i+'" /></td>');
+	document.writeln('</tr>');
+}
+</script>
+</tbody>
+<tfoot>
+<tr bgcolor="#99CCFF">
+<td>+</td>
+<td><input name="road_0" type="text" id="road_0" size="7" /></td>
+<td><input name="name_0" type="text" id="name_0" size="10" /></td>
+<td><input name="tel_0" type="text" id="tel_0" size="11" onchange="validate_tel(this)" /></td>
+<td><input name="telbook_0" type="checkbox" id="telbook_0" value="1" checked="checked" /></td>
+<td><input name="telsend_0" type="checkbox" id="telsend_0" value="1" /></td>
+<td><input name="memo_0" type="text" id="memo_0" size="40" /></td>
+<td><input name="photo_0" type="hidden" id="photo_0" value="" /><input name="u_0" type="file" id="u_0" /></td>
+</tr>
+<tr bgcolor="#99CCFF">
+<td>+</td>
+<td><input name="road_1" type="text" id="road_1" size="7" /></td>
+<td><input name="name_1" type="text" id="name_1" size="10" /></td>
+<td><input name="tel_1" type="text" id="tel_1" size="11" onchange="validate_tel(this)" /></td>
+<td><input name="telbook_1" type="checkbox" id="telbook_1" value="1" checked="checked" /></td>
+<td><input name="telsend_1" type="checkbox" id="telsend_1" value="1" /></td>
+<td><input name="memo_1" type="text" id="memo_1" size="40" /></td>
+<td><input name="photo_1" type="hidden" id="photo_1" value="" /><input name="u_1" type="file" id="u_1" /></td>
+</tr>
+<tr bgcolor="#99CCFF">
+<td>+</td>
+<td><input name="road_2" type="text" id="road_2" size="7" /></td>
+<td><input name="name_2" type="text" id="name_2" size="10" /></td>
+<td><input name="tel_2" type="text" id="tel_2" size="11" onchange="validate_tel(this)" /></td>
+<td><input name="telbook_2" type="checkbox" id="telbook_2" value="1" checked="checked" /></td>
+<td><input name="telsend_2" type="checkbox" id="telsend_2" value="1" /></td>
+<td><input name="memo_2" type="text" id="memo_2" size="40" /></td>
+<td><input name="photo_2" type="hidden" id="photo_2" value="" /><input name="u_2" type="file" id="u_2" /></td>
+</tr>
+<tr bgcolor="#99CCFF">
+<td>+</td>
+<td><input name="road_3" type="text" id="road_3" size="7" /></td>
+<td><input name="name_3" type="text" id="name_3" size="10" /></td>
+<td><input name="tel_3" type="text" id="tel_3" size="11" onchange="validate_tel(this)" /></td>
+<td><input name="telbook_3" type="checkbox" id="telbook_3" value="1" checked="checked" /></td>
+<td><input name="telsend_3" type="checkbox" id="telsend_3" value="1" /></td>
+<td><input name="memo_3" type="text" id="memo_3" size="40" /></td>
+<td><input name="photo_3" type="hidden" id="photo_3" value="" /><input name="u_3" type="file" id="u_3" /></td>
+</tr>
+<tr bgcolor="#99CCFF">
+<td>+</td>
+<td><input name="road_4" type="text" id="road_4" size="7" /></td>
+<td><input name="name_4" type="text" id="name_4" size="10" /></td>
+<td><input name="tel_4" type="text" id="tel_4" size="11" onchange="validate_tel(this)" /></td>
+<td><input name="telbook_4" type="checkbox" id="telbook_4" value="1" checked="checked" /></td>
+<td><input name="telsend_4" type="checkbox" id="telsend_4" value="1" /></td>
+<td><input name="memo_4" type="text" id="memo_4" size="40" /></td>
+<td><input name="photo_4" type="hidden" id="photo_4" value="" /><input name="u_4" type="file" id="u_4" /></td>
+</tr>
+</tfoot>
+</table>
+<p>
+修改完毕后请点击
+<input type="submit" value="  保  存  " /> 
+，删除餐馆只需将餐馆名称栏删空</p>
+</form>
+</body>
+</html>

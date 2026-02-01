@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>创建新的账号 - PageGenerator</title>
+<script type="text/javascript">
+function chk(f)
+{
+	if (f.uid.value.length<1)
+	{
+		f.uid.focus();
+		alert('未填写用户名');
+		return false;	
+	}
+	if (f.pwl.value.length<1)
+	{
+		f.pwl.focus();
+		alert('未填写密码');
+		return false;	
+	}
+	if (f.pwl.value!=f.pwl1.value)
+	{
+		f.pwl1.focus();
+		alert('密码与确认密码不一致');
+		return false;
+	}
+	return true;
+}
+</script>
+</head>
+
+<body background="../images/bg.gif">
+<h1 align="center">创建新的账号 - PageGenerator</h1>
+<form method="post" action="AddUser.aspx" onsubmit="return chk(this);">
+<table width="280" border="0" align="center" cellpadding="5" cellspacing="0" bgcolor="#FFFF99">
+<tr>
+<td width="100">账号</td>
+<td width="180"><input name="uid" type="text" id="uid" /></td>
+</tr>
+<tr>
+<td>密码</td>
+<td><input name="pwl" type="password" id="pwl" /></td>
+</tr>
+<tr>
+<td>确认</td>
+<td><input name="pwl1" type="password" id="pwl1" /></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><input type="submit" value=" 创 建 账 号 " /></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>支教系列活动专栏管理</title>
+</head>
+
+<body background="../images/bg.gif">
+<h1>支教系列活动专栏管理</h1>
+<h2>管理任务列表</h2>
+<ul>
+<li>创建新的文章——从步骤1开始</li>
+<li>修改现有文章——从步骤2开始</li>
+<li>删除现有文章——从步骤5开始</li>
+</ul>
+<form method="post" onsubmit="return chk_create(this);">
+<input name="a" type="hidden" id="a" value="create" />
+<h2>1.创建目录，上传文章</h2>
+<table width="700" border="1" cellpadding="0" cellspacing="0" bgcolor="#FF99FF">
+<tr>
+<td>小区</td>
+<td><select name="column" size="7" id="column">
+<option value="0" selected="selected">专栏首页</option>
+<option value="1">周五徐汇老人英语角</option>
+<option value="2">周三闵行老人英语角</option>
+<option value="3">周六闵行老人英语角</option>
+<option value="4">周六闵行儿童英语角</option>
+<option value="5">周六走进军旅英语课</option>
+<option value="6">周六走进军旅艺术课</option>
+</select></td>
+</tr>
+<tr>
+<td>标题</td>
+<td><input name="title" type="text" id="title" size="50" /></td>
+</tr>
+<tr>
+<td>作者</td>
+<td><input name="author" type="text" id="author" size="50" /></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><input type="submit" value="  创  建  " /></td>
+</tr>
+<tr>
+<td colspan="2">提交后，将创建一个新页面<br />
+然后请转到步骤2</td>
+</tr>
+</table>
+<script type="text/javascript">
+function chk_create(f)
+{
+	if (f.title.value.length<1)
+	{
+		f.title.focus();
+		alert('没有填写页面标题');
+		return false;
+	}
+	if (f.author.value.length<1)
+	{
+		f.tpl.focus();
+		alert('没有填写作者');
+		return false;
+	}
+	return true;
+}
+</script>
+</form>
+<form method="post" target="_blank">
+<input name="a" type="hidden" id="a" />
+<h2>2.修改文章</h2>
+<table width="700" border="1" cellpadding="0" cellspacing="0" bgcolor="#F7C568">
+<tr>
+<td>路径</td>
+<td><input name="path" type="text" id="path" value="%path%" size="50" /></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><input type="button" onclick="b_editbasic(this.form)" value="  修改标题/作者  " />
+<input type="button" onclick="b_editcontent(this.form)" value="  修改内容  " /></td>
+</tr>
+<tr>
+<td colspan="2">对于新建的文章，请点击“修改内容”，根据提示上传一个Word文档(应保存为“筛选过的网页”类型)，如需展示照片，请事先插入到Word文档内<br />
+修改完毕后，请转到步骤3</td>
+</tr>
+</table>
+<script type="text/javascript">
+function b_editbasic(f)
+{
+	if (f.path.value.length<1)
+	{
+		f.path.focus();
+		alert('没有填写路径');
+		return;
+	}
+	f.a.value='editbasic';
+	alert('请在稍后弹出的页面中点击“基本信息”进行修改！');
+	f.submit();
+}
+function b_editcontent(f)
+{
+	if (f.path.value.length<1)
+	{
+		f.path.focus();
+		alert('没有填写路径');
+		return;
+	}
+	f.a.value='editcontent';
+	f.submit();
+}
+</script>
+</form>
+<form method="post" target="_blank" onsubmit="return chk_output(this);">
+<input name="a" type="hidden" id="a" value="output" />
+<h2>3.生成文件，仔细检查</h2>
+<table width="700" border="1" cellpadding="0" cellspacing="0" bgcolor="#A7F589">
+<tr>
+<td>路径</td>
+<td><input name="path" type="text" id="path" value="%path%" size="50" /></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><input type="submit" value="  生  成  " /></td>
+</tr>
+</table>
+<script type="text/javascript">
+function chk_output(f)
+{
+	if (f.path.value.length<1)
+	{
+		f.path.focus();
+		alert('没有填写路径');
+		return false;
+	}
+	return true;
+}
+</script>
+<table width="700" border="1" cellpadding="0" cellspacing="0" bgcolor="#A5B865">
+<tr>
+<td>生成文件后，请仔细检查：</td>
+</tr>
+<tr>
+<td><ol>
+<li>文章中是否出现错别字、语法错误、标点符号不规范</li>
+<li>图片是否显示了正确的尺寸和颜色，是否超出页面宽度</li>
+<li>是否出现乱码现象</li>
+<li>表格是否排版混乱、超出宽度</li>
+<li>字体运用是否合理，有否正文字体类型和尺寸不一致现象</li>
+</ol></td>
+</tr>
+<tr>
+<td><input type="radio" />
+发现错误——请转到步骤2<br />
+<input type="radio" />
+没有错误——请转到步骤4</td>
+</tr>
+</table>
+</form>
+<form method="post" onsubmit="return chk_list(this);">
+<input name="a" type="hidden" id="a" value="addlist" />
+<h2>4.加入列表，完成发布</h2>
+<table width="700" border="1" cellpadding="0" cellspacing="0" bgcolor="#B0D0E8">
+<tr>
+<td>路径</td>
+<td><input name="path" type="text" id="path" value="%path%" size="50" /></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><input type="submit" value="  加  入  " /></td>
+</tr>
+<tr>
+<td colspan="2">将创建、上传、检查后的页面加入列表，以便访问者看到它<br />
+注意：不允许将未经检查的页面加入列表<br />
+这是最后一个步骤</td>
+</tr>
+</table>
+<script type="text/javascript">
+function chk_list(f)
+{
+	if (f.path.value.length<1)
+	{
+		f.path.focus();
+		alert('没有填写路径');
+		return false;
+	}
+	return true;
+}
+</script>
+</form>
+<form method="post" onsumbit="return chk_delete(this);">
+<input name="a" type="hidden" id="a" value="delete" />
+<h2>5.删除现有文章</h2>
+<table width="700" border="1" cellpadding="0" cellspacing="0" bgcolor="#9DA6E1">
+<tr>
+<td>路径</td>
+<td><input name="path" type="text" id="path" value="%path%" size="50" /></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><input type="submit" value="  删  除  " /></td>
+</tr>
+<tr>
+<td colspan="2">这是最后一个步骤</td>
+</tr>
+</table>
+<script type="text/javascript">
+function chk_delete(f)
+{
+	if (f.path.value.length<1)
+	{
+		f.path.focus();
+		alert('没有填写路径');
+		return;
+	}
+	if (!prompt('真的要删除该目录吗？\n删除操作不可恢复')) return;
+	f.submit();
+}
+</script>
+</form>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>制作模板 - PageGenerator帮助</title>
+</head>
+
+<body background="../images/bg.gif">
+<h1>制作模板 - PageGenerator帮助</h1>
+<p>模板是一个插入了特殊代码的HTML文档，所有PageGenerator产生的页面都是将模板中的特殊代码替换成实际内容后形成的HTML文档。模板控制了页面的排版格式和基本显示样式。模板存储于PageGenerator程序所在服务器目录的conf子目录中，模板xxx对应的文件名为tpl.xxx.htm.axd和tpl.xxx.placeholder.axd，同时需要在install.tpl.axd中添加模板名称。</p>
+<p>因为模板是HTML文档，所以你可以用任何HTML编辑工具创建它；推荐的工具是Dreamweaver，它可以创建符合国际标准的HTML文档。你需要有基本的HTML阅读能力，以便完成模板的制作。</p>
+<p>如果模板中需要出现以下内容，请替换成对应的代码</p>
+<table width="700" border="1" cellpadding="0" cellspacing="0">
+<tr>
+<th>内容</th>
+<th>替换为</th>
+<th>输出样例</th>
+<th>备注</th>
+</tr>
+<tr>
+<td>站点名称</td>
+<td><font color="#FF0000">%sitename%</font></td>
+<td>yoursunny测试站</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>文章标题</td>
+<td><font color="#FF0000">%title%</font></td>
+<td><h1>本站正式启动</h1></td>
+<td>只有文字<br />
+不含样例中&lt;h1&gt;</td>
+</tr>
+<tr>
+<td>作者</td>
+<td><font color="#FF0000">%author%</font></td>
+<td>管理员</td>
+<td>作者姓名<br />
+不是用户名</td>
+</tr>
+<tr>
+<td>日期-年</td>
+<td><font color="#FF0000">%date_y%</font></td>
+<td rowspan="3">2007年02月28日</td>
+<td>四位数字</td>
+</tr>
+<tr>
+<td>日期-月</td>
+<td><font color="#FF0000">%date_m%</font></td>
+<td>有前导0</td>
+</tr>
+<tr>
+<td>日期-日</td>
+<td><font color="#FF0000">%date_d%</font></td>
+<td>有前导0</td>
+</tr>
+<tr>
+<td>时间-时</td>
+<td><font color="#FF0000">%time_h%</font></td>
+<td rowspan="3">23:59:59</td>
+<td>24小时制<br />
+有前导0</td>
+</tr>
+<tr>
+<td>时间-分</td>
+<td><font color="#FF0000">%time_m%</font></td>
+<td>有前导0</td>
+</tr>
+<tr>
+<td>时间-秒</td>
+<td><font color="#FF0000">%time_s%</font></td>
+<td>有前导0</td>
+</tr>
+<tr>
+<td>路径</td>
+<td><font color="#FF0000">%path%</font></td>
+<td>/page1</td>
+<td>不编码</td>
+</tr>
+<tr>
+<td>路径</td>
+<td><font color="#FF0000">%pathq%</font></td>
+<td>%2fpage1</td>
+<td>URL参数编码</td>
+</tr>
+<tr>
+<td>站点根目录的相对路径</td>
+<td><font color="#FF0000">_root_/</font></td>
+<td>../<br />
+(假设当前页面为/page1)</td>
+<td>用于引用站点根目录开始的文件</td>
+</tr>
+</table>
+<p>然后决定模板中何处可以插入各类区块，将这些地方插入<font color="#FF0000">%ppp%</font>的代码，每处的ppp内容不同，例如%p1% %p2%等。将修改好的HTML文档保存为tpl.xxx.htm.axd，注意编码必须是UTF-8。</p>
+<p>然后创建tpl.xxx.placeholder.axd文本文件(编码必须是UTF-8)，写入类似下面的内容</p>
+<pre>p1=主要内容
+p2=右侧边栏</pre>
+<p>最后打开install.tpl.axd文件，在最后添加一行</p>
+<pre>xxx=模板名称</pre>
+<p>至此，模板xxx创建并安装完毕。</p>
+</body>
+</html>

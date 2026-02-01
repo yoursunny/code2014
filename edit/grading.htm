@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>评分&amp;反馈编辑器 - %title%</title>
+<script type="text/javascript">
+function chk(f)
+{
+	if (f.h.value.indexOf('<n>')!=f.h.value.lastIndexOf('<n>'))
+	{
+		f.h.focus();
+		alert('只能包含一个<n>');
+		return false;
+	}
+	return true;
+}
+var preview_window;
+function prv(f)
+{
+	if (!chk(f)) return;
+	preview_window=window.open('about:blank');
+	preview_window.document.writeln('<title>预览</title>');
+	preview_window.document.writeln(f.h.value.replace('<n>',250));
+	preview_window.document.close();
+	setTimeout('preview_window.close()',3000);
+}
+</script>
+</head>
+
+<body background="../images/bg.gif">
+<h1>评分&amp;反馈编辑器 - %title%</h1>
+
+
+<p>本区块将在页面中加入评分&amp;反馈功能<br />
+评分&amp;反馈功能需要发布服务器安装PageGenerator动态功能包<br />
+评分结果、反馈留言可以在动态功能包的相关页面查看</p>
+<p>本编辑器没有设置选项，但是务必打开一次，否则无法插入所需代码<br />
+<b>现在已经插入了所需代码</b></p>
+<p>注意：每个页面只需插入一个评分&amp;反馈区块，否则不利于美观</p>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>站点 - PageGenerator</title>
+</head>
+
+<body background="../images/bg.gif">
+<h1>PageGenerator - %sitename%</h1>
+<div style="width:720px;height:400px;">
+<div style="float:left;width:300px;height:100%;outline:#630 double 4px;padding:1ex;background:#ffc;">
+<input type="button" value="列表管理" onclick="location='list.aspx?site=%site%';" />
+<input type="button" value="编辑其他站点" onclick="location='sites.aspx';" />
+<input type="button" value="制作更新包" onclick="location='pack.aspx?%current_param%';" />
+<p>当前目录<br /><span style="color:#f00;">%current%</span></p>
+<p>目录层次<br/>
+%parents%</p>
+<p><a href="../user/logout.aspx">退出登录状态</a></p>
+</div>
+<div style="float:right;width:350px;height:100%;outline:#c3f double 4px;padding:1ex;background:#fcf;">
+<a href="?site=%site%&path=%parent%">返回父目录</a>
+<a href="create.aspx?%current_param%">创建子目录</a>
+<a href="modify.aspx?%current_param%">修改本目录</a>
+<a href="output.aspx?%current_param%&go=2" title="重新输出当前目录和所有子目录" onclick="return confirm('确实重新输出当前目录和所有子目录吗？\n如果当前目录下文件很多，将需要很长时间及占用大量资源\n如果五分钟无法执行完毕，将会导致超时错误');">输出所有</a>
+<br /><br />
+<table>
+<thead><tr><th width="190">子目录</th><th width="150">操作</th></tr></thead>
+<tbody>
+%pages%</tbody></table>
+</div>
+</div>
+</body>
+</html>

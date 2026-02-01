@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>创建新站点 - PageGenerator帮助</title>
+</head>
+
+<body background="../images/bg.gif">
+<h1>创建新站点 - PageGenerator帮助</h1>
+<h2>步骤</h2>
+<ol>
+<li>定义站点发布途经</li>
+<li>安装基本文件</li>
+</ol>
+<h2>1 定义站点发布途径</h2>
+<p>站点由/conf/site.*.axd文件定义<br />
+仿照以下例子写好site.*.axd文件，保存在PageGenerator管理程序的/conf/目录下(*是管理程序中显示的站点名称)</p>
+<p>以下例子中，PageGenerator管理程序安装在http://www.mydomain.com/p/(202.120.54.34服务器E:\www1目录)<br />
+<font color="#FF0000">红色</font>是不可以修改的部分，原样填写；<font color="#996600">黄色</font>是注释，不能输入</p>
+<h3>1.1 本地发布(同一域名下的虚拟目录)</h3>
+<p>例：在http://www.mydomain.com/mydir/1/创建网站</p>
+<p>site.*.axd书写如下：</p>
+<pre><font color="#FF0000">LOCAL</font>
+/mydir/1  <font color="#996600">虚拟目录路径，前面有/，最后没有/</font>
+</pre>
+<p>例：在http://www.mydomain.com/创建网站</p>
+<p>site.*.axd书写如下：</p>
+<pre><font color="#FF0000">LOCAL</font>
+/  <font color="#996600">虚拟目录路径，前面有/，最后没有/</font>
+</pre>
+<h3>1.2 本地发布(同一服务器、不同域名下)</h3>
+<p>例：在http://pub.mydomain.com/(服务器F:\www2\目录)创建网站<br />
+(www.mydomain.com站点的ASP.NET启动账户需要对F:\www2\目录有读取、写入、删除等NTFS权限)</p>
+<p>site.*.axd书写如下：</p>
+<pre><font color="#FF0000">SERVER</font>
+F:\www2  <font color="#996600">绝对路径，最后没有\</font></pre>
+<h3>1.3 远程发布(不同服务器、通过FTP)</h3>
+<p>例：在http://www2.mydomain.com/love/(202.120.61.131服务器)创建网站</p>
+<p>在202.120.61.131安装FTP服务(Microsoft FTP Service、Serv-U等软件) <br /> 
+设FTP服务安装在53721端口，用户名love，密码inspiron<br />
+FTP权限为读取文件、写入文件、列出目录、创建目录、删除目录<br />
+设FTP登录后的/public_html/love/目录对应http://www2.mydomain.com/love/</p>
+<p>site.*.axd书写如下：</p>
+<pre><font color="#FF0000">FTP</font>
+202.120.61.131  <font color="#996600">服务器IP地址或域名</font>
+53721  <font color="#996600">端口，如果使用默认端口请写21</font>
+/public_html/love  <font color="#996600">FTP目录，最后没有/</font>
+love  <font color="#996600">用户名</font>
+inspiron  <font color="#996600">密码</font>
+</pre>
+<p>FTP发布方式会使PageGenerator服务器与网站服务器产生大量的流量<br />
+站点的一切内容均是存储在FTP服务器上，会进行反复的上传、下载<br />
+如果两台服务器间网络连接比较慢，请不要使用FTP发布方式</p>
+<p>不使用FTP发布方式，需要发布到远程服务器，无法在该服务器安装PageGenerator时<br />
+可以考虑在本地服务器创建一个“镜像”站点，在该站点上进行管理<br />
+然后通过增量打包功能下载修改过的文件，上传到远程服务器解压缩<br />
+(解压功能可选用ASP.NET或PHP版本的解压工具)</p>
+<h2>2 安装基本文件</h2>
+<p>基本文件应该上传到发布服务器(站点所在服务器)的站点目录中<br />
+基本文件给出了站点的更多信息，也使一些功能能够快速实现</p>
+<ol>
+<li>书写_PageGenerator_.txt站点信息文件，放在站点根目录<br />
+<pre><font color="#FF0000">user=</font>sunny  <font color="#996600">站点总管理员用户名，这些管理员可管理全站</font>
+user=admin  <font color="#996600">多个总管理员可写多行</font>
+user=root
+<font color="#FF0000">name=</font>我的站点  <font color="#996600">站点名称</font>
+<font color="#FF0000">url=</font>http://www.yourdomain.com  <font color="#996600">站点访问地址，http://开头，最后没有/</font></pre>
+</li>
+<li>解压缩静态程序包在站点/_PageGenerator_/目录(请保持目录结构)</li>
+<li>选择合适的动态功能包，解压缩在站点/_PageGenerator_/目录(请保持目录结构)<br />
+请根据发布服务器支持的脚本技术选择：<br />
+ ASP.NET+MSSQL 高速高效，需要SQL2005数据源服务<br />
+ASP.NET+TXT+ACCESS 大量访问时速度慢<br />
+ASP+ACCESS 速度慢，仅能支持少量访问<br />
+PHP+MySQL 高速高效，需要MySQL数据源服务</li>
+</ol>
+</body>
+</html>

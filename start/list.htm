@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>列表管理 - PageGenerator</title>
+</head>
+
+<body background="../images/bg.gif">
+<h1>PageGenerator - %sitename% - 列表管理</h1>
+<div style="width:720px;height:400px;">
+<div id="div_lists" style="float:left;width:300px;height:100%;outline:#630 double 4px;padding:1ex;background:#ffc;">
+<input type="button" value="本站目录管理" onclick="location='site.aspx?site=%site%&path=/';" />
+<h2>创建新列表<a href="../help/list_create.htm" style="font-size:12pt;">开始</a></h2>
+<h2>
+<script type="text/javascript">
+var list_current='%current%';
+var list_known=[
+%known%];
+</script>
+编辑现有列表</h2>
+<form method="get">
+<input name="site" type="hidden" id="site" value="%site%" />
+<input name="a" type="hidden" id="a" value="view" />
+<script type="text/javascript">
+for (var i=0;i<list_known.length;++i)
+	document.writeln('<input type="radio" name="listname" value="'+list_known[i]+'" onclick="this.form.submit();"'+(list_current==list_known[i]?' checked="checked"':'')+' />'+list_known[i]+'<br/>');
+</script>
+</form>
+<p><a href="../user/logout.aspx">退出登录状态</a></p>
+</div>
+<div id="div_entry" style="float:left;width:300px;height:100%;outline:#630 double 4px;padding:1ex;background:#cf6;display:none;">
+<h2 id="entry_action"></h2>
+<form id="form_entry" name="form_entry" method="post">
+<input name="site" type="hidden" id="site" value="%site%" />
+<input name="a" type="hidden" id="a" />
+<input name="listname" type="hidden" id="listname" value="%current%" />
+<input name="idx" type="hidden" id="idx" />
+<input name="newidx" type="hidden" id="newidx" />
+<table width="250" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="40">链接</td>
+<td width="210"><input name="link" type="text" id="link" size="30" /></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td style="font-size:9pt;">本PageGenerator站点内链接/开头<br />站点外链接用绝对URL</td>
+</tr>
+<tr>
+<td>标题</td>
+<td><input name="title" type="text" id="title" size="30" /></td>
+</tr>
+<tr>
+<td>作者</td>
+<td><input name="author" type="text" id="author" size="30" /></td>
+</tr>
+<tr>
+<td>日期</td>
+<td><input name="date" type="text" id="date" size="30" /></td>
+</tr>
+<tr>
+<td>摘要</td>
+<td><textarea name="summary" cols="24" rows="4" id="summary"></textarea></td>
+</tr>
+</table>
+<input name="button_add" id="button_add" type="button" value="  添  加  " onclick="chk_entry(this.form)" />
+<input name="button_edit" id="button_edit" type="button" value="  修  改  " onclick="chk_entry(this.form)" />
+<input type="button" value="  取  消  " onclick="document.getElementById('div_entry').style.display='none';document.getElementById('div_lists').style.display='block';" />
+<script type="text/javascript">
+function chk_entry(f)
+{
+	if (f.link.value.length<1)
+	{
+		f.link.focus();
+		alert('没有填写链接地址');
+		return;
+	}
+	if (f.title.value.length<1)
+	{
+		f.title.focus();
+		alert('没有填写标题');
+		return;
+	}
+	if (f.author.value.length<1)
+	{
+		f.author.focus();
+		alert('没有填写作者');
+		return;
+	}
+	var d=f.date.value;
+	if (d.length!=19 || isNaN(new Date(d.substr(0,4),parseInt(d.substr(5,2))-1,d.substr(8,2),d.substr(11,2),d.substr(14,2),d.substr(17,2))))
+	{
+		f.date.focus();
+		alert('日期无效\n日期格式2007-02-28 23:59:59');
+		return;
+	}
+	if (f.summary.value.length<1)
+	{
+		f.summary.focus();
+		alert('没有填写摘要');
+		return;
+	}
+	f.submit();
+}
+</script>
+</form>
+</div>
+<div id="div_list" style="float:right;width:350px;height:100%;outline:#c3f double 4px;padding:1ex;background:#fcf;">
+<h2>列表%current%内容</h2>
+<script type="text/javascript">
+if (list_current=='') document.getElementById('div_list').style.display='none';
+var t=[
+%t%
+];
+function swapLink(td,link)
+{
+	td.innerHTML=(link.length>25)?link.substr(0,23)+'..':link;
+	td.style.color='#00f';
+	td.style.fontSize='9pt';
+}
+function swapTitle(td,title)
+{
+	td.innerHTML=title;
+	td.style.color='';
+	td.style.fontSize='10pt';
+}
+function promptLink(link)
+{
+	prompt('链接地址(按CTRL+C复制)\n注：此处修改无效，需要修改请点击[改]',link);
+}
+</script>
+<table width="330" border="1" cellspacing="0" cellpadding="0" bgcolor="#95F240">
+<thead>
+<tr>
+<th width="20">#</th>
+<th width="170">标题<br /><span style="font-size:9pt;font-weight:normal;">鼠标悬停查看链接地址</span></th>
+<th width="130">操作</th>
+</tr>
+</thead>
+<tbody>
+<script type="text/javascript">
+for (var i=0;i<t.length;++i)
+{
+	document.writeln('<tr>');
+	document.writeln('<td>'+(i+1)+'</td>');
+	document.writeln('<td onmouseover="swapLink(this,\''+t[i].link+'\');" onmouseout="swapTitle(this,\''+t[i].title+'\');" onclick="promptLink(\''+t[i].link+'\');" style="font-size:10pt;">'+t[i].title+'</td>');
+	document.writeln('<td>');
+	document.writeln('<input type="button" onclick="edit('+i+')" value="改" title="修改标题、链接地址等" />');
+	document.writeln('<input type="button" onclick="del('+i+')" value="删" title="删除" />');
+	document.writeln('<input type="button" onclick="move('+i+')" value="↑↓" title="上下移动" />');
+	document.writeln('</td>');
+	document.writeln('</tr>');
+}
+</script>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="3"><input type="button" onclick="add()" value="添加一条" /></td>
+</tr>
+</tfoot>
+</table>
+<script type="text/javascript">
+function add(idx)
+{
+	document.getElementById('div_lists').style.display='none';
+	document.getElementById('div_entry').style.display='block';
+	var f=document.forms['form_entry'];
+	if (f==null) f=document.forms.form_entry;
+	f.a.value='add';
+	f.link.value='';
+	f.title.value='';
+	f.author.value='';
+	f.date.defaultValue=f.date.value='';
+	f.summary.value='';
+	f.button_edit.style.display='none';
+	f.button_add.style.display='inline';
+}
+function edit(idx)
+{
+	document.getElementById('div_lists').style.display='none';
+	document.getElementById('div_entry').style.display='block';
+	var f=document.forms['form_entry'];
+	if (f==null) f=document.forms.form_entry;
+	var e=t[idx];
+	f.a.value='edit';
+	f.idx.value=idx;
+	f.link.value=e.link;
+	f.title.value=e.title;
+	f.author.value=e.author;
+	f.date.defaultValue=f.date.value=e.date;
+	f.summary.value=e.summary;
+	f.button_add.style.display='none';
+	f.button_edit.style.display='inline';
+}
+function del(idx)
+{
+	var e=t[idx];
+	if (!confirm('确实删除列表'+list_current+'中的第'+(idx+1)+'条吗？\n标题 '+e.title+'\n链接 '+e.link)) return;
+	var f=document.forms['form_entry'];
+	if (f==null) f=document.forms.form_entry;
+	f.a.value='del';
+	f.idx.value=idx;
+	f.submit();
+}
+function move(idx)
+{
+	var newidx=parseInt(prompt('请问要将本条移到哪一条的后面？\n如果要移到最前，输入0'));
+	if (newidx==null || isNaN(newidx)) return;
+	var f=document.forms['form_entry'];
+	if (f==null) f=document.forms.form_entry;
+	f.a.value='move';
+	f.idx.value=idx;
+	f.newidx.value=newidx;
+	f.submit();
+}
+</script>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>创建列表 - PageGenerator帮助</title>
+</head>
+
+<body background="../images/bg.gif">
+<h1>创建列表 - PageGenerator帮助</h1>
+<h2>决定列表内容</h2>
+<p>考虑列表应该包含插入那些主题的页面，然后记住并执行这个想法<br />
+PageGenerator不会自动将页面插入列表</p>
+<p>建议：<br />
+仔细检查创建的页面，防止任何错误、排版混乱、错别字，细节会决定访问者对站点的印象<br />
+仅将符合列表主题且经过检查确保没有错误的页面加入列表</p>
+<h2>决定列表输出格式</h2>
+<dl>
+<dt>HTML</dt>
+<dd>输出为单独的网页，通常直接作为首页/栏目页或者在首页/栏目页用&lt;iframe&gt;标签引用</dd>
+<dt>JavaScript</dt>
+<dd>输出为.JS脚本文件，在客户端执行；可以在插入&lt;script&gt;直接输出列表内容，也可以在网页中包含&lt;div&gt;标签、&lt;script&gt;插入在网页最后(以便提高网页打开速度)、修改&lt;div&gt;的内容</dd>
+<dd>注意：JavaScript列表通常不能被搜索引擎解释，请确认页面同时被加入了其他列表</dd>
+<dt>XML</dt>
+<dd>输出为Atom聚合源，可以用Atom阅读器(如Foxmail、BlogLines、Google Reader)阅读和聚合</dd>
+</dl>
+<h2>制作HTML页面</h2>
+<p>当需要输出成HTML或JavaScript格式(通常不能够同时输出这两种格式)时，请用Dreamweaver等软件制作好列表的HTML页面，标题、摘要、链接等可以随便输入；请确保标题字数过多等情况下页面能正常显示(可以使用CSS的相关属性)。对于HTML，制作一个小小的网页，准备在大的网页中用&lt;iframe&gt;标签嵌入；对于JavaScript，在大的网页中添加一个&lt;div&gt;或&lt;td&gt;等标签，设置好一个唯一的id=&quot;...&quot;属性，并在标签内制作列表的格式。考虑好列表应该显示多少条目；HTML列表在一页显示不下时会自动创建更多的页，JavaScript列表则只能显示第一页的内容。</p>
+<h2>提取重复部分</h2>
+<p>如果准备输出HTML文件，应包含&lt;html&gt;&lt;head&gt;&lt;body&gt;等；如果准备输出JavaScript文件，则应去除这些标签，只保留&lt;div id=&quot;...&quot;&gt;&lt;/div&gt;之间的内容(不含&lt;div&gt;与&lt;/div&gt;)。<br />
+阅读列表HTML代码，将其中每个条目都有的代码提取出来，将原来位置的代码删除并改成<font color="#FF0000">%l%</font>。<br />
+将提取出来的代码只保留一个条目的，然后替换以下代码(如果不需要某项，不插入相关代码即可)：</p>
+<table width="700" border="1" cellpadding="0" cellspacing="0">
+<tr>
+<th>内容</th>
+<th>替换为</th>
+<th>输出样例</th>
+<th>备注</th>
+</tr>
+<tr>
+<td>链接地址</td>
+<td>&lt;a href=&quot;<font color="#FF0000">%link%</font>&quot; ...&gt; </td>
+<td><a href="javascript:;">demo</a></td>
+<td>绝对URL</td>
+</tr>
+<tr>
+<td>文章标题</td>
+<td><font color="#FF0000">%title%</font></td>
+<td><h1>本站正式启动</h1></td>
+<td>只有文字<br />
+不含样例中&lt;h1&gt;</td>
+</tr>
+<tr>
+<td>日期-年</td>
+<td><font color="#FF0000">%date_y%</font></td>
+<td rowspan="3">2007年02月28日</td>
+<td>四位数字</td>
+</tr>
+<tr>
+<td>日期-月</td>
+<td><font color="#FF0000">%date_m%</font></td>
+<td>有前导0</td>
+</tr>
+<tr>
+<td>日期-日</td>
+<td><font color="#FF0000">%date_d%</font></td>
+<td>有前导0</td>
+</tr>
+<tr>
+<td>时间-时</td>
+<td><font color="#FF0000">%time_h%</font></td>
+<td rowspan="3">23:59:59</td>
+<td>24小时制<br />
+有前导0</td>
+</tr>
+<tr>
+<td>时间-分</td>
+<td><font color="#FF0000">%time_m%</font></td>
+<td>有前导0</td>
+</tr>
+<tr>
+<td>时间-秒</td>
+<td><font color="#FF0000">%time_s%</font></td>
+<td>有前导0</td>
+</tr>
+<tr>
+<td>作者</td>
+<td><font color="#FF0000">%author%</font></td>
+<td>管理员</td>
+<td>作者姓名<br />
+不是用户名</td>
+</tr>
+<tr>
+<td>摘要</td>
+<td><font color="#FF0000">%summary%</font></td>
+<td>欢迎来到本站</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>将重复部分保存为list.列表名称.inc文件，注意“编码”应该选择UTF-8。</p>
+<h2>完成列表页面</h2>
+<p> 把已经将重复部分改成%l%的剩余代码做以下替换修改(如果不需要某项，不插入相关代码即可)：</p>
+<table width="700" border="1" cellspacing="0" cellpadding="0">
+<tr>
+<th>内容</th>
+<th>替换为</th>
+<th>输出样例</th>
+<th>备注</th>
+</tr>
+<tr>
+<td>列表名称</td>
+<td><font color="#FF0000">%ltitle%</font></td>
+<td>我的列表</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>日期-年</td>
+<td><font color="#FF0000">%ldate_y%</font></td>
+<td rowspan="3">2007年02月28日</td>
+<td>四位数字</td>
+</tr>
+<tr>
+<td>日期-月</td>
+<td><font color="#FF0000">%ldate_m%</font></td>
+<td>有前导0</td>
+</tr>
+<tr>
+<td>日期-日</td>
+<td><font color="#FF0000">%ldate_d%</font></td>
+<td>有前导0</td>
+</tr>
+<tr>
+<td>时间-时</td>
+<td><font color="#FF0000">%ltime_h%</font></td>
+<td rowspan="3">23:59:59</td>
+<td>24小时制<br />
+有前导0</td>
+</tr>
+<tr>
+<td>时间-分</td>
+<td><font color="#FF0000">%ltime_m%</font></td>
+<td>有前导0</td>
+</tr>
+<tr>
+<td>时间-秒</td>
+<td><font color="#FF0000">%ltime_s%</font></td>
+<td>有前导0</td>
+</tr>
+<tr>
+<td>总条目数</td>
+<td><font color="#FF0000">%lcount%</font></td>
+<td>22</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>每页最多条目数</td>
+<td><font color="#FF0000">%lpageentry%</font></td>
+<td>4</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>总页数</td>
+<td><font color="#FF0000">%lpages%</font></td>
+<td>6</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>站点根目录路径</td>
+<td>&lt;a href=&quot;<font color="#FF0000">_root_/</font>images/a.gif&quot; ... </td>
+<td>&lt;a href=&quot;<b>../../</b>images/a.gif&quot; ... </td>
+<td>第二页起与第一页不在同一目录，因此请勿自行使用相对路径</td>
+</tr>
+<tr>
+<td>上一页链接</td>
+<td>&lt;a href=&quot;<font color="#FF0000">%prev%</font>&quot; style=&quot;<font color="#FF0000">%prevd%</font>&quot; ...&gt; </td>
+<td><a href="javascript:;">&lt;&lt;</a></td>
+<td rowspan="2">没有上一页/下一页时，%prevd%/%nextd%会被设为display:none;从而隐藏链接</td>
+</tr>
+<tr>
+<td>下一页链接</td>
+<td>&lt;a href=&quot;<font color="#FF0000">%next%</font>&quot; style=&quot;<font color="#FF0000">%nextd%</font>&quot; ...&gt; </td>
+<td><a href="javascript:;">&gt;&gt;</a></td>
+</tr>
+<tr>
+<td>本页条目数</td>
+<td><font color="#FF0000">%pageentry%</font></td>
+<td>2</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>本页页码</td>
+<td><font color="#FF0000">%pn%</font></td>
+<td>6</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>将替换完成的代码保存为list.列表名称.htm文件，注意“编码”应该选择UTF-8。</p>
+<h2>书写信息文件</h2>
+<pre><font color="#FF0000">html=</font>/mylist.htm  <font color="#996600">输出HTML文件路径，不输出就不写本行</font>
+<font color="#FF0000">atom=</font>/mylist.xml  <font color="#996600">输出Atom文件路径，不输出就不写本行</font>
+<font color="#FF0000">js=</font>/mylist.js  <font color="#996600">输出JavaScript文件路径，不输出就不写本行</font>
+<font color="#FF0000">jsdiv=</font>div_mylist  <font color="#996600">JavaScript需设置的&lt;div&gt;的id属性值，注意大小写</font>
+                  <font color="#996600">输出JS但无div设置的，就会在调用位置直接document.write</font>
+<font color="#FF0000">max=</font>4  <font color="#996600">每页输出条目数</font>
+<font color="#FF0000">title=</font>我的列表  <font color="#996600">列表标题</font>
+<font color="#FF0000">user=</font>sunny  <font color="#996600">有权编辑本列表的用户名(站点管理员不会自动获得列表管理权)</font>
+user=love   <font color="#996600">多个管理员可写多行</font>
+</pre>
+<p>将写好的信息文件保存为list.列表名称.txt文件，注意“编码”应该选择UTF-8。</p>
+<h2>创建Atom数据文件</h2>
+<p>列表数据本身也保存在Atom文件中，只需<a href="list_empty.xml">下载空白文件</a>，保存为list.列表名称.xml即可。</p>
+<h2>上传列表配置</h2>
+<p>将创建的四个文件上传到站点的/_PageGenerator_/目录下，一个列表就创建好了。</p>
+</body>
+</html>

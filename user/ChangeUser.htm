@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改账号信息 - PageGenerator</title>
+<script type="text/javascript">
+function chk(f)
+{
+	if (f.uid.value.length<1)
+	{
+		f.uid.focus();
+		alert('未填写用户名');
+		return false;	
+	}
+	if (f.pwl.value.length<1)
+	{
+		f.pwl.focus();
+		alert('未填写原密码');
+		return false;	
+	}
+	if (f.pwl1.value.length<1)
+	{
+		f.pwl1.focus();
+		alert('未填写新密码');
+		return false;	
+	}
+	if (f.pwl1.value!=f.pwl2.value)
+	{
+		f.pwl2.focus();
+		alert('新密码与确认密码不一致');
+		return false;
+	}
+	return true;
+}
+</script>
+</head>
+
+<body background="../images/bg.gif">
+<h1 align="center">修改账号信息 - PageGenerator</h1>
+<form method="post" action="ChangeUser.aspx" onsubmit="return chk(this);">
+<table width="280" border="0" align="center" cellpadding="5" cellspacing="0" bgcolor="#FFFF99">
+<tr>
+<td width="100">账号</td>
+<td width="180"><input name="uid" type="text" id="uid" /></td>
+</tr>
+<tr>
+<td>原密码</td>
+<td><input name="pwl" type="password" id="pwl" /></td>
+</tr>
+<tr>
+<td>新密码</td>
+<td><input name="pwl1" type="password" id="pwl1" /></td>
+</tr>
+<tr>
+<td>确认</td>
+<td><input name="pwl2" type="password" id="pwl2" /></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><input type="submit" value=" 修 改 账 号 " /></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

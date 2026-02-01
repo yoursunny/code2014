@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>PageGenerator - yoursunny网站系统</title>
+<script type="text/javascript">
+if (navigator.userAgent.indexOf('Firefox')<0)
+{
+	if (location.search.indexOf('skipFirefox')<0)
+	{
+		alert('系统检测到你使用的不是Firefox浏览器，将无法登录到PageGenerator管理界面，现在转到安装页面');
+		location='help/firefox.htm';
+	}
+	else
+	{
+		if (!confirm('你已经选择跳过Firefox浏览器检测，但是你使用的浏览器不是Firefox，这可能导致潜在的兼容性问题，是否继续？(点击“取消”安装Firefox)')) location='help/firefox.htm';
+	}
+}
+function chk(f)
+{
+	if (f.uid.value.length<1)
+	{
+		f.uid.focus();
+		alert('未填写用户名');
+		return false;
+	}
+	if (f.pwl.value.length<1)
+	{
+		f.pwl.focus();
+		alert('未填写密码');
+		return false;
+	}
+	return true;
+}
+</script>
+</head>
+
+<body background="images/bg.gif">
+<h1 align="center">PageGenerator - yoursunny网站系统</h1>
+<table width="700" height="300" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td width="400" height="270" valign="top"><p>什么是PageGenerator？</p>
+<ul>
+<li>基于ASP.NET 2.0的新一代CMS系统</li>
+<li>使用网页制作软件快速创建/编辑页面模版</li>
+<li>支持WORD上传、所见即所得在线编辑</li>
+<li>轻松添加反馈、调查等常见功能</li>
+<li>根据需要生成各类文章列表</li>
+<li>内容以文本文件、XML存储，简洁高效</li>
+<li>HTML静态文件+JS动态调用，快速响应</li>
+<li>支持管理FTP服务器上的网站</li>
+<li>可单独安装，不依赖yoursunny其他组件</li>
+<li>可以与用户权限组件及各种登录组件结合</li>
+</ul></td>
+<td width="300" rowspan="2" align="center" valign="middle"><form method="post" action="user/FormLogin.aspx" onsubmit="return chk(this);">
+<table width="280" height="280" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td colspan="2" align="center" bgcolor="#FFFF66">登录到PageGenerator</td>
+</tr>
+<tr>
+<td width="100" bgcolor="#FFFF66">账号</td>
+<td width="180" bgcolor="#FFFF66"><input name="uid" type="text" id="uid" /></td>
+</tr>
+<tr>
+<td bgcolor="#FFFF66">密码</td>
+<td bgcolor="#FFFF66"><input name="pwl" type="password" id="pwl" /></td>
+</tr>
+<tr>
+<td bgcolor="#FFFF66">&nbsp;</td>
+<td bgcolor="#FFFF66"><input type="submit" value="  登  录  " /></td>
+</tr>
+<tr>
+<td bgcolor="#FF99CC">&nbsp;</td>
+<td bgcolor="#FF99CC">&nbsp;</td>
+</tr>
+<tr>
+<td bgcolor="#FF99CC">没有注册？</td>
+<td bgcolor="#FF99CC"><a href="user/AddUser.htm">创建新的账号</a></td>
+</tr>
+<tr>
+<td bgcolor="#FF99CC">忘记密码？</td>
+<td bgcolor="#FF99CC">请与管理员联系</td>
+</tr>
+<tr>
+<td bgcolor="#FF99CC">想改密码？</td>
+<td bgcolor="#FF99CC"><a href="user/ChangeUser.htm">修改账号信息</a></td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+<tr>
+<td height="30" valign="top">&copy;2007, yoursunny.com</td>
+</tr>
+</table>
+</body>
+</html>

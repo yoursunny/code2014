@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>博客快速发布 - PageGenerator帮助</title>
+</head>
+
+<body background="../images/bg.gif">
+<h1>博客快速发布 - PageGenerator帮助</h1>
+<p>“博客快速发布”是PageGenerator强大功能的初级界面，主要用途：</p>
+<ul>
+<li>快速贴出博客文章，而且随手创建Tag标签</li>
+<li>为编辑人员配置好一个可以快速发文的环境，而无需培训编辑人员</li>
+</ul>
+<h2>主要功能</h2>
+<ul>
+<li>自动确定页面地址，而无需手动指定路径<br />
+创建地址的形式<br />
+形式一：/704/17a，即/一位年份、两位月份/两位日期、几个字母，文章少的适用<br />
+形式二：/200704/17a，即/四位年份、两位月份/两位日期、几个字母，可能超过十年的适用<br />
+形式三：/2007/0417/a，即/四位年份/两位月份、两位日期/几个字母，文章多的适用</li>
+<li>自动创建页面并套用模板</li>
+<li>自动添加HTML区块(名称为blogh)，直接打开tinyMCE用于录入正文</li>
+<li>自动添加any file区块(名称为blogu)，直接上传附件；有图片自动创建HTML区块(名称为blogp)显示所有图片；非图片文件自动创建HTML区块(名称为blogd)显示下载链接</li>
+<li>Tag标签需要动态功能包的支持<br />
+列表模板复制“blogtag”这个列表，产生名为“blogtag_名称”的列表，产生文件路径为/blogtag/名称.xml和/blogtag/名称.htm</li>
+<li>页面创建后请用户检查，检查无误即加入规定的列表和指定Tag的列表</li>
+</ul>
+<h2>配置方法</h2>
+<ol>
+<li>创建一个站点</li>
+<li>制作文章页模板(只能使用一套模板)<br />
+创建可插入位置<font color="#FF0000">%blog%</font>(正文)、<font color="#FF0000">%blogp%</font>(图片)、<font color="#FF0000">%blogd%</font>(下载链接)<br />
+在&lt;/head&gt;之前加入&lt;script type=&quot;text/javascript&quot; src=&quot;_root_/_PageGenerator_/blog.inc.js&quot;&gt;&lt;/script&gt;，blog.inc.js文件中的函数用于显示图片和下载链接，可以根据需要适当修改。<br />
+</li>
+<li>创建至少一个列表，用于博客的首页及外部调用</li>
+<li>制作一个HTML格式的列表模板(只要列表的.htm和.txt文件)用于Tag标签，保存于站点目录的/_PageGenerator_/blog/tagtpl.htm和/_PageGenerator_/tagtpl.txt两个文件</li>
+<li>在PageGenerator管理程序的/conf/blog.site.站点名称.axd中写入基本配置有权操作的用户名：<br />
+<pre><font color="#FF0000">tpl=</font>fun  <font color="#996600">文章页模板名称</font>
+<font color="#FF0000">user=</font>sunny  <font color="#996600">普通用户名，普通用户只能删除、修改自己的文章</font>
+user=test  <font color="#996600">多个用户每行写一个</font>
+<font color="#FF0000">admin=</font>love  <font color="#996600">管理员名，管理员可以删除、修改任何人的文章</font>
+<font color="#FF0000">priv=</font>0  <font color="#996600">外部授权方式，0=不允许用其他界面修改、除非另外授权，1=允许创建者修改</font><br /><font color="#FF0000">list=</font>blogindex  <font color="#996600">加入列表名称，设置Tag时会自动加入这个列表</font><br />list=bloghome  <font color="#996600">多个列表每行写一个</font>
+<font color="#FF0000">list?=</font>特别分类|blogcate1|blogcate1j  可勾选加入列表，|分隔提示信息与勾选后加入的多个列表
+<font color="#FF0000">namepattern=</font>1  <font color="#996600">命名方式，1/2/3</font>
+<font color="#FF0000">imgwidth=</font>640  <font color="#996600">最大图片宽度</font>
+<font color="#FF0000">imgheight=</font>480  <font color="#996600">最大图片高度</font></pre>
+在站点/_PageGenerator_.txt中可以不授权，这样这个站点就只能用“博客快速发布”界面创建新页面，但是priv=1时已有页面可以被这个页面的创建者用其他界面修改；站点开始使用后，切勿修改namepattern的值，否则将导致混乱甚至内容丢失。</li>
+</ol>
+<h1>操作方法</h1>
+<p>无需培训！进入/start/blog.aspx页面，根据提示操作即可。</p>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>制作更新包 - PageGenerator</title>
+</head>
+
+<body background="../images/bg.gif">
+<h1 align="center">制作更新包 - %sitename%</h1>
+<table id="make" width="700" border="0" align="center" cellpadding="5" cellspacing="0">
+<tr>
+<td width="350" valign="top" bgcolor="#F9FF80"><dl>
+<dt>什么是更新包？</dt>
+<dd>更新包是含有网站一段时间内变更过的文件的ZIP压缩包。</dd>
+<dt>更新包有什么用？</dt>
+<dd>当你需要管理一个远程的服务器上的网站、而该服务器到本地PageGenerator所在管理服务器距离较远不便采用直接的FTP方式，可以在本地创建该网站的副本并进行管理，然后通过制作更新包并手动上传来更新远程网站。更新包也可以用于制作网站的备份存档。</dd>
+<dt>可以制作网站中一部分的更新包吗？</dt>
+<dd>可以，在目录管理中来到子目录后点击制作更新包即可。这类更新包也应当在远程服务器根目录解压、而不是在子目录。</dd>
+</dl></td>
+<td width="350" valign="top" bgcolor="#6DFA6D"><form method="post" onsubmit="return chk_make(this);">
+<input name="a" type="hidden" id="a" value="make" />
+<dl>
+<dt>站点、目录</dt>
+<dd>%siteh% %pathh%</dd>
+<dt>更新起始时间</dt>
+<dd>只包含该时间之后的修改</dd>
+<dd>
+<input name="after" type="text" id="after" value="%date%" size="30" />
+</dd>
+<dd>格式：2007-02-28 23:59:59 </dd>
+<dd>如需包含全部内容，请输入<br />
+1970-01-01 00:00:00</dd>
+<dt>更新包类型</dt>
+<dd>
+<input name="t" type="radio" value="full" checked="checked" />
+完整，含有全部文件，可备份</dd>
+<dd>
+<input name="t" type="radio" value="production" />
+发布，不含有访问者看不到的文件</dd>
+<dt>
+<input type="submit" value="  制 作 更 新 包  " />
+<input type="button" value="  取  消  " onclick="location='site.aspx?site=%site%&path=%path%';" />
+</dt>
+<dd>根据站点规模，需要时间不等</dd>
+<dd>制作完毕后，会提供下载地址</dd>
+<dt>注意：只能为本地服务器上站点制作更新包</dt>
+</dl>
+</form></td>
+</tr>
+</table>
+<form id="del_form" method="post">
+<input name="a" type="hidden" id="a" value="%a%" />
+<input name="f" type="hidden" id="f" value="%f%" />
+<p id="down">制作完成，下载地址为：<br />
+<a href="%u%" target="_blank">%u%</a><br />
+下载完毕后请
+<input type="submit" value="  删  除  " />
+服务器上的更新包</p>
+</form>
+<p id="delnote">更新包已成功删除 <a href="site.aspx?site=%site%&path=%path%">返回站点管理</a></p>
+<p id="nochange">选择的目录和时间范围中文件没有任何变化，不需要更新 <a href="site.aspx?site=%site%&path=%path%">返回站点管理</a></p>
+<script type="text/javascript">
+var form_del=document.forms['del_form'];
+if (form_del==null) form_del=document.forms.del_form;
+if (form_del.a.value=='deleted')
+{
+	document.getElementById('make').style.display='none';
+	document.getElementById('down').style.display='none';
+	document.getElementById('nochange').style.display='none';
+}
+else if (form_del.a.value=='nochange')
+{
+	document.getElementById('make').style.display='none';
+	document.getElementById('down').style.display='none';
+	document.getElementById('delnote').style.display='none';
+}
+else if (form_del.f.value.length>1)
+{
+	document.getElementById('make').style.display='none';
+	document.getElementById('delnote').style.display='none';
+	document.getElementById('nochange').style.display='none';
+}
+else
+{
+	document.getElementById('down').style.display='none';
+	document.getElementById('delnote').style.display='none';
+	document.getElementById('nochange').style.display='none';
+}
+function chk_make(f)
+{
+	var d=f.after.value;
+	if (d.length!=19 || isNaN(new Date(d.substr(0,4),parseInt(d.substr(5,2))-1,d.substr(8,2),d.substr(11,2),d.substr(14,2),d.substr(17,2))))
+	{
+		f.date.focus();
+		alert('日期无效');
+		return false;
+	}
+	return true;
+}
+</script>
+</body>
+</html>

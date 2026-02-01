@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>计数器编辑器 - %title%</title>
+<script type="text/javascript">
+function chk(f)
+{
+	if (f.h.value.indexOf('<n>')!=f.h.value.lastIndexOf('<n>'))
+	{
+		f.h.focus();
+		alert('只能包含一个<n>');
+		return false;
+	}
+	return true;
+}
+var preview_window;
+function prv(f)
+{
+	if (!chk(f)) return;
+	preview_window=window.open('about:blank');
+	preview_window.document.writeln('<title>预览</title>');
+	preview_window.document.writeln(f.h.value.replace('<n>',250));
+	preview_window.document.close();
+	setTimeout('preview_window.close()',3000);
+}
+</script>
+</head>
+
+<body>
+<h1>计数器编辑器 - %title%</h1>
+<form method="post" onsubmit="return chk(this);">
+<p>计数方式：<br />
+<input name="t" type="radio" value="ip" %t=ip% /> 
+IP，相同IP当日多次访问本页面只算一次<br />
+<input name="t" type="radio" value="cookie" %t=cookie% />
+cookie，相同机器不关闭浏览器多次访问本页面只算一次<br />
+<!--input name="t" type="radio" value="referrer" %t=referrer% />
+REFERER，多次访问算多次，但刷新无效<br /-->
+<input name="t" type="radio" value="hit" %t=hit% />
+hit，刷新算多次</p>
+<p> 显示样式(HTML，用&lt;n&gt;代表计数值，只能包含一个&lt;n&gt;)：
+<br />
+<textarea name="h" rows="5" cols="80" id="h">%h%</textarea>
+<br />
+<input name="button" type="button" onclick="prv(this.form)" value="预览" />
+(演示计数值为250)<br />
+如果不希望显示计数值时，请将上面留空<br />
+你仍可以在动态功能包的相关页面看到计数值 </p>
+<p>
+<input type="submit" value="  保  存  " />
+</p>
+<p>计数器功能需要发布服务器安装PageGenerator动态功能包<br />
+注意：切勿在同一页上添加多个计数器，这会导致重复计数</p>
+</form>
+</body>
+</html>

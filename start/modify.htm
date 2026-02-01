@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改页面 - PageGenerator</title>
+<style type="text/css">
+td {font-size:12pt;line-height:20pt;}
+.list {width:200pt;height:150pt;}
+#list_buttons input {width:50pt;height:20pt;margin:10pt 0pt;}
+</style>
+</head>
+
+<body background="../images/bg.gif">
+<h1 style="font-size:15pt;">修改页面 <span style="color:#f00;">%path%</span></h1>
+<table width="700" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="140" align="center" id="switch_basic" style="background-color:#f9f;cursor:pointer;" onclick="switchTo('basic');">基本信息</td>
+<td width="140" align="center" id="switch_part" style="background-color:#9f6;cursor:pointer;" onclick="switchTo('part');">内容区块</td>
+<td width="140" align="center" id="switch_list" style="background-color:#ff9;cursor:pointer;" onclick="switchTo('list');">加入列表</td>
+<td width="140" align="center" style="background-color:#60f;cursor:pointer;border-bottom:solid 2px #000;" onclick="location='%site_mgr%';">返回目录管理</td>
+<td width="140" align="center" style="background-color:#c90;cursor:pointer;border-bottom:solid 2px #000;" onclick="location='../user/logout.aspx';">退出登录状态</td>
+</tr>
+<tr>
+<td height="5" colspan="5" id="switch_bar" style="line-height:5px;">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript">
+function switchTo(n)
+{
+	document.getElementById('form_basic').style.display='none';
+	document.getElementById('form_part').style.display='none';
+	document.getElementById('form_list').style.display='none';
+	document.getElementById('switch_basic').style.borderBottom='solid 2px #000';
+	document.getElementById('switch_part').style.borderBottom='solid 2px #000';
+	document.getElementById('switch_list').style.borderBottom='solid 2px #000';
+	document.getElementById('switch_basic').style.fontWeight='';
+	document.getElementById('switch_part').style.fontWeight='';
+	document.getElementById('switch_list').style.fontWeight='';
+	document.getElementById('form_'+n).style.display='';
+	document.getElementById('switch_'+n).style.borderBottom='';
+	document.getElementById('switch_'+n).style.fontWeight='bold';
+	document.getElementById('switch_bar').style.backgroundColor=document.getElementById('switch_'+n).style.backgroundColor;
+}
+</script>
+<form method="post" name="form_basic" id="form_basic" onsubmit="return chk_basic(this);">
+<input name="a" type="hidden" id="a" value="basic" />
+<input name="site" type="hidden" id="site" value="%site%" />
+<input name="path" type="hidden" id="path" value="%path%" />
+<table width="700" border="1" cellpadding="0" cellspacing="0" bgcolor="#FF99FF">
+<tr>
+<td width="70">位置</td>
+<td width="530">
+%path%</td>
+<td width="530">&nbsp;</td>
+</tr>
+<tr>
+<td>模板</td>
+<td><select name="tpl" size="5" id="tpl" style="width:30ex;" onchange="return confirm('更换模板可能造成页面内容丢失，是否继续？');">
+%tpls%</select></td>
+<td>更换模板可能造成页面内容丢失<br />
+(部分区块无法显示出来，<br />
+可通过移动区块恢复显示)</td>
+</tr>
+<tr>
+<td>标题</td>
+<td><input name="title" type="text" id="title" value="%title%" size="50" /></td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>作者</td>
+<td><input name="author" type="text" id="author" value="%author%" size="50" /></td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>创始</td>
+<td>%usercreate%</td>
+<td>创建本页的用户名</td>
+</tr>
+<tr>
+<td>编辑</td>
+<td><textarea name="users" cols="40" rows="4" id="users">%users%</textarea></td>
+<td>有权编辑本页的用户名<br />
+每行一个</td>
+</tr>
+<tr>
+<td>日期</td>
+<td><input name="date" type="text" id="date" value="%date%" size="50" /></td>
+<td>格式2007-02-28 23:59:59</td>
+</tr>
+<tr>
+<td>摘要</td>
+<td><input name="summary" type="text" id="summary" value="%summary%" size="50" /></td>
+<td>文章摘要，用于ATOM聚合</td>
+</tr>
+<tr>
+<td colspan="3" align="center"><input type="submit" value="  修  改  " /></td>
+</tr>
+</table>
+<script type="text/javascript">
+function chk_basic(f)
+{
+	if (f.tpl.selectedIndex<0)
+	{
+		f.tpl.focus();
+		alert('没有选择模板');
+		return false;
+	}
+	if (f.title.value.length<1)
+	{
+		f.title.focus();
+		alert('没有填写页面标题');
+		return false;
+	}
+	if (f.author.value.length<1)
+	{
+		f.tpl.focus();
+		alert('没有填写作者');
+		return false;
+	}
+	var d=f.date.value;
+	if (d.length!=19 || isNaN(new Date(d.substr(0,4),parseInt(d.substr(5,2))-1,d.substr(8,2),d.substr(11,2),d.substr(14,2),d.substr(17,2))))
+	{
+		f.date.focus();
+		alert('日期无效');
+		return false;
+	}
+	return true;
+}
+</script>
+</form>
+
+<form method="post" name="form_part" id="form_part">
+<input name="a" type="hidden" id="a" value="part" />
+<input name="site" type="hidden" id="site" value="%site%" />
+<input name="path" type="hidden" id="path" value="%path%" />
+<input name="act" type="hidden" id="act" value="null" />
+<script type="text/javascript">
+var part_places=[
+%part_places%];
+var part_edits=[
+%part_edits%];
+var parts=[
+%parts%
+];
+</script>
+<table width="700" border="0" cellpadding="0" cellspacing="0" bgcolor="#99FF66">
+<tr>
+<td width="420" align="center">现有内容区块</td>
+<td width="280" align="center" id="part_add_header">添加内容区块</td>
+</tr>
+<tr>
+<td align="center" valign="top"><table width="400" border="1" cellpadding="0" cellspacing="0" bgcolor="#99FF99" id="parts">
+<tr>
+<th>名称<span style="font-size:9pt;font-weight:normal;">点击编辑</span></th>
+<th>位置<span style="font-size:9pt;font-weight:normal;">点击移动</span></th>
+<th>类型<span style="font-size:9pt;font-weight:normal;">点击删除</span></th>
+</tr>
+<script type="text/javascript">
+for (var i=0;i<parts.length;++i)
+{
+document.writeln('<tr id="part_row_'+parts[i].name+'">');
+document.writeln('<td id="part_name_'+parts[i].name+'"><a href="../edit/'+parts[i].edit+'.aspx?site=%siteq%&path=%pathq%&part='+escape(parts[i].name)+'" target="_blank" id="part_editlink_'+parts[i].name+'">'+parts[i].name+'</a></td>');
+document.writeln('<td id="part_location_'+parts[i].name+'"><a href="javascript:part_move(\''+parts[i].name+'\');">'+parts[i].place+'</a></td>');
+document.writeln('<td id="part_edit_'+parts[i].name+'"><a href="javascript:part_delete(\''+parts[i].name+'\');">'+parts[i].editdescription+'</a></td>');
+document.writeln('</tr>');
+}
+</script>
+<tr id="part_move_alert" style="display:none;">
+<td colspan="3" bgcolor="#CCFF99">提示：请在右边选择该区块的新位置&gt;&gt;&gt;</td>
+</tr>
+</table></td>
+<td align="center" valign="top"><table width="260" border="1" cellspacing="0" cellpadding="0">
+<tr>
+<th>名称</th>
+<td><input name="partname" type="text" id="partname" style="width:12em;" /></td>
+</tr>
+<tr>
+<th>位置</th>
+<td><select name="place" size="5" id="place" style="width:12em;">
+</select></td>
+</tr>
+<tr id="part_edit_row">
+<th>类型</th>
+<td><select name="edit" size="10" id="edit" style="width:12em;">
+</select></td>
+</tr>
+<tr>
+<th>&nbsp;</th>
+<td><input name="button_new" id="button_new" type="button" value="  添  加  " onclick="chk_part_new(this.form);" />
+<input name="button_move" id="button_move" type="button" value="  移  动  " onclick="chk_part_move(this.form);" style="display:none;" /></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td colspan="2" align="center" valign="top"><a href="output.aspx?site=%siteq%&amp;path=%pathq%&amp;go=0">生成静态文件</a> &nbsp; &nbsp; &nbsp; <a href="output.aspx?site=%siteq%&amp;path=%pathq%&amp;go=1" target="_blank">生成并预览</a></td>
+</tr>
+</table>
+<script type="text/javascript">
+var part_form=document.forms['form_part'];
+if (part_form==null) part_form=document.forms.form_part;
+for (var i=0;i<part_places.length;++i)
+	part_form.place.options[part_form.place.length]=new Option(part_places[i].description,part_places[i].name);
+if (part_form.place.length>0) part_form.place.options[0].selected=true;
+for (var i=0;i<part_edits.length;++i)
+	part_form.edit.options[part_form.edit.length]=new Option(part_edits[i].description,part_edits[i].name);
+if (part_form.edit.length>0) part_form.edit.options[0].selected=true;
+function chk_part_new(f)
+{
+	if (f.partname.value.length<1)
+	{
+		f.partname.focus();
+		alert('没有填写区块名称');
+		return;
+	}
+	if (f.partname.value.indexOf('/')>=0 || f.partname.value.indexOf('..')>=0)
+	{
+		f.partname.focus();
+		alert('区块名称不允许包含/或..');
+		return;
+	}
+	if (f.place.selectedIndex<0)
+	{
+		f.place.focus();
+		alert('没有选择位置');
+		return;
+	}
+	if (f.edit.selectedIndex<0)
+	{
+		f.edit.focus();
+		alert('没有选择类型');
+		return;
+	}
+	for (var i=0;i<parts.length;++i)
+		if (parts[i].name==f.partname.value)
+		{
+			f.partname.focus();
+			alert('该区块名称已经存在，请指定不同的名称');
+			return;
+		}
+	f.act.value='create';
+	f.submit();
+}
+function chk_part_move(f)
+{
+	f.partname.value=f.partname.defaultValue;
+	if (f.place.selectedIndex<0)
+	{
+		f.place.focus();
+		alert('没有选择位置');
+		return;
+	}
+	f.act.value='move';
+	f.submit();
+}
+function part_move(p)
+{
+	document.getElementById('part_add_header').innerHTML='移动内容区块';
+	document.getElementById('part_edit_row').style.display='none';
+	part_form.button_new.style.display='none';
+	part_form.button_move.style.display='inline';
+	part_form.partname.defaultValue=p;
+	var place='';
+	for (var i=0;i<parts.length;++i)
+		if (parts[i].name==p) place=parts[i].place;
+	for (var i=0;i<part_form.place.length;++i)
+		part_form.place.options[i].selected=(part_form.place.options[i].value==place);
+	part_move_alert_count=0;
+	part_move_alert();
+}
+function part_delete(p)
+{
+	if (!confirm('确实删除区块 '+p+' 吗？\n将同时删除该区块的所有内容、附加文件等')) return;
+	part_form.act.value='delete';
+	part_form.partname.value=p;
+	part_form.submit();
+}
+var part_move_alert_count=0;
+function part_move_alert()
+{
+	++part_move_alert_count;
+	document.getElementById('part_move_alert').style.display=(part_move_alert_count%2==0)?'none':'';
+	if (part_move_alert_count<6) setTimeout('part_move_alert()',750);
+}
+</script>
+</form>
+
+<form method="post" name="form_list" id="form_list" onsubmit="return chk_list(this);">
+<input name="a" type="hidden" id="a" value="list" />
+<input name="site" type="hidden" id="site" value="%site%" />
+<input name="path" type="hidden" id="path" value="%path%" />
+<input name="v" type="hidden" id="v" />
+<script type="text/javascript">
+var list_known=[
+%list_known%];
+</script>
+<table width="700" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFF99">
+<tr>
+<td colspan="3" style="font-size:9pt;">保存时，会将本页加入新选择的列表最前面，并将本页移至已加入列表的最前面；从列表删除请到列表管理页面操作</td>
+</tr>
+<tr>
+<td align="center">所有列表 </td>
+<td>&nbsp;</td>
+<td align="center">本次加入的列表</td>
+</tr>
+<tr>
+<td align="center" valign="top"><select name="list_all" multiple="multiple" id="list_all" class="list">
+</select>
+<br />
+<input type="button" value="  打开列表管理  " onclick="list_manager(this.form)" /></td>
+<td align="center" id="list_buttons">
+<input type="button" value="&gt;&gt;" onclick="list_add_all(this.form)" />
+<br />
+<input type="button" value="&gt;" onclick="list_add(this.form)" />
+<br />
+<input type="button" value="&lt;" onclick="list_remove(this.form)" />
+<br />
+<input type="button" value="&lt;&lt;" onclick="list_remove_all(this.form)" /></td>
+<td align="center" valign="top"><select name="list_sel" multiple="multiple" id="list_sel" class="list">
+</select></td>
+</tr>
+<tr>
+<td colspan="3" align="center"><input type="submit" value="  保  存  " /></td>
+</tr>
+</table>
+<script type="text/javascript">
+var list_form=document.forms['form_list'];
+if (list_form==null) part_form=document.forms.form_list;
+for (var i=0;i<list_known.length;++i)
+		list_form.list_all.options[list_form.list_all.length]=new Option(list_known[i],list_known[i]);
+function list_add_all(f)
+{
+	while (f.list_all.length>0)
+	{
+		f.list_sel.options[f.list_sel.length]=new Option(f.list_all.options[0].text,f.list_all.options[0].value);
+		f.list_all.options[0]=null;
+	}
+}
+function list_add(f)
+{
+	var k=0;
+	while (f.list_all.length>k)
+	{
+		if (f.list_all.options[k].selected)
+		{
+			f.list_sel.options[f.list_sel.length]=new Option(f.list_all.options[k].text,f.list_all.options[k].value);
+			f.list_all.options[k]=null;
+		}
+		else
+			++k;
+	}
+}
+function list_remove(f)
+{
+	var k=0;
+	while (f.list_sel.length>k)
+	{
+		if (f.list_sel.options[k].selected)
+		{
+			f.list_all.options[f.list_all.length]=new Option(f.list_sel.options[k].text,f.list_sel.options[k].value);
+			f.list_sel.options[k]=null;
+		}
+		else
+			++k;
+	}
+}
+function list_remove_all(f)
+{
+	while (f.list_sel.length>0)
+	{
+		f.list_all.options[f.list_all.length]=new Option(f.list_sel.options[0].text,f.list_sel.options[0].value);
+		f.list_sel.options[0]=null;
+	}
+}
+function chk_list(f)
+{
+	f.v.value='';
+	for (var i=0;i<f.list_sel.length;++i)
+		f.v.value+='|'+f.list_sel.options[i].value;
+	return true;
+}
+</script>
+</form>
+<form name="form_listmanager" id="form_listmanager" action="list.aspx" method="get" target="_blank" style="display:none;">
+<input name="site" type="hidden" id="site" value="%site%" />
+<input name="a" type="hidden" id="a" value="view" />
+<input name="listname" type="hidden" id="listname" />
+<script type="text/javascript">
+function list_manager(f)
+{
+	var listmanager_form=document.forms['form_listmanager'];
+	if (listmanager_form==null) part_form=document.forms.form_listmanager;
+	listmanager_form.listname.value=f.list_all.options[f.list_all.selectedIndex].value;
+	listmanager_form.submit();
+}
+</script>
+</form>
+<script type="text/javascript">
+switchTo('part');
+</script>
+</body>
+</html>

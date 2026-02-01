@@ -1,0 +1,7 @@
+﻿# yoursunny PageGenerator信息文件，请勿删除！修改前先备份！
+tpl=
+title=blank
+author=nobody
+date=1987-02-12 14:30:00
+summary=
+userCreate=nobody

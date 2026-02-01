@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HTML编辑器 - %title%</title>
+<script language="javascript" type="text/javascript" src="../misc/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
+<script language="javascript" type="text/javascript">
+function save(f)
+{
+	Editor('source');
+	return true;
+}
+tinyMCE.init({
+    mode : "textareas",
+    editor_selector : "tinyMCEeditor",
+    theme : "advanced",
+    plugins : "table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,zoom,flash,searchreplace,print,contextmenu",
+    theme_advanced_buttons1_add_before : "save,separator",
+    theme_advanced_buttons1_add : "fontselect,fontsizeselect",
+    theme_advanced_buttons2_add : "separator,insertdate,inserttime,preview,zoom,separator,forecolor,backcolor",
+    theme_advanced_buttons2_add_before: "cut,copy,paste,separator,search,replace,separator",
+    theme_advanced_buttons3_add_before : "tablecontrols,separator",
+    theme_advanced_toolbar_location : "top",
+    theme_advanced_toolbar_align : "left",
+    plugin_insertdate_dateFormat : "%Y-%m-%d",
+    plugin_insertdate_timeFormat : "%H:%M:%S",
+    language : "zh_cn_utf8",
+    docs_language : "en",
+	add_form_submit_trigger : false,
+});
+var lastEditor='source';
+function Editor(editor)
+{
+	switch (editor)
+	{
+		case 'source':
+			switch (lastEditor)
+			{
+				case 'source':
+					break;
+				case 'tinyMCE':
+					tinyMCE.execCommand('mceRemoveControl',true,'s');
+					break;
+			}
+			break;
+		case 'tinyMCE':
+			switch (lastEditor)
+			{
+				case 'source':
+					tinyMCE.execCommand('mceAddControl',true,'s');
+					break;
+				case 'tinyMCE':
+					break;
+			}
+			break;
+	}
+	lastEditor=editor;
+}
+</script>
+</head>
+
+<body>
+<h1>HTML编辑器 - %title%</h1>
+<form method="post" onsubmit="return save(this)">
+<table width="750" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+编辑方式
+<input type="radio" name="edit" checked onchange="Editor('source')" />HTML源代码
+<input type="radio" name="edit" onchange="Editor('tinyMCE')" />tinyMCE编辑器
+<input type="submit" value="  保  存  " />
+<br />
+<textarea name="s" cols="100" rows="20" id="s">%saved%</textarea>
+</td>
+</tr>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>播客编辑器 - %title%</title>
+</head>
+
+<body>
+<h1>播客编辑器 - %title%</h1>
+<p>播客编辑器能让你更方便快捷的在页面上添加声音、影片对象！</p>
+<form method="post" enctype="multipart/form-data">
+<p><b>播放器种类</b><br />
+<input name="player" type="radio" value="flash" %player=flash% />
+<b>Flash</b>(<font color="#669933">推荐</font>) 可插入<font color="#CC00FF">SWF</font>文件<br />
+<input name="player" type="radio" value="wmp" %player=wmp% /> 
+<b>Windows Media Player</b>(<font color="#669933">推荐</font>) 可插入<font color="#CC00FF">MP3 WMA WMV ASF</font> <font color="#996600">AVI MPG</font> M3U文件<br />
+<input name="player" type="radio" value="real" %player=real% /> 
+<b>RealPlayer</b> 可插入<font color="#CC00FF">MP3 RM RMVB RA RAM</font> <font color="#996600">MPG</font> SMI SMIL文件<br />
+<input name="player" type="radio" value="bgsound" %player=bgsound% /> 
+<b>&lt;bgsound&gt;</b>(<font color="#6666FF">只支持IE浏览器</font>) 可插入<font color="#CC00FF">MID MP3 WMA </font> <font color="#996600">WAV</font>文件<br />
+<input name="player" type="radio" value="qt" %player=qt% />
+<b>QuickTime</b> 
+ 可插入<font color="#CC00FF">MOV</font>文件<br />
+(<font color="#CC00FF">粉红色</font>文件格式适合网络传送，尽可能采用；<font color="#996600">棕色</font>文件格式不利于在线点播，请尽量不要使用。访问者系统中需安装相应插件才能播放，否则将不能播放)<br />
+<input name="autostart" type="checkbox" id="autostart" value="1" %autostart% />
+自动开始播放(只用于Windows Media Player与RealPlayer与QuickTime) </p>
+<p><b>播放器尺寸<br />
+</b>宽
+<input name="width" type="text" id="width" value="%width%" size="4" /> 
+* 高
+<input name="height" type="text" id="height" value="%height%" size="4" /> 
+(请根据影音文件实际尺寸设置，可适当扩大)
+<br />
+参考：<br />
+Windows Media Player高度需设置为图像高度+45以容纳控制栏 <br />
+Flash与RealPlayer设置为实际尺寸</p>
+<p><b>播放文件</b><br />
+<b>输入节目地址</b>
+<input name="url" type="text" id="url" value="%url%" size="60" />
+<br />
+或 <b>上传节目</b> 
+<input name="u" type="file" id="u" />
+(大型文件无法成功上传)
+<br />
+(上传节目将覆盖节目地址；修改节目地址将删除已上传节目。节目地址不会保密，为了防止被多线程下载，建议直接FTP上传到专用点播服务器，而不要在此上传)</p>
+<p>
+<input type="submit" value="  保  存  " />
+</p>
+</form>
+
+</body>
+</html>

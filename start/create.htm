@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>创建子目录 - PageGenerator</title>
+</head>
+
+<body background="../images/bg.gif">
+<h1 style="font-size:15pt;">创建页面于 <span style="color:#f00;">%path%</span></h1>
+<ul>
+<li>一个“页面”对应一篇文章；在文件系统中，“页面”是一个文件夹，文章相关的图片、数据均存储于该文件夹；目录名中请不要包含.和_符号</li>
+<li>如果要创建文件夹，必须创建相应的“页面”</li>
+<li>“模板”是指页面的总体排版格式和配色方案</li>
+<li> “列表”就是网站首页或其他地方的一组新闻标题；如果不加入一个列表，将导致内容无法被别人看到</li>
+</ul>
+<form method="post" name="f" id="f" onsubmit="return chk(this);">
+<input name="site" type="hidden" id="site" value="%site%" />
+<table width="700" border="1" cellpadding="0" cellspacing="0" bgcolor="#FF99FF">
+<tr>
+<td width="70" height="30">名称</td>
+<td width="530">
+%path%<span id="pathslash">/</span><input name="dir" type="text" id="dir" size="10" />
+<input name="parent" type="hidden" id="parent" value="%path%" />
+<input name="path" type="hidden" id="path" /></td>
+</tr>
+<tr>
+<td height="30">模板</td>
+<td><select name="tpl" size="5" id="tpl" style="width:30ex;">
+%tpls%</select></td>
+</tr>
+<tr>
+<td height="30">标题</td>
+<td><input name="title" type="text" id="title" size="50" /></td>
+</tr>
+<tr>
+<td height="30">作者</td>
+<td><input name="author" type="text" id="author" size="50" /></td>
+</tr>
+<tr>
+<td height="30">日期</td>
+<td><input name="date" type="text" id="date" value="%date%" size="50" />
+格式2007-02-28 23:59:59</td>
+</tr>
+<tr>
+<td height="30">摘要</td>
+<td><input name="summary" type="text" id="summary" size="50" />
+文章摘要，用于ATOM聚合</td>
+</tr>
+<tr>
+<td height="30" colspan="2" align="center"><input type="submit" value="  创  建  " />
+<input type="button" value="  取  消  " onclick="location='site.aspx?site='+escape(this.form.site.value)+'&path='+escape(this.form.parent.value);" /></td>
+</tr>
+</table>
+<script type="text/javascript">
+if (document.forms['f'].parent.value=='/')
+	document.getElementById('pathslash').style.display='none';
+function chk(f)
+{
+	if (f.dir.value.length<1)
+	{
+		f.dir.focus();
+		alert('没有填写子目录名称');
+		return false;
+	}
+	if (f.dir.value.indexOf('/')>=0)
+	{
+		f.dir.focus();
+		alert('子目录名称中请不要包含 / 字符');
+		return false;
+	}
+	f.path.value=(f.parent.value+'/'+f.dir.value).replace('//','/');
+	illegalChars='._"<>|\t\n\r';
+	for (var i=0;i<illegalChars.length;++i)
+		if (f.path.value.indexOf(illegalChars[i])>=0)
+		{
+			f.dir.focus();
+			alert('路径中存在无效字符 '+illegalChars[i]);
+			return false;
+		}
+	if (f.tpl.selectedIndex<0)
+	{
+		f.tpl.focus();
+		alert('没有选择模板');
+		return false;
+	}
+	if (f.title.value.length<1)
+	{
+		f.title.focus();
+		alert('没有填写页面标题');
+		return false;
+	}
+	if (f.author.value.length<1)
+	{
+		f.tpl.focus();
+		alert('没有填写作者');
+		return false;
+	}
+	var d=f.date.value;
+	if (d.length!=19 || isNaN(new Date(d.substr(0,4),parseInt(d.substr(5,2))-1,d.substr(8,2),d.substr(11,2),d.substr(14,2),d.substr(17,2))))
+	{
+		f.date.focus();
+		alert('日期无效');
+		return false;
+	}
+	return true;
+}
+</script>
+</form>
+</body>
+</html>

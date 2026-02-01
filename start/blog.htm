@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>博客快速发布 - PageGenerator</title>
+<script type="text/javascript">
+var sites=[
+%sites%];
+var site='%site%';
+var siteRoot='%siteRoot%';
+var editUrl='%editUrl%';
+var tagUrl='%tagUrl%';
+var listc=[
+%listc%];
+if (site.length>0 && tagUrl.length<1)
+	document.write('<script language="javascript" type="text/javascript" src="../misc/tinymce/jscripts/tiny_mce/tiny_mce.js"></'+'script>');
+</script>
+<script type="text/javascript">
+if (site.length>0 && tagUrl.length<1)
+tinyMCE.init({
+    mode : "textareas",
+    editor_selector : "tinyMCEeditor",
+    theme : "advanced",
+    plugins : "table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,zoom,flash,searchreplace,print,contextmenu",
+    theme_advanced_buttons1_add_before : "save,separator",
+    theme_advanced_buttons1_add : "fontselect,fontsizeselect",
+    theme_advanced_buttons2_add : "separator,insertdate,inserttime,preview,zoom,separator,forecolor,backcolor",
+    theme_advanced_buttons2_add_before: "cut,copy,paste,separator,search,replace,separator",
+    theme_advanced_buttons3_add_before : "tablecontrols,separator",
+    theme_advanced_toolbar_location : "top",
+    theme_advanced_toolbar_align : "left",
+    plugin_insertdate_dateFormat : "%Y-%m-%d",
+    plugin_insertdate_timeFormat : "%H:%M:%S",
+    language : "zh_cn_utf8",
+    docs_language : "en",
+	add_form_submit_trigger : false,
+});
+</script>
+</head>
+<body background="../images/bg.gif">
+<h1 align="center">博客快速发布 - PageGenerator</h1>
+<p>本功能是根据规定的文件命名形式(日期型)，简单操作即可创建基本的页面，而且加入指定的列表；通常用于快速发表博客内容，也可用于新闻栏目的发表；适用于“傻瓜型”发文。<a href="../help/blog.htm">点击阅读配置方法和更多帮助</a></p>
+
+<p><b>选择你要管理的博客站点</b><br />
+<script type="text/javascript">
+for (var i=0;i<sites.length;++i)
+{
+	document.write('<input type="radio" value="'+sites[i]+'" '+(sites[i]==site?'checked':'')+' onclick="location=\'?site='+escape(sites[i])+'\';" />'+sites[i]+' &nbsp; ');
+}
+</script></p>
+
+<form id="f_del" name="f_del" method="post" style="display:none;">
+<input name="a" type="hidden" id="a" value="del" />
+<p><b>修改/删除文章</b><br />
+文章网址
+<input name="u" type="text" id="u" size="50" />
+<input type="button" value="修改" onclick="chk_modify(this.form)" />
+<input type="button" value="删除" onclick="chk_del(this.form)" />
+</p>
+<script type="text/javascript">
+var f_del=document.getElementById('f_del');
+if (siteRoot.length>0 && editUrl.length<1) f_del.style.display='';
+if (tagUrl.length>0) f_del.u.value=siteRoot+tagUrl;
+function chk_modify(f)
+{
+	if (f.u.value.substr(0,siteRoot.length+1).toLowerCase()!=siteRoot.toLowerCase()+'/')
+	{
+		alert('这个网址不属于当前站点');
+		f.u.focus();
+		return;
+	}
+	location='?site='+escape(site)+'&a=modify&path='+escape(f.u.value.substr(siteRoot.length));
+}
+function chk_del(f)
+{
+	if (f.u.value.substr(0,siteRoot.length+1).toLowerCase()!=siteRoot.toLowerCase()+'/')
+	{
+		alert('这个网址不属于当前站点');
+		f.u.focus();
+		return;
+	}
+	if (!confirm('确实删除这篇文章吗？')) return;
+	f.u.value=f.u.value.substr(siteRoot.length);
+	f.submit();
+}
+</script>
+</form>
+
+<form method="post" enctype="multipart/form-data" name="f_post" id="f_post" onsubmit="return chk_post(this);" style="display:none;">
+<input name="a" type="hidden" id="a" value="post" />
+<input name="u" type="hidden" id="u" />
+<p><b id="post_act">发布文章</b><br />
+文章标题
+<input name="title" type="text" id="title" size="50" value="%title%" />
+<br />
+文章作者
+<input name="author" type="text" id="author" size="50" value="%author%" />
+<input name="authordef" type="checkbox" id="authordef" value="1" />
+设置成默认作者<br />
+文章内容
+<input type="checkbox" onchange="post_source(this.checked)" />
+编辑HTML源代码<br />
+<textarea name="h" cols="80" rows="20" class="tinyMCEeditor">%h%</textarea>
+<br />
+图片与附件上传<span id="post_orig" style="display:none;"> &nbsp; 原有图片与附件：
+<input name="uorig" type="radio" value="1" checked="checked" />
+保留
+<input name="uorig" type="radio" value="0" />
+删除</span><br />
+<input name="u1" type="file" id="u1" />
+<input name="u2" type="file" id="u2" /><br />
+<input name="u3" type="file" id="u3" />
+<input name="u4" type="file" id="u4" /><br />
+<input name="u5" type="file" id="u5" />
+<input name="u6" type="file" id="u6" /><br />
+<input name="u7" type="file" id="u7" />
+<input name="u8" type="file" id="u8" /><br />
+接受的图片格式：jpg gif bmp png，图片可能会被自动缩小到合适尺寸<br />
+接受的附件格式：doc docx wps xls xlsx et ppt pps pptx eps pdf pub p65 txt mp3 wma wav mid asf rm ra rmvb ogg wmv smi swf flv mpg avi zip rar cab 7z<br />
+<input type="submit" value="发布" />
+(注意：必须完成检查内容、设置Tag这个步骤，访问者才能看到发布的文章)</p>
+<script type="text/javascript">
+var f_post=document.getElementById('f_post');
+if (site.length>0 && tagUrl.length<1) f_post.style.display='';
+if (editUrl.length>0)
+{
+	f_post.a.value='edit';
+	f_post.u.value=editUrl;
+	document.getElementById('post_act').innerHTML='修改文章';
+	document.getElementById('post_orig').style.display='';
+}
+function chk_post(f)
+{
+	if (f.title.value.length<1)
+	{
+		alert('没有填写文章标题');
+		f.title.focus();
+		return false;
+	}
+	if (f.author.value.length<1)
+	{
+		alert('没有填写文章作者');
+		f.author.focus();
+		return false;
+	}
+	tinyMCE.execCommand('mceRemoveControl',true,'h');
+	return true;
+}
+function post_source(ena)
+{
+	if (ena) tinyMCE.execCommand('mceRemoveControl',true,'h');
+	else tinyMCE.execCommand('mceAddControl',true,'h');
+}
+</script>
+</form>
+
+<form id="f_tag" name="f_tag" method="post" style="display:none;">
+<input name="a" type="hidden" id="a" value="tag" />
+<input name="u" type="hidden" id="u" />
+<p><b>检查内容、设置Tag</b><br /> 
+文章已经发布，<a id="tag_open" href="javascript:;" target="PageGenerator_blog_preview">点击打开</a>。请仔细检查刚刚发表的文章，避免出现错别字、语法错误、技术差错、排版混乱、图片越界、表格超宽等各类问题。如果出现这些问题，请修改文章或删除文章；只有确认了没有出现以上错误现象，才继续。<br />
+你可以选择将这篇文章添加进以下类别：<br />
+<script type="text/javascript">
+for (var i=0;i<listc.length;++i)
+{
+	document.write('<input name="listc'+listc[i].hash+'" type="checkbox" id="listc'+listc[i].hash+'" value="1" />'+listc[i].msg+' &nbsp; ');
+}
+</script><br />
+请为这篇博客文章设置1~3个Tag，使用户更容易找到相关的文章<br />
+<input name="tag" type="text" id="tag" size="50" />
+(可选，多个Tag请用空格分隔)<br />
+<input type="submit" value="完成" /> 
+(即使没有设置Tag，也必须点击，否则访问者无法看到你的文章)</p>
+<script type="text/javascript">
+var f_tag=document.getElementById('f_tag');
+if (tagUrl.length>0)
+{
+	f_tag.u.value=tagUrl;
+	f_tag.style.display='';
+	document.getElementById('tag_open').href=siteRoot+tagUrl+'/';
+}
+</script>
+</form>
+</body>
+</html>
